@@ -1,0 +1,98 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+    "modules-left": ["wlr/workspaces"],
+//    "modules-center": ["sway/window"],
+//    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "backlight",
+//                      "battery", "cpu","memory", "temperature", "clock",
+//                      "tray"],
+    "modules-right": ["tray" ,"pulseaudio" ,"clock"],
+
+    "wlr/workspaces": {
+        "all-outputs": false,
+        "active-only": "false",
+        "on-click": "activate",
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "format-icons": {
+          "1": "󪤍",
+          "2": "󪤍",
+          "3": "󪤍",
+          "4": "󪤍",
+          "5": "󪤍",
+          "6": "󪤍",
+          "7": "󪤍",
+          "8": "󪤍",
+          "urgent": "󪤳",
+          "default": "󪤾"
+        }
+      },
+
+//    "idle_inhibitor": {
+//        "format": "{icon}",
+//        "format-icons": {
+//            "activated": " ",
+//            "deactivated": " "
+//        }
+//    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "tooltip-format": 
+            "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+
+//    "cpu": {
+//        "format": "{usage}% ",
+//        "tooltip": false
+//    },
+//    "memory": {
+//        "format": "{}% "
+//    },
+//    "temperature": {
+//        // "thermal-zone": 2,
+//        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+//        "critical-threshold": 80,
+//        // "format-critical": "{temperatureC}°C {icon}",
+//        "format": "{temperatureC}°C {icon}",
+//        "format-icons": ["", "", ""]
+//    },
+//    "backlight": {
+//        // "device": "acpi_video1",
+//        "format": "{percent}% {icon}",
+//        "format-icons": [""]
+//    },
+
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%)  ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+}
+
