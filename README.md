@@ -18,6 +18,8 @@ bluez-utils -- for bluetooth
 
 # login
 sddm -- display manager for login
+qt5-wayland -- for QT wayland XDP
+qt6-wayland -- for QT wayland XDP
 qt5-quickcontrols -- for sddm theme
 qt5-quickcontrols2 -- for sddm theme
 qt5-graphicaleffects -- for sddm theme
@@ -37,8 +39,6 @@ swappy -- screenshot editor
 # dependencies
 polkit-kde-agent -- authentication agent
 xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
-qt5-wayland -- for XDG Desktop Portal
-qt6-wayland -- for XDG Desktop Portal
 imagemagick -- for kitty/neofetch image processing
 python-requests -- for waybar weather
 pamixer -- for waybar audio
