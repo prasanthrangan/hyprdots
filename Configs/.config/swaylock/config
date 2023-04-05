@@ -2,7 +2,8 @@ daemonize
 show-failed-attempts
 clock
 screenshot
-effect-blur=9x5
+effect-blur=8x5
+effect-pixelate=12
 effect-vignette=0.5:0.5
 color=1f1d2e80
 font="Inter"
@@ -34,5 +35,5 @@ grace-no-mouse
 grace-no-touch
 datestr=%a, %B %e
 timestr=%I:%M %p
-fade-in=0.2
+fade-in=0.3
 ignore-empty-password

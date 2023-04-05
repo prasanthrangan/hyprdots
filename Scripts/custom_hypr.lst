@@ -5,8 +5,10 @@ nvidia-utils
 pipewire
 wireplumber
 networkmanager
+network-manager-applet
 bluez
 bluez-utils
+blueman
 sddm
 qt5-wayland
 qt6-wayland
@@ -18,7 +20,7 @@ mako
 rofi-lbonn-wayland-git
 waybar-hyprland-git
 hyprpaper-git
-swaylock-effects
+swaylock-effects-git
 wlogout
 grim
 slurp
@@ -27,5 +29,6 @@ polkit-kde-agent
 xdg-desktop-portal-hyprland-git
 imagemagick
 python-requests
+pavucontrol
 pamixer
 noto-fonts-emoji
