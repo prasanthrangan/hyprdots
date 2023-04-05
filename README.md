@@ -1,8 +1,12 @@
 # hyprdots
 
-My Arch Hyprland Config files
+##--// My Arch Hyprland Config files //--
+
+WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enabled in grub and Hyperland is launched by sddm!!
+
 
 ```
+
 # nvidia
 linux-zen-headers -- for nvidia drivers
 linux-lts-headers -- for nvidia drivers
@@ -13,8 +17,10 @@ nvidia-utils -- for nvidia drivers
 pipewire -- audio and video server
 wireplumber -- audio and video server
 networkmanager -- network manager
+network-manager-applet -- nm tray
 bluez -- for bluetooth
 bluez-utils -- for bluetooth
+blueman -- bt tray
 
 # login
 sddm -- display manager for login
@@ -30,7 +36,7 @@ mako -- graphical notification daemon
 rofi-lbonn-wayland-git -- app launcher
 waybar-hyprland-git -- status bar
 hyprpaper-git -- wallpaper app
-swaylock-effects -- lockscreen
+swaylock-effects-git -- lockscreen
 wlogout -- logout screen
 grim -- screenshot tool
 slurp -- selects region for screenshot/screenshare
@@ -41,6 +47,8 @@ polkit-kde-agent -- authentication agent
 xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 imagemagick -- for kitty/neofetch image processing
 python-requests -- for waybar weather
+pavucontrol -- audio settings gui
 pamixer -- for waybar audio
 noto-fonts-emoji -- for waybar weather
+
 ```
