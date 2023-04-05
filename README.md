@@ -1,6 +1,6 @@
 # --// Hyprdots //--
 
-## My Arch Hyprland Config files
+## My Arch Hyprland Config Files
 
 WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enabled in grub and Hyperland is launched by sddm!!
 
