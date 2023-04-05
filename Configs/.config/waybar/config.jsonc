@@ -32,7 +32,7 @@
     },
 
     "hyprland/window": {
-        "format": " {}",
+        "format": "  {}",
         "separate-outputs": true
     },
 

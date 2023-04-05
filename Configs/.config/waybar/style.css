@@ -8,30 +8,28 @@
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0.35);
-    color: #9399b2;
+    background: rgba(17, 17, 27, 0.35);
 }
 
 tooltip {
-    background: #1e1e2e;
+    background: rgb(30, 30, 46);
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
-    border-color: #11111b;
+    border-color: rgb(180, 190, 254);
 }
 
 #workspaces button {
     padding: 0px;
-    color: #313244;
-    margin-right: 5px;
+    margin-right: 0px;
 }
 
 #workspaces button.active {
-    color: #9399b2;
+    color: #a6adc8;
 }
 
 #workspaces button.focused {
-    color: #9399b2;
+    color: #a6adc8;
     background: #eba0ac;
     border-radius: 10px;
 }
@@ -44,7 +42,7 @@ tooltip {
 
 #workspaces button:hover {
     background: #11111b;
-    color: #cdd6f4;
+    color: #cba6f7;
     border-radius: 10px;
 }
 
@@ -60,7 +58,7 @@ tooltip {
 #network,
 #bluetooth,
 #pulseaudio {
-    color: #9399b2;
+    color: #a6adc8;
     background: #11111b;
     opacity: 0.8;
     padding: 0px 0px 0px 0px;
