@@ -1,4 +1,4 @@
-# --// hyprdots //--
+# --// Hyprdots //--
 
 ## My Arch Hyprland Config files
 
