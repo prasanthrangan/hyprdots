@@ -115,7 +115,7 @@ alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
 
-alias vc='vscodium'
+alias vc='vscodium'  # gui code editor
 alias gs='cd ~/Dots/Scripts ; ./git_sync.sh' # sync my git repo
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
