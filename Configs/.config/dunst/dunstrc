@@ -325,7 +325,7 @@
     background = "#313244"
     foreground = "#f5e0dc"
     frame_color = "#b4befe"
-    icon = "~/.config/dunst/icons/normal.svg"
+    icon = "~/.config/dunst/icons/pokeball.svg"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
