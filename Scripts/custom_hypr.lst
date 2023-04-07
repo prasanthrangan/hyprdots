@@ -16,7 +16,7 @@ qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
 hyprland
-mako
+dunst
 rofi-lbonn-wayland-git
 waybar-hyprland-git
 hyprpaper-git
@@ -26,6 +26,7 @@ grim
 slurp
 swappy
 polkit-kde-agent
+pacman-contrib
 xdg-desktop-portal-hyprland-git
 imagemagick
 python-requests

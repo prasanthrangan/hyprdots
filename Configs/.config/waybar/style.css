@@ -9,6 +9,7 @@
 
 window#waybar {
     background: rgba(17, 17, 27, 0.35);
+    margin-left : 25px;
 }
 
 tooltip {
@@ -22,6 +23,8 @@ tooltip {
 #workspaces button {
     padding: 0px;
     margin-right: 0px;
+    box-shadow: none;
+	text-shadow: none;
 }
 
 #workspaces button.active {
@@ -41,9 +44,10 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #11111b;
-    color: #cba6f7;
+    background: #313244;
+    color: #f5c2e7;
     border-radius: 10px;
+    padding-bottom: 2px;
 }
 
 #clock,
@@ -55,6 +59,7 @@ tooltip {
 #window,
 #custom-weather,
 #tray,
+#custom-updates,
 #network,
 #bluetooth,
 #pulseaudio {
@@ -68,7 +73,7 @@ tooltip {
 
 #clock {
     border-radius: 10px;
-    margin-left: 10px;
+    margin-left: 25px;
     margin-right: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -118,10 +123,14 @@ tooltip {
     padding-right: 10px;
 }
 
-#network {
+#custom-updates {
     margin-left: 10px;
     border-radius: 10px 0px 0px 10px;
     padding-left: 10px;
+}
+
+#network {
+    padding-left: 5px;
 }
 
 #bluetooth {
@@ -136,6 +145,6 @@ tooltip {
     border-radius: 0px 10px 10px 0px;
     padding-left: 5px;
     padding-right: 10px;
-    margin-right: 10px;
+    margin-right: 25px;
 }
 

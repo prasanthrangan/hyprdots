@@ -32,7 +32,7 @@ qt5-graphicaleffects -- for sddm theme
 
 # hypr
 hyprland -- main window manager
-mako -- graphical notification daemon
+dunst -- graphical notification daemon
 rofi-lbonn-wayland-git -- app launcher
 waybar-hyprland-git -- status bar
 hyprpaper-git -- wallpaper app
@@ -44,6 +44,7 @@ swappy -- screenshot editor
 
 # dependencies
 polkit-kde-agent -- authentication agent
+pacman-contrib -- to check for available updates
 xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 imagemagick -- for kitty/neofetch image processing
 python-requests -- for waybar weather

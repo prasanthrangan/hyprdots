@@ -1,0 +1,87 @@
+* {
+	background-image: none;
+}
+
+window {
+	background-color: rgba(17, 17, 27, 0.8);
+}
+
+button {
+    color: #b4befe;
+	background-color: #313244;
+	border: none;
+	border-width: 0px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 10%;
+	border-radius: 0px;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+button:focus, button:active {
+	background-color: #cba6f7;
+	outline-style: none;
+	border-width: 0px;
+}
+
+button:hover#lock {
+	background-color: #f5c2e7;
+	outline-style: none;
+	border-width: 0px;
+	background-size: 15%;
+	border-radius: 25px;
+	margin-right : 25px;
+	margin-bottom : 25px;
+}
+
+button:hover#logout {
+	background-color: #f5c2e7;
+	outline-style: none;
+	border-width: 0px;
+	background-size: 15%;
+	border-radius: 25px;
+	margin-right : 25px;
+	margin-top : 25px;
+}
+
+button:hover#shutdown {
+	background-color: #f5c2e7;
+	outline-style: none;
+	border-width: 0px;
+	background-size: 15%;
+	border-radius: 25px;
+	margin-left : 25px;
+	margin-bottom : 25px;
+}
+
+button:hover#reboot {
+	background-color: #f5c2e7;
+	outline-style: none;
+	border-width: 0px;
+	background-size: 15%;
+	border-radius: 25px;
+	margin-left : 25px;
+	margin-top : 25px;
+}
+
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+	border-top-left-radius: 100px;
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+	border-bottom-left-radius: 100px;
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+	border-top-right-radius: 100px;
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+	border-bottom-right-radius: 100px;
+}
+

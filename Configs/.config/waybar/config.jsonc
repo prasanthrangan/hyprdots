@@ -8,32 +8,41 @@
     "gtk-layer-shell": true,
     "modules-left": ["clock","temperature","cpu","memory","disk"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["tray","custom/weather","network","bluetooth","pulseaudio","pulseaudio#microphone"],
+    "modules-right": ["tray","custom/weather","custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone"],
 
 
 // center modules //
 
-    "wlr/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
-    },
-
+   "wlr/workspaces": {
+       "disable-scroll": true,
+       "all-outputs": true,
+       "on-click": "activate",
+       "persistent_workspaces": {
+           "1": [],
+           "2": [],
+           "3": [],
+           "4": [],
+           "5": [],
+           "6": [],
+           "7": [],
+           "8": [],
+           "9": [],
+           "10": []
+       }
+   },
+    
     "hyprland/window": {
         "format": "  {}",
-        "separate-outputs": true
+        "separate-outputs": true,
+        "rewrite": {
+            "tittu@kryptonite:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 ",
+            "(.*)Mozilla Firefox": "Firefox ",
+            "(.*) - VSCodium": "$1 ",
+            "(.*)VSCodium": "Code ",
+            "(.*)Spotify Free": "Spotify ",
+            "(.*)Steam": "Steam "
+          }
     },
 
 
@@ -49,18 +58,18 @@
         "thermal-zone": 1,
         "format": " {temperatureC}°C",
         "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C "
+        "format-critical": " {temperatureC}°C"
     },
 
     "cpu": {
         "interval": 10,
-        "format": " {usage}%",
+        "format": " {usage}%",
         "max-length": 10
     },
 
     "memory": {
         "interval": 30,
-        "format": " {}%",
+        "format": " {}%",
         "max-length": 10,
         "tooltip": true,
         "tooltip-format": "Memory - {used:0.1f}GB used"
@@ -68,7 +77,7 @@
 
     "disk": {
         "interval": 30,
-        "format": " {percentage_used}%",
+        "format": " {percentage_used}%",
         "path": "/",
         "tooltip": true,
         "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)"
@@ -90,6 +99,14 @@
         "return-type" : "json"
     },
 
+    "custom/updates": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/update-sys.sh",
+        "on-click": "~/.config/waybar/scripts/update-sys.sh update",
+        "interval": 86400, // once every day
+        "tooltip": true
+    },
+    
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " {essid}",
@@ -97,7 +114,7 @@
         "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": " {signalStrength}%",
+        "format-alt": " {signalStrength}%"
     },
 
     "bluetooth": {
@@ -111,7 +128,6 @@
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "tooltip": false,
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
         "on-click-middle": "pamixer -t",

@@ -17,5 +17,5 @@ source global_fn.sh
 ./install_sgz.sh
 
 sudo ./enable_ctl.sh bluetooth
-sudo ./enable_ctl.sh sddm
+#sudo ./enable_ctl.sh sddm
 

@@ -11,6 +11,38 @@ source global_fn.sh
 if pkg_installed rofi
 then
     sudo cp ~/Dots/Configs/.config/rofi/cat_*.rasi /usr/share/rofi/themes/
+    if [ `find /usr/share/applications -name "rofi*.desktop"` | wc -l -gt 0 ]
+        then
+        sudo rm /usr/share/applications/rofi*.desktop
+    fi
+fi
+
+
+# steam
+if pkg_installed steam
+then
+    if [ ! -d ~/.local/share/Steam/Skins/ ]
+    then
+        mkdir -p ~/.local/share/Steam/Skins/
+    fi
+    tar -xvzf ~/Dots/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+fi
+
+
+# spotify
+if pkg_installed spotify
+then
+    sudo chmod a+wr /opt/spotify
+    sudo chmod a+wr /opt/spotify/Apps -R
+
+    if [ $(ls -A ~/.config/spicetify/Backup | wc -l) -eq 0 ]
+    then
+        spicetify backup apply
+    fi
+
+    spicetify config current_theme Sleek
+    spicetify config color_scheme Cherry
+    spicetify apply
 fi
 
 
