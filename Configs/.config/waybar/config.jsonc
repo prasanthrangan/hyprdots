@@ -8,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["clock","temperature","cpu","memory","disk"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["tray","custom/weather","custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone"],
+    "modules-right": ["tray","custom/weather","custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange"],
 
 
 // center modules //
@@ -154,6 +154,11 @@
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
         "scroll-step": 5
+    },
+
+    "custom/wallchange": {
+        "format": "",
+        "on-click": "~/.config/hypr/swwwallpaper.sh"
     }
 }
 

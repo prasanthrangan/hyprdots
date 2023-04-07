@@ -35,7 +35,7 @@ hyprland -- main window manager
 dunst -- graphical notification daemon
 rofi-lbonn-wayland-git -- app launcher
 waybar-hyprland-git -- status bar
-hyprpaper-git -- wallpaper app
+swww-- wallpaper app
 swaylock-effects-git -- lockscreen
 wlogout -- logout screen
 grim -- screenshot tool

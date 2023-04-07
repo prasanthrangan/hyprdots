@@ -62,7 +62,8 @@ tooltip {
 #custom-updates,
 #network,
 #bluetooth,
-#pulseaudio {
+#pulseaudio,
+#custom-wallchange {
     color: #a6adc8;
     background: #11111b;
     opacity: 0.8;
@@ -142,6 +143,10 @@ tooltip {
 }
 
 #pulseaudio.microphone {
+    padding-left: 5px;
+}
+
+#custom-wallchange {
     border-radius: 0px 10px 10px 0px;
     padding-left: 5px;
     padding-right: 10px;
