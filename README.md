@@ -52,4 +52,10 @@ pavucontrol -- audio settings gui
 pamixer -- for waybar audio
 noto-fonts-emoji -- for waybar weather
 
+# theming
+lxappearance
+nwg-look
+qt6ct
+qt5ct
+
 ```
