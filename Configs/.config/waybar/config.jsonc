@@ -6,9 +6,9 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "modules-left": ["clock","temperature","cpu","memory","disk"],
+    "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["tray","custom/weather","custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange"],
+    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","tray"],
 
 
 // center modules //
@@ -30,7 +30,7 @@
            "10": []
        }
    },
-    
+
     "hyprland/window": {
         "format": "  {}",
         "separate-outputs": true,
@@ -48,59 +48,33 @@
 
 // left modules //
 
-    "clock": {
-        "format": "{: %a %d.%m  %I:%M %p}",
-        "format-alt": "{: %b %Y  %I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-
-    "temperature": {
-        "thermal-zone": 1,
-        "format": " {temperatureC}°C",
-        "critical-threshold": 80,
-        "format-critical": " {temperatureC}°C"
-    },
-
     "cpu": {
         "interval": 10,
-        "format": " {usage}%",
-        "max-length": 10
+        "format": " {usage}%",
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
     },
 
     "memory": {
         "interval": 30,
-        "format": " {}%",
+        "format": " {percentage}%",
+        "format-alt": " {used}GB",
         "max-length": 10,
         "tooltip": true,
-        "tooltip-format": "Memory - {used:0.1f}GB used"
+        "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
     },
 
-    "disk": {
-        "interval": 30,
-        "format": " {percentage_used}%",
-        "path": "/",
-        "tooltip": true,
-        "tooltip-format": "HDD - {used} used out of {total} on {path} ({percentage_used}%)"
+    "clock": {
+        "format": "{: %I:%M %p  %a %d}",
+        "format-alt": "{: %H:%M  %b %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
     },
 
 
 // right modules //
 
-    "tray": {
-        "icon-size": 12,
-        "spacing": 10
-    },
-
-   "custom/weather" : {
-        "tooltip" : true,
-        "format" : "{}",
-        "interval" : 30,
-        "exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-        "return-type" : "json"
-    },
-
     "custom/updates": {
-        "format": "{}",
+        "format": " {}",
         "exec": "~/.config/waybar/scripts/update-sys.sh",
         "on-click": "~/.config/waybar/scripts/update-sys.sh update",
         "interval": 86400, // once every day
@@ -110,24 +84,25 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": " {essid}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": " {signalStrength}%"
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "tooltip-format": " {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
+        "format-alt": " {signalStrength}%",
+        "interval": 5
     },
 
     "bluetooth": {
-	    "format": "",
+	    "format": "",
 	    "format-disabled": "", // an empty format will hide the module
-	    "format-connected": " {num_connections}",
-	    "tooltip-format": "{device_alias}",
-	    "tooltip-format-connected": " {device_enumerate}",
-	    "tooltip-format-enumerate-connected": "{device_alias}"
+	    "format-connected": " {num_connections}",
+	    "tooltip-format": " {device_alias}",
+	    "tooltip-format-connected": "{device_enumerate}",
+	    "tooltip-format-enumerate-connected": " {device_alias}"
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}",
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
         "on-click-middle": "pamixer -t",
@@ -147,7 +122,7 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}%",
+        "format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "pamixer --default-source -t",
@@ -157,8 +132,16 @@
     },
 
     "custom/wallchange": {
-        "format": "",
-        "on-click": "~/.config/hypr/swwwallpaper.sh"
+        "format": "{}",
+        "exec": "~/.config/hypr/swwwallpaper.sh --help",
+        "on-click": "~/.config/hypr/swwwallpaper.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 5
     }
 }
 

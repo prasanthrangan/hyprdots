@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+if [ "$1" == "--help" ]
+    then
+    echo ""
+    echo " Next Wallpaper"
+else
+
 swww query
 if [ $? -eq 1 ]
     then
@@ -40,3 +46,4 @@ swww img $WallSet \
 --transition-fps 144 \
 --transition-pos bottom-right
 
+fi

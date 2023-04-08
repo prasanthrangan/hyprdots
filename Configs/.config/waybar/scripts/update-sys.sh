@@ -32,10 +32,12 @@ if [ "$1" = "" ]; then
 
     if [[ "$COUNT" = "0" ]]
     then
-        echo ""
+        echo "0"
+        echo "All packages are up to date!"
     else
         # This Update symbol is RTL. So &#x202d; is left-to-right override.
-        echo " $COUNT"
+        echo "$COUNT"
+        echo " Official $OFFICIAL  AUR $AUR"
     fi
     exit 0
 fi

@@ -3,12 +3,13 @@
 }
 
 window {
-	background-color: rgba(17, 17, 27, 0.8);
+	background-color: rgba(17, 17, 27, 0.90);
 }
 
 button {
     color: #b4befe;
 	background-color: #313244;
+	outline-style: none;
 	border: none;
 	border-width: 0px;
 	background-repeat: no-repeat;
@@ -17,52 +18,52 @@ button {
 	border-radius: 0px;
 	box-shadow: none;
 	text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
 }
 
-button:focus, button:active {
+button:focus {
 	background-color: #cba6f7;
-	outline-style: none;
-	border-width: 0px;
+	background-size: 15%;
 }
 
 button:hover#lock {
 	background-color: #f5c2e7;
-	outline-style: none;
-	border-width: 0px;
-	background-size: 15%;
-	border-radius: 25px;
+	background-size: 20%;
 	margin-right : 25px;
 	margin-bottom : 25px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
 }
 
 button:hover#logout {
 	background-color: #f5c2e7;
-	outline-style: none;
-	border-width: 0px;
-	background-size: 15%;
-	border-radius: 25px;
+	background-size: 20%;
 	margin-right : 25px;
 	margin-top : 25px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
 }
 
 button:hover#shutdown {
 	background-color: #f5c2e7;
-	outline-style: none;
-	border-width: 0px;
-	background-size: 15%;
-	border-radius: 25px;
+	background-size: 20%;
 	margin-left : 25px;
 	margin-bottom : 25px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
 }
 
 button:hover#reboot {
 	background-color: #f5c2e7;
-	outline-style: none;
-	border-width: 0px;
-	background-size: 15%;
-	border-radius: 25px;
+	background-size: 20%;
 	margin-left : 25px;
 	margin-top : 25px;
+	border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
 }
 
 #lock {
@@ -84,4 +85,3 @@ button:hover#reboot {
     background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
 	border-bottom-right-radius: 100px;
 }
-
