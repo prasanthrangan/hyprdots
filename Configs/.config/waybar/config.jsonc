@@ -108,6 +108,7 @@
         "on-click-middle": "pamixer -t",
         "on-scroll-up": "pamixer -i 5",
         "on-scroll-down": "pamixer -d 5",
+        "tooltip-format": "{icon} {desc} {volume}%",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -122,8 +123,8 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",

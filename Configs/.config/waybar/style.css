@@ -12,8 +12,8 @@ window#waybar {
 }
 
 tooltip {
-    background: rgb(30, 30, 46);
-    border-radius: 10px;
+    background: #1e1e2e;
+    border-radius: 0px;
 }
 
 #workspaces button {
@@ -60,26 +60,26 @@ tooltip {
 #pulseaudio,
 #custom-wallchange,
 #tray {
-    color: #a6adc8;
+    color: #cdd6f4;
     background: #11111b;
     opacity: 1;
-    padding: 0px 0px 0px 0px;
+    padding: 0px;
     margin: 3px 0px 3px 0px;
-    border: 0px solid #181825;
 }
 
 
 /* resource monitor block */
 
 #cpu {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 12px 0px 0px 12px;
     margin-left: 25px;
     padding-left: 12px;
     padding-right: 4px;
 }
 
 #memory {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 12px 12px 0px;
+    border-left-width: 0px;
     padding-left: 4px;
     padding-right: 12px;
     margin-right: 6px;
