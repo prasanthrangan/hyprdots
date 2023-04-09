@@ -16,6 +16,6 @@ source global_fn.sh
 #./install_oth.sh
 #./install_sgz.sh
 
-sudo ./enable_ctl.sh bluetooth
+#sudo ./enable_ctl.sh bluetooth
 #sudo ./enable_ctl.sh sddm
 

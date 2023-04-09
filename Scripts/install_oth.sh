@@ -30,8 +30,12 @@ fi
 
 
 # spotify
-if pkg_installed spotify
+if pkg_installed spotify && pkg_installed spicetify-cli
 then
+    spotify &
+    sleep 5
+    killall spotify
+
     sudo chmod a+wr /opt/spotify
     sudo chmod a+wr /opt/spotify/Apps -R
 
@@ -49,6 +53,10 @@ fi
 # firefox
 if pkg_installed firefox
 then
+    firefox &
+    sleep 5
+    killall firefox
+
     if [ -d ~/.mozilla/firefox/*.default-release ]
     then
         FoxRel=`ls -l ~/.mozilla/firefox/ | grep .default-release | awk '{print $NF}'`

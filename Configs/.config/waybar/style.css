@@ -50,6 +50,7 @@ tooltip {
 
 #cpu,
 #memory,
+#custom-power,
 #clock,
 #workspaces,
 #window,
@@ -149,9 +150,15 @@ tooltip {
 /* system tray block */
 
 #tray {
-    border-radius: 10px;
+    border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 12px;
+    padding-right: 4px;
+}
+
+#custom-power {
+    border-radius: 0px 10px 10px 0px;
+    padding-left: 4px;
     padding-right: 12px;
     margin-right: 25px;
 }

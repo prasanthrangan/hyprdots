@@ -8,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","tray"],
+    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","tray","custom/power"],
 
 
 // center modules //
@@ -142,6 +142,10 @@
     "tray": {
         "icon-size": 15,
         "spacing": 5
+    },
+
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout -b 2 -c 0 -r 0 -L 930 -R 930 -T 300 -B 300 --protocol layer-shell"
     }
 }
-
