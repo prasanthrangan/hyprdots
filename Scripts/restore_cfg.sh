@@ -37,5 +37,5 @@ do
     fi
 done
 
-done < restore_cfg.lst
+done < restore_conf.lst
 
