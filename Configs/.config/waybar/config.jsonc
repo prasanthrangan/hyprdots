@@ -36,12 +36,12 @@
         "separate-outputs": true,
         "rewrite": {
             "tittu@kryptonite:(.*)": "$1 ",
-            "(.*) — Mozilla Firefox": "$1 ",
-            "(.*)Mozilla Firefox": "Firefox ",
-            "(.*) - VSCodium": "$1 ",
-            "(.*)VSCodium": "Code ",
-            "(.*)Spotify Free": "Spotify ",
-            "(.*)Steam": "Steam "
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - VSCodium": "$1 󰨞",
+            "(.*)VSCodium": "Code 󰨞",
+            "(.*)Spotify Free": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓"
           }
     },
 
@@ -50,31 +50,31 @@
 
     "cpu": {
         "interval": 10,
-        "format": " {usage}%",
+        "format": "󰍛 {usage}%",
         "format-alt": "{icon0}{icon1}{icon2}{icon3}",
         "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
     },
 
     "memory": {
         "interval": 30,
-        "format": " {percentage}%",
-        "format-alt": " {used}GB",
+        "format": "󰾆 {percentage}%",
+        "format-alt": "󰾅 {used}GB",
         "max-length": 10,
         "tooltip": true,
         "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
     },
 
     "clock": {
-        "format": "{: %I:%M %p  %a %d}",
-        "format-alt": "{: %H:%M  %b %Y}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+        "format": "{: %I:%M %p  %a %d}",
+        "format-alt": "{:󰥔 %H:%M 󰃭 %b %Y}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
 
 // right modules //
 
     "custom/updates": {
-        "format": " {}",
+        "format": "󰮯 {}",
         "exec": "~/.config/waybar/scripts/update-sys.sh",
         "on-click": "~/.config/waybar/scripts/update-sys.sh update",
         "interval": 86400, // once every day
@@ -83,12 +83,12 @@
     
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": " {essid}",
-        "format-ethernet": " {ipaddr}/{cidr}",
-        "tooltip-format": " {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-        "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "⚠ Disconnected",
-        "format-alt": " {signalStrength}%",
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󱘖 {ipaddr}/{cidr}",
+        "tooltip-format": "󱘖 {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󱘖 {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "format-alt": "󰤨 {signalStrength}%",
         "interval": 5
     },
 
@@ -133,7 +133,7 @@
     },
 
     "custom/wallchange": {
-        "format": "{}",
+        "format": "{}",
         "exec": "~/.config/hypr/swwwallpaper.sh --help",
         "on-click": "~/.config/hypr/swwwallpaper.sh",
         "interval" : 86400, // once every day
@@ -147,6 +147,8 @@
 
     "custom/power": {
         "format": "",
-        "on-click": "wlogout -b 2 -c 0 -r 0 -L 930 -R 930 -T 300 -B 300 --protocol layer-shell"
+        "on-click": "wlogout -b 2 -c 0 -r 0 -L 930 -R 930 -T 300 -B 300 --protocol layer-shell",
+        "tooltip": false
     }
 }
+
