@@ -29,8 +29,8 @@ button:focus {
 button:hover#lock {
 	background-color: #f5c2e7;
 	background-size: 25%;
-	margin-right : 25px;
-	margin-bottom : 25px;
+	margin-right : 30px;
+	margin-bottom : 30px;
 	border-radius: 20px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
@@ -39,8 +39,8 @@ button:hover#lock {
 button:hover#logout {
 	background-color: #f5c2e7;
 	background-size: 25%;
-	margin-right : 25px;
-	margin-top : 25px;
+	margin-right : 30px;
+	margin-top : 30px;
 	border-radius: 20px;
     animation: gradient_f 20s ease-in infinite;
 	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
@@ -49,8 +49,8 @@ button:hover#logout {
 button:hover#shutdown {
 	background-color: #f5c2e7;
 	background-size: 25%;
-	margin-left : 25px;
-	margin-bottom : 25px;
+	margin-left : 20px;
+	margin-bottom : 30px;
 	border-radius: 20px;
     animation: gradient_f 20s ease-in infinite;
 	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
@@ -58,9 +58,9 @@ button:hover#shutdown {
 
 button:hover#reboot {
 	background-color: #f5c2e7;
-	background-size: 20%;
-	margin-left : 25px;
-	margin-top : 25px;
+	background-size: 25%;
+	margin-left : 30px;
+	margin-top : 30px;
 	border-radius: 20px;
     animation: gradient_f 20s ease-in infinite;
 	transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
@@ -68,20 +68,20 @@ button:hover#reboot {
 
 #lock {
     background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
-	border-top-left-radius: 80px;
+	border-top-left-radius: 50px;
 }
 
 #logout {
     background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
-	border-bottom-left-radius: 80px;
+	border-bottom-left-radius: 50px;
 }
 
 #shutdown {
     background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
-	border-top-right-radius: 80px;
+	border-top-right-radius: 50px;
 }
 
 #reboot {
     background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
-	border-bottom-right-radius: 80px;
+	border-bottom-right-radius: 50px;
 }

@@ -53,8 +53,16 @@ python-requests -- for waybar weather
 noto-fonts-emoji -- for waybar weather
 
 # theming
-nwg-look
-qt6ct
-qt5ct
+nwg-look -- theming GTK apps
+qt6ct -- theming QT5 apps
+qt5ct -- theming QT6 apps
+
+# applications
+firefox -- browser
+kitty -- terminal
+neofetch -- fetch tool
+thunar -- gui file manager
+vscodium -- gui code editor
+vim -- text editor
 
 ```
