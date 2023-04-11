@@ -10,10 +10,10 @@ WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enab
 # nvidia
 linux-zen-headers -- for nvidia drivers
 linux-lts-headers -- for nvidia drivers
-nvidia-dkms -- for nvidia drivers
-nvidia-utils -- for nvidia drivers
+nvidia-dkms -- nvidia drivers
+nvidia-utils -- nvidia drivers
 
-# hardware
+# tools
 pipewire -- audio and video server
 wireplumber -- audio and video server
 networkmanager -- network manager
@@ -47,13 +47,12 @@ polkit-kde-agent -- authentication agent
 pacman-contrib -- to check for available updates
 xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 imagemagick -- for kitty/neofetch image processing
-python-requests -- for waybar weather
 pavucontrol -- audio settings gui
 pamixer -- for waybar audio
+python-requests -- for waybar weather
 noto-fonts-emoji -- for waybar weather
 
 # theming
-lxappearance
 nwg-look
 qt6ct
 qt5ct

@@ -3,7 +3,7 @@
 }
 
 window {
-	background-color: rgba(17, 17, 27, 0.90);
+	background-color: rgba(17, 17, 27, 0.85);
 }
 
 button {
@@ -23,12 +23,12 @@ button {
 
 button:focus {
 	background-color: #cba6f7;
-	background-size: 15%;
+	background-size: 20%;
 }
 
 button:hover#lock {
 	background-color: #f5c2e7;
-	background-size: 20%;
+	background-size: 25%;
 	margin-right : 25px;
 	margin-bottom : 25px;
 	border-radius: 20px;
@@ -38,7 +38,7 @@ button:hover#lock {
 
 button:hover#logout {
 	background-color: #f5c2e7;
-	background-size: 20%;
+	background-size: 25%;
 	margin-right : 25px;
 	margin-top : 25px;
 	border-radius: 20px;
@@ -48,7 +48,7 @@ button:hover#logout {
 
 button:hover#shutdown {
 	background-color: #f5c2e7;
-	background-size: 20%;
+	background-size: 25%;
 	margin-left : 25px;
 	margin-bottom : 25px;
 	border-radius: 20px;
@@ -68,20 +68,20 @@ button:hover#reboot {
 
 #lock {
     background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
-	border-top-left-radius: 100px;
+	border-top-left-radius: 80px;
 }
 
 #logout {
     background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
-	border-bottom-left-radius: 100px;
+	border-bottom-left-radius: 80px;
 }
 
 #shutdown {
     background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
-	border-top-right-radius: 100px;
+	border-top-right-radius: 80px;
 }
 
 #reboot {
     background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
-	border-bottom-right-radius: 100px;
+	border-bottom-right-radius: 80px;
 }
