@@ -22,7 +22,7 @@ do
         echo "$pkg_chk check passed..."
     else
         echo "$pkg_chk check faied..."
-        exit 1
+        continue
     fi
 done
 
@@ -33,7 +33,6 @@ do
         cp -r $cfgPath/$cfg_chk $tgtPath
     else
         echo "$cfg_chk configuration not found..."
-        exit 1
     fi
 done
 

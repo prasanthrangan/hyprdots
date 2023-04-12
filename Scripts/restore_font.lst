@@ -4,6 +4,6 @@ Font_MaterialDesign|$HOME/.local/share/fonts
 Font_JetBrainsMono|$HOME/.local/share/fonts
 Font_MononokiNerd|$HOME/.local/share/fonts
 Font_UzumasaMini|/usr/share/fonts
-Cursor_BibataIce|$HOME/.icons
-Gtk_RosePine|$HOME/.themes
+Gtk_CatppuccinMocha|$HOME/.themes
 Icon_TelaDracula|$HOME/.icons
+Cursor_BibataIce|$HOME/.icons
