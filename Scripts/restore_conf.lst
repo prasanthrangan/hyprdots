@@ -2,8 +2,11 @@ zsh|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git zsh-syntax-hi
 dunst|dunst|dunst
 hyprland|hypr|hyprland
 kitty|kitty|kitty
+kvantum|Kvantum|kvantum
 mangohud|MangoHud|mangohud
 neofetch|neofetch|neofetch
+nwg-look|nwg-look|nwg-look
+qt5ct|qt5ct|qt5ct
 rofi|rofi|rofi
 swaylock|swaylock|swaylock-effects
 waybar|waybar|waybar-hyprland-git
