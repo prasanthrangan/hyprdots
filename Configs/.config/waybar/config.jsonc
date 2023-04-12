@@ -134,8 +134,8 @@
 
     "custom/wallchange": {
         "format": "{}",
-        "exec": "~/.config/hypr/swwwallpaper.sh --help",
-        "on-click": "~/.config/hypr/swwwallpaper.sh",
+        "exec": "~/.config/swww/swwwallpaper.sh --help",
+        "on-click": "~/.config/swww/swwwallpaper.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
