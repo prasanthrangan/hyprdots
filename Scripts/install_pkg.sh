@@ -6,7 +6,7 @@
 
 source global_fn.sh
 
-install_list="${1:-custom_pkg.lst}"
+install_list="${1:-custom_main.lst}"
 
 
 if pkg_installed git
