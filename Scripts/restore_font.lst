@@ -1,9 +1,11 @@
-Font_CartographCF|$HOME/.local/share/fonts
 Font_CascadiaCove|$HOME/.local/share/fonts
 Font_MaterialDesign|$HOME/.local/share/fonts
 Font_JetBrainsMono|$HOME/.local/share/fonts
 Font_MononokiNerd|$HOME/.local/share/fonts
 Font_UzumasaMini|/usr/share/fonts
+Gtk_CatppuccinMocha|/usr/share/themes
+Icon_TelaDracula|/usr/share/icons
+Cursor_BibataIce|/usr/share/icons
 Gtk_CatppuccinMocha|$HOME/.themes
 Icon_TelaDracula|$HOME/.icons
 Cursor_BibataIce|$HOME/.icons

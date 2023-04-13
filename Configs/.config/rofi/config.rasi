@@ -15,7 +15,7 @@ configuration {
 	scroll-method: 0;
 	normalize-match: true;
 	show-icons: true;
-	icon-theme: "Papirus";
+	icon-theme: "Tela-circle-dracula-dark";
 /*	cache-dir: ;*/
 	steal-focus: false;
 /*	dpi: -1;*/
@@ -180,4 +180,7 @@ configuration {
 */
 }
 
+//@theme "/usr/share/rofi/themes/cat_chainsaw.rasi"
+//@theme "/usr/share/rofi/themes/cat_chainsaw.rasi"
+//@theme "/usr/share/rofi/themes/DarkBlue.rasi"
 @theme "/usr/share/rofi/themes/cat_chainsaw.rasi"
