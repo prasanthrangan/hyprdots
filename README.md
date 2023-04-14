@@ -71,10 +71,10 @@ vim -- text editor
 ### Note
 
 - [ ] Script to change light/dark theme
-    -- [ ] wallpaper
-    -- [ ] waybar
-    -- [ ] gtk theme
-    -- [ ] qt theme
+    - [ ] wallpaper
+    - [ ] waybar
+    - [ ] gtk theme
+    - [ ] qt theme
 - [ ] Screenshot script
 - [ ] Volums control script
 - [ ] Volume control notification
