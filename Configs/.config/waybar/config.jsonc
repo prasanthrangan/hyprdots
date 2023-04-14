@@ -136,7 +136,7 @@
     "custom/wallchange": {
         "format": "{}",
         "exec": "~/.config/swww/swwwallpaper.sh --help",
-        "on-click": "~/.config/swww/swwwallpaper.sh",
+        "on-click": "~/.config/swww/swwwallpaper.sh --next",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -152,4 +152,3 @@
         "tooltip": false
     }
 }
-
