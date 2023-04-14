@@ -66,3 +66,22 @@ vscodium -- gui code editor
 vim -- text editor
 
 ```
+
+
+### Note
+
+- [ ] Script to change light/dark theme
+    -- [ ] wallpaper
+    -- [ ] waybar
+    -- [ ] gtk theme
+    -- [ ] qt theme
+- [ ] Screenshot script
+- [ ] Volums control script
+- [ ] Volume control notification
+- [ ] Media control for waybar
+- [ ] Update rofi configs
+- [x] Update wallpaper script
+- [ ] Gnome Boxes not working
+- [ ] Flatpak QT apps does not follow system theme
+- [ ] Flatpak GTK apps does not follow cursor theme
+
