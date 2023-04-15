@@ -25,7 +25,7 @@ Wall_Set()
     --transition-type grow \
     --transition-duration 1 \
     --transition-fps 144 \
-    --transition-pos bottom-right &
+    --transition-pos bottom-right
 }
 
 ## main script ##
@@ -41,13 +41,13 @@ else
 fi
 
 ## check linked file ##
-if [ ! -f $BASEDIR/wall.$WALLMODE ]; then
+if [ ! -f $BASEDIR/wall.$WALLMODE ] ; then
     echo "ERROR: wallpaper link is broken"
     exit 1
 fi
 
 ## evaluate options ##
-while getopts "dlnst" option ; do
+while getopts "dlsnt" option ; do
     case $option in
     d ) # set dark mode
         ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
@@ -55,8 +55,6 @@ while getopts "dlnst" option ; do
     l ) # set light mode
         ln -fs $BASEDIR/wall.light $BASEDIR/wall.set
         WALLMODE="light" ;;
-    n ) # set the next wallpaper
-        Wall_Next ;;
     s ) # switch dark/light mode
         if [ "$WALLMODE" == "dark" ] ; then
             ln -fs $BASEDIR/wall.light $BASEDIR/wall.set
@@ -65,6 +63,8 @@ while getopts "dlnst" option ; do
             ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
             WALLMODE="dark"
         fi ;;
+    n ) # set the next wallpaper
+        Wall_Next ;;
     t ) # display tooltip
         echo "󰋫 Next Wallpaper 󰉼 󰆊"
         exit 0 ;;

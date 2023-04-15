@@ -71,9 +71,10 @@ vim -- text editor
 ### To-Do
 - [ ] Script to change light/dark theme
     - [x] wallpaper
-    - [ ] waybar
+    - [x] waybar
     - [ ] gtk theme
     - [ ] qt theme
+    - [ ] terminal
 - [ ] Clipboard tool
 - [ ] Volums control script/notification
 - [ ] Media control for waybar
