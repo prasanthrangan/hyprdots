@@ -142,7 +142,7 @@
     },
 
     "custom/mode": {
-        "format": "󰟡{}",
+        "format": "{}",
         "exec": "~/.config/swww/swwwallpaper.sh -t",
         "on-click": "~/.config/swww/swwwallpaper.sh -s",
         "interval" : 86400, // once every day

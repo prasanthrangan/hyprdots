@@ -68,19 +68,18 @@ vim -- text editor
 ```
 
 
-### Note
-
+### To-Do
 - [ ] Script to change light/dark theme
     - [x] wallpaper
     - [ ] waybar
     - [ ] gtk theme
     - [ ] qt theme
-- [ ] Screenshot script
 - [ ] Clipboard tool
-- [ ] Volums control script
-- [ ] Volume control notification
+- [ ] Volums control script/notification
 - [ ] Media control for waybar
 - [ ] Update rofi configs
+
+### Known Issues
 - [ ] Gnome Boxes not working
 - [ ] Flatpak QT apps does not follow system theme
 - [ ] Flatpak GTK apps does not follow system cursor

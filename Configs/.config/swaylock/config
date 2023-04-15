@@ -2,8 +2,8 @@ daemonize
 show-failed-attempts
 clock
 screenshot
-effect-blur=8x5
-effect-vignette=0.9:0.9
+effect-blur=15x15
+effect-vignette=1:1
 color=1f1d2e80
 font="Inter"
 indicator
