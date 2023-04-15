@@ -8,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","tray","custom/power"],
+    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","tray","custom/power"],
 
 
 // center modules //
@@ -135,8 +135,16 @@
 
     "custom/wallchange": {
         "format": "{}",
-        "exec": "~/.config/swww/swwwallpaper.sh --help",
-        "on-click": "~/.config/swww/swwwallpaper.sh --next",
+        "exec": "~/.config/swww/swwwallpaper.sh",
+        "on-click": "~/.config/swww/swwwallpaper.sh -n",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/mode": {
+        "format": "󰟡{}",
+        "exec": "~/.config/swww/swwwallpaper.sh",
+        "on-click": "~/.config/swww/swwwallpaper.sh -s",
         "interval" : 86400, // once every day
         "tooltip": true
     },

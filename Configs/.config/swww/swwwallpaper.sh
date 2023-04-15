@@ -1,18 +1,18 @@
 #!/usr/bin/env sh
 
-## define functions
+## define functions ##
 Wall_Next()
 {
-    WallSet=`readlink $BASEDIR/wall.set`
+    WallSet=`readlink $BASEDIR/wall.$WALLMODE`
     Wallist=(`dirname $WallSet`/*)
 
     for((i=0;i<${#Wallist[@]};i++))
     do
         if [ $((i + 1)) -eq ${#Wallist[@]} ] ; then
-            ln -fs ${Wallist[0]} $BASEDIR/wall.set
+            ln -fs ${Wallist[0]} $BASEDIR/wall.$WALLMODE
             break
         elif [ ${Wallist[i]} == ${WallSet} ] ; then
-            ln -fs ${Wallist[i+1]} $BASEDIR/wall.set
+            ln -fs ${Wallist[i+1]} $BASEDIR/wall.$WALLMODE
             break
         fi
     done
@@ -28,37 +28,64 @@ Wall_Set()
     --transition-pos bottom-right &
 }
 
-## display tooltip
-if [ "$1" == "--help" ] ; then
+## main script ##
+BASEDIR=`dirname $(realpath $0)`
+WALLMODE=`readlink $BASEDIR/wall.set | awk -F "." '{print $NF}'`
+
+## check mode ##
+if [ "$WALLMODE" == "dark" ] || [ "$WALLMODE" == "light" ] ; then
     echo ""
-    echo "󰋫 Next Wallpaper 󰉼 󰆊"
 else
-
-    BASEDIR=`dirname $(realpath $0)`
-
-    ## wallpaper check
-    if [ ! -f $BASEDIR/wall.set ] ; then
-        echo "ERROR: current wallpaper not found, setting default"
-        if [ -f $BASEDIR/walls/rain_world1.png ] ; then
-            ln -fs $BASEDIR/walls/rain_world1.png $BASEDIR/wall.set
-        else
-            echo "ERROR: default wallpaper not found"
-            exit 1
-        fi
-    fi
-
-    ## daemon check and init
-    swww query
-    if [ $? -eq 1 ] ; then
-        swww init
-        sleep 2.5
-        Wall_Set
-    fi
-
-    ## set the next wallpaper
-    if [ "$1" == "--next" ] ; then
-        Wall_Next
-        Wall_Set
-    fi
-
+    echo "ERROR: unknown mode is set"
+    exit 1
 fi
+
+## check linked file ##
+if [ ! -f $BASEDIR/wall.$WALLMODE ]; then
+    echo "ERROR: wallpaper link is broken"
+    exit 1
+fi
+
+## evaluate options ##
+while getopts "dlns" option ; do
+    case $option in
+    d ) # set dark mode
+        ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
+        WALLMODE="dark" ;;
+    l ) # set light mode
+        ln -fs $BASEDIR/wall.light $BASEDIR/wall.set
+        WALLMODE="light" ;;
+    n ) # set the next wallpaper
+        Wall_Next ;;
+    s ) # switch dark/light mode
+        if [ "$WALLMODE" == "dark" ] ; then
+            ln -fs $BASEDIR/wall.light $BASEDIR/wall.set
+            WALLMODE="light"
+        else
+            ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
+            WALLMODE="dark"
+        fi ;;
+    * ) # not a valid option
+        echo "d : set dark mode"
+        echo "l : set light mode"
+        echo "n : set next wall"
+        echo "s : switch dark/light mode"
+        exit 1 ;;
+    esac
+done
+
+## display tooltip ##
+if [ $OPTIND -eq 1 ] ; then
+    echo "󰋫 Next Wallpaper 󰉼 󰆊"
+    exit 0
+fi
+
+## check swww daemon ##
+swww query
+if [ $? -eq 1 ] ; then
+    swww init
+    sleep 2
+fi
+
+## set wallpaper ##
+Wall_Set

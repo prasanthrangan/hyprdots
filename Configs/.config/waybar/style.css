@@ -63,6 +63,7 @@ tooltip {
 #bluetooth,
 #pulseaudio,
 #custom-wallchange,
+#custom-mode,
 #tray {
     color: #cdd6f4;
     background: #11111b;
@@ -153,10 +154,15 @@ tooltip {
 
 /* system tray block */
 
-#tray {
+#custom-mode {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 12px;
+    padding-right: 4px;
+}
+
+#tray {
+    padding-left: 4px;
     padding-right: 4px;
 }
 
@@ -166,4 +172,3 @@ tooltip {
     padding-right: 12px;
     margin-right: 25px;
 }
-

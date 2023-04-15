@@ -14,8 +14,8 @@ OFFICIAL=$(checkupdates | wc -l)
 
 # Case/switch for each service updates
 case $1 in
-    aur) echo " $AUR";;
-    official) echo " $OFFICIAL";;
+    aur) echo "$AUR";;
+    official) echo "$OFFICIAL";;
 esac
 
 # If the parameter is "update", update all services
@@ -33,11 +33,11 @@ if [ "$1" = "" ]; then
     if [[ "$COUNT" = "0" ]]
     then
         echo "0"
-        echo " Packages are up to date"
+        echo " Packages are up to date 󰯉"
     else
         # This Update symbol is RTL. So &#x202d; is left-to-right override.
         echo "$COUNT"
-        echo " Official $OFFICIAL  AUR $AUR"
+        echo "󱓽 Official $OFFICIAL 󱓾 AUR $AUR"
     fi
     exit 0
 fi
