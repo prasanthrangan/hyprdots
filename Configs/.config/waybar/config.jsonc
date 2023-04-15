@@ -135,7 +135,7 @@
 
     "custom/wallchange": {
         "format": "{}",
-        "exec": "~/.config/swww/swwwallpaper.sh",
+        "exec": "~/.config/swww/swwwallpaper.sh -t",
         "on-click": "~/.config/swww/swwwallpaper.sh -n",
         "interval" : 86400, // once every day
         "tooltip": true
@@ -143,7 +143,7 @@
 
     "custom/mode": {
         "format": "󰟡{}",
-        "exec": "~/.config/swww/swwwallpaper.sh",
+        "exec": "~/.config/swww/swwwallpaper.sh -t",
         "on-click": "~/.config/swww/swwwallpaper.sh -s",
         "interval" : 86400, // once every day
         "tooltip": true

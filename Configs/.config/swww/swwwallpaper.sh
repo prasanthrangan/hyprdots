@@ -47,7 +47,7 @@ if [ ! -f $BASEDIR/wall.$WALLMODE ]; then
 fi
 
 ## evaluate options ##
-while getopts "dlns" option ; do
+while getopts "dlnst" option ; do
     case $option in
     d ) # set dark mode
         ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
@@ -65,7 +65,10 @@ while getopts "dlns" option ; do
             ln -fs $BASEDIR/wall.dark $BASEDIR/wall.set
             WALLMODE="dark"
         fi ;;
-    * ) # not a valid option
+    t ) # display tooltip
+        echo "󰋫 Next Wallpaper 󰉼 󰆊"
+        exit 0 ;;
+    * ) # invalid option
         echo "d : set dark mode"
         echo "l : set light mode"
         echo "n : set next wall"
@@ -74,18 +77,13 @@ while getopts "dlns" option ; do
     esac
 done
 
-## display tooltip ##
-if [ $OPTIND -eq 1 ] ; then
-    echo "󰋫 Next Wallpaper 󰉼 󰆊"
-    exit 0
-fi
-
 ## check swww daemon ##
 swww query
 if [ $? -eq 1 ] ; then
     swww init
-    sleep 2
+    sleep 2.5
 fi
 
 ## set wallpaper ##
 Wall_Set
+
