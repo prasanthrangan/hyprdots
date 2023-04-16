@@ -21,14 +21,7 @@ else
     echo "$service_input service is not running, enabling..."
     systemctl enable ${service_input}.service
     systemctl start ${service_input}.service
-
-    if [ ${service_input} == "bluetooth" ]
-        then
-        sed -i "/^#AutoEnable=/c\AutoEnable=true" /etc/bluetooth/main.conf
-    fi
-
     echo "$service_input service enabled, auto enable updated..."
 fi
 
 exit 0
-

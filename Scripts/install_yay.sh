@@ -23,12 +23,12 @@ fi
 if pkg_installed git
 then
     git clone https://aur.archlinux.org/yay.git ~/Clone/yay
-    cd ~/Clone/yay
 else
     echo "git dependency is not installed..."
     exit 1
 fi
 
+cd ~/Clone/yay
 makepkg -si
 if [ $? -eq 0 ]
 then

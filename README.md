@@ -49,39 +49,41 @@ xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 imagemagick -- for kitty/neofetch image processing
 pavucontrol -- audio settings gui
 pamixer -- for waybar audio
-python-requests -- for waybar weather
-noto-fonts-emoji -- for waybar weather
+~~python-requests -- for waybar weather~~
+~~noto-fonts-emoji -- for waybar weather~~
 
 # theming
 nwg-look -- theming GTK apps
-qt6ct -- theming QT5 apps
-qt5ct -- theming QT6 apps
+kvantum -- theming QT apps
+qt5ct -- theming QT5 apps
+~~qt6ct -- theming QT6 apps~~
 
 # applications
 firefox -- browser
 kitty -- terminal
 neofetch -- fetch tool
-thunar -- gui file manager
-vscodium -- gui code editor
+dolphin -- kde file manager
+visual-studio-code-bin -- gui code editor
 vim -- text editor
+ark -- kde file archiver
 
 ```
 
 
 ### To-Do
-- [ ] Script to change light/dark theme
+- [x] Script to change light/dark theme
     - [x] wallpaper
     - [x] waybar
-    - [ ] gtk theme
-    - [ ] qt theme
-    - [ ] terminal
+    - [x] gtk theme
+    - [x] qt theme
+    - [x] terminal
+- [ ] Update rofi configs
 - [ ] Clipboard tool
 - [ ] Volums control script/notification
 - [ ] Media control for waybar
-- [ ] Update rofi configs
 
 ### Known Issues
-- [ ] Gnome Boxes not working
-- [ ] Flatpak QT apps does not follow system theme
+- [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak GTK apps does not follow system cursor
+- [ ] Flatpak QT apps does not follow system theme
 
