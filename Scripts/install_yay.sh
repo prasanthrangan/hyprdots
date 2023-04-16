@@ -30,6 +30,7 @@ fi
 
 cd ~/Clone/yay
 makepkg -si
+
 if [ $? -eq 0 ]
 then
     cd ~
@@ -40,3 +41,4 @@ else
     echo "yay installation failed..."
     exit 1
 fi
+

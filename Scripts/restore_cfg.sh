@@ -6,16 +6,15 @@
 
 source global_fn.sh
 
-cfgpath=`dirname $(dirname $(realpath $0))`
-cfgpath=`echo $cfgpath/Configs`
-bkpdir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
+CfgDir=`echo $CloneDir/Configs`
+BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
-if [ -d $bkpdir ]
+if [ -d $BkpDir ]
 then
-    echo "$bkpdir exists"
+    echo "ERROR : $BkpDir exists!"
     exit 1
 else
-    mkdir $bkpdir
+    mkdir $BkpDir
 fi
 
 while read lst
@@ -30,7 +29,7 @@ do
     do
         if ! pkg_installed $pkg_chk
         then
-            echo $pkg_chk not found
+            echo "package $pkg_chk not found..."
             continue
         fi
     done
@@ -38,10 +37,11 @@ do
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
-        mv $pth/$cfg_chk $bkpdir
-        echo "$pth/$cfg_chk backed up to $bkpdir"
-        cp -r $cfgpath$tgt/$cfg_chk $pth
-        echo "$cfgpath$tgt/$cfg_chk restored to $pth"
+        mv $pth/$cfg_chk $BkpDir
+        echo "backed up $pth/$cfg_chk to ${BkpDir}..."
+        cp -r $CfgDir$tgt/$cfg_chk $pth
+        echo "config $CfgDir$tgt/$cfg_chk restored to ${pth}..."
     done
 
 done < restore_conf.lst
+

@@ -8,7 +8,6 @@ source global_fn.sh
 
 install_list="${1:-custom_main.lst}"
 
-
 if pkg_installed git
     then
     echo "git dependency already installed..."
@@ -51,7 +50,6 @@ then
     echo "installing $pkg_arch from arch repo..."
     sudo pacman -S $pkg_arch
 fi
-
 
 if [ `echo $pkg_aur | wc -w` -gt 0 ]
 then

@@ -6,6 +6,8 @@
 
 set -e
 
+CloneDir=`dirname $(dirname $(realpath $0))`
+
 service_check()
 {
     local ServChk=$1
@@ -19,19 +21,6 @@ service_check()
         return 1
     fi
 }
-
-#config_check()
-#{
-#    local CfgChk=$1
-#    if [ `find $HOME/Dots -name "${CfgChk}" | wc -w` -eq 1 ]
-#    then
-#        export cfgPath=`find $HOME/Dots -name "${CfgChk}" -exec dirname {} \;`
-#        export tgtPath=`echo $cfgPath | sed "s,/Dots/Configs,,"`
-#        return 0
-#    else
-#        return 1
-#    fi
-#}
 
 pkg_installed()
 {
@@ -80,3 +69,4 @@ aur_available()
         return 1
     fi
 }
+

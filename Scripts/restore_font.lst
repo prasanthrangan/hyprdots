@@ -11,3 +11,5 @@ Gtk_CatppuccinMocha|$HOME/.themes
 Gtk_CatppuccinLatte|$HOME/.themes
 Icon_TelaDracula|$HOME/.icons
 Cursor_BibataIce|$HOME/.icons
+Grub_Pochita|/usr/share/grub/themes
+Sddm_Corners|/usr/share/sddm/themes
