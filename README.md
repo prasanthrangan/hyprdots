@@ -5,15 +5,15 @@
 WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enabled in grub and Hyperland is launched by sddm!!
 
 
-```
+### These packages will be installed by the script
 
-# nvidia
+#### nvidia
 linux-zen-headers -- for nvidia drivers
 linux-lts-headers -- for nvidia drivers
 nvidia-dkms -- nvidia drivers
 nvidia-utils -- nvidia drivers
 
-# tools
+#### tools
 pipewire -- audio and video server
 wireplumber -- audio and video server
 networkmanager -- network manager
@@ -22,7 +22,7 @@ bluez -- for bluetooth
 bluez-utils -- for bluetooth
 blueman -- bt tray
 
-# login
+#### login
 sddm -- display manager for login
 qt5-wayland -- for QT wayland XDP
 qt6-wayland -- for QT wayland XDP
@@ -30,7 +30,7 @@ qt5-quickcontrols -- for sddm theme
 qt5-quickcontrols2 -- for sddm theme
 qt5-graphicaleffects -- for sddm theme
 
-# hypr
+#### hypr
 hyprland -- main window manager
 dunst -- graphical notification daemon
 rofi-lbonn-wayland-git -- app launcher
@@ -42,7 +42,7 @@ grim -- screenshot tool
 slurp -- selects region for screenshot/screenshare
 swappy -- screenshot editor
 
-# dependencies
+#### dependencies
 polkit-kde-agent -- authentication agent
 pacman-contrib -- to check for available updates
 xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
@@ -52,13 +52,13 @@ pamixer -- for waybar audio
 ~~python-requests -- for waybar weather~~
 ~~noto-fonts-emoji -- for waybar weather~~
 
-# theming
+#### theming
 nwg-look -- theming GTK apps
 kvantum -- theming QT apps
 qt5ct -- theming QT5 apps
 ~~qt6ct -- theming QT6 apps~~
 
-# applications
+#### applications
 firefox -- browser
 kitty -- terminal
 neofetch -- fetch tool
@@ -67,7 +67,7 @@ visual-studio-code-bin -- gui code editor
 vim -- text editor
 ark -- kde file archiver
 
-```
+
 
 
 ### To-Do
