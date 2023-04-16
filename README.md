@@ -6,8 +6,9 @@ WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enab
 
 
 ### Main install script
-Clone and execute
+After minimal Arch install, clone and execute
 ```
+pacman -Sy git
 git clone https://github.com/prasanthrangan/hyprdots ~/Dots
 cd ~/Dots/Scripts
 ./install.sh
