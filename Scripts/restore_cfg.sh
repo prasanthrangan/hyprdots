@@ -10,7 +10,7 @@ CfgDir=`echo $CloneDir/Configs`
 BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
 if [ -d $BkpDir ]
-then
+    then
     echo "ERROR : $BkpDir exists!"
     exit 1
 else
@@ -28,7 +28,7 @@ do
     echo "${pkg}" | xargs -n 1 | while read pkg_chk
     do
         if ! pkg_installed $pkg_chk
-        then
+            then
             echo "package $pkg_chk not found..."
             continue
         fi

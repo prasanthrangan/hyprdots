@@ -24,4 +24,3 @@ else
     echo "$service_input service enabled, auto enable updated..."
 fi
 
-exit 0

@@ -6,17 +6,15 @@
 
 source global_fn.sh
 
-
 # rofi
 if pkg_installed rofi
 then
-    sudo cp ~/Dots/Configs/.config/rofi/cat_*.rasi /usr/share/rofi/themes/
+    sudo cp ${CloneDir}/Configs/.config/rofi/cat_*.rasi /usr/share/rofi/themes/
     if [ `find /usr/share/applications -name "rofi*.desktop" | wc -l` -gt 0 ]
         then
         sudo rm /usr/share/applications/rofi*.desktop
     fi
 fi
-
 
 # steam
 if pkg_installed steam
@@ -25,9 +23,8 @@ then
     then
         mkdir -p ~/.local/share/Steam/Skins/
     fi
-    tar -xvzf ~/Dots/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+    tar -xvzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
 fi
-
 
 # spotify
 if pkg_installed spotify && pkg_installed spicetify-cli
@@ -49,7 +46,6 @@ then
     spicetify apply
 fi
 
-
 # firefox
 if pkg_installed firefox
 then
@@ -65,7 +61,7 @@ then
         then
             mkdir ~/.mozilla/firefox/${FoxRel}/chrome
         fi
-        cp ~/Dots/Source/t2_firefox.css ~/.mozilla/firefox/${FoxRel}/chrome/userChrome.css
+        cp ${CloneDir}/Source/t2_firefox.css ~/.mozilla/firefox/${FoxRel}/chrome/userChrome.css
         echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);' > ~/.mozilla/firefox/${FoxRel}/user.js
         echo 'user_pref("browser.tabs.tabmanager.enabled", false);' >> ~/.mozilla/firefox/${FoxRel}/user.js
     fi
