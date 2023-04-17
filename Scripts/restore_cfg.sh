@@ -37,9 +37,14 @@ do
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
-        mv $pth/$cfg_chk $BkpDir
-        echo "backed up $pth/$cfg_chk to ${BkpDir}..."
-        cp -r $CfgDir$tgt/$cfg_chk $pth
+        
+	if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
+		then
+		mv $pth/$cfg_chk $BkpDir
+		echo "backed up $pth/$cfg_chk to ${BkpDir}..."
+	fi 
+	
+	cp -r $CfgDir$tgt/$cfg_chk $pth
         echo "config $CfgDir$tgt/$cfg_chk restored to ${pth}..."
     done
 
