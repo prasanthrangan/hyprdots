@@ -25,26 +25,26 @@ do
     pkg=`echo $lst | awk -F '|' '{print $3}'`
     pth=`eval echo $pth`
 
-    echo "${pkg}" | xargs -n 1 | while read pkg_chk
+    while read pkg_chk
     do
         if ! pkg_installed $pkg_chk
             then
             echo "package $pkg_chk not found..."
-            continue
+            continue 2
         fi
-    done
+    done < <( echo "${pkg}" | xargs -n 1 )
 
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
         
-	if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
-		then
-		mv $pth/$cfg_chk $BkpDir
-		echo "backed up $pth/$cfg_chk to ${BkpDir}..."
-	fi 
-	
-	cp -r $CfgDir$tgt/$cfg_chk $pth
+        if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
+            then
+            mv $pth/$cfg_chk $BkpDir
+            echo "backed up $pth/$cfg_chk to ${BkpDir}..."
+        fi 
+
+        cp -r $CfgDir$tgt/$cfg_chk $pth
         echo "config $CfgDir$tgt/$cfg_chk restored to ${pth}..."
     done
 
