@@ -19,8 +19,8 @@ do
         echo "${tgt} directory created..."
     fi
 
-    echo "uncompressing ${fnt}.tar.gz to ${tgt}..."
     sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
+    echo "uncompressing ${fnt}.tar.gz to ${tgt}..."
 
 done < restore_font.lst
 

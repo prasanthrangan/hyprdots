@@ -8,17 +8,15 @@ source global_fn.sh
 
 install_list="${1:-custom_main.lst}"
 
-if pkg_installed git
+if ! pkg_installed git
     then
-    echo "git dependency already installed..."
-else
+    echo "installing dependency git..."
     sudo pacman -S git
 fi
 
-if pkg_installed yay
+if ! pkg_installed yay
     then
-    echo "yay dependency already installed..."
-else
+    echo "installing dependency yay..."
     ./install_yay.sh 2>&1
 fi
 
