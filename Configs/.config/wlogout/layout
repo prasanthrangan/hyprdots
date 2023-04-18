@@ -6,7 +6,7 @@
 }
 {
     "label" : "logout",
-    "action" : "loginctl kill-user $USER",
+    "action" : "hyprctl dispatch exit 0",
     "text" : "Logout",
     "keybind" : "e"
 }
