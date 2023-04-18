@@ -8,7 +8,7 @@ source global_fn.sh
 
 # rofi
 if pkg_installed rofi
-then
+    then
     sudo cp ${CloneDir}/Configs/.config/rofi/cat_*.rasi /usr/share/rofi/themes/
     if [ `find /usr/share/applications -name "rofi*.desktop" | wc -l` -gt 0 ]
         then
@@ -18,27 +18,27 @@ fi
 
 # steam
 if pkg_installed steam
-then
-    if [ ! -d ~/.local/share/Steam/Skins/ ]
     then
+    if [ ! -d ~/.local/share/Steam/Skins/ ]
+        then
         mkdir -p ~/.local/share/Steam/Skins/
     fi
-    tar -xvzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+    tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
 fi
 
 # spotify
 if pkg_installed spotify && pkg_installed spicetify-cli
-then
+    then
     spotify &
-    sleep 5
+    sleep 2
     killall spotify
 
     sudo chmod a+wr /opt/spotify
     sudo chmod a+wr /opt/spotify/Apps -R
-    tar -xvzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
+    tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
 
     if [ $(ls -A ~/.config/spicetify/Backup | wc -l) -eq 0 ]
-    then
+        then
         spicetify backup apply
     fi
 
@@ -49,22 +49,17 @@ fi
 
 # firefox
 if pkg_installed firefox
-then
+    then
     firefox &
-    sleep 5
+    sleep 3
     killall firefox
 
-    if [ -d ~/.mozilla/firefox/*.default-release ]
-    then
-        FoxRel=`ls -l ~/.mozilla/firefox/ | grep .default-release | awk '{print $NF}'`
-
-        if [ ! -d ~/.mozilla/firefox/${FoxRel}/chrome ]
+    FoxRel=`ls -l ~/.mozilla/firefox/ | grep .default-release | awk '{print $NF}'`
+    if [ `echo $FoxRel | wc -w` -eq 1 ]
         then
-            mkdir ~/.mozilla/firefox/${FoxRel}/chrome
-        fi
-        cp ${CloneDir}/Source/t2_firefox.css ~/.mozilla/firefox/${FoxRel}/chrome/userChrome.css
-        echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);' > ~/.mozilla/firefox/${FoxRel}/user.js
-        echo 'user_pref("browser.tabs.tabmanager.enabled", false);' >> ~/.mozilla/firefox/${FoxRel}/user.js
+        tar -xzf ${CloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C ~/.mozilla/firefox/${FoxRel}/
+    else
+        echo "ERROR: Please cleanup Firefox default-release directories"
     fi
 fi
 
