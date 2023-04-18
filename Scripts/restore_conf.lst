@@ -5,7 +5,7 @@ ${HOME}/.config|kitty|kitty
 ${HOME}/.config|Kvantum|kvantum
 ${HOME}/.config|MangoHud|mangohud
 ${HOME}/.config|neofetch|neofetch
-${HOME}/.config|nwg-look|nwg-look
+${HOME}/.config|nwg-look gtk-3.0|nwg-look
 ${HOME}/.config|qt5ct|qt5ct
 ${HOME}/.config|rofi|rofi
 ${HOME}/.config|swaylock|swaylock-effects
