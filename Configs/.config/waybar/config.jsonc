@@ -66,8 +66,8 @@
     },
 
     "clock": {
-        "format": "{: %I:%M %p  %a %d}",
-        "format-alt": "{:󰥔 %H:%M 󰃭 %b %Y}",
+        "format": "{: %I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:󰥔 %H:%M  %b %Y}",
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
@@ -85,8 +85,8 @@
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󱘖 {ipaddr}/{cidr}",
-        "tooltip-format": "󱘖 {essid}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-ethernet": "󱘖 Wired",
+        "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
         "format-linked": "󱘖 {ifname} (No IP)",
         "format-disconnected": " Disconnected",
         "format-alt": "󰤨 {signalStrength}%",
