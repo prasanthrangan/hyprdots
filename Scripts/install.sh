@@ -13,8 +13,9 @@ source global_fn.sh
 # install packages from my list #
 #-------------------------------#
 cat custom_hypr.lst custom_main.lst custom_zsh.lst > install_pkg.lst
-#./install_pkg.sh custom_app.lst
 ./install_pkg.sh install_pkg.lst
+#./install_pkg.sh custom_app.lst
+#./install_fpk.sh
 
 #---------------------------#
 # restore my custom configs #
@@ -27,7 +28,7 @@ cat custom_hypr.lst custom_main.lst custom_zsh.lst > install_pkg.lst
 #------------------------#
 # enable system services #
 #------------------------#
-sudo ./enable_ctl.sh NetworkManager
-sudo ./enable_ctl.sh bluetooth
-sudo ./enable_ctl.sh sddm
+service_ctl NetworkManager
+service_ctl bluetooth
+service_ctl sddm
 
