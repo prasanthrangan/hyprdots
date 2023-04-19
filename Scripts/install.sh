@@ -12,10 +12,9 @@ source global_fn.sh
 #-------------------------------#
 # install packages from my list #
 #-------------------------------#
-./install_pkg.sh custom_hypr.lst
-./install_pkg.sh custom_main.lst
-./install_pkg.sh custom_zsh.lst
+cat custom_hypr.lst custom_main.lst custom_zsh.lst > install_pkg.lst
 #./install_pkg.sh custom_app.lst
+./install_pkg.sh install_pkg.lst
 
 #---------------------------#
 # restore my custom configs #
