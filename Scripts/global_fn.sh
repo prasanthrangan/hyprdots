@@ -19,7 +19,7 @@ service_ctl()
         echo "$ServChk service is not running, enabling..."
         sudo systemctl enable ${ServChk}.service
         sudo systemctl start ${ServChk}.service
-        echo "$ServChk service enabled, auto enable updated..."
+        echo "$ServChk service enabled, and running..."
     fi
 }
 
