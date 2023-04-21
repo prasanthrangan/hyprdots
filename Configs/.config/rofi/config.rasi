@@ -2,13 +2,13 @@
 configuration {
 	modi:                        "drun,filebrowser,window,run";
 	show-icons:                  true;
-	display-drun:                "";
+	display-drun:                "";
 	display-run:                 "";
 	display-filebrowser:         "";
 	display-window:              "";
 	drun-display-format:         "{name}";
 	window-format:               "{w}{t}";
-	font:                        "JetBrains Mono Nerd Font 10";
+	font:                        "JetBrainsMono Nerd Font 10";
 	icon-theme:                  "Tela-circle-dracula-dark";
 }
 
@@ -40,8 +40,8 @@ configuration {
 	alternate-active-background: @active-background;
 
 	selected-normal-background:  #b4befeff; //Lavender
-	selected-urgent-background:  #b4befeff; //Lavender
-	selected-active-background:  #b4befeff; //Lavender
+	selected-urgent-background:  #94e2d5cc; //Teal
+	selected-active-background:  #eba0accc; //Maroon
 
 	separatorcolor:              transparent;
 	border-color:                transparent;
@@ -59,10 +59,10 @@ window {
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
-	spacing:                     0px;
+    spacing:                     0px;
     padding:                     0px;
-	border-radius:               50px;
-	border-color:                #f2cdcdff; //Flamingo
+    border-radius:               50px;
+    border-color:                #f2cdcdff; //Flamingo
 }
 mainbox {
     enabled:                     true;
