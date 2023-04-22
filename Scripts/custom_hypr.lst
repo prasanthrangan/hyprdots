@@ -1,8 +1,3 @@
-linux-headers
-linux-zen-headers
-linux-lts-headers
-nvidia-dkms
-nvidia-utils
 pipewire
 wireplumber
 networkmanager
@@ -16,7 +11,7 @@ qt6-wayland
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
-hyprland-nvidia-git
+hyprland-git
 dunst
 rofi-lbonn-wayland-git
 waybar-hyprland-git

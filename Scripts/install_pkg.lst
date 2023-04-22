@@ -1,8 +1,3 @@
-linux-headers
-linux-zen-headers
-linux-lts-headers
-nvidia-dkms
-nvidia-utils
 pipewire
 wireplumber
 networkmanager
@@ -49,3 +44,8 @@ zsh-theme-powerlevel10k-git
 zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
+linux-lts-headers
+linux-headers
+linux-zen-headers
+nvidia-dkms
+nvidia-utils

@@ -17,11 +17,11 @@ cd ~/Dots/Scripts
 ### These packages will be installed by the script
 
 #### nvidia
-- linux-headers -- for nvidia drivers for main kernel
-- linux-zen-headers -- for nvidia drivers for zen kernel
-- linux-lts-headers -- for nvidia drivers for lts kernel
-- nvidia-dkms -- nvidia drivers
-- nvidia-utils -- nvidia drivers
+- linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
+- linux-zen-headers -- for zen kernel (script will auto detect from /usr/lib/modules/)
+- linux-lts-headers -- for lts kernel (script will auto detect from /usr/lib/modules/)
+- nvidia-dkms -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
+- nvidia-utils -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 
 #### tools
 - pipewire -- audio and video server
@@ -41,7 +41,7 @@ cd ~/Dots/Scripts
 - qt5-graphicaleffects -- for sddm theme
 
 #### hypr
-- hyprland-nvidia-git -- main window manager
+- hyprland-git -- main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
 - dunst -- graphical notification daemon
 - rofi-lbonn-wayland-git -- app launcher
 - waybar-hyprland-git -- status bar
@@ -85,12 +85,13 @@ cd ~/Dots/Scripts
     - [x] qt theme
     - [x] terminal
 - [x] Update rofi configs
-- [ ] Clipboard tool
+- [ ] Clipboard manager in waybar
 - [ ] Volums control script/notification
 - [ ] Media control for waybar
 
 ### Known Issues
-- [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
-- [ ] Flatpak GTK apps does not follow system cursor
+- [x] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
+- [x] ~~Flatpak GTK apps does not follow system cursor~~
 - [ ] Flatpak QT apps does not follow system theme
+
 
