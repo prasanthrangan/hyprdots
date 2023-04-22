@@ -40,7 +40,7 @@ cd ~/Dots/Scripts
 - qt5-graphicaleffects -- for sddm theme
 
 #### hypr
-- hyprland -- main window manager
+- hyprland-nvidia-git -- main window manager
 - dunst -- graphical notification daemon
 - rofi-lbonn-wayland-git -- app launcher
 - waybar-hyprland-git -- status bar
@@ -83,7 +83,7 @@ cd ~/Dots/Scripts
     - [x] gtk theme
     - [x] qt theme
     - [x] terminal
-- [ ] Update rofi configs
+- [x] Update rofi configs
 - [ ] Clipboard tool
 - [ ] Volums control script/notification
 - [ ] Media control for waybar
