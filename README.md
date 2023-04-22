@@ -17,8 +17,9 @@ cd ~/Dots/Scripts
 ### These packages will be installed by the script
 
 #### nvidia
-- linux-zen-headers -- for nvidia drivers
-- linux-lts-headers -- for nvidia drivers
+- linux-headers -- for nvidia drivers for main kernel
+- linux-zen-headers -- for nvidia drivers for zen kernel
+- linux-lts-headers -- for nvidia drivers for lts kernel
 - nvidia-dkms -- nvidia drivers
 - nvidia-utils -- nvidia drivers
 
