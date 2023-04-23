@@ -6,16 +6,6 @@
 
 source global_fn.sh
 
-# rofi
-if pkg_installed rofi
-    then
-    sudo cp ${CloneDir}/Configs/.config/rofi/cat_*.rasi /usr/share/rofi/themes/
-    if [ `find /usr/share/applications -name "rofi*.desktop" | wc -l` -gt 0 ]
-        then
-        sudo rm /usr/share/applications/rofi*.desktop
-    fi
-fi
-
 # steam
 if pkg_installed steam
     then
