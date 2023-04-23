@@ -33,7 +33,7 @@ cd ~/Dots/Scripts
 - blueman -- bt tray
 
 #### login
-- sddm -- display manager for login
+- sddm-git -- display manager for login
 - qt5-wayland -- for QT wayland XDP
 - qt6-wayland -- for QT wayland XDP
 - qt5-quickcontrols -- for sddm theme
