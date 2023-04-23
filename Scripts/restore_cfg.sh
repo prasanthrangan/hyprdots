@@ -17,6 +17,14 @@ else
     mkdir $BkpDir
 fi
 
+find $CloneDir -type l | while read slink
+do
+    src=`readlink $slink`
+    tgt=$(echo $src | cut -f 4- -d /)
+    echo "linking $HOME/$tgt to $slink..."
+    ln -fs $HOME/$tgt $slink
+done
+
 while read lst
 do
 
