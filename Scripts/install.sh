@@ -27,13 +27,13 @@ if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; the
     echo -e "nvidia-dkms\nnvidia-utils" >> install_pkg.lst
     sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
 
-    if [ `grep 'MODULES=' /etc/mkinitcpio.conf | grep nvidia | wc -l` -eq 0 ] ; then
-        sudo sed -i "/MODULES=/ s/)$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf
-        sudo mkinitcpio -P
-        if [ `grep 'options nvidia-drm modeset=1' /etc/modprobe.d/nvidia.conf | wc -l` -eq 0 ] ; then
-            echo 'options nvidia-drm modeset=1' | sudo tee -a /etc/modprobe.d/nvidia.conf
-        fi
-    fi
+#    if [ `grep 'MODULES=' /etc/mkinitcpio.conf | grep nvidia | wc -l` -eq 0 ] ; then
+#        if [ `grep 'options nvidia-drm modeset=1' /etc/modprobe.d/nvidia.conf | wc -l` -eq 0 ] ; then
+#            echo 'options nvidia-drm modeset=1' | sudo tee -a /etc/modprobe.d/nvidia.conf
+#        fi
+#        sudo sed -i "/MODULES=/ s/)$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf
+#        sudo mkinitcpio -P
+#    fi
 
 else
     echo "nvidia card not detected, skipping nvidia drivers..."
