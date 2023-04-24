@@ -39,7 +39,7 @@ fi
 
 
 #-------------------------------------#
-# cheanup other xdg-* packages if any #
+# cleanup other xdg-* packages if any #
 #-------------------------------------#
 #if pkg_installed xdg-desktop-portal-kde
 #then
