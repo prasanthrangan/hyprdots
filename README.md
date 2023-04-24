@@ -14,6 +14,24 @@ cd ~/Dots/Scripts
 ./install.sh
 ```
 
+While installing xdg-desktop-portal-hyprland, select xdg-desktop-portal-gtk (option 2)
+```
+:: There are 5 providers available for xdg-desktop-portal-impl:
+:: Repository extra:
+    1) xdg-desktop-portal-gnome  2) xdg-desktop-portal-gtk  3) xdg-desktop-portal-kde
+:: Repository community:
+    4) xdg-desktop-portal-lxqt  5) xdg-desktop-portal-wlr
+Enter a number (default=1): 5
+```
+
+Make sure you don't have any other xdg-desktop-portal-* packages installed (except xdg-desktop-portal-gtk for file dialogs)
+```
+pacman -Q | grep xdg-desktop-portal-
+```
+
+Please reboot after the install script completes and takes you to sddm login screen for the first time.
+
+
 ### These packages will be installed by the script
 
 #### nvidia
@@ -93,5 +111,4 @@ cd ~/Dots/Scripts
 - [x] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [x] ~~Flatpak GTK apps does not follow system cursor~~
 - [ ] Flatpak QT apps does not follow system theme
-
 

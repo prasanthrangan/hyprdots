@@ -38,6 +38,25 @@ fi
 #./install_fpk.sh
 
 
+#-------------------------------------#
+# cheanup other xdg-* packages if any #
+#-------------------------------------#
+#if pkg_installed xdg-desktop-portal-kde
+#then
+#    sudo pacman -Rnsdd xdg-desktop-portal-kde
+#fi
+#
+#if pkg_installed xdg-desktop-portal-gnome
+#then
+#    sudo pacman -Rns xdg-desktop-portal-gnome
+#fi
+#
+#if pkg_installed xdg-desktop-portal-wlr
+#then
+#    sudo pacman -Rns xdg-desktop-portal-wlr
+#fi
+
+
 #---------------------------#
 # restore my custom configs #
 #---------------------------#
@@ -53,5 +72,4 @@ fi
 service_ctl NetworkManager
 service_ctl bluetooth
 service_ctl sddm
-
 
