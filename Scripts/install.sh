@@ -19,12 +19,22 @@ cat custom_hypr.lst custom_main.lst custom_zsh.lst > install_pkg.lst
 # add nvidia drivers to the list #
 #--------------------------------#
 if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
+
     cat /usr/lib/modules/*/pkgbase | while read krnl
     do
         echo "${krnl}-headers" >> install_pkg.lst
     done
     echo -e "nvidia-dkms\nnvidia-utils" >> install_pkg.lst
     sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
+
+    if [ `grep 'MODULES=' /etc/mkinitcpio.conf | grep nvidia | wc -l` -eq 0 ] ; then
+        sudo sed -i "/MODULES=/ s/)$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf
+        sudo mkinitcpio -P
+        if [ `grep 'options nvidia-drm modeset=1' /etc/modprobe.d/nvidia.conf | wc -l` -eq 0 ] ; then
+            echo 'options nvidia-drm modeset=1' | sudo tee -a /etc/modprobe.d/nvidia.conf
+        fi
+    fi
+
 else
     echo "nvidia card not detected, skipping nvidia drivers..."
 fi
@@ -36,25 +46,6 @@ fi
 ./install_pkg.sh install_pkg.lst
 #./install_pkg.sh custom_app.lst
 #./install_fpk.sh
-
-
-#-------------------------------------#
-# cleanup other xdg-* packages if any #
-#-------------------------------------#
-#if pkg_installed xdg-desktop-portal-kde
-#then
-#    sudo pacman -Rnsdd xdg-desktop-portal-kde
-#fi
-#
-#if pkg_installed xdg-desktop-portal-gnome
-#then
-#    sudo pacman -Rns xdg-desktop-portal-gnome
-#fi
-#
-#if pkg_installed xdg-desktop-portal-wlr
-#then
-#    sudo pacman -Rns xdg-desktop-portal-wlr
-#fi
 
 
 #---------------------------#
@@ -72,4 +63,5 @@ fi
 service_ctl NetworkManager
 service_ctl bluetooth
 service_ctl sddm
+
 
