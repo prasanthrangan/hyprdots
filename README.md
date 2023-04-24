@@ -21,7 +21,7 @@ While installing xdg-desktop-portal-hyprland, select xdg-desktop-portal-gtk (opt
     1) xdg-desktop-portal-gnome  2) xdg-desktop-portal-gtk  3) xdg-desktop-portal-kde
 :: Repository community:
     4) xdg-desktop-portal-lxqt  5) xdg-desktop-portal-wlr
-Enter a number (default=1): 5
+Enter a number (default=1): 2
 ```
 
 Make sure you don't have any other xdg-desktop-portal-* packages installed (except xdg-desktop-portal-gtk for file dialogs)
