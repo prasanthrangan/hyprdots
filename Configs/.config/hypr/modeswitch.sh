@@ -13,13 +13,9 @@ elif [ "$X_MODE" == "switch" ] ; then
 
     if [ "$X_MODE" == "dark" ] ; then
         S_MODE="light"
-        kvantummanager --set Catppuccin-Latte-Rosewater
-        gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Latte'
 
     elif [ "$X_MODE" == "light" ] ; then
         S_MODE="dark"
-        kvantummanager --set Catppuccin-Mocha-Rosewater
-        gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-Mocha-B'
 
     else
         echo "ERROR: unable to fetch wallpaper mode."
@@ -30,13 +26,13 @@ else
     exit 1
 fi
 
-### hyprland ###
-ln -fs $CFGDIR/hypr/${S_MODE}.conf $CFGDIR/hypr/hyprland.conf
-hyprctl reload
-
 ### swwwallpaper ###
 x=`echo $S_MODE | cut -c 1`
 $CFGDIR/swww/swwwallpaper.sh -$x
+
+### hyprland ###
+ln -fs $CFGDIR/hypr/${S_MODE}.conf $CFGDIR/hypr/theme.conf
+hyprctl reload
 
 ### kitty ###
 ln -fs $CFGDIR/kitty/${S_MODE}.conf $CFGDIR/kitty/theme.conf
@@ -46,4 +42,3 @@ killall -SIGUSR1 kitty
 ln -fs $CFGDIR/waybar/${S_MODE}.css $CFGDIR/waybar/style.css
 sleep 1
 killall -SIGUSR2 waybar
-
