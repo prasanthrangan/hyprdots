@@ -1,12 +1,12 @@
 #!/bin/bash
-#|---/ /+---------------------------------------+---/ /|#
-#|--/ /-| Script to install essential arch pkgs |--/ /-|#
-#|-/ /--| Prasanth Rangan                       |-/ /--|#
-#|/ /---+---------------------------------------+/ /---|#
+#|---/ /+----------------------------------------+---/ /|#
+#|--/ /-| Script to install pkgs from input list |--/ /-|#
+#|-/ /--| Prasanth Rangan                        |-/ /--|#
+#|/ /---+----------------------------------------+/ /---|#
 
 source global_fn.sh
 
-install_list="${1:-custom_main.lst}"
+install_list="${1:-install_pkg.lst}"
 
 if ! pkg_installed git
     then

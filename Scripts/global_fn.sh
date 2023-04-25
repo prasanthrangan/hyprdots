@@ -27,7 +27,7 @@ pkg_installed()
 {
     local PkgIn=$1
 
-    if pacman -Qi $PkgIn > /dev/null
+    if pacman -Qi $PkgIn &> /dev/null
     then
         #echo "${PkgIn} is already installed..."
         return 0
@@ -41,7 +41,7 @@ pkg_available()
 {
     local PkgIn=$1
 
-    if pacman -Si $PkgIn > /dev/null
+    if pacman -Si $PkgIn &> /dev/null
     then
         #echo "${PkgIn} available in arch repo..."
         return 0
@@ -57,7 +57,7 @@ aur_available()
 
     if pkg_installed yay
     then
-        if yay -Si $PkgIn > /dev/null
+        if yay -Si $PkgIn &> /dev/null
         then
             #echo "${PkgIn} available in aur repo..."
             return 0

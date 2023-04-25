@@ -1,6 +1,6 @@
 #!/bin/bash
 #|---/ /+------------------------------------+---/ /|#
-#|--/ /-| Script to restore personel configs |--/ /-|#
+#|--/ /-| Script to restore personal configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                    |-/ /--|#
 #|/ /---+------------------------------------+/ /---|#
 
