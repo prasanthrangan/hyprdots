@@ -27,7 +27,7 @@ if pkg_installed spotify && pkg_installed spicetify-cli
     sudo chmod a+wr /opt/spotify/Apps -R
     tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
 
-    if [ $(ls -l ~/.config/spicetify/Backup | wc -l) -eq 0 ]
+    if [ `ls -A ~/.config/spicetify/Backup | wc -l` -eq 0 ]
         then
         spicetify backup apply
     fi
