@@ -2,11 +2,12 @@
 
 ## My Arch Hyprland Config Files
 
-WARNING : Install script is setup for nvidia-dkms drivers and nvidia drm is enabled in grub and Hyperland is launched by sddm!!
+WARNING : Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
+Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
 
 ### Main install script
-After minimal Arch install, clone and execute
+After minimal Arch install (with grub), clone and execute -
 ```
 pacman -Sy git
 git clone https://github.com/prasanthrangan/hyprdots ~/Dots
@@ -14,7 +15,7 @@ cd ~/Dots/Scripts
 ./install.sh
 ```
 
-While installing xdg-desktop-portal-hyprland, select xdg-desktop-portal-gtk (option 2)
+If you get this prompt, select xdg-desktop-portal-gtk (option 2) -
 ```
 :: There are 5 providers available for xdg-desktop-portal-impl:
 :: Repository extra:
@@ -33,6 +34,10 @@ Please reboot after the install script completes and takes you to sddm login scr
 
 
 ### These packages will be installed by the script
+NOTE : You can also create your own file (for ex. custom_app.lst) with all your favorite apps and pass the file as a parameter to install it -
+```
+./install.sh custom_app.lst
+```
 
 #### nvidia
 - linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
@@ -43,6 +48,11 @@ Please reboot after the install script completes and takes you to sddm login scr
 
 #### tools
 - pipewire -- audio and video server
+- pipewire-alsa -- for audio
+- pipewire-audio -- for audio
+- pipewire-jack -- for audio
+- pipewire-pulse -- for audio
+- gst-plugin-pipewire -- for audio
 - wireplumber -- audio and video server
 - networkmanager -- network manager
 - network-manager-applet -- nm tray
@@ -75,6 +85,7 @@ Please reboot after the install script completes and takes you to sddm login scr
 - pacman-contrib -- to check for available updates
 - xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 - imagemagick -- for kitty/neofetch image processing
+- qt5-imageformats -- for dolphin thumbnails
 - pavucontrol -- audio settings gui
 - pamixer -- for waybar audio
 - ~~python-requests -- for waybar weather~~
@@ -109,6 +120,5 @@ Please reboot after the install script completes and takes you to sddm login scr
 
 ### Known Issues
 - [x] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
-- [x] ~~Flatpak GTK apps does not follow system cursor~~
 - [ ] Flatpak QT apps does not follow system theme
 

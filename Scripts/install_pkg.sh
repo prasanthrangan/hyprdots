@@ -38,7 +38,7 @@ do
         pkg_aur=`echo $pkg_aur ${pkg}`
 
     else
-        echo "error: unknown package..."
+        echo "error: unknown package ${pkg}..."
     fi
 done < $install_list
 

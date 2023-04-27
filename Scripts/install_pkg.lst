@@ -30,6 +30,7 @@ polkit-kde-agent
 pacman-contrib
 xdg-desktop-portal-hyprland
 imagemagick
+qt5-imageformats
 pavucontrol
 pamixer
 nwg-look
@@ -50,7 +51,6 @@ zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
 linux-lts-headers
-linux-headers
 linux-zen-headers
 nvidia-dkms
 nvidia-utils

@@ -13,7 +13,11 @@ source global_fn.sh
 #----------------------#
 # prepare package list #
 #----------------------#
-cat custom_hypr.lst custom_main.lst custom_zsh.lst > install_pkg.lst
+cp custom_hypr.lst install_pkg.lst
+
+if [ -f "$1" ] && [ ! -z "$1" ] ; then
+    cat $1 >> install_pkg.lst
+fi
 
 
 #--------------------------------#
@@ -34,9 +38,9 @@ else
 fi
 
 
-#-------------------------------#
-# install packages from my list #
-#-------------------------------#
+#--------------------------------#
+# install packages from the list #
+#--------------------------------#
 ./install_pkg.sh install_pkg.lst
 #./install_pkg.sh custom_app.lst
 #./install_fpk.sh
