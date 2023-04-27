@@ -17,13 +17,13 @@ else
     mkdir $BkpDir
 fi
 
-find $CloneDir -type l | while read slink
-do
-    src=`readlink $slink`
-    tgt=$(echo $src | cut -f 4- -d /)
-    echo "linking $HOME/$tgt to $slink..."
-    ln -fs $HOME/$tgt $slink
-done
+#find $CloneDir -type l | while read slink
+#do
+#    ln_src=`readlink $slink`
+#    ln_tgt=$(echo $ln_src | cut -f 4- -d /)
+#    echo "linking $HOME/$ln_tgt to $slink..."
+#    ln -fs $HOME/$ln_tgt $slink
+#done
 
 while read lst
 do
@@ -57,4 +57,6 @@ do
     done
 
 done < restore_conf.lst
+
+./restore_link.sh
 

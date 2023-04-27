@@ -113,6 +113,9 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [x] gtk theme
     - [x] qt theme
     - [x] terminal
+    - [ ] rofi
+    - [ ] logout
+    - [ ] lockscreen
 - [x] Update rofi configs
 - [ ] Clipboard manager in waybar
 - [ ] Volums control script/notification
