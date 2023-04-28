@@ -59,7 +59,7 @@ do
         fi 
 
         cp -r $CfgDir$tgt/$cfg_chk $pth
-        echo "config ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+        echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
 done < restore_conf.lst
