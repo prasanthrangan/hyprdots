@@ -13,3 +13,7 @@ ${HOME}/.config|wlogout|wlogout
 ${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look
 ${HOME}/.icons|default|nwg-look
 ${HOME}|.gtkrc-2.0|nwg-look
+${HOME}/.config|dolphinrc|dolphin
+${HOME}/.local/share|dolphin user-places.xbel|dolphin
+${HOME}/.local/share/kxmlgui5|dolphin|dolphin
+${HOME}/.local/share/kxmlgui5|ark|ark

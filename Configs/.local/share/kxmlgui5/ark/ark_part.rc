@@ -1,0 +1,56 @@
+<!DOCTYPE gui>
+<gui translationDomain="ark" name="ark_part" version="25">
+ <MenuBar>
+  <Menu name="archive" noMerge="1">
+   <text translationDomain="ark">&amp;Archive</text>
+   <Action group="file_save" name="ark_file_save_as"/>
+   <Action group="archive_edit" name="add"/>
+   <Action group="archive_edit" name="edit_comment"/>
+   <Action group="archive_extract" name="extract_all"/>
+   <Action group="archive_props" name="edit_find"/>
+   <Action group="archive_props" name="test_archive"/>
+   <Action group="archive_props" name="properties"/>
+  </Menu>
+  <Menu name="ark_file" noMerge="1">
+   <text translationDomain="ark">&amp;File</text>
+   <Action name="preview"/>
+   <Action name="openfile"/>
+   <Action name="openfilewith"/>
+   <Separator/>
+   <Action name="renamefile"/>
+   <Action name="deletefile"/>
+   <Action name="extract"/>
+   <Separator/>
+   <Action name="edit_cut"/>
+   <Action name="edit_copy"/>
+   <Action name="edit_paste"/>
+  </Menu>
+  <Menu name="settings" noMerge="1">
+   <text translationDomain="ark">&amp;Settings</text>
+   <Action group="settings_show" name="show-infopanel"/>
+  </Menu>
+ </MenuBar>
+ <ToolBar name="mainToolBar" noMerge="1">
+  <text translationDomain="ark">Main Toolbar</text>
+  <Spacer name="spacer_0"/>
+  <Action name="extract"/>
+  <Action name="add"/>
+  <Action name="deletefile"/>
+  <Action name="hamburger_menu"/>
+ </ToolBar>
+ <Menu name="context_menu" noMerge="1">
+  <Action name="preview"/>
+  <Action name="openfile"/>
+  <Action name="openfilewith"/>
+  <Separator/>
+  <Action name="renamefile"/>
+  <Action name="deletefile"/>
+  <Action name="extract"/>
+  <Separator/>
+  <Action name="edit_cut"/>
+  <Action name="edit_copy"/>
+  <Action name="edit_paste"/>
+  <Separator/>
+  <Action name="add"/>
+ </Menu>
+</gui>

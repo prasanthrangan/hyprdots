@@ -45,11 +45,17 @@ do
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
-        
+
         if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
             then
-            mv $pth/$cfg_chk $BkpDir
-            echo "backed up $pth/$cfg_chk to ${BkpDir}..."
+
+            if [ ! -d $BkpDir$tgt ]
+                then
+                mkdir -p $BkpDir$tgt
+            fi
+
+            mv $pth/$cfg_chk $BkpDir$tgt
+            echo "backed up $pth/$cfg_chk to $BkpDir$tgt..."
         fi 
 
         cp -r $CfgDir$tgt/$cfg_chk $pth
@@ -60,3 +66,4 @@ done < restore_conf.lst
 
 ./restore_link.sh
 
+ 
