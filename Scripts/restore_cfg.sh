@@ -54,7 +54,7 @@ do
                 mkdir -p $BkpDir$tgt
             fi
 
-            mv $pth/$cfg_chk $BkpDir$tgt
+            cp -r $pth/$cfg_chk $BkpDir$tgt
             echo "backed up $pth/$cfg_chk to $BkpDir$tgt..."
         fi 
 
