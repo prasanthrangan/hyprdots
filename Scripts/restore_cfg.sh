@@ -55,15 +55,13 @@ do
             fi
 
             cp -r $pth/$cfg_chk $BkpDir$tgt
-            echo "backed up $pth/$cfg_chk to $BkpDir$tgt..."
+            echo "backed up $pth/$cfg_chk --> $BkpDir$tgt..."
         fi 
 
         cp -r $CfgDir$tgt/$cfg_chk $pth
-        echo "config $CfgDir$tgt/$cfg_chk restored to ${pth}..."
+        echo "config ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
 done < restore_conf.lst
 
 ./restore_link.sh
-
- 
