@@ -5,6 +5,10 @@
 #|/ /---+------------------------------------+/ /---|#
 
 source global_fn.sh
+if [ $? -ne 0 ] ; then
+    echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
+    exit 1
+fi
 
 CfgDir=`echo $CloneDir/Configs`
 BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
@@ -16,14 +20,6 @@ if [ -d $BkpDir ]
 else
     mkdir $BkpDir
 fi
-
-#find $CloneDir -type l | while read slink
-#do
-#    ln_src=`readlink $slink`
-#    ln_tgt=$(echo $ln_src | cut -f 4- -d /)
-#    echo "linking $HOME/$ln_tgt to $slink..."
-#    ln -fs $HOME/$ln_tgt $slink
-#done
 
 while read lst
 do
@@ -55,7 +51,7 @@ do
             fi
 
             cp -r $pth/$cfg_chk $BkpDir$tgt
-            echo "backed up $pth/$cfg_chk --> $BkpDir$tgt..."
+            echo "config backed up $pth/$cfg_chk --> $BkpDir$tgt..."
         fi 
 
         cp -r $CfgDir$tgt/$cfg_chk $pth
@@ -64,4 +60,5 @@ do
 
 done < restore_conf.lst
 
-./restore_link.sh
+./restore_lnk.sh
+
