@@ -13,7 +13,7 @@ fi
 # sddm
 if [ ! -d /etc/sddm.conf.d ]
     then
-    sudo mkdir /etc/sddm.conf.d
+    sudo mkdir -p /etc/sddm.conf.d
 fi
 
 if [ `grep "Current=corners" /etc/sddm.conf.d/kde_settings.conf | wc -w` -eq 0 ]
