@@ -122,6 +122,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - [ ] Media control for waybar
 
 ### Known Issues
+- [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
 - [x] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
