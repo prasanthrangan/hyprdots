@@ -28,6 +28,10 @@ else
     exit 1
 fi
 
+### hyprland ###
+ln -fs $CFGDIR/hypr/${S_MODE}.conf $CFGDIR/hypr/theme.conf
+hyprctl reload
+
 ### swwwallpaper ###
 x=`echo $S_MODE | cut -c 1`
 $CFGDIR/swww/swwwallpaper.sh -$x
@@ -35,9 +39,8 @@ $CFGDIR/swww/swwwallpaper.sh -$x
 ### qt5ct ###
 ln -fs $CFGDIR/qt5ct/colors/${S_MODE}.conf $CFGDIR/qt5ct/colors/theme.conf
 
-### hyprland ###
-ln -fs $CFGDIR/hypr/${S_MODE}.conf $CFGDIR/hypr/theme.conf
-hyprctl reload
+### rofi ###
+ln -fs $CFGDIR/rofi/${S_MODE}.rasi $CFGDIR/rofi/theme.rasi
 
 ### kitty ###
 ln -fs $CFGDIR/kitty/${S_MODE}.conf $CFGDIR/kitty/theme.conf

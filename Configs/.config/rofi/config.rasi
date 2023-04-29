@@ -12,45 +12,7 @@ configuration {
 	icon-theme:                  "Tela-circle-dracula-dark";
 }
 
-//@theme "/dev/null"
-
-
-// Global //
-* {
-	foreground:                  #cdd6f4ff; //Text
-	normal-foreground:           @foreground;
-	urgent-foreground:           #11111bff; //Crust
-	active-foreground:           #11111bff; //Crust
-
-	alternate-normal-foreground: @normal-foreground;
-	alternate-urgent-foreground: @urgent-foreground;
-	alternate-active-foreground: @active-foreground;
-
-	selected-normal-foreground:  #11111bff; //Crust
-	selected-urgent-foreground:  #11111bff; //Crust
-	selected-active-foreground:  #11111bff; //Crust
-
-	background:                  transparent;
-	normal-background:           @background;
-	urgent-background:           #eba0accc; //Maroon
-	active-background:           #94e2d5cc; //Teal
-
-	alternate-normal-background: @normal-background;
-	alternate-urgent-background: @urgent-background;
-	alternate-active-background: @active-background;
-
-	selected-normal-background:  #b4befeff; //Lavender
-	selected-urgent-background:  #94e2d5cc; //Teal
-	selected-active-background:  #eba0accc; //Maroon
-
-	separatorcolor:              transparent;
-	border-color:                transparent;
-	border-radius:               0px;
-	spacing:                     0px;
-	padding:                     0px;
-	height:                      55%;
-    width:                       45%;
-}
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -61,15 +23,17 @@ window {
     cursor:                      "default";
     spacing:                     0px;
     padding:                     0px;
-    border-radius:               50px;
-    border-color:                #f2cdcdff; //Flamingo
+    border:                      2px;
+    border-radius:               40px;
+    border-color:                #f5c2e7ff;
+    background-color:            transparent;
 }
 mainbox {
     enabled:                     true;
     spacing:                     0px;
-    background-color:            transparent;
     orientation:                 horizontal;
     children:                    [  "inputbar" , "listbox" ];
+    background-color:            transparent;
 	background-image:            url("~/.config/swww/wall.blur", height);
 }
 
@@ -92,20 +56,20 @@ mode-switcher{
     orientation:                 vertical;
     enabled:                     true;
     spacing:                     0px;
-	background-image:            url("~/.config/swww/wall.blur", height);
-    text-color:                  @foreground;
     width:                       2.5%;
     padding:                     160px 10px 160px 10px;
     spacing:                     25px;
+    background-color:            transparent;
+	background-image:            url("~/.config/swww/wall.blur", height);
 }
 button {
-    background-color:            #11111be6; //Crust
-    text-color:                  @foreground;
     cursor:                      pointer;
     border-radius:               50px;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
 button selected {
-    background-color:            #11111be6; //Crust
+    background-color:            @background;
     text-color:                  @urgent-background;
 }
 
@@ -115,7 +79,7 @@ listbox {
     spacing:                     10px;
     padding:                     30px;
 	children:                    [ "listview" ];
-	background-color:            #11111be6; //Crust
+	background-color:            @background;
 }
 listview {
     enabled:                     true;
@@ -127,8 +91,9 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    text-color:                  @foreground;
     cursor:                      "default";
+	background-color:            transparent;
+    text-color:                  @foreground;
 }
 
 
@@ -138,12 +103,12 @@ element {
     spacing:                     30px;
     padding:                     7px;
     border-radius:               20px;
-    background-color:            @background;
-    text-color:                  @foreground;
     cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @foreground;
 }
 element normal.normal {
-    background-color:            @normal-background;
+    background-color:            transparent;
     text-color:                  @normal-foreground;
 }
 element normal.urgent {
@@ -167,16 +132,16 @@ element selected.active {
     text-color:                  @selected-active-foreground;
 }
 element-icon {
-    background-color:            transparent;
-    text-color:                  inherit;
     size:                        48px;
     cursor:                      inherit;
-}
-element-text {
     background-color:            transparent;
     text-color:                  inherit;
-    cursor:                      inherit;
+}
+element-text {
     vertical-align:              0.5;
     horizontal-align:            0.0;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
 }
 

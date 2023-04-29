@@ -114,7 +114,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [x] qt theme
     - [x] terminal
     - [x] flatpak (gtk)
-    - [ ] rofi
+    - [x] rofi
     - [ ] logout
     - [ ] lockscreen
 - [x] Update rofi configs
