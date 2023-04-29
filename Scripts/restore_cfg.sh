@@ -13,8 +13,7 @@ fi
 CfgDir=`echo $CloneDir/Configs`
 BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
-if [ -d $BkpDir ]
-    then
+if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
     exit 1
 else
@@ -45,14 +44,17 @@ do
         if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
             then
 
-            if [ ! -d $BkpDir$tgt ]
-                then
+            if [ ! -d $BkpDir$tgt ] ; then
                 mkdir -p $BkpDir$tgt
             fi
 
-            cp -r $pth/$cfg_chk $BkpDir$tgt
+            mv $pth/$cfg_chk $BkpDir$tgt
             echo "config backed up $pth/$cfg_chk --> $BkpDir$tgt..."
         fi 
+
+        if [ ! -d $pth ] ; then
+            mkdir -p $pth
+        fi
 
         cp -r $CfgDir$tgt/$cfg_chk $pth
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
