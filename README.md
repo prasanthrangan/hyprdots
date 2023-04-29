@@ -113,6 +113,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [x] gtk theme
     - [x] qt theme
     - [x] terminal
+    - [x] flatpak (gtk)
     - [ ] rofi
     - [ ] logout
     - [ ] lockscreen
