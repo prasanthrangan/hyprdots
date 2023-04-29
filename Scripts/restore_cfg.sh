@@ -17,7 +17,7 @@ if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
     exit 1
 else
-    mkdir $BkpDir
+    mkdir -p $BkpDir
 fi
 
 while read lst
