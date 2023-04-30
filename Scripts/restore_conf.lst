@@ -16,4 +16,3 @@ ${HOME}|.gtkrc-2.0|nwg-look
 ${HOME}/.config|dolphinrc|dolphin
 ${HOME}/.local/share|dolphin|dolphin
 ${HOME}/.local/share/kxmlgui5|dolphin|dolphin
-${HOME}/.local/share/kxmlgui5|ark|ark
