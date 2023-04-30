@@ -106,9 +106,9 @@
         "format": "{icon}",
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
-        "on-click-middle": "pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
+        "on-click-middle": "~/.config/hypr/volumecontrol.sh m",
+        "on-scroll-up": "~/.config/hypr/volumecontrol.sh i",
+        "on-scroll-down": "~/.config/hypr/volumecontrol.sh d",
         "tooltip-format": "{icon} {desc} {volume}%",
         "scroll-step": 5,
         "format-icons": {

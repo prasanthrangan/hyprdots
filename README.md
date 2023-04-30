@@ -119,7 +119,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [ ] lockscreen
 - [x] Update rofi configs
 - [ ] Clipboard manager in waybar
-- [ ] Volums control script/notification
+- [x] Volume control script/notification
 - [ ] Media control for waybar
 
 ### Known Issues
