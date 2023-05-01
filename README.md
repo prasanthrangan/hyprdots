@@ -5,6 +5,8 @@
 WARNING : Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
 Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
+https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
+
 [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png)](https://www.youtube.com/watch?v=avhEMANmfIk "Arch Linux hyprland running on Nvidia")
 
 [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)](https://www.youtube.com/watch?v=avhEMANmfIk "Arch Linux hyprland running on Nvidia")
