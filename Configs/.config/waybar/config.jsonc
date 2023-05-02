@@ -41,7 +41,7 @@
             "(.*) - Visual Studio Code": "$1 󰨞",
             "(.*)Visual Studio Code": "Code 󰨞",
             "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify Free": "Spotify 󰓇",
+            "(.*)Spotify": "Spotify 󰓇",
             "(.*)Steam": "Steam 󰓓"
           }
     },
@@ -76,8 +76,8 @@
 
     "custom/updates": {
         "format": "󰮯 {}",
-        "exec": "~/.config/waybar/scripts/update-sys.sh",
-        "on-click": "~/.config/waybar/scripts/update-sys.sh update",
+        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "on-click": "~/.config/hypr/scripts/systemupdate.sh update",
         "interval": 86400, // once every day
         "tooltip": true
     },
@@ -106,9 +106,9 @@
         "format": "{icon}",
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
-        "on-click-middle": "~/.config/hypr/volumecontrol.sh m",
-        "on-scroll-up": "~/.config/hypr/volumecontrol.sh i",
-        "on-scroll-down": "~/.config/hypr/volumecontrol.sh d",
+        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh m",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh d",
         "tooltip-format": "{icon} {desc} {volume}%",
         "scroll-step": 5,
         "format-icons": {
@@ -144,7 +144,7 @@
     "custom/mode": {
         "format": "{}",
         "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "~/.config/hypr/modeswitch.sh switch",
+        "on-click": "~/.config/hypr/scripts/modeswitch.sh switch",
         "interval" : 86400, // once every day
         "tooltip": true
     },
