@@ -88,7 +88,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 
 #### dependencies
 - polkit-kde-agent -- authentication agent
-- pacman-contrib -- to check for available updates
+- ~~pacman-contrib -- to check for available updates~~
 - xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 - imagemagick -- for kitty/neofetch image processing
 - qt5-imageformats -- for dolphin thumbnails
@@ -113,16 +113,24 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - ark -- kde file archiver
 
 ### To-Do
-- [x] Script to change light/dark theme
-    - [x] wallpaper
-    - [x] waybar
-    - [x] gtk theme
-    - [x] qt theme
-    - [x] terminal
-    - [x] flatpak (gtk)
-    - [x] rofi
+- [x] Themes (ver2)
+    - [ ] Catppuccin-Mocha
+    - [ ] Catppuccin-Latte
+    - [ ] Tokyo-Night
+    - [ ] Rosé-Pine
+    - [ ] Decay-Green
+
+- [x] Script to apply ~~light/dark~~ theme/color scheme (ver2)
+    - [ ] wallpaper
+    - [ ] waybar
+    - [ ] gtk theme
+    - [ ] qt theme
+    - [ ] terminal
+    - [ ] flatpak (gtk)
+    - [ ] rofi
     - [ ] logout
     - [ ] lockscreen
+
 - [x] Update rofi configs
 - [ ] Clipboard manager in waybar
 - [x] Volume control script/notification
