@@ -3,8 +3,10 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 case $1 in
     c) cliphist list | rofi -dmenu -config $roconf | cliphist decode | wl-copy
+        sleep 1
     ;; 
     d) cliphist list | rofi -dmenu -config $roconf | cliphist delete
+        sleep 1
     ;;
     w) cliphist wipe
     ;;
