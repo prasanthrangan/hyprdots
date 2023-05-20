@@ -153,7 +153,10 @@ tooltip {
     margin-right: 6px;
 }
 
-
+#battery {
+    padding-left: 4px;
+    padding-right: 4px;
+}
 /* system tray block */
 
 #custom-mode {

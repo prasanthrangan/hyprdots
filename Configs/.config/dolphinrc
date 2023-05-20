@@ -11,7 +11,7 @@ ViewPropsTimestamp=2023,4,26,16,58,48.324
 
 [IconsMode]
 MaximumTextLines=1
-PreviewSize=112
+PreviewSize=176
 
 [InformationPanel]
 dateFormat=ShortFormat
@@ -21,6 +21,7 @@ Places Icons Auto-resize=false
 Places Icons Static Size=16
 
 [KPropertiesDialog]
+1920x1080 screen: Window-Maximized=true
 2560x1080 screen: Window-Maximized=true
 
 [MainWindow]

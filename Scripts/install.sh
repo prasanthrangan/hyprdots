@@ -9,7 +9,7 @@
 #--------------------------------#
 source global_fn.sh
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
+    echo "${error}ERROR${reset}: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
 fi
 
@@ -27,6 +27,7 @@ fi
 #--------------------------------#
 # add nvidia drivers to the list #
 #--------------------------------#
+
 if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
 
     cat /usr/lib/modules/*/pkgbase | while read krnl
@@ -38,7 +39,7 @@ if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; the
     sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
 
 else
-    echo "nvidia card not detected, skipping nvidia drivers..."
+    echo "${info}INFO${reset}: nvidia card not detected, skipping nvidia drivers..."
 fi
 
 

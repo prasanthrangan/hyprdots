@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function br() {
+    brightness=$(printf "%.0f\n" $(brillo -G))
+}
+
+case $1 in
+up)
+    brillo -A 5 -q
+    ;;
+down)
+    brillo -U 5 -q
+    ;;
+esac

@@ -25,7 +25,7 @@ Wall_Set()
     --transition-type grow \
     --transition-duration 1 \
     --transition-fps 144 \
-    --transition-pos bottom-right
+    --transition-pos top-right
 }
 
 ## main script ##
