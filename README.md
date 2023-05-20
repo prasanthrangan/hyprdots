@@ -38,6 +38,12 @@ pacman -Q | grep xdg-desktop-portal-
 
 Please reboot after the install script completes and takes you to sddm login screen for the first time.
 
+### If mobile devices not showing in filemanager
+
+```bash
+yay -S gvfs-mtp gvfs-afc
+```
+
 
 ### These packages will be installed by the script
 NOTE : You can also create your own file (for ex. custom_app.lst) with all your favorite apps and pass the file as a parameter to install it -
