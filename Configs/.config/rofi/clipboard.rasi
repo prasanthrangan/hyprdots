@@ -37,6 +37,7 @@ mainbox {
 	background-image:            url("~/.config/swww/wall.blur", height);
 }
 
+
 // Inputs //
 inputbar {
     enabled:                     true;
@@ -45,7 +46,7 @@ inputbar {
 	background-color:            @background;
 }
 entry {
-    border:                      4px;
+    border:                      3px;
     border-radius:               15px;
     border-color:                @background;
     enabled:                     true;
@@ -54,6 +55,7 @@ entry {
 	background-color:            @background;
     background-image:            url("~/.config/swww/wall.blur", width);
 }
+
 
 // Lists //
 listbox {
@@ -76,6 +78,7 @@ listview {
 	background-color:            transparent;
     text-color:                  @foreground;
 }
+
 
 // Elements //
 element {
@@ -118,3 +121,4 @@ element-text {
     background-color:            transparent;
     text-color:                  inherit;
 }
+
