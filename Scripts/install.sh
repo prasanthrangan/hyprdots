@@ -59,9 +59,9 @@ fi
 #./restore_app.sh
 
 
-#----------------------------------------#
-# enable early loding for nvidia modules #
-#----------------------------------------#
+#-----------------------------------------#
+# enable early loading for nvidia modules #
+#-----------------------------------------#
 #if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
 #    if [ `grep 'MODULES=' /etc/mkinitcpio.conf | grep nvidia | wc -l` -eq 0 ] ; then
 #        sudo sed -i "/MODULES=/ s/)$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf

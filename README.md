@@ -85,6 +85,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - grim -- screenshot tool
 - slurp -- selects region for screenshot/screenshare
 - swappy -- screenshot editor
+- cliphist -- clipboard manager
 
 #### dependencies
 - polkit-kde-agent -- authentication agent
@@ -132,12 +133,13 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [ ] lockscreen
 
 - [x] Update rofi configs
-- [ ] Clipboard manager in waybar
+- [x] Clipboard manager in waybar
 - [x] Volume control script/notification
 - [ ] Media control for waybar
 
 ### Known Issues
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
-- [x] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
+- [ ] Waybar launching rofi (clipboard) causes issue (use right/middle click as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
+- [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 

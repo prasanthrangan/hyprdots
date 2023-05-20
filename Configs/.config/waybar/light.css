@@ -66,6 +66,7 @@ tooltip {
 #pulseaudio,
 #custom-wallchange,
 #custom-mode,
+#custom-cliphist,
 #tray {
     color: #4c4f69;
     background: #9ca0b0;
@@ -160,6 +161,11 @@ tooltip {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 12px;
+    padding-right: 4px;
+}
+
+#custom-cliphist {
+    padding-left: 4px;
     padding-right: 4px;
 }
 

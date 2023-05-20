@@ -8,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","tray","custom/power"],
+    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","custom/cliphist","tray","custom/power"],
 
 
 // center modules //
@@ -145,6 +145,16 @@
         "format": "{}",
         "exec": "echo ; echo 󰟡 switch mode",
         "on-click": "~/.config/hypr/scripts/modeswitch.sh switch",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/cliphist": {
+        "format": "{}",
+        "exec": "~/.config/hypr/scripts/cliphist.sh t",
+        "on-click": "~/.config/hypr/scripts/cliphist.sh c",
+        //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
+        //"on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
         "interval" : 86400, // once every day
         "tooltip": true
     },

@@ -18,7 +18,7 @@
 	urgent-background:           #eba0accc; //Maroon
 	active-background:           #94e2d5cc; //Teal
 
-	alternate-normal-background: @normal-background;
+	alternate-normal-background: #f5c2e7ff;
 	alternate-urgent-background: @urgent-background;
 	alternate-active-background: @active-background;
 
