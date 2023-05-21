@@ -96,7 +96,7 @@ killall -SIGUSR1 kitty
 
 
 ### qt5ct ###
-ln -fs $ConfDir/qt5ct/colors/${ThemeSet}.conf $ConfDir/qt5ct/colors/theme.conf
+sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSet}.conf" $ConfDir/qt5ct/qt5ct.conf
 
 
 ### rofi ###
