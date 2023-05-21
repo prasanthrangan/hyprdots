@@ -81,13 +81,13 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-### flatpak GTK ###
-flatpak --user override --env=GTK_THEME="${ThemeSet}"
-
-
 ### hyprland ###
 ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
+
+
+### flatpak GTK ###
+flatpak --user override --env=GTK_THEME="${ThemeSet}"
 
 
 ### kitty ###

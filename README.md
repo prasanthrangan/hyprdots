@@ -11,6 +11,7 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
 
+![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png)
 
 ### Main install script
 After minimal Arch install (with grub), clone and execute -
@@ -115,20 +116,20 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 
 ### To-Do
 - [x] Themes (ver2)
-    - [ ] Catppuccin-Mocha
-    - [ ] Catppuccin-Latte
+    - [x] Catppuccin-Mocha
+    - [x] Catppuccin-Latte
     - [ ] Tokyo-Night
     - [ ] Rosé-Pine
     - [ ] Decay-Green
 
 - [x] Script to apply ~~light/dark~~ theme/color scheme (ver2)
-    - [ ] wallpaper
-    - [ ] waybar
-    - [ ] gtk theme
-    - [ ] qt theme
-    - [ ] terminal
-    - [ ] flatpak (gtk)
-    - [ ] rofi
+    - [x] wallpaper
+    - [x] waybar
+    - [x] gtk theme
+    - [x] qt theme
+    - [x] terminal
+    - [x] flatpak (gtk)
+    - [x] rofi
     - [ ] logout
     - [ ] lockscreen
 
@@ -139,7 +140,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 
 ### Known Issues
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
-- [ ] Waybar launching rofi (clipboard) causes issue (use right/middle click as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
+- [ ] Waybar launching rofi (clipboard) breaks mouse input (use right/middle click on waybar as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
