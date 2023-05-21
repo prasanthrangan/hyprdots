@@ -137,6 +137,7 @@
         "format": "{}",
         "exec": "~/.config/swww/swwwallpaper.sh -t",
         "on-click": "~/.config/swww/swwwallpaper.sh -n",
+        "on-click-right": "~/.config/swww/swwwallpaper.sh -p",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -144,7 +145,7 @@
     "custom/mode": {
         "format": "{}",
         "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "~/.config/hypr/scripts/modeswitch.sh switch",
+        "on-click": "",
         "interval" : 86400, // once every day
         "tooltip": true
     },
