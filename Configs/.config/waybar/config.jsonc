@@ -143,9 +143,10 @@
     },
 
     "custom/mode": {
-        "format": "{}",
+        "format": "{}",
         "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "",
+        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
+        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
         "interval" : 86400, // once every day
         "tooltip": true
     },
