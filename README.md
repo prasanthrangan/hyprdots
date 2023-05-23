@@ -7,7 +7,7 @@ Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
-[![IMAGE ALT TEXT](https://github.com/prasanthrangan/hyprdots/assets/106020512/3c32fc09-0679-49e6-88f3-78a31d9ed14c)](https://www.youtube.com/watch?v=_nyStxAI75s)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s)
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png)
 
