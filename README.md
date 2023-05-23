@@ -7,13 +7,13 @@ Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s)
-
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png)
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png)
+
+[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=COzOsqMG&rs=AOn4CLBvYXcNONI-EAXSADV6YzkxJIUJfw)](https://www.youtube.com/watch?v=_nyStxAI75s)
 
 ### Main install script
 After minimal Arch install (with grub), clone and execute -
