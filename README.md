@@ -13,7 +13,6 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png)
 
-[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=COzOsqMG&rs=AOn4CLBvYXcNONI-EAXSADV6YzkxJIUJfw)](https://www.youtube.com/watch?v=_nyStxAI75s)
 
 ### Main install script
 After minimal Arch install (with grub), clone and execute -
@@ -115,6 +114,10 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - visual-studio-code-bin -- gui code editor
 - vim -- text editor
 - ark -- kde file archiver
+
+
+[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=COzOsqMG&rs=AOn4CLBvYXcNONI-EAXSADV6YzkxJIUJfw)](https://www.youtube.com/watch?v=_nyStxAI75s)
+
 
 ### To-Do
 - [x] Themes (ver2)
