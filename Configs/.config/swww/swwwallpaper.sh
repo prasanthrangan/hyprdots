@@ -40,9 +40,13 @@ Wall_Next()
 
 Wall_Set()
 {
+    if [ -z $xtrans ] ; then
+        xtrans="grow"
+    fi
+
     swww img $BaseDir/wall.set \
     --transition-bezier .43,1.19,1,.4 \
-    --transition-type $trans \
+    --transition-type $xtrans \
     --transition-duration 1 \
     --transition-fps 60 \
     --transition-pos bottom-right
@@ -59,7 +63,6 @@ fi
 getTheme=`grep '^1|' $BaseDir/wall.ctl | cut -d '|' -f 2`
 getWall1=`grep '^1|' $BaseDir/wall.ctl | cut -d '|' -f 3`
 getWall2=`eval echo $getWall1`
-trans="grow"
 
 if [ ! -f $getWall2 ] ; then
     echo "ERROR : $getWall2 Wallpaper not found..."
@@ -77,10 +80,10 @@ Wallist=(`dirname $getWall2`/*)
 while getopts "npt" option ; do
     case $option in
     n ) # set the next wallpaper
-        trans="grow"
+        xtrans="grow"
         Wall_Next ;;
     p ) # set the previous wallpaper
-        trans="outer"
+        xtrans="outer"
         Wall_Prev ;;
     t ) # display tooltip
         echo ""
@@ -98,7 +101,6 @@ done
 swww query
 if [ $? -eq 1 ] ; then
     swww init
-    sleep 3
 fi
 
 ## set wallpaper ##

@@ -35,6 +35,7 @@ while getopts "npst" option ; do
                 flg=1
             fi
         done < <( tac $ThemeCtl )
+        export xtrans="outer"
         ;;
 
     s ) # set selected theme
@@ -81,11 +82,6 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-### hyprland ###
-ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
-hyprctl reload
-
-
 ### flatpak GTK ###
 flatpak --user override --env=GTK_THEME="${ThemeSet}"
 
@@ -101,6 +97,11 @@ sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSe
 
 ### rofi ###
 ln -fs $ConfDir/rofi/themes/${ThemeSet}.rasi $ConfDir/rofi/themes/theme.rasi
+
+
+### hyprland ###
+ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
+hyprctl reload
 
 
 ### waybar ###
