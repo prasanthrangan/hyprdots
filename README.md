@@ -7,6 +7,8 @@ Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
+[![IMAGE ALT TEXT](https://github.com/prasanthrangan/hyprdots/assets/106020512/3c32fc09-0679-49e6-88f3-78a31d9ed14c)](https://www.youtube.com/watch?v=_nyStxAI75s "Arch Linux Hyprland (nvidia) | Custom Scripts")
+
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png)
 
 ![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
@@ -116,13 +118,13 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 
 ### To-Do
 - [x] Themes (ver2)
-    - [x] Catppuccin-Mocha
-    - [x] Catppuccin-Latte
+    - [x] Catppuccin-Mocha (dark)
+    - [x] Catppuccin-Latte (light)
     - [ ] Tokyo-Night
     - [ ] Rosé-Pine
     - [ ] Decay-Green
 
-- [x] Script to apply ~~light/dark~~ theme/color scheme (ver2)
+- [x] Script to apply theme/color scheme (ver2)
     - [x] wallpaper
     - [x] waybar
     - [x] gtk theme
