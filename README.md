@@ -116,7 +116,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - ark -- kde file archiver
 
 
-[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=COzOsqMG&rs=AOn4CLBvYXcNONI-EAXSADV6YzkxJIUJfw)](https://www.youtube.com/watch?v=_nyStxAI75s)
+[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=CK-EvqMG&rs=AOn4CLC9qNeuoJftknlWdXTWFTbo75wAag)](https://www.youtube.com/watch?v=_nyStxAI75s)
 
 
 ### To-Do
