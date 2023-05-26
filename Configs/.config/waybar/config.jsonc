@@ -156,7 +156,7 @@
         "exec": "~/.config/hypr/scripts/cliphist.sh t",
         "on-click": "~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
-        //"on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
+        "on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
         "interval" : 86400, // once every day
         "tooltip": true
     },

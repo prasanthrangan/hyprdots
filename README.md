@@ -91,20 +91,16 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 
 #### dependencies
 - polkit-kde-agent -- authentication agent
-- ~~pacman-contrib -- to check for available updates~~
 - xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
 - imagemagick -- for kitty/neofetch image processing
 - qt5-imageformats -- for dolphin thumbnails
 - pavucontrol -- audio settings gui
 - pamixer -- for waybar audio
-- ~~python-requests -- for waybar weather~~
-- ~~noto-fonts-emoji -- for waybar weather~~
 
 #### theming
 - nwg-look -- theming GTK apps
 - kvantum -- theming QT apps
 - qt5ct -- theming QT5 apps
-- ~~qt6ct -- theming QT6 apps~~
 
 #### applications
 - firefox -- browser
@@ -115,9 +111,7 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
 - vim -- text editor
 - ark -- kde file archiver
 
-
-[![IMAGE ALT TEXT HERE](https://i.ytimg.com/an_webp/_nyStxAI75s/mqdefault_6s.webp?du=3000&sqp=CK-EvqMG&rs=AOn4CLC9qNeuoJftknlWdXTWFTbo75wAag)](https://www.youtube.com/watch?v=_nyStxAI75s)
-
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](http://www.youtube.com/watch?v=_nyStxAI75s)
 
 ### To-Do
 - [x] Themes (ver2)
@@ -136,7 +130,6 @@ NOTE : You can also create your own file (for ex. custom_app.lst) with all your 
     - [x] flatpak (gtk)
     - [x] rofi
     - [ ] logout
-    - [ ] lockscreen
 
 - [x] Update rofi configs
 - [x] Clipboard manager in waybar
