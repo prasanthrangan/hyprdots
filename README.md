@@ -32,8 +32,8 @@ cd ~/Dots/Scripts
 > Please reboot after the install script completes and takes you to sddm login screen for the first time.
 
 
-<details><summary><h3>Packages installed by the script</h3></summary>
-<h3>nvidia</h3>
+<details><summary><h4>Packages installed by the script</h4></summary>
+<h5>nvidia</h5>
 
 + linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
 + linux-zen-headers -- for zen kernel (script will auto detect from /usr/lib/modules/)
@@ -41,7 +41,7 @@ cd ~/Dots/Scripts
 + nvidia-dkms -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 + nvidia-utils -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 
-<h3>tools</h3>
+<h5>tools</h5>
 
 + pipewire -- audio and video server
 + pipewire-alsa -- for audio
@@ -56,7 +56,7 @@ cd ~/Dots/Scripts
 + bluez-utils -- for bluetooth
 + blueman -- bt tray
 
-<h3>login</h3>
+<h5>login</h5>
 
 + sddm-git -- display manager for login
 + qt5-wayland -- for QT wayland XDP
@@ -65,7 +65,7 @@ cd ~/Dots/Scripts
 + qt5-quickcontrols2 -- for sddm theme
 + qt5-graphicaleffects -- for sddm theme
 
-<h3>hypr</h3>
+<h5>hypr</h5>
 
 + hyprland-git -- main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
 + dunst -- graphical notification daemon
@@ -79,7 +79,7 @@ cd ~/Dots/Scripts
 + swappy -- screenshot editor
 + cliphist -- clipboard manager
 
-<h3>dependencies</h3>
+<h5>dependencies</h5>
 
 + polkit-kde-agent -- authentication agent
 + xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
@@ -88,13 +88,13 @@ cd ~/Dots/Scripts
 + pavucontrol -- audio settings gui
 + pamixer -- for waybar audio
 
-<h3>theming</h3>
+<h5>theming</h5>
 
 + nwg-look -- theming GTK apps
 + kvantum -- theming QT apps
 + qt5ct -- theming QT5 apps
 
-<h3>applications</h3>
+<h5>applications</h5>
 
 + firefox -- browser
 + kitty -- terminal
@@ -105,10 +105,9 @@ cd ~/Dots/Scripts
 + ark -- kde file archiver
 </details>
 
-<details><summary><h3>Playlist</h3></summary>
 
+<details><summary><h4>Playlist</h4></summary>
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
-
 </details>
 
 
