@@ -103,9 +103,7 @@ cd ~/Dots/Scripts
 + visual-studio-code-bin -- gui code editor
 + vim -- text editor
 + ark -- kde file archiver
-
 </details>
-
 
 <details><summary><h3>Playlist</h3></summary>
 
