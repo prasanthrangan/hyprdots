@@ -19,7 +19,7 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 ### Installation
 After minimal Arch install (with grub), clone and execute -
-```
+```shell
 pacman -Sy git
 git clone https://github.com/prasanthrangan/hyprdots ~/Dots
 cd ~/Dots/Scripts
@@ -29,10 +29,14 @@ cd ~/Dots/Scripts
 > **Note**
 >
 > You can also create your own file (for ex. custom_app.lst) with all your favorite apps and pass the file as a parameter to install it -
->```
+>```shell
 >./install.sh custom_app.lst
 >```
 > Please reboot after the install script completes and takes you to sddm login screen for the first time.
+
+
+### Theming
+To add your own custom theme, please refer Theming.md
 
 
 <details>
@@ -108,6 +112,14 @@ cd ~/Dots/Scripts
 + visual-studio-code-bin -- gui code editor
 + vim -- text editor
 + ark -- kde file archiver
+
+</details>
+
+
+<details>
+<summary><h4>Keybindings</h4></summary>
+
+Super
 
 </details>
 
