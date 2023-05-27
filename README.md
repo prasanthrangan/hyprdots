@@ -35,74 +35,84 @@ cd ~/Dots/Scripts
 <details><summary><h3>Packages installed by the script</h3></summary>
 
 <h3>nvidia</h3>
-- linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
-- linux-zen-headers -- for zen kernel (script will auto detect from /usr/lib/modules/)
-- linux-lts-headers -- for lts kernel (script will auto detect from /usr/lib/modules/)
-- nvidia-dkms -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
-- nvidia-utils -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
+
++ linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
++ linux-zen-headers -- for zen kernel (script will auto detect from /usr/lib/modules/)
++ linux-lts-headers -- for lts kernel (script will auto detect from /usr/lib/modules/)
++ nvidia-dkms -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
++ nvidia-utils -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 
 <h3>tools</h3>
-- pipewire -- audio and video server
-- pipewire-alsa -- for audio
-- pipewire-audio -- for audio
-- pipewire-jack -- for audio
-- pipewire-pulse -- for audio
-- gst-plugin-pipewire -- for audio
-- wireplumber -- audio and video server
-- networkmanager -- network manager
-- network-manager-applet -- nm tray
-- bluez -- for bluetooth
-- bluez-utils -- for bluetooth
-- blueman -- bt tray
+
++ pipewire -- audio and video server
++ pipewire-alsa -- for audio
++ pipewire-audio -- for audio
++ pipewire-jack -- for audio
++ pipewire-pulse -- for audio
++ gst-plugin-pipewire -- for audio
++ wireplumber -- audio and video server
++ networkmanager -- network manager
++ network-manager-applet -- nm tray
++ bluez -- for bluetooth
++ bluez-utils -- for bluetooth
++ blueman -- bt tray
 
 <h3>login</h3>
-- sddm-git -- display manager for login
-- qt5-wayland -- for QT wayland XDP
-- qt6-wayland -- for QT wayland XDP
-- qt5-quickcontrols -- for sddm theme
-- qt5-quickcontrols2 -- for sddm theme
-- qt5-graphicaleffects -- for sddm theme
+
++ sddm-git -- display manager for login
++ qt5-wayland -- for QT wayland XDP
++ qt6-wayland -- for QT wayland XDP
++ qt5-quickcontrols -- for sddm theme
++ qt5-quickcontrols2 -- for sddm theme
++ qt5-graphicaleffects -- for sddm theme
 
 <h3>hypr</h3>
-- hyprland-git -- main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
-- dunst -- graphical notification daemon
-- rofi-lbonn-wayland-git -- app launcher
-- waybar-hyprland-git -- status bar
-- swww-- wallpaper app
-- swaylock-effects-git -- lockscreen
-- wlogout -- logout screen
-- grim -- screenshot tool
-- slurp -- selects region for screenshot/screenshare
-- swappy -- screenshot editor
-- cliphist -- clipboard manager
+
++ hyprland-git -- main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
++ dunst -- graphical notification daemon
++ rofi-lbonn-wayland-git -- app launcher
++ waybar-hyprland-git -- status bar
++ swww-- wallpaper app
++ swaylock-effects-git -- lockscreen
++ wlogout -- logout screen
++ grim -- screenshot tool
++ slurp -- selects region for screenshot/screenshare
++ swappy -- screenshot editor
++ cliphist -- clipboard manager
 
 <h3>dependencies</h3>
-- polkit-kde-agent -- authentication agent
-- xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
-- imagemagick -- for kitty/neofetch image processing
-- qt5-imageformats -- for dolphin thumbnails
-- pavucontrol -- audio settings gui
-- pamixer -- for waybar audio
+
++ polkit-kde-agent -- authentication agent
++ xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
++ imagemagick -- for kitty/neofetch image processing
++ qt5-imageformats -- for dolphin thumbnails
++ pavucontrol -- audio settings gui
++ pamixer -- for waybar audio
 
 <h3>theming</h3>
-- nwg-look -- theming GTK apps
-- kvantum -- theming QT apps
-- qt5ct -- theming QT5 apps
+
++ nwg-look -- theming GTK apps
++ kvantum -- theming QT apps
++ qt5ct -- theming QT5 apps
 
 <h3>applications</h3>
-- firefox -- browser
-- kitty -- terminal
-- neofetch -- fetch tool
-- dolphin -- kde file manager
-- visual-studio-code-bin -- gui code editor
-- vim -- text editor
-- ark -- kde file archiver
+
++ firefox -- browser
++ kitty -- terminal
++ neofetch -- fetch tool
++ dolphin -- kde file manager
++ visual-studio-code-bin -- gui code editor
++ vim -- text editor
++ ark -- kde file archiver
 
 </details>
 
 
-### Playlist
+<details><summary><h3>Playlist</h3></summary>
+
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
+
+</details>
 
 
 ### To-Do
