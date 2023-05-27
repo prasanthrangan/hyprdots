@@ -8,11 +8,10 @@
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
-![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png)
-
-![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
-
-![alt text](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png)
+|     |     |
+| --- | --- |
+![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
+![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_4.png) 
 
 
 ### Main install script
@@ -32,7 +31,9 @@ cd ~/Dots/Scripts
 > Please reboot after the install script completes and takes you to sddm login screen for the first time.
 
 
-<details><summary><h4>Packages installed by the script</h4></summary>
+<details>
+<summary><h4>Packages installed by the script</h4></summary>
+
 <h5>nvidia</h5>
 
 + linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
@@ -103,10 +104,12 @@ cd ~/Dots/Scripts
 + visual-studio-code-bin -- gui code editor
 + vim -- text editor
 + ark -- kde file archiver
+
 </details>
 
 
-<details><summary><h4>Playlist</h4></summary>
+<details>
+<summary><h4>Playlist</h4></summary>
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
 
