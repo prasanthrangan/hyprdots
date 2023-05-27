@@ -107,7 +107,9 @@ cd ~/Dots/Scripts
 
 
 <details><summary><h4>Playlist</h4></summary>
+
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
+
 </details>
 
 
