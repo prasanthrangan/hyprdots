@@ -3,9 +3,12 @@
 ## My Arch Hyprland Config Files
 
 > **Warning**
+>
 > Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
 > Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
+
+### Showcase
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
 |     |     |
@@ -14,7 +17,7 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_4.png) 
 
 
-### Main install script
+### Installation
 After minimal Arch install (with grub), clone and execute -
 ```
 pacman -Sy git
@@ -24,6 +27,7 @@ cd ~/Dots/Scripts
 ```
 
 > **Note**
+>
 > You can also create your own file (for ex. custom_app.lst) with all your favorite apps and pass the file as a parameter to install it -
 >```
 >./install.sh custom_app.lst
@@ -116,7 +120,9 @@ cd ~/Dots/Scripts
 </details>
 
 
-### To-Do
+<details>
+<summary><h4>To-Do</h4></summary>
+
 - [x] Themes (ver2)
     - [x] Catppuccin-Mocha (dark)
     - [x] Catppuccin-Latte (light)
@@ -139,10 +145,15 @@ cd ~/Dots/Scripts
 - [x] Volume control script/notification
 - [ ] Media control for waybar
 
+</details>
 
-### Known Issues
+
+<details>
+<summary><h4>Known Issues</h4></summary>
+
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
 - [ ] Waybar launching rofi (clipboard) breaks mouse input (use right/middle click on waybar as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
+</details>
