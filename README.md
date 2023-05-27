@@ -33,7 +33,6 @@ cd ~/Dots/Scripts
 
 
 <details><summary><h3>Packages installed by the script</h3></summary>
-
 <h3>nvidia</h3>
 
 + linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
@@ -106,6 +105,7 @@ cd ~/Dots/Scripts
 + ark -- kde file archiver
 
 </details>
+
 
 <details><summary><h3>Playlist</h3></summary>
 
