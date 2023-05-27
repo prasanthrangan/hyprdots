@@ -113,6 +113,16 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 + vim -- text editor
 + ark -- kde file archiver
 
+<h5>shell</h5>
+
++ zsh -- main shell
++ exa -- colorful file lister
++ oh-my-zsh-git -- for zsh plugins
++ zsh-theme-powerlevel10k-git -- theme for zsh
++ zsh-syntax-highlighting-git -- highlighting of commands
++ zsh-autosuggestions-git -- see completion as you type
++ pokemon-colorscripts-git -- display pokemon sprites
+
 </details>
 
 
@@ -189,3 +199,4 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 - [ ] Flatpak QT apps does not follow system theme
 
 </details>
+
