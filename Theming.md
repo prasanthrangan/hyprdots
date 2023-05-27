@@ -86,6 +86,19 @@ where column,
 
 > **Note**
 >
-> As wallpapers can be changed/cycled, column 3 here gets updated automatically by the wallapaer script
+> As wallpapers can be changed/cycled, column 3 here gets updated automatically by the wallapaer script.
+>
 > Also, all files in the wallpaper dir should be valid image files or animated gif files
+
+```shell
+❯ cd ~/.config/hypr/scripts
+❯ ./themeswitch.sh -h
+./themeswitch.sh: illegal option -- h
+n : set next theme
+p : set previous theme
+s : set theme from parameter
+t : display tooltip
+❯ 
+❯ ./themeswitch.sh -s My-Fav-Theme
+```
 
