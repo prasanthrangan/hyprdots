@@ -8,7 +8,7 @@ To create/add new theme (for ex. `My-Fav-Theme`), here are the files required to
 
 ~/.themes/
     |
-    +--> /My-Fav-Theme/ # main theme for GTK apps
+    +--> My-Fav-Theme/ # main theme for GTK apps
 
 ~/.config/
     |
@@ -36,7 +36,7 @@ To create/add new theme (for ex. `My-Fav-Theme`), here are the files required to
     +--> swww/
     |   |
     |   +--> wall.ctl   # main control file
-    |   +--> /My-Fav-Theme/*   # place wallpapers here
+    |   +--> My-Fav-Theme/*   # place wallpapers here
     |
     +--> waybar/themes/
         |

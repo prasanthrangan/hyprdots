@@ -36,7 +36,7 @@ cd ~/Dots/Scripts
 
 
 ### Theming
-To add your own custom theme, please refer Theming.md
+To add your own custom theme, please refer [Theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/Theming.md)
 
 
 <details>
@@ -119,7 +119,27 @@ To add your own custom theme, please refer Theming.md
 <details>
 <summary><h4>Keybindings</h4></summary>
 
-Super
+| Key 1 | Key 2 | Key 3 | Action |
+| :-:   | :-:   | :-:   | ---    |
+| `Super` | `Q` | | Quit active/focused window
+| `Super` | `del` | | quit Hyprland session
+| `Super` | `W` | | toggle Window on focus to float
+| `Alt` | `enter` | | toggle window on focus to fullscreen
+| `Super` | `G` | | disable hypr effects for Gamemode
+| `Super` | `T` | | launch kitty Terminal
+| `Super` | `E` | | launch dolphin file Explorer
+| `Super` | `V` | | launch Vs code
+| `Super` | `F` | | launch Firefox
+| `Super` | `A` | | launch desktop Applications (rofi)
+| `Super` | `tab` | | switch open applications (rofi)
+| `Super` | `R` | | browse system files (rofi)
+| `F10` | | | mute audio output
+| `F11` | | | decrease volume
+| `F12` | | | increase volume
+| `Super` | `L` | | lock screen
+| `Super` | `backspace` | | logout menu
+| `Super` | `P` | | screenshot snip
+| `Super` | `Alt` | `P` | print current screen and save to ~/Apps/grim/
 
 </details>
 
