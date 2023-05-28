@@ -37,6 +37,12 @@ cd ~/Dots/Scripts
 
 ### Theming
 To add your own custom theme, please refer [Theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/Theming.md)
+- Available themes
+    - [x] Catppuccin-Mocha (dark)
+    - [x] Catppuccin-Latte (light)
+    - [ ] Decay-Green (in-progress)
+    - [ ] Tokyo-Night
+    - [ ] Rosé-Pine
 
 
 <details>
@@ -165,23 +171,9 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 <details>
 <summary><h4>To-Do</h4></summary>
 
-- [x] Themes (ver2)
-    - [x] Catppuccin-Mocha (dark)
-    - [x] Catppuccin-Latte (light)
-    - [ ] Tokyo-Night
-    - [ ] Rosé-Pine
-    - [ ] Decay-Green
-
-- [x] Script to apply theme/color scheme (ver2)
-    - [x] wallpaper
-    - [x] waybar
-    - [x] gtk theme
-    - [x] qt theme
-    - [x] terminal
-    - [x] flatpak (gtk)
-    - [x] rofi
-    - [ ] logout
-
+- [x] Wallpaper change script (ver2)
+- [x] Theme selector script
+- [x] Theme change script (ver2)
 - [x] Update rofi configs
 - [x] Clipboard manager in waybar
 - [x] Volume control script/notification

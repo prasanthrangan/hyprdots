@@ -11,6 +11,7 @@ These are the applications currently supported by the `themeswitch` script
 - flatpak (follow system gtk theme)
 - rofi (launcher)
 - hypr (change - cursor, font, icon, gtk theme, kvantum/qt5ct theme)
+- wlogout (to be added later)
 
 
 ## Theme Structure
@@ -101,4 +102,3 @@ t : display tooltip
 ❯ 
 ❯ ./themeswitch.sh -s My-Fav-Theme
 ```
-
