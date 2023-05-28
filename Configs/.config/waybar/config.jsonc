@@ -147,6 +147,7 @@
         "exec": "echo ; echo 󰟡 switch mode",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
+        "on-click-middle": "~/.config/hypr/scripts/themeselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
