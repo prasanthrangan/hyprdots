@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 After minimal Arch install (with grub), clone and execute -
 ```
 pacman -Sy git
-git clone https://github.com/prasanthrangan/hyprdots ~/Dots
+git clone https://github.com/yougraj/hyprdots-fork ~/Dots
 cd ~/Dots/Scripts
 ./install.sh
 ```
