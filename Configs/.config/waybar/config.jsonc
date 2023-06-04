@@ -1,3 +1,4 @@
+/* if you have cliphist issues go to line 155 */
 {
     "layer": "top",
     "position": "bottom",
@@ -152,12 +153,19 @@
         "tooltip": true
     },
 
+    /* If you the issue with cliphist that once you open it on waybar, any input on waybar will just open clipist again, then delete the old lines and uncomment the new 
+     ones and play around with the delay value, in general 0.1 works, but if you encouter the issue that just after 2 click the bar return to normal, increase the time. */ 
     "custom/cliphist": {
         "format": "{}",
         "exec": "~/.config/hypr/scripts/cliphist.sh t",
         "on-click": "~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
         "on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
+	/*
+	"on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+	*/
         "interval" : 86400, // once every day
         "tooltip": true
     },
