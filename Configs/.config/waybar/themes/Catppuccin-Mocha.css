@@ -61,6 +61,7 @@ tooltip {
 #workspaces,
 #window,
 #custom-updates,
+#battery
 #network,
 #bluetooth,
 #pulseaudio,
@@ -131,7 +132,10 @@ tooltip {
     padding-left: 4px;
     padding-right: 4px;
 }
-
+#battery{
+  padding-left: 4px;
+  padding-right: 4px;
+}
 #bluetooth {
     padding-left: 4px;
     padding-right: 4px;
