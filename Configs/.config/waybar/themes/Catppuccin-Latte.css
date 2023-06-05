@@ -60,9 +60,9 @@ tooltip {
 #clock,
 #workspaces,
 #window,
-#battery
 #custom-updates,
 #network,
+#battery,
 #bluetooth,
 #pulseaudio,
 #custom-wallchange,
@@ -132,10 +132,12 @@ tooltip {
     padding-left: 4px;
     padding-right: 4px;
 }
-#battery{
+
+#battery {
     padding-left: 4px;
     padding-right: 4px;
 }
+
 #bluetooth {
     padding-left: 4px;
     padding-right: 4px;
