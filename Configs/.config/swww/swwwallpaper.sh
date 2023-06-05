@@ -49,7 +49,7 @@ Wall_Set()
     --transition-type $xtrans \
     --transition-duration 1 \
     --transition-fps 60 \
-    --transition-pos bottom-right
+    --transition-pos top-right
 }
 
 ## set variables ##

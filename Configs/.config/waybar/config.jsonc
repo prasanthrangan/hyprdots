@@ -1,7 +1,7 @@
 /* if you have cliphist issues go to line 155 */
 {
     "layer": "top",
-    "position": "bottom",
+    "position": "top",
     "mod": "dock",
     "height": 28,
     "exclusive": true,
