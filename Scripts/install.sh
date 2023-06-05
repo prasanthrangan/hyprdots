@@ -56,6 +56,7 @@ fi
 ./restore_fnt.sh
 ./restore_cfg.sh
 ./restore_sgz.sh
+./restore_brightness.sh
 #./restore_app.sh
 
 
