@@ -1,0 +1,37 @@
+// Global //
+* {
+	foreground:                  #cbced3ff; //White
+	normal-foreground:           @foreground;
+	urgent-foreground:           #151720ff; //Black
+	active-foreground:           #151720ff; //Black
+
+	alternate-normal-foreground: @normal-foreground;
+	alternate-urgent-foreground: @urgent-foreground;
+	alternate-active-foreground: @active-foreground;
+
+	selected-normal-foreground:  #151720ff; //Black
+	selected-urgent-foreground:  #151720ff; //Black
+	selected-active-foreground:  #151720ff; //Black
+
+	background:                  #151720e6; //Black
+	normal-background:           @background;
+	urgent-background:           #95d3afcc; //BrightGreen
+	active-background:           #c79bf0cc; //BrightMagenta
+
+	alternate-normal-background: #90ceaaff; //Green
+	alternate-urgent-background: @urgent-background;
+	alternate-active-background: @active-background;
+
+	selected-normal-background:  #95d3afff; //BrightGreen
+	selected-urgent-background:  #c79bf0cc; //BrightMagenta
+	selected-active-background:  #98d3eecc; //BrightCyan
+
+	separatorcolor:              transparent;
+    border-color:                transparent;
+	border-radius:               0px;
+    border:                      0px;
+	spacing:                     0px;
+	padding:                     0px;
+	height:                      55%;
+    width:                       45%;
+}
