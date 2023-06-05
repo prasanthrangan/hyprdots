@@ -1,0 +1,124 @@
+// Config //
+configuration {
+	modi:                        "drun";
+	show-icons:                  false;
+	font:                        "JetBrainsMono Nerd Font 9";
+}
+
+@theme "~/.config/rofi/themes/theme.rasi"
+
+
+// Main //
+window {
+    location:                    south east;
+    anchor:                      south east;
+    x-offset:                    -20px;
+    y-offset:                    -20px;
+	height:                      55%;
+    width:                       20%;
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0px;
+    padding:                     0px;
+    border:                      2px;
+    border-radius:               12px;
+    border-color:                @alternate-normal-background;
+    background-color:            transparent;
+}
+
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    orientation:                 vertical;
+    children:                    [ "inputbar" , "listbox" ];
+    background-color:            transparent;
+	background-image:            url("~/.config/swww/wall.blur", height);
+}
+
+
+// Inputs //
+inputbar {
+    enabled:                     true;
+    padding:                     8px;
+	children:                    [ "entry" ];
+	background-color:            @background;
+}
+entry {
+    border:                      3px;
+    border-radius:               15px;
+    border-color:                @background;
+    enabled:                     true;
+    padding:                     70px;
+    text-color:                  @foreground;
+	background-color:            @background;
+    background-image:            url("~/.config/swww/wall.blur", width);
+}
+
+
+// Lists //
+listbox {
+    spacing:                     0px;
+    padding:                     10px;
+	children:                    [ "listview" ];
+	background-color:            @background;
+}
+listview {
+    enabled:                     true;
+    columns:                     1;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                false;
+    fixed-columns:               true;
+    cursor:                      "default";
+	background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+
+// Elements //
+element {
+    enabled:                     true;
+    spacing:                     0px;
+    padding:                     12px;
+    border-radius:               10px;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+element normal.normal {
+    background-color:            transparent;
+    text-color:                  @normal-foreground;
+}
+element normal.urgent {
+    background-color:            @urgent-background;
+    text-color:                  @urgent-foreground;
+}
+element normal.active {
+    background-color:            @active-background;
+    text-color:                  @active-foreground;
+}
+element selected.normal {
+    background-color:            @selected-normal-background;
+    text-color:                  @selected-normal-foreground;
+}
+element selected.urgent {
+    background-color:            @selected-urgent-background;
+    text-color:                  @selected-urgent-foreground;
+}
+element selected.active {
+    background-color:            @selected-active-background;
+    text-color:                  @selected-active-foreground;
+}
+element-text {
+    vertical-align:              0.0;
+    horizontal-align:            0.0;
+    cursor:                      inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+

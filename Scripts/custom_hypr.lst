@@ -26,6 +26,7 @@ wlogout
 grim
 slurp
 swappy
+cliphist
 polkit-kde-agent
 xdg-desktop-portal-hyprland
 imagemagick
@@ -49,3 +50,4 @@ zsh-theme-powerlevel10k-git
 zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
+

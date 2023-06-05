@@ -2,7 +2,7 @@
 configuration {
 	modi:                        "drun,filebrowser,window,run";
 	show-icons:                  true;
-	display-drun:                "";
+	display-drun:                "";
 	display-run:                 "";
 	display-filebrowser:         "";
 	display-window:              "";
@@ -12,7 +12,7 @@ configuration {
 	icon-theme:                  "Tela-circle-dracula-dark";
 }
 
-@theme "~/.config/rofi/theme.rasi"
+@theme "~/.config/rofi/themes/theme.rasi"
 
 
 // Main //
@@ -25,7 +25,7 @@ window {
     padding:                     0px;
     border:                      2px;
     border-radius:               40px;
-    border-color:                #f5c2e7ff;
+    border-color:                @alternate-normal-background;
     background-color:            transparent;
 }
 mainbox {

@@ -1,6 +1,7 @@
+/* if you have cliphist issues go to line 155 */
 {
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "mod": "dock",
     "height": 28,
     "exclusive": true,
@@ -8,7 +9,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["custom/updates","network","bluetooth","battery","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","tray","custom/power"],
+    "modules-right": ["custom/updates","network","bluetooth","battery","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","custom/cliphist","tray","custom/power"],
 
 
 // center modules //
@@ -137,14 +138,34 @@
         "format": "{}",
         "exec": "~/.config/swww/swwwallpaper.sh -t",
         "on-click": "~/.config/swww/swwwallpaper.sh -n",
+        "on-click-right": "~/.config/swww/swwwallpaper.sh -p",
         "interval" : 86400, // once every day
         "tooltip": true
     },
 
     "custom/mode": {
-        "format": "{}",
+        "format": "{}",
         "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "~/.config/hypr/scripts/modeswitch.sh switch",
+        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
+        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
+        "on-click-middle": "~/.config/hypr/scripts/themeselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    /* If you the issue with cliphist that once you open it on waybar, any input on waybar will just open clipist again, then delete the old lines and uncomment the new 
+     ones and play around with the delay value, in general 0.1 works, but if you encouter the issue that just after 2 click the bar return to normal, increase the time. */ 
+    "custom/cliphist": {
+        "format": "{}",
+        "exec": "~/.config/hypr/scripts/cliphist.sh t",
+        "on-click": "~/.config/hypr/scripts/cliphist.sh c",
+        //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
+	/*
+	"on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+	*/
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -170,5 +191,5 @@
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
-    },
+    }
 }

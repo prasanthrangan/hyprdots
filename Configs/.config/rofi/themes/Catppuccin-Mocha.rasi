@@ -1,0 +1,37 @@
+// Global //
+* {
+	foreground:                  #cdd6f4ff; //Text
+	normal-foreground:           @foreground;
+	urgent-foreground:           #11111bff; //Crust
+	active-foreground:           #11111bff; //Crust
+
+	alternate-normal-foreground: @normal-foreground;
+	alternate-urgent-foreground: @urgent-foreground;
+	alternate-active-foreground: @active-foreground;
+
+	selected-normal-foreground:  #11111bff; //Crust
+	selected-urgent-foreground:  #11111bff; //Crust
+	selected-active-foreground:  #11111bff; //Crust
+
+	background:                  #11111be6;
+	normal-background:           @background;
+	urgent-background:           #eba0accc; //Maroon
+	active-background:           #94e2d5cc; //Teal
+
+	alternate-normal-background: #f5c2e7ff;
+	alternate-urgent-background: @urgent-background;
+	alternate-active-background: @active-background;
+
+	selected-normal-background:  #b4befeff; //Lavender
+	selected-urgent-background:  #94e2d5cc; //Teal
+	selected-active-background:  #eba0accc; //Maroon
+
+	separatorcolor:              transparent;
+    border-color:                transparent;
+	border-radius:               0px;
+    border:                      0px;
+	spacing:                     0px;
+	padding:                     0px;
+	height:                      55%;
+    width:                       45%;
+}

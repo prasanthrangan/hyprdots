@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 #export ZSH="$HOME/.oh-my-zsh"
@@ -114,16 +114,16 @@ alias pl='pacman -Qs' # list installed package
 alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
-alias vc='code'  # gui code editor
-
+alias vc='code' # gui code editor
+alias v="nvim"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Display specs
 #neofetch
-
+sfetch
 #Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+#pokemon-colorscripts --no-title -r 1,3,6
 
 #Display gif
 #kitten icat --align left ~/.config/neofetch/pochita.gif
