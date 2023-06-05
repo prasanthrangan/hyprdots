@@ -16,7 +16,7 @@ qt6-wayland
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
-hyprland-nvidia-git
+hyprland-git
 dunst
 rofi-lbonn-wayland-git
 waybar-hyprland-git
@@ -50,7 +50,4 @@ zsh-theme-powerlevel10k-git
 zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
-linux-lts-headers
-linux-zen-headers
-nvidia-dkms
-nvidia-utils
+
