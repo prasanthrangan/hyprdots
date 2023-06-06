@@ -158,7 +158,7 @@
     "custom/cliphist": {
         "format": "{}",
         "exec": "~/.config/hypr/scripts/cliphist.sh t",
-        "on-click": "~/.config/hypr/scripts/cliphist.sh c",
+        "on-click": "sleep 0.15 && ~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
         "on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
 	/*

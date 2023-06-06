@@ -196,7 +196,7 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 <summary><h4>Known Issues</h4></summary>
 
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
-- [ ] Waybar launching rofi (clipboard) breaks mouse input (use right/middle click on waybar as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
+- [x] Waybar launching rofi (clipboard) breaks mouse input (use right/middle click on waybar as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
