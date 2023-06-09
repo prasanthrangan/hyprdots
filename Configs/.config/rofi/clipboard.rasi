@@ -23,7 +23,7 @@ window {
     spacing:                     0px;
     padding:                     0px;
     border:                      2px;
-    border-radius:               12px;
+    border-radius:               15px;
     border-color:                @alternate-normal-background;
     background-color:            transparent;
 }
@@ -41,13 +41,13 @@ mainbox {
 // Inputs //
 inputbar {
     enabled:                     true;
-    padding:                     8px;
+    padding:                     7px;
 	children:                    [ "entry" ];
 	background-color:            @background;
 }
 entry {
     border:                      3px;
-    border-radius:               15px;
+    border-radius:               10px;
     border-color:                @background;
     enabled:                     true;
     padding:                     70px;
