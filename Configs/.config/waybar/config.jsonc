@@ -1,4 +1,3 @@
-/* if you have cliphist issues go to line 155 */
 {
     "layer": "top",
     "position": "bottom",
@@ -9,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["cpu","memory","clock"],
     "modules-center": ["wlr/workspaces","hyprland/window"],
-    "modules-right": ["custom/updates","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/wallchange","custom/mode","custom/cliphist","tray","custom/power"],
+    "modules-right": ["network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","tray","custom/wallchange","custom/mode","custom/cliphist","custom/power"],
 
 
 // center modules //
@@ -75,14 +74,6 @@
 
 // right modules //
 
-    "custom/updates": {
-        "format": "󰮯 {}",
-        "exec": "~/.config/hypr/scripts/systemupdate.sh",
-        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
-        "tooltip": true
-    },
-    
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "󰤨 {essid}",
@@ -95,12 +86,12 @@
     },
 
     "bluetooth": {
-	    "format": "",
-	    "format-disabled": "", // an empty format will hide the module
-	    "format-connected": " {num_connections}",
-	    "tooltip-format": " {device_alias}",
-	    "tooltip-format-connected": "{device_enumerate}",
-	    "tooltip-format-enumerate-connected": " {device_alias}"
+        "format": "",
+        "format-disabled": "", // an empty format will hide the module
+        "format-connected": " {num_connections}",
+        "tooltip-format": " {device_alias}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": " {device_alias}"
     },
 
     "pulseaudio": {
@@ -110,7 +101,7 @@
         "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh m",
         "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh i",
         "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh d",
-        "tooltip-format": "{icon} {desc} {volume}%",
+        "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -125,13 +116,27 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
         "on-click-middle": "pamixer --default-source -t",
         "on-scroll-up": "pamixer --default-source -i 5",
         "on-scroll-down": "pamixer --default-source -d 5",
+        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
+    },
+
+    "custom/updates": {
+        "format": "󰮯 {}",
+        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
+        "interval": 86400, // once every day
+        "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 5
     },
 
     "custom/wallchange": {
@@ -148,36 +153,26 @@
         "exec": "echo ; echo 󰟡 switch mode",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
-        "on-click-middle": "~/.config/hypr/scripts/themeselect.sh",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
 
-    /* If you the issue with cliphist that once you open it on waybar, any input on waybar will just open clipist again, then delete the old lines and uncomment the new 
-     ones and play around with the delay value, in general 0.1 works, but if you encouter the issue that just after 2 click the bar return to normal, increase the time. */ 
     "custom/cliphist": {
         "format": "{}",
         "exec": "~/.config/hypr/scripts/cliphist.sh t",
-        "on-click": "~/.config/hypr/scripts/cliphist.sh c",
-        //"on-click-right": "~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "~/.config/hypr/scripts/cliphist.sh w",
-	/*
-	"on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
         "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
-	*/
         "interval" : 86400, // once every day
         "tooltip": true
     },
 
-    "tray": {
-        "icon-size": 15,
-        "spacing": 5
-    },
-
     "custom/power": {
-        "format": "",
+        "format": "{}",
+        "exec": "echo ; echo  logout",
         "on-click": "wlogout -b 2 -c 0 -r 0 -L 930 -R 930 -T 300 -B 300 --protocol layer-shell",
-        "tooltip": false
+        "interval" : 86400, // once every day
+        "tooltip": true
     }
 }

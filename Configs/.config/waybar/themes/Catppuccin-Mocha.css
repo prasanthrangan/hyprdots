@@ -56,17 +56,17 @@ tooltip {
 
 #cpu,
 #memory,
-#custom-power,
 #clock,
 #workspaces,
 #window,
-#custom-updates,
 #network,
 #bluetooth,
 #pulseaudio,
+#custom-updates,
 #custom-wallchange,
 #custom-mode,
 #custom-cliphist,
+#custom-power,
 #tray {
     color: #cdd6f4;
     background: #11111b;
@@ -101,7 +101,7 @@ tooltip {
     margin-left: 6px;
     padding-left: 12px;
     padding-right: 12px;
-    margin-left: 6px;
+    margin-right: 6px;
 }
 
 
@@ -120,34 +120,29 @@ tooltip {
 
 /* control center block */
 
-#custom-updates {
+#network {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 12px;
     padding-right: 4px;
 }
 
-#network {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
 #bluetooth {
     padding-left: 4px;
     padding-right: 4px;
-} 
+}
 
 #pulseaudio {
     padding-left: 4px;
     padding-right: 4px;
-}
+} 
 
 #pulseaudio.microphone {
     padding-left: 4px;
     padding-right: 4px;
 }
 
-#custom-wallchange {
+#custom-updates {
     border-radius: 0px 10px 10px 0px;
     padding-left: 4px;
     padding-right: 12px;
@@ -157,19 +152,30 @@ tooltip {
 
 /* system tray block */
 
-#custom-mode {
+#tray {
+    border-radius: 10px;
+    margin-left: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 6px;
+}
+
+
+/* custom block */
+
+#custom-wallchange {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 12px;
     padding-right: 4px;
 }
 
-#custom-cliphist {
+#custom-mode {
     padding-left: 4px;
     padding-right: 4px;
 }
 
-#tray {
+#custom-cliphist {
     padding-left: 4px;
     padding-right: 4px;
 }

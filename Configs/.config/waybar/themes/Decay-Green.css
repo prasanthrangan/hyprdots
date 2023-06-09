@@ -8,16 +8,16 @@
 }
 
 window#waybar {
-    background: rgba(220, 224, 232, .10);
+    background: rgba(0, 0, 0, 0);
 }
 
 tooltip {
-    background: #9ca0b0;
-    color: #4c4f69;
+    background: #cbced3;
+    color: #1f2328;
     border-radius: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: #ccd0da;
+    border-color: #90ceaa;
 }
 
 #workspaces button {
@@ -29,14 +29,14 @@ tooltip {
     margin-bottom: 3px;
     padding-left: 2px;
     padding-right: 2px;
-    color: #4c4f69;
+    color: #93cee9;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    background: #5c5f77;
-    color: #dce0e8;
+    background: #90ceaa;
+    color: #1f2328;
     margin-left: 2px;
     padding-left: 10px;
     padding-right: 10px;
@@ -46,8 +46,8 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #dc8a78;
-    color: #dce0e8;
+    background: #90ceaa;
+    color: #1f2328;
     padding-left: 2px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -68,8 +68,8 @@ tooltip {
 #custom-cliphist,
 #custom-power,
 #tray {
-    color: #4c4f69;
-    background: #9ca0b0;
+    color: #93cee9;
+    background: #1f2328;
     opacity: 1;
     padding: 0px;
     margin: 3px 0px 3px 0px;
