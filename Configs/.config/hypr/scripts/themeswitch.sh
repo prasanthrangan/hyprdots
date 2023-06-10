@@ -82,10 +82,6 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-### flatpak GTK ###
-flatpak --user override --env=GTK_THEME="${ThemeSet}"
-
-
 ### kitty ###
 ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
 killall -SIGUSR1 kitty
@@ -95,6 +91,11 @@ killall -SIGUSR1 kitty
 sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSet}.conf" $ConfDir/qt5ct/qt5ct.conf
 IconSet=`awk -F "'" '$0 ~ /gsettings set org.gnome.desktop.interface icon-theme/{print $2}' $ConfDir/hypr/themes/${ThemeSet}.conf`
 sed -i "/^icon_theme=/c\icon_theme=${IconSet}" $ConfDir/qt5ct/qt5ct.conf
+
+
+### flatpak GTK ###
+flatpak --user override --env=GTK_THEME="${ThemeSet}"
+flatpak --user override --env=ICON_THEME="${IconSet}"
 
 
 ### rofi ###

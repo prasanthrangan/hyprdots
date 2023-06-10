@@ -32,7 +32,7 @@ do
     do
         if ! pkg_installed $pkg_chk
             then
-            echo "package $pkg_chk not found..."
+            echo "skipping ${cfg}..."
             continue 2
         fi
     done < <( echo "${pkg}" | xargs -n 1 )

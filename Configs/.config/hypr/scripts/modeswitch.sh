@@ -17,7 +17,7 @@ elif [ "$X_MODE" == "switch" ] ; then
 
     elif [ "$X_MODE" == "light" ] ; then
         S_MODE="dark"
-        flatpak --user override --env=GTK_THEME=Catppuccin-Mocha-B
+        flatpak --user override --env=GTK_THEME=Catppuccin-Mocha
 
     else
         echo "ERROR: unable to fetch wallpaper mode."
