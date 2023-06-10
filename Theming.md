@@ -88,7 +88,6 @@ where column,
 > **Note**
 >
 > As wallpapers can be changed/cycled, column 3 here gets updated automatically by the wallapaer script.
->
 > Also, all files in the wallpaper dir should be valid image files or animated gif files
 
 ```shell

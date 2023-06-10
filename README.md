@@ -38,96 +38,96 @@ cd ~/Dots/Scripts
 ### Theming
 To add your own custom theme, please refer [Theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/Theming.md)
 - Available themes
-    - [x] Catppuccin-Mocha (dark)
-    - [x] Catppuccin-Latte (light)
-    - [ ] Decay-Green (in-progress)
+    - [x] Catppuccin-Mocha
+    - [x] Catppuccin-Latte
+    - [x] Decay-Green
     - [ ] Tokyo-Night
     - [ ] Rosé-Pine
 
 
 <details>
-<summary><h4>Packages installed by the script</h4></summary>
+<summary><h4>Packages</h4></summary>
 
-<h5>nvidia</h5>
+| nvidia | |
+| --- | --- |
+linux-headers | for main kernel (script will auto detect from /usr/lib/modules/)
+linux-zen-headers | for zen kernel (script will auto detect from /usr/lib/modules/)
+linux-lts-headers | for lts kernel (script will auto detect from /usr/lib/modules/)
+nvidia-dkms | nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
+nvidia-utils | nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 
-+ linux-headers -- for main kernel (script will auto detect from /usr/lib/modules/)
-+ linux-zen-headers -- for zen kernel (script will auto detect from /usr/lib/modules/)
-+ linux-lts-headers -- for lts kernel (script will auto detect from /usr/lib/modules/)
-+ nvidia-dkms -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
-+ nvidia-utils -- nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
+| tools | |
+| --- | --- |
+pipewire | audio and video server
+pipewire-alsa | for audio
+pipewire-audio | for audio
+pipewire-jack | for audio
+pipewire-pulse | for audio
+gst-plugin-pipewire | for audio
+wireplumber | audio and video server
+networkmanager | network manager
+network-manager-applet | nm tray
+bluez | for bluetooth
+bluez-utils | for bluetooth
+blueman | bt tray
 
-<h5>tools</h5>
+| login | |
+| --- | --- |
+sddm-git | display manager for login
+qt5-wayland | for QT wayland XDP
+qt6-wayland | for QT wayland XDP
+qt5-quickcontrols | for sddm theme
+qt5-quickcontrols2 | for sddm theme
+qt5-graphicaleffects | for sddm theme
 
-+ pipewire -- audio and video server
-+ pipewire-alsa -- for audio
-+ pipewire-audio -- for audio
-+ pipewire-jack -- for audio
-+ pipewire-pulse -- for audio
-+ gst-plugin-pipewire -- for audio
-+ wireplumber -- audio and video server
-+ networkmanager -- network manager
-+ network-manager-applet -- nm tray
-+ bluez -- for bluetooth
-+ bluez-utils -- for bluetooth
-+ blueman -- bt tray
+| hypr | |
+| --- | --- |
+hyprland-git | main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
+dunst | graphical notification daemon
+rofi-lbonn-wayland-git | app launcher
+waybar-hyprland-git | status bar
+swww | wallpaper app
+swaylock-effects-git | lockscreen
+wlogout | logout screen
+grim | screenshot tool
+slurp | selects region for screenshot/screenshare
+swappy | screenshot editor
+cliphist | clipboard manager
 
-<h5>login</h5>
+| dependencies | |
+| --- | --- |
+polkit-kde-agent | authentication agent
+xdg-desktop-portal-hyprland-git | XDG Desktop Portal
+imagemagick | for kitty/neofetch image processing
+qt5-imageformats | for dolphin thumbnails
+pavucontrol | audio settings gui
+pamixer | for waybar audio
 
-+ sddm-git -- display manager for login
-+ qt5-wayland -- for QT wayland XDP
-+ qt6-wayland -- for QT wayland XDP
-+ qt5-quickcontrols -- for sddm theme
-+ qt5-quickcontrols2 -- for sddm theme
-+ qt5-graphicaleffects -- for sddm theme
+| theming | |
+| --- | --- |
+nwg-look | theming GTK apps
+kvantum | theming QT apps
+qt5ct | theming QT5 apps
 
-<h5>hypr</h5>
+| applications | |
+| --- | --- |
+firefox | browser
+kitty | terminal
+neofetch | fetch tool
+dolphin | kde file manager
+visual-studio-code-bin | gui code editor
+vim | text editor
+ark | kde file archiver
 
-+ hyprland-git -- main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
-+ dunst -- graphical notification daemon
-+ rofi-lbonn-wayland-git -- app launcher
-+ waybar-hyprland-git -- status bar
-+ swww-- wallpaper app
-+ swaylock-effects-git -- lockscreen
-+ wlogout -- logout screen
-+ grim -- screenshot tool
-+ slurp -- selects region for screenshot/screenshare
-+ swappy -- screenshot editor
-+ cliphist -- clipboard manager
-
-<h5>dependencies</h5>
-
-+ polkit-kde-agent -- authentication agent
-+ xdg-desktop-portal-hyprland-git -- XDG Desktop Portal
-+ imagemagick -- for kitty/neofetch image processing
-+ qt5-imageformats -- for dolphin thumbnails
-+ pavucontrol -- audio settings gui
-+ pamixer -- for waybar audio
-
-<h5>theming</h5>
-
-+ nwg-look -- theming GTK apps
-+ kvantum -- theming QT apps
-+ qt5ct -- theming QT5 apps
-
-<h5>applications</h5>
-
-+ firefox -- browser
-+ kitty -- terminal
-+ neofetch -- fetch tool
-+ dolphin -- kde file manager
-+ visual-studio-code-bin -- gui code editor
-+ vim -- text editor
-+ ark -- kde file archiver
-
-<h5>shell</h5>
-
-+ zsh -- main shell
-+ exa -- colorful file lister
-+ oh-my-zsh-git -- for zsh plugins
-+ zsh-theme-powerlevel10k-git -- theme for zsh
-+ zsh-syntax-highlighting-git -- highlighting of commands
-+ zsh-autosuggestions-git -- see completion as you type
-+ pokemon-colorscripts-git -- display pokemon sprites
+| shell | |
+| --- | --- |
+zsh | main shell
+exa | colorful file lister
+oh-my-zsh-git | for zsh plugins
+zsh-theme-powerlevel10k-git | theme for zsh
+zsh-syntax-highlighting-git | highlighting of commands
+zsh-autosuggestions-git | see completion as you type
+pokemon-colorscripts-git | display pokemon sprites
 
 </details>
 
@@ -176,8 +176,10 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 - [x] Theme change script (ver2)
 - [x] Update rofi configs
 - [x] Clipboard manager in waybar
-- [x] Volume control script/notification
-- [ ] Media control for waybar
+- [ ] Add options to install script (ver2)
+- [ ] Update Volume control script/notification (ver2)
+- [ ] Media control for waybar? (maybe later)
+- [ ] Replace waybar with Eww? (maybe later)
 
 </details>
 
@@ -186,7 +188,7 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
 <summary><h4>Known Issues</h4></summary>
 
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
-- [ ] Waybar launching rofi (clipboard) breaks mouse input (use right/middle click on waybar as a workaround for now), refer https://github.com/Alexays/Waybar/issues/1850
+- [ ] Waybar launching rofi breaks mouse input (added `sleep 0.1` as workaround), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
