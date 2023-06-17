@@ -169,7 +169,7 @@ pokemon-colorscripts-git | display pokemon sprites
 
 | youtube |
 | --- |
-| [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
+| [![IMAGE ALT TEXT](https://github.com/prasanthrangan/hyprdots/assets/106020512/aba4e1c8-f63e-4d12-8bfe-09f3313ce547)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
 
 </details>
 
