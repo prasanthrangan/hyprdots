@@ -2,13 +2,6 @@
 
 ## My Arch Hyprland Config Files
 
-> **Warning**
->
-> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
-> Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
-
-
-### Showcase
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
 |     |     |
@@ -18,6 +11,12 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 
 ### Installation
+
+> **Warning**
+>
+> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
+> Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
+
 After minimal Arch install (with grub), clone and execute -
 ```shell
 pacman -Sy git
@@ -43,6 +42,11 @@ To add your own custom theme, please refer [Theming.md](https://github.com/prasa
     - [x] Decay-Green
     - [ ] Tokyo-Night
     - [ ] Rosé-Pine
+
+| Catppuccin-Mocha | Catppuccin-Latte | Decay-Green |
+| --- | --- | --- |
+![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_1.png)
+![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_2.png)
 
 
 <details>
@@ -163,7 +167,9 @@ pokemon-colorscripts-git | display pokemon sprites
 <details>
 <summary><h4>Playlist</h4></summary>
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
+| youtube |
+| --- |
+| [![IMAGE ALT TEXT](http://img.youtube.com/vi/_nyStxAI75s/0.jpg)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
 
 </details>
 
