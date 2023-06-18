@@ -3,15 +3,9 @@
 ## define functions ##
 Wall_Prev()
 {
-
     for((i=0;i<${#Wallist[@]};i++))
     do
-        if [ ${Wallist[0]} == ${getWall2}  ] ; then
-            ws=`echo ${Wallist[-1]} | sed "s+$HOME+~+"`
-            sed -i "s+$getWall1+$ws+" $BaseDir/wall.ctl
-            ln -fs ${Wallist[-1]} $BaseDir/wall.set
-            break
-        elif [ ${Wallist[i]} == ${getWall2} ] ; then
+        if [ ${Wallist[i]} == ${getWall2} ] ; then
             ws=`echo ${Wallist[i-1]} | sed "s+$HOME+~+"`
             sed -i "s+$getWall1+$ws+" $BaseDir/wall.ctl
             ln -fs ${Wallist[i-1]} $BaseDir/wall.set
@@ -20,19 +14,14 @@ Wall_Prev()
     done
 }
 
-Wall_Next()
+Wall_Next() 
 {
-    for((i=0;i<${#Wallist[@]};i++))
-    do
-        if [ $((i + 1)) -eq ${#Wallist[@]} ] ; then
-            ws=`echo ${Wallist[0]} | sed "s+$HOME+~+"`
-            sed -i "s+$getWall1+$ws+" $BaseDir/wall.ctl
-            ln -fs ${Wallist[0]} $BaseDir/wall.set
-            break
-        elif [ ${Wallist[i]} == ${getWall2} ] ; then
-            ws=`echo ${Wallist[i+1]} | sed "s+$HOME+~+"`
-            sed -i "s+$getWall1+$ws+" $BaseDir/wall.ctl
-            ln -fs ${Wallist[i+1]} $BaseDir/wall.set
+    for ((i = 0; i < ${#Wallist[@]}; i++)); do
+        if [[ ${Wallist[i]} == ${getWall2} ]]; then
+            nextIndex=$(( (i + 1) % ${#Wallist[@]} ))
+            ws=${Wallist[nextIndex]/$HOME/~}
+            sed -i "s+${getWall1}+${ws}+" "$BaseDir/wall.ctl"
+            ln -fs "${Wallist[nextIndex]}" "$BaseDir/wall.set"
             break
         fi
     done
