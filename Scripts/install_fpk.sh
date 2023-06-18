@@ -28,6 +28,6 @@ flatpak remove --unused
 
 flatpak --user override --filesystem=~/.themes
 flatpak --user override --filesystem=~/.icons
-flatpak --user override --env=GTK_THEME=Catppuccin-Mocha-B
+flatpak --user override --env=GTK_THEME=Catppuccin-Mocha
 flatpak --user override --env=ICON_THEME=Tela-circle-dracula
 
