@@ -3,14 +3,14 @@
 ## Applications
 
 These are the applications currently supported by the `themeswitch` script
-- swww (change wallpaper)
-- waybar (change system bar style)
-- gtk apps (based on env variable applied from hypr)
-- qt apps (based on kvantum and qt5ct from hypr)
-- kitty (terminal)
-- flatpak (follow system gtk theme)
-- rofi (launcher)
-- hypr (change - cursor, font, icon, gtk theme, kvantum/qt5ct theme)
+- swww
+- waybar
+- gtk apps
+- qt apps
+- kitty
+- flatpak
+- rofi
+- hypr
 - wlogout (to be added later)
 
 
@@ -87,7 +87,7 @@ where column,
 
 > **Note**
 >
-> As wallpapers can be changed/cycled, column 3 here gets updated automatically by the wallapaer script.
+> As wallpapers can be changed/cycled, column 3 here gets updated by the wallpaper script.
 > Also, all files in the wallpaper dir should be valid image files or animated gif files
 
 ```shell

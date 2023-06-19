@@ -3,25 +3,26 @@
 ## define functions ##
 Wall_Prev()
 {
-    for((i=0;i<${#Wallist[@]};i++))
+    for (( i=0 ; i<${#Wallist[@]} ; i++ ))
     do
         if [ ${Wallist[i]} == ${getWall2} ] ; then
-            ws=`echo ${Wallist[i-1]} | sed "s+$HOME+~+"`
-            sed -i "s+$getWall1+$ws+" $BaseDir/wall.ctl
+            ws=${Wallist[i-1]/$HOME/"~"}
+            sed -i "s+${getWall1}+${ws}+" $BaseDir/wall.ctl
             ln -fs ${Wallist[i-1]} $BaseDir/wall.set
             break
         fi
     done
 }
 
-Wall_Next() 
+Wall_Next()
 {
-    for ((i = 0; i < ${#Wallist[@]}; i++)); do
-        if [[ ${Wallist[i]} == ${getWall2} ]]; then
+    for (( i=0 ; i<${#Wallist[@]} ; i++ ))
+    do
+        if [ ${Wallist[i]} == ${getWall2} ] ; then
             nextIndex=$(( (i + 1) % ${#Wallist[@]} ))
-            ws=${Wallist[nextIndex]/$HOME/~}
-            sed -i "s+${getWall1}+${ws}+" "$BaseDir/wall.ctl"
-            ln -fs "${Wallist[nextIndex]}" "$BaseDir/wall.set"
+            ws=${Wallist[nextIndex]/$HOME/"~"}
+            sed -i "s+${getWall1}+${ws}+" $BaseDir/wall.ctl
+            ln -fs ${Wallist[nextIndex]} $BaseDir/wall.set
             break
         fi
     done
@@ -49,7 +50,6 @@ if [ `grep '^1|' $BaseDir/wall.ctl | wc -l` -ne 1 ] ; then
     exit 1
 fi
 
-getTheme=`grep '^1|' $BaseDir/wall.ctl | cut -d '|' -f 2`
 getWall1=`grep '^1|' $BaseDir/wall.ctl | cut -d '|' -f 3`
 getWall2=`eval echo $getWall1`
 

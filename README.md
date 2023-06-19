@@ -1,13 +1,24 @@
 # --// Hyprdots //--
 
+>```shell
+>        .                                                    
+>       / \         ____   _  _                  _     _      
+>      /^  \       / / /  | || |_  _ _ __ _ _ __| |___| |_ ___
+>     /  _  \     / / /   | __ | || | '_ \ '_/ _` / _ \  _(_-<
+>    /  : : ~\   /_/_/    |_||_|\_, | .__/_| \__,_\___/\__/__/
+>   /.-'   '-.\                 |__/|_|                       
+>
+>```
+
+
 ## My Arch Hyprland Config Files
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
-|     |     |
+| <!-- --> | <!-- --> |
 | --- | --- |
-![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png)
-![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_4.png) 
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_4.png) |
 
 
 ### Installation
@@ -35,18 +46,19 @@ cd ~/Dots/Scripts
 
 
 ### Theming
-To add your own custom theme, please refer [Theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/Theming.md)
+To add your own custom theme, please refer [theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/theming.md)
 - Available themes
     - [x] Catppuccin-Mocha
     - [x] Catppuccin-Latte
     - [x] Decay-Green
     - [ ] Tokyo-Night
     - [ ] Rosé-Pine
+    - [ ] Cloudy-Sakura
 
-| Catppuccin-Mocha | Catppuccin-Latte | Decay-Green |
-| --- | --- | --- |
-![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_1.png)
-![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_2.png)
+| -// Catppuccin-Mocha //- | -// Catppuccin-Latte //- | -// Decay-Green //- |
+| :-: | :-: | :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_2.png) |
 
 
 <details>
@@ -184,6 +196,7 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Clipboard manager in waybar
 - [ ] Add options to install script (ver2)
 - [ ] Update Volume control script/notification (ver2)
+- [ ] Add battery and brightness indication/notification for laptop
 - [ ] Media control for waybar? (maybe later)
 - [ ] Replace waybar with Eww? (maybe later)
 
@@ -195,7 +208,6 @@ pokemon-colorscripts-git | display pokemon sprites
 
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
 - [ ] Waybar launching rofi breaks mouse input (added `sleep 0.1` as workaround), refer https://github.com/Alexays/Waybar/issues/1850
-- [ ] Flatpak Gnome Boxes needs xdg-desktop-portal-gtk
 - [ ] Flatpak QT apps does not follow system theme
 
 </details>
