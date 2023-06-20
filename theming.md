@@ -155,7 +155,7 @@ The `swwwallpaper.sh` script is used to cycle through all the wallpapers in the 
 ```
 > **Note**
 >
-> Please add this theme/wallpaper entry in `wall.ctl` file only after all [these](#theming-applications) theme files are configured.
+> Please add this theme/wallpaper entry in `wall.ctl` file only after all [these](#theme-structure) theme files are configured.
 
 
 ## Theme Switch
