@@ -1,14 +1,14 @@
 # --// Hyprdots //--
 
->```shell
->        .                                                    
->       / \         ____   _  _                  _     _      
->      /^  \       / / /  | || |_  _ _ __ _ _ __| |___| |_ ___
->     /  _  \     / / /   | __ | || | '_ \ '_/ _` / _ \  _(_-<
->    /  : : ~\   /_/_/    |_||_|\_, | .__/_| \__,_\___/\__/__/
->   /.-'   '-.\                 |__/|_|                       
->
->```
+```shell
+        .                                                     
+       / \         _       _  _                  _     _      
+      /^  \      _| |_    | || |_  _ _ __ _ _ __| |___| |_ ___
+     /  _  \    |_   _|   | __ | || | '_ \ '_/ _` / _ \  _(_-<
+    /  : : ~\     |_|     |_||_|\_, | .__/_| \__,_\___/\__/__/
+   /.-'   '-.\                  |__/|_|                       
+
+```
 
 
 ## My Arch Hyprland Config Files
@@ -55,7 +55,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [ ] Rosé-Pine
     - [ ] Cloudy-Sakura
 
-| -// Catppuccin-Mocha //- | -// Catppuccin-Latte //- | -// Decay-Green //- |
+| --// Catppuccin-Mocha //-- | --// Catppuccin-Latte //-- | --// Decay-Green //-- |
 | :-: | :-: | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_2.png) |
@@ -196,7 +196,7 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Clipboard manager in waybar
 - [ ] Add options to install script (ver2)
 - [ ] Update Volume control script/notification (ver2)
-- [ ] Add battery and brightness indication/notification for laptop
+- [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Media control for waybar? (maybe later)
 - [ ] Replace waybar with Eww? (maybe later)
 
