@@ -3,53 +3,53 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 10px;
+    font-size: 18px;
     min-height: 0px;
 }
 
 window#waybar {
-    background: rgba(220, 224, 232, .10);
+    background: rgba(17, 17, 27, .10);
 }
 
 tooltip {
-    background: #9ca0b0;
-    color: #4c4f69;
+    background: #1e1e2e;
+    color: #cdd6f4;
     border-radius: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: #ccd0da;
+    border-color: #11111b;
 }
 
 #workspaces button {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 7px;
+    border-radius: 10px;
     margin-top: 3px;
     margin-bottom: 3px;
     padding-left: 2px;
     padding-right: 2px;
-    color: #4c4f69;
+    color: #cdd6f4;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    background: #5c5f77;
-    color: #dce0e8;
-    margin-left: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 2px;
+    background: #a6adc8;
+    color: #313244;
+    margin-left: 6px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 6px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
-    background: #dc8a78;
-    color: #dce0e8;
-    padding-left: 2px;
-    padding-right: 2px;
+    background: #f5c2e7;
+    color: #313244;
+    padding-left: 6px;
+    padding-right: 6px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -71,22 +71,23 @@ tooltip {
 #custom-l_end,
 #custom-r_end,
 #tray {
-    color: #4c4f69;
-    background: #9ca0b0;
+    color: #cdd6f4;
+    background: #11111b;
     opacity: 1;
     padding: 0px;
-    margin: 3px 0px 3px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+    margin: 4px 0px 4px 0px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
 #custom-r_end {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 0px 16px 16px 0px;
     margin-right: 6px;
 }
 
 #custom-l_end {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 16px 0px 0px 16px;
     margin-left: 6px;
 }
+
 
