@@ -67,122 +67,26 @@ tooltip {
 #custom-mode,
 #custom-cliphist,
 #custom-power,
+#custom-wbar,
+#custom-l_end,
+#custom-r_end,
 #tray {
     color: #4c4f69;
     background: #9ca0b0;
     opacity: 1;
     padding: 0px;
     margin: 3px 0px 3px 0px;
-}
-
-
-/* resource monitor block */
-
-#cpu {
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 25px;
-    padding-left: 12px;
+    padding-left: 4px;
     padding-right: 4px;
 }
 
-#memory {
+#custom-r_end {
     border-radius: 0px 10px 10px 0px;
-    border-left-width: 0px;
-    padding-left: 4px;
-    padding-right: 12px;
     margin-right: 6px;
 }
 
-
-/* date time block */
-
-#clock {
-    border-radius: 10px;
-    margin-left: 6px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 6px;
-}
-
-
-/* workspace window block */
-
-#workspaces {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
-}
-
-#window {
-    border-radius: 0px 10px 10px 0px;
-    padding-right: 12px;
-}
-
-
-/* control center block */
-
-#network {
+#custom-l_end {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
-    padding-left: 12px;
-    padding-right: 4px;
 }
 
-#bluetooth {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#pulseaudio {
-    padding-left: 4px;
-    padding-right: 4px;
-} 
-
-#pulseaudio.microphone {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#custom-updates {
-    border-radius: 0px 10px 10px 0px;
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 6px;
-}
-
-
-/* system tray block */
-
-#tray {
-    border-radius: 10px;
-    margin-left: 6px;
-    padding-left: 12px;
-    padding-right: 12px;
-    margin-right: 6px;
-}
-
-
-/* custom block */
-
-#custom-wallchange {
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 6px;
-    padding-left: 12px;
-    padding-right: 4px;
-}
-
-#custom-mode {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#custom-cliphist {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#custom-power {
-    border-radius: 0px 10px 10px 0px;
-    padding-left: 4px;
-    padding-right: 12px;
-    margin-right: 25px;
-}
