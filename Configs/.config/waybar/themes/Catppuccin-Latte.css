@@ -80,13 +80,27 @@ tooltip {
     padding-right: 4px;
 }
 
+#workspaces {
+    border-radius: 10px 0px 0px 10px;
+    padding-left: 12px;
+    padding-right: 0px;
+}
+
+#window {
+    border-radius: 0px 10px 10px 0px;
+    padding-left: 0px;
+    padding-right: 12px;
+}
+
 #custom-r_end {
     border-radius: 0px 10px 10px 0px;
     margin-right: 6px;
+    padding-right: 0px;
 }
 
 #custom-l_end {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
+    padding-left: 0px;
 }
 
