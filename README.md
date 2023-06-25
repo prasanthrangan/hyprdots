@@ -17,15 +17,15 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 | <!-- --> | <!-- --> |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_2.png) |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_4.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png) |
 
 
 ### Installation
 
 > **Warning**
 >
-> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
+> Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.   
 > Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
 
 After minimal Arch install (with grub), clone and execute -
@@ -38,16 +38,11 @@ cd ~/Dots/Scripts
 
 > **Note**
 >
-> The main app list is sourced from `custom_hypr.lst`, but you can also create your own file (for ex. `custom_app.lst`) with all your favorite apps and pass the file as a parameter to install it -
+> The main packages are sourced from `custom_hypr.lst`, but you can also create your own list (for ex. `custom_apps.lst`) with all your favorite apps and pass the file as a parameter to install it -
 >```shell
->./install.sh custom_app.lst # full install apps (custom_hypr.lst + custom_app.lst)
->./install.sh -i custom_app.lst # minimal install apps (custom_hypr.lst + custom_app.lst) without restoring any configs
+>./install.sh custom_apps.lst
 >```
-> The script also supports options for minimal install and restore -
->```shell
->./install.sh -i # minimal install hyprland (custom_hypr.lst) without restoring any configs
->./install.sh -r # just restore the config files
->```
+> For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)   
 > Please reboot after the install script completes and takes you to sddm login screen for the first time.
 
 
@@ -187,7 +182,7 @@ pokemon-colorscripts-git | display pokemon sprites
 
 | youtube |
 | --- |
-| [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/youtube_sc.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
+| [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/yt_playlist.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
 
 </details>
 

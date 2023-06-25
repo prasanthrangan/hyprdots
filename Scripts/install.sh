@@ -43,21 +43,21 @@ flg_Service=1
 while getopts irs RunStep
 do
     case $RunStep in
-    i) # "--// [I]nstalling hyprland without configs //--"
+    i) # "--// [i]nstalling hyprland without configs //--"
         flg_Restore=0;;
 
-    r) # "--// [R]estoring config files //--"
+    r) # "--// [r]estoring config files //--"
         flg_Install=0
         flg_Service=0;;
 
-    s) # "--// starting [S]ystem services //--"
+    s) # "--// starting system [s]ervices //--"
         flg_Install=0
         flg_Restore=0;;
 
     *)  echo "...valid options are..."
-        echo "i : [I]nstall hyprland without configs"
-        echo "r : [R]estore config files"
-        echo "s : start [S]ystem services"   
+        echo "i : [i]nstall hyprland without configs"
+        echo "r : [r]estore config files"
+        echo "s : start system [s]ervices"   
         exit 1 ;;
     esac
 done

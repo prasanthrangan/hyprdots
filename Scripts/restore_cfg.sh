@@ -60,7 +60,7 @@ do
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
-done < restore_conf.lst
+done < restore_cfg.lst
 
 ./restore_lnk.sh
 

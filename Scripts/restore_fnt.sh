@@ -26,7 +26,7 @@ do
     sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
     echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
 
-done < restore_font.lst
+done < restore_fnt.lst
 
 echo "rebuilding font cache..."
 fc-cache -f
