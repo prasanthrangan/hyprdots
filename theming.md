@@ -109,6 +109,36 @@ The global theme settings are configured in `~/.config/hypr/themes/My-Fav-Theme.
 Copy the corresponding config file from any existing theme and modify the color codes in file `~/.config/waybar/themes/My-Fav-Theme.css`   
 Please keep all the colors consistent with the corresponding GTK and QT theme.   
 
+the waybar config can also be dynamically changed/cycled by `wbarconfgen.sh` script.   
+```shell
+❯ cd ~/.config/waybar
+❯ ./wbarconfgen.sh n   # to set next mode
+❯ ./wbarconfgen.sh p   # to set previous mode
+```
+
+It reads the control file `~/.config/waybar/config.ctl` and generates corresponding `~/.config/waybar/config.jsonc`   
+So you can create your preferred config by adding entries to this file as,   
+
+```shell
+❯ cat ~/.config/waybar/config.ctl
+1|28|bottom|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|top|wlr/workspaces hyprland/window|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|top|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|bottom|wlr/workspaces hyprland/window|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|bottom|( clock )|wlr/workspaces hyprland/window|( tray ) ( network bluetooth pulseaudio custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+```
+where `|` is the delimiter and column,
+1. is `0` or `1`, where `1` indicates the current mode in use
+2. is the height of the bar
+3. is postition of bar top/bottom
+4. is the left modules
+5. is the center modules
+6. is the right modules
+
+> **Note**
+>
+> Each module in col 4,5 and 6 should be separated by space and corresponding module file should be created `~/.config/waybar/modules/<module>.jsonc>`. Here `(` and `)` can be used to group modules as a pill   
+
 
 ### Kitty
 

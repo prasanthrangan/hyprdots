@@ -43,7 +43,7 @@ cd ~/Dots/Scripts
 >./install.sh custom_apps.lst
 >```
 > For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)   
-> Please reboot after the install script completes and takes you to sddm login screen for the first time.
+> Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 
 
 ### Theming
