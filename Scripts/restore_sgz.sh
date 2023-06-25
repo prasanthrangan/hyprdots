@@ -20,8 +20,10 @@ if pkg_installed sddm
         sudo mkdir -p /etc/sddm.conf.d
     fi
 
-    if [ `grep "Current=corners" /etc/sddm.conf.d/kde_settings.conf | wc -w` -eq 0 ]
+    if [ -f /usr/share/sddm/themes/corners/kde_settings.conf ] && [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ]
         then
+        echo "configuring sddm..."
+        sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
         sudo mv /usr/share/sddm/themes/corners/kde_settings.conf /etc/sddm.conf.d/
     fi
 
@@ -34,8 +36,9 @@ fi
 if pkg_installed grub
     then
 
-    if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ] 
+    if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]
         then
+        echo "configuring grub..."
         sudo cp /etc/default/grub /etc/default/grub.t2.bkp
 
         if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ]
@@ -63,6 +66,7 @@ if pkg_installed zsh
 
     if [ "$SHELL" != "/usr/bin/zsh" ]
         then
+        echo "configuring shell..."
         chsh -s $(which zsh)
     fi
 

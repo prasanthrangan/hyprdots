@@ -17,8 +17,8 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 
 | <!-- --> | <!-- --> |
 | --- | --- |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_2.png) |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/screenshot_4.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/screenshot_4.png) |
 
 
 ### Installation
@@ -38,9 +38,15 @@ cd ~/Dots/Scripts
 
 > **Note**
 >
-> You can also create your own file (for ex. custom_app.lst) with all your favorite apps and pass the file as a parameter to install it -
+> The main app list is sourced from `custom_hypr.lst`, but you can also create your own file (for ex. `custom_app.lst`) with all your favorite apps and pass the file as a parameter to install it -
 >```shell
->./install.sh custom_app.lst
+>./install.sh custom_app.lst # full install apps (custom_hypr.lst + custom_app.lst)
+>./install.sh -i custom_app.lst # minimal install apps (custom_hypr.lst + custom_app.lst) without restoring any configs
+>```
+> The script also supports options for minimal install and restore -
+>```shell
+>./install.sh -i # minimal install hyprland (custom_hypr.lst) without restoring any configs
+>./install.sh -r # just restore the config files
 >```
 > Please reboot after the install script completes and takes you to sddm login screen for the first time.
 
@@ -57,8 +63,8 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 
 | --// Catppuccin-Mocha //-- | --// Catppuccin-Latte //-- | --// Decay-Green //-- |
 | :-: | :-: | :-: |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_1.png) |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/theme_decay_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png) |
 
 
 <details>
@@ -181,7 +187,7 @@ pokemon-colorscripts-git | display pokemon sprites
 
 | youtube |
 | --- |
-| [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/youtube_sc.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
+| [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/youtube_sc.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
 
 </details>
 
@@ -194,7 +200,7 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Theme change script (ver2)
 - [x] Update rofi configs
 - [x] Clipboard manager in waybar
-- [ ] Add options to install script (ver2)
+- [x] Add options to install script (ver2)
 - [ ] Update Volume control script/notification (ver2)
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Media control for waybar? (maybe later)

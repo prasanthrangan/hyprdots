@@ -4,6 +4,21 @@
 #|-/ /--| Prasanth Rangan          |-/ /--|#
 #|/ /---+--------------------------+/ /---|#
 
+cat << "EOF"
+
+-----------------------------------------------------------------
+        .                                                     
+       / \         _       _  _                  _     _      
+      /^  \      _| |_    | || |_  _ _ __ _ _ __| |___| |_ ___
+     /  _  \    |_   _|   | __ | || | '_ \ '_/ _` / _ \  _(_-<
+    /  : : ~\     |_|     |_||_|\_, | .__/_| \__,_\___/\__/__/
+   /.-'   '-.\                  |__/|_|                       
+
+-----------------------------------------------------------------
+
+EOF
+
+
 #--------------------------------#
 # import variables and functions #
 #--------------------------------#
@@ -14,69 +29,132 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-#----------------------#
-# prepare package list #
-#----------------------#
-cp custom_hypr.lst install_pkg.lst
+#--------------------------#
+# initialize default flags #
+#--------------------------#
+flg_Install=1
+flg_Restore=1
+flg_Service=1
 
-if [ -f "$1" ] && [ ! -z "$1" ] ; then
-    cat $1 >> install_pkg.lst
+
+#------------------#
+# evaluate options #
+#------------------#
+while getopts irs RunStep
+do
+    case $RunStep in
+    i) # "--// [I]nstalling hyprland without configs //--"
+        flg_Restore=0;;
+
+    r) # "--// [R]estoring config files //--"
+        flg_Install=0
+        flg_Service=0;;
+
+    s) # "--// starting [S]ystem services //--"
+        flg_Install=0
+        flg_Restore=0;;
+
+    *)  echo "...valid options are..."
+        echo "i : [I]nstall hyprland without configs"
+        echo "r : [R]estore config files"
+        echo "s : start [S]ystem services"   
+        exit 1 ;;
+    esac
+done
+
+
+#------------#
+# installing #
+#------------#
+if [ $flg_Install -eq 1 ] ; then
+cat << "EOF"
+
+ _         _       _ _ _         
+|_|___ ___| |_ ___| | |_|___ ___ 
+| |   |_ -|  _| .'| | | |   | . |
+|_|_|_|___|_| |__,|_|_|_|_|_|_  |
+                            |___|
+
+EOF
+
+    #----------------------#
+    # prepare package list #
+    #----------------------#
+    shift $((OPTIND -1))
+    cust_pkg=$1
+    cp custom_hypr.lst install_pkg.lst
+
+    if [ -f "$cust_pkg" ] && [ ! -z "$cust_pkg" ] ; then
+        cat $cust_pkg >> install_pkg.lst
+    fi
+
+    #--------------------------------#
+    # add nvidia drivers to the list #
+    #--------------------------------#
+    if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
+
+        cat /usr/lib/modules/*/pkgbase | while read krnl
+        do
+            echo "${krnl}-headers" >> install_pkg.lst
+        done
+
+        echo -e "nvidia-dkms\nnvidia-utils" >> install_pkg.lst
+        sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
+
+    else
+        echo "nvidia card not detected, skipping nvidia drivers..."
+    fi
+
+    #--------------------------------#
+    # install packages from the list #
+    #--------------------------------#
+    ./install_pkg.sh install_pkg.lst
+    rm install_pkg.lst
 fi
-
-
-#--------------------------------#
-# add nvidia drivers to the list #
-#--------------------------------#
-if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
-
-    cat /usr/lib/modules/*/pkgbase | while read krnl
-    do
-        echo "${krnl}-headers" >> install_pkg.lst
-    done
-
-    echo -e "nvidia-dkms\nnvidia-utils" >> install_pkg.lst
-    sed -i "s/^hyprland-git/hyprland-nvidia-git/g" install_pkg.lst
-
-else
-    echo "nvidia card not detected, skipping nvidia drivers..."
-fi
-
-
-#--------------------------------#
-# install packages from the list #
-#--------------------------------#
-./install_pkg.sh install_pkg.lst
-#./install_pkg.sh custom_app.lst
-#./install_fpk.sh
 
 
 #---------------------------#
 # restore my custom configs #
 #---------------------------#
-./restore_fnt.sh
-./restore_cfg.sh
-./restore_sgz.sh
-#./restore_app.sh
+if [ $flg_Restore -eq 1 ] ; then
+cat << "EOF"
+
+             _           _         
+ ___ ___ ___| |_ ___ ___|_|___ ___ 
+|  _| -_|_ -|  _| . |  _| |   | . |
+|_| |___|___|_| |___|_| |_|_|_|_  |
+                              |___|
+
+EOF
+
+    ./restore_fnt.sh
+    ./restore_cfg.sh
+fi
 
 
-#-----------------------------------------#
-# enable early loading for nvidia modules #
-#-----------------------------------------#
-#if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
-#    if [ `grep 'MODULES=' /etc/mkinitcpio.conf | grep nvidia | wc -l` -eq 0 ] ; then
-#        sudo sed -i "/MODULES=/ s/)$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm)/" /etc/mkinitcpio.conf
-#        sudo mkinitcpio -P
-#        if [ `grep 'options nvidia-drm modeset=1' /etc/modprobe.d/nvidia.conf | wc -l` -eq 0 ] ; then
-#            echo 'options nvidia-drm modeset=1' | sudo tee -a /etc/modprobe.d/nvidia.conf
-#        fi
-#    fi
-#fi
+#---------------------------#
+# update sddm, grub and zsh #
+#---------------------------#
+if [ $flg_Install -eq 1 ] && [ $flg_Restore -eq 1 ] ; then
+    ./restore_sgz.sh
+fi
 
 
 #------------------------#
 # enable system services #
 #------------------------#
-service_ctl NetworkManager
-service_ctl bluetooth
-service_ctl sddm
+if [ $flg_Service -eq 1 ] ; then
+cat << "EOF"
+
+                 _             
+ ___ ___ ___ _ _|_|___ ___ ___ 
+|_ -| -_|  _| | | |  _| -_|_ -|
+|___|___|_|  \_/|_|___|___|___|
+
+EOF
+
+    service_ctl NetworkManager
+    service_ctl bluetooth
+    service_ctl sddm
+fi
 
