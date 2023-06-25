@@ -23,7 +23,13 @@ if pkg_installed sddm
     if [ -f /usr/share/sddm/themes/corners/kde_settings.conf ] && [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ]
         then
         echo "configuring sddm..."
-        sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
+
+        if [ -f /etc/sddm.conf.d/kde_settings.conf ]
+        then
+            sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
+        fi
+
+        sudo touch /etc/sddm.conf.d/kde_settings.t2.bkp
         sudo mv /usr/share/sddm/themes/corners/kde_settings.conf /etc/sddm.conf.d/
     fi
 
