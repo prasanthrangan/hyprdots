@@ -16,7 +16,7 @@
 // positions generated based on config.ctl //
 
 	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/padd"],
-	"modules-center": ["custom/padd","wlr/workspaces","hyprland/window","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","wlr/workspaces","hyprland/window","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
@@ -144,7 +144,7 @@
 
     "custom/wallchange": {
         "format": "{}",
-        "exec": "~/.config/swww/swwwallpaper.sh -t",
+        "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "~/.config/swww/swwwallpaper.sh -n",
         "on-click-right": "~/.config/swww/swwwallpaper.sh -p",
         "interval" : 86400, // once every day
@@ -162,8 +162,8 @@
     },
 
     "custom/wbar": {
-        "format": "󰘤{}",
-        "exec": "echo ; echo 󰟡 switch menubar",
+        "format": "{}", //    //
+        "exec": "echo ; echo  switch menubar",
         "on-click": "~/.config/waybar/wbarconfgen.sh n",
         "on-click-right": "~/.config/waybar/wbarconfgen.sh p",
         "interval" : 86400,
@@ -171,8 +171,8 @@
     },
 
     "custom/cliphist": {
-        "format": "{}",
-        "exec": "~/.config/hypr/scripts/cliphist.sh t",
+        "format": "{}",
+        "exec": "echo ; echo 󰅇 clipboard history",
         "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
         "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",

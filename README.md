@@ -38,13 +38,13 @@ cd ~/Dots/Scripts
 
 > **Note**
 >
-> The main packages are sourced from `custom_hypr.lst`, but you can also create your own list (for ex. `custom_apps.lst`) with all your favorite apps and pass the file as a parameter to install it -
+> You can also create your own list (for ex. `custom_apps.lst`) with all your favorite apps and pass the file as a parameter to install it -
 >```shell
 >./install.sh custom_apps.lst
 >```
-> For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)   
 > Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 
+For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)
 
 ### Theming
 To add your own custom theme, please refer [theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/theming.md)

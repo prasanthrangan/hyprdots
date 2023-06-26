@@ -122,10 +122,8 @@ So you can create your preferred config by adding entries to this file as,
 ```shell
 ❯ cat ~/.config/waybar/config.ctl
 1|28|bottom|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|top|wlr/workspaces hyprland/window|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|top|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|bottom|wlr/workspaces hyprland/window|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|bottom|( clock )|wlr/workspaces hyprland/window|( tray ) ( network bluetooth pulseaudio custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|top|( wlr/workspaces hyprland/window )|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|28|bottom|( custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ) ( wlr/workspaces )|( clock )|( network bluetooth pulseaudio ) ( tray )
 ```
 where `|` is the delimiter and column,
 1. is `0` or `1`, where `1` indicates the current mode in use
@@ -181,7 +179,6 @@ The `swwwallpaper.sh` script is used to cycle through all the wallpapers in the 
 ❯ cd ~/.config/swww
 ❯ ./swwwallpaper.sh -n   # to set next wallpaper
 ❯ ./swwwallpaper.sh -p   # to set previous wallpaper
-❯ ./swwwallpaper.sh -t   # display tooltip
 ```
 > **Note**
 >
@@ -197,7 +194,6 @@ It loops through all the themes (column 2) listed in the control file `~/.config
 ❯ cd ~/.config/hypr/scripts
 ❯ ./themeswitch.sh -n   # to set next theme
 ❯ ./themeswitch.sh -p   # to set previous theme
-❯ ./themeswitch.sh -t   # display tooltip
 ❯ ./themeswitch.sh -s My-Fav-Theme   # to set My-Fav-Theme
 ```
 

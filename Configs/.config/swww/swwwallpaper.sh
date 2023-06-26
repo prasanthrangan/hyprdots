@@ -66,7 +66,7 @@ fi
 Wallist=(`dirname $getWall2`/*)
 
 ## evaluate options ##
-while getopts "npt" option ; do
+while getopts "np" option ; do
     case $option in
     n ) # set the next wallpaper
         xtrans="grow"
@@ -74,14 +74,9 @@ while getopts "npt" option ; do
     p ) # set the previous wallpaper
         xtrans="outer"
         Wall_Prev ;;
-    t ) # display tooltip
-        echo ""
-        echo "󰆊 Next/Previous Wallpaper"
-        exit 0 ;;
     * ) # invalid option
         echo "n : set next wall"
         echo "p : set previous wall"
-        echo "t : display tooltip"
         exit 1 ;;
     esac
 done

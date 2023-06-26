@@ -24,9 +24,9 @@ tooltip {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 7px;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    border-radius: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
     padding-left: 2px;
     padding-right: 2px;
     color: #4c4f69;
@@ -78,18 +78,6 @@ tooltip {
     margin: 3px 0px 3px 0px;
     padding-left: 4px;
     padding-right: 4px;
-}
-
-#workspaces {
-    border-radius: 10px 0px 0px 10px;
-    padding-left: 12px;
-    padding-right: 0px;
-}
-
-#window {
-    border-radius: 0px 10px 10px 0px;
-    padding-left: 0px;
-    padding-right: 12px;
 }
 
 #custom-r_end {

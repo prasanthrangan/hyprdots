@@ -10,14 +10,10 @@ case $1 in
             cliphist wipe
         fi
         ;;
-    t)  echo ""
-        echo "󰅇 clipboard history"
-        ;;
     *)  echo "cliphist.sh [action]"
         echo "c :  cliphist list and copy selected"
         echo "d :  cliphist list and delete selected"
         echo "w :  cliphist wipe database"
-        echo "t :  display tooltip"
         ;;
 esac
 

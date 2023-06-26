@@ -1,6 +1,6 @@
     "custom/cliphist": {
-        "format": "{}",
-        "exec": "~/.config/hypr/scripts/cliphist.sh t",
+        "format": "{}",
+        "exec": "echo ; echo 󰅇 clipboard history",
         "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
         //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
         "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",

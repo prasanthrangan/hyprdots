@@ -49,7 +49,7 @@ The install script can be executed in different modes,
 ./install.sh -i custom_apps.lst # minimal install custom_hypr.lst + custom_app.lst without configs
 ```
 
-- each [section](#process) can also be independently run as,
+- each [section](#process) can also be independently executed as,
 ```shell
 ./install.sh -i # minimal install hyprland without any configs
 ./install.sh -r # just restores the config files
