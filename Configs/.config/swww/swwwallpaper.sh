@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-## define functions ##
+## define functions
+
 Wall_Prev()
 {
     for (( i=0 ; i<${#Wallist[@]} ; i++ ))
@@ -34,15 +35,21 @@ Wall_Set()
         xtrans="grow"
     fi
 
+    if [ -z $xpos ] ; then
+        xpos="center"
+    fi
+
     swww img $BaseDir/wall.set \
     --transition-bezier .43,1.19,1,.4 \
     --transition-type $xtrans \
     --transition-duration 1 \
     --transition-fps 60 \
-    --transition-pos bottom-right
+    --transition-pos $xpos
 }
 
-## set variables ##
+
+## set variables
+
 BaseDir=`dirname $(realpath $0)`
 
 if [ `grep '^1|' $BaseDir/wall.ctl | wc -l` -ne 1 ] ; then
@@ -65,7 +72,9 @@ fi
 
 Wallist=(`dirname $getWall2`/*)
 
-## evaluate options ##
+
+## evaluate options
+
 while getopts "np" option ; do
     case $option in
     n ) # set the next wallpaper
@@ -81,13 +90,25 @@ while getopts "np" option ; do
     esac
 done
 
-## check swww daemon ##
+shift $((OPTIND -1))
+case $1 in
+    1 ) xpos="top-left" ;;
+    2 ) xpos="top-right" ;;
+    3 ) xpos="bottom-right" ;;
+    4 ) xpos="bottom-left" ;;
+esac
+
+
+## check swww daemon
+
 swww query
 if [ $? -eq 1 ] ; then
     swww init
 fi
 
-## set wallpaper ##
+
+## set wallpaper
+
 Wall_Set
 convert -scale 10% -blur 0x2 -resize 100% $BaseDir/wall.set $BaseDir/wall.blur
 

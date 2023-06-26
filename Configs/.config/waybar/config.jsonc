@@ -145,8 +145,8 @@
     "custom/wallchange": {
         "format": "{}",
         "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "~/.config/swww/swwwallpaper.sh -n",
-        "on-click-right": "~/.config/swww/swwwallpaper.sh -p",
+        "on-click": "~/.config/swww/swwwallpaper.sh -n 3",
+        "on-click-right": "~/.config/swww/swwwallpaper.sh -p 3",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -173,9 +173,9 @@
     "custom/cliphist": {
         "format": "{}",
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c 3",
         //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w 3",
         "interval" : 86400, // once every day
         "tooltip": true
     },

@@ -38,6 +38,13 @@ if [ $switch -eq 1 ] ; then
 fi
 
 
+# overwrite config from header module
+
+export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
+export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
+envsubst < $modules_dir/header.jsonc > $conf_file
+
+
 # module generator function
 
 gen_mod()
@@ -56,13 +63,6 @@ gen_mod()
 }
 
 
-# overwrite config from header module
-
-export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
-export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
-envsubst < $modules_dir/header.jsonc > $conf_file
-
-
 # write positions for modules
 
 echo -e "\n\n// positions generated based on config.ctl //\n" >> $conf_file
@@ -74,12 +74,19 @@ gen_mod right 6
 # copy modules/*.jsonc to the config
 
 echo -e "\n\n// sourced from modules based on config.ctl //\n" >> $conf_file
-
 echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk '!x[$0]++' | while read mod_list
 do
     mod_cpy=`echo $mod_list | awk -F '/' '{print $NF}'`
+
+    case ${w_position}-$(grep -E '"modules-left":|"modules-center":|"modules-right":' $conf_file | grep $mod_cpy | tail -1 | cut -d '"' -f 2 | cut -d '-' -f 2) in
+        top-left) export mod_pos=1;;
+        top-right) export mod_pos=2;;
+        bottom-right) export mod_pos=3;;
+        bottom-left) export mod_pos=4;;
+    esac
+
     if [ -f $modules_dir/$mod_cpy.jsonc ] ; then
-        cat $modules_dir/$mod_cpy.jsonc >> $conf_file
+        envsubst < $modules_dir/$mod_cpy.jsonc >> $conf_file
     fi
 done
 
