@@ -4,7 +4,10 @@
 #|-/ /--| Prasanth Rangan                   |-/ /--|#
 #|/ /---+-----------------------------------+/ /---|#
 
-source global_fn.sh
+BaseDir=`dirname $(realpath $0)`
+ScrDir=`dirname $(dirname $(realpath $0))`
+
+source $ScrDir/global_fn.sh
 if [ $? -ne 0 ] ; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
@@ -21,7 +24,7 @@ flats=""
 while read fpk
 do
     flats=`echo ${flats} ${fpk}`
-done < custom_flat.lst
+done < $BaseDir/custom_flat.lst
 
 flatpak install --user -y flathub ${flats}
 flatpak remove --unused

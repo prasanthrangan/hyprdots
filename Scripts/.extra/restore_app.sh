@@ -4,11 +4,16 @@
 #|-/ /--| Prasanth Rangan             |-/ /--|#
 #|/ /---+-----------------------------+/ /---|#
 
-source global_fn.sh
+ScrDir=`dirname $(dirname $(realpath $0))`
+
+source $ScrDir/global_fn.sh
 if [ $? -ne 0 ] ; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
 fi
+
+CloneDir=`dirname $(realpath $CloneDir)`
+
 
 # steam
 if pkg_installed steam
@@ -19,6 +24,7 @@ if pkg_installed steam
     fi
     tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
 fi
+
 
 # spotify
 if pkg_installed spotify && pkg_installed spicetify-cli
@@ -40,6 +46,7 @@ if pkg_installed spotify && pkg_installed spicetify-cli
     spicetify config color_scheme Cherry
     spicetify apply
 fi
+
 
 # firefox
 if pkg_installed firefox

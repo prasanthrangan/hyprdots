@@ -29,31 +29,19 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-#--------------------------#
-# initialize default flags #
-#--------------------------#
-flg_Install=1
-flg_Restore=1
-flg_Service=1
-
-
 #------------------#
 # evaluate options #
 #------------------#
+flg_Install=0
+flg_Restore=0
+flg_Service=0
+
 while getopts irs RunStep
 do
     case $RunStep in
-    i) # "--// [i]nstalling hyprland without configs //--"
-        flg_Restore=0;;
-
-    r) # "--// [r]estoring config files //--"
-        flg_Install=0
-        flg_Service=0;;
-
-    s) # "--// starting system [s]ervices //--"
-        flg_Install=0
-        flg_Restore=0;;
-
+    i) flg_Install=1 ;;
+    r) flg_Restore=1 ;;
+    s) flg_Service=1 ;;
     *)  echo "...valid options are..."
         echo "i : [i]nstall hyprland without configs"
         echo "r : [r]estore config files"
@@ -61,6 +49,12 @@ do
         exit 1 ;;
     esac
 done
+
+if [ $OPTIND -eq 1 ] ; then
+    flg_Install=1
+    flg_Restore=1
+    flg_Service=1
+fi
 
 
 #------------#
