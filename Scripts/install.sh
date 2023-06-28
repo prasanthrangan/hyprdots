@@ -36,10 +36,12 @@ flg_Install=0
 flg_Restore=0
 flg_Service=0
 
-while getopts irs RunStep
+while getopts idrs RunStep
 do
     case $RunStep in
     i) flg_Install=1 ;;
+    d) flg_Install=1
+        export use_default="--noconfirm" ;;
     r) flg_Restore=1 ;;
     s) flg_Service=1 ;;
     *)  echo "...valid options are..."

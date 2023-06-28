@@ -21,6 +21,7 @@ then
     rm -rf ~/Clone/yay
 else
     mkdir ~/Clone
+    echo -e "[Desktop Entry]\nIcon=default-folder-git" > ~/Clone/.directory
     echo "~/Clone directory created..."
 fi
 

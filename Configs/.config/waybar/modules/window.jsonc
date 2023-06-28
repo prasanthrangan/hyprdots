@@ -2,7 +2,7 @@
         "format": "  {}",
         "separate-outputs": true,
         "rewrite": {
-            "tittu@kryptonite:(.*)": "$1 ",
+            "${USER}@${set_sysname}:(.*)": "$1 ",
             "(.*) — Mozilla Firefox": "$1 󰈹",
             "(.*)Mozilla Firefox": "Firefox 󰈹",
             "(.*) - Visual Studio Code": "$1 󰨞",

@@ -127,15 +127,18 @@ So you can create your preferred config by adding entries to this file as,
 ```
 where `|` is the delimiter and column,
 1. is `0` or `1`, where `1` indicates the current mode in use
-2. is the height of the bar
+2. is the height of the bar, use `0` if you want use default height
 3. is postition of bar top/bottom
 4. is the left modules
 5. is the center modules
 6. is the right modules
 
+Here in col 4, 5 and 6 `(` and `)` can be used to group modules as a pill   
+
 > **Note**
 >
-> Each module in col 4,5 and 6 should be separated by space and corresponding module file should be created `~/.config/waybar/modules/<module>.jsonc>`. Here `(` and `)` can be used to group modules as a pill   
+> Each module in col 4, 5 and 6 should be separated by space and corresponding module file `~/.config/waybar/modules/<module>.jsonc` should be created.   
+> If the module name has `/`, then only use the last field after `/` as file name, ex. `custom/mode` should have corresponding `~/.config/waybar/modules/mode.jsonc` file.   
 
 
 ### Kitty

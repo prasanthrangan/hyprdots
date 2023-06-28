@@ -19,7 +19,7 @@ if pkg_installed sddm
         sudo mkdir -p /etc/sddm.conf.d
     fi
 
-    if [ -f /usr/share/sddm/themes/corners/kde_settings.conf ] && [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ] ; then
+    if [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ] ; then
         echo "configuring sddm..."
         sudo touch /etc/sddm.conf.d/kde_settings.conf
         sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
@@ -75,7 +75,7 @@ if pkg_installed zsh
     then
 
     if [ "$SHELL" != "/usr/bin/zsh" ] ; then
-        echo "configuring shell..."
+        echo "changing shell to zsh..."
         chsh -s $(which zsh)
     fi
 

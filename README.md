@@ -5,13 +5,13 @@
        / \         _       _  _                  _     _      
       /^  \      _| |_    | || |_  _ _ __ _ _ __| |___| |_ ___
      /  _  \    |_   _|   | __ | || | '_ \ '_/ _` / _ \  _(_-<
-    /  : : ~\     |_|     |_||_|\_, | .__/_| \__,_\___/\__/__/
+    /  | | ~\     |_|     |_||_|\_, | .__/_| \__,_\___/\__/__/
    /.-'   '-.\                  |__/|_|                       
 
 ```
 
 
-## My Arch Hyprland Config Files
+## My Arch Hyprland Config
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
@@ -42,9 +42,10 @@ cd ~/Dots/Scripts
 >```shell
 >./install.sh custom_apps.lst
 >```
-> Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 
+Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.   
 For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)
+
 
 ### Theming
 To add your own custom theme, please refer [theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/theming.md)
@@ -56,7 +57,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [ ] Rosé-Pine
     - [ ] Cloudy-Sakura
 
-| --// Catppuccin-Mocha //-- | --// Catppuccin-Latte //-- | --// Decay-Green //-- |
+| Catppuccin-Mocha | Catppuccin-Latte | Decay-Green |
 | :-: | :-: | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png) |
@@ -197,8 +198,9 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Update rofi configs
 - [x] Clipboard manager in waybar
 - [x] Add options to install script (ver2)
-- [ ] Update Volume control script/notification (ver2)
+- [x] Dynamic waybar config generator script
 - [ ] Add battery and brightness indicator/notification for laptop users
+- [ ] Update Volume control script/notification (ver2)
 - [ ] Media control for waybar? (maybe later)
 - [ ] Replace waybar with Eww? (maybe later)
 

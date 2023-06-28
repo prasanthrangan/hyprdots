@@ -40,6 +40,7 @@ fi
 
 # overwrite config from header module
 
+export set_sysname=`hostnamectl hostname`
 export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
 export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 envsubst < $modules_dir/header.jsonc > $conf_file

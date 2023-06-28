@@ -20,6 +20,10 @@ The install script has 3 main sections
         - use `pacman` to install package if its available in official arch repo
         - use `yay` to install package if its available in AUR
 
+- [d]efault
+    - exactly same as install, but with `--noconfirm` option
+    - will use default install option to bypass the user input
+
 - [r]estore
     - uncompress `tar.gz` files from `Source/arcs/` to the target location specified in `restore_fnt.lst`
     - copy dot files from `Configs` directory to corresponding target location specified in `restore_cfg.lst` for installed packages
@@ -52,7 +56,9 @@ The install script can be executed in different modes,
 - each [section](#process) can also be independently executed as,
 ```shell
 ./install.sh -i # minimal install hyprland without any configs
+./install.sh -d # minimal install hyprland without any configs and bypass user input
 ./install.sh -r # just restores the config files
 ./install.sh -s # start and enable system services
+./install.sh -drs # same as ./install.sh, but without user input
 ```
 
