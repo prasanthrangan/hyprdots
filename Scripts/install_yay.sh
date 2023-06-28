@@ -34,7 +34,7 @@ else
 fi
 
 cd ~/Clone/yay
-makepkg -si
+makepkg ${use_default} -si
 
 if [ $? -eq 0 ]
 then
