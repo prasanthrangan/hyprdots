@@ -15,13 +15,11 @@ fi
 if pkg_installed sddm
     then
 
-    if [ ! -d /etc/sddm.conf.d ]
-        then
+    if [ ! -d /etc/sddm.conf.d ] ; then
         sudo mkdir -p /etc/sddm.conf.d
     fi
 
-    if [ -f /usr/share/sddm/themes/corners/kde_settings.conf ] && [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ]
-        then
+    if [ -f /usr/share/sddm/themes/corners/kde_settings.conf ] && [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ] ; then
         echo "configuring sddm..."
         sudo touch /etc/sddm.conf.d/kde_settings.conf
         sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
@@ -61,12 +59,22 @@ else
 fi
 
 
+# dolphin
+if pkg_installed dolphin && pkg_installed xdg-utils
+    then
+    xdg-mime default org.kde.dolphin.desktop inode/directory
+    echo "setting" `xdg-mime query default "inode/directory"` "as default file explorer..."
+
+else
+    echo "WARNING: dolphin is not installed..."
+fi
+
+
 # zsh
 if pkg_installed zsh
     then
 
-    if [ "$SHELL" != "/usr/bin/zsh" ]
-        then
+    if [ "$SHELL" != "/usr/bin/zsh" ] ; then
         echo "configuring shell..."
         chsh -s $(which zsh)
     fi
