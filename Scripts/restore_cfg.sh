@@ -20,7 +20,7 @@ else
     mkdir -p $BkpDir
 fi
 
-while read lst
+cat restore_cfg.lst | while read lst
 do
 
     pth=`echo $lst | awk -F '|' '{print $1}'`
@@ -60,7 +60,7 @@ do
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
-done < restore_cfg.lst
+done
 
 ./restore_lnk.sh
 

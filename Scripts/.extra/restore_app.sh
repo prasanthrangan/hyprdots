@@ -29,7 +29,7 @@ fi
 # spotify
 if pkg_installed spotify && pkg_installed spicetify-cli
     then
-    spotify &
+    spotify &> /dev/null &
     sleep 2
     killall spotify
 
@@ -51,7 +51,7 @@ fi
 # firefox
 if pkg_installed firefox
     then
-    firefox &
+    firefox &> /dev/null &
     sleep 3
     killall firefox
 

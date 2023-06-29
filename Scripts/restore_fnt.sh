@@ -1,6 +1,6 @@
 #!/bin/bash
 #|---/ /+----------------------------------+---/ /|#
-#|--/ /-| Script to install fonts & themes |--/ /-|#
+#|--/ /-| Script to extract fonts & themes |--/ /-|#
 #|-/ /--| Prasanth Rangan                  |-/ /--|#
 #|/ /---+----------------------------------+/ /---|#
 
@@ -10,7 +10,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-while read lst
+cat restore_fnt.lst | while read lst
 do
 
     fnt=`echo $lst | awk -F '|' '{print $1}'`
@@ -26,7 +26,7 @@ do
     sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
     echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
 
-done < restore_fnt.lst
+done
 
 echo "rebuilding font cache..."
 fc-cache -f

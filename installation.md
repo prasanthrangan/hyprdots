@@ -22,15 +22,39 @@ The install script has 3 main sections
 
 - [d]efault
     - exactly same as install, but with `--noconfirm` option
-    - will use default install option to bypass the user input
+    - will skip user input and use default option(s) to install, but prompts sudo password when required
 
 - [r]estore
-    - uncompress `tar.gz` files from `Source/arcs/` to the target location specified in `restore_fnt.lst`
-    - copy dot files from `Configs` directory to corresponding target location specified in `restore_cfg.lst` for installed packages
+    - uncompress `tar.gz` files from `Source/arcs/` to the target location specified in [restore_fnt.lst](#restoring-archives)
+    - backup existing config files to `$HOME/.config/cfg_YYMMDD_HHhMMmSSs` directory.
+    - copy dot files from `Configs` directory to corresponding target location specified in [restore_cfg.lst](#restoring-configs) for installed packages
     - fix/update all the symlinks used
 
 - [s]ervice
     - enable and start system services like sddm and bluetooth
+
+
+### Restoring Archives
+
+Archive (tar.gz) files are restored/extracted based on `restore_fnt.lst`, a `|` delimited control file structured as,
+```shell
+<archive_name>|<target_path>
+```
+where column,
+1. is a compressed tar.gz file named `<archive_name>.tar.gz`, should be located in `Source/arcs/<archive_name>.tar.gz`
+2. is the target location to extract
+
+
+### Restoring Configs
+
+Config/dot files are restored based on `restore_cfg.lst`, a `|` delimited control file structured as,
+```shell
+<target_path>|<dir_or_file_name1> <dir_or_file_name2>|<package_name1> <package_name2>
+```
+where column,
+1. is the target location to copy
+2. is the file or directory list separated by space to copy from `Configs/` directory. Here all files in `Configs/` should follow the same structure as its target directory (col 1).
+3. is the package(s) names separated by space to check dependency, so if the package(s) is not installed it will not copy its corresponding config file(s)
 
 
 ## Flow
@@ -56,9 +80,9 @@ The install script can be executed in different modes,
 - each [section](#process) can also be independently executed as,
 ```shell
 ./install.sh -i # minimal install hyprland without any configs
-./install.sh -d # minimal install hyprland without any configs and bypass user input
+./install.sh -d # minimal install hyprland without any configs, but with (--noconfirm) install
 ./install.sh -r # just restores the config files
 ./install.sh -s # start and enable system services
-./install.sh -drs # same as ./install.sh, but without user input
+./install.sh -drs # same as ./install.sh, but with (--noconfirm) install
 ```
 
