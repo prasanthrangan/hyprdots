@@ -29,14 +29,14 @@ tooltip {
     margin-bottom: 2px;
     padding-left: 2px;
     padding-right: 2px;
-    color: #93cee9;
+    color: #1f2328;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
-    background: #90ceaa;
-    color: #1f2328;
+    background: #1f2328;
+    color: #93cee9;
     margin-left: 2px;
     padding-left: 10px;
     padding-right: 10px;
@@ -46,8 +46,8 @@ tooltip {
 }
 
 #workspaces button:hover {
-    background: #90ceaa;
-    color: #1f2328;
+    background: #1f2328;
+    color: #93cee9;
     padding-left: 2px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -73,42 +73,35 @@ tooltip {
 #custom-sl_end,
 #custom-sr_end,
 #tray {
-    color: #93cee9;
-    background: #1f2328;
+    color: #1f2328;
+    background: #93cee9;
     opacity: 1;
     padding: 0px;
     margin: 3px 0px 3px 0px;
     padding-left: 4px;
     padding-right: 4px;
-    border-width: 1px 0px 1px 0px;
-    border-style: solid;
-    border-color: #1f2328;
 }
 
 #custom-r_end {
     border-radius: 0px 10px 10px 0px;
     margin-right: 6px;
     padding-right: 0px;
-    border-width: 1px 1px 1px 0px;
 }
 
 #custom-l_end {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 0px;
-    border-width: 1px 0px 1px 1px;
 }
 
 #custom-sr_end {
     border-radius: 0px;
     margin-right: 6px;
     padding-right: 0px;
-    border-width: 1px 1px 1px 0px;
 }
 
 #custom-sl_end {
     border-radius: 0px;
     margin-left: 6px;
     padding-left: 0px;
-    border-width: 1px 0px 1px 1px;
 }

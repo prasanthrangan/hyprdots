@@ -31,3 +31,4 @@ r_override="window {border-radius: ${wind_border}px;} element {border-radius: ${
 
 rofi -show $r_mode -theme-str "${r_override}" -config "${rofi_conf}"
 
+

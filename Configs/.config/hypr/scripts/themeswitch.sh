@@ -107,9 +107,6 @@ hyprctl reload
 
 
 ### waybar
-ln -fs $ConfDir/waybar/themes/${ThemeSet}.css $ConfDir/waybar/style.css
 sleep 1
-#killall -SIGUSR2 waybar
-killall waybar
-waybar > /dev/null 2>&1 &
+$ConfDir/waybar/wbarstylegen.sh
 

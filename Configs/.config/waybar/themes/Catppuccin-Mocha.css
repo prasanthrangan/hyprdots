@@ -80,35 +80,28 @@ tooltip {
     margin: 3px 0px 3px 0px;
     padding-left: 4px;
     padding-right: 4px;
-    border-width: 1px 0px 1px 0px;
-    border-style: solid;
-    border-color: #11111b;
 }
 
 #custom-r_end {
     border-radius: 0px 10px 10px 0px;
     margin-right: 6px;
     padding-right: 0px;
-    border-width: 1px 1px 1px 0px;
 }
 
 #custom-l_end {
     border-radius: 10px 0px 0px 10px;
     margin-left: 6px;
     padding-left: 0px;
-    border-width: 1px 0px 1px 1px;
 }
 
 #custom-sr_end {
     border-radius: 0px;
     margin-right: 6px;
     padding-right: 0px;
-    border-width: 1px 1px 1px 0px;
 }
 
 #custom-sl_end {
     border-radius: 0px;
     margin-left: 6px;
     padding-left: 0px;
-    border-width: 1px 0px 1px 1px;
 }
