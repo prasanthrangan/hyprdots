@@ -27,8 +27,14 @@ elem_border=`[ $hypr_border -eq 0 ] && echo "10" || echo $(( hypr_border * 2 ))`
 r_override="window {border-radius: ${wind_border}px;} element {border-radius: ${elem_border}px;}"
 
 
+# read hypr font size
+
+fnt_size=`awk '{if($6=="font-name") print $NF}' $theme_file | sed "s/'//g"`
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_size}\";}"
+
+
 # launch rofi
 
-rofi -show $r_mode -theme-str "${r_override}" -config "${rofi_conf}"
+rofi -show $r_mode -theme-str "${fnt_override}" -theme-str "${r_override}" -config "${rofi_conf}"
 
 

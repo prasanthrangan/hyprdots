@@ -30,14 +30,20 @@ elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
 r_override="window {border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 
+# read hypr font size
+
+fnt_size=`awk '{if($6=="monospace-font-name") print $NF}' $theme_file | sed "s/'//g"`
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_size}\";}"
+
+
 # clipboard action
 
 case $1 in
-    c)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos} ${r_override}" -config $roconf | cliphist decode | wl-copy
+    c)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist decode | wl-copy
         ;; 
-    d)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos} ${r_override}" -config $roconf | cliphist delete
+    d)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist delete
         ;;
-    w)  if [ `echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";} ${pos} ${r_override}" -config $roconf` == "Yes" ] ; then
+    w)  if [ `echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf` == "Yes" ] ; then
             cliphist wipe
         fi
         ;;

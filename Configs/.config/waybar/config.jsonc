@@ -165,6 +165,7 @@
         "exec": "echo ; echo  switch menubar",
         "on-click": "~/.config/waybar/wbarconfgen.sh n",
         "on-click-right": "~/.config/waybar/wbarconfgen.sh p",
+        "on-click-middle": "~/.config/waybar/wbarstylegen.sh",
         "interval" : 86400,
         "tooltip": true
     },
