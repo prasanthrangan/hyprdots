@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
+
+theme_file="$HOME/.config/hypr/themes/theme.conf"
 roconf="~/.config/rofi/clipboard.rasi"
 
+
 # set position
+
 case $2 in
     1)  # top left
         pos="window {location: north west; anchor: north west; x-offset: 20px; y-offset: 20px;}"
@@ -17,13 +21,23 @@ case $2 in
         ;;
 esac
 
+
+# read hypr theme border
+
+hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $theme_file | sed 's/ //g'`
+wind_border=$(( hypr_border * 3/2 ))
+elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
+r_override="window {border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
+
+
 # clipboard action
+
 case $1 in
-    c)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos}" -config $roconf | cliphist decode | wl-copy
+    c)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos} ${r_override}" -config $roconf | cliphist decode | wl-copy
         ;; 
-    d)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos}" -config $roconf | cliphist delete
+    d)  cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos} ${r_override}" -config $roconf | cliphist delete
         ;;
-    w)  if [ `echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";} ${pos}" -config $roconf` == "Yes" ] ; then
+    w)  if [ `echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";} ${pos} ${r_override}" -config $roconf` == "Yes" ] ; then
             cliphist wipe
         fi
         ;;

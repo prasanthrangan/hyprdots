@@ -202,6 +202,18 @@
         "tooltip": false
     },
 
+    "custom/sl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/sr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
     "custom/padd": {
         "format": "  ",
         "interval" : "once",
