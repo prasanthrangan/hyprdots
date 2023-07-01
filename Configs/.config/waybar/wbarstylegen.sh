@@ -11,7 +11,8 @@ out_file="$HOME/.config/waybar/style.css"
 
 # override waybar fonts
 
-fnt_size=`awk '{if($6=="font-name") print $NF}' $src_file | sed "s/'//g"`
+#fnt_size=`awk '{if($6=="font-name") print $NF}' $src_file | sed "s/'//g"`
+fnt_size=`gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}'`
 sed "/font-size: /c\    font-size: ${fnt_size}px;" $in_file > $out_file
 
 

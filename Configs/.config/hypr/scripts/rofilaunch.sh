@@ -29,12 +29,19 @@ r_override="window {border-radius: ${wind_border}px;} element {border-radius: ${
 
 # read hypr font size
 
-fnt_size=`awk '{if($6=="font-name") print $NF}' $theme_file | sed "s/'//g"`
-fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_size}\";}"
+#fnt_size=`awk '{if($6=="font-name") print $NF}' $theme_file | sed "s/'//g"`
+fnt_override=`gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}'`
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
+
+
+# read hypr theme icon
+
+icon_override=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
+icon_override="configuration {icon-theme: \"${icon_override}\";}"
 
 
 # launch rofi
 
-rofi -show $r_mode -theme-str "${fnt_override}" -theme-str "${r_override}" -config "${rofi_conf}"
+rofi -show $r_mode -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${rofi_conf}"
 
 

@@ -32,8 +32,9 @@ r_override="window {border-radius: ${wind_border}px;} entry {border-radius: ${el
 
 # read hypr font size
 
-fnt_size=`awk '{if($6=="monospace-font-name") print $NF}' $theme_file | sed "s/'//g"`
-fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_size}\";}"
+#fnt_size=`awk '{if($6=="monospace-font-name") print $NF}' $theme_file | sed "s/'//g"`
+fnt_override=`gsettings get org.gnome.desktop.interface monospace-font-name | awk '{gsub(/'\''/,""); print $NF}'`
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
 
 
 # clipboard action

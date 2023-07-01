@@ -103,13 +103,24 @@ The global theme settings are configured in `~/.config/hypr/themes/My-Fav-Theme.
 - kavantum theme
 - fonts (gtk)
 
+> **Note**
+>
+> [rofi](#rofi) and [waybar](#waybar-style) configuration adapts to the font, icon and rounding values set in `~/.config/hypr/themes/My-Fav-Theme.conf`   
+
 
 ### Waybar
 
-Copy the corresponding config file from any existing theme and modify the color codes in file `~/.config/waybar/themes/My-Fav-Theme.css`   
-Please keep all the colors consistent with the corresponding GTK and QT theme.   
+#### Waybar Style
+Copy the corresponding config file from any existing theme and modify the color codes in file `~/.config/waybar/themes/My-Fav-Theme.css`. Please keep all the colors consistent with the corresponding GTK and QT theme.   
+This style will be refreshed by `wbarstylegen.sh` script when you change the theme. It adapts to the border and font size set in `~/.config/hypr/themes/My-Fav-Theme.conf`   
 
+> **Note**
+>
+> if the rounding value is 0 in hyprland theme, it will override the rounded corners set in waybar style
+
+#### Waybar Config
 the waybar config can also be dynamically changed/cycled by `wbarconfgen.sh` script.   
+
 ```shell
 ❯ cd ~/.config/waybar
 ❯ ./wbarconfgen.sh n   # to set next mode
@@ -122,7 +133,7 @@ So you can create your preferred config by adding entries to this file as,
 ```shell
 ❯ cat ~/.config/waybar/config.ctl
 1|28|bottom|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|top|( wlr/workspaces hyprland/window )|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|0|top|( wlr/workspaces hyprland/window )|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
 0|28|bottom|[ custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ] [ wlr/workspaces ]|[ clock ]|[ network bluetooth pulseaudio ] [ tray ]
 ```
 where `|` is the delimiter and column,
