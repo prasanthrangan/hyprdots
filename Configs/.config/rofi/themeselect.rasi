@@ -88,6 +88,7 @@ element selected.active {
 element-icon {
     size:                        450px;
     cursor:                      inherit;
+    border-radius:               35px;
     background-color:            transparent;
     text-color:                  inherit;
 }
