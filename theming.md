@@ -134,11 +134,11 @@ So you can create your preferred config by adding entries to this file as,
 ❯ cat ~/.config/waybar/config.ctl
 1|28|bottom|( cpu memory ) ( clock )|wlr/workspaces hyprland/window|( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
 0|0|top|( wlr/workspaces hyprland/window )|( clock )|( cpu memory ) ( network bluetooth pulseaudio custom/updates ) ( tray ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|28|bottom|[ custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ] [ wlr/workspaces ]|[ clock ]|[ network bluetooth pulseaudio ] [ tray ]
+0||bottom|[ custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ] [ wlr/workspaces ]|[ clock ]|[ network bluetooth pulseaudio ] [ tray ]
 ```
 where `|` is the delimiter and column,
 1. is `0` or `1`, where `1` indicates the current mode in use
-2. is the height of the bar, use `0` if you want use default minimum height
+2. is to set height of the bar (use `0` for default min height or `<blank>` to auto-scale for 3% of monitor res)
 3. is postition of bar top/bottom
 4. is the left modules
 5. is the center modules
