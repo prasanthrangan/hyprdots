@@ -54,6 +54,9 @@ if [ $i_size -lt 12 ] ; then
     export i_size="12"
 fi
 
+export i_theme=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
+export i_task=$(( w_height*60/100 ))
+
 envsubst < $modules_dir/header.jsonc > $conf_file
 
 

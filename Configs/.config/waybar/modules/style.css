@@ -56,11 +56,46 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    padding: 0px;
+    border-radius: ${w_radius}px;
+    margin-top: ${w_margin}px;
+    margin-bottom: ${w_margin}px;
+    padding-left: ${w_paddin}px;
+    padding-right: ${w_paddin}px;
+    color: @wb-color;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button.active {
+    background: @wb-act-bg;
+    color: @wb-act-color;
+    margin-left: ${w_margin}px;
+    padding-left: ${w_padact}px;
+    padding-right: ${w_padact}px;
+    margin-right: ${w_margin}px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    background: @wb-hvr-bg;
+    color: @wb-hvr-color;
+    padding-left: ${w_paddin}px;
+    padding-right: ${w_paddin}px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
 #cpu,
 #memory,
 #clock,
 #workspaces,
 #window,
+#taskbar,
 #network,
 #bluetooth,
 #pulseaudio,
@@ -82,6 +117,10 @@ tooltip {
     margin: ${g_margin}px 0px ${g_margin}px 0px;
     padding-left: ${g_paddin}px;
     padding-right: ${g_paddin}px;
+}
+
+#taskbar {
+    padding: 0px;
 }
 
 #custom-r_end {
