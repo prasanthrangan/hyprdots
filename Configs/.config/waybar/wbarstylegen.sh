@@ -20,16 +20,22 @@ if [ -z $b_height ] || [ "$b_height" == "0" ]; then
 fi
 
 
-# calculate values sbased on height and generate theme style
+# calculate values based on height and generate theme style
 
-export b_radius=$(( b_height*40/100 ))
-export w_radius=$(( b_height*30/100 ))
-export e_margin=$(( b_height*30/100 ))
-export g_paddin=$(( b_height*15/100 ))
-export g_margin=$(( g_paddin*90/100 ))
-export w_paddin=$(( g_margin*90/100 ))
-export w_margin=$(( g_margin*90/100 ))
-export w_padact=$(( b_height*40/100 ))
+export b_radius=$(( b_height*70/100 ))   # block rad 90% of height
+export e_margin=$(( b_height*30/100 ))   # block margin 30% of height
+export e_paddin=$(( b_height*10/100 ))   # block padding 10% of height
+export g_margin=$(( b_height*14/100 ))   # module margin 14% of height
+export g_paddin=$(( b_height*15/100 ))   # module padding 15% of height
+export w_radius=$(( b_height*30/100 ))   # workspace rad 30% of height
+export w_margin=$(( b_height*10/100 ))   # workspace margin 10% of height
+export w_paddin=$(( b_height*10/100 ))   # workspace padding 10% of height
+export w_padact=$(( b_height*40/100 ))   # workspace active padding 40% of height
+
+if [ $e_paddin -le 2 ] ; then
+    export e_paddin=0
+fi
+
 envsubst < $in_file > $out_file
 
 

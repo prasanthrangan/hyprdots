@@ -16,7 +16,7 @@ window#waybar {
 tooltip {
     background: @tool-bg;
     color: @tool-color;
-    border-radius: 11px;
+    border-radius: 19px;
     border-width: 1px;
     border-style: solid;
     border-color: @tool-border;
@@ -79,20 +79,19 @@ tooltip {
     color: @main-color;
     background: @main-bg;
     opacity: 1;
-    padding: 0px;
     margin: 3px 0px 3px 0px;
     padding-left: 4px;
     padding-right: 4px;
 }
 
 #custom-r_end {
-    border-radius: 0px 11px 11px 0px;
+    border-radius: 0px 19px 19px 0px;
     margin-right: 8px;
     padding-right: 0px;
 }
 
 #custom-l_end {
-    border-radius: 11px 0px 0px 11px;
+    border-radius: 19px 0px 0px 19px;
     margin-left: 8px;
     padding-left: 0px;
 }

@@ -79,7 +79,6 @@ tooltip {
     color: @main-color;
     background: @main-bg;
     opacity: 1;
-    padding: 0px;
     margin: ${g_margin}px 0px ${g_margin}px 0px;
     padding-left: ${g_paddin}px;
     padding-right: ${g_paddin}px;
@@ -88,23 +87,23 @@ tooltip {
 #custom-r_end {
     border-radius: 0px ${b_radius}px ${b_radius}px 0px;
     margin-right: ${e_margin}px;
-    padding-right: 0px;
+    padding-right: ${e_paddin}px;
 }
 
 #custom-l_end {
     border-radius: ${b_radius}px 0px 0px ${b_radius}px;
     margin-left: ${e_margin}px;
-    padding-left: 0px;
+    padding-left: ${e_paddin}px;
 }
 
 #custom-sr_end {
     border-radius: 0px;
     margin-right: ${e_margin}px;
-    padding-right: 0px;
+    padding-right: ${e_paddin}px;
 }
 
 #custom-sl_end {
     border-radius: 0px;
     margin-left: ${e_margin}px;
-    padding-left: 0px;
+    padding-left: ${e_paddin}px;
 }
