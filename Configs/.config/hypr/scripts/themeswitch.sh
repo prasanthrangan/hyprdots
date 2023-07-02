@@ -108,10 +108,10 @@ hyprctl reload
 
 
 # refresh thumbnails
-$BaseDir/themeselect.sh T
+$BaseDir/themeselect.sh T &
 
 
 # waybar
-sleep 0.1
-$ConfDir/waybar/wbarstylegen.sh
+$ConfDir/waybar/wbarconfgen.sh
+
 

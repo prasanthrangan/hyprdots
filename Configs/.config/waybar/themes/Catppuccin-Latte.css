@@ -1,107 +1,16 @@
-* {
-    border: none;
-    border-radius: 0px;
-    font-family: "JetBrainsMono Nerd Font";
-    font-weight: bold;
-    font-size: 10px;
-    min-height: 0px;
-}
+@define-color bar-bg rgba(0, 0, 0, 0);
 
-window#waybar {
-    background: rgba(0, 0, 0, 0);
-}
+@define-color main-color #4c4f69;
+@define-color main-bg #9ca0b0;
 
-tooltip {
-    background: #9ca0b0;
-    color: #4c4f69;
-    border-radius: 10px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccd0da;
-}
+@define-color tool-bg #9ca0b0;
+@define-color tool-color #4c4f69;
+@define-color tool-border #ccd0da;
 
-#workspaces button {
-    box-shadow: none;
-	text-shadow: none;
-    padding: 0px;
-    border-radius: 8px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: #4c4f69;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-}
+@define-color wb-color #4c4f69;
 
-#workspaces button.active {
-    background: #5c5f77;
-    color: #dce0e8;
-    margin-left: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
+@define-color wb-act-bg #5c5f77;
+@define-color wb-act-color #dce0e8;
 
-#workspaces button:hover {
-    background: #dc8a78;
-    color: #dce0e8;
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#cpu,
-#memory,
-#clock,
-#workspaces,
-#window,
-#network,
-#bluetooth,
-#pulseaudio,
-#custom-updates,
-#custom-wallchange,
-#custom-mode,
-#custom-cliphist,
-#custom-power,
-#custom-wbar,
-#custom-l_end,
-#custom-r_end,
-#custom-sl_end,
-#custom-sr_end,
-#tray {
-    color: #4c4f69;
-    background: #9ca0b0;
-    opacity: 1;
-    padding: 0px;
-    margin: 3px 0px 3px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#custom-r_end {
-    border-radius: 0px 10px 10px 0px;
-    margin-right: 6px;
-    padding-right: 0px;
-}
-
-#custom-l_end {
-    border-radius: 10px 0px 0px 10px;
-    margin-left: 6px;
-    padding-left: 0px;
-}
-
-#custom-sr_end {
-    border-radius: 0px;
-    margin-right: 6px;
-    padding-right: 0px;
-}
-
-#custom-sl_end {
-    border-radius: 0px;
-    margin-left: 6px;
-    padding-left: 0px;
-}
+@define-color wb-hvr-bg #dc8a78;
+@define-color wb-hvr-color #dce0e8;

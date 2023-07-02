@@ -107,8 +107,8 @@ done
 cat $modules_dir/footer.jsonc >> $conf_file
 
 
-# restart waybar
+# generate style and restart waybar
 
-killall waybar
-waybar > /dev/null 2>&1 &
+$waybar_dir/wbarstylegen.sh
+
 

@@ -3,11 +3,11 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 10px;
+    font-size: initial;
     min-height: 10px;
 }
 
-@import "themes/Catppuccin-Mocha.css";
+@import "themes/${cur_theme}.css";
 
 window#waybar {
     background: @bar-bg;
@@ -16,7 +16,7 @@ window#waybar {
 tooltip {
     background: @tool-bg;
     color: @tool-color;
-    border-radius: 11px;
+    border-radius: ${b_radius}px;
     border-width: 1px;
     border-style: solid;
     border-color: @tool-border;
@@ -26,11 +26,11 @@ tooltip {
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
-    border-radius: 8px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    border-radius: ${w_radius}px;
+    margin-top: ${w_margin}px;
+    margin-bottom: ${w_margin}px;
+    padding-left: ${w_paddin}px;
+    padding-right: ${w_paddin}px;
     color: @wb-color;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
@@ -39,10 +39,10 @@ tooltip {
 #workspaces button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
-    margin-left: 2px;
-    padding-left: 11px;
-    padding-right: 11px;
-    margin-right: 2px;
+    margin-left: ${w_margin}px;
+    padding-left: ${w_padact}px;
+    padding-right: ${w_padact}px;
+    margin-right: ${w_margin}px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -50,8 +50,8 @@ tooltip {
 #workspaces button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-color;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: ${w_paddin}px;
+    padding-right: ${w_paddin}px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -80,31 +80,31 @@ tooltip {
     background: @main-bg;
     opacity: 1;
     padding: 0px;
-    margin: 3px 0px 3px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+    margin: ${g_margin}px 0px ${g_margin}px 0px;
+    padding-left: ${g_paddin}px;
+    padding-right: ${g_paddin}px;
 }
 
 #custom-r_end {
-    border-radius: 0px 11px 11px 0px;
-    margin-right: 8px;
+    border-radius: 0px ${b_radius}px ${b_radius}px 0px;
+    margin-right: ${e_margin}px;
     padding-right: 0px;
 }
 
 #custom-l_end {
-    border-radius: 11px 0px 0px 11px;
-    margin-left: 8px;
+    border-radius: ${b_radius}px 0px 0px ${b_radius}px;
+    margin-left: ${e_margin}px;
     padding-left: 0px;
 }
 
 #custom-sr_end {
     border-radius: 0px;
-    margin-right: 8px;
+    margin-right: ${e_margin}px;
     padding-right: 0px;
 }
 
 #custom-sl_end {
     border-radius: 0px;
-    margin-left: 8px;
+    margin-left: ${e_margin}px;
     padding-left: 0px;
 }
