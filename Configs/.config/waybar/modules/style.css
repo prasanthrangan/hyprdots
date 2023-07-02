@@ -119,6 +119,8 @@ tooltip {
     padding-right: ${g_paddin}px;
 }
 
+#workspaces,
+#window,
 #taskbar {
     padding: 0px;
 }

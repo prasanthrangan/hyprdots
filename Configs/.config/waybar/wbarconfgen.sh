@@ -49,13 +49,16 @@ if [ -z $w_height ] ; then
     export w_height=$(( y_monres * 3 / 100 ))
 fi
 
-export i_size=$(( ((w_height + 2)) * 5 / 10 ))
+export i_size=$(( w_height*6/10 ))
 if [ $i_size -lt 12 ] ; then
     export i_size="12"
 fi
 
 export i_theme=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
-export i_task=$(( w_height*60/100 ))
+export i_task=$(( w_height*6/10 ))
+if [ $i_task -lt 16 ] ; then
+    export i_task="16"
+fi
 
 envsubst < $modules_dir/header.jsonc > $conf_file
 

@@ -6,7 +6,7 @@
     "layer": "top",
     "position": "bottom",
     "mod": "dock",
-    "height": 28,
+    "height": 29,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -14,7 +14,7 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","wlr/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
@@ -43,9 +43,27 @@
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+    },
+
 	"wlr/taskbar": {
 		"format": "{icon}",
-		"icon-size": 16,
+		"icon-size": 17,
 		"icon-theme": "Tela-circle-dracula",
         "spacing": 0,
 		"tooltip-format": "{title}",
@@ -120,7 +138,7 @@
     },
 
     "tray": {
-        "icon-size": 15,
+        "icon-size": 17,
         "spacing": 5
     },
 
