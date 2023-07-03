@@ -46,7 +46,7 @@ export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
 if [ -z $w_height ] ; then
     y_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
-    export w_height=$(( y_monres * 3 / 100 ))
+    export w_height=$(( y_monres*2/100 ))
 fi
 
 export i_size=$(( w_height*6/10 ))
