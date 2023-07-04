@@ -54,7 +54,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Catppuccin-Latte
     - [x] Decay-Green
     - [x] Rosé-Pine
-    - [ ] Tokyo-Night
+    - [x] Tokyo-Night
     - [ ] Cloudy-Sakura
 
 | Catppuccin-Mocha | Catppuccin-Latte |
