@@ -53,14 +53,19 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Catppuccin-Mocha
     - [x] Catppuccin-Latte
     - [x] Decay-Green
+    - [x] Rosé-Pine
     - [ ] Tokyo-Night
-    - [ ] Rosé-Pine
     - [ ] Cloudy-Sakura
 
-| Catppuccin-Mocha | Catppuccin-Latte | Decay-Green |
-| :-: | :-: | :-: |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png) |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png) |
+| Catppuccin-Mocha | Catppuccin-Latte |
+| :-: | :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png) |
+
+| Decay-Green | Rosé-Pine |
+| :-: | :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_roseine_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_roseine_2.png) |
 
 
 <details>

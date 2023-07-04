@@ -10,6 +10,8 @@ Gtk_CatppuccinLatte|/usr/share/themes
 Gtk_CatppuccinLatte|$HOME/.themes
 Gtk_DecayGreen|/usr/share/themes
 Gtk_DecayGreen|$HOME/.themes
+Gtk_RosePine|/usr/share/themes
+Gtk_RosePine|$HOME/.themes
 Icon_TelaBlack|/usr/share/icons
 Icon_TelaBlack|$HOME/.icons
 Icon_TelaDracula|/usr/share/icons
@@ -18,6 +20,10 @@ Icon_TelaGreen|/usr/share/icons
 Icon_TelaGreen|$HOME/.icons
 Icon_TelaGrey|/usr/share/icons
 Icon_TelaGrey|$HOME/.icons
+Icon_TelaPink|/usr/share/icons
+Icon_TelaPink|$HOME/.icons
+Icon_TelaPurple|/usr/share/icons
+Icon_TelaPurple|$HOME/.icons
 Cursor_BibataIce|/usr/share/icons
 Cursor_BibataIce|$HOME/.icons
 Grub_Pochita|/usr/share/grub/themes
