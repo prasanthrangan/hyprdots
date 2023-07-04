@@ -162,7 +162,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | Key 1 | Key 2 | Key 3 | Action |
 | :-:   | :-:   | :-:   | ---    |
 | `Super` | `Q` | | Quit active/focused window
-| `Super` | `del` | | quit Hyprland session
+| `Super` | `del` | | quit hyprland session
 | `Super` | `W` | | toggle Window on focus to float
 | `Alt` | `enter` | | toggle window on focus to fullscreen
 | `Super` | `G` | | disable hypr effects for Gamemode
@@ -204,9 +204,9 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Clipboard manager in waybar
 - [x] Add options to install script (ver2)
 - [x] Dynamic waybar config generator script
+- [x] Media control mpris module for waybar
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Update Volume control script/notification (ver2)
-- [ ] Media control for waybar? (maybe later)
 - [ ] Replace waybar with Eww? (maybe later)
 
 </details>
