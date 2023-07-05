@@ -1,7 +1,7 @@
-@define-color bar-bg rgba(0, 0, 0, 0);
+@define-color bar-bg rgba(31, 35, 40, 0.95);
 
 @define-color main-color #93cee9;
-@define-color main-bg #1f2328;
+@define-color main-bg #101419;
 
 @define-color tool-bg #cbced3;
 @define-color tool-color #1f2328;
