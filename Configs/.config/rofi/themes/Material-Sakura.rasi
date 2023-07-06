@@ -1,0 +1,29 @@
+// Global //
+* {
+	foreground:                  #b4637aff;    // main text
+	normal-foreground:           @foreground;
+
+	selected-normal-foreground:  #fffaf3ff;    // selected text
+	selected-normal-background:  #d7827eff;    // selected bg
+
+	selected-active-foreground:  #f4ede8ff;    // selected text overlap
+	selected-active-background:  #907aa9cc;    // selected overlap bg
+
+	active-foreground:           #f4ede8cc;    // aselected text alt
+	active-background:           #56949fcc;    // selected alt bg
+
+	background:                  #faf4ede6;    // main background tint
+	normal-background:           @background;
+	urgent-background:           #ea9d34cc;    // button text
+
+	alternate-normal-background: #9893a5ff;    // border color
+
+	separatorcolor:              transparent;
+	border-color:                transparent;
+	border-radius:               0px;
+	border:                      0px;
+	spacing:                     0px;
+	padding:                     0px;
+	height:                      55%;
+	width:                       45%;
+}

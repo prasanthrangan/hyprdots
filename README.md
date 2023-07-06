@@ -55,7 +55,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Decay-Green
     - [x] Rosé-Pine
     - [x] Tokyo-Night
-    - [ ] Cloudy-Sakura
+    - [ ] Material-Sakura
 
 | Catppuccin-Mocha |
 | :-: |
