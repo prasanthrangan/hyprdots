@@ -55,7 +55,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Decay-Green
     - [x] Rosé-Pine
     - [x] Tokyo-Night
-    - [ ] Material-Sakura
+    - [x] Material-Sakura
 
 | Catppuccin-Mocha |
 | :-: |
@@ -81,6 +81,11 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_2.png) |
+
+| Material-Sakura |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_2.png) |
 
 
 <details>
