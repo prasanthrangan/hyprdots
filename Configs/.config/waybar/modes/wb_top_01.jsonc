@@ -8,7 +8,7 @@
     "gtk-layer-shell": true,
     "modules-left": ["custom/l_end","wlr/workspaces","hyprland/window","custom/r_end"],
     "modules-center": ["custom/l_end","clock","custom/r_end"],
-    "modules-right": ["custom/l_end","cpu","memory","custom/r_end",
+    "modules-right": ["custom/l_end","cpu","memory","battery","custom/r_end",
         "custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end",
         "custom/l_end","tray","custom/r_end",
         "custom/l_end","custom/wallchange","custom/mode","custom/wbar", "custom/cliphist","custom/power","custom/r_end"],
