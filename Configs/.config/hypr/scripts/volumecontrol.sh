@@ -25,7 +25,26 @@ function notify_vol
         dunstify -i $ico "Volume: ${vol}%" -a "$sink" -u low -r 91190 -t 800
     fi
 }
+#muted mic function
+function toggle_mic_mute {
+    # Get the name of the microphone source
+    mic_source=$(pamixer --list-sources | grep -v '^Sources:$' | grep -v 'Monitor of ' | head -n 1 | awk '{print $1}')
 
+    # Toggle mute for the microphone source
+    pamixer --source "$mic_source" --toggle-mute
+
+    # Check the new mute state
+    is_muted=$(pamixer --source "$mic_source" --get-mute)
+
+    # Send notification using Dunst
+      if [ "$is_muted" == "true" ]; then
+    dunstify -i "~/.config/dunst/mic/muted-mic.svg" -a "Notify" -u low -h string:x-dunst-stack-tag:$tagMute \
+    "Microphone Muted" -r 91191 -t 800
+    else
+    dunstify -i "~/.config/dunst/mic/unmuted-mic.svg" -a "Notify" -u low -h string:x-dunst-stack-tag:$tagMute \
+    "Microphone Unmuted" -r 91191 -t 800
+    fi
+}
 case $1 in
     i) pamixer -i 5
         notify_vol
@@ -35,6 +54,9 @@ case $1 in
     ;;
     m) pamixer -t
         notify_vol
+    ;;
+    mutemic)
+        toggle_mic_mute
     ;;
     *) echo "volumecontrol.sh [action]"
         echo "i -- increase volume [+5]"
