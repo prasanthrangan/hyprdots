@@ -56,6 +56,8 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Rosé-Pine
     - [x] Tokyo-Night
     - [x] Material-Sakura
+    - [ ] Gruvbox-Retro (maybe later)
+    - [ ] Black-n-White (maybe later)
 
 | Catppuccin-Mocha |
 | :-: |
@@ -225,8 +227,9 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Add options to install script (ver2)
 - [x] Dynamic waybar config generator script
 - [x] Media control mpris module for waybar
+- [x] Update Volume control script/notification (ver2)
+- [ ] fix rofi configs/scripts for dynamic scaling
 - [ ] Add battery and brightness indicator/notification for laptop users
-- [ ] Update Volume control script/notification (ver2)
 - [ ] Replace waybar with Eww? (maybe later)
 
 </details>

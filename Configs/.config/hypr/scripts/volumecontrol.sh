@@ -1,66 +1,76 @@
 #!/usr/bin/env sh
 
-tagVol="notifyvol"
+
+# define functions
+
+function print_error
+{
+cat << "EOF"
+    ./volumecontrol.sh -[device] <action>
+    ...valid device are...
+        i -- [i]nput decive
+        o -- [o]utput device
+    ...valid actions are...
+        i -- <i>ncrease volume [+5]
+        d -- <d>ecrease volume [-5]
+        m -- <m>ute [x]
+EOF
+exit 1
+}
 
 function notify_vol
 {
-    vol=`pamixer --get-volume | cat`
-    #bar=$(seq -s "─" $(($vol / 5)) | sed 's/[0-9]//g')
-    #dunstify "${vol}%" "$bar" -a "Volume" -r 91190
-
-    sink=`pamixer --get-default-sink | tail -1 | rev | cut -d '"' -f -2 | rev | sed 's/"//'`
-    mute=`pamixer --get-mute | cat`
-
+    vol=`pamixer $srce --get-volume | cat`
     angle="$(( (($vol+2)/5) * 5 ))"
-    ico="~/.config/dunst/iconvol/vol-${angle}.svg"
+    ico="${icodir}/vol-${angle}.svg"
+    bar=$(seq -s "." $(($vol / 15)) | sed 's/[0-9]//g')
+    dunstify $ncolor "volctl" -a "$vol$bar" "$nsink" -i $ico -r 91190 -t 800
+}
 
-    if [ "$mute" == true ] ; then
-        dunstify "Muted" -i $ico -a "$sink" -u low -r 91190 -t 800
-
-    elif [ $vol -ne 0 ] ; then
-        dunstify -i $ico -a "$sink" -u low -h string:x-dunst-stack-tag:$tagVol \
-        -h int:value:"$vol" "Volume: ${vol}%" -r 91190 -t 800
-
+function notify_mute
+{
+    mute=`pamixer $srce --get-mute | cat`
+    if [ "$mute" == "true" ] ; then
+        dunstify $ncolor "volctl" -a "muted" "$nsink" -i ${icodir}/muted-${dvce}.svg -r 91190 -t 800
     else
-        dunstify -i $ico "Volume: ${vol}%" -a "$sink" -u low -r 91190 -t 800
+        dunstify $ncolor "volctl" -a "unmuted" "$nsink" -i ${icodir}/unmuted-${dvce}.svg -r 91190 -t 800
     fi
 }
-#muted mic function
-function toggle_mic_mute {
-    # Get the name of the microphone source
-    mic_source=$(pamixer --list-sources | grep -v '^Sources:$' | grep -v 'Monitor of ' | head -n 1 | awk '{print $1}')
 
-    # Toggle mute for the microphone source
-    pamixer --source "$mic_source" --toggle-mute
 
-    # Check the new mute state
-    is_muted=$(pamixer --source "$mic_source" --get-mute)
+# set device source
 
-    # Send notification using Dunst
-      if [ "$is_muted" == "true" ]; then
-    dunstify -i "~/.config/dunst/mic/muted-mic.svg" -a "Notify" -u low -h string:x-dunst-stack-tag:$tagMute \
-    "Microphone Muted" -r 91191 -t 800
-    else
-    dunstify -i "~/.config/dunst/mic/unmuted-mic.svg" -a "Notify" -u low -h string:x-dunst-stack-tag:$tagMute \
-    "Microphone Unmuted" -r 91191 -t 800
-    fi
-}
+while getopts io SetSrc
+do
+    case $SetSrc in
+    i) nsink=$(pamixer --list-sources | grep "alsa_input." | head -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
+        srce="--default-source"
+        dvce="mic" ;;
+    o) nsink=$(pamixer --get-default-sink | grep "alsa_output." | awk -F '" "' '{print $NF}' | sed 's/"//')
+        srce=""
+        dvce="speaker" ;;
+    esac
+done
+
+if [ $OPTIND -eq 1 ] ; then
+    print_error
+fi
+
+
+# set device action
+
+shift $((OPTIND -1))
+step="${2:-5}"
+icodir="~/.config/dunst/icons/vol"
+ncolor="-h string:bgcolor:#343d46 -h string:fgcolor:#c0c5ce -h string:frcolor:#c0c5ce"
+
 case $1 in
-    i) pamixer -i 5
-        notify_vol
-    ;;
-    d) pamixer -d 5
-        notify_vol
-    ;;
-    m) pamixer -t
-        notify_vol
-    ;;
-    mutemic)
-        toggle_mic_mute
-    ;;
-    *) echo "volumecontrol.sh [action]"
-        echo "i -- increase volume [+5]"
-        echo "d -- decrease volume [-5]"
-        echo "m -- mute [x]"
-    ;;
+    i) pamixer $srce -i ${step}
+        notify_vol ;;
+    d) pamixer $srce -d ${step}
+        notify_vol ;;
+    m) pamixer $srce -t
+        notify_mute ;;
+    *) print_error ;;
 esac
+

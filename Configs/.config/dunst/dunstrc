@@ -24,7 +24,7 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 0
+    width = 300
 
     # The maximum height of a single notification, excluding the frame.
     height = 300
@@ -36,7 +36,7 @@
     offset = 20x20
 
     # Scale factor. It is auto-detected if value is 0.
-    scale = 1
+    scale = 0
 
     # Maximum number of notification (0 means no limit)
     notification_limit = 20
@@ -92,7 +92,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 3
 
     # Defines color of the frame around the notification window.
     #frame_color = "#eba0ac"
@@ -203,7 +203,7 @@
     # Set icon theme (only used for recursive icon lookup)
     #icon_theme = Adwaita
     # You can also set multiple icon themes, with the leftmost one being used first.
-    # icon_theme = "Adwaita, breeze"
+    icon_theme = "Tela-circle-black"
 
     # Align icons left/right/top/off
     icon_position = left
@@ -462,3 +462,8 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+[volume-control]
+    summary = "volctl"
+    format = "<span size="250%">%a</span>\n%b"
+
