@@ -202,6 +202,8 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` | `backspace` | | logout menu
 | `Super` | `P` | | screenshot snip
 | `Super` | `Alt` | `P` | print current screen and save to ~/Apps/grim/
+|`Super`| `RightClick` | |Resize the window 
+|`Super`| `LeftClick` | |Change the window position
 
 </details>
 
