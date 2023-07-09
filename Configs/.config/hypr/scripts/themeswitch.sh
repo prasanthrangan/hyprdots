@@ -82,6 +82,10 @@ if [ $? -ne 0 ] ; then
 fi
 
 
+# vs code
+sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${ThemeSet}\"," $ConfDir/Code/User/settings.json
+
+
 # kitty
 ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
 killall -SIGUSR1 kitty
@@ -111,7 +115,11 @@ hyprctl reload
 $BaseDir/themeselect.sh T &
 
 
+# send notification
+ncolor="-h string:bgcolor:#343d46 -h string:fgcolor:#c0c5ce -h string:frcolor:#c0c5ce"
+dunstify $ncolor "theme" -a "    ${ThemeSet}" -i "~/.config/dunst/icons/paint.svg" -r 91190 -t 2200
+
+
 # waybar
 $ConfDir/waybar/wbarconfgen.sh
-
 

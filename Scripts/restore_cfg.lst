@@ -1,4 +1,5 @@
 ${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git zsh-syntax-highlighting-git zsh-autosuggestions-git pokemon-colorscripts-git
+${HOME}/.config/Code|User|visual-studio-code-bin
 ${HOME}/.config|dunst|dunst
 ${HOME}/.config|hypr|hyprland
 ${HOME}/.config|kitty|kitty

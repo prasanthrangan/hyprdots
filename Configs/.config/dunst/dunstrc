@@ -203,7 +203,7 @@
     # Set icon theme (only used for recursive icon lookup)
     #icon_theme = Adwaita
     # You can also set multiple icon themes, with the leftmost one being used first.
-    icon_theme = "Tela-circle-black"
+    icon_theme = "Tela-circle-dracula"
 
     # Align icons left/right/top/off
     icon_position = left
@@ -217,7 +217,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only neccesary when not using recursive icon lookup)
-    #icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Tela-circle-dracula/16/actions:/usr/share/icons/Tela-circle-dracula/16/apps:/usr/share/icons/Tela-circle-dracula/16/devices:/usr/share/icons/Tela-circle-dracula/16/mimetypes:/usr/share/icons/Tela-circle-dracula/16/panel:/usr/share/icons/Tela-circle-dracula/16/places:/usr/share/icons/Tela-circle-dracula/16/status
 
     ### History ###
 
@@ -466,4 +466,8 @@
 [volume-control]
     summary = "volctl"
     format = "<span size="250%">%a</span>\n%b"
+
+[theme-switch]
+    summary = "theme"
+    format = "<b>%a</b>"
 

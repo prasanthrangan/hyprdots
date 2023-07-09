@@ -30,5 +30,6 @@ Icon_TelaPurple|/usr/share/icons
 Icon_TelaPurple|$HOME/.icons
 Cursor_BibataIce|/usr/share/icons
 Cursor_BibataIce|$HOME/.icons
+Code_Extensions|$HOME/.vscode
 Grub_Pochita|/usr/share/grub/themes
 Sddm_Corners|/usr/share/sddm/themes
