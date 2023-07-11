@@ -9,7 +9,7 @@ Wall_Prev()
         if [ ${Wallist[i]} == ${getWall2} ] ; then
             ws=${Wallist[i-1]/$HOME/"~"}
             sed -i "s+${getWall1}+${ws}+" $BaseDir/wall.ctl
-            ln -fs ${Wallist[i-1]} $BaseDir/wall.set
+            ln -fsT ${Wallist[i-1]} $BaseDir/wall.set
             break
         fi
     done
@@ -23,7 +23,7 @@ Wall_Next()
             nextIndex=$(( (i + 1) % ${#Wallist[@]} ))
             ws=${Wallist[nextIndex]/$HOME/"~"}
             sed -i "s+${getWall1}+${ws}+" $BaseDir/wall.ctl
-            ln -fs ${Wallist[nextIndex]} $BaseDir/wall.set
+            ln -fsT ${Wallist[nextIndex]} $BaseDir/wall.set
             break
         fi
     done

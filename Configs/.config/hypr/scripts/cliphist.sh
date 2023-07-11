@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 theme_file="$HOME/.config/hypr/themes/theme.conf"
 roconf="~/.config/rofi/clipboard.rasi"

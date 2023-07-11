@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 theme_file="$HOME/.config/hypr/themes/theme.conf"
 rofi_conf="~/.config/rofi/config.rasi"
