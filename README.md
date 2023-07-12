@@ -195,15 +195,24 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` | `A` | | launch desktop Applications (rofi)
 | `Super` | `tab` | | switch open applications (rofi)
 | `Super` | `R` | | browse system files (rofi)
-| `F10` | | | mute audio output
-| `F11` | | | decrease volume
-| `F12` | | | increase volume
+| `F10` | | | mute audio output (toggle)
+| `F11` | | | decrease volume (hold)
+| `F12` | | | increase volume (hold)
 | `Super` | `L` | | lock screen
 | `Super` | `backspace` | | logout menu
 | `Super` | `P` | | screenshot snip
 | `Super` | `Alt` | `P` | print current screen and save to ~/Apps/grim/
-|`Super`| `RightClick` | |Resize the window 
-|`Super`| `LeftClick` | |Change the window position
+| `Super` | `RightClick` | | resize the window 
+| `Super` | `LeftClick` | | change the window position
+| `Super` | `MouseScroll` | | cycle through workspaces
+| `Super` | `shift` | `arrow keys` | resize windows (hold)
+| `Super` | `[0-9]` | | switch to workspace [0-9]
+| `Super` | `shift` | `[0-9]` | move active window to workspace [0-9]
+| `Super` | `Alt` | `right` | next wallpaper
+| `Super` | `Alt` | `left` | previous wallpaper
+| `Super` | `Alt` | `up` | next waybar mode
+| `Super` | `Alt` | `down` | previous waybar mode
+| `Super` | `shift` | `T` | theme select menu
 
 </details>
 
@@ -230,7 +239,8 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Dynamic waybar config generator script
 - [x] Media control mpris module for waybar
 - [x] Update Volume control script/notification (ver2)
-- [ ] fix rofi configs/scripts for dynamic scaling
+- [ ] Fix rofi configs/scripts for dynamic scaling
+- [ ] Rofi config change script + add new config
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Replace waybar with Eww? (maybe later)
 
