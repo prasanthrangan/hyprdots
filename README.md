@@ -115,6 +115,7 @@ network-manager-applet | nm tray
 bluez | for bluetooth
 bluez-utils | for bluetooth
 blueman | bt tray
+brightnessctl | brightness control for laptop
 
 | login | |
 | --- | --- |
@@ -133,6 +134,7 @@ rofi-lbonn-wayland-git | app launcher
 waybar-hyprland-git | status bar
 swww | wallpaper app
 swaylock-effects-git | lockscreen
+swayidle | idle management daemon
 wlogout | logout screen
 grim | screenshot tool
 slurp | selects region for screenshot/screenshare
