@@ -10,6 +10,7 @@ network-manager-applet
 bluez
 bluez-utils
 blueman
+brightnessctl
 sddm-git
 qt5-wayland
 qt6-wayland
@@ -22,6 +23,7 @@ rofi-lbonn-wayland-git
 waybar-hyprland-git
 swww
 swaylock-effects-git
+swayidle
 wlogout
 grim
 slurp
@@ -51,4 +53,3 @@ zsh-theme-powerlevel10k-git
 zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
-brightnessctl
