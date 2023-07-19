@@ -43,10 +43,10 @@ function notify_mute
 while getopts io SetSrc
 do
     case $SetSrc in
-    i) nsink=$(pamixer --list-sources | grep "alsa_input." | head -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
+    i) nsink=$(pamixer --list-sources | grep "_input." | head -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
         srce="--default-source"
         dvce="mic" ;;
-    o) nsink=$(pamixer --get-default-sink | grep "alsa_output." | awk -F '" "' '{print $NF}' | sed 's/"//')
+    o) nsink=$(pamixer --get-default-sink | grep "_output." | awk -F '" "' '{print $NF}' | sed 's/"//')
         srce=""
         dvce="speaker" ;;
     esac
