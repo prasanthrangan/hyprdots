@@ -243,6 +243,8 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Update Volume control script/notification (ver2)
 - [ ] Fix rofi configs/scripts for dynamic scaling
 - [ ] Rofi config change script + add new config
+- [ ] Make wlogout configs dynamic and sync with theme
+- [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Replace waybar with Eww? (maybe later)
 

@@ -144,7 +144,7 @@ where `|` is the delimiter and column,
 5. is the center modules
 6. is the right modules
 
-Here in col 4, 5 and 6 use `(` and `)` to group modules as a pill or `[` and `]` to group it as a box   
+Here in col 4, 5 and 6 use `(` and `)` to group modules as a pill or `{` and `}` to group it as a rounded box or `[` and `]` to group it as a box   
 
 > **Note**
 >

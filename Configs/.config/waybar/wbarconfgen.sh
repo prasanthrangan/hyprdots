@@ -76,6 +76,8 @@ gen_mod()
     mod="${mod//)/"custom/r_end"}"
     mod="${mod//[/"custom/sl_end"}"
     mod="${mod//]/"custom/sr_end"}"
+    mod="${mod//\{/"custom/rl_end"}"
+    mod="${mod//\}/"custom/rr_end"}"
     mod="${mod// /"\",\""}"
 
     echo -e "\t\"modules-${pos}\": [\"custom/padd\",\"${mod}\",\"custom/padd\"]," >> $conf_file
@@ -98,7 +100,7 @@ echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk '!x[$0]++' | while read mo
 do
     mod_cpy=`echo $mod_list | awk -F '/' '{print $NF}'`
 
-    case ${w_position}-$(grep -E '"modules-left":|"modules-center":|"modules-right":' $conf_file | grep $mod_cpy | tail -1 | cut -d '"' -f 2 | cut -d '-' -f 2) in
+    case ${w_position}-$(grep -E '"modules-left":|"modules-center":|"modules-right":' $conf_file | grep "$mod_cpy" | tail -1 | cut -d '"' -f 2 | cut -d '-' -f 2) in
         top-left) export mod_pos=1;;
         top-right) export mod_pos=2;;
         bottom-right) export mod_pos=3;;

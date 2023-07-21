@@ -3,7 +3,7 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: initial;
+    font-size: ${s_fontpx}px;
     min-height: 10px;
 }
 
@@ -111,6 +111,8 @@ tooltip {
 #custom-r_end,
 #custom-sl_end,
 #custom-sr_end,
+#custom-rl_end,
+#custom-rr_end,
 #tray {
     color: @main-color;
     background: @main-bg;
@@ -145,6 +147,18 @@ tooltip {
 
 #custom-sl_end {
     border-radius: 0px;
+    margin-left: ${e_margin}px;
+    padding-left: ${e_paddin}px;
+}
+
+#custom-rr_end {
+    border-radius: 0px ${c_radius}px ${c_radius}px 0px;
+    margin-right: ${e_margin}px;
+    padding-right: ${e_paddin}px;
+}
+
+#custom-rl_end {
+    border-radius: ${c_radius}px 0px 0px ${c_radius}px;
     margin-left: ${e_margin}px;
     padding-left: ${e_paddin}px;
 }

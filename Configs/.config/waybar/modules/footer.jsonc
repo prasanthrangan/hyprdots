@@ -25,6 +25,18 @@
         "tooltip": false
     },
 
+    "custom/rl_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
+    "custom/rr_end": {
+        "format": " ",
+        "interval" : "once",
+        "tooltip": false
+    },
+
     "custom/padd": {
         "format": "  ",
         "interval" : "once",
