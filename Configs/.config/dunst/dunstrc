@@ -467,6 +467,10 @@
     summary = "volctl"
     format = "<span size="250%">%a</span>\n%b"
 
+[brightness-control]
+    summary = "brightctl"
+    format = "<span size="250%">%a</span>\n%b"
+
 [theme-switch]
     summary = "theme"
     format = "<b>%a</b>"
