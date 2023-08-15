@@ -91,6 +91,19 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 
 
 <details>
+<summary><h4>Rofi</h4></summary>
+
+| launchers |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_1.png) | 
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_3.png) | 
+
+</details>
+
+
+<details>
 <summary><h4>Packages</h4></summary>
 
 | nvidia | |
@@ -219,7 +232,7 @@ pokemon-colorscripts-git | display pokemon sprites
 
 </details>
 
-1
+
 <details>
 <summary><h4>Playlist</h4></summary>
 
