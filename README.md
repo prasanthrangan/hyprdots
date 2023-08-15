@@ -215,10 +215,11 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` | `Alt` | `up` | next waybar mode
 | `Super` | `Alt` | `down` | previous waybar mode
 | `Super` | `shift` | `T` | theme select menu
+| `Super` | `shift` | `A` | rofi style select menu
 
 </details>
 
-
+1
 <details>
 <summary><h4>Playlist</h4></summary>
 
