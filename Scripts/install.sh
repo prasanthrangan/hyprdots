@@ -87,7 +87,7 @@ EOF
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
-    if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ] ; then
+    if nvidia_detect ; then
 
         cat /usr/lib/modules/*/pkgbase | while read krnl
         do

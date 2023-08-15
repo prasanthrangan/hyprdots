@@ -40,7 +40,7 @@ if pkg_installed grub
         echo "configuring grub..."
         sudo cp /etc/default/grub /etc/default/grub.t2.bkp
 
-        if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ]
+        if nvidia_detect
             then
             sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/c\GRUB_CMDLINE_LINUX_DEFAULT=\"loglevel=3 quiet splash nvidia_drm.modeset=1\"" /etc/default/grub
         fi
