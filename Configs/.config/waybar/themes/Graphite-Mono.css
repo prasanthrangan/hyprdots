@@ -1,0 +1,16 @@
+@define-color bar-bg rgba(38,38,38,1);
+
+@define-color main-color #d9d9d9;
+@define-color main-bg #262626;
+
+@define-color tool-bg #595959;
+@define-color tool-color #a6a6a6;
+@define-color tool-border #d9d9d9;
+
+@define-color wb-color #d9d9d9;
+
+@define-color wb-act-bg #d9d9d9;
+@define-color wb-act-color #262626;
+
+@define-color wb-hvr-bg #a6a6a6;
+@define-color wb-hvr-color #262626;

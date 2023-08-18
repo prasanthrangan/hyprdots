@@ -56,8 +56,10 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Rosé-Pine
     - [x] Tokyo-Night
     - [x] Material-Sakura
+    - [x] Graphite-Mono
     - [ ] Gruvbox-Retro (maybe later)
-    - [ ] Black-n-White (maybe later)
+    - [ ] Nordic-Blue (maybe later)
+
 
 | Catppuccin-Mocha |
 | :-: |
@@ -88,6 +90,11 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_2.png) |
+
+| Graphite-Mono |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_2.png) |
 
 
 ### Rofi
@@ -254,8 +261,8 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Dynamic waybar config generator script
 - [x] Media control mpris module for waybar
 - [x] Update Volume control script/notification (ver2)
+- [x] Rofi config change script + add new configs
 - [ ] Fix rofi configs/scripts for dynamic scaling
-- [ ] Rofi config change script + add new config
 - [ ] Make wlogout configs dynamic and sync with theme
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users

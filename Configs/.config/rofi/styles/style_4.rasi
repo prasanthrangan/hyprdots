@@ -36,7 +36,7 @@ mainbox {
     orientation:                 horizontal;
     children:                    [ "inputbar" , "mode-switcher" , "listbox" ];
     background-color:            transparent;
-	background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.config/swww/wall.blur", height);
 }
 
 
@@ -69,8 +69,8 @@ button {
     text-color:                  @foreground;
 }
 button selected {
-    background-color:            @background;
-    text-color:                  @urgent-background;
+    background-color:            @foreground;
+    text-color:                  @background;
 }
 
 
@@ -78,8 +78,8 @@ button selected {
 listbox {
     spacing:                     5px;
     padding:                     10px;
-	children:                    [ "listview" ];
-	background-color:            transparent;
+    children:                    [ "listview" ];
+    background-color:            transparent;
 }
 listview {
     padding:                     20px;
@@ -93,7 +93,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
-	background-color:            @background;
+    background-color:            @background;
     text-color:                  @foreground;
     border-radius:               30px;
 }

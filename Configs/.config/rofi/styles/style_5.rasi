@@ -60,7 +60,7 @@ listbox {
     background-color:            transparent;
 }
 listview {
-    padding:                     20px;
+    padding:                     30px;
     spacing:                     10px;
     enabled:                     true;
     columns:                     5;
@@ -134,7 +134,7 @@ element selected.active {
     text-color:                  @selected-active-foreground;
 }
 element-icon {
-    size:                        100px;
+    size:                        90px;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;

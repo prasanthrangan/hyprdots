@@ -52,7 +52,7 @@ listbox {
     spacing:                     5px;
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "listview" ];
-	background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.config/swww/wall.blur", height);
 }
 listview {
     padding:                     20px;
@@ -75,8 +75,8 @@ mode-switcher {
     orientation:                 vertical;
     width:                       100px;
     enabled:                     true;
-    padding:                     5px;
-    spacing:                     40px;
+    padding:                     60px 10px 60px 10px;
+    spacing:                     15px;
     background-color:            transparent;
 }
 button {
@@ -84,8 +84,6 @@ button {
     border-radius:               50px;
     background-color:            @background;
     text-color:                  @foreground;
-    border:                      0px;
-    border-color:                @alternate-normal-background;
 }
 button selected {
     background-color:            @foreground;
