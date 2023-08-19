@@ -31,8 +31,8 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 After minimal Arch install (with grub), clone and execute -
 ```shell
 pacman -Sy git
-git clone https://github.com/prasanthrangan/hyprdots ~/Dots
-cd ~/Dots/Scripts
+git clone https://github.com/prasanthrangan/hyprdots ~/Hyprdots
+cd ~/Dots/Hyprdots
 ./install.sh
 ```
 
@@ -113,7 +113,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 <summary><h4>Packages</h4></summary>
 
 | nvidia | |
-| --- | --- |
+| :-- | --- |
 linux-headers | for main kernel (script will auto detect from /usr/lib/modules/)
 linux-zen-headers | for zen kernel (script will auto detect from /usr/lib/modules/)
 linux-lts-headers | for lts kernel (script will auto detect from /usr/lib/modules/)
@@ -121,7 +121,7 @@ nvidia-dkms | nvidia drivers (script will auto detect from lspci -k | grep -A 2 
 nvidia-utils | nvidia drivers (script will auto detect from lspci -k | grep -A 2 -E "(VGA|3D)")
 
 | tools | |
-| --- | --- |
+| :-- | --- |
 pipewire | audio and video server
 pipewire-alsa | for audio
 pipewire-audio | for audio
@@ -137,7 +137,7 @@ blueman | bt tray
 brightnessctl | brightness control for laptop
 
 | login | |
-| --- | --- |
+| :-- | --- |
 sddm-git | display manager for login
 qt5-wayland | for QT wayland XDP
 qt6-wayland | for QT wayland XDP
@@ -146,7 +146,7 @@ qt5-quickcontrols2 | for sddm theme
 qt5-graphicaleffects | for sddm theme
 
 | hypr | |
-| --- | --- |
+| :-- | --- |
 hyprland-git | main window manager (script will change this to hyprland-nvidia-git if nvidia card is detected)
 dunst | graphical notification daemon
 rofi-lbonn-wayland-git | app launcher
@@ -161,7 +161,7 @@ swappy | screenshot editor
 cliphist | clipboard manager
 
 | dependencies | |
-| --- | --- |
+| :-- | --- |
 polkit-kde-agent | authentication agent
 xdg-desktop-portal-hyprland-git | XDG Desktop Portal
 xdg-desktop-portal-gtk | XDG Desktop Portal file picker
@@ -171,13 +171,13 @@ pavucontrol | audio settings gui
 pamixer | for waybar audio
 
 | theming | |
-| --- | --- |
+| :-- | --- |
 nwg-look | theming GTK apps
 kvantum | theming QT apps
 qt5ct | theming QT5 apps
 
 | applications | |
-| --- | --- |
+| :-- | --- |
 firefox | browser
 kitty | terminal
 neofetch | fetch tool
@@ -187,7 +187,7 @@ vim | text editor
 ark | kde file archiver
 
 | shell | |
-| --- | --- |
+| :-- | --- |
 zsh | main shell
 exa | colorful file lister
 oh-my-zsh-git | for zsh plugins
@@ -202,39 +202,39 @@ pokemon-colorscripts-git | display pokemon sprites
 <details>
 <summary><h4>Keybindings</h4></summary>
 
-| Key 1 | Key 2 | Key 3 | Action |
-| :-:   | :-:   | :-:   | ---    |
-| `Super` | `Q` | | Quit active/focused window
-| `Super` | `del` | | quit hyprland session
-| `Super` | `W` | | toggle Window on focus to float
-| `Alt` | `enter` | | toggle window on focus to fullscreen
-| `Super` | `G` | | disable hypr effects for Gamemode
-| `Super` | `T` | | launch kitty Terminal
-| `Super` | `E` | | launch dolphin file Explorer
-| `Super` | `V` | | launch Vs code
-| `Super` | `F` | | launch Firefox
-| `Super` | `A` | | launch desktop Applications (rofi)
-| `Super` | `tab` | | switch open applications (rofi)
-| `Super` | `R` | | browse system files (rofi)
-| `F10` | | | mute audio output (toggle)
-| `F11` | | | decrease volume (hold)
-| `F12` | | | increase volume (hold)
-| `Super` | `L` | | lock screen
-| `Super` | `backspace` | | logout menu
-| `Super` | `P` | | screenshot snip
-| `Super` | `Alt` | `P` | print current screen and save to ~/Apps/grim/
-| `Super` | `RightClick` | | resize the window 
-| `Super` | `LeftClick` | | change the window position
-| `Super` | `MouseScroll` | | cycle through workspaces
-| `Super` | `shift` | `arrow keys` | resize windows (hold)
-| `Super` | `[0-9]` | | switch to workspace [0-9]
-| `Super` | `shift` | `[0-9]` | move active window to workspace [0-9]
-| `Super` | `Alt` | `right` | next wallpaper
-| `Super` | `Alt` | `left` | previous wallpaper
-| `Super` | `Alt` | `up` | next waybar mode
-| `Super` | `Alt` | `down` | previous waybar mode
-| `Super` | `shift` | `T` | theme select menu
-| `Super` | `shift` | `A` | rofi style select menu
+| Keys | Action |
+| :--  | :-- |
+| `Super` + `Q`| Quit active/focused window
+| `Super` + `del` | quit hyprland session
+| `Super` + `W` | toggle Window on focus to float
+| `Alt` + `enter` | toggle window on focus to fullscreen
+| `Super` + `G` | disable hypr effects for Gamemode
+| `Super` + `T` | launch kitty Terminal
+| `Super` + `E` | launch dolphin file Explorer
+| `Super` + `V` | launch Vs code
+| `Super` + `F` | launch Firefox
+| `Super` + `A` | launch desktop Applications (rofi)
+| `Super` + `tab` | switch open applications (rofi)
+| `Super` + `R` | browse system files (rofi)
+| `F10` | mute audio output (toggle)
+| `F11` | decrease volume (hold)
+| `F12` | increase volume (hold)
+| `Super` + `L` | lock screen
+| `Super` + `backspace` | logout menu
+| `Super` + `P` | screenshot snip
+| `Super` + `Alt` + `P` | print current screen and save to ~/Apps/grim/
+| `Super` + `RightClick` | resize the window 
+| `Super` + `LeftClick` | change the window position
+| `Super` + `MouseScroll` | cycle through workspaces
+| `Super` + `shift` + `arrows` | resize windows (hold)
+| `Super` + `[0-9]` | switch to workspace [0-9]
+| `Super` + `shift` + `[0-9]` | move active window to workspace [0-9]
+| `Super` + `Alt` + `→` | next wallpaper
+| `Super` + `Alt` + `←` | previous wallpaper
+| `Super` + `Alt` + `↑` | next waybar mode
+| `Super` + `Alt` + `↓` | previous waybar mode
+| `Super` + `shift` + `T` | theme select menu
+| `Super` + `shift` + `A` | rofi style select menu
 
 </details>
 
