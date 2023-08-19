@@ -32,7 +32,7 @@ After minimal Arch install (with grub), clone and execute -
 ```shell
 pacman -Sy git
 git clone https://github.com/prasanthrangan/hyprdots ~/Hyprdots
-cd ~/Dots/Hyprdots
+cd ~/Hyprdots/Scripts
 ./install.sh
 ```
 
