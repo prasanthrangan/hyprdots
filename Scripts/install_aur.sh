@@ -10,15 +10,18 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-if pkg_installed yay
+aurhlpr="${1:-yay}"
+
+if pkg_installed yay || pkg_installed paru
 then
+    echo "aur helper is already installed..."
     exit 0
 fi
 
 if [ -d ~/Clone ]
 then
     echo "~/Clone directory exists..."
-    rm -rf ~/Clone/yay
+    rm -rf ~/Clone/$aurhlpr
 else
     mkdir ~/Clone
     echo -e "[Desktop Entry]\nIcon=default-folder-git" > ~/Clone/.directory
@@ -27,23 +30,20 @@ fi
 
 if pkg_installed git
 then
-    git clone https://aur.archlinux.org/yay.git ~/Clone/yay
+    git clone https://aur.archlinux.org/$aurhlpr.git ~/Clone/$aurhlpr
 else
     echo "git dependency is not installed..."
     exit 1
 fi
 
-cd ~/Clone/yay
+cd ~/Clone/$aurhlpr
 makepkg ${use_default} -si
 
 if [ $? -eq 0 ]
 then
-    cd ~
-    echo "aur helper installed, yayyy..."
+    echo "$aurhlpr aur helper installed..."
     exit 0
 else
-    cd ~
-    echo "yay installation failed..."
+    echo "$aurhlpr installation failed..."
     exit 1
 fi
-

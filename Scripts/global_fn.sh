@@ -61,12 +61,16 @@ aur_available()
         then
             #echo "${PkgIn} available in aur repo..."
             return 0
-        else
-            #echo "${PkgIn} not available in aur repo..."
-            return 1
+        fi
+    elif pkg_installed paru
+    then
+        if paru -Si $PkgIn &> /dev/null
+        then
+            #echo "${PkgIn} available in aur repo..."
+            return 0
         fi
     else
-        #echo "yay is not installed..."
+        #echo "aur helper is not installed..."
         return 1
     fi
 }
