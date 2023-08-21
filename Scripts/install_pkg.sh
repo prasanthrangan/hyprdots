@@ -16,10 +16,12 @@ if ! pkg_installed git
     sudo pacman -S git
 fi
 
-if ! pkg_installed yay && ! pkg_installed paru
+chk_aurh
+
+if [ -z $aurhlpr ]
     then
     echo -e "Select aur helper:\n1) yay\n2) paru"
-    read aurinp
+    read -p "Enter option number : " aurinp
 
     case $aurinp in
     1) aurhlpr="yay" ;;

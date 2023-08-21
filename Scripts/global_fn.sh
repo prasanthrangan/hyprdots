@@ -51,24 +51,26 @@ pkg_available()
     fi
 }
 
+chk_aurh()
+{
+    if pkg_installed yay
+    then
+        aurhlpr="yay"
+    elif pkg_installed paru
+    then
+        aurhlpr="paru"
+    fi
+}
+
 aur_available()
 {
     local PkgIn=$1
+    chk_aurh
 
-    if pkg_installed yay
+    if $aurhlpr -Si $PkgIn &> /dev/null
     then
-        if yay -Si $PkgIn &> /dev/null
-        then
-            #echo "${PkgIn} available in aur repo..."
-            return 0
-        fi
-    elif pkg_installed paru
-    then
-        if paru -Si $PkgIn &> /dev/null
-        then
-            #echo "${PkgIn} available in aur repo..."
-            return 0
-        fi
+        #echo "${PkgIn} available in aur repo..."
+        return 0
     else
         #echo "aur helper is not installed..."
         return 1
