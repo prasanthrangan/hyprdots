@@ -1,0 +1,80 @@
+* {
+    background-image: none;
+    font-size: ${fntSize}px;
+}
+
+window {
+    background-color: rgba(17, 17, 27, 0.85);
+}
+
+button {
+    color: #b4befe;
+    background-color: #281c2c;
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+}
+
+button:focus {
+    background-color: #bf9ede;
+    background-size: 20%;
+}
+
+button:hover {
+    background-color: #da838d;
+    background-size: 20%;
+    border-radius: 50px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:hover#lock {
+    border-radius: 50px 50px 0px 50px;
+    margin : ${hvr}px 0px 0px ${hvr2}px;
+}
+
+button:hover#logout {
+    border-radius: 50px 0px 50px 50px;
+    margin : 0px 0px ${hvr}px ${hvr2}px;
+}
+
+button:hover#shutdown {
+    border-radius: 50px 50px 50px 0px;
+    margin : ${hvr}px ${hvr2}px 0px 0px;
+}
+
+button:hover#reboot {
+    border-radius: 0px 50px 50px 50px;
+    margin : 0px ${hvr2}px ${hvr}px 0px;
+}
+
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    border-radius: 90px 0px 0px 0px;
+    margin : ${mgn}px 0px 0px ${mgn2}px;
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    border-radius: 0px 0px 0px 90px;
+    margin : 0px 0px ${mgn}px ${mgn2}px;
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-radius: 0px 90px 0px 0px;
+    margin : ${mgn}px ${mgn2}px 0px 0px;
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    border-radius: 0px 0px 90px 0px;
+    margin : 0px ${mgn2}px ${mgn}px 0px;
+}
