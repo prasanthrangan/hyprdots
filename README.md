@@ -1,5 +1,8 @@
 # --// Hyprdots //--
 
+
+<img align="left" width="150" height="150" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
+
 ```shell
         .                                                     
        / \         _       _  _                  _     _      
@@ -58,6 +61,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Material-Sakura
     - [x] Graphite-Mono
     - [x] Cyberpunk-Edge
+    - [ ] Glassy-Light (maybe later)
     - [ ] Gruvbox-Retro (maybe later)
     - [ ] Nordic-Blue (maybe later)
 
@@ -231,7 +235,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `RightClick` | resize the window 
 | `Super` + `LeftClick` | change the window position
 | `Super` + `MouseScroll` | cycle through workspaces
-| `Super` + `shift` + `arrows` | resize windows (hold)
+| `Super` + `shift` + `←` `→` `↑` `↓` | resize windows (hold)
 | `Super` + `[0-9]` | switch to workspace [0-9]
 | `Super` + `shift` + `[0-9]` | move active window to workspace [0-9]
 | `Super` + `Alt` + `→` | next wallpaper
@@ -267,8 +271,8 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Media control mpris module for waybar
 - [x] Update Volume control script/notification (ver2)
 - [x] Rofi config change script + add new configs
+- [x] Make wlogout configs dynamic and sync with theme
 - [ ] Fix rofi configs/scripts for dynamic scaling
-- [ ] Make wlogout configs dynamic and sync with theme
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Replace waybar with Eww? (maybe later)

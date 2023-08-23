@@ -72,7 +72,7 @@ These are the applications currently supported by the `themeswitch.sh` script
 - [rofi](#rofi)
 - [flatpak](#flatpak)
 - [swww](#swww)
-- wlogout (to be added later)
+- [wlogout](#wlogout)
 
 
 ### GTK apps
@@ -105,7 +105,7 @@ The global theme settings are configured in `~/.config/hypr/themes/My-Fav-Theme.
 
 > **Note**
 >
-> [rofi](#rofi) and [waybar](#waybar-style) configuration adapts to the font, icon and rounding values set in `~/.config/hypr/themes/My-Fav-Theme.conf`   
+> [rofi](#rofi) and [waybar](#waybar-style) configuration adapts to the icon and rounding values set in `~/.config/hypr/themes/My-Fav-Theme.conf`   
 
 
 ### Waybar
@@ -197,6 +197,13 @@ The `swwwallpaper.sh` script is used to cycle through all the wallpapers in the 
 > **Note**
 >
 > Please add this theme/wallpaper entry in `wall.ctl` file only after all [these](#theme-structure) theme files are configured.
+
+
+### Wlogout
+
+To add you own logout style create corresding `~/.config/wlogout/layout_<n>` and `~/.config/wlogout/style_<n>` file, use existing `layout_1` and `style_1` as a reference.   
+Its is launched by `~/.config/hypr/scripts/logoutlaunch.sh <n>` script, where `<n>` is your style number.   
+Here the colors and border-radius is auto detected from current hypr theme.   
 
 
 ## Theme Switch
