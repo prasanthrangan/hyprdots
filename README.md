@@ -1,9 +1,10 @@
 # --// Hyprdots //--
 
-
+    
 <p align="center">
-  <img width="600" height="300" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_arch.png">
+  <img width="400" height="200" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_arch.png">
 </p>
+    
 
 
 ## My Arch Hyprland Config
