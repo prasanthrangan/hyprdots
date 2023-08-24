@@ -8,6 +8,7 @@ ${HOME}/.config|MangoHud|mangohud
 ${HOME}/.config|neofetch|neofetch
 ${HOME}/.config|qt5ct|qt5ct
 ${HOME}/.config|rofi|rofi
+${HOME}/.config|swappy|swappy
 ${HOME}/.config|swaylock|swaylock-effects
 ${HOME}/.config|swww|swww
 ${HOME}/.config|waybar|waybar

@@ -1,0 +1,3 @@
+[Default]
+save_dir=$XDG_PICTURES_DIR
+save_filename_format=%y%m%d_%Hh%Mm%Ss_screenshot.png
