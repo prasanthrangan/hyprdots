@@ -1,12 +1,8 @@
 # --// Hyprdots Theming //--
 
-```shell
-      _  _    _____               _     _          _____ _             _              _  _ 
-     / |/ |  |  |  |_ _ ___ ___ _| |___| |_ ___   |_   _| |_ ___ _____|_|___ ___     / |/ |
-    / // /   |     | | | . |  _| . | . |  _|_ -|    | | |   | -_|     | |   | . |   / // / 
-   |_/|_/    |__|__|_  |  _|_| |___|___|_| |___|    |_| |_|_|___|_|_|_|_|_|_|_  |  |_/|_/  
-                   |___|_|                                                  |___|          
-```
+<p align="center">
+  <img width="200" height="200" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
+</p>
 
 
 ## Theme Structure
@@ -103,10 +99,6 @@ The global theme settings are configured in `~/.config/hypr/themes/My-Fav-Theme.
 - kavantum theme
 - fonts (gtk)
 
-> **Note**
->
-> [rofi](#rofi) and [waybar](#waybar-style) configuration adapts to the icon and rounding values set in `~/.config/hypr/themes/My-Fav-Theme.conf`   
-
 
 ### Waybar
 
@@ -138,7 +130,7 @@ So you can create your preferred config by adding entries to this file as,
 ```
 where `|` is the delimiter and column,
 1. is `0` or `1`, where `1` indicates the current mode in use
-2. is to set height of the bar (use `0` for default min height or `<blank>` to auto-scale for 3% of monitor res)
+2. is to set height of the bar (leave it empty `<blank>` to auto-scale for 3% of monitor res), the font size adapts to this height value.
 3. is postition of bar top/bottom
 4. is the left modules
 5. is the center modules

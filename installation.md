@@ -1,12 +1,8 @@
 # --// Hyprdots Installation //--
 
-```shell
-   _  _    _____               _     _          _____         _       _ _     _   _              _  _ 
-  / |/ |  |  |  |_ _ ___ ___ _| |___| |_ ___   |     |___ ___| |_ ___| | |___| |_|_|___ ___     / |/ |
- / // /   |     | | | . |  _| . | . |  _|_ -|  |-   -|   |_ -|  _| .'| | | .'|  _| | . |   |   / // / 
-|_/|_/    |__|__|_  |  _|_| |___|___|_| |___|  |_____|_|_|___|_| |__,|_|_|__,|_| |_|___|_|_|  |_/|_/  
-                |___|_|                                                                               
-```
+<p align="center">
+  <img width="200" height="200" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
+</p>
 
 
 ## Process
@@ -16,6 +12,7 @@ The install script has 3 main sections
     - prepare temp list of packages `install_pkg.lst` from main package list `custom_hypr.lst`
     - if the user pass additional list `custom_apps.lst`, then add it to the list `install_pkg.lst`
     - if nvidia card is detected in system, add `nvidia-dkms` and `nvidia-utils` to the list `install_pkg.lst`
+        - script also works for AMD and Intel system, it will just skip this nvidia packages.
     - install packages from `install_pkg.lst`
         - use `pacman` to install package if its available in official arch repo
         - use `yay` to install package if its available in AUR
