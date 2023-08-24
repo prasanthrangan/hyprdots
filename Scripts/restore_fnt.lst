@@ -16,6 +16,10 @@ Gtk_TokyoNight|/usr/share/themes
 Gtk_TokyoNight|$HOME/.themes
 Gtk_MaterialSakura|/usr/share/themes
 Gtk_MaterialSakura|$HOME/.themes
+Gtk_GraphiteMono|/usr/share/themes
+Gtk_GraphiteMono|$HOME/.themes
+Gtk_CyberpunkEdge|/usr/share/themes
+Gtk_CyberpunkEdge|$HOME/.themes
 Icon_TelaBlack|/usr/share/icons
 Icon_TelaBlack|$HOME/.icons
 Icon_TelaDracula|/usr/share/icons
@@ -28,6 +32,8 @@ Icon_TelaPink|/usr/share/icons
 Icon_TelaPink|$HOME/.icons
 Icon_TelaPurple|/usr/share/icons
 Icon_TelaPurple|$HOME/.icons
+Icon_TelaYellow|/usr/share/icons
+Icon_TelaYellow|$HOME/.icons
 Cursor_BibataIce|/usr/share/icons
 Cursor_BibataIce|$HOME/.icons
 Code_Extensions|$HOME/.vscode

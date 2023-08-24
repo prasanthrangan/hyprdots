@@ -1,0 +1,37 @@
+// Global //
+* {
+	foreground:                  #ffffffff; //Text
+	normal-foreground:           @foreground;
+	urgent-foreground:           #000000ff; //Crust
+	active-foreground:           #000000ff; //Crust
+
+	alternate-normal-foreground: @normal-foreground;
+	alternate-urgent-foreground: @urgent-foreground;
+	alternate-active-foreground: @active-foreground;
+
+	selected-normal-foreground:  #000000ff; //Crust
+	selected-urgent-foreground:  #000000ff; //Crust
+	selected-active-foreground:  #000000ff; //Crust
+
+	background:                  #000000e6;
+	normal-background:           @background;
+	urgent-background:           #5032ACcc; //Maroon
+	active-background:           #1F5322cc; //Teal
+
+	alternate-normal-background: #FFA6C2ff;
+	alternate-urgent-background: @urgent-background;
+	alternate-active-background: @active-background;
+
+	selected-normal-background:  #FADA16ff; //Lavender
+	selected-urgent-background:  #1F5322cc; //Teal
+	selected-active-background:  #5032ACcc; //Maroon
+
+	separatorcolor:              transparent;
+	border-color:                transparent;
+	border-radius:               0px;
+	border:                      0px;
+	spacing:                     0px;
+	padding:                     0px;
+	height:                      55%;
+	width:                       45%;
+}

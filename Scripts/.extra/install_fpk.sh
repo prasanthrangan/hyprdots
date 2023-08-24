@@ -19,18 +19,16 @@ if ! pkg_installed flatpak
 fi
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flats=""
-
-while read fpk
-do
-    flats=`echo ${flats} ${fpk}`
-done < $BaseDir/custom_flat.lst
+flats=`awk -F '#' '{print $1}' $BaseDir/custom_flat.lst | sed 's/ //g' | xargs`
 
 flatpak install --user -y flathub ${flats}
 flatpak remove --unused
 
+GtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
+GtkIcon=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
+
 flatpak --user override --filesystem=~/.themes
 flatpak --user override --filesystem=~/.icons
-flatpak --user override --env=GTK_THEME=Catppuccin-Mocha
-flatpak --user override --env=ICON_THEME=Tela-circle-dracula
 
+flatpak --user override --env=GTK_THEME=${GtkTheme}
+flatpak --user override --env=ICON_THEME=${GtkIcon}

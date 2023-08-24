@@ -20,10 +20,9 @@ qt5-graphicaleffects
 hyprland-git
 dunst
 rofi-lbonn-wayland-git
-waybar-hyprland-git
+waybar
 swww
 swaylock-effects-git
-swayidle
 wlogout
 grim
 slurp

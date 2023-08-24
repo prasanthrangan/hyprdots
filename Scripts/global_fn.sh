@@ -51,23 +51,40 @@ pkg_available()
     fi
 }
 
+chk_aurh()
+{
+    if pkg_installed yay
+    then
+        aurhlpr="yay"
+    elif pkg_installed paru
+    then
+        aurhlpr="paru"
+    fi
+}
+
 aur_available()
 {
     local PkgIn=$1
+    chk_aurh
 
-    if pkg_installed yay
+    if $aurhlpr -Si $PkgIn &> /dev/null
     then
-        if yay -Si $PkgIn &> /dev/null
-        then
-            #echo "${PkgIn} available in aur repo..."
-            return 0
-        else
-            #echo "${PkgIn} not available in aur repo..."
-            return 1
-        fi
+        #echo "${PkgIn} available in aur repo..."
+        return 0
     else
-        #echo "yay is not installed..."
+        #echo "aur helper is not installed..."
         return 1
     fi
 }
 
+nvidia_detect()
+{
+    if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ]
+    then
+        #echo "nvidia card detected..."
+        return 0
+    else
+        #echo "nvidia card not detected..."
+        return 1
+    fi
+}
