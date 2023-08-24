@@ -1,17 +1,10 @@
 # --// Hyprdots //--
 
-
-<img align="left" width="150" height="150" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
-
-```shell
-        .                                                     
-       / \         _       _  _                  _     _      
-      /^  \      _| |_    | || |_  _ _ __ _ _ __| |___| |_ ___
-     /  _  \    |_   _|   | __ | || | '_ \ '_/ _` / _ \  _(_-<
-    /  | | ~\     |_|     |_||_|\_, | .__/_| \__,_\___/\__/__/
-   /.-'   '-.\                  |__/|_|                       
-
-```
+    
+<p align="center">
+  <img width="400" height="200" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_arch.png">
+</p>
+    
 
 
 ## My Arch Hyprland Config
@@ -29,7 +22,8 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 > **Warning**
 >
 > Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.   
-> Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!
+> Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!   
+> So please ensure that hyprland supports your nvidia card.   
 
 After minimal Arch install (with grub), clone and execute -
 ```shell
@@ -61,7 +55,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Material-Sakura
     - [x] Graphite-Mono
     - [x] Cyberpunk-Edge
-    - [ ] Glassy-Light (maybe later)
+    - [ ] Frosted-Glass (maybe later)
     - [ ] Gruvbox-Retro (maybe later)
     - [ ] Nordic-Blue (maybe later)
 
