@@ -1,7 +1,7 @@
 # --// Hyprdots Installation //--
 
 <p align="center">
-  <img width="200" height="200" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
+  <img width="100" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png">
 </p>
 
 
