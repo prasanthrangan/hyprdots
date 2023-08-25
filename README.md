@@ -207,37 +207,40 @@ pokemon-colorscripts-git | display pokemon sprites
 
 | Keys | Action |
 | :--  | :-- |
-| `Super` + `Q`| Quit active/focused window
-| `Super` + `del` | quit hyprland session
-| `Super` + `W` | toggle Window on focus to float
-| `Alt` + `enter` | toggle window on focus to fullscreen
-| `Super` + `G` | disable hypr effects for Gamemode
-| `Super` + `T` | launch kitty Terminal
-| `Super` + `E` | launch dolphin file Explorer
+| `Super` + `Q`| quit active/focused window
+| `Super` + `Del` | quit hyprland session
+| `Super` + `W` | toggle window on focus to float
+| `Alt` + `Enter` | toggle window on focus to fullscreen
+| `Alt` + `J` | toggle layout
+| `Super` + `G` | disable hypr effects for gamemode
+| `Super` + `T` | launch kitty terminal
+| `Super` + `E` | launch dolphin file explorer
 | `Super` + `V` | launch Vs code
-| `Super` + `F` | launch Firefox
-| `Super` + `A` | launch desktop Applications (rofi)
-| `Super` + `tab` | switch open applications (rofi)
+| `Super` + `F` | launch firefox
+| `Super` + `A` | launch desktop applications (rofi)
+| `Super` + `Tab` | switch open applications (rofi)
 | `Super` + `R` | browse system files (rofi)
 | `F10` | mute audio output (toggle)
 | `F11` | decrease volume (hold)
 | `F12` | increase volume (hold)
 | `Super` + `L` | lock screen
-| `Super` + `backspace` | logout menu
+| `Super` + `Backspace` | logout menu
 | `Super` + `P` | screenshot snip
-| `Super` + `Alt` + `P` | print current screen and save to ~/Apps/grim/
+| `Super` + `Alt` + `P` | print current screen
 | `Super` + `RightClick` | resize the window 
 | `Super` + `LeftClick` | change the window position
 | `Super` + `MouseScroll` | cycle through workspaces
-| `Super` + `shift` + `←` `→` `↑` `↓` | resize windows (hold)
+| `Super` + `Shift` + `←` `→` `↑` `↓` | resize windows (hold)
 | `Super` + `[0-9]` | switch to workspace [0-9]
-| `Super` + `shift` + `[0-9]` | move active window to workspace [0-9]
+| `Super` + `Shift` + `[0-9]` | move active window to workspace [0-9]
+| `Super` + `Alt` + `S` | move window to special workspace
+| `Super` + `S` | toogle to special workspace
 | `Super` + `Alt` + `→` | next wallpaper
 | `Super` + `Alt` + `←` | previous wallpaper
 | `Super` + `Alt` + `↑` | next waybar mode
 | `Super` + `Alt` + `↓` | previous waybar mode
-| `Super` + `shift` + `T` | theme select menu
-| `Super` + `shift` + `A` | rofi style select menu
+| `Super` + `Shift` + `T` | theme select menu
+| `Super` + `Shift` + `A` | rofi style select menu
 
 </details>
 
