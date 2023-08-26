@@ -82,7 +82,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-# vs code
+# code
 sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${ThemeSet}\"," $ConfDir/Code/User/settings.json
 
 
@@ -95,6 +95,11 @@ killall -SIGUSR1 kitty
 sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSet}.conf" $ConfDir/qt5ct/qt5ct.conf
 IconSet=`awk -F "'" '$0 ~ /gsettings set org.gnome.desktop.interface icon-theme/{print $2}' $ConfDir/hypr/themes/${ThemeSet}.conf`
 sed -i "/^icon_theme=/c\icon_theme=${IconSet}" $ConfDir/qt5ct/qt5ct.conf
+
+
+# gtk3
+sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" $ConfDir/gtk-3.0/settings.ini
+sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${IconSet}" $ConfDir/gtk-3.0/settings.ini
 
 
 # flatpak GTK

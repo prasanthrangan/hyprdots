@@ -26,6 +26,11 @@ if pkg_installed sddm
         sudo cp /usr/share/sddm/themes/corners/kde_settings.conf /etc/sddm.conf.d/
     fi
 
+    if [ ! -f /usr/share/sddm/faces/${USER}.face.icon ] && [ -f ${CloneDir}/Source/misc/${USER}.face.icon ] ; then
+        sudo cp ${CloneDir}/Source/misc/${USER}.face.icon /usr/share/sddm/faces/
+        echo "avatar set for ${USER}..."
+    fi
+
 else
     echo "WARNING: sddm is not installed..."
 fi

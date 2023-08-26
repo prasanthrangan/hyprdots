@@ -125,5 +125,5 @@ alias vc='code'  # gui code editor
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
 
-#Display gif
-#kitten icat --align left ~/.config/neofetch/pochita.gif
+#Display random gifs
+#kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
