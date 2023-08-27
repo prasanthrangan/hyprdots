@@ -15,10 +15,11 @@ switch=0
 
 # update control file to set next/prev mode
 
-for (( i=0 ; i<$num_files ; i++ ))
-do
+if [ $num_files -gt 1 ]
+then
+  for (( i=0 ; i<$num_files ; i++ ))
+  do
     flag=`echo "${read_ctl[i]}" | cut -d '|' -f 1`
-
     if [ $flag -eq 1 ] && [ "$1" == "n" ] ; then
         nextIndex=$(( (i + 1) % $num_files ))
         switch=1
@@ -30,6 +31,7 @@ do
         break;
     fi
 done
+fi
 
 if [ $switch -eq 1 ] ; then
     update_ctl="${read_ctl[nextIndex]}"
