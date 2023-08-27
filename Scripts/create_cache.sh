@@ -13,7 +13,7 @@ while getopts "f" option ; do
     f ) # set next wallpaper
         ForceOverwrite=true ;;
     * ) # invalid option
-    	echo "f : force creation of thumbnails (ignore existing)"
+    	echo "f : force creation of new thumbnails (delete old cache)"
         exit 1 ;;
     esac
 done
@@ -21,6 +21,10 @@ done
 # create thumbnails for each theme > wallpapers
 for theme in ${ThemeList}
 do
+    if [ $ForceOverwrite == true ]; then
+       rm -Rf ${CacheDir}/${theme}
+    fi
+
     if [ ! -d ${CacheDir}/${theme} ] ; then
         mkdir -p ${CacheDir}/${theme}
     fi
@@ -33,7 +37,7 @@ do
     for wpFullName in "${wpArray[@]}"
     do
 	wpBaseName=$(basename "${wpFullName}")
-	if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] || [ $ForceOverwrite == true ] ; then
+	if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
 	   convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
         fi
     done
