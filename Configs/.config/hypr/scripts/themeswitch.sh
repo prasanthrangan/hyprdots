@@ -74,7 +74,7 @@ fi
 getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
 getWall=`eval echo $getWall`
 ln -fs $getWall $ConfDir/swww/wall.set
-$ConfDir/swww/swwwallpaper.sh
+$ConfDir/hypr/scripts/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -114,10 +114,6 @@ ln -fs $ConfDir/rofi/themes/${ThemeSet}.rasi $ConfDir/rofi/themes/theme.rasi
 # hyprland
 ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
-
-
-# refresh thumbnails
-$BaseDir/themeselect.sh T &
 
 
 # send notification
