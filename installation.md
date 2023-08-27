@@ -12,10 +12,13 @@ The install script has 3 main sections
     - prepare temp list of packages `install_pkg.lst` from main package list `custom_hypr.lst`
     - if the user pass additional list `custom_apps.lst`, then add it to the list `install_pkg.lst`
     - if nvidia card is detected in system, add `nvidia-dkms` and `nvidia-utils` to the list `install_pkg.lst`
-        - script also works for AMD and Intel system, it will just skip this nvidia packages.
+        - script also works for AMD and Intel system, it will just skip the nvidia packages.
     - install packages from `install_pkg.lst`
+        - install AUR helper based on user input,
+            - `1` for `yay`
+            - `2` for `paru`
         - use `pacman` to install package if its available in official arch repo
-        - use `yay` to install package if its available in AUR
+        - use AUR helper ( detect if its `yay` or `paru` ) to install packages if its available in AUR
 
 - [d]efault
     - exactly same as install, but with `--noconfirm` option
