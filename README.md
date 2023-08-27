@@ -99,6 +99,14 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png) |
 
+| Theme Select |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select.png) |
+
+| wallpaper Select |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png) |
+
 
 ### Rofi
 | launchers |
@@ -240,6 +248,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `Alt` + `↑` | next waybar mode
 | `Super` + `Alt` + `↓` | previous waybar mode
 | `Super` + `Shift` + `T` | theme select menu
+| `Super` + `Shift` + `W` | wallpaper select menu
 | `Super` + `Shift` + `A` | rofi style select menu
 
 </details>
@@ -269,11 +278,11 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Update Volume control script/notification (ver2)
 - [x] Rofi config change script + add new configs
 - [x] Make wlogout configs dynamic and sync with theme
-- [ ] Wallpaper select script with rofi menu
+- [x] Wallpaper select script with rofi menu
 - [ ] Fix rofi configs/scripts for dynamic scaling
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
-- [ ] Replace waybar with Eww? (maybe later)
+- [ ] Add Eww widgets? (maybe later)
 
 </details>
 
@@ -281,6 +290,7 @@ pokemon-colorscripts-git | display pokemon sprites
 <details>
 <summary><h4>Known Issues</h4></summary>
 
+- [ ] Few scaling issues with rofi configs, as they are created based on my ultrawide (21:9) display.
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
 - [ ] Waybar launching rofi breaks mouse input (added `sleep 0.1` as workaround), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak QT apps does not follow system theme
