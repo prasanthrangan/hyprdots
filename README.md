@@ -52,7 +52,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Material-Sakura
     - [x] Graphite-Mono
     - [x] Cyberpunk-Edge
-    - [ ] Frosted-Glass (In Progress)
+    - [x] Frosted-Glass 
     - [ ] Gruvbox-Retro (maybe later)
     - [ ] Nordic-Blue (maybe later)
 
