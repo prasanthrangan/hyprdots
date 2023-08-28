@@ -6,4 +6,4 @@
 0|Material-Sakura|~/.config/swww/Material-Sakura/material_pastel_4.jpg
 0|Graphite-Mono|~/.config/swww/Graphite-Mono/spring_bloom.jpg
 0|Cyberpunk-Edge|~/.config/swww/Cyberpunk-Edge/david.jpg
-0|Frosted-Glass|~/.config/swww/Frosted-Glass/abstract-line-glass-ij.jpg
+0|Frosted-Glass|~/.config/swww/Frosted-Glass/lava-fluid-abstract-4k-r9.jpg
