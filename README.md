@@ -1,20 +1,18 @@
 # --// Hyprdots //--
 
-
 <p align="center">
-  <img width="250" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_arch.png">
+  <img width="250" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_arch.png">   
 </p>
-    
 
 
 ## My Arch Hyprland Config
 
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
-| <!-- --> | <!-- --> |
-| --- | --- |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png) |
-| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png) | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png) |
+<p align="center">
+    <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" /> <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />   
+    <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png" /> <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png" />   
+</p>
 
 
 ### Installation
@@ -22,8 +20,7 @@ https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23
 > **Warning**
 >
 > Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.   
-> Nvidia drm will be enabled only in grub and Hyperland is launched by sddm!!   
-> So please ensure that hyprland supports your nvidia card.   
+> Nvidia drm will be enabled in grub, so please [ensure](https://wiki.archlinux.org/title/NVIDIA) your nvidia card supports dkms drivers/hyprland.   
 
 After minimal Arch install (with grub), clone and execute -
 ```shell
@@ -100,16 +97,33 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png) |
 
 
-### Rofi
-| launchers |
+### Styles
+
+| Theme Select |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select.png) |
+
+| Wallpaper Select |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png) |
+
+| Launcher Style Select |
 | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png) |
+
+| Launcher Styles |
+| :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_2.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_3.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_4.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_5.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_6.png) |
+
+| wlogout Menu |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png) |
 
 
 <details>
@@ -240,6 +254,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `Alt` + `↑` | next waybar mode
 | `Super` + `Alt` + `↓` | previous waybar mode
 | `Super` + `Shift` + `T` | theme select menu
+| `Super` + `Shift` + `W` | wallpaper select menu
 | `Super` + `Shift` + `A` | rofi style select menu
 
 </details>
@@ -269,10 +284,11 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Update Volume control script/notification (ver2)
 - [x] Rofi config change script + add new configs
 - [x] Make wlogout configs dynamic and sync with theme
+- [x] Wallpaper select script with rofi menu
 - [ ] Fix rofi configs/scripts for dynamic scaling
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
-- [ ] Replace waybar with Eww? (maybe later)
+- [ ] Add Eww widgets? (maybe later)
 
 </details>
 
@@ -280,6 +296,7 @@ pokemon-colorscripts-git | display pokemon sprites
 <details>
 <summary><h4>Known Issues</h4></summary>
 
+- [ ] Few scaling issues with rofi configs, as they are created based on my ultrawide (21:9) display.
 - [ ] Random lockscreen crash, refer https://github.com/swaywm/sway/issues/7046
 - [ ] Waybar launching rofi breaks mouse input (added `sleep 0.1` as workaround), refer https://github.com/Alexays/Waybar/issues/1850
 - [ ] Flatpak QT apps does not follow system theme

@@ -74,7 +74,7 @@ fi
 getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
 getWall=`eval echo $getWall`
 ln -fs $getWall $ConfDir/swww/wall.set
-$ConfDir/swww/swwwallpaper.sh
+$ConfDir/hypr/scripts/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -82,7 +82,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-# vs code
+# code
 sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${ThemeSet}\"," $ConfDir/Code/User/settings.json
 
 
@@ -95,6 +95,11 @@ killall -SIGUSR1 kitty
 sed -i "/^color_scheme_path=/c\color_scheme_path=$ConfDir/qt5ct/colors/${ThemeSet}.conf" $ConfDir/qt5ct/qt5ct.conf
 IconSet=`awk -F "'" '$0 ~ /gsettings set org.gnome.desktop.interface icon-theme/{print $2}' $ConfDir/hypr/themes/${ThemeSet}.conf`
 sed -i "/^icon_theme=/c\icon_theme=${IconSet}" $ConfDir/qt5ct/qt5ct.conf
+
+
+# gtk3
+sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" $ConfDir/gtk-3.0/settings.ini
+sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${IconSet}" $ConfDir/gtk-3.0/settings.ini
 
 
 # flatpak GTK
@@ -111,13 +116,15 @@ ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
 
 
-# refresh thumbnails
-$BaseDir/themeselect.sh T &
-
-
 # send notification
-ncolor="-h string:bgcolor:#343d46 -h string:fgcolor:#c0c5ce -h string:frcolor:#c0c5ce"
-dunstify $ncolor "theme" -a "    ${ThemeSet}" -i "~/.config/dunst/icons/paint.svg" -r 91190 -t 2200
+gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
+ncolor="-h string:bgcolor:#191724 -h string:fgcolor:#faf4ed -h string:frcolor:#56526e"
+
+if [ "${gtkMode}" == "light" ] ; then
+    ncolor="-h string:bgcolor:#f4ede8 -h string:fgcolor:#9893a5 -h string:frcolor:#908caa"
+fi
+
+dunstify $ncolor "theme" -a "    ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 
 
 # waybar
