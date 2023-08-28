@@ -96,6 +96,9 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png) |
 
+| Frosted-Glass |
+| :-: |
+| ![]
 
 ### Styles
 
