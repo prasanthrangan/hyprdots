@@ -1,6 +1,6 @@
 // Global //
 * {
-	foreground:                  #d9d9d9ff; //Text
+	foreground:                  #6DAAE2; //Text
 	normal-foreground:           @foreground;
 	urgent-foreground:           #262626ff; //Crust
 	active-foreground:           #262626ff; //Crust
