@@ -3,7 +3,7 @@
 # set variables
 BaseDir=`dirname $(realpath $0)`
 ThemeCtl="$HOME/.config/swww/wall.ctl"
-CacheDir="$HOME/.config/swww/.cache"
+CacheDir="$HOME/.config/swww/.cache/thumbnails"
 RofiConf="$HOME/.config/rofi/themeselect.rasi"
 ThemeSet="$HOME/.config/hypr/themes/theme.conf"
 

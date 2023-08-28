@@ -4,8 +4,8 @@
 ThemeSet="$HOME/.config/hypr/themes/theme.conf"
 RofiConf="$HOME/.config/rofi/themeselect.rasi"
 CurTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
-WallPath="$HOME/.config/swww/$CurTheme"
-CacheDir="$HOME/.config/swww/.cache"
+WallPath="$HOME/.config/swww/.cache/backgrounds/$CurTheme"
+CacheDir="$HOME/.config/swww/.cache/thumbnails"
 
 # override rofi border
 hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $ThemeSet | sed 's/ //g'`

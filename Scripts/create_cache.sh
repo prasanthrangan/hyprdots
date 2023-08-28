@@ -22,7 +22,7 @@ ThemeList="$(awk -F '|' '{print $2}' $ctlFile)"
 SwwwPath="$HOME/.config/swww"
 CacheDir="$HOME/.config/swww/.cache"
 ForceOverwrite=false
-
+ScreenResolution=$(xrandr | grep "*" |xargs |cut -f1 -d ' ')
 # evaluate options
 while getopts "f" option ; do
     case $option in
@@ -38,23 +38,24 @@ done
 for theme in ${ThemeList}
 do
     if [ $ForceOverwrite == true ]; then
-       rm -Rf ${CacheDir}/${theme}
+       rm -Rf ${CacheDir}/{thumbnails,backgrounds,${theme}}/${theme}
     fi
 
     if [ ! -d ${CacheDir}/${theme} ] ; then
-        mkdir -p ${CacheDir}/${theme}
+        mkdir -p ${CacheDir}/{thumbnails,backgrounds}/${theme}
     fi
 
     # Map all wallpapers from the theme to an array with -print0, in case someone decided to use spaces
     mapfile -d '' wpArray < <(find ${SwwwPath}/${theme} -type f -print0)
 
-    echo "Creating up to ${#wpArray[@]} thumbnails for ${theme}"
+    echo "Creating up to ${#wpArray[@]} backgrounds and thumbnails for ${theme}"
 
     for wpFullName in "${wpArray[@]}"
     do
         wpBaseName=$(basename "${wpFullName}")
         if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
-            convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
+            convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/thumbnails/${theme}/${wpBaseName}"
+            convert "${wpFullName}" -gravity center -extent ${ScreenResolution} "${CacheDir}/backgrounds/${theme}/${wpBaseName}"
         fi
     done
 
