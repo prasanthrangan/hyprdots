@@ -71,4 +71,4 @@ if nvidia_detect ; then
 fi
 
 ./restore_lnk.sh
-
+./create_cache.sh

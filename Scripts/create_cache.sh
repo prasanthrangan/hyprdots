@@ -1,4 +1,20 @@
-#!/usr/bin/env sh
+#!/bin/bash
+#|---/ /+------------------------------------+---/ /|#
+#|--/ /-| Script to generate wallpaper cache |--/ /-|#
+#|-/ /--| Kemipso                            |-/ /--|#
+#|/ /---+------------------------------------+/ /---|#
+
+source global_fn.sh
+if [ $? -ne 0 ] ; then
+    echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
+    exit 1
+fi
+
+if ! pkg_installed imagemagick
+then
+    echo "ERROR : imagemagick is not installed..."
+    exit 0
+fi
 
 # set variables
 ctlFile="$HOME/.config/swww/wall.ctl"
@@ -33,12 +49,12 @@ do
     mapfile -d '' wpArray < <(find ${SwwwPath}/${theme} -type f -print0)
 
     echo "Creating up to ${#wpArray[@]} thumbnails for ${theme}"
-   
+
     for wpFullName in "${wpArray[@]}"
     do
-	wpBaseName=$(basename "${wpFullName}")
-	if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
-	   convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
+        wpBaseName=$(basename "${wpFullName}")
+        if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
+            convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
         fi
     done
 
