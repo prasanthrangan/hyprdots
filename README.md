@@ -55,7 +55,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
     - [x] Material-Sakura
     - [x] Graphite-Mono
     - [x] Cyberpunk-Edge
-    - [x] Frosted-Glass (In-Progress)
+    - [ ] Frosted-Glass (maybe later)
     - [ ] Gruvbox-Retro (maybe later)
     - [ ] Nordic-Blue (maybe later)
 
@@ -98,12 +98,6 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | :-: |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png) |
-
-
-| Frosted-Glass |
-| :-: |
-| ![](https://raw.githubusercontent.com/T-Crypt/hyprdots/main/Source/assets/theme_frosted_1.png) |
-| ![](https://raw.githubusercontent.com/T-Crypt/hyprdots/main/Source/assets/theme_frosted_2.png) |
 
 
 ### Styles
@@ -311,4 +305,3 @@ pokemon-colorscripts-git | display pokemon sprites
 - [ ] Flatpak QT apps does not follow system theme
 
 </details>
-
