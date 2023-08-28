@@ -13,7 +13,7 @@ configuration {
 window {
     enabled:                     true;
     fullscreen:                  false;
-    width:                       95%;
+    width:                       100%;
     transparency:                "real";
     cursor:                      "default";
     spacing:                     0px;
@@ -53,7 +53,7 @@ listview {
 // Elements //
 element {
     enabled:                     true;
-    orientation:                 vertical;
+    orientation:                 horizontal;
     spacing:                     0px;
     padding:                     10px;
     border-radius:               40px;
@@ -61,6 +61,13 @@ element {
     background-color:            transparent;
     text-color:                  @foreground;
 }
+
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
+}
+
 element normal.normal {
     background-color:            transparent;
     text-color:                  @normal-foreground;
@@ -86,7 +93,7 @@ element selected.active {
     text-color:                  @selected-active-foreground;
 }
 element-icon {
-    size:                        35%;
+    size:                        33%;
     cursor:                      inherit;
     border-radius:               35px;
     background-color:            transparent;
