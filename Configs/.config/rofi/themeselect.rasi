@@ -61,6 +61,13 @@ element {
     background-color:            transparent;
     text-color:                  @foreground;
 }
+
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
+}
+
 element normal.normal {
     background-color:            transparent;
     text-color:                  @normal-foreground;
@@ -86,7 +93,7 @@ element selected.active {
     text-color:                  @selected-active-foreground;
 }
 element-icon {
-    size:                        450px;
+    size:                        33%;
     cursor:                      inherit;
     border-radius:               35px;
     background-color:            transparent;
