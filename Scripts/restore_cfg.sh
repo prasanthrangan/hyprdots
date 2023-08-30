@@ -70,5 +70,5 @@ if nvidia_detect ; then
     echo -e 'source = ~/.config/hypr/nvidia.conf\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
-./restore_lnk.sh
 ./create_cache.sh
+./restore_lnk.sh

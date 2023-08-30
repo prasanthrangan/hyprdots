@@ -297,6 +297,7 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Make wlogout configs dynamic and sync with theme
 - [x] Wallpaper select script with rofi menu
 - [ ] Fix rofi configs/scripts for dynamic scaling
+- [ ] Add vertical configs for waybar
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Add Eww widgets? (maybe later)

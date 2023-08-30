@@ -17,6 +17,8 @@ configuration {
 
 // Main //
 window {
+    height:                      590px;
+    width:                       1140px;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -44,7 +46,7 @@ inputbar {
     width:                       25%;
     children:                    [ "mode-switcher" , "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.set", height);
+    background-image:            url("~/.config/swww/wall.rofi", height);
 }
 entry {
     enabled:                     false;
@@ -56,7 +58,7 @@ mode-switcher{
     orientation:                 vertical;
     enabled:                     true;
     spacing:                     0px;
-    width:                       2.5%;
+    width:                       68px;
     padding:                     160px 10px 160px 10px;
     spacing:                     25px;
     background-color:            transparent;
@@ -101,7 +103,7 @@ listview {
 element {
     enabled:                     true;
     spacing:                     30px;
-    padding:                     7px;
+    padding:                     8px;
     border-radius:               20px;
     cursor:                      pointer;
     background-color:            transparent;
