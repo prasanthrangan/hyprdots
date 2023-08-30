@@ -36,6 +36,8 @@ Icon_TelaPurple|/usr/share/icons
 Icon_TelaPurple|$HOME/.icons
 Icon_TelaYellow|/usr/share/icons
 Icon_TelaYellow|$HOME/.icons
+Icon_TelaBlue|/usr/share/icons
+Icon_TelaBlue|$HOME/.icons
 Cursor_BibataIce|/usr/share/icons
 Cursor_BibataIce|$HOME/.icons
 Code_Extensions|$HOME/.vscode
