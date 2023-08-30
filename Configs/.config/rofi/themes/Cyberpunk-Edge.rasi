@@ -32,6 +32,4 @@
 	border:                      0px;
 	spacing:                     0px;
 	padding:                     0px;
-	height:                      55%;
-	width:                       45%;
 }

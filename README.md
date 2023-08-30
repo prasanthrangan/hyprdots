@@ -130,6 +130,7 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_5.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_6.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_7.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_8.png) |
 
 | Wlogout Menu |
 | :-: |
@@ -297,6 +298,7 @@ pokemon-colorscripts-git | display pokemon sprites
 - [x] Make wlogout configs dynamic and sync with theme
 - [x] Wallpaper select script with rofi menu
 - [ ] Fix rofi configs/scripts for dynamic scaling
+- [ ] Add vertical configs for waybar
 - [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
 - [ ] Add battery and brightness indicator/notification for laptop users
 - [ ] Add Eww widgets? (maybe later)

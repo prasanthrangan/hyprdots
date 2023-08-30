@@ -29,5 +29,5 @@ if [ ! -z $RofiSel ] ; then
         ncolor="-h string:bgcolor:#f4ede8 -h string:fgcolor:#9893a5 -h string:frcolor:#908caa"
     fi
 
-    dunstify $ncolor "theme" -a "   ${RofiSel}" -i "${CacheDir}/${CurTheme}/${RofiSel}" -r 91190 -t 2200
+    dunstify $ncolor "theme" -a " ${RofiSel}" -i "${CacheDir}/${CurTheme}/${RofiSel}" -r 91190 -t 2200
 fi

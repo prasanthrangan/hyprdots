@@ -48,7 +48,7 @@ inputbar {
     padding:                     80px;
     children:                    [ "entry" ];
     background-color:            @background;
-    background-image:            url("~/.config/swww/wall.set", width);
+    background-image:            url("~/.config/swww/wall.rofi", width);
 }
 entry {
     border-radius:               30px;

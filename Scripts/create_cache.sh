@@ -26,7 +26,7 @@ ForceOverwrite=false
 # evaluate options
 while getopts "f" option ; do
     case $option in
-    f ) # set next wallpaper
+    f ) # set force overwrite
         ForceOverwrite=true ;;
     * ) # invalid option
     	echo "f : force creation of new thumbnails (delete old cache)"
@@ -55,6 +55,14 @@ do
         wpBaseName=$(basename "${wpFullName}")
         if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
             convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
+        fi
+
+        if [ ! -f "${CacheDir}/${theme}/rofi.${wpBaseName}" ] ; then
+            convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}" ${CacheDir}/${theme}/rofi.${wpBaseName}
+        fi
+
+        if [ ! -f "${CacheDir}/${theme}/blur.${wpBaseName}" ] ; then
+            convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}" ${CacheDir}/${theme}/blur.${wpBaseName}
         fi
     done
 

@@ -45,7 +45,7 @@ inputbar {
     enabled:                     true;
     width:                       180px;
     children:                    [ "entry" ];
-    background-image:            url("~/.config/swww/wall.set", height);
+    background-image:            url("~/.config/swww/wall.rofi", height);
 }
 entry {
     enabled:                     false;
