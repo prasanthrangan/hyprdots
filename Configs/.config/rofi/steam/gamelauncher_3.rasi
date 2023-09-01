@@ -3,7 +3,7 @@ configuration {
 	modi:                        "drun";
 	show-icons:                  true;
     drun-display-format:         "{name}";
-	font:                        "JetBrainsMono Nerd Font 10";
+	font:                        "JetBrainsMono Nerd Font 8";
 }
 
 @theme "~/.config/rofi/themes/theme.rasi"
@@ -13,7 +13,9 @@ configuration {
 window {
     enabled:                     true;
     fullscreen:                  false;
-    width:                       100%;
+    width:                       28%;
+    height:                      100%;
+    location:                    west;
     transparency:                "real";
     cursor:                      "default";
     spacing:                     0px;
@@ -33,10 +35,9 @@ mainbox {
 // Lists //
 listview {
     enabled:                     true;
-    columns:                     3;
-    lines:                       1;
-    spacing:                     50px;
-    padding:                     50px 60px 50px 60px;
+    columns:                     4;
+    spacing:                     20px;
+    padding:                     10px 50px 10px 50px;
     cycle:                       true;
     dynamic:                     false;
     scrollbar:                   false;
@@ -53,55 +54,38 @@ listview {
 // Elements //
 element {
     enabled:                     true;
-    orientation:                 horizontal;
+    orientation:                 vertical;
     spacing:                     0px;
-    padding:                     10px;
-    border-radius:               40px;
+    padding:                     3px;
+    border-radius:               0px;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @foreground;
 }
-
 @media(max-aspect-ratio: 1.8) {
     element {
         orientation:             vertical;
     }
 }
-
-element normal.normal {
-    background-color:            transparent;
-    text-color:                  @normal-foreground;
-}
-element normal.urgent {
-    background-color:            @urgent-background;
-    text-color:                  @urgent-foreground;
-}
-element normal.active {
-    background-color:            @active-background;
-    text-color:                  @active-foreground;
-}
 element selected.normal {
     background-color:            @selected-normal-background;
     text-color:                  @selected-normal-foreground;
 }
-element selected.urgent {
-    background-color:            @selected-urgent-background;
-    text-color:                  @selected-urgent-foreground;
-}
-element selected.active {
-    background-color:            @selected-active-background;
-    text-color:                  @selected-active-foreground;
-}
 element-icon {
-    size:                        33%;
+    size:                        20%;
+    spacing:                     0px;
+    padding:                     0px;
     cursor:                      inherit;
     border-radius:               35px;
     background-color:            transparent;
     text-color:                  inherit;
 }
 element-text {
+    enabled:                     true;
     vertical-align:              0.5;
     horizontal-align:            0.5;
+    spacing:                     0px;
+    padding:                     5px;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
