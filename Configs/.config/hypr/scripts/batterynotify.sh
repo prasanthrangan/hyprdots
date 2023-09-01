@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Check if the system is a laptop
 is_laptop() {
     if [ -d /sys/class/power_supply/ ]; then
@@ -15,6 +16,7 @@ is_laptop() {
 }
 
 if is_laptop; then
+
 while true; do
     battery_status=$(cat /sys/class/power_supply/BAT0/status)
     battery_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
@@ -22,21 +24,12 @@ while true; do
     if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 20 ]; then
         dunstify -u CRITICAL "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
     fi
-    # Check if the laptop is plugged in and charging
-    if [ "$battey_status" == "Charging" ]; then
-            dunstify -u NORMAL "Charging: {$battery_status}%"
-    fi
-    
-    # battery charging notification
+
     if [ "$battery_status" == "Charging" ] && [ "$battery_percentage" -ge 80 ]; then
         dunstify -u NORMAL "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
     fi
 
-    # Check if the laptop is discharging
-    if [ "$_battery_status" == "Discharging" ]; then
-        # Notify when the battery level is below a 20%
-        if [ "$battery_percentage" -le 20 ]; then
-                dunstify -u CRITICAL "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
-        fi
-    fi
+    sleep 300  # Sleep for 5 minutes before checking again
+  done
 
+fi
