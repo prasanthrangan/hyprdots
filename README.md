@@ -241,7 +241,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `G` | disable hypr effects for gamemode
 | `Super` + `T` | launch kitty terminal
 | `Super` + `E` | launch dolphin file explorer
-| `Super` + `V` | launch Vs code
+| `Super` + `C` | launch vs code
 | `Super` + `F` | launch firefox
 | `Super` + `A` | launch desktop applications (rofi)
 | `Super` + `Tab` | switch open applications (rofi)
@@ -249,6 +249,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `F10` | mute audio output (toggle)
 | `F11` | decrease volume (hold)
 | `F12` | increase volume (hold)
+| `Super` + `V` | clipboard history paste
 | `Super` + `L` | lock screen
 | `Super` + `Backspace` | logout menu
 | `Super` + `P` | screenshot snip

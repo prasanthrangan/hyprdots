@@ -10,10 +10,6 @@ configuration {
 
 // Main //
 window {
-    location:                    south east;
-    anchor:                      south east;
-    x-offset:                    -20px;
-    y-offset:                    -20px;
 	height:                      55%;
     width:                       20%;
     transparency:                "real";
