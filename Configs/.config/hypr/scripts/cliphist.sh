@@ -19,6 +19,9 @@ case $2 in
     4)  # bottom right
         pos="window {location: south west; anchor: south west; x-offset: 20px; y-offset: -20px;}"
         ;;
+    5)  # center in screen
+        pos="window {location: center; anchor: center;}"
+        ;;
 esac
 
 
