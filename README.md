@@ -137,6 +137,13 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png) |
 
+| Game Launchers |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png) |
+
 
 <details>
 <summary><h4>Packages</h4></summary>
@@ -238,7 +245,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `W` | toggle window on focus to float
 | `Alt` + `Enter` | toggle window on focus to fullscreen
 | `Alt` + `J` | toggle layout
-| `Super` + `G` | disable hypr effects for gamemode
+| `Super` + `G` | toggle window group
 | `Super` + `T` | launch kitty terminal
 | `Super` + `E` | launch dolphin file explorer
 | `Super` + `C` | launch vs code
@@ -262,6 +269,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `Shift` + `[0-9]` | move active window to workspace [0-9]
 | `Super` + `Alt` + `S` | move window to special workspace
 | `Super` + `S` | toogle to special workspace
+| `Super` + `Alt` + `G` | disable hypr effects for gamemode
 | `Super` + `Alt` + `→` | next wallpaper
 | `Super` + `Alt` + `←` | previous wallpaper
 | `Super` + `Alt` + `↑` | next waybar mode

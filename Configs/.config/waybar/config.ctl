@@ -4,4 +4,4 @@
 0|32|top||( custom/power ) ( tray battery ) ( wlr/taskbar clock ) ( custom/cliphist ) ( custom/wbar ) ( custom/wallchange ) ( custom/mode )|
 1|31|bottom|( cpu memory ) ( clock ) ( hyprland/workspaces )|( wlr/taskbar )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray battery ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
 0|29|top|( wlr/taskbar mpris )|( clock )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray battery ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
-0|32|bottom|( custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ) ( clock )|( wlr/taskbar )|( tray ) ( network bluetooth pulseaudio pulseaudio#microphone )
+0|28|bottom|( custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ) ( clock )|( wlr/taskbar )|( tray ) ( network bluetooth pulseaudio pulseaudio#microphone )
