@@ -231,10 +231,10 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    #dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    #browser = /usr/bin/xdg-open
+    browser = /usr/bin/xdg-open
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
@@ -295,7 +295,7 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
+    mouse_left_click = context, close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
