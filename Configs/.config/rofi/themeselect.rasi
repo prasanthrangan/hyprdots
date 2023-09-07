@@ -36,7 +36,7 @@ listview {
     columns:                     3;
     lines:                       1;
     spacing:                     50px;
-    padding:                     50px;
+    padding:                     50px 60px 50px 60px;
     cycle:                       true;
     dynamic:                     false;
     scrollbar:                   false;

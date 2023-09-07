@@ -14,7 +14,7 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","wlr/workspaces","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
@@ -43,7 +43,7 @@
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
@@ -188,9 +188,9 @@
     "custom/cliphist": {
         "format": "{}",
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c 3",
-        //"on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w 3",
+        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
+        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
         "interval" : 86400, // once every day
         "tooltip": true
     },

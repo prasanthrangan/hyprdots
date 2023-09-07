@@ -38,6 +38,11 @@ install_list="${1:-install_pkg.lst}"
 
 while read pkg
 do
+    if [ -z $pkg ]
+        then
+        continue
+    fi
+
     if pkg_installed ${pkg}
         then
         echo "skipping ${pkg}..."
@@ -55,16 +60,16 @@ do
     else
         echo "error: unknown package ${pkg}..."
     fi
-done < $install_list
+done < <( cut -d '#' -f 1 $install_list )
 
 if [ `echo $pkg_arch | wc -w` -gt 0 ]
-then
+    then
     echo "installing $pkg_arch from arch repo..."
     sudo pacman ${use_default} -S $pkg_arch
 fi
 
 if [ `echo $pkg_aur | wc -w` -gt 0 ]
-then
+    then
     echo "installing $pkg_aur from aur..."
     $aurhlpr ${use_default} -S $pkg_aur
 fi

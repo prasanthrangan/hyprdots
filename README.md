@@ -10,8 +10,8 @@
 https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4
 
 <p align="center">
-    <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" /> <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />   
-    <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png" /> <img align="center" width="48%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png" />   
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />   
+    <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png" />   
 </p>
 
 
@@ -137,6 +137,13 @@ To add your own custom theme, please refer [theming.md](https://github.com/prasa
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png) |
 | ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png) |
 
+| Game Launchers |
+| :-: |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_1.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png) |
+| ![](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png) |
+
 
 <details>
 <summary><h4>Packages</h4></summary>
@@ -238,10 +245,10 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `W` | toggle window on focus to float
 | `Alt` + `Enter` | toggle window on focus to fullscreen
 | `Alt` + `J` | toggle layout
-| `Super` + `G` | disable hypr effects for gamemode
+| `Super` + `G` | toggle window group
 | `Super` + `T` | launch kitty terminal
 | `Super` + `E` | launch dolphin file explorer
-| `Super` + `V` | launch Vs code
+| `Super` + `C` | launch vs code
 | `Super` + `F` | launch firefox
 | `Super` + `A` | launch desktop applications (rofi)
 | `Super` + `Tab` | switch open applications (rofi)
@@ -249,6 +256,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `F10` | mute audio output (toggle)
 | `F11` | decrease volume (hold)
 | `F12` | increase volume (hold)
+| `Super` + `V` | clipboard history paste
 | `Super` + `L` | lock screen
 | `Super` + `Backspace` | logout menu
 | `Super` + `P` | screenshot snip
@@ -261,6 +269,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super` + `Shift` + `[0-9]` | move active window to workspace [0-9]
 | `Super` + `Alt` + `S` | move window to special workspace
 | `Super` + `S` | toogle to special workspace
+| `Super` + `Alt` + `G` | disable hypr effects for gamemode
 | `Super` + `Alt` + `→` | next wallpaper
 | `Super` + `Alt` + `←` | previous wallpaper
 | `Super` + `Alt` + `↑` | next waybar mode
@@ -315,3 +324,4 @@ pokemon-colorscripts-git | display pokemon sprites
 - [ ] Flatpak QT apps does not follow system theme
 
 </details>
+

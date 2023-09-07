@@ -2,37 +2,37 @@
 com.github.tchx84.Flatseal #Flatseal
 # org.gnome.Boxes #Boxes
 # com.usebottles.bottles #Bottles
-com.raggesilver.BlackBox #BlackBox
+# com.raggesilver.BlackBox #BlackBox
 
 # Social
+# io.github.spacingbat3.webcord #Webcord
 com.discordapp.Discord #Discord
-#io.github.spacingbat3.webcord #Webcord
 org.signal.Signal #Signal
 
 # Productivity
 # md.obsidian.Obsidian #Obsidian
 # org.mozilla.Thunderbird #Thunderbird
 
-# Graphics
+# Image/Graphics
 org.inkscape.Inkscape #Inkscape
 org.kde.krita #Krita
 org.gimp.GIMP #Gimp
-
-# Image
-org.gnome.eog #ImageViewer
+org.blender.Blender #Blender
 io.gitlab.theevilskeleton.Upscaler #ImageUpscaler
 
 # Photography
 # org.gnome.Shotwell #Shotwell
 # org.darktable.Darktable #Darktable
-# org.kde.digikam
+# org.kde.digikam #Digikam
+org.gnome.eog #ImageViewer
 
 # Audio/Video
-com.obsproject.Studio #Obs
 com.github.rafostar.Clapper #Clapper
-# com.spotify.Client #Spotify
+com.spotify.Client #Spotify
+org.kde.kdenlive #Kdenlive
+com.obsproject.Studio #Obs
 
 # Gaming
-hu.kramo.Cartridges #Cartridges
+# hu.kramo.Cartridges #Cartridges
 # com.github.Matoking.protontricks #ProtonTricks
 # net.davidotek.pupgui2 #ProtonUp
