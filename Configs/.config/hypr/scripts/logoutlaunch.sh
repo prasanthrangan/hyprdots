@@ -1,5 +1,13 @@
 #!/usr/bin/env sh
 
+# Check if wlogout is already running
+if pgrep -x "wlogout" > /dev/null
+then
+    # Kill wlogout
+    pkill -x "wlogout"
+    exit 0
+fi
+
 # set file variables
 wLayout="$HOME/.config/wlogout/layout_$1"
 wlTmplt="$HOME/.config/wlogout/style_$1.css"
