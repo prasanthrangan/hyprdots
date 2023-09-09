@@ -39,44 +39,44 @@ button:hover {
 
 button:hover#lock {
     border-radius: ${active_rad}px ${active_rad}px 0px ${active_rad}px;
-    margin : ${hvr}px 0px 0px ${hvr2}px;
+    margin : ${y_hvr}px 0px 0px ${x_hvr}px;
 }
 
 button:hover#logout {
     border-radius: ${active_rad}px 0px ${active_rad}px ${active_rad}px;
-    margin : 0px 0px ${hvr}px ${hvr2}px;
+    margin : 0px 0px ${y_hvr}px ${x_hvr}px;
 }
 
 button:hover#shutdown {
     border-radius: ${active_rad}px ${active_rad}px ${active_rad}px 0px;
-    margin : ${hvr}px ${hvr2}px 0px 0px;
+    margin : ${y_hvr}px ${x_hvr}px 0px 0px;
 }
 
 button:hover#reboot {
     border-radius: 0px ${active_rad}px ${active_rad}px ${active_rad}px;
-    margin : 0px ${hvr2}px ${hvr}px 0px;
+    margin : 0px ${x_hvr}px ${y_hvr}px 0px;
 }
 
 #lock {
     background-image: image(url("$HOME/.config/wlogout/icons/lock_${csMode}.png"), url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
     border-radius: ${button_rad}px 0px 0px 0px;
-    margin : ${mgn}px 0px 0px ${mgn2}px;
+    margin : ${y_mgn}px 0px 0px ${x_mgn}px;
 }
 
 #logout {
     background-image: image(url("$HOME/.config/wlogout/icons/logout_${csMode}.png"), url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
     border-radius: 0px 0px 0px ${button_rad}px;
-    margin : 0px 0px ${mgn}px ${mgn2}px;
+    margin : 0px 0px ${y_mgn}px ${x_mgn}px;
 }
 
 #shutdown {
     background-image: image(url("$HOME/.config/wlogout/icons/shutdown_${csMode}.png"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
     border-radius: 0px ${button_rad}px 0px 0px;
-    margin : ${mgn}px ${mgn2}px 0px 0px;
+    margin : ${y_mgn}px ${x_mgn}px 0px 0px;
 }
 
 #reboot {
     background-image: image(url("$HOME/.config/wlogout/icons/reboot_${csMode}.png"), url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
     border-radius: 0px 0px ${button_rad}px 0px;
-    margin : 0px ${mgn2}px ${mgn}px 0px;
+    margin : 0px ${x_mgn}px ${y_mgn}px 0px;
 }
