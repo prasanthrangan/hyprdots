@@ -16,19 +16,24 @@ Wall_Update()
         convert -strip $x_wall -thumbnail 500x500^ -gravity center -extent 500x500 ${cacheDir}/${curTheme}/${cacheImg}
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/rofi.${cacheImg}" ] ; then
+    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.rofi" ] ; then
         #convert -strip -resize 1000 -unsharp 0x1+1.0+0 $x_wall ${cacheDir}/${curTheme}/rofi.${cacheImg}
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 $x_wall ${cacheDir}/${curTheme}/rofi.${cacheImg}
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 $x_wall ${cacheDir}/${curTheme}/${cacheImg}.rofi
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/blur.${cacheImg}" ] ; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% $x_wall ${cacheDir}/${curTheme}/blur.${cacheImg}
+    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.blur" ] ; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% $x_wall ${cacheDir}/${curTheme}/${cacheImg}.blur
+    fi
+
+    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.dcol" ] ; then
+        magick $x_wall -colors 6 -define histogram:unique-colors=true -format "%c" histogram:info: > ${cacheDir}/${curTheme}/${cacheImg}.dcol
     fi
 
     sed -i "/^1|/c\1|${curTheme}|${x_update}" $ctlFile
     ln -fs $x_wall $wallSet
-    ln -fs ${cacheDir}/${curTheme}/rofi.${cacheImg} $wallRfi
-    ln -fs ${cacheDir}/${curTheme}/blur.${cacheImg} $wallBlr
+    ln -fs ${cacheDir}/${curTheme}/${cacheImg}.rofi $wallRfi
+    ln -fs ${cacheDir}/${curTheme}/${cacheImg}.blur $wallBlr
+    ln -fs ${cacheDir}/${curTheme}/${cacheImg}.dcol $wallDco
 }
 
 Wall_Change()
@@ -74,6 +79,7 @@ ctlFile="$HOME/.config/swww/wall.ctl"
 wallSet="$HOME/.config/swww/wall.set"
 wallBlr="$HOME/.config/swww/wall.blur"
 wallRfi="$HOME/.config/swww/wall.rofi"
+wallDco="$HOME/.config/swww/wall.dcol"
 ctlLine=`grep '^1|' $ctlFile`
 
 if [  `echo $ctlLine | wc -w` -ne "1" ] ; then

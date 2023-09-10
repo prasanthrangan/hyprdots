@@ -240,43 +240,43 @@ pokemon-colorscripts-git | display pokemon sprites
 
 | Keys | Action |
 | :--  | :-- |
-| `Super` + `Q`| quit active/focused window
-| `Super` + `Del` | quit hyprland session
-| `Super` + `W` | toggle window on focus to float
-| `Alt` + `Enter` | toggle window on focus to fullscreen
-| `Alt` + `J` | toggle layout
-| `Super` + `G` | toggle window group
-| `Super` + `T` | launch kitty terminal
-| `Super` + `E` | launch dolphin file explorer
-| `Super` + `C` | launch vs code
-| `Super` + `F` | launch firefox
-| `Super` + `A` | launch desktop applications (rofi)
-| `Super` + `Tab` | switch open applications (rofi)
-| `Super` + `R` | browse system files (rofi)
-| `F10` | mute audio output (toggle)
-| `F11` | decrease volume (hold)
-| `F12` | increase volume (hold)
-| `Super` + `V` | clipboard history paste
-| `Super` + `L` | lock screen
-| `Super` + `Backspace` | logout menu
-| `Super` + `P` | screenshot snip
-| `Super` + `Alt` + `P` | print current screen
-| `Super` + `RightClick` | resize the window 
-| `Super` + `LeftClick` | change the window position
-| `Super` + `MouseScroll` | cycle through workspaces
-| `Super` + `Shift` + `←` `→` `↑` `↓` | resize windows (hold)
-| `Super` + `[0-9]` | switch to workspace [0-9]
-| `Super` + `Shift` + `[0-9]` | move active window to workspace [0-9]
-| `Super` + `Alt` + `S` | move window to special workspace
-| `Super` + `S` | toogle to special workspace
-| `Super` + `Alt` + `G` | disable hypr effects for gamemode
-| `Super` + `Alt` + `→` | next wallpaper
-| `Super` + `Alt` + `←` | previous wallpaper
-| `Super` + `Alt` + `↑` | next waybar mode
-| `Super` + `Alt` + `↓` | previous waybar mode
-| `Super` + `Shift` + `T` | theme select menu
-| `Super` + `Shift` + `W` | wallpaper select menu
-| `Super` + `Shift` + `A` | rofi style select menu
+| <kbd>Super</kbd> + <kbd>Q</kbd> | quit active/focused window
+| <kbd>Super</kbd> + <kbd>Del</kbd>| quit hyprland session
+| <kbd>Super</kbd> + <kbd>W</kbd>| toggle window on focus to float
+| <kbd>Alt</kbd> + <kbd>Enter</kbd>| toggle window on focus to fullscreen
+| <kbd>Alt</kbd> + <kbd>J</kbd>| toggle layout
+| <kbd>Super</kbd> + <kbd>G</kbd>| toggle window group
+| <kbd>Super</kbd> + <kbd>T</kbd>| launch kitty terminal
+| <kbd>Super</kbd> + <kbd>E</kbd>| launch dolphin file explorer
+| <kbd>Super</kbd> + <kbd>C</kbd>| launch vs code
+| <kbd>Super</kbd> + <kbd>F</kbd>| launch firefox
+| <kbd>Super</kbd> + <kbd>A</kbd>| launch desktop applications (rofi)
+| <kbd>Super</kbd> + <kbd>Tab</kbd>| switch open applications (rofi)
+| <kbd>Super</kbd> + <kbd>R</kbd>| browse system files (rofi)
+| <kbd>F10</kbd> | mute audio output (toggle)
+| <kbd>F11</kbd> | decrease volume (hold)
+| <kbd>F12</kbd> | increase volume (hold)
+| <kbd>Super</kbd> + <kbd>V</kbd>| clipboard history paste
+| <kbd>Super</kbd> + <kbd>L</kbd>| lock screen
+| <kbd>Super</kbd> + <kbd>Backspace</kbd>| logout menu
+| <kbd>Super</kbd> + <kbd>P</kbd>| screenshot snip
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>P</kbd>| print current screen
+| <kbd>Super</kbd> + <kbd>RightClick</kbd>| resize the window 
+| <kbd>Super</kbd> + <kbd>LeftClick</kbd>| change the window position
+| <kbd>Super</kbd> + <kbd>MouseScroll</kbd>| cycle through workspaces
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd>| resize windows (hold)
+| <kbd>Super</kbd> + <kbd>[0-9]</kbd>| switch to workspace [0-9]
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>[0-9]</kbd>| move active window to workspace [0-9]
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>S</kbd>| move window to special workspace
+| <kbd>Super</kbd> + <kbd>S</kbd>| toogle to special workspace
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>G</kbd>| disable hypr effects for gamemode
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>→</kbd>| next wallpaper
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>←</kbd>| previous wallpaper
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>↑</kbd>| next waybar mode
+| <kbd>Super</kbd> + <kbd>Alt</kbd>+ <kbd>↓</kbd>| previous waybar mode
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>T</kbd>| theme select menu
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>W</kbd>| wallpaper select menu
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>A</kbd>| rofi style select menu
 
 </details>
 
@@ -287,30 +287,6 @@ pokemon-colorscripts-git | display pokemon sprites
 | youtube |
 | --- |
 | [![IMAGE ALT TEXT](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/yt_playlist.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY) |
-
-</details>
-
-
-<details>
-<summary><h4>To-Do</h4></summary>
-
-- [x] Wallpaper change script (ver2)
-- [x] Theme selector script
-- [x] Theme change script (ver2)
-- [x] Update rofi configs
-- [x] Clipboard manager in waybar
-- [x] Add options to install script (ver2)
-- [x] Dynamic waybar config generator script
-- [x] Media control mpris module for waybar
-- [x] Update Volume control script/notification (ver2)
-- [x] Rofi config change script + add new configs
-- [x] Make wlogout configs dynamic and sync with theme
-- [x] Wallpaper select script with rofi menu
-- [ ] Fix rofi configs/scripts for dynamic scaling
-- [ ] Add vertical configs for waybar
-- [ ] Sync PC/keyboard hw rgb with current theme (themeswitch.sh + openrgb)
-- [ ] Add battery and brightness indicator/notification for laptop users
-- [ ] Add Eww widgets? (maybe later)
 
 </details>
 
