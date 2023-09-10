@@ -76,8 +76,9 @@ getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
 getWall=`eval echo $getWall`
 getName=`basename $getWall`
 ln -fs $getWall $ConfDir/swww/wall.set
-ln -fs $WallCache/${ThemeSet}/rofi.${getName} $ConfDir/swww/wall.rofi
-ln -fs $WallCache/${ThemeSet}/blur.${getName} $ConfDir/swww/wall.blur
+ln -fs $WallCache/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
+ln -fs $WallCache/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
+ln -fs $WallCache/${ThemeSet}/${getName}.dcol $ConfDir/swww/wall.dcol
 $ConfDir/hypr/scripts/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
