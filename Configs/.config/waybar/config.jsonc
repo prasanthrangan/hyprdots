@@ -138,7 +138,6 @@
        "on-scroll-down": "playerctl previous"
    },
 
-
     "custom/updates": {
         "format": "󰮯 {}",
         "exec": "~/.config/hypr/scripts/systemupdate.sh",
