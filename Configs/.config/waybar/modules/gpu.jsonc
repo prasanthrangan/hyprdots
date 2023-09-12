@@ -3,6 +3,5 @@
     "return-type": "json",
     "format": " 🔥 {}",
     "interval" : 2, // once every 2 seconds
-
     "tooltip": true,
 },
