@@ -113,13 +113,14 @@ tooltip {
 #custom-sr_end,
 #custom-rl_end,
 #custom-rr_end,
+#custom-gpu, /* HERE HERE HERE*/
 #tray {
     color: @main-color;
     background: @main-bg;
     opacity: 1;
-    margin: 4px 0px 4px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+    margin: ${g_margin}px 0px ${g_margin}px 0px;
+    padding-left: ${g_paddin}px;
+    padding-right: ${g_paddin}px;
 }
 
 #workspaces,
