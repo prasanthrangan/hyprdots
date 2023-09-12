@@ -1,4 +1,4 @@
-    "custom/wbar": {
+    "custom/wbar" : {
         "format": "{}", //    //
         "exec": "echo ; echo  switch menubar",
         "on-click": "~/.config/waybar/wbarconfgen.sh n",

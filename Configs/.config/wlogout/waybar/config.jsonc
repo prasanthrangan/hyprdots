@@ -6,7 +6,7 @@
     "layer": "top",
     "position": "bottom",
     "mod": "dock",
-    "height": 31,
+    "height": 32,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -14,12 +14,33 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/r_end","custom/l_end","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","custom/power","battery","cpu","memory","custom/r_endcustom/l_end","hyprland/workspaces","","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","hyprland/perworkspaces","hyprland/window","wlr/taskbar","mpris","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","","custom/l_end","tray","custom/r_endcustom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","","custom/r_endcustom/l_end","clock","custom/updates","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
+
+    "custom/power": {
+        "format": "{}",
+        "exec": "echo ; echo  logout",
+        "on-click": "~/.config/hypr/khing_scripts/khing_logoutlaunch.sh 2",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 40,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
 
     "cpu": {
         "interval": 10,
@@ -37,55 +58,106 @@
         "tooltip-format": " {used:0.1f}GB/{total:0.1f}GB"
     },
 
-    "clock": {
-        "format": "{: %I:%M %p 󰃭 %a %d}",
-        "format-alt": "{:󰥔 %H:%M  %b %Y}",
-        "tooltip-format": "<tt><big>{calendar}</big></tt>"
-    },
-
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        "disable-scroll": false,
         "all-outputs": true,
         "on-click": "activate",
         "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
+          //  "a": [],
+          //  "b": [],
+           // "c": [],
+           // "d": [],
+           // "e": [],
+          //  "f": [],
+          //  "g": [],
+          //  "h": [],
+          //  "i": [],
+           // "j": []
         }
+    },
+
+    "hyprland/window": {
+        "format": "  {}",
+        "separate-outputs": true,
+        "max-length": 20,
+        "rewrite": {
+            "khing@ArchLinux:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "󰓇 Spotify",
+            "(.*)Steam": "Steam 󰓓"
+        }
+
+
+
     },
 
 	"wlr/taskbar": {
 		"format": "{icon}",
-		"icon-size": 18,
-		"icon-theme": "Tela-circle-dracula",
+		"icon-size": 19,
+		"icon-theme": "Tela-circle-blue",
         "spacing": 0,
 		"tooltip-format": "{title}",
 		"on-click": "activate",
 		"on-click-middle": "close",
 		"ignore-list": [
-			"Alacritty"
+			"FreeRDP: 192.168.122.20"
 		],
 		"app_ids-mapping": {
 			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
+		},
+	
 	},
 
+    "mpris": {
+     //   "format": "{player_icon} {dynamic}",
+        "format": "{player_icon} {title}",
+    // "format": "{player_icon}{progressbar} {status_icon}"
+        //"format": "{player_icon}",
+     //  "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "format-paused": "{status_icon} <i>{title}</i>",
+        
+    //    "format-paused": "{status_icon}" ,
+    //"format-paused": "{player_icon} <abbr title='{title}'>{abbreviated_title}</abbr>"
+    "max-length": 50,
+    "interval": 1,
+
+        "player-icons": { 
+            "default": "▶",
+            "mpv": "🎵",
+            "spotify" : "",
+           "brave" : "",
+           "firefox" : ""
+        },
+        "status-icons": {
+            "paused": "⏸",
+            "loading": "⌛"
+        },
+        // "ignored-players": ["firefox"]
+    },
+
+    "tray": {
+        "icon-size": 19,
+        "spacing": 5
+    },
+
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "󰤨 {essid}",
+     //    "interface": "wlp2*", // (Optional) To force the use of this interface
+     //   "format-wifi": "󰤨 {essid}",
+        "format-alt": "󰤨 {essid}",
+
         "format-ethernet": "󱘖 Wired",
         "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
         "format-linked": "󱘖 {ifname} (No IP)",
         "format-disconnected": " Disconnected",
-        "format-alt": "󰤨 {signalStrength}%",
-        "interval": 5
+   //     "format-alt": "󰤨 {signalStrength}%",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "interval": 5,
+        "max-length": 100,
+
     },
 
     "bluetooth": {
@@ -129,77 +201,17 @@
         "scroll-step": 5
     },
 
+    "clock": {
+        "format": "{: %I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:󰥔 %H:%M  %b %Y}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+
     "custom/updates": {
         "format": "󰮯 {}",
         "exec": "~/.config/hypr/scripts/systemupdate.sh",
         "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
         "interval": 86400, // once every day
-        "tooltip": true
-    },
-
-    "tray": {
-        "icon-size": 18,
-        "spacing": 5
-    },
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-
-    "custom/wallchange": {
-        "format": "{}",
-        "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/swwwallselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-    "custom/mode": {
-        "format": "{}",
-        "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-    "custom/wbar": {
-        "format": "{}", //    //
-        "exec": "echo ; echo  switch menubar",
-        "on-click": "~/.config/waybar/wbarconfgen.sh n",
-        "on-click-right": "~/.config/waybar/wbarconfgen.sh p",
-        "on-click-middle": "~/.config/waybar/wbarconfgen.sh",
-        "interval" : 86400,
-        "tooltip": true
-    },
-
-    "custom/cliphist": {
-        "format": "{}",
-        "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
-        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-    "custom/power": {
-        "format": "{}",
-        "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
-        "interval" : 86400, // once every day
         "tooltip": true
     },
 

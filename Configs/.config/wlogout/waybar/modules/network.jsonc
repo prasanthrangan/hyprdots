@@ -1,0 +1,16 @@
+    "network": {
+     //    "interface": "wlp2*", // (Optional) To force the use of this interface
+     //   "format-wifi": "󰤨 {essid}",
+        "format-alt": "󰤨 {essid}",
+
+        "format-ethernet": "󱘖 Wired",
+        "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󱘖 {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+   //     "format-alt": "󰤨 {signalStrength}%",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "interval": 5,
+        "max-length": 100,
+
+    },
+

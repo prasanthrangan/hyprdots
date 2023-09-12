@@ -1,6 +1,7 @@
     "hyprland/window": {
         "format": "  {}",
         "separate-outputs": true,
+        "max-length": 20,
         "rewrite": {
             "${USER}@${set_sysname}:(.*)": "$1 ",
             "(.*) — Mozilla Firefox": "$1 󰈹",
@@ -8,8 +9,11 @@
             "(.*) - Visual Studio Code": "$1 󰨞",
             "(.*)Visual Studio Code": "Code 󰨞",
             "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Spotify": "󰓇 Spotify",
             "(.*)Steam": "Steam 󰓓"
         }
+
+
+
     },
 

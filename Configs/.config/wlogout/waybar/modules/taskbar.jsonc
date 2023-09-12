@@ -7,10 +7,11 @@
 		"on-click": "activate",
 		"on-click-middle": "close",
 		"ignore-list": [
-			"Alacritty"
+			"FreeRDP: 192.168.122.20"
 		],
 		"app_ids-mapping": {
 			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
+		},
+	
 	},
 

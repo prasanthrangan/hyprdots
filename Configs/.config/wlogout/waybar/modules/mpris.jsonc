@@ -1,0 +1,27 @@
+    "mpris": {
+     //   "format": "{player_icon} {dynamic}",
+        "format": "{player_icon} {title}",
+    // "format": "{player_icon}{progressbar} {status_icon}"
+        //"format": "{player_icon}",
+     //  "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "format-paused": "{status_icon} <i>{title}</i>",
+        
+    //    "format-paused": "{status_icon}" ,
+    //"format-paused": "{player_icon} <abbr title='{title}'>{abbreviated_title}</abbr>"
+    "max-length": 50,
+    "interval": 1,
+
+        "player-icons": { 
+            "default": "▶",
+            "mpv": "🎵",
+            "spotify" : "",
+           "brave" : "",
+           "firefox" : ""
+        },
+        "status-icons": {
+            "paused": "⏸",
+            "loading": "⌛"
+        },
+        // "ignored-players": ["firefox"]
+    },
+

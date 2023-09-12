@@ -1,0 +1,10 @@
+0|32|bottom|( cpu memory ) ( clock )|( wlr/workspaces hyprland/window )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray ) ( battery custom/wallchange custom/mode custom/wbar custom/cliphist custom/power)
+0|33|top|( wlr/workspaces hyprland/window )|( clock )|( cpu memory ) ( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray ) ( battery custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|31|bottom|( custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ) ( wlr/taskbar mpris ) |( clock )|( tray ) ( battery network bluetooth pulseaudio pulseaudio#microphone )
+0|32|top||( custom/power battery ) ( tray ) ( wlr/taskbar clock ) ( custom/wbar ) ( custom/wallchange ) ( custom/mode )|
+0|31|bottom|( cpu memory ) ( clock ) ( wlr/workspaces )|( wlr/taskbar )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray ) ( battery custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|33|top|( wlr/taskbar mpris )|( clock )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray ) ( battery custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
+0|29|top|| ( tray ) (  clock )|( custom/power battery )
+0|15|top|( wlr/taskbar   )|( clock )|( tray )( network bluetooth pulseaudio pulseaudio#microphone custom/updates battery custom/power ) 
+0|30|bottom|( custom/power cpu memory battery )( hyprland/workspaces )( mpris )|( wlr/taskbar )|( network bluetooth pulseaudio pulseaudio#microphone )( tray )(  clock custom/updates )
+1|32|bottom|( custom/power battery cpu memory )( hyprland/workspaces  )|( hyprland/perworkspaces hyprland/window wlr/taskbar mpris )| ( tray )( network bluetooth pulseaudio pulseaudio#microphone  )( clock custom/updates )

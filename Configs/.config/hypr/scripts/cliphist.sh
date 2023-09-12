@@ -1,42 +1,44 @@
 #!/usr/bin/env sh
 
+██╗  ██╗██╗██╗  ██╗███╗   ██╗ ██████╗ 
+██║ ██╔╝██║██║  ██║████╗  ██║██╔════╝ 
+█████╔╝ ██║███████║██╔██╗ ██║██║  ███╗
+██╔═██╗ ██║██╔══██║██║╚██╗██║██║   ██║
+██║  ██╗██║██║  ██║██║ ╚████║╚██████╔╝
+╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+ 
 theme_file="$HOME/.config/hypr/themes/theme.conf"
 roconf="~/.config/rofi/clipboard.rasi"
 
 
-# set position
+# set rofi position
 
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
-y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
-x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
+case $2 in
+    1)  # top left
+        pos="window {location: north west; anchor: north west; x-offset: 20px; y-offset: 20px;}"
+        ;;
+    2)  # top right
+        pos="window {location: north east; anchor: north east; x-offset: -20px; y-offset: 20px;}"
+        ;;
+    3)  # bottom left
+        pos="window {location: south east; anchor: south east; x-offset: -20px; y-offset: -20px;}"
+        ;;
+    4)  # bottom right
+        pos="window {location: south west; anchor: south west; x-offset: 20px; y-offset: -20px;}"
+        ;; 
+         5) # Follow mouse cursor
+        cursor_pos=$(hyprctl cursorpos)
+        cursor_x=${cursor_pos%,*}
+        cursor_y=${cursor_pos#*,}
 
-x_cur=$(hyprctl cursorpos | sed 's/ //g')
-y_cur=$( echo $x_cur | cut -d ',' -f 2 )
-x_cur=$( echo $x_cur | cut -d ',' -f 1 )
-
-if [ ${x_cur} -le $(( x_mon/3 )) ] ; then
-    x_rofi="west"
-    x_offset="x-offset: 20px;"
-elif [ ${x_cur} -ge $(( x_mon/3*2 )) ] ; then
-    x_rofi="east"
-    x_offset="x-offset: -20px;"
-else
-    unset x_rofi
-fi
-
-if [ ${y_cur} -le $(( y_mon/3 )) ] ; then
-    y_rofi="north"
-    y_offset="y-offset: 20px;"
-elif [ ${y_cur} -ge $(( y_mon/3*2 )) ] ; then
-    y_rofi="south"
-    y_offset="y-offset: -20px;"
-else
-    unset y_rofi
-fi
-
-if [ ! -z $x_rofi ] || [ ! -z $y_rofi ] ; then
-    pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}"
-fi
+        x_offset=10
+        y_offset=-270
+        cursor_x=$((cursor_x + x_offset))
+        cursor_y=$((cursor_y + y_offset))
+    # Construct the position string based on mouse cursor's position
+    pos="window {location: north west; anchor: north west; x-offset: ${cursor_x}px; y-offset: ${cursor_y}px;}"
+    ;;
+esac
 
 
 # read hypr theme border
@@ -66,10 +68,15 @@ case $1 in
             cliphist wipe
         fi
         ;;
-    *)  echo -e "cliphist.sh [action]"
+    *)  echo -e "cliphist.sh [action] [position]\nwhere action,"
         echo "c :  cliphist list and copy selected"
         echo "d :  cliphist list and delete selected"
         echo "w :  cliphist wipe database"
+        echo "where position,"
+        echo "1 :  top left"
+        echo "2 :  top right"
+        echo "3 :  bottom right"
+        echo "4 :  bottom left"
         exit 1
         ;;
 esac

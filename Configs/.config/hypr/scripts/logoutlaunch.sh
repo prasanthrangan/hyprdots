@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+
+██╗  ██╗██╗██╗  ██╗███╗   ██╗ ██████╗ 
+██║ ██╔╝██║██║  ██║████╗  ██║██╔════╝ 
+█████╔╝ ██║███████║██╔██╗ ██║██║  ███╗
+██╔═██╗ ██║██╔══██║██║╚██╗██║██║   ██║
+██║  ██╗██║██║  ██║██║ ╚████║╚██████╔╝
+╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+ 
+
 # Check if wlogout is already running
 if pgrep -x "wlogout" > /dev/null
 then
@@ -19,17 +28,18 @@ fi
 
 # detect monitor y res
 res=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
-
+#res='1300'
 # scale config layout and style
 case $1 in
     1)  wlColms=6
-        export mgn=$(( res * 26 / 100 ))
-        export hvr=$(( res * 21 / 100 )) ;;
+        export mgn=$(( res * 26 / 200 ))
+        export hvr=$(( res * 21 / 200 )) ;; #changes here def /100
+        
     2)  wlColms=2
-        export x_mgn=$(( res * 80 / 100  ))
-        export y_mgn=$(( res * 25 / 100 ))
-        export x_hvr=$(( res * 75 / 100 ))
-        export y_hvr=$(( res * 20 / 100 )) ;;
+        export x_mgn=$(( res * 80 / 400  ))
+        export y_mgn=$(( res * 25 / 400 ))
+        export x_hvr=$(( res * 75 / 400 ))
+        export y_hvr=$(( res * 20 / 400 )) ;; # def=/100
 esac
 
 # scale font size
