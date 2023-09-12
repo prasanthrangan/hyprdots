@@ -129,14 +129,14 @@
         "scroll-step": 5
     },
 
-"custom/spotify": {
-    "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py --player spotify",
-    "format": "{}  ",
-    "return-type": "json",
-    "on-click": "playerctl play-pause",
-    "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous"
-},
+    "custom/spotify": {
+       "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py --player spotify",
+       "format": "{}  ",
+       "return-type": "json",
+       "on-click": "playerctl play-pause",
+       "on-scroll-up": "playerctl next",
+       "on-scroll-down": "playerctl previous"
+   },
 
 
     "custom/updates": {
