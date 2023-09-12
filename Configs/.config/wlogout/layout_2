@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "swaylock -C /home/khing/.config/.config/hypr/swaylock/khing_swaylock.conf && swaylock",
     "text" : "Lock",
     "keybind" : "l"
 }

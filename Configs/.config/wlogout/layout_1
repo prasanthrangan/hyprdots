@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock",
+    "action" : "swaylock -C /home/khing/.config/.config/hypr/swaylock/khing_swaylock.conf",
     "text" : "Lock",
     "keybind" : "l"
 }
@@ -14,7 +14,7 @@
 
 {
     "label" : "suspend",
-    "action" : "systemctl suspend",
+    "action" : "swaylock -C /home/khing/.config/.config/hypr/swaylock/khing_swaylock.conf && systemctl suspend",
     "text" : "Suspend",
     "keybind" : "u"
 }
@@ -28,7 +28,7 @@
 
 {
     "label" : "hibernate",
-    "action" : "systemctl hibernate",
+    "action" : "swaylock -C /home/khing/.config/.config/hypr/swaylock/khing_swaylock.conf && systemctl hibernate",
     "text" : "Hibernate",
     "keybind" : "h"
 }
