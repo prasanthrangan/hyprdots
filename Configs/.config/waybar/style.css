@@ -114,6 +114,7 @@ tooltip {
 #custom-rl_end,
 #custom-rr_end,
 #custom-gpu, /* HERE HERE HERE*/
+#custom-spotify,
 #tray {
     color: @main-color;
     background: @main-bg;
