@@ -11,4 +11,4 @@
     "on-scroll-down" : "playerctl -p spotify previous",
     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
     "exec-if": "pgrep spotify"
-}
+},
