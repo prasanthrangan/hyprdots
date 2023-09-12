@@ -42,8 +42,8 @@ export GTK_THEME=Adwaita-dark
 #echo "Checking for DRM file again..."
 #[ ! -f /run/udev/data/+drm:card1-eDP-1 ]
 #exec /usr/bin/prime-offload
-#sleep 0.2
-sleep 1 
+sleep 0.2
+#sleep 1 
 exec Hyprland > .hyprland.log.txt 2> .hyprland.err.txt
 #exec Hyprland > /dev/null
 #exec Hyprland > .hyprland.log.txt 2> .hyprland.err.txt

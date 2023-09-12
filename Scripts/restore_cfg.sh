@@ -65,10 +65,10 @@ done
 touch ${HOME}/.config/hypr/monitors.conf
 touch ${HOME}/.config/hypr/userprefs.conf
 
-if nvidia_detect ; then
-    cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
+#if nvidia_detect ; then
+  #  cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf\n' >> ${HOME}/.config/hypr/hyprland.conf
-fi
+#fi
 
 ./create_cache.sh
 ./restore_lnk.sh

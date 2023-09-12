@@ -24,7 +24,7 @@
     "custom/power": {
         "format": "{}",
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/khing_scripts/khing_logoutlaunch.sh 2",
+        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -98,7 +98,7 @@
 	"wlr/taskbar": {
 		"format": "{icon}",
 		"icon-size": 19,
-		"icon-theme": "Tela-circle-blue",
+		"icon-theme": "Tela-circle-purple",
         "spacing": 0,
 		"tooltip-format": "{title}",
 		"on-click": "activate",

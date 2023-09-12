@@ -7,7 +7,7 @@
     min-height: 10px;
 }
 
-@import "themes/Frosted-Glass.css";
+@import "themes/Tokyo-Night.css";
 
 window#waybar {
     background: @bar-bg;
