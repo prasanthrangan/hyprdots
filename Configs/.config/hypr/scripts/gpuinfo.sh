@@ -33,9 +33,22 @@ elif [ -n "$amd_gpu" ]; then
   primary_gpu="AMD GPU"
   # Collect GPU information for AMD
   gpu_info=$(sudo -E /opt/amdgpu-pro/bin/clinfo | grep "Name\|Temp\|Core\|Power\|Max Clock" | awk '{ print $2 }' | tr '\n' ',' | sed 's/,$/\n/')
+elif [ -n "$intel_gpu" ]; then
+  primary_gpu="Intel GPU"
+  # Collect GPU information for Intel
+  gpu_info=$(lspci -v -s "$intel_gpu" | grep "Subsystem" -A 4 | grep "Kernel driver in use")
 else
-  primary_gpu="Not found"
-  gpu_info=""
+  # If neither dedicated nor integrated Intel GPU is found, check for integrated AMD GPU
+  amd_integrated_gpu=$(lspci -nn | grep 'VGA.*ATI' | grep -oE '\[....:....\]' | tr -d '[]')
+  
+  if [ -n "$amd_integrated_gpu" ]; then
+    primary_gpu="AMD GPU"
+    # Collect GPU information for AMD
+    gpu_info=$(sudo -E /opt/amdgpu-pro/bin/clinfo | grep "Name\|Temp\|Core\|Power\|Max Clock" | awk '{ print $2 }' | tr '\n' ',' | sed 's/,$/\n/')
+  else
+    primary_gpu="Not found"
+    gpu_info=""
+  fi
 fi
 
 # Split the comma-separated values into an array
