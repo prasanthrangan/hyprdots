@@ -70,5 +70,5 @@ touch ${HOME}/.config/hypr/userprefs.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf\n' >> ${HOME}/.config/hypr/hyprland.conf
 #fi
 
-./create_cache.sh
+#./create_cache.sh
 ./restore_lnk.sh

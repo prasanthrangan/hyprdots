@@ -9,7 +9,7 @@
 	selected-active-foreground:  #565f89ff;    // selected text overlap
 	selected-active-background:  #bb9af7cc;    // selected overlap bg
 
-	active-foreground:           #b4f9f8cc;    // aselected text alt
+	active-foreground:           #b4f9f8cc;    // selected text alt
 	active-background:           #73dacacc;    // selected alt bg
 
 	background:                  #24283be6;    // main background tint
