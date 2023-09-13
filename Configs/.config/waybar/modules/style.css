@@ -112,6 +112,8 @@ tooltip {
 #custom-sl_end,
 #custom-sr_end,
 #custom-rl_end,
+#custom-gpu,
+#custom-spotify,
 #custom-rr_end,
 #tray {
     color: @main-color;
