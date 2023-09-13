@@ -1,7 +1,7 @@
 "custom/gpuinfo": {
-    "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
-    "return-type": "json",
-    "format": "󰈸 {}",
-    "interval" : 2, // once every 2 seconds
-    "tooltip": true,
+  "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
+  "return-type": "json",
+  "format": "🌡 {}",
+  "interval": 2, // once every 2 seconds
+  "tooltip": true,
 },
