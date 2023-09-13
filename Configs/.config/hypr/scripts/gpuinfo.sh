@@ -25,7 +25,7 @@ for gpu in $all_gpus; do
   fi
 done
 
-# Check if primary GPU is NVIDIA, AMD, or not found
+# Check if primary GPU is NVIDIA, AMD, Integrated, or not found
 if [ -n "$nvidia_gpu" ]; then
   primary_gpu="NVIDIA GPU"
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
