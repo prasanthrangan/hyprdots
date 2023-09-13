@@ -15,7 +15,7 @@ power_usage="${gpu_data[4]// /}"
 power_limit="${gpu_data[5]// /}"
 
 # Print the formatted information
-text="🔥 $temperature°C\n\
+text="󰈸 $temperature°C\n\
 󰾆 $utilization%\n\
  $current_clock_speed/$max_clock_speed Mhz\n\
  $power_usage/$power_limit W"

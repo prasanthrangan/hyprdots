@@ -3,7 +3,7 @@
 
 # detect hypr theme and initialize variables
 
-waybar_dir=`dirname $(realpath $0)`
+waybar_dir="$HOME/.config/waybar"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="$HOME/.config/hypr/themes/theme.conf"

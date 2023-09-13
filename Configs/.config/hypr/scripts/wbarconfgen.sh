@@ -3,7 +3,8 @@
 
 # read control file and initialize variables
 
-waybar_dir=`dirname $(realpath $0)`
+scr_dir=`dirname $(realpath $0)`
+waybar_dir="$HOME/.config/waybar"
 modules_dir="$waybar_dir/modules"
 conf_file="$waybar_dir/config.jsonc"
 conf_ctl="$waybar_dir/config.ctl"
@@ -119,6 +120,6 @@ cat $modules_dir/footer.jsonc >> $conf_file
 
 # generate style and restart waybar
 
-$waybar_dir/wbarstylegen.sh
+$scr_dir/wbarstylegen.sh
 
 
