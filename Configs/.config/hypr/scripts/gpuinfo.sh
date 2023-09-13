@@ -12,7 +12,7 @@ amd_gpu=""
 
 # Loop through all GPUs to identify integrated ones
 for gpu in $all_gpus; do
-  gpu_info=$(lspci -v -s "$gpu")
+  gpu_info=$(lspci -v "$gpu")
 
   # Check for Intel integrated GPU
   if echo "$gpu_info" | grep -iq 'Intel Corporation'; then
