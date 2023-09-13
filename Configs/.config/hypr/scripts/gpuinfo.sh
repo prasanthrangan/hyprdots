@@ -12,7 +12,7 @@ amd_gpu=""
 
 # Loop through all GPUs to identify integrated ones
 for gpu in $all_gpus; do
-  gpu_info=$(lspci -v | grep -A 12 "$(lspci -s $gpu | cut -d ' ' -f 1)")
+  gpu_info=$(lspci -v | grep -A 12 "VGA controller" | grep -B 1 "$gpu")
 
   # Check for Intel integrated GPU
   if echo "$gpu_info" | grep -iq 'Intel Corporation'; then
@@ -36,7 +36,7 @@ elif [ -n "$amd_gpu" ]; then
 elif [ -n "$intel_gpu" ]; then
   primary_gpu="Intel GPU"
   # Collect GPU information for Intel
-  gpu_info=$(lspci -v | grep -A 12 "$(lspci -s $intel_gpu | cut -d ' ' -f 1)" | grep "Subsystem" -A 4 | grep "Kernel driver in use")
+  gpu_info=$(lspci -v | grep -A 12 "VGA controller" | grep -B 1 "$intel_gpu" | grep "Subsystem" -A 4 | grep "Kernel driver in use")
 else
   # If neither dedicated nor integrated Intel GPU is found, check for integrated AMD GPU
   amd_integrated_gpu=$(lspci -nn | grep 'VGA.*ATI' | grep -oE '\[....:....\]' | tr -d '[]')
