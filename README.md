@@ -200,7 +200,6 @@ cliphist | clipboard manager
 | :-- | --- |
 polkit-kde-agent | authentication agent
 xdg-desktop-portal-hyprland-git | XDG Desktop Portal
-xdg-desktop-portal-gtk | XDG Desktop Portal file picker
 imagemagick | for kitty/neofetch image processing
 qt5-imageformats | for dolphin thumbnails
 pavucontrol | audio settings gui
