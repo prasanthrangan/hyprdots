@@ -34,7 +34,7 @@ export USER=khing
 
 export WLR_DRM_DEVICES=/dev/dri/card2 # card 2 and intel kay nouveau ako gamit 0 sya if nvidia
 export HYPRLAND_LOG_WLR=1
-export XCURSOR_SIZE=20
+export XCURSOR_SIZE=0
 export XCURSOR_THEME=Bibata-Modern-Classic
 export GTK_THEME=Adwaita-dark
 
