@@ -102,10 +102,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias  l='exa -l  --icons'
-alias ls='exa -1  --icons'
-alias ll='exa -la --icons'
-alias ld='exa -lD --icons'
+alias  l='eza -l  --icons'
+alias ls='eza -1  --icons'
+alias ll='eza -la --icons'
+alias ld='eza -lD --icons'
 
 alias in='sudo pacman -S' # install package
 alias un='sudo pacman -Rns' # uninstall package

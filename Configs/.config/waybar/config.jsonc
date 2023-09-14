@@ -14,6 +14,9 @@
 
 // positions generated based on config.ctl //
 
+	"modules-left": ["custom/padd","custom/l_end","custom/power","custom/cliphist","custom/wbar","custom/mode","custom/wallchange","custom/r_end","custom/l_end","wlr/taskbar","custom/spotify","custom/r_end","","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","clock","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/padd"],
 	"modules-left": ["custom/padd","custom/l_end","custom/power","battery","cpu","memory","custom/r_endcustom/l_end","hyprland/workspaces","","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","hyprland/perworkspaces","hyprland/window","wlr/taskbar","mpris","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","","custom/l_end","tray","custom/r_endcustom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","","custom/r_endcustom/l_end","clock","custom/updates","custom/r_end","custom/padd"],
@@ -74,6 +77,35 @@
           //  "i": [],
            // "j": []
         }
+
+    "custom/wbar": {
+        "format": "{}", //    //
+        "exec": "echo ; echo  switch menubar",
+        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
+        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
+        "on-click-middle": "~/.config/hypr/scripts/wbarconfgen.sh",
+        "interval" : 86400,
+        "tooltip": true
+    },
+
+    "custom/mode": {
+        "format": "{}",
+        "exec": "echo ; echo 󰟡 switch mode",
+        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
+        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/wallchange": {
+        "format": "{}",
+        "exec": "echo ; echo 󰆊 switch wallpaper",
+        "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
+        "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/swwwallselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
     },
 
     "hyprland/window": {
@@ -142,6 +174,38 @@
     "tray": {
         "icon-size": 19,
         "spacing": 5
+    },
+
+"custom/spotify": {
+    "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
+    "format": "{} ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+},
+    "clock": {
+        "format": "{: %I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:󰥔 %H:%M  %b %Y}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 5
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
 
     "network": {
