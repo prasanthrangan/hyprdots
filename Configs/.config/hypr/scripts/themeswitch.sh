@@ -79,7 +79,7 @@ ln -fs $getWall $ConfDir/swww/wall.set
 ln -fs $WallCache/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
 ln -fs $WallCache/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
 ln -fs $WallCache/${ThemeSet}/${getName}.dcol $ConfDir/swww/wall.dcol
-$ConfDir/hypr/scripts/swwwallpaper.sh
+$BaseDir/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -133,5 +133,5 @@ dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.pn
 
 
 # waybar
-$ConfDir/waybar/wbarconfgen.sh
+$BaseDir/wbarconfgen.sh
 

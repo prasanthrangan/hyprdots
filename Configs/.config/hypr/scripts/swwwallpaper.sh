@@ -26,7 +26,7 @@ Wall_Update()
     fi
 
     if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.dcol" ] ; then
-        magick $x_wall -colors 6 -define histogram:unique-colors=true -format "%c" histogram:info: > ${cacheDir}/${curTheme}/${cacheImg}.dcol
+        magick ${cacheDir}/${curTheme}/${cacheImg}.blur -colors 6 -define histogram:unique-colors=true -format "%c" histogram:info: > ${cacheDir}/${curTheme}/${cacheImg}.dcol
     fi
 
     sed -i "/^1|/c\1|${curTheme}|${x_update}" $ctlFile
