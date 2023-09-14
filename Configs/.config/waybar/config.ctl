@@ -6,4 +6,4 @@
 0|29|top|( wlr/taskbar mpris )|( clock )|( network bluetooth pulseaudio pulseaudio#microphone custom/updates ) ( tray battery ) ( custom/wallchange custom/mode custom/wbar custom/cliphist custom/power )
 0|28|bottom|( custom/power custom/cliphist custom/wbar custom/mode custom/wallchange ) ( clock custom/spotify )|( wlr/taskbar )|( tray ) ( network bluetooth pulseaudio pulseaudio#microphone )
 0|30|bottom|( custom/power cpu memory battery )( hyprland/workspaces )( mpris )|( wlr/taskbar )|( network bluetooth pulseaudio pulseaudio#microphone )( tray )(  clock custom/updates )
-1|32|bottom|( custom/power battery cpu memory )( hyprland/workspaces  )|( hyprland/perworkspaces hyprland/window wlr/taskbar mpris )| ( tray )( network bluetooth pulseaudio pulseaudio#microphone  )( clock custom/updates )
+1|32|bottom|( custom/power battery cpu memory )( hyprland/workspaces  )|( hyprland/perworkspaces hyprland/window wlr/taskbar mpris )| ( tray )( network bluetooth pulseaudio pulseaudio#microphone )( clock custom/updates custom/audio_idle_inhibitor )

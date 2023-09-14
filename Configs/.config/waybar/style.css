@@ -7,7 +7,7 @@
     min-height: 10px;
 }
 
-@import "themes/Tokyo-Night.css";
+@import "themes/Catppuccin-Mocha.css";
 
 window#waybar {
     background: @bar-bg;
@@ -93,6 +93,7 @@ tooltip {
 #cpu,
 #memory,
 #battery,
+#custom-audio_idle_inhibitor,
 #clock,
 #workspaces,
 #window,
