@@ -77,7 +77,7 @@ GenerateRofiConfig()
     local x_color=$1
 
     # Create rofi configuration using the provided color
-    cat rofi-theme.rasi | sed "s/{\$dominant_color}/$x_color/g" > $rofiConfigFile
+    cat config.rasi | sed "s/{\$dominant_color}/$x_color/g" > $rofiConfigFile
 }
 
 # Add a function to generate configurations for waybar
@@ -86,7 +86,7 @@ GenerateWaybarConfig()
     local x_color=$1
 
     # Create waybar configuration using the provided color
-    cat waybar-config.json | sed "s/{\$dominant_color}/$x_color/g" > $waybarConfigFile
+    cat config.jsonc | sed "s/{\$dominant_color}/$x_color/g" > $waybarConfigFile
 }
 
 # Add a function to generate configurations for wlogout
@@ -104,7 +104,7 @@ GenerateKittyConfig()
     local x_color=$1
 
     # Create kitty configuration using the provided color
-    cat kitty-theme.conf | sed "s/{\$dominant_color}/$x_color/g" > $kittyConfigFile
+    cat kitty.conf | sed "s/{\$dominant_color}/$x_color/g" > $kittyConfigFile
 }
 
 # set variables
