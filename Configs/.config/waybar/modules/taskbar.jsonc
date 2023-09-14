@@ -7,7 +7,7 @@
 		"on-click": "activate",
 		"on-click-middle": "close",
 		"ignore-list": [
-			"FreeRDP: 192.168.122.20"
+			"FreeRDP: 192.168.122.180"
 		],
 		"app_ids-mapping": {
 			"firefoxdeveloperedition": "firefox-developer-edition"
