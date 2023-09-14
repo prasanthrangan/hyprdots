@@ -71,9 +71,50 @@ Wall_Set()
     --transition-pos "$( hyprctl cursorpos )"
 }
 
+# Add a function to generate configurations for rofi
+GenerateRofiConfig()
+{
+    local x_color=$1
+
+    # Create rofi configuration using the provided color
+    cat rofi-theme.rasi | sed "s/{\$dominant_color}/$x_color/g" > $rofiConfigFile
+}
+
+# Add a function to generate configurations for waybar
+GenerateWaybarConfig()
+{
+    local x_color=$1
+
+    # Create waybar configuration using the provided color
+    cat waybar-config.json | sed "s/{\$dominant_color}/$x_color/g" > $waybarConfigFile
+}
+
+# Add a function to generate configurations for wlogout
+GenerateWlogoutConfig()
+{
+    local x_color=$1
+
+    # Create wlogout configuration using the provided color
+    cat wlogout-theme.conf | sed "s/{\$dominant_color}/$x_color/g" > $wlogoutConfigFile
+}
+
+# Add an optional function to generate configurations for kitty
+GenerateKittyConfig()
+{
+    local x_color=$1
+
+    # Create kitty configuration using the provided color
+    cat kitty-theme.conf | sed "s/{\$dominant_color}/$x_color/g" > $kittyConfigFile
+}
 
 # set variables
 
+rofiConfigFile="$HOME/.config/rofi/config.rasi"
+waybarConfigFile="$HOME/.config/waybar/config.jsonc"
+wlogoutStyle1="$HOME/.config/wlogout/style_1.css"
+wlogoutStyle2="$HOME/.config/wlogout/style_2.css"
+wlogoutConfigFile=""
+kittyConfigFile="$HOME/.config/kitty/kitty.conf"
 cacheDir="$HOME/.config/swww/.cache"
 ctlFile="$HOME/.config/swww/wall.ctl"
 wallSet="$HOME/.config/swww/wall.set"
@@ -130,13 +171,29 @@ while getopts "nps" option ; do
     esac
 done
 
+# Determine which wlogout style to use based on some condition
+if [ "$condition" == "use_style1" ]; then
+    wlogoutConfigFile="$wlogoutStyle1"
+elif [ "$condition" == "use_style2" ]; then
+    wlogoutConfigFile="$wlogoutStyle2"
+else
+    # Default to a style, you can change this as needed
+    wlogoutConfigFile="$wlogoutStyle1"
+fi
 
-# check swww daemon and set wall
+# Generate configurations based on the dominant color
+GenerateRofiConfig "$dominant_color"
+GenerateWaybarConfig "$dominant_color"
+GenerateWlogoutConfig "$dominant_color" "$wlogoutConfigFile"
 
+# Optionally generate kitty configuration
+# Uncomment the following line if you want to generate kitty configuration
+GenerateKittyConfig "$dominant_color"
+
+# Check swww daemon and set wall (unchanged from your script)
 swww query
 if [ $? -eq 1 ] ; then
     swww init
 fi
 
 Wall_Set
-
