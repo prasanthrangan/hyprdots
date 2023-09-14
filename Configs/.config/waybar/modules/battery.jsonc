@@ -4,7 +4,7 @@
             "warning": 40,
             "critical": 20
         },
-        "format": "{icon} {capacity}%",
+        "format": "<tt><big>{icon} {capacity}%</big></tt>",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",

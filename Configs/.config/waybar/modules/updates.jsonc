@@ -1,8 +1,9 @@
     "custom/updates": {
         "format": "󰮯 {}",
-        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "exec": "upd=$(~/.config/hypr/scripts/systemupdate.sh); if [ $upd -eq 0 ]; then echo '0'; else echo $upd; fi",
+    //   "exec": "~/.config/hypr/scripts/systemupdate.sh",
         "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
+        "interval": 1, // once every day
         "tooltip": true
     },
-
+  

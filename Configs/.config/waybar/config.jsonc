@@ -35,7 +35,7 @@
             "warning": 40,
             "critical": 20
         },
-        "format": "{icon} {capacity}%",
+        "format": "<tt><big>{icon} {capacity}%</big></tt>",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
@@ -202,20 +202,26 @@
     },
 
     "clock": {
-        "format": "{: %I:%M %p 󰃭 %a %d}",
-        "format-alt": "{:󰥔 %H:%M  %b %Y}",
-        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+     //   "format-alt": "{: %I:%M %p 󰃭 %a %d}",
+    //    "format": "{:󰥔 %H:%M  %b %Y}",
+        "format": "<tt><b>{: %a %d 󰥔 %H:%M}</b></tt>",
+        "format-alt": "{: %I:%M %p 󰃭 %a %d}",
+
+       "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    // "tooltip-format": "{calendar}",
+    // "tooltip-css": "font-size: big;"
+    
     },
 
     "custom/updates": {
         "format": "󰮯 {}",
-        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "exec": "upd=$(~/.config/hypr/scripts/systemupdate.sh); if [  -eq 0 ]; then echo '1'; else echo ; fi",
+    //   "exec": "~/.config/hypr/scripts/systemupdate.sh",
         "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
+        "interval": 1, // once every day
         "tooltip": true
     },
-
-//Khing
+  //Khing
 	"custom/audio_idle_inhibitor": {
 		"format": "{icon}",
 		"exec": "sway-audio-idle-inhibit --dry-print-both-waybar",

@@ -1,6 +1,12 @@
     "clock": {
+     //   "format-alt": "{: %I:%M %p 󰃭 %a %d}",
+    //    "format": "{:󰥔 %H:%M  %b %Y}",
+        "format": "<tt><b>{: %a %d 󰥔 %H:%M}</b></tt>",
         "format-alt": "{: %I:%M %p 󰃭 %a %d}",
-        "format": "{:󰥔 %H:%M  %b %Y}",
-        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+
+       "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    // "tooltip-format": "{calendar}",
+    // "tooltip-css": "font-size: big;"
+    
     },
 
