@@ -71,6 +71,13 @@ Wall_Set()
     --transition-pos "$( hyprctl cursorpos )"
 }
 
+# Get the active wallpaper path
+wallpaper_path=$(swww query | grep "wallpaper: " | awk -F ' ' '{print $2}')
+
+# Get the dominant color of the active wallpaper
+dominant_color=$(convert "$wallpaper_path" -resize 1x1 -format '%[pixel:p{0,0}]' info:-)
+
+
 # Add a function to generate configurations for rofi
 GenerateRofiConfig()
 {
@@ -146,7 +153,6 @@ if [ ! -f  $wallPath/$wallName ] ; then
 fi
 
 Wallist=(`ls $wallPath/*`)
-
 
 # evaluate options
 
