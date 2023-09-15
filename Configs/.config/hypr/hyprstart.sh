@@ -32,9 +32,9 @@ export USER=khing
 [ -z $DBUS_SESSION_BUS_ADDRESS ] && export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/UID/bus
 
 
-export WLR_DRM_DEVICES=/dev/dri/card2 # card 2 and intel kay nouveau ako gamit 0 sya if nvidia
+export WLR_DRM_DEVICES=/dev/dri/card2:/dev/dri/card1 # card 2 and intel kay nouveau ako gamit 0 sya if nvidia
 export HYPRLAND_LOG_WLR=1
-export XCURSOR_SIZE=0
+export XCURSOR_SIZE=20
 export XCURSOR_THEME=Bibata-Modern-Classic
 export GTK_THEME=Adwaita-dark
 
