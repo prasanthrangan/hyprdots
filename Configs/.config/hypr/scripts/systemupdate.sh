@@ -6,7 +6,7 @@ if [ ! -f /etc/arch-release ] ; then
 fi
 
 # Check for updates
-aur=$(yay -Qua | wc -l)
+aur=$(paru -Qua | wc -l)
 ofc=$(pacman -Qu | wc -l)
 
 # Calculate total available updates
@@ -22,6 +22,6 @@ fi
 
 # Trigger upgrade
 if [ "$1" == "up" ] ; then
-    kitty --title systemupdate sh -c 'yay -Syu'
+    kitty --title systemupdate sh -c 'paru -Syu'
 fi
-
+echo "$upd"
