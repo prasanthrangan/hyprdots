@@ -16,7 +16,7 @@ window#waybar {
 tooltip {
     background: @tool-bg;
     color: @tool-color;
-    border-radius: ${b_radius}px;
+    border-radius: ${t_radius}px;
     border-width: 1px;
     border-style: solid;
     border-color: @tool-border;
@@ -90,32 +90,13 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#cpu,
-#memory,
-#battery,
-#clock,
-#workspaces,
-#window,
-#taskbar,
-#network,
-#bluetooth,
-#pulseaudio,
-#mpris,
-#custom-updates,
-#custom-wallchange,
-#custom-mode,
-#custom-cliphist,
-#custom-power,
-#custom-wbar,
+${modules_ls}
 #custom-l_end,
 #custom-r_end,
 #custom-sl_end,
 #custom-sr_end,
 #custom-rl_end,
-#custom-gpuinfo,
-#custom-spotify,
-#custom-rr_end,
-#tray {
+#custom-rr_end {
     color: @main-color;
     background: @main-bg;
     opacity: 1;

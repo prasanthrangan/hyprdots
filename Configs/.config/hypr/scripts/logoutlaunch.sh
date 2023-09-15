@@ -18,22 +18,24 @@ if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
 fi
 
 # detect monitor y res
-res=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
+x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
+y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
+x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
 
 # scale config layout and style
 case $1 in
     1)  wlColms=6
-        export mgn=$(( res * 26 / 100 ))
-        export hvr=$(( res * 21 / 100 )) ;;
+        export mgn=$(( y_mon * 28 / 100 ))
+        export hvr=$(( y_mon * 23 / 100 )) ;;
     2)  wlColms=2
-        export x_mgn=$(( res * 80 / 100  ))
-        export y_mgn=$(( res * 25 / 100 ))
-        export x_hvr=$(( res * 75 / 100 ))
-        export y_hvr=$(( res * 20 / 100 )) ;;
+        export x_mgn=$(( x_mon * 35 / 100 ))
+        export y_mgn=$(( y_mon * 25 / 100 ))
+        export x_hvr=$(( x_mon * 32 / 100 ))
+        export y_hvr=$(( y_mon * 20 / 100 )) ;;
 esac
 
 # scale font size
-export fntSize=$(( res * 2 / 100 ))
+export fntSize=$(( y_mon * 2 / 100 ))
 
 # detect gtk system theme
 export gtkThm=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`

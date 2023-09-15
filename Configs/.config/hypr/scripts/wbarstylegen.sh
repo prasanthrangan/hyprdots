@@ -4,10 +4,11 @@
 # detect hypr theme and initialize variables
 
 waybar_dir="$HOME/.config/waybar"
+modules_dir="$waybar_dir/modules"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="$HOME/.config/hypr/themes/theme.conf"
-export cur_theme=`echo $(readlink "$src_file") | awk -F "/" '{print $NF}' | cut -d '.' -f 1`
+export cur_theme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
 
 
 # calculate height from control file or monitor res
@@ -20,10 +21,11 @@ if [ -z $b_height ] || [ "$b_height" == "0" ]; then
 fi
 
 
-# calculate values based on height and generate theme style
+# calculate values based on height
 
-export b_radius=$(( b_height*70/100 ))   # block rad 90% of height (type1)
+export b_radius=$(( b_height*70/100 ))   # block rad 70% of height (type1)
 export c_radius=$(( b_height*25/100 ))   # block rad 25% of height {type2}
+export t_radius=$(( b_height*25/100 ))   # tooltip rad 25% of height
 export e_margin=$(( b_height*30/100 ))   # block margin 30% of height
 export e_paddin=$(( b_height*10/100 ))   # block padding 10% of height
 export g_margin=$(( b_height*14/100 ))   # module margin 14% of height
@@ -41,6 +43,10 @@ if [ $s_fontpx -lt 10 ] ; then
     export s_fontpx=10
 fi
 
+
+# list modules and generate theme style
+
+export modules_ls=$(grep -m 1 '".*.": {'  --exclude="$modules_dir/footer.jsonc" $modules_dir/*.jsonc | cut -d '"' -f 2 | awk -F '/' '{ if($1=="custom") print "#custom-"$NF"," ; else print "#"$NF","}')
 envsubst < $in_file > $out_file
 
 
