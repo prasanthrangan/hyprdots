@@ -71,13 +71,6 @@ Wall_Set()
     --transition-pos "$( hyprctl cursorpos )"
 }
 
-# Get the active wallpaper path
-wallpaper_path=$(swww query | grep "wallpaper: " | awk -F ' ' '{print $2}')
-
-# Get the dominant color of the active wallpaper
-dominant_color=$(convert "$wallpaper_path" -resize 1x1 -format '%[pixel:p{0,0}]' info:-)
-
-
 # Add a function to generate configurations for rofi
 GenerateRofiConfig()
 {
@@ -134,6 +127,12 @@ if [  `echo $ctlLine | wc -w` -ne "1" ] ; then
     echo "ERROR : $ctlFile Unable to fetch theme..."
     exit 1
 fi
+
+# Get the active wallpaper path
+wallpaper_path=$(swww query | grep "wallpaper: " | awk -F ' ' '{print $2}')
+
+# Get the dominant color of the active wallpaper
+dominant_color=$(convert "$wallpaper_path" -resize 1x1 -format '%[pixel:p{0,0}]' info:-)
 
 curTheme=`echo $ctlLine | cut -d '|' -f 2`
 fullPath=`echo $ctlLine | cut -d '|' -f 3`
