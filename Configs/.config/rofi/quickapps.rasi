@@ -1,0 +1,78 @@
+// Config //
+configuration {
+    modi:                        "drun";
+    show-icons:                  true;
+    icon-theme:                  "Tela-circle-dracula";
+}
+
+@theme "~/.config/rofi/themes/theme.rasi"
+
+
+// Main //
+window {
+    height:                      70px;
+    width:                       311px;
+    transparency:                "real";
+    fullscreen:                  false;
+    enabled:                     true;
+    cursor:                      "default";
+    spacing:                     0px;
+    padding:                     0px;
+    background-color:            @background;
+}
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    padding:                     0px;
+    orientation:                 horizontal;
+    children:                    [ "listbox" ];
+    background-color:            transparent;
+}
+
+
+// Lists //
+listbox {
+    padding:                     0px;
+    spacing:                     0px;
+    orientation:                 horizontal;
+    children:                    [ "listview" ];
+    background-color:            transparent;
+}
+listview {
+    padding:                     10px;
+    spacing:                     10px;
+    enabled:                     true;
+    columns:                     5;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      horizontal;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    cursor:                      "default";
+    background-color:            transparent;
+}
+
+
+// Elements //
+element {
+    orientation:                 vertical;
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     0px;
+    cursor:                      pointer;
+    background-color:            transparent;
+}
+element selected.normal {
+    background-color:            @selected-normal-background;
+}
+element-icon {
+    size:                        50px;
+    cursor:                      inherit;
+    background-color:            transparent;
+}
+element-text {
+    enabled:                     false;
+}
+

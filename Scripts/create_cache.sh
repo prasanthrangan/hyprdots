@@ -66,7 +66,7 @@ do
         fi
 
         if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
-            magick "${wpFullName}" -colors 6 -define histogram:unique-colors=true -format "%c" histogram:info: > ${CacheDir}/${theme}/${wpBaseName}.dcol
+            magick "${CacheDir}/${theme}/${wpBaseName}.blur" -colors 6 -define histogram:unique-colors=true -format "%c" histogram:info: > ${CacheDir}/${theme}/${wpBaseName}.dcol
         fi
     done
 

@@ -101,7 +101,7 @@ gen_mod right 6
 echo -e "\n\n// sourced from modules based on config.ctl //\n" >> $conf_file
 echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk '!x[$0]++' | while read mod_list
 do
-    mod_cpy=`echo $mod_list | awk -F '/' '{print $NF}'`
+    mod_cpy=`echo $mod_list | awk -F '/' '{print $NF}' | awk -F '#' '{print $1}'`
 
     case ${w_position}-$(grep -E '"modules-left":|"modules-center":|"modules-right":' $conf_file | grep "$mod_cpy" | tail -1 | cut -d '"' -f 2 | cut -d '-' -f 2) in
         top-left) export mod_pos=1;;
