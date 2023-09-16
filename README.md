@@ -240,6 +240,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | Keys | Action |
 | :--  | :-- |
 | <kbd>Super</kbd> + <kbd>Q</kbd> | quit active/focused window
+| <kbd>Alt</kbd> + <kbd>F4</kbd> | quit active/focused window
 | <kbd>Super</kbd> + <kbd>Del</kbd> | quit hyprland session
 | <kbd>Super</kbd> + <kbd>W</kbd> | toggle window on focus to float
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | toggle window on focus to fullscreen
@@ -247,7 +248,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>G</kbd> | toggle window group
 | <kbd>Super</kbd> + <kbd>T</kbd> | launch kitty terminal
 | <kbd>Super</kbd> + <kbd>E</kbd> | launch dolphin file explorer
-| <kbd>Super</kbd> + <kbd>C</kbd> | launch vs code
+| <kbd>Super</kbd> + <kbd>C</kbd> | launch vscode
 | <kbd>Super</kbd> + <kbd>F</kbd> | launch firefox
 | <kbd>Super</kbd> + <kbd>A</kbd> | launch desktop applications (rofi)
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | switch open applications (rofi)
@@ -260,6 +261,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | logout menu
 | <kbd>Super</kbd> + <kbd>P</kbd> | screenshot snip
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | launch obs
 | <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window 
 | <kbd>Super</kbd> + <kbd>LeftClick</kbd> | change the window position
 | <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | cycle through workspaces
