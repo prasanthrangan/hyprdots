@@ -111,10 +111,6 @@ flatpak --user override --env=GTK_THEME="${ThemeSet}"
 flatpak --user override --env=ICON_THEME="${IconSet}"
 
 
-# rofi
-ln -fs $ConfDir/rofi/themes/${ThemeSet}.rasi $ConfDir/rofi/themes/theme.rasi
-
-
 # hyprland
 ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
@@ -131,6 +127,6 @@ fi
 dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 
 
-# waybar
+# rofi & waybar
 $BaseDir/swwwallbash.sh $WallCache/${ThemeSet}/${getName}.blur
 

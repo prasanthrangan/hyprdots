@@ -5,7 +5,7 @@ configuration {
     icon-theme:                  "Tela-circle-dracula";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/themes/Wall-Dcol.rasi"
 
 
 // Main //
@@ -18,7 +18,7 @@ window {
     cursor:                      "default";
     spacing:                     0px;
     padding:                     0px;
-    background-color:            @background;
+    background-color:            @main-bg;
 }
 mainbox {
     enabled:                     true;
@@ -64,8 +64,13 @@ element {
     cursor:                      pointer;
     background-color:            transparent;
 }
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
+}
 element selected.normal {
-    background-color:            @selected-normal-background;
+    background-color:            @main-fg;
 }
 element-icon {
     size:                        50px;
