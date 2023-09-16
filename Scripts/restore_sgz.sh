@@ -64,9 +64,22 @@ else
 fi
 
 
+# pacman
+if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]
+    then
+
+    echo "adding extra spice to pacman..."
+    sudo cp /etc/pacman.conf /etc/pacman.conf.t2.bkp
+    sudo sed -i "/^#Color/c\Color\nILoveCandy
+    /^#VerbosePkgLists/c\VerbosePkgLists
+    /^#ParallelDownloads/c\ParallelDownloads = 5" /etc/pacman.conf
+fi
+
+
 # dolphin
 if pkg_installed dolphin && pkg_installed xdg-utils
     then
+
     xdg-mime default org.kde.dolphin.desktop inode/directory
     echo "setting" `xdg-mime query default "inode/directory"` "as default file explorer..."
 

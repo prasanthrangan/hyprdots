@@ -27,10 +27,10 @@ io.gitlab.theevilskeleton.Upscaler #ImageUpscaler
 org.gnome.eog #ImageViewer
 
 # Audio/Video
-com.github.rafostar.Clapper #Clapper
-com.spotify.Client #Spotify
-org.kde.kdenlive #Kdenlive
+# com.spotify.Client #Spotify
+# org.kde.kdenlive #Kdenlive
 com.obsproject.Studio #Obs
+com.github.rafostar.Clapper #Clapper
 
 # Gaming
 # hu.kramo.Cartridges #Cartridges
