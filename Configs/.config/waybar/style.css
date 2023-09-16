@@ -14,12 +14,10 @@ window#waybar {
 }
 
 tooltip {
-    background: @tool-bg;
-    color: @tool-color;
+    background: @main-bg;
+    color: @main-fg;
     border-radius: 7px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: @tool-border;
+    border-width: 0px;
 }
 
 #workspaces button {
@@ -31,14 +29,14 @@ tooltip {
     margin-bottom: 3px;
     padding-left: 3px;
     padding-right: 3px;
-    color: @wb-color;
+    color: @main-fg;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button.active {
     background: @wb-act-bg;
-    color: @wb-act-color;
+    color: @wb-act-fg;
     margin-left: 3px;
     padding-left: 12px;
     padding-right: 12px;
@@ -49,7 +47,7 @@ tooltip {
 
 #workspaces button:hover {
     background: @wb-hvr-bg;
-    color: @wb-hvr-color;
+    color: @wb-hvr-fg;
     padding-left: 3px;
     padding-right: 3px;
     animation: gradient_f 20s ease-in infinite;
@@ -116,7 +114,7 @@ tooltip {
 #custom-sr_end,
 #custom-rl_end,
 #custom-rr_end {
-    color: @main-color;
+    color: @main-fg;
     background: @main-bg;
     opacity: 1;
     margin: 4px 0px 4px 0px;

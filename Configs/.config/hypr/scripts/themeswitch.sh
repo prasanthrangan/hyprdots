@@ -78,7 +78,6 @@ getName=`basename $getWall`
 ln -fs $getWall $ConfDir/swww/wall.set
 ln -fs $WallCache/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
 ln -fs $WallCache/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
-ln -fs $WallCache/${ThemeSet}/${getName}.dcol $ConfDir/swww/wall.dcol
 $BaseDir/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
@@ -133,5 +132,5 @@ dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.pn
 
 
 # waybar
-$BaseDir/wbarconfgen.sh
+$BaseDir/swwwallbash.sh $WallCache/${ThemeSet}/${getName}.blur
 
