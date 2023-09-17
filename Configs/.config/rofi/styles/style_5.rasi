@@ -27,7 +27,7 @@ window {
     padding:                     0px;
     border:                      2px;
     border-radius:               40px;
-    border-color:                @alternate-normal-background;
+    border-color:                @main-br;
     background-color:            transparent;
 }
 mainbox {
@@ -72,8 +72,8 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
-    background-color:            @background;
-    text-color:                  @foreground;
+    background-color:            @main-bg;
+    text-color:                  @main-fg;
 }
 
 
@@ -89,12 +89,12 @@ button {
     cursor:                      pointer;
     padding:                     30px;
     border-radius:               50px;
-    background-color:            @background;
-    text-color:                  @foreground;
+    background-color:            @main-bg;
+    text-color:                  @main-fg;
 }
 button selected {
-    background-color:            @foreground;
-    text-color:                  @background;
+    background-color:            @main-fg;
+    text-color:                  @main-bg;
 }
 
 
@@ -107,31 +107,16 @@ element {
     border-radius:               25px;
     cursor:                      pointer;
     background-color:            transparent;
-    text-color:                  @foreground;
+    text-color:                  @main-fg;
 }
-element normal.normal {
-    background-color:            transparent;
-    text-color:                  @normal-foreground;
-}
-element normal.urgent {
-    background-color:            @urgent-background;
-    text-color:                  @urgent-foreground;
-}
-element normal.active {
-    background-color:            @active-background;
-    text-color:                  @active-foreground;
+@media(max-aspect-ratio: 1.8) {
+    element {
+        orientation:             vertical;
+    }
 }
 element selected.normal {
-    background-color:            @selected-normal-background;
-    text-color:                  @selected-normal-foreground;
-}
-element selected.urgent {
-    background-color:            @selected-urgent-background;
-    text-color:                  @selected-urgent-foreground;
-}
-element selected.active {
-    background-color:            @selected-active-background;
-    text-color:                  @selected-active-foreground;
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
 }
 element-icon {
     size:                        90px;

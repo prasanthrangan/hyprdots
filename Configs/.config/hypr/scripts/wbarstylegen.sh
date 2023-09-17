@@ -3,12 +3,19 @@
 
 # detect hypr theme and initialize variables
 
+ScrDir=`dirname $(realpath $0)`
+source $ScrDir/globalcontrol.sh
 waybar_dir="$HOME/.config/waybar"
 modules_dir="$waybar_dir/modules"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="$HOME/.config/hypr/themes/theme.conf"
-export cur_theme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
+
+if [ "$EnableWallDcol" -eq 1 ] ; then
+    export cur_theme="Wall-Dcol"
+else
+    export cur_theme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
+fi
 
 
 # calculate height from control file or monitor res

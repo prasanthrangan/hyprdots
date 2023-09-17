@@ -1,9 +1,9 @@
 // Config //
 configuration {
-	modi:                        "drun";
-	show-icons:                  true;
+    modi:                        "drun";
+    show-icons:                  true;
     drun-display-format:         "{name}";
-	font:                        "JetBrainsMono Nerd Font 8";
+    font:                        "JetBrainsMono Nerd Font 8";
 }
 
 @theme "~/.config/rofi/themes/theme.rasi"
@@ -27,7 +27,7 @@ window {
 mainbox {
     enabled:                     true;
     children:                    [ "listview" ];
-    background-color:            @background;
+    background-color:            @main-bg;
 }
 
 
@@ -47,7 +47,7 @@ listview {
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
-    text-color:                  @foreground;
+    text-color:                  @main-fg;
 }
 
 
@@ -60,7 +60,7 @@ element {
     border-radius:               0px;
     cursor:                      pointer;
     background-color:            transparent;
-    text-color:                  @foreground;
+    text-color:                  @main-fg;
 }
 @media(max-aspect-ratio: 1.8) {
     element {
@@ -68,8 +68,8 @@ element {
     }
 }
 element selected.normal {
-    background-color:            @selected-normal-background;
-    text-color:                  @selected-normal-foreground;
+    background-color:            @select-bg;
+    text-color:                  @select-fg;
 }
 element-icon {
     size:                        29%;
@@ -89,3 +89,4 @@ element-text {
     background-color:            transparent;
     text-color:                  inherit;
 }
+

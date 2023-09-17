@@ -1,0 +1,11 @@
+4|rofithemegen.sh|.config/rofi/themes/Wall-Dcol.rasi
+* {
+    main-bg:            <dcol_0>E6;
+    main-fg:            <dcol_3>;
+    main-br:            <dcol_2>;
+    main-ex:            <dcol_1>;
+    select-bg:          <dcol_3>;
+    select-fg:          <dcol_0>;
+    separatorcolor:     transparent;
+    border-color:       transparent;
+}

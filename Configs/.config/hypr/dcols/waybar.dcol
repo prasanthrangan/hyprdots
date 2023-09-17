@@ -1,0 +1,8 @@
+4|wbarconfgen.sh|.config/waybar/themes/Wall-Dcol.css
+@define-color bar-bg rgba(0, 0, 0, 0);
+@define-color main-bg <dcol_0>;
+@define-color main-fg <dcol_3>;
+@define-color wb-act-bg <dcol_3>;
+@define-color wb-act-fg <dcol_0>;
+@define-color wb-hvr-bg <dcol_1>;
+@define-color wb-hvr-fg <dcol_2>;
