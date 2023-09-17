@@ -257,6 +257,8 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>F11</kbd> | decrease volume (hold)
 | <kbd>F12</kbd> | increase volume (hold)
 | <kbd>Super</kbd> + <kbd>V</kbd> | clipboard history paste
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>↓</kbd> | decrease volume for spotify
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>↑</kbd> | increase volume for spotify
 | <kbd>Super</kbd> + <kbd>L</kbd> | lock screen
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | logout menu
 | <kbd>Super</kbd> + <kbd>P</kbd> | screenshot snip
