@@ -4,7 +4,7 @@
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-dcoDir="$HOME/.config/hypr/dcols"
+dcoDir="$HOME/.config/hypr/wallbash"
 input_wall=$1
 
 if [ -z "$input_wall" ] || [ ! -f ${input_wall} ] ; then

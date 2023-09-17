@@ -4,9 +4,8 @@
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-dcoDir="$HOME/.config/hypr/dcols"
 rofThm="$HOME/.config/rofi/themes"
-
+dcoDir="$HOME/.config/hypr/wallbash"
 
 # regen color conf
 

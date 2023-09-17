@@ -17,7 +17,7 @@ SteamLib="$HOME/.local/share/Steam/config/libraryfolders.vdf"
 SteamThumb="$HOME/.local/share/Steam/appcache/librarycache"
 
 if [ ! -f $SteamLib ] || [ ! -d $SteamThumb ] || [ ! -f $RofiConf ] ; then
-    dunstify $ncolor "theme" -a "// Steam library not found..." -r 91190 -t 2200
+    dunstify $ncolor "theme" -a "Steam library not found!" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
     exit 1
 fi
 

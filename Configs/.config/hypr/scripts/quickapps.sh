@@ -49,7 +49,7 @@ r_override="window {border-radius: ${wind_border}px;} entry {border-radius: ${el
 
 # clipboard action
 
-RofiSel=$( echo -e "firefox\nkitty\ncode\ndolphin\nsteam" | while read qapp
+RofiSel=$( echo -e "firefox\nkitty\ncode\ndolphin\nspotify" | while read qapp
 do
     Lkp=`grep "$qapp" /usr/share/applications/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
     Ico=`grep 'Icon=' $Lkp | awk -F '=' '{print $2}' | head -1`

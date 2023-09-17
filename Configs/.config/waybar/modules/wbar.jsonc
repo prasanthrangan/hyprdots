@@ -1,9 +1,9 @@
     "custom/wbar": {
         "format": "{}", //    //
-        "exec": "echo ; echo  switch menubar",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh",
-        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh n",
-        "on-click-middle": "~/.config/hypr/scripts/wbarconfgen.sh p",
+        "exec": "echo ; echo  switch menubar //  dock",
+        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
+        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh",
         "interval" : 86400,
         "tooltip": true
     },

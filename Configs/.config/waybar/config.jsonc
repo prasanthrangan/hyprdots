@@ -15,7 +15,7 @@
 // positions generated based on config.ctl //
 
 	"modules-left": ["custom/padd","custom/l_end","custom/power","custom/cliphist","custom/wbar","custom/mode","custom/wallchange","custom/r_end","custom/l_end","wlr/taskbar","custom/spotify","custom/r_end","","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","clock","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/padd"],
 
 
@@ -41,10 +41,10 @@
 
     "custom/wbar": {
         "format": "{}", //    //
-        "exec": "echo ; echo  switch menubar",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh",
-        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh n",
-        "on-click-middle": "~/.config/hypr/scripts/wbarconfgen.sh p",
+        "exec": "echo ; echo  switch menubar //  dock",
+        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
+        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh",
         "interval" : 86400,
         "tooltip": true
     },
@@ -85,17 +85,26 @@
 		}
 	},
 
-"custom/spotify": {
-    "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
-    "format": "{} ",
-    "return-type": "json",
-    "on-click": "playerctl play-pause --player spotify",
-    "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous"
-},
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
+        "format": "{} ",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player spotify",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+        "activated": "󰥔",
+        "deactivated": ""
+        }
+    },
+
     "clock": {
-        "format": "{: %I:%M %p 󰃭 %a %d}",
-        "format-alt": "{:󰥔 %H:%M  %b %Y}",
+        "format": "{:%I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:%H:%M  %b %Y}",
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
