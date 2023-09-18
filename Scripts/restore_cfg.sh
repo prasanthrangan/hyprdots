@@ -67,7 +67,7 @@ touch ${HOME}/.config/hypr/userprefs.conf
 
 if nvidia_detect ; then
     cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
-    echo -e 'source = ~/.config/hypr/nvidia.conf\n' >> ${HOME}/.config/hypr/hyprland.conf
+    echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
 ./create_cache.sh

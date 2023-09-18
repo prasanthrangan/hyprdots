@@ -27,6 +27,19 @@ chk_blk()
     fi
 }
 
+ext_lab()
+{
+    local MyMount=$1
+    local MyLabel=$2
+    local MyDrive=""
+
+    MyDrive=`findmnt --mountpoint $MyMount --noheadings -o source`
+    if [ `lsblk --noheadings --raw -o fstype $MyDrive` == "ext4" ] && chk_blk label $MyDrive n ; then
+        sudo e2label $MyDrive $MyLabel
+    fi
+}
+
+
 # main loop to mount listed partition
 
 while read dev_part
@@ -50,6 +63,9 @@ do
     fi
 done < mnt_drives.lst
 
-echo -e "$fstEntry" | sudo tee -a /etc/fstab
+echo -e "${fstEntry}\n" | sudo tee -a /etc/fstab
 sudo systemctl daemon-reload
+
+ext_lab '/home' '9S'
+ext_lab '/' 'YoRHa'
 

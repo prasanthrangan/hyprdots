@@ -15,15 +15,25 @@ fi
 CloneDir=`dirname $(realpath $CloneDir)`
 
 
-# steam
-if pkg_installed steam
+# icons
+if [ -f /usr/share/applications/rofi-theme-selector.desktop ] && [ -f /usr/share/applications/rofi.desktop ]
     then
-    if [ ! -d ~/.local/share/Steam/Skins/ ]
-        then
-        mkdir -p ~/.local/share/Steam/Skins/
-    fi
-    tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+    sudo rm /usr/share/applications/rofi-theme-selector.desktop
+    sudo rm /usr/share/applications/rofi.desktop
 fi
+sudo sed -i "/^Icon=/c\Icon=adjust-colors" /usr/share/applications/nwg-look.desktop
+sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
+
+
+# steam
+#if pkg_installed steam
+#    then
+#    if [ ! -d ~/.local/share/Steam/Skins/ ]
+#        then
+#        mkdir -p ~/.local/share/Steam/Skins/
+#    fi
+#    tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+#fi
 
 
 # spotify

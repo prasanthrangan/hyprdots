@@ -261,7 +261,6 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | logout menu
 | <kbd>Super</kbd> + <kbd>P</kbd> | screenshot snip
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | launch obs
 | <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window 
 | <kbd>Super</kbd> + <kbd>LeftClick</kbd> | change the window position
 | <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | cycle through workspaces
@@ -275,7 +274,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>←</kbd> | previous wallpaper
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> | next waybar mode
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↓</kbd> | previous waybar mode
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd> | toggle [theme//wall] based colors
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | toggle (theme <//> wall) based colors
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | theme select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | wallpaper select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | rofi style select menu

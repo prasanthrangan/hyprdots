@@ -11,7 +11,6 @@ configuration {
 // Main //
 window {
     height:                      70px;
-    width:                       311px;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -42,14 +41,14 @@ listview {
     padding:                     10px;
     spacing:                     10px;
     enabled:                     true;
-    columns:                     5;
+    columns:                     1;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
-    layout:                      horizontal;
+    flow:                        horizontal; 
     reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
+    fixed-height:                false;
+    fixed-columns:               false;
     cursor:                      "default";
     background-color:            transparent;
 }
@@ -59,7 +58,7 @@ listview {
 element {
     orientation:                 vertical;
     enabled:                     true;
-    spacing:                     10px;
+    spacing:                     0px;
     padding:                     0px;
     cursor:                      pointer;
     background-color:            transparent;
