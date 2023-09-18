@@ -7,7 +7,6 @@ roconf="~/.config/rofi/quickapps.rasi"
 
 if [ $# -ge 1 ] ; then
     dockWidth=$(( (70 * $#) - $# ))
-    echo $# $dockWidth
 else
     echo "usage: ./quickapps.sh <app1> <app2> ... <app[n]>"
     exit 1
