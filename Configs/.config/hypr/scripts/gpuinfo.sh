@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Function to install a package using a package manager without confirmation
+# Function to install a package using yay without confirmation
 install_package() {
-  local package_manager="yay"  # Change this to your preferred package manager
   local package_name="$1"
-  local package_name_quoted="'$package_name'"  # Quote the package name
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    sudo "$package_manager" -S "$package_name_quoted"
+    sudo pacman -S --noconfirm "$package_name"
   fi
 }
 
