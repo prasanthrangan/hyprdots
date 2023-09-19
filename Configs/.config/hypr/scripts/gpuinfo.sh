@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# Function to install a package using a package manager without confirmation
+# Function to install a package using yay without confirmation
 install_package() {
-  local package_manager="yay"  # Change this to your preferred package manager
   local package_name="$1"
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    "$package_manager" -S --noconfirm "$package_name"
+    yay -S --noconfirm "$package_name"
   fi
 }
 
@@ -31,7 +30,7 @@ amd_gpu=""
 if install_intel_gpu_top; then
   intel_gpu="Intel GPU"
   # Collect GPU information for Intel
-  gpu_info_intel=$(intel_gpu_top -b -o - | awk '/Kernel\ Time|Render\ Time/ {print $3}')
+  gpu_info_intel=$(intel_gpu_top -s 1 -b | grep -E 'Temperature|Render 3D/0' | awk '{ print $3 }' | tr '\n' ',' | sed 's/,$/\n/')
 fi
 
 # Check for AMD integrated GPU using radeontop
