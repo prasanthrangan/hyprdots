@@ -26,6 +26,13 @@ collect_gpu_info_intel() {
   echo "$gpu_info_intel"
 }
 
+# Function to collect GPU information for AMD
+collect_gpu_info_amd() {
+  local gpu_info_amd
+  gpu_info_amd=$(timeout 5 radeontop -d 1 | grep -E "Temp|Util|Core(Memory) Clock|Power Draw Limit" | awk '{print $2}' | tr '\n' ',' | sed 's/,$/\n/')
+  echo "$gpu_info_amd"
+}
+
 # Check for NVIDIA GPU using nvidia-smi
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 
@@ -46,7 +53,7 @@ if install_radeontop; then
     amd_gpu="AMD GPU"
   fi
   # Collect GPU information for AMD
-  gpu_info_amd=$(radeontop -b -d 1 | grep -E "Temp|Util|Core(Memory) Clock|Power Draw Limit" | awk '{print $2}' | tr '\n' ',' | sed 's/,$/\n/')
+  gpu_info_amd=$(collect_gpu_info_amd)
 fi
 
 # Check if primary GPU is NVIDIA, AMD, Intel, or not found
