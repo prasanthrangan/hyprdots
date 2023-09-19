@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Function to check if a package is installed
+is_package_installed() {
+  local package_name="$1"
+  if command -v "$package_name" &>/dev/null; then
+    return 0  # Package is installed
+  else
+    return 1  # Package is not installed
+  fi
+}
+
 # Function to install a package using yay without confirmation
 install_package() {
   local package_name="$1"
@@ -9,15 +19,15 @@ install_package() {
   fi
 }
 
-# Function to check and install intel_gpu_top
-install_intel_gpu_top() {
-  install_package "intel-gpu-tools"
-}
-
-# Function to check and install radeontop
-install_radeontop() {
+# Check if radeontop is installed
+if ! is_package_installed "radeontop"; then
   install_package "radeontop"
-}
+fi
+
+# Check if intel-gpu-tools is installed
+if ! is_package_installed "intel_gpu_top"; then
+  install_package "intel-gpu-tools"
+fi
 
 # Function to collect GPU information for Intel
 collect_gpu_info_intel() {
