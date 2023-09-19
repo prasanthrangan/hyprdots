@@ -128,5 +128,5 @@ dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.pn
 
 
 # rofi & waybar
-$BaseDir/swwwallbash.sh $WallCache/${ThemeSet}/${getName}.blur
+$BaseDir/swwwallbash.sh $getWall
 

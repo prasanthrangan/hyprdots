@@ -1,10 +1,14 @@
 #!/usr/bin/env sh
 
-# wall dcol var
+# wallpaper var
 EnableWallDcol=0
+cacheDir="$HOME/.config/swww/.cache"
+
+# theme var
+gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
+gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
 
 # notification var
-gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
 ncolor="-h string:bgcolor:#191724 -h string:fgcolor:#faf4ed -h string:frcolor:#56526e"
 
 if [ "${gtkMode}" == "light" ] ; then

@@ -20,8 +20,8 @@ do
 
     if [ ! -d "${tgt}" ]
     then
-      mkdir ${tgt} || echo "creating the directory as root instead..." && sudo mkdir -p ${tgt}
-      echo "${tgt} directory created..."
+        mkdir -p ${tgt} || echo "creating the directory as root instead..." && sudo mkdir -p ${tgt}
+        echo "${tgt} directory created..."
     fi
 
     sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/

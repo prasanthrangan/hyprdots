@@ -31,7 +31,7 @@ Wall_Update()
     ln -fs ${cacheDir}/${curTheme}/${cacheImg}.blur $wallBlr
 
     if [ "$EnableWallDcol" -eq 1 ] ; then
-        $ScrDir/swwwallbash.sh ${cacheDir}/${curTheme}/${cacheImg}.blur
+        $ScrDir/swwwallbash.sh $x_wall
     fi
 }
 
@@ -75,7 +75,6 @@ Wall_Set()
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-cacheDir="$HOME/.config/swww/.cache"
 ctlFile="$HOME/.config/swww/wall.ctl"
 wallSet="$HOME/.config/swww/wall.set"
 wallBlr="$HOME/.config/swww/wall.blur"
