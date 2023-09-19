@@ -77,8 +77,10 @@ IFS=',' read -ra gpu_data <<< "$gpu_info"
 # Extract individual values
 temperature="${gpu_data[0]// /}"
 utilization="${gpu_data[1]// /}"
-core_clock="${gpu_data[2]// /}"
-power_limit="${gpu_data[3]// /}"
+current_clock_speed="${gpu_data[2]// /}"
+max_clock_speed="${gpu_data[3]// /}"
+power_usage="${gpu_data[4]// /}"
+power_limit="${gpu_data[5]// /}"
 
 # Define emoji based on temperature
 if [ "$temperature" -lt 60 ]; then
@@ -91,8 +93,8 @@ fi
 text="Primary GPU: $primary_gpu\n\
 $emoji Temperature: $temperature°C\n\
 󰾆 Utilization: $utilization%\n\
- Core Clock: $core_clock MHz\n\
- Power Limit: $power_limit W"
+ Clock Speed: $current_clock_speed/$max_clock_speed MHz\n\
+ Power Usage: $power_usage/$power_limit W"
 
 #echo "$temperature°C"
 echo "{\"text\":\"$temperature°C\", \"tooltip\":\"$text\"}"
