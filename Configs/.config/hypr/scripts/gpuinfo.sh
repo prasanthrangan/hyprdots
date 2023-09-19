@@ -6,7 +6,7 @@ install_package() {
   local package_name="$1"
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    sudo "$package_manager" -S "$package_name"
+    sudo "$package_manager" -S --noconfirm "$package_name"
   fi
 }
 
