@@ -5,8 +5,7 @@ install_package() {
   local package_name="$1"
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    sudo apt-get update
-    sudo apt-get install "$package_name" -y
+    yay -S "$package_name" --noconfirm
   fi
 }
 
