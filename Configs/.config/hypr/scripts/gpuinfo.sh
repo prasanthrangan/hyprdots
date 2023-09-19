@@ -4,10 +4,10 @@
 install_package() {
   local package_manager="yay"  # Change this to your preferred package manager
   local package_name="$1"
-  local escaped_package_name="${package_name//&/\\&}"  # Escape '&' character
+  local package_name_quoted="'$package_name'"  # Quote the package name
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    sudo "$package_manager" -S "$escaped_package_name"
+    sudo "$package_manager" -S "$package_name_quoted"
   fi
 }
 
