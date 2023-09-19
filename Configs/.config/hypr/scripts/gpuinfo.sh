@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Function to install a package if not installed
 install_package() {
   local package_name="$1"
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    yay -S --noconfirm "$package_name" 
+    yay -S --noconfirm "$package_name"
   fi
 }
 
