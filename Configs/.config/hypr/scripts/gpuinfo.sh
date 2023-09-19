@@ -19,6 +19,13 @@ install_radeontop() {
   install_package "radeontop"
 }
 
+# Function to collect GPU information for Intel
+collect_gpu_info_intel() {
+  local gpu_info_intel
+  gpu_info_intel=$(timeout 5 intel_gpu_top -s 1 -o - | awk '/Temperature/ {print $2}' | tr '\n' ',' | sed 's/,$/\n/')
+  echo "$gpu_info_intel"
+}
+
 # Check for NVIDIA GPU using nvidia-smi
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 
@@ -30,7 +37,7 @@ amd_gpu=""
 if install_intel_gpu_top; then
   intel_gpu="Intel GPU"
   # Collect GPU information for Intel
-  gpu_info_intel=$(intel_gpu_top -s 1 -o - | awk '/Temperature/ {print $2}' | tr '\n' ',' | sed 's/,$/\n/')
+  gpu_info_intel=$(collect_gpu_info_intel)
 fi
 
 # Check for AMD integrated GPU using radeontop
