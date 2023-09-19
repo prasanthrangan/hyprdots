@@ -4,12 +4,12 @@
 install_package() {
   local package_manager="yay"  # Change this to your preferred package manager
   local package_name="$1"
+  local escaped_package_name="${package_name//&/\\&}"  # Escape '&' character
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    sudo "$package_manager" -S "$package_name"
+    sudo "$package_manager" -S "$escaped_package_name"
   fi
 }
-
 
 # Function to check and install intel_gpu_top
 install_intel_gpu_top() {
