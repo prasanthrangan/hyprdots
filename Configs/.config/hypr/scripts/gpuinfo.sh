@@ -30,7 +30,7 @@ amd_gpu=""
 if install_intel_gpu_top; then
   intel_gpu="Intel GPU"
   # Collect GPU information for Intel
-  gpu_info_intel=$(intel_gpu_top -s 1 -b | grep -E 'Temperature|Render 3D/0' | awk '{ print $3 }' | tr '\n' ',' | sed 's/,$/\n/')
+  gpu_info_intel=$(intel_gpu_top -s 1 -o - | awk '/Temperature/ {print $2}' | tr '\n' ',' | sed 's/,$/\n/')
 fi
 
 # Check for AMD integrated GPU using radeontop
