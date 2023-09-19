@@ -5,7 +5,7 @@ install_package() {
   local package_name="$1"
   if ! command -v "$package_name" &>/dev/null; then
     echo "Installing $package_name..."
-    yay -S "$package_name" --noconfirm
+    yay -S --noconfirm "$package_name" 
   fi
 }
 
