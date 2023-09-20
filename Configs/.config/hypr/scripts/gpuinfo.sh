@@ -56,6 +56,17 @@ if command -v "amdgpu_top" &>/dev/null; then
   gpu_info_amd=$(collect_gpu_info_amd)
 fi
 
+# Check for AMD integrated GPU using amdgpu_top
+if command -v "amdgpu_top" &>/dev/null; then
+  if [ -z "$intel_gpu" ]; then
+    amd_gpu="AMD GPU"
+  fi
+  # Collect GPU information for AMD
+  gpu_info_amd=$(collect_gpu_info_amd)
+  echo "AMD GPU Info:"
+  echo "$gpu_info_amd"
+fi
+
 # Check if primary GPU is NVIDIA, AMD, Intel, or not found
 if [ -n "$nvidia_gpu" ]; then
   primary_gpu="NVIDIA GPU"
