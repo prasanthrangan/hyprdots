@@ -29,7 +29,7 @@ collect_gpu_info_intel() {
 # Function to collect GPU information for AMD
 collect_gpu_info_amd() {
   local gpu_info_amd
-  gpu_info_amd=$(amdgpu_top -d | grep -E "Edge Temp|VRAM|Power Avg|GPU Clock")
+  gpu_info_amd=$(amdgpu_top -d)
   echo "$gpu_info_amd"
 }
 
@@ -65,10 +65,10 @@ elif [ -n "$gpu_info_amd" ]; then
   # Use the same formatting for AMD GPU information as for NVIDIA
   temperature=$(echo "$gpu_info_amd" | grep -oP 'Edge Temp:\s*\K\d+')
   utilization=$(echo "$gpu_info_amd" | grep -oP 'average_gfx_activity:\s*\K\d+')
-  current_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'average_gfxclk_frequency:\s*\K\d+')
-  max_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'Peak FP32:\s*\K\d+')
+  current_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'current_gfxclk:\s*\K\d+')
+  max_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'average_gfxclk_frequency:\s*\K\d+')
   power_usage=$(echo "$gpu_info_amd" | grep -oP 'Power Avg.:\s*\K\d+')
-  power_limit="N/A" 
+  power_limit="N/A"  # Adjust this as per available metrics
   gpu_info="$temperature,$utilization,$current_clock_speed,$max_clock_speed,$power_usage,$power_limit"
 elif [ -n "$gpu_info_intel" ]; then
   primary_gpu="Intel GPU"
