@@ -60,6 +60,14 @@ fi
 if [ -n "$nvidia_gpu" ]; then
   primary_gpu="NVIDIA GPU"
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
+  # Use the same formatting for NVIDIA GPU information as before
+  temperature=$(echo "$gpu_info" | cut -d ',' -f1)
+  utilization=$(echo "$gpu_info" | cut -d ',' -f2)
+  current_clock_speed=$(echo "$gpu_info" | cut -d ',' -f3)
+  max_clock_speed=$(echo "$gpu_info" | cut -d ',' -f4)
+  power_usage=$(echo "$gpu_info" | cut -d ',' -f5)
+  power_limit=$(echo "$gpu_info" | cut -d ',' -f6)
+  gpu_info="$temperature,$utilization,$current_clock_speed,$max_clock_speed,$power_usage,$power_limit"
 elif [ -n "$gpu_info_amd" ]; then
   primary_gpu="$amd_gpu"
   # Use the same formatting for AMD GPU information as for NVIDIA
@@ -105,3 +113,4 @@ $emoji Temperature: $temperature°C\n\
 
 #echo "$temperature°C"
 echo "{\"text\":\"$temperature°C\", \"tooltip\":\"$text\"}"
+
