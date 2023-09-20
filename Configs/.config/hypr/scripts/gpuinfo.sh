@@ -54,8 +54,6 @@ if command -v "amdgpu_top" &>/dev/null; then
   fi
   # Collect GPU information for AMD
   gpu_info_amd=$(collect_gpu_info_amd)
-  echo "AMD GPU Info:"
-  echo "$gpu_info_amd"
 fi
 
 # Check if primary GPU is NVIDIA, AMD, Intel, or not found
