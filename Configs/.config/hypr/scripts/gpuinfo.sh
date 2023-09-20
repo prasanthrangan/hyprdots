@@ -9,9 +9,9 @@ install_package() {
   fi
 }
 
-# Check if radeontop is installed
-if ! command -v "radeontop" &>/dev/null; then
-  install_package "radeontop"
+# Check if amdgpu_top is installed
+if ! command -v "amdgpu_top" &>/dev/null; then
+  install_package "amdgpu_top"
 fi
 
 # Check if intel-gpu-tools is installed
@@ -29,7 +29,7 @@ collect_gpu_info_intel() {
 # Function to collect GPU information for AMD
 collect_gpu_info_amd() {
   local gpu_info_amd
-  gpu_info_amd=$(timeout 5 radeontop -d 1 | grep -E "Temp|Util|Core(Memory) Clock|Power Draw Limit" | awk '{print $2}' | tr '\n' ',' | sed 's/,$/\n/')
+  gpu_info_amd=$(amdgpu_top -d | grep -E "Edge Temp|VRAM|Power Avg|GPU Clock")
   echo "$gpu_info_amd"
 }
 
@@ -48,7 +48,7 @@ if command -v "intel_gpu_top" &>/dev/null; then
 fi
 
 # Check for AMD integrated GPU using radeontop
-if command -v "radeontop" &>/dev/null; then
+if command -v "amdgpu_top" &>/dev/null; then
   if [ -z "$intel_gpu" ]; then
     amd_gpu="AMD GPU"
   fi
@@ -62,7 +62,14 @@ if [ -n "$nvidia_gpu" ]; then
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
 elif [ -n "$gpu_info_amd" ]; then
   primary_gpu="$amd_gpu"
-  gpu_info="$gpu_info_amd"
+  # Use the same formatting for AMD GPU information as for NVIDIA
+  temperature=$(echo "$gpu_info_amd" | grep -oP 'Edge Temp:\s*\K\d+')
+  utilization=$(echo "$gpu_info_amd" | grep -oP 'average_gfx_activity:\s*\K\d+')
+  current_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'average_gfxclk_frequency:\s*\K\d+')
+  max_clock_speed=$(echo "$gpu_info_amd" | grep -oP 'Peak FP32:\s*\K\d+')
+  power_usage=$(echo "$gpu_info_amd" | grep -oP 'Power Avg.:\s*\K\d+')
+  power_limit="N/A" 
+  gpu_info="$temperature,$utilization,$current_clock_speed,$max_clock_speed,$power_usage,$power_limit"
 elif [ -n "$gpu_info_intel" ]; then
   primary_gpu="Intel GPU"
   gpu_info="$gpu_info_intel"
