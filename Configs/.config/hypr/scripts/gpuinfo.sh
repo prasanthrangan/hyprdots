@@ -47,7 +47,7 @@ if command -v "intel_gpu_top" &>/dev/null; then
   gpu_info_intel=$(collect_gpu_info_intel)
 fi
 
-# Check for AMD integrated GPU using radeontop
+# Check for AMD integrated GPU using amdgpu_top
 if command -v "amdgpu_top" &>/dev/null; then
   if [ -z "$intel_gpu" ]; then
     amd_gpu="AMD GPU"
