@@ -1,82 +1,25 @@
 #!/bin/bash
 
-# Function to convert millidegrees to Celsius
-to_celsius() {
-  local millidegrees="$1"
-  local celsius=$((millidegrees / 1000))
-  echo "$celsius"
-}
-
-# Function to read GPU temperature
-read_gpu_temperature() {
-  local temp_path="/sys/class/drm/$1/device/hwmon/hwmon*/temp1_input"
-  local temp_millidegrees=$(cat $temp_path)
-  local temp_celsius=$(to_celsius $temp_millidegrees)
-  echo "$temp_celsius"
-}
-
-# Function to read GPU utilization
-read_gpu_utilization() {
-  local utilization_path="/sys/class/drm/$1/device/gpu_busy_percent"
-  local utilization=$(cat $utilization_path)
-  echo "$utilization"
-}
-
-# Function to read P-states
-read_p_states() {
-  local p_states_path="/sys/class/drm/$1/device/pp_od_clk_voltage"
-  local p_states=$(cat $p_states_path)
-  echo "$p_states"
-}
-
-# Function to read VRAM frequency
-read_vram_frequency() {
-  local vram_freq_path="/sys/class/drm/$1/device/pp_dpm_mclk"
-  local vram_freq=$(cat $vram_freq_path | tr '\n' ',' | sed 's/,$/\n/')
-  echo "$vram_freq"
-}
-
 # Check for NVIDIA GPU using nvidia-smi
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 
-# Find all GPUs using lspci
-all_gpus=$(lspci -nn | grep -E 'VGA|3D controller' | grep -oE '\[....:....\]' | tr -d '[]')
-
-# Initialize variables for integrated GPUs
-intel_gpu=""
-amd_gpu=""
-
-# Loop through all GPUs to identify integrated ones
-for gpu in $all_gpus; do
-  gpu_info=$(lspci -v | grep -A 12 "VGA controller" | grep -B 1 "$gpu")
-
-  # Check for Intel integrated GPU
-  if echo "$gpu_info" | grep -iq 'Intel Corporation'; then
-    intel_gpu="$gpu"
-  fi
-
-  # Check for AMD integrated GPU
-  if echo "$gpu_info" | grep -iq 'Advanced Micro Devices'; then
-    amd_gpu="$gpu"
-  fi
-done
-
-# Function to get AMD GPU device path
-get_amd_gpu_device_path() {
-  local amd_device_path=""
-  local amd_devices=(/sys/class/drm/card*)
-  
-  for device in "${amd_devices[@]}"; do
-    if [[ -d "$device/device/hwmon/hwmon"* && -d "$device/device/pp_dpm_mclk" ]]; then
-      amd_device_path="$device"
-      break
-    fi
-  done
-  
-  echo "$amd_device_path"
+# Function to execute the AMD GPU Python script and use its output
+execute_amd_script() {
+  local amd_output
+  amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
+  echo "$amd_output"
 }
 
-# Check if primary GPU is NVIDIA, AMD, Intel, or not found
+# Function to install a package using yay without confirmation
+install_package() {
+  local package_name="$1"
+  if ! command -v "$package_name" &>/dev/null; then
+    echo "Installing $package_name..."
+    yay -S --noconfirm "$package_name"
+  fi
+}
+
+# Check if primary GPU is NVIDIA or not found
 if [ -n "$nvidia_gpu" ]; then
   primary_gpu="NVIDIA GPU"
   # Collect GPU information for NVIDIA
@@ -90,43 +33,25 @@ if [ -n "$nvidia_gpu" ]; then
   max_clock_speed="${gpu_data[3]// /}"
   power_usage="${gpu_data[4]// /}"
   power_limit="${gpu_data[5]// /}"
+  
   # Define emoji based on temperature
   if [ "$temperature" -lt 60 ]; then
     emoji="❄️"  # Ice emoji for less than 60°C
   else
     emoji="🔥"  # Fire emoji for 60°C or higher
   fi
+ 
   # Print the formatted information in JSON
   echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
-elif [ -n "$amd_gpu" ]; then
-  primary_gpu="AMD GPU"
-  amd_device_path=$(get_amd_gpu_device_path)
-  
-  if [ -n "$amd_device_path" ]; then
-    # Extract temperature, utilization, P-states, and VRAM frequency from the AMD GPU
-    temperature=$(read_gpu_temperature "$amd_device_path")
-    utilization=$(read_gpu_utilization "$amd_device_path")
-    p_states=$(read_p_states "$amd_device_path")
-    vram_frequency=$(read_vram_frequency "$amd_device_path")
-    # Define emoji based on temperature
-    if [ "$temperature" -lt 60 ]; then
-      emoji="❄️"  # Ice emoji for less than 60°C
-    else
-      emoji="🔥"  # Fire emoji for 60°C or higher
-    fi
-    # Print the formatted information in JSON
-    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n🔄 P-states: $p_states\n🌐 VRAM Frequency: $vram_frequency\"}"
-  else
-    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nAMD GPU device not found\"}"
-  fi
-elif [ -n "$intel_gpu" ]; then
-  primary_gpu="Intel GPU"
-  # Collect GPU information for Intel
-  gpu_info=$(lspci -v | grep -A 12 "VGA controller" | grep -B 1 "$intel_gpu" | grep "Subsystem" -A 4 | grep "Kernel driver in use")
 else
-  primary_gpu="Not found"
-  gpu_info=""
+  primary_gpu="AMD GPU"
+  # Check if the python-pyamdgpuinfo package is installed, and install it if not
+  install_package "python-pyamdgpuinfo"
+  # Execute the AMD GPU Python script and use its output
+  amd_output=$(execute_amd_script)
+  if [ -n "$amd_output" ]; then
+    echo "$amd_output"
+  else
+    echo "AMD GPU device not found"
+  fi
 fi
-
-# Print the formatted information
-echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\"}"
