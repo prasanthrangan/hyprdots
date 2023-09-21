@@ -50,8 +50,13 @@ else
   # Execute the AMD GPU Python script and use its output
   amd_output=$(execute_amd_script)
   if [ -n "$amd_output" ]; then
-    echo "$amd_output"
+    # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
+    temperature=$(echo "$amd_output" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
+    gpu_load=$(echo "$amd_output" | jq -r '.["GPU Load"]' | sed 's/%//')
+    core_clock=$(echo "$amd_output" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//')
+    power_usage=$(echo "$amd_output" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
+    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\nGPU Temperature: $temperature°C\n Utilization: $gpu_load%\nGPU Core Clock: $core_clock GHz\nPower Usage: $power_usage W\"}"
   else
-    echo "AMD GPU device not found"
+    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nAMD GPU device not found\"}"
   fi
 fi
