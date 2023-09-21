@@ -64,12 +64,12 @@ def main():
 
         # Create a dictionary with the GPU information
         gpu_info = {
-            "GPU Power Usage": f"{power_usage} Watts",
+            "GPU Temperature": temperature,
             "GPU Load": formatted_gpu_load,
             "GPU Core Clock": formatted_core_clock,
-            "GPU Temperature": temperature
+            "GPU Power Usage": f"{power_usage} Watts"
         }
-
+        
         # Convert the dictionary to a JSON string, ensure_ascii=False to prevent escaping
         json_output = json.dumps(gpu_info, ensure_ascii=False)
 
