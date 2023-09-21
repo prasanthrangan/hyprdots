@@ -19,6 +19,16 @@ install_package() {
   fi
 }
 
+# Function to define emoji based on temperature
+get_temperature_emoji() {
+  local temperature="$1"
+  if [ "$temperature" -lt 60 ]; then
+    echo "❄️"  # Ice emoji for less than 60°C
+  else
+    echo "🔥"  # Fire emoji for 60°C or higher
+  fi
+}
+
 # Check if primary GPU is NVIDIA or not found
 if [ -n "$nvidia_gpu" ]; then
   primary_gpu="NVIDIA GPU"
@@ -33,13 +43,9 @@ if [ -n "$nvidia_gpu" ]; then
   max_clock_speed="${gpu_data[3]// /}"
   power_usage="${gpu_data[4]// /}"
   power_limit="${gpu_data[5]// /}"
-  
-  # Define emoji based on temperature
-  if [ "$temperature" -lt 60 ]; then
-    emoji="❄️"  # Ice emoji for less than 60°C
-  else
-    emoji="🔥"  # Fire emoji for 60°C or higher
-  fi
+
+  # Get emoji based on temperature
+  emoji=$(get_temperature_emoji "$temperature")
  
   # Print the formatted information in JSON
   echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
@@ -55,9 +61,12 @@ else
     gpu_load=$(echo "$amd_output" | jq -r '.["GPU Load"]' | sed 's/%//')
     core_clock=$(echo "$amd_output" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//')
     power_usage=$(echo "$amd_output" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
-    
+
+    # Get emoji based on temperature
+    emoji=$(get_temperature_emoji "$temperature")
+
     # Print the formatted information in JSON
-    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\nGPU Temperature: $temperature°C\n Utilization: $gpu_load%\n Clock Speed: $core_clock GHz\nPower Usage: $power_usage W\"}"
+    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n Utilization: $gpu_load%\n Clock Speed: $core_clock GHz\nPower Usage: $power_usage W\"}"
   else
     echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nAMD GPU device not found\"}"
   fi
