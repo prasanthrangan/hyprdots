@@ -55,7 +55,7 @@ else
     gpu_load=$(echo "$amd_output" | jq -r '.["GPU Load"]' | sed 's/%//')
     core_clock=$(echo "$amd_output" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//')
     power_usage=$(echo "$amd_output" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
-    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\nGPU Temperature: $temperature°C\n Utilization: $gpu_load%\nGPU Core Clock: $core_clock GHz\nPower Usage: $power_usage W\"}"
+    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\nGPU Temperature: $temperature°C\n Utilization: $gpu_load%\n Clock Speed: $core_clock GHz\nPower Usage: $power_usage W\"}"
   else
     echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nAMD GPU device not found\"}"
   fi
