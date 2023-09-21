@@ -81,12 +81,8 @@ if [ -n "$nvidia_gpu" ]; then
   else
     emoji="🔥"  # Fire emoji for 60°C or higher
   fi
-  # Print the formatted information
-  text="Primary GPU: $primary_gpu\n\
-  $emoji Temperature: $temperature°C\n\
-  󰾆 Utilization: $utilization%\n\
-   Clock Speed: $current_clock_speed/$max_clock_speed MHz\n\
-   Power Usage: $power_usage/$power_limit W"
+  # Print the formatted information in JSON
+  echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
 elif [ -n "$amd_gpu" ]; then
   primary_gpu="AMD GPU"
   # Extract temperature, utilization, P-states, and VRAM frequency from the AMD GPU
@@ -100,12 +96,8 @@ elif [ -n "$amd_gpu" ]; then
   else
     emoji="🔥"  # Fire emoji for 60°C or higher
   fi
-  # Print the formatted information
-  text="Primary GPU: $primary_gpu\n\
-  $emoji Temperature: $temperature°C\n\
-  󰾆 Utilization: $utilization%\n\
-  🔄 P-states: $p_states\n\
-  🌐 VRAM Frequency: $vram_frequency"
+  # Print the formatted information in JSON
+  echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n🔄 P-states: $p_states\n🌐 VRAM Frequency: $vram_frequency\"}"
 elif [ -n "$intel_gpu" ]; then
   primary_gpu="Intel GPU"
   # Collect GPU information for Intel
@@ -116,5 +108,4 @@ else
 fi
 
 # Print the formatted information
-echo "Primary GPU: $primary_gpu"
-echo "$text"
+echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\"}"
