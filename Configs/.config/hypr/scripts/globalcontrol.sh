@@ -15,3 +15,28 @@ if [ "${gtkMode}" == "light" ] ; then
     ncolor="-h string:bgcolor:#f4ede8 -h string:fgcolor:#9893a5 -h string:frcolor:#908caa"
 fi
 
+# pacman fns
+pkg_installed()
+{
+    local PkgIn=$1
+
+    if pacman -Qi $PkgIn &> /dev/null
+    then
+        #echo "${PkgIn} is already installed..."
+        return 0
+    else
+        #echo "${PkgIn} is not installed..."
+        return 1
+    fi
+}
+
+get_aurhlpr()
+{
+    if pkg_installed yay
+    then
+        aurhlpr="yay"
+    elif pkg_installed paru
+    then
+        aurhlpr="paru"
+    fi
+}
