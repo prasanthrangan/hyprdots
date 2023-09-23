@@ -3,7 +3,7 @@ Font_MaterialDesign|$HOME/.local/share/fonts
 Font_JetBrainsMono|$HOME/.local/share/fonts
 Font_MapleNerd|$HOME/.local/share/fonts
 Font_MononokiNerd|$HOME/.local/share/fonts
-Font_UzumasaMini|/usr/share/fonts
+Font_NotoSansCJK|/usr/share/fonts
 Gtk_CatppuccinMocha|/usr/share/themes
 Gtk_CatppuccinMocha|$HOME/.themes
 Gtk_CatppuccinLatte|/usr/share/themes
