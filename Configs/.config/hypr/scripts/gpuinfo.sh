@@ -3,25 +3,11 @@
 # Check for NVIDIA GPU using nvidia-smi
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 
-# Function to check for AMD GPU using 'lspci'
-check_amd_gpu() {
-  local amd_gpu
-  amd_gpu=$(lspci -nn | grep -E "VGA|3D controller" | grep -i "AMD")
-  echo "$amd_gpu"
-}
-
 # Function to execute the AMD GPU Python script and use its output
 execute_amd_script() {
   local amd_output
   amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
   echo "$amd_output"
-}
-
-# Function to get Intel GPU temperature from 'sensors'
-get_intel_gpu_temperature() {
-  local temperature
-  temperature=$(sensors | grep "coretemp-isa-0000" | grep "Package id 0" | awk '{print $4}' | sed 's/+//')
-  echo "$temperature"
 }
 
 # Function to define emoji based on temperature
@@ -51,37 +37,26 @@ if [ -n "$nvidia_gpu" ]; then
 
   # Get emoji based on temperature
   emoji=$(get_temperature_emoji "$temperature")
-
+ 
   # Print the formatted information in JSON
   echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
-elif check_amd_gpu; then
+else
   primary_gpu="AMD GPU"
   # Execute the AMD GPU Python script and use its output
   amd_output=$(execute_amd_script)
-  # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
-  temperature=$(echo "$amd_output" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
-  gpu_load=$(echo "$amd_output" | jq -r '.["GPU Load"]' | sed 's/%//')
-  core_clock=$(echo "$amd_output" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
-  power_usage=$(echo "$amd_output" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
+  if [ -n "$amd_output" ]; then
+    # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
+    temperature=$(echo "$amd_output" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
+    gpu_load=$(echo "$amd_output" | jq -r '.["GPU Load"]' | sed 's/%//')
+    core_clock=$(echo "$amd_output" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
+    power_usage=$(echo "$amd_output" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
 
-  # Get emoji based on temperature
-  emoji=$(get_temperature_emoji "$temperature")
-
-  # Print the formatted information in JSON
-  echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $gpu_load%\n Clock Speed: $core_clock MHz\n Power Usage: $power_usage W\"}"
-else
-  # Check for Intel GPU
-  primary_gpu="Intel GPU"
-  intel_gpu=$(lspci -nn | grep -i "VGA compatible controller" | grep -i "Intel Corporation" | awk -F' ' '{print $1}')
-  if [ -n "$intel_gpu" ]; then
-    temperature=$(get_intel_gpu_temperature)
+    # Get emoji based on temperature
     emoji=$(get_temperature_emoji "$temperature")
+
     # Print the formatted information in JSON
-    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\"}"
+    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $gpu_load%\n Clock Speed: $core_clock MHz\n Power Usage: $power_usage W\"}"
   else
-    primary_gpu="Not found"
-    gpu_info=""
-    # Print the formatted information in JSON
-    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\"}"
+    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\nAMD GPU device not found\"}"
   fi
 fi
