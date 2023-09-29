@@ -23,6 +23,7 @@ rofi-lbonn-wayland-git
 waybar
 swww
 swaylock-effects-git
+python-pyamdgpuinfo
 jq
 wlogout
 grim
@@ -54,4 +55,3 @@ zsh-theme-powerlevel10k-git
 zsh-syntax-highlighting-git
 zsh-autosuggestions-git
 pokemon-colorscripts-git
-python-pyamdgpuinfo
