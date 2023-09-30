@@ -10,7 +10,6 @@ modules_dir="$waybar_dir/modules"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="$HOME/.config/hypr/themes/theme.conf"
-reload_flag=0
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
     ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/theme.css
@@ -70,8 +69,9 @@ fi
 
 # restart waybar
 
-if [ $reload_flag -eq 1 ] ; then
+if [ "$reload_flag" -eq 1 ] ; then
     killall waybar
     waybar > /dev/null 2>&1 &
     # killall -SIGUSR2 waybar
 fi
+
