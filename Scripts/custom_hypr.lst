@@ -23,6 +23,8 @@ rofi-lbonn-wayland-git
 waybar
 swww
 swaylock-effects-git
+python-pyamdgpuinfo
+jq
 wlogout
 grim
 slurp
