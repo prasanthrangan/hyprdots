@@ -10,8 +10,7 @@ dcoDir="$HOME/.config/hypr/wallbash"
 # regen color conf
 
 if [ "$EnableWallDcol" -ne 1 ] ; then
-    gtk_theme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
-    cp ${rofThm}/${gtk_theme}.rasi ${rofThm}/theme.rasi
+    cp ${rofThm}/${gtkTheme}.rasi ${rofThm}/theme.rasi
 else
     cp ${rofThm}/Wall-Dcol.rasi ${rofThm}/theme.rasi
 fi

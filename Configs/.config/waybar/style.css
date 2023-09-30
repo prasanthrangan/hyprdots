@@ -7,7 +7,7 @@
     min-height: 10px;
 }
 
-@import "themes/Catppuccin-Mocha.css";
+@import "themes/theme.css";
 
 window#waybar {
     background: @bar-bg;
@@ -95,6 +95,7 @@ tooltip {
 #cpu,
 #custom-gpuinfo,
 #idle_inhibitor,
+#language,
 #memory,
 #custom-mode,
 #mpris,

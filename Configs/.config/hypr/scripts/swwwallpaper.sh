@@ -7,6 +7,7 @@ Wall_Update()
     local x_wall=$1
     local x_update=${x_wall/$HOME/"~"}
     cacheImg=`echo $x_wall | awk -F '/' '{print $NF}'`
+    $ScrDir/swwwallbash.sh $x_wall
 
     if [ ! -d ${cacheDir}/${curTheme} ] ; then
         mkdir -p ${cacheDir}/${curTheme}
@@ -29,10 +30,6 @@ Wall_Update()
     ln -fs $x_wall $wallSet
     ln -fs ${cacheDir}/${curTheme}/${cacheImg}.rofi $wallRfi
     ln -fs ${cacheDir}/${curTheme}/${cacheImg}.blur $wallBlr
-
-    if [ "$EnableWallDcol" -eq 1 ] ; then
-        $ScrDir/swwwallbash.sh $x_wall
-    fi
 }
 
 Wall_Change()
