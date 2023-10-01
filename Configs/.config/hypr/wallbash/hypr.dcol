@@ -1,0 +1,9 @@
+4|hyprwallbash.sh|.config/hypr/themes/Wall-Dcol.conf
+general {
+    col.active_border = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
+    col.inactive_border = rgba(<dcol_1>cc) rgba(<dcol_3>cc) 45deg
+    col.group_border_active = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
+    col.group_border = rgba(<dcol_1>cc) rgba(<dcol_3>cc) 45deg
+    col.group_border_locked_active = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
+    col.group_border_locked = rgba(<dcol_1>cc) rgba(<dcol_3>cc) 45deg
+}
