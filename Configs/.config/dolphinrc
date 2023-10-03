@@ -21,7 +21,7 @@ Places Icons Auto-resize=false
 Places Icons Static Size=16
 
 [KPropertiesDialog]
-2560x1080 screen: Window-Maximized=true
+2560x1440 screen: Window-Maximized=true
 
 [MainWindow]
 MenuBar=Disabled
