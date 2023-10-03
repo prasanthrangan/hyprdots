@@ -1,2 +1,6 @@
+/dev/sda1
+/dev/sda2
 /dev/sdb1
-/dev/nvme0n1p1
+/dev/sdc1
+/dev/nvme0n1p4
+/dev/nvme0n1p2
