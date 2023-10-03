@@ -7,3 +7,4 @@
 0|Graphite-Mono|~/.config/swww/Graphite-Mono/spring_bloom.jpg
 0|Cyberpunk-Edge|~/.config/swww/Cyberpunk-Edge/david.jpg
 0|Frosted-Glass|~/.config/swww/Frosted-Glass/teal_mountain.png
+0|Gruvbox-Retro|~/.config/swww/Gruvbox-Retro/streets.png
