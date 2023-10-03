@@ -365,7 +365,7 @@ pokemon-colorscripts-git | display pokemon sprites
 
 ### neofetch
 
-- [ ] modify conf
+- [x] modify conf
 
 ### gtk3 settings
 
