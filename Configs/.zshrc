@@ -100,8 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias  l='eza -l  --icons'
 alias ls='eza -1  --icons'
 alias ll='eza -la --icons'
@@ -123,7 +123,7 @@ alias vc='code'  # gui code editor
 #neofetch
 
 #Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+pokemon-colorscripts -r
 
 #Display random gifs
 #kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)

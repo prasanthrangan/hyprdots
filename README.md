@@ -13,7 +13,6 @@
     - [keybinds (user prefs)](#keybinds-user-prefs)
     - [.zshrc](#zshrc)
     - [custom apps](#custom-apps)
-    - [vscode](#vscode)
     - [waybar](#waybar)
     - [workspace](#workspace)
     - [swww](#swww)
@@ -330,18 +329,14 @@ pokemon-colorscripts-git | display pokemon sprites
 
 ### .zshrc
 
-- [ ] make pokemon from all generations appear
-- [ ] show pokemon names
-- [ ] add alias
+- [x] all pokemons from every generation appear
+- [x] show pokemon names
+- [x] add custom aliases
 
 ### custom apps
 
-- [ ] add pref apps
+- [x] add pref apps
 - [ ] setup megasync tray
-
-### vscode
-
-- [ ] exclude from following the selected theme (to avoid conflicting w/ my own settings.json)
 
 ### waybar
 
