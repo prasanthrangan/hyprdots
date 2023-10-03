@@ -1,18 +1,265 @@
 {
-    "workbench.colorTheme": "Catppuccin-Mocha",
-    "window.menuBarVisibility": "toggle",
-    "editor.fontSize": 12,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.verticalScrollbarSize": 0,
-    "security.workspace.trust.untrustedFiles": "newWindow",
-    "security.workspace.trust.startupPrompt": "never",
-    "security.workspace.trust.enabled": false,
-    "editor.minimap.side": "left",
-    "editor.fontFamily": "'Maple Mono', 'monospace', monospace",
-    "extensions.autoUpdate": false,
-    "workbench.statusBar.visible": false,
-    "terminal.external.linuxExec": "kitty",
-    "terminal.explorerKind": "both",
-    "terminal.sourceControlRepositoriesKind": "both",
-    "telemetry.telemetryLevel": "off"
+	"telemetry.telemetryLevel": "off",
+	"workbench.colorTheme": "Catppuccin-Mocha",
+	"window.menuBarVisibility": "toggle",
+	"editor.fontSize": 14,
+	"security.workspace.trust.untrustedFiles": "newWindow",
+	"security.workspace.trust.startupPrompt": "never",
+	"security.workspace.trust.enabled": false,
+	"editor.minimap.side": "right",
+	"editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, Arimo Nerd Font, MesloLGS NF",
+	"extensions.autoUpdate": false,
+	"workbench.statusBar.visible": false,
+	"terminal.external.linuxExec": "kitty",
+	"terminal.explorerKind": "both",
+	"terminal.sourceControlRepositoriesKind": "both",
+	"window.zoomLevel": 1,
+	"better-comments.highlightPlainText": true,
+	"better-comments.tags": [
+		{
+			"tag": "!",
+			"color": "#CC826A",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "#E9967A10",
+			"bold": false,
+			"italic": false
+		},
+		{
+			"tag": "?",
+			"color": "#B2A056",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "#FFE26E10",
+			"bold": false,
+			"italic": true
+		},
+		{
+			"tag": "//",
+			"color": "#4C4C4C",
+			"strikethrough": true,
+			"underline": false,
+			"backgroundColor": "transparent",
+			"bold": false,
+			"italic": false
+		},
+		{
+			"tag": "todo",
+			"color": "#CC7000",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "#FF8C0010",
+			"bold": false,
+			"italic": false
+		},
+		{
+			"tag": "*",
+			"color": "#718066",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "#98C37920",
+			"bold": false,
+			"italic": false
+		},
+		{
+			"tag": "@",
+			"color": "#63A9E6",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "transparent",
+			"bold": false,
+			"italic": false
+		},
+		{
+			"tag": "$",
+			"color": "#CC828E",
+			"strikethrough": false,
+			"underline": false,
+			"backgroundColor": "#ff002b10",
+			"bold": false,
+			"italic": false
+		}
+	],
+	"explorer.confirmDragAndDrop": false,
+	"liveServer.settings.donotVerifyTags": true,
+	"liveServer.settings.donotShowInfoMsg": true,
+	"liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+	"liveServer.settings.fullReload": true,
+	"terminal.integrated.smoothScrolling": true,
+	"explorer.confirmDelete": false,
+	"diffEditor.wordWrap": "on",
+	"window.titleBarStyle": "custom",
+	"editor.wordWrap": "on",
+	"editor.mouseWheelZoom": true,
+	"editor.linkedEditing": true,
+	"editor.formatOnType": false,
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": false,
+	"editor.tabSize": 2,
+	"editor.insertSpaces": false,
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"workbench.tree.indent": 4,
+	"workbench.startupEditor": "none",
+	"vscord.status.image.small.notInFile.text": "Snoozing zZz",
+	"vscord.status.buttons.button1.active.label": "Check this out? 👇",
+	"vscord.status.buttons.button1.idle.enabled": true,
+	"vscord.status.buttons.button1.idle.label": "Wait, what's this? 👇🤔",
+	"vscord.status.details.text.idle": "random 👨‍💻",
+	"vscord.status.details.text.notInFile": "just code!",
+	"vscord.status.details.text.viewing": "",
+	"vscord.status.buttons.button1.active.enabled": true,
+	"vscord.status.buttons.button1.git.active.label": "Check Repo 👇",
+	"vscord.status.details.text.editing": "",
+	"vscord.behaviour.suppressNotifications": true,
+	"htmlhint.documentSelector": ["html", "htm"],
+	"html.format.indentInnerHtml": true,
+	"html.format.wrapAttributes": "preserve-aligned",
+	"html.format.indentHandlebars": true,
+	"html.format.wrapLineLength": 0,
+	"less.format.spaceAroundSelectorSeparator": true,
+	"css.format.spaceAroundSelectorSeparator": true,
+	"scss.format.spaceAroundSelectorSeparator": true,
+	"git.autofetch": true,
+	"git.enableSmartCommit": true,
+	"git.confirmSync": false,
+	"git.allowForcePush": true,
+	"eslint.format.enable": true,
+	"autoprefixer.formatOnSave": true,
+	"bookmarks.useWorkaroundForFormatters": true,
+	"prettier.useTabs": true,
+	"prettier.endOfLine": "lf",
+	"prettier.bracketSameLine": true,
+	"prettier.printWidth": 100,
+	"[html]": {
+		"editor.tabSize": 3,
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+		"workbench.editor.languageDetection": false
+	},
+	"scss.lint.float": "warning",
+	"[scss]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+		// "editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {},
+	"[javascript]": {},
+	"vs-code-prettier-eslint.prettierLast": true,
+	"git.showPushSuccessNotification": true,
+	"terminal.integrated.env.windows": {},
+	"vscode-pets.petColor": "white",
+	"vscode-pets.petSize": "large",
+	"vscode-pets.throwBallWithMouse": true,
+	"svg.preview.transparencyGrid": false,
+	"svg.preview.boundingBox": false,
+	"indentRainbow.lightIndicatorStyleLineWidth": 12,
+	"hungryDelete.keepOneSpace": true,
+	"todo-tree.highlights.enabled": false,
+	"indentRainbow.indicatorStyle": "light",
+	"hungryDelete.languageConfigurations": [
+		{
+			"languageId": "html",
+			"indentationRules": {
+				"increaseIndentPattern": "<(?!\\?|(?:area|base|br|col|frame|hr|html|img|input|link|meta|param)\\b|[^>]*\\/>)([-_\\.A-Za-z0-9]+)(?=\\s|>)\\b[^>]*>(?!.*<\\/\\1>)|<!--(?!.*-->)|\\{[^}\"']*$",
+				"decreaseIndentPattern": "^\\s*(<\\/(?!html)[-_\\.A-Za-z0-9]+\\b[^>]*>|-->|\\})"
+			}
+		},
+		{
+			"languageId": "scss",
+			"indentationRules": {
+				"increaseIndentPattern": "(^.*\\{[^}]*$)",
+				"decreaseIndentPattern": "^\\s*\\}"
+			}
+		}
+	],
+	"vscode_vibrancy.opacity": 0.95,
+	"vscode-pets.petType": "totoro",
+	"scss.format.maxPreserveNewLines": 100,
+	"codesnap.backgroundColor": "hsla(202, 46%, 72%, 1)",
+	"codesnap.containerPadding": "2.5em",
+	"fiveServer.injectBody": true,
+	"gitlens.hovers.currentLine.over": "line",
+	"gitlens.codeLens.scopes": ["document", "containers"],
+	"gitlens.codeLens.enabled": false,
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"name": "One Dark italic",
+				"scope": [
+					"comment",
+					"entity.other.attribute-name",
+					"keyword",
+					"markup.underline.link",
+					"storage.modifier",
+					"storage.type",
+					"string.url",
+					"variable.language.super",
+					"variable.language.this"
+				],
+				"settings": {
+					"fontStyle": "italic"
+				}
+			},
+			{
+				"name": "One Dark italic reset",
+				"scope": [
+					"keyword.operator",
+					"keyword.other.type",
+					"storage.modifier.import",
+					"storage.modifier.package",
+					"storage.type.built-in",
+					"storage.type.function.arrow",
+					"storage.type.generic",
+					"storage.type.java",
+					"storage.type.primitive"
+				],
+				"settings": {
+					"fontStyle": ""
+				}
+			}
+		]
+	},
+	"git.openRepositoryInParentFolders": "always",
+	"console-ninja.fontSize": 14,
+	"console-ninja.outputMode": "In View",
+	"console-ninja.captureFunctions": true,
+	"editor.stickyScroll.enabled": true,
+	"workbench.sideBar.location": "right",
+	"console-ninja.toolsToEnableSupportAutomaticallyFor": {
+		"live-server-extension": true
+	},
+	"terminal.integrated.env.linux": {},
+	"[jsonc]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+	},
+	"apc.stylesheet": {
+		".monaco-editor .cursor": "background: #ffffffaa !important; box-shadow: 0 0 70px 5px #ffffff, #ffffff 0px 0px 34px 1px; color: [#161616](https://github.com/AlexOwl/vscode-transparent-color-theme/issues/161616) !important",
+	},
+	"editor.cursorBlinking": "phase",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"animations.Active": "Indent",
+	"animations.Scrolling": "None",
+	"animations.Tabs": "Slide",
+	"vsicons.dontShowNewVersionMessage": true,
+	"editor.minimap.showSlider": "always",
+	"editor.unicodeHighlight.includeComments": false,
+	"glassit-linux.opacity": 98,
+	"terminal.integrated.sendKeybindingsToShell": true,
+	"workbench.iconTheme": "catppuccin-macchiato",
+	"console-ninja.featureSet": "Community",
+	"animations.Install-Method": "Apc Customize UI++",
+	"apc.imports": [
+		"file:///home/devck/.vscode/extensions/brandonkirbyson.vscode-animations-2.0.1/dist/updateHandler.js"
+	],
+	"terminal.integrated.customGlyphs": false,
+	"animations.Enabled": false,
+	"markdown.editor.pasteUrlAsFormattedLink.enabled": "smart",
+	"markdownlint.config": {
+		"MD033": {
+			"allowed_elements": ["kbd", "br", "p","img",]
+		}
+	},
 }
