@@ -16,10 +16,9 @@
     - [waybar](#waybar)
     - [workspace](#workspace)
     - [swww](#swww)
-    - [rofi](#rofi)
-    - [gt5ct.conf](#gt5ctconf)
+    - [qt5ct.conf](#qt5ctconf)
     - [neofetch](#neofetch)
-    - [gtk3 settings](#gtk3-settings)
+    - [gtk3](#gtk3)
 
 <p align="center">
   <img width="250" src="https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/hyprdots_arch.png" alt="hyprdots + Archlinux(w/ hyprdots color) logo">
@@ -267,14 +266,16 @@ pokemon-colorscripts-git | display pokemon sprites
 | :--  | :-- |
 | `Super + Q` | quit active/focused window
 | `Alt + F4` | quit active/focused window
-| `Super + Del` | quit hyprland session
+| `Super + L` | lock screen
+| `Super + Backspace` | logout menu
+| `Super + Del` | quit hyprland session (logout w/out confirmation)
 | `Super + SPACE` | toggle window on focus to float
 | `Super + F` | toggle window on focus to fullscreen
 | `SUPER + J` | toggle layout
 | `Super + G` | toggle window group
 | `Super + RETURN` / `(Numpad ENTER)` | launch terminal (kitty)
 | `Super + E` | launch file explorer (dolphin)
-| `Super + C` | launch vscode
+| `Super + C` | launch editor (vscode)
 | `Super + B` | launch browser (msedge)
 | `Super + D` | launch desktop applications (rofi)
 | `Super + Tab` | switch open applications (rofi)
@@ -285,16 +286,18 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super + Ctrl + ALT + ↓` `(hold)` | decrease volume for spotify
 | `Super + Ctrl + ALT + ↑` `(hold)` | increase volume for spotify
 | `Super + V` | clipboard history paste
-| `Super + L` | lock screen
-| `Super + Backspace` | logout menu
 | `Super + P` | screenshot snip
 | `Super + Alt + P` | print current screen
-| `Super + RightClick (drag)` | resize the window
-| `Super + LeftClick (drag)` | change the window position
+| `Super + RightClick` `(drag)` | resize the window
+| `Super + LeftClick` `(drag)` | change the window position
 | `Super + MouseScroll` | cycle through workspaces
 | `Super + Shift + ←→↑↓` `(hold)` | resize windows
 | `Super + [0-9]` | switch to workspace [0-9]
+| `Super + backtick` / `backquote` | switch to workspace [0]
 | `Super + Shift + [0-9]` | move active window to workspace [0-9]
+| `Super + Shift + backtick` / `backquote` | move active window to workspace [0]
+| `Super + ALT + [0-9]` | move active window to workspace silently [0-9] (cursor won't follow)
+| `Super + ALT + backtick` / `backquote` | move active window to workspace silently [0] (cursor won't follow)
 | `Super + CTRL + S` | move window to special workspace
 | `Super + CTRL + ←→↑↓` | move window around
 | `Super + S` | toogle to special workspace
@@ -325,6 +328,8 @@ pokemon-colorscripts-git | display pokemon sprites
 
 ### keybinds (user prefs)
 
+- [x] add backtick/backquote as an alternative to `0`
+- [x] set PageUp/Down to cycle through workspaces
 - [ ] add numpad numbers keybinds
 
 ### .zshrc
@@ -336,32 +341,29 @@ pokemon-colorscripts-git | display pokemon sprites
 ### custom apps
 
 - [x] add pref apps
-- [ ] setup megasync tray
+- [ ] setup tray (megasync, caprine)
 
 ### waybar
 
-- [ ] change workspace 10 icon to 󰓇
+- [x] change workspace 10 icon to 󰓇
 
 ### workspace
 
-- [ ] always launch spotify to workspace 10
+- [x] always launch spotify to workspace 10
 
 ### swww
 
-- [ ]
+- [x] change default wallpaper on each theme
 
-### rofi
+### qt5ct.conf
 
-- [ ]
-
-### gt5ct.conf
-
-- [ ] set `activate_item_on_single_click=0`
+- [x] disable activate on singleclick
 
 ### neofetch
 
 - [x] modify conf
 
-### gtk3 settings
+### gtk3
 
-- [ ] cursor size = 24
+- [x] set cursor size = 24
+- [x] set font size = 11
