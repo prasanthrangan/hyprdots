@@ -4,6 +4,8 @@
 #|-/ /--| Kemipso                            |-/ /--|#
 #|/ /---+------------------------------------+/ /---|#
 
+#!/bin/bash
+
 source global_fn.sh
 if [ $? -ne 0 ] ; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
@@ -12,13 +14,12 @@ fi
 
 if ! pkg_installed imagemagick
 then
-    echo "ERROR : imagemagick is not installed..."
+    echo "ERROR: imagemagick is not installed..."
     exit 0
 fi
 
-# set variables
 ctlFile="$HOME/.config/swww/wall.ctl"
-ThemeList="$(awk -F '|' '{print $2}' $ctlFile)"
+ThemeList="$(awk -F '|' '{print $2}' "$ctlFile")"
 SwwwPath="$HOME/.config/swww"
 CacheDir="$HOME/.config/swww/.cache"
 ForceOverwrite=false
@@ -34,40 +35,43 @@ while getopts "f" option ; do
     esac
 done
 
+process_images() {
+    wpFullName="$1"
+    wpBaseName=$(basename "$wpFullName")
+    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
+        convert "$wpFullName" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
+    fi
+
+    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.rofi" ] ; then
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$wpFullName" "${CacheDir}/${theme}/${wpBaseName}.rofi"
+    fi
+
+    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.blur" ] ; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% "$wpFullName" "${CacheDir}/${theme}/${wpBaseName}.blur"
+    fi
+
+    if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
+        magick "$wpFullName" -colors 4 -define histogram:unique-colors=true -format "%c" histogram:info: > "${CacheDir}/${theme}/${wpBaseName}.dcol"
+    fi
+}
+
 # create thumbnails for each theme > wallpapers
 for theme in ${ThemeList}
 do
     if [ $ForceOverwrite == true ]; then
-       rm -Rf ${CacheDir}/${theme}
+       rm -Rf "${CacheDir}/${theme}"
     fi
 
-    if [ ! -d ${CacheDir}/${theme} ] ; then
-        mkdir -p ${CacheDir}/${theme}
+    if [ ! -d "${CacheDir}/${theme}" ] ; then
+        mkdir -p "${CacheDir}/${theme}"
     fi
 
     # Map all wallpapers from the theme to an array with -print0, in case someone decided to use spaces
-    mapfile -d '' wpArray < <(find ${SwwwPath}/${theme} -type f -print0)
+    mapfile -d '' wpArray < <(find "${SwwwPath}/${theme}" -type f -print0)
 
     echo "Creating up to ${#wpArray[@]} thumbnails for ${theme}"
 
-    for wpFullName in "${wpArray[@]}"
-    do
-        wpBaseName=$(basename "${wpFullName}")
-        if [ ! -f "${CacheDir}/${theme}/${wpBaseName}" ] ; then
-            convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${CacheDir}/${theme}/${wpBaseName}"
-        fi
-
-        if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.rofi" ] ; then
-            convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}" ${CacheDir}/${theme}/${wpBaseName}.rofi
-        fi
-
-        if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.blur" ] ; then
-            convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}" ${CacheDir}/${theme}/${wpBaseName}.blur
-        fi
-
-        if [ ! -f "${CacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
-            magick "${wpFullName}" -colors 4 -define histogram:unique-colors=true -format "%c" histogram:info: > ${CacheDir}/${theme}/${wpBaseName}.dcol
-        fi
-    done
-
+    # Process images in parallel
+    export -f process_images
+    printf "%s\0" "${wpArray[@]}" | xargs -0 -P8 -n 1 -I {} bash -c 'process_images "$@"' _ {}
 done
