@@ -2,8 +2,8 @@
     main-bg:           #282828FF;
     main-fg:           #cbced3ff;
     main-br:           #EBDBB2FF;
-    main-ex:           #83A598FF;
-    select-bg:         #B8BB26FF;
+    main-ex:           #85A583FF;
+    select-bg:         #719f38FF;
     select-fg:         #FB4934FF;
     separatorcolor:    transparent;
     border-color:      transparent;
