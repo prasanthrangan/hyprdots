@@ -271,6 +271,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super + D` | launch desktop applications (rofi)
 | `Super + Tab` | switch open applications (rofi)
 | `Super + R` | browse system files (rofi)
+| `Super + period` | browse emoji
 | `fn + F9` | mute audio output (toggle)
 | `fn + F10` `(hold)` | decrease volume
 | `fn + F11` `(hold)` | increase volume
