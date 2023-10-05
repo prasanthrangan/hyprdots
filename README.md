@@ -262,6 +262,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super + SPACE` | toggle window on focus to float
 | `Super + F` | toggle window on focus to fullscreen
 | `SUPER + J` | toggle layout
+| `SUPER + P` | toggle pseudotile
 | `Super + G` | toggle window group
 | `Super + RETURN` / `(Numpad ENTER)` | launch terminal (kitty)
 | `Super + E` | launch file explorer (dolphin)
@@ -273,14 +274,16 @@ pokemon-colorscripts-git | display pokemon sprites
 | `fn + F9` | mute audio output (toggle)
 | `fn + F10` `(hold)` | decrease volume
 | `fn + F11` `(hold)` | increase volume
+| `Super + Ctrl + ALT + S`| open spotify
 | `Super + Ctrl + ALT + ↓` `(hold)` | decrease volume for spotify
 | `Super + Ctrl + ALT + ↑` `(hold)` | increase volume for spotify
 | `Super + V` | clipboard history paste
-| `Super + P` | screenshot snip
-| `Super + Alt + P` | print current screen
+| `Super + P` | screenshot snip (rectangular select)
+| `Super + Alt + P` / `PrintScreen` | screenshot all screen
+| `Super + SHIFT + X` | open screenshot folder (HOME/Pictures)
 | `Super + RightClick` `(drag)` | resize the window
 | `Super + LeftClick` `(drag)` | change the window position
-| `Super + MouseScroll` | cycle through workspaces
+| `Super + MouseScroll` / `PageUp/PageDown` | cycle through workspaces
 | `Super + Shift + ←→↑↓` `(hold)` | resize windows
 | `Super + [0-9]` | switch to workspace [0-9]
 | `Super + backtick` / `backquote` | switch to workspace [0]
@@ -300,6 +303,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | `Super + ALT + T` | theme select menu
 | `Super + ALT + W` | wallpaper select menu
 | `Super + ALT + A` | rofi style select menu
+| `Super + ALT + PageDown/PageUp` | turn on/off blue light filter
 
 ### Playlist
 
