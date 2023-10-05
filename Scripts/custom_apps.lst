@@ -5,12 +5,16 @@ gamemode
 spotify
 spicetify-cli
 
+#> ArcoLinux has these pre-installed:
+# archlinux-tweak-tool
+# pamac-all
+# reflector-simple
+
 caprine
 megasync-bin
 dolphin-megasync-bin
-anydesk-bin
 microsoft-edge-stable-bin
-audacity-bin
+audacity
 youtube-music-git
 sofirem-git
 unrar
@@ -18,14 +22,10 @@ zip
 unzip
 ark
 curl
-wget2-git
 timeshift
-reflector-simple
 btop
 nvtop
-archlinux-tweak-tool
 partitionmanager
-pamac-aur
 kalk
 bitwarden
 discord-screenaudio
@@ -37,3 +37,11 @@ telegram-desktop
 vlc
 ticktick
 google-chrome
+lf
+ventoy-bin
+tree
+ffmpegthumbs
+tldr
+ttf-meslo-nerd
+ttf-arimo-nerd
+selectdefaultapplication-fork-git
