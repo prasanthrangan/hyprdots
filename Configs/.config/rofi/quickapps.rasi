@@ -2,7 +2,6 @@
 configuration {
     modi:                        "drun";
     show-icons:                  true;
-    icon-theme:                  "Tela-circle-dracula";
 }
 
 @theme "~/.config/rofi/themes/theme.rasi"
