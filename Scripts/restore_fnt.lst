@@ -12,6 +12,8 @@ Gtk_DecayGreen|/usr/share/themes
 Gtk_DecayGreen|$HOME/.themes
 Gtk_FrostedGlass|/usr/share/themes
 Gtk_FrostedGlass|$HOME/.themes
+Gtk_GruvboxRetro|/usr/share/themes
+Gtk_GruvboxRetro|$HOME/.themes
 Gtk_RosePine|/usr/share/themes
 Gtk_RosePine|$HOME/.themes
 Gtk_TokyoNight|/usr/share/themes
@@ -38,6 +40,10 @@ Icon_TelaYellow|/usr/share/icons
 Icon_TelaYellow|$HOME/.icons
 Icon_TelaBlue|/usr/share/icons
 Icon_TelaBlue|$HOME/.icons
+Icon_Gruvbox|/usr/share/icons
+Icon_Gruvbox|$HOME/.icons
+Cursor_Gruvbox|/usr/share/icons
+Cursor_Gruvbox|$HOME/.icons
 Cursor_BibataIce|/usr/share/icons
 Cursor_BibataIce|$HOME/.icons
 Code_Extensions|$HOME/.vscode
