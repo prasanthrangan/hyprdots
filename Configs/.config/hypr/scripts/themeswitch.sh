@@ -87,7 +87,8 @@ fi
 
 
 # code
-sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${ThemeSet}\"," $ConfDir/Code/User/settings.json
+sed -i "/\"workbench.colorTheme\"/s|\".*\"|\"workbench.colorTheme\": \"$ThemeSet\",|" $ConfDir/Code/User/settings.json
+
 
 
 # kitty
