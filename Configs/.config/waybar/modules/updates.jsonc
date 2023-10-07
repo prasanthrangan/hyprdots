@@ -3,7 +3,7 @@
         "return-type": "json",
         "format": "󰮯 {}",
         "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
+        "interval": 3600, // once every hour
         "tooltip": true,
     },
 
