@@ -39,20 +39,16 @@ esac
 export fntSize=$(( y_mon * 2 / 100 ))
 
 # detect gtk system theme
-export gtkThm=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
-export csMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
-export BtnCol=`[ "$csMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
-export WindBg=`[ "$csMode" == "dark" ] && ( echo "rgba(0,0,0,0.5)" ) || ( echo "rgba(255,255,255,0.5)" )`
+export BtnCol=`[ "$gtkMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
+export WindBg=`[ "$gtkMode" == "dark" ] && ( echo "rgba(0,0,0,0.5)" ) || ( echo "rgba(255,255,255,0.5)" )`
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
     export wbarTheme="Wall-Dcol"
 else
-    export wbarTheme="${gtkThm}"
+    export wbarTheme="${gtkTheme}"
 fi
 
 # eval hypr border radius
-hyprTheme="$HOME/.config/hypr/themes/${gtkThm}.conf"
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $hyprTheme | sed 's/ //g'`
 export active_rad=$(( hypr_border * 5 ))
 export button_rad=$(( hypr_border * 8 ))
 

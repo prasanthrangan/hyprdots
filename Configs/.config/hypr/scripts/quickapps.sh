@@ -2,7 +2,8 @@
 
 # set variables
 
-theme_file="$HOME/.config/hypr/themes/theme.conf"
+ScrDir=`dirname $(realpath $0)`
+source $ScrDir/globalcontrol.sh
 roconf="~/.config/rofi/quickapps.rasi"
 
 if [ $# -ge 1 ] ; then
@@ -50,7 +51,6 @@ fi
 
 # read hypr theme border
 
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $theme_file | sed 's/ //g'`
 wind_border=$(( hypr_border * 3/2 ))
 elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
 r_override="window{width:$dockWidth;border-radius:${wind_border}px;} listview{columns:$#;} element{border-radius:${elem_border}px;}"

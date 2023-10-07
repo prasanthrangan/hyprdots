@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
 
 # set variables
-BaseDir=`dirname $(realpath $0)`
-ConfDir="$HOME/.config"
-ThemeCtl="$ConfDir/swww/wall.ctl"
-WallCache="$ConfDir/swww/.cache"
+ScrDir=`dirname $(realpath $0)`
+source ${ScrDir}/globalcontrol.sh
 
 
 # evaluate options
@@ -23,7 +21,7 @@ while getopts "npst" option ; do
                 flg=1
             fi
         done < $ThemeCtl
-        export xtrans="center" ;;
+        export xtrans="grow" ;;
 
     p ) # set previous theme
         ThemeSet=`tail -1 $ThemeCtl | cut -d '|' -f 2` #default value
@@ -67,7 +65,7 @@ if [ `cat $ThemeCtl | awk -F '|' -v thm=$ThemeSet '{if($2==thm) print$2}' | wc -
 else
     echo "Selected theme: $ThemeSet"
     sed -i "s/^1/0/g" $ThemeCtl
-    awk -F '|' -v thm=$ThemeSet '{OFS=FS} {if($2==thm) $1=1; print$0}' $ThemeCtl > $BaseDir/tmp && mv $BaseDir/tmp $ThemeCtl
+    awk -F '|' -v thm=$ThemeSet '{OFS=FS} {if($2==thm) $1=1; print$0}' $ThemeCtl > ${ScrDir}/tmp && mv ${ScrDir}/tmp $ThemeCtl
 fi
 
 
@@ -76,9 +74,9 @@ getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
 getWall=`eval echo $getWall`
 getName=`basename $getWall`
 ln -fs $getWall $ConfDir/swww/wall.set
-ln -fs $WallCache/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
-ln -fs $WallCache/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
-$BaseDir/swwwallpaper.sh
+ln -fs $cacheDir/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
+ln -fs $cacheDir/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
+${ScrDir}/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -117,16 +115,10 @@ hyprctl reload
 
 
 # send notification
-gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
-ncolor="-h string:bgcolor:#191724 -h string:fgcolor:#faf4ed -h string:frcolor:#56526e"
-
-if [ "${gtkMode}" == "light" ] ; then
-    ncolor="-h string:bgcolor:#f4ede8 -h string:fgcolor:#9893a5 -h string:frcolor:#908caa"
-fi
-
+source ${ScrDir}/globalcontrol.sh
 dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 
 
 # rofi & waybar
-$BaseDir/swwwallbash.sh $getWall
+${ScrDir}/swwwallbash.sh $getWall
 
