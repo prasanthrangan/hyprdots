@@ -19,9 +19,14 @@ if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
 fi
 
 # detect monitor y res
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
-y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
-x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
+#?Follow active monitor,respect scaling and rotation.
+res_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F "@" '/@/ && / at /{print $1} ')
+scl_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/scale/ {print $2} ')
+rot_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/transform: / {print $2} ')
+x_mon=$(echo $res_inf | cut -d 'x' -f 1)
+y_mon=$(echo $res_inf | cut -d 'x' -f 2)
+x_mon=$(echo "$x_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
+y_mon=$(echo "$y_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
 
 # scale config layout and style
 case $1 in
