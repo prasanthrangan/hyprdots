@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 
-theme_file="$HOME/.config/hypr/themes/theme.conf"
-rofi_conf="~/.config/rofi/config.rasi"
+ScrDir=`dirname $(realpath $0)`
+source $ScrDir/globalcontrol.sh
+roconf="~/.config/rofi/config.rasi"
 
 
 # rofi action
@@ -21,8 +22,6 @@ esac
 
 # read hypr theme border
 
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $theme_file | sed 's/ //g'`
-hypr_width=`awk -F '=' '{if($1~" border_size ") print $2}' $theme_file | sed 's/ //g'`
 wind_border=$(( hypr_border * 3 ))
 elem_border=`[ $hypr_border -eq 0 ] && echo "10" || echo $(( hypr_border * 2 ))`
 r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} element {border-radius: ${elem_border}px;}"
@@ -30,7 +29,6 @@ r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} e
 
 # read hypr font size
 
-#fnt_size=`awk '{if($6=="font-name") print $NF}' $theme_file | sed "s/'//g"`
 fnt_override=`gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}'`
 fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
 
@@ -43,6 +41,5 @@ icon_override="configuration {icon-theme: \"${icon_override}\";}"
 
 # launch rofi
 
-rofi -show $r_mode -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${rofi_conf}"
-
+rofi -show $r_mode -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}"
 

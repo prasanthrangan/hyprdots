@@ -19,9 +19,14 @@ if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
 fi
 
 # detect monitor y res
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
-y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
-x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
+#?Follow active monitor,respect scaling and rotation.
+res_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F "@" '/@/ && / at /{print $1} ')
+scl_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/scale/ {print $2} ')
+rot_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/transform: / {print $2} ')
+x_mon=$(echo $res_inf | cut -d 'x' -f 1)
+y_mon=$(echo $res_inf | cut -d 'x' -f 2)
+x_mon=$(echo "$x_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
+y_mon=$(echo "$y_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
 
 # scale config layout and style
 case $1 in
@@ -39,20 +44,16 @@ esac
 export fntSize=$(( y_mon * 2 / 100 ))
 
 # detect gtk system theme
-export gtkThm=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
-export csMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
-export BtnCol=`[ "$csMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
-export WindBg=`[ "$csMode" == "dark" ] && ( echo "rgba(0,0,0,0.5)" ) || ( echo "rgba(255,255,255,0.5)" )`
+export BtnCol=`[ "$gtkMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
+export WindBg=`[ "$gtkMode" == "dark" ] && ( echo "rgba(0,0,0,0.5)" ) || ( echo "rgba(255,255,255,0.5)" )`
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
     export wbarTheme="Wall-Dcol"
 else
-    export wbarTheme="${gtkThm}"
+    export wbarTheme="${gtkTheme}"
 fi
 
 # eval hypr border radius
-hyprTheme="$HOME/.config/hypr/themes/${gtkThm}.conf"
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $hyprTheme | sed 's/ //g'`
 export active_rad=$(( hypr_border * 5 ))
 export button_rad=$(( hypr_border * 8 ))
 

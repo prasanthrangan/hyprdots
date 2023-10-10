@@ -1,15 +1,10 @@
 #!/usr/bin/env sh
 
 # set variables
+ScrDir=`dirname $(realpath $0)`
+source $ScrDir/globalcontrol.sh
 ThemeSet="$HOME/.config/hypr/themes/theme.conf"
 RofiConf="$HOME/.config/rofi/steam/gamelauncher_${1}.rasi"
-
-gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
-ncolor="-h string:bgcolor:#191724 -h string:fgcolor:#faf4ed -h string:frcolor:#56526e"
-
-if [ "${gtkMode}" == "light" ] ; then
-    ncolor="-h string:bgcolor:#f4ede8 -h string:fgcolor:#9893a5 -h string:frcolor:#908caa"
-fi
 
 
 # set steam library
@@ -28,7 +23,6 @@ ManifestList=`find $SteamPaths/steamapps/ -type f -name "appmanifest_*.acf" 2>/d
 
 
 # set rofi override
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $ThemeSet | sed 's/ //g'`
 elem_border=$(( hypr_border * 2 ))
 icon_border=$(( elem_border - 3 ))
 r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;}"
