@@ -14,7 +14,7 @@ mkdir -p $save_dir
 case $1 in
 # print all outputs
 p)  grimblast save screen - | swappy -f - ;;
-# screenshot snip/print focused window
+# drag to manually snip an area / click on a window to print it
 s)  mkdir -p $swpy_dir
     echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" > $swpy_dir/config
     grimblast --freeze save area - | swappy -f - ;;
