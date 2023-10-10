@@ -1,27 +1,63 @@
 steam
 gamemode
-#gamescope
-#mangohud
+# gamescope
+# mangohud
+
+# music
 spotify
-spicetify-cli
-
-#> ArcoLinux has these pre-installed:
-# archlinux-tweak-tool
-# pamac-all
-# reflector-simple
-
-caprine
-megasync-bin
-dolphin-megasync-bin
-microsoft-edge-stable-bin
-audacity
+# spicetify-cli
 youtube-music-git
+
+# file explorer
+dolphin-megasync-bin
+ffmpegthumbs
+
+# system
+wget
+whois
+man-db
+man-pages
+lf
+which
+tree
+tldr++
+pkgfile
+selectdefaultapplication-fork-git
+ventoy-bin
+# pamac-aur
+mkinitcpio-firmware
+archlinux-tweak-tool-git
+reflector-simple
 sofirem-git
 unrar
 zip
 unzip
-ark
 curl
+downgrade
+
+# fonts
+terminus-font
+woff2
+ttf-meslo-nerd
+ttf-arimo-nerd
+
+# dev
+meld
+microsoft-edge-stable-bin
+responsively
+vlc
+ticktick
+google-chrome
+firefox
+
+# theme
+catppuccin-konsole-git
+
+# apps
+caprine
+megasync-bin
+audacity
+ark
 timeshift
 btop
 nvtop
@@ -32,16 +68,4 @@ discord-screenaudio
 freedownloadmanager
 krita
 gimp
-responsively
 telegram-desktop
-vlc
-ticktick
-google-chrome
-lf
-ventoy-bin
-tree
-ffmpegthumbs
-tldr
-ttf-meslo-nerd
-ttf-arimo-nerd
-selectdefaultapplication-fork-git
