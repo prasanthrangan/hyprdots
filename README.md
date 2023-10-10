@@ -26,8 +26,12 @@
 ### Installation
 
 The installation script is made for Arch, but **may** work on some Arch based distros.
-For Debian, please refer **Senshi111**'s version [here](https://github.com/Senshi111/debian-hyprland-hyprdots).
-Tested on [EndeavourOS](https://endeavouros.com/) (current distro)
+For Debian, please refer **Senshi111**'s version [here](https://github.com/Senshi111/debian-hyprland-hyprdots). <br>
+Tested on: <br>
+
+- [EndeavourOS](https://endeavouros.com/)
+- [Arco Linux](https://arcolinux.info/)
+- [Arch using ALCI - Arch Linux Calamares Installer](https://alci.online/)
 
 > **Warning**
 >
@@ -44,7 +48,7 @@ cd ~/Hyprdots/Scripts
 
 > **Note**
 >
-> Add apps you want to install (replace **nvim** with your own editor e.g. vim, code, kate)
+> Add apps you want to install (replace **nvim** with your own editor e.g. nano, vim, code, kate, etc..)
 >
 > ```shell
 >nvim ~/Hyprdots/Scripts/custom_apps.lst
@@ -80,53 +84,53 @@ To add your own custom theme, please refer [theming.md](https://github.com/devck
 
 | Catppuccin-Mocha |
 | :-: |
-| ![Mocha-screenshot#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_mocha_1.png) |
-| ![Mocha-screenshot#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_mocha_2.png) |
+| ![Catppuccin-Mocha#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_mocha_1.png) |
+| ![Catppuccin-Mocha#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_mocha_2.png) |
 
 | Catppuccin-Latte |
 | :-: |
-| ![Latte-screenshot#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_latte_1.png) |
-| ![Latte-screenshot#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_latte_2.png) |
+| ![Catppuccin-Latte#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_latte_1.png) |
+| ![Catppuccin-Latte#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_latte_2.png) |
 
 | Decay-Green |
 | :-: |
-| ![Decay-Green](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_decay_1.png) |
-| ![Decay-Green](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_decay_2.png) |
+| ![Decay-Green#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_decay_1.png) |
+| ![Decay-Green#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_decay_2.png) |
 
 | Rosé-Pine |
 | :-: |
-| ![Rosé-Pine](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_rosine_1.png) |
-| ![Rosé-Pine](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_rosine_2.png) |
+| ![Rosé-Pine#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_rosine_1.png) |
+| ![Rosé-Pine#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_rosine_2.png) |
 
 | Tokyo-Night |
 | :-: |
-| ![Tokyo-Night](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_tokyo_1.png) |
-| ![Tokyo-Night](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_tokyo_2.png) |
+| ![Tokyo-Night#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_tokyo_1.png) |
+| ![Tokyo-Night#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_tokyo_2.png) |
 
 | Material-Sakura |
 | :-: |
-| ![Material-Sakura](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_maura_1.png) |
-| ![Material-Sakura](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_maura_2.png) |
+| ![Material-Sakura#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_maura_1.png) |
+| ![Material-Sakura#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_maura_2.png) |
 
 | Graphite-Mono |
 | :-: |
-| ![Graphite-Mono](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_graph_1.png) |
-| ![Graphite-Mono](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_graph_2.png) |
+| ![Graphite-Mono#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_graph_1.png) |
+| ![Graphite-Mono#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_graph_2.png) |
 
 | Cyberpunk-Edge |
 | :-: |
-| ![Cyberpunk-Edge](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_cedge_1.png) |
-| ![Cyberpunk-Edge](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_cedge_2.png) |
+| ![Cyberpunk-Edge#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_cedge_1.png) |
+| ![Cyberpunk-Edge#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_cedge_2.png) |
 
 | Frosted-Glass |
 | :-: |
-| ![Frosted-Glass](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_frosted_1.png) |
-| ![Frosted-Glass](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_frosted_2.png) |
+| ![Frosted-Glass#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_frosted_1.png) |
+| ![Frosted-Glass#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/theme_frosted_2.png) |
 
 | Gruvbox-Retro |
 | :-: |
-| ![Gruvbox-Retro](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png) |
-| ![Gruvbox-Retro](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png) |
+| ![Gruvbox-Retro#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png) |
+| ![Gruvbox-Retro#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png) |
 
 ### Styles
 
@@ -155,15 +159,15 @@ To add your own custom theme, please refer [theming.md](https://github.com/devck
 
 | Wlogout Menu |
 | :-: |
-| ![wlog style 1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/wlog_style_1.png) |
-| ![wlog style 2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/wlog_style_2.png) |
+| ![Wlogout Menu#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/wlog_style_1.png) |
+| ![Wlogout Menu#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/wlog_style_2.png) |
 
 | Game Launchers |
 | :-: |
-| ![game launch 1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_1.png) |
-| ![game launch 2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_2.png) |
-| ![game launch 3](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_3.png) |
-| ![game launch 4](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_4.png) |
+| ![Game Launchers#1](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_1.png) |
+| ![Game Launchers#2](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_2.png) |
+| ![Game Launchers#3](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_3.png) |
+| ![Game Launchers#4](https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/game_launch_4.png) |
 
 ### Packages
 
