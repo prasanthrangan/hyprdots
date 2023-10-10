@@ -139,3 +139,4 @@ pokemon-colorscripts -r
 
 #Display random gifs
 #kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+export PATH=$PATH:~/.spicetify
