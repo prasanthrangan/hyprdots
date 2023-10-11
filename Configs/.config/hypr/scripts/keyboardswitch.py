@@ -32,3 +32,8 @@ while not change_layout():
 if got_error:
     sys.stderr.write("Some errors were found during the process...\n")
     sys.exit(1)
+
+bash_command = ["notify-send", "-u", "low", "-t", "2000", "Keyboard layout", "Current Layout Changed"]
+
+# Use subprocess.run() to execute the Bash command
+result = subprocess.run(bash_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
