@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+ export PATH=$HOME/bin:/usr/local/bin:$PATH
+ export PATH=$HOME/.local/bin:$PATH
+#Khing
+ . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 # Path to your oh-my-zsh installation.
 #export ZSH="$HOME/.oh-my-zsh"
 ZSH=/usr/share/oh-my-zsh/
@@ -115,15 +117,65 @@ alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
 alias vc='code'  # gui code editor
+alias hi='sh hi.sh'
+alias clip='wl-copy'
+alias codi='codium'
+
+
+term=
+term1=
+term2=
+#term3=
+#term4=
+#term5=
+
+
+case $TERM in
+    "$term"|"$term1"|"$term2") #|"$term3"|"$term4"|"$term5")
+        cat /home/khing/.cache/wal/sequences
+        ;;
+esac
+
+
+
+
+
+
+
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+
+
 #Display specs
-#neofetch
+#neofetch | lolcat
 
 #Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+#pokemon-colorscripts --no-title -r 1,3,6
 
 #Display random gifs
+
 #kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+#sysinfo
+#fetch
+#screenfetch
+#alsi
+#paleofetch
+#hfetch
+#sfetch
+#ufetch
+#colorscript random
+#cpufetch
+#
+#
+#
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
