@@ -29,14 +29,14 @@ event_fullscreen() {
 
 event_monitorremoved() {
   : # MONITORNAME
-  $HOME/Scripts/Monitor_Set
+ $HOME/Scripts/Monitor_Set
     notify-send "Event Monitor Removed"
 
 }
 
 event_monitoradded() {
   : # MONITORNAME
-    $HOME/Scripts/Monitor_Set
+   $HOME/Scripts/Monitor_Set
   notify-send "Event Monitor Added"
 }
 

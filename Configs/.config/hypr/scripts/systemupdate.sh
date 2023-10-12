@@ -1,13 +1,51 @@
 #!/usr/bin/env bash
 
+# source variables
+ScrDir=`dirname $(realpath $0)`
+source $ScrDir/globalcontrol.sh
+
+# Trigger upgrade
+if [ "$1" == "up" ] ; then
+	# Trigger upgrade
+    kitty --start-as fullscreen --title systemupdate sh -c "/home/khing/.config/hypr/scripts/systemupdate.sh now"
+    #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
+#Refresh waybar
+killall waybar
+waybar > /dev/null 2>&1 &
+fi
+
+if [ "$1" == "now" ] ; then
+#!/usr/bin/env bash
+echo "
+    ███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗
+    ██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝
+    ███████╗ ╚████╔╝ ███████╗   ██║   █████╗  ██╔████╔██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  
+    ╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  
+    ███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗
+    ╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝     ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝ 
+"| lolcat
+neofetch --no_config | lolcat
+sudo pacman -Syu
+paru -Syu # | lolcat
+flatpak update #| lolcat
+echo "
+███████╗██╗   ██╗███████╗████████╗███████╗███╗   ███╗    ██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██████╗                     
+██╔════╝╚██╗ ██╔╝██╔════╝╚══██╔══╝██╔════╝████╗ ████║    ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗                    
+███████╗ ╚████╔╝ ███████╗   ██║   █████╗  ██╔████╔██║    ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██║  ██║                    
+╚════██║  ╚██╔╝  ╚════██║   ██║   ██╔══╝  ██║╚██╔╝██║    ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ██║  ██║                    
+███████║   ██║   ███████║   ██║   ███████╗██║ ╚═╝ ██║    ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██████╔╝                    
+╚══════╝   ╚═╝   ╚══════╝   ╚═╝   ╚══════╝╚═╝     ╚═╝     ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═════╝                     
+" | lolcat
+sleep 3
+exit 0
+fi
+
+checkUpdate () {
 # Check release
 if [ ! -f /etc/arch-release ] ; then
     exit 0
 fi
 
-# source variables
-ScrDir=`dirname $(realpath $0)`
-source $ScrDir/globalcontrol.sh
 
 # Check for updates
 get_aurhlpr
@@ -29,13 +67,14 @@ upd=$(( ofc + aur + fpk ))
 
 # Show tooltip
 if [ $upd -eq 0 ] ; then
+     upd=""
+ #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else
-    echo "{\"text\":\"$upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
 fi
+}
 
-# Trigger upgrade
-if [ "$1" == "up" ] ; then
-    kitty --title systemupdate sh -c "yay -Syu $fpk_exup"
-fi
 
+checkUpdate
