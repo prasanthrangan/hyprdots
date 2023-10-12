@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
-
+filename=$(ls ~/.cache/swww/ | awk 'NR==1')
 dunstify $ncolor -a "PyWall" "Generating Color ..." -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2500
 
-wall=$(cat ~/.cache/swww/eDP-1)
+wall=$(cat ~/.cache/swww/$filename)
 
 Pywall= wal -s -i $wall
 waltg= wal-telegram --wal -g -r
