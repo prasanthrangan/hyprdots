@@ -49,7 +49,10 @@ export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 
 export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
 if [ -z $w_height ] ; then
-    y_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
+
+scl_inf=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+y_monres=$(echo "$y_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
     export w_height=$(( y_monres*2/100 ))
 fi
 
@@ -121,5 +124,4 @@ cat $modules_dir/footer.jsonc >> $conf_file
 # generate style and restart waybar
 
 $scr_dir/wbarstylegen.sh
-
 

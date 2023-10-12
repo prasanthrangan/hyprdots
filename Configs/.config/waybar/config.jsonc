@@ -6,7 +6,7 @@
     "layer": "top",
     "position": "bottom",
     "mod": "dock",
-    "height": 31,
+    "height": 30,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -14,9 +14,9 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","custom/power","custom/cliphist","custom/wbar","custom/mode","custom/wallchange","custom/r_end","custom/l_end","wlr/taskbar","custom/spotify","custom/r_end","","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","custom/power","battery","custom/r_endcustom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","mpris","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","tray","custom/r_endcustom/l_end","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_endcustom/l_end","clock","custom/updates","custom/audio_idle_inhibitor","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -29,44 +29,50 @@
         "tooltip": true
     },
 
-    "custom/cliphist": {
-        "format": "{}",
-        "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
-        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
-        "interval" : 86400, // once every day
-        "tooltip": true
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
 
-    "custom/wbar": {
-        "format": "{}", //    //
-        "exec": "echo ; echo  switch menubar //  dock",
-        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
-        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin",
-        "interval" : 86400,
-        "tooltip": true
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
     },
 
-    "custom/mode": {
-        "format": "{}",
-        "exec": "echo ; echo 󰟡 switch mode",
-        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-    "custom/wallchange": {
-        "format": "{}",
-        "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/swwwallselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
+    "hyprland/window": {
+        "format": "  {}",
+        "separate-outputs": true,
+        "rewrite": {
+            "khing@ArchLinux:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓"
+        }
     },
 
 	"wlr/taskbar": {
@@ -85,45 +91,22 @@
 		}
 	},
 
-    "custom/spotify": {
-        "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
-        "format": "{} ",
-        "return-type": "json",
-        "on-click": "playerctl play-pause --player spotify",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-        "activated": "󰥔",
-        "deactivated": ""
-        }
-    },
-
-    "clock": {
-        "format": "{:%I:%M %p 󰃭 %a %d}",
-        "format-alt": "{:%H:%M  %b %Y}",
-        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": { 
+            "default": "▶",
+            "mpv": "🎵"
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        // "ignored-players": ["firefox"]
     },
 
     "tray": {
         "icon-size": 18,
         "spacing": 5
-    },
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
 
     "network": {
@@ -176,6 +159,21 @@
         "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -i d",
         "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:%H:%M  %b %Y}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+
+    "custom/updates": {
+        "exec": "~/.config/hypr/scripts/systemupdate.sh",
+        "return-type": "json",
+        "format": "󰮯 {}",
+        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
+        "interval": 86400, // once every day
+        "tooltip": true,
     },
 
 
