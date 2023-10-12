@@ -175,7 +175,21 @@
         "interval": 86400, // once every day
         "tooltip": true,
     },
-    
+    //Khing
+
+"custom/audio_idle_inhibitor": {
+	"format": "{icon}",
+	"exec": "sway-audio-idle-inhibit --dry-print-both-waybar",
+	"exec-if": "which sway-audio-idle-inhibit",
+	"return-type": "json",
+	"format-icons": {
+		"output": "",
+		"input": "",
+		"output-input": "  ",
+		"none": ""
+	}
+},
+
 // modules for padding //
 
     "custom/l_end": {
