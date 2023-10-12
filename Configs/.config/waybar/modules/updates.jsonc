@@ -1,9 +1,9 @@
     "custom/updates": {
         "exec": "~/.config/hypr/scripts/systemupdate.sh",
         "return-type": "json",
-        "format": "󰮯 {}",
+        "format": "{}", //The Icon Will be handled by the script 
         "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
         "interval": 86400, // once every day
         "tooltip": true,
     },
-
+    
