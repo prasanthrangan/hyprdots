@@ -20,10 +20,10 @@ echo $monnum | {
 read d0 d1 d2 d3 d4 d5 d6 d7 d8 d9
  
  #Main monitor 
- if [ $d0 = "0" ]; then
-    sleep 2 &&
-    dunstify -a "Monitor Connected" "$m0" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 3000
- fi
+ #if [ $d0 = "0" ]; then
+ #   sleep 2 &&
+ #   dunstify -a "Monitor Connected" "$m0" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 3000
+ #fi
 
  if [ $d1 = "1" ]; then
     sleep 2 &&
