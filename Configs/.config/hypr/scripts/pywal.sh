@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-filename=$(ls ~/.cache/swww/ | awk 'NR==1')
+filename=$(ls -l | sort -k6,6n -k7 | awk '{print $6}')
 dunstify $ncolor -a "PyWall" "Generating Color ..." -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2500
 
 wall=$(cat ~/.cache/swww/$filename)
