@@ -44,6 +44,7 @@ mainbox {
 listmode {
     enabled:                     true;
     children:                    [ "listbox" , "mode-switcher" ];
+    background-color:            transparent;
     background-image:            url("~/.config/swww/wall.blur", height);
 }
 listbox {
