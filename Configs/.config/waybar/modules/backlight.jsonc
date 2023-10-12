@@ -1,0 +1,8 @@
+"backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": "☀️ {}",
+        "on-scroll-up": "~/.config/hypr/scripts/brightness.sh --inc",
+        "on-scroll-down": "~/.config/hypr/scripts/brightness.sh --dec",
+        "min-length": 6
+    },
