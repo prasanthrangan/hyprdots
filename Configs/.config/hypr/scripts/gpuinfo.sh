@@ -29,12 +29,10 @@ get_temperature_emoji() {
 
 # Check if primary GPU is NVIDIA
 if [ -n "$nvidia_gpu" ]; then
-  # if nvidia-smi failed exit
+  # if nvidia-smi failed, format and exit. 
   if [[ $nvidia_gpu == *"NVIDIA-SMI has failed"* ]]; then
-    primary_gpu="Not found"
-    gpu_info=""
     # Print the formatted information in JSON
-    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\"}"
+    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: Not found\"}"
     exit 0
   fi
 
