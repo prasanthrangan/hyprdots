@@ -14,6 +14,8 @@
   <img width="250" src="https://raw.githubusercontent.com/devckvargas/hyprdots/main/Source/assets/hyprdots_arch.png" alt="hyprdots + Archlinux(w/ hyprdots color) logo">
 </p>
 
+<https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4>
+
 ## My Arch Hyprland Config | [Keybindings](#keybindings)
 
 <p align="center">
