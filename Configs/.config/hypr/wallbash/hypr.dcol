@@ -5,7 +5,7 @@ general {
 }
 
 group {
-  col.border_active = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
+    col.border_active = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
     col.border_inactive = rgba(<dcol_1>cc) rgba(<dcol_3>cc) 45deg
     col.border_locked_active = rgba(<dcol_0>ff) rgba(<dcol_2>ff) 45deg
     col.border_locked_inactive = rgba(<dcol_1>cc) rgba(<dcol_3>cc) 45deg
