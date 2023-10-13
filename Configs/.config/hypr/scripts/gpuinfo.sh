@@ -29,6 +29,15 @@ get_temperature_emoji() {
 
 # Check if primary GPU is NVIDIA
 if [ -n "$nvidia_gpu" ]; then
+  # if nvidia-smi failed exit
+  if [[ $nvidia_gpu == *"NVIDIA-SMI has failed"* ]]; then
+    primary_gpu="Not found"
+    gpu_info=""
+    # Print the formatted information in JSON
+    echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: $primary_gpu\"}"
+    exit 0
+  fi
+
   primary_gpu="NVIDIA GPU"
   # Collect GPU information for NVIDIA
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
