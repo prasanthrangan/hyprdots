@@ -18,22 +18,25 @@ if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
     exit 1;
 fi
 
-# detect monitor res
-x_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.width')
-y_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.height')
-hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.scale' | cut -d '.' -f 1)
-hypr_scale=$(( hypr_scale * 100 ))
+# detect monitor y res
+#?Follow active monitor,respect scaling and rotation.
+scl_inf=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale')
+rot_inf=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
+x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+x_mon=$(echo "$x_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
+y_mon=$(echo "$y_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
 
 # scale config layout and style
 case $1 in
     1)  wlColms=6
-        export mgn=$(( y_mon * 28 / hypr_scale ))
-        export hvr=$(( y_mon * 23 / hypr_scale )) ;;
+        export mgn=$(( y_mon * 28 / 100 ))
+        export hvr=$(( y_mon * 23 / 100 )) ;;
     2)  wlColms=2
-        export x_mgn=$(( x_mon * 35 / hypr_scale ))
-        export y_mgn=$(( y_mon * 25 / hypr_scale ))
-        export x_hvr=$(( x_mon * 32 / hypr_scale ))
-        export y_hvr=$(( y_mon * 20 / hypr_scale )) ;;
+        export x_mgn=$(( x_mon * 35 / 100 ))
+        export y_mgn=$(( y_mon * 25 / 100 ))
+        export x_hvr=$(( x_mon * 32 / 100 ))
+        export y_hvr=$(( y_mon * 20 / 100 )) ;;
 esac
 
 # scale font size

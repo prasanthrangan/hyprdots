@@ -72,7 +72,8 @@
             "(.*) — Dolphin": "$1 󰉋",
             "(.*)Spotify": "Spotify 󰓇",
             "(.*)Steam": "Steam 󰓓"
-        }
+        },
+        "max-length": 1000
     },
 
 	"wlr/taskbar": {
@@ -102,6 +103,7 @@
             "paused": "⏸"
         },
         // "ignored-players": ["firefox"]
+        "max-length": 1000
     },
 
     "tray": {
@@ -167,15 +169,15 @@
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
-    "custom/updates": {
-        "exec": "~/.config/hypr/scripts/systemupdate.sh",
-        "return-type": "json",
-        "format": "{}", //The Icon Will be handled by the script 
-        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
-        "tooltip": true,
-    },
-    //Khing
+"custom/updates": {
+    "exec": "~/.config/hypr/scripts/systemupdate.sh",
+    "return-type": "json",
+    "format": "{}", //The Icon Will be handled by the script 
+    "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
+    "interval": 86400, // once every day
+    "tooltip": true,
+},
+//Khing
 
 "custom/audio_idle_inhibitor": {
 	"format": "{icon}",

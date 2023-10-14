@@ -4,6 +4,7 @@
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
         "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+        "on-scroll-down": "playerctl previous",
+        "max-length": 1000
     },
 

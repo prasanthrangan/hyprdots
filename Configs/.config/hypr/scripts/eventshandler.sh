@@ -54,7 +54,7 @@ event_moveworkspace() {
 
 event_activelayout() {
   : # KEYBOARDNAME LAYOUTNAME
-  notify-send "$KEYBOARDNAME $LAYOUTNAME"
+  #notify-send "$KEYBOARDNAME $LAYOUTNAME"
 	
 }
 

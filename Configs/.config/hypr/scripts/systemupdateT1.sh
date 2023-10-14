@@ -1,38 +1,17 @@
 #!/usr/bin/env bash
+
+
 # source variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 
 
-# Trigger upgrade
-if [ "$1" == "up" ] ; then
-# Check if the process is running
-if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
-then
-    echo "run"
-    kitty --start-as fullscreen --title systemupdate sh -c "$HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
-    #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
-if ! pgrep waybar > /dev/null
-then 
-waybar > /dev/null 2> /dev/null &
-exit 0
-else
-    exit 0
-    fi 
-else
-
-notify-send -a " 󰮯  " "System Update" "  Process Ongoing"
-exit 0
-fi
-fi
-
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+########################3#########################################################################################3
 updateCheck () {
 # Check release
 if [ ! -f /etc/arch-release ] ; then
     exit 0
 fi
-
 # Check for updates
 get_aurhlpr
 aur=`${aurhlpr} -Qua | wc -l`
@@ -42,16 +21,16 @@ ofc=`checkupdates | wc -l`
 if pkg_installed flatpak ; then
     fpk=`flatpak remote-ls --updates | wc -l`
     fpk_disp="\n󰏓 Flatpak $fpk"
-    fpk_exup="; flatpak update"
+   # fpk_exup="; flatpak update"
 else
     fpk=0
     fpk_disp=""
 fi
-
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
+echo $upd
 }
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+########################3#########################################################################################3
 updateOfc () {
 if [ "$ofc" -ne 0 ]; then
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
@@ -80,7 +59,7 @@ echo "
 fi
 fi
 }
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+########################3#########################################################################################3
 updateAUR () {
 if [ "$aur" -ne 0 ]; then
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
@@ -106,7 +85,7 @@ echo "
 fi
 fi
 }
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+########################3#########################################################################################3
 updateFpk () {
 if pkg_installed flatpak ; then
 
@@ -135,13 +114,23 @@ fi
 fi
 fi
 }
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
-
-
+########################3#########################################################################################3
+	# Trigger upgrade
+if [ "$1" == "up" ] ; then
+if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
+then
+#kitty --start-as fullscreen --title systemupdate sh -c '$HOME/.config/hypr/scripts/systemupdate.sh upgrade'
+notify-send "run here"
+#alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
+exit 0
+else 
+notify-send -a " 󰮯  " "System Update" "  Ongoing"
+fi
+fi
 
 
 if [ "$1" == "upgrade" ] ; then
-neofetch 
+
 echo "
 |---------------------------------------------------------------------------------|         
                                                                             __ 
@@ -155,10 +144,10 @@ echo "
 |---------------------------------------------------------------------------------|
  
 "
-updateCheck #Recheck Updates
-updateOfc   #Official
-updateAUR   #AUR
-updateFpk   #Flatpak
+updateCheck #Recheck
+updateOfc   #Officil
+updateAUR
+updateFpk
 echo "
 
 
@@ -180,23 +169,23 @@ kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sor
 
 echo "Please review packages!
 " 
-#updateCheck
-
 # Ask for confirmation
 read -p "Press ENTER to Continue "
 exit 0
 
 fi
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 
-updateCheck
+
+
 # Show tooltip
+updateCheck
 if [ $upd -eq 0 ] ; then
-    # upd="" #Remove Icon completely
-     upd="󰮯"   #If zero Display Icon only
- #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+     upd=""     
+  notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else
     notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
     echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+fi
+
 fi

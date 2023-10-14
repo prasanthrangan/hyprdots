@@ -38,12 +38,12 @@ pkg_installed()
 
 get_aurhlpr()
 {
-    if pkg_installed yay
-    then
-        aurhlpr="yay"
-    elif pkg_installed paru
+    if pkg_installed paru
     then
         aurhlpr="paru"
+    elif pkg_installed yay
+    then
+        aurhlpr="yay"
     fi
 }
 

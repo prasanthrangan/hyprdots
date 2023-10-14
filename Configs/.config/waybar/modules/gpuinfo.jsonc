@@ -4,5 +4,5 @@
   "format": " {}",
   "interval": 5, // once every 5 seconds
   "tooltip": true,
-  "max-length": 10,
+  "max-length": 1000
 },
