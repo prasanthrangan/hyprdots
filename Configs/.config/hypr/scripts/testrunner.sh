@@ -72,7 +72,7 @@ do
         pkill rofi
 
         # wallbash
-        $ScrDir/togglewallbash.sh
+        $ScrDir/wallbashtoggle.sh
         sleep 0.2
     done
 done < $WalCtl

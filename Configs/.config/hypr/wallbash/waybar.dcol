@@ -1,4 +1,4 @@
-4|wbarconfgen.sh|.config/waybar/themes/Wall-Dcol.css
+4|$ScrDir/wbarconfgen.sh|.config/waybar/themes/Wall-Dcol.css
 @define-color bar-bg rgba(0, 0, 0, 0);
 @define-color main-bg <dcol_0>;
 @define-color main-fg <dcol_3>;
