@@ -9,5 +9,6 @@
             "paused": "⏸"
         },
         // "ignored-players": ["firefox"]
+        "max-length": 1000
     },
 
