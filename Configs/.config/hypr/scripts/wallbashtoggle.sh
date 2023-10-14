@@ -18,6 +18,7 @@ fi
 # reset the colors
 grep -m 1 '.' $DcoDir/*.dcol | cut -d '|' -f 2 | while read wallbash
 do
-    $ScrDir/$wallbash
+    wallbash=`eval echo $wallbash`
+    $wallbash
 done
 
