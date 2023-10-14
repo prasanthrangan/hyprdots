@@ -41,6 +41,7 @@ do
         sed -i "s/<dcol_${i}>/${dcol[i]}/g" $HOME/$target
     done
 
-    $ScrDir/$appexe
+    appexe=`eval echo $appexe`
+    $appexe
 done
 
