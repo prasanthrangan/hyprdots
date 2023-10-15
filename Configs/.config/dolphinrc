@@ -11,16 +11,17 @@ ViewPropsTimestamp=2023,4,26,16,58,48.324
 
 [IconsMode]
 MaximumTextLines=1
-PreviewSize=112
+PreviewSize=96
 
 [InformationPanel]
 dateFormat=ShortFormat
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
-Places Icons Static Size=16
+Places Icons Static Size=48
 
 [KPropertiesDialog]
+1500x1000 screen: Window-Maximized=true
 2560x1080 screen: Window-Maximized=true
 
 [MainWindow]
@@ -32,10 +33,11 @@ IconSize=16
 ToolButtonStyle=IconOnly
 
 [PlacesPanel]
-IconSize=16
+IconSize=48
 
 [PreviewSettings]
 Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail
 
 [Toolbar mainToolBar]
+IconSize=16
 ToolButtonStyle=IconOnly

@@ -114,11 +114,6 @@ ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
 
 
-# send notification
-source ${ScrDir}/globalcontrol.sh
-dunstify $ncolor "theme" -a " ${ThemeSet}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
-
-
 # rofi & waybar
 ${ScrDir}/swwwallbash.sh $getWall
 

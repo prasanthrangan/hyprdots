@@ -1,3 +1,4 @@
+
 # See dunst(5) for all configuration options
 
 [global]
@@ -309,23 +310,22 @@
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
-
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#181825"
-    foreground = "#f5e0dc"
-    frame_color = "#f5c2e7"
-    icon = "~/.config/dunst/icons/low.svg"
+    background = "#253845"
+    foreground = "#3F4252"
+    frame_color = "#3F4252"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#313244"
-    foreground = "#f5e0dc"
-    frame_color = "#b4befe"
-    icon = "~/.config/dunst/icons/pokeball.svg"
+    background = "#1D202E"
+    foreground = "#AD584F"
+    frame_color = "#AD584F"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -463,15 +463,11 @@
 #
 # vim: ft=cfg
 
-[volume-control]
-    summary = "volctl"
-    format = "<span size="250%">%a</span>\n%b"
-
-[brightness-control]
-    summary = "brightctl"
-    format = "<span size="250%">%a</span>\n%b"
-
-[theme-switch]
-    summary = "theme"
+[Type-1]
+    summary = "t1"
     format = "<b>%a</b>"
+
+[Type-2]
+    summary = "t2"
+    format = "<span size="250%">%a</span>\n%b"
 

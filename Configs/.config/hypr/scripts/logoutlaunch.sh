@@ -20,11 +20,10 @@ fi
 
 # detect monitor y res
 #?Follow active monitor,respect scaling and rotation.
-res_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F "@" '/@/ && / at /{print $1} ')
-scl_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/scale/ {print $2} ')
-rot_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/transform: / {print $2} ')
-x_mon=$(echo $res_inf | cut -d 'x' -f 1)
-y_mon=$(echo $res_inf | cut -d 'x' -f 2)
+scl_inf=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale')
+rot_inf=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
+x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
 x_mon=$(echo "$x_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
 y_mon=$(echo "$y_mon / $scl_inf" | bc -l | awk -F "." '{print $1}' )
 
