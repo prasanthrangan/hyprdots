@@ -1,0 +1,16 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_EXTENSION
+LastActiveRenamer=ThunarSbrInsertRenamer
+
+[ThunarSbrDateRenamer]
+Offset=0
+Mode=THUNAR_SBR_DATE_MODE_NOW
+Format=%Y%m%d
+OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+
+[ThunarSbrInsertRenamer]
+Offset=0
+Text=config
+Mode=THUNAR_SBR_INSERT_MODE_OVERWRITE
+OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+
