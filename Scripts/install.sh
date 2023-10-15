@@ -106,10 +106,6 @@ EOF
     ./install_pkg.sh install_pkg.lst
     rm install_pkg.lst
 
-    #---------------------#
-    # install zsh plugins #
-    #---------------------#
-    sudo python3 zsh_plugin_installer.py -f plugin_list.lst
 fi
 
 #---------------------------#
@@ -128,6 +124,11 @@ EOF
 
     ./restore_fnt.sh
     ./restore_cfg.sh
+
+    #---------------------#
+    # install zsh plugins #
+    #---------------------#
+    sudo python3 zsh_plugin_installer.py -f plugin_list.lst
 fi
 
 #---------------------------#
