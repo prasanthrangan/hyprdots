@@ -3,18 +3,16 @@
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 
-
 # Trigger upgrade
 if [ "$1" == "up" ] ; then
 # Check if the process is running
 if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
 then
-    echo "run"
-    kitty --start-as fullscreen --title systemupdate sh -c "$HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
+    exec kitty --start-as fullscreen --title systemupdate sh -c "sh $HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
     #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
 if ! pgrep waybar > /dev/null
 then 
-waybar > /dev/null 2> /dev/null &
+waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
 exit 0
 else
     exit 0
@@ -27,11 +25,14 @@ fi
 fi
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
-updateCheck () {
+
+# updateCheck () {
+
 # Check release
 if [ ! -f /etc/arch-release ] ; then
     exit 0
 fi
+source $ScrDir/globalcontrol.sh
 
 # Check for updates
 get_aurhlpr
@@ -50,7 +51,22 @@ fi
 
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
-}
+
+#updateCheck
+# Show tooltip
+if [ $upd -eq 0 ] ; then
+    # upd="" #Remove Icon completely
+     upd="󰮯"   #If zero Display Icon only
+ #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+    echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
+else
+    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+fi
+#}
+
+
+
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 updateOfc () {
 if [ "$ofc" -ne 0 ]; then
@@ -62,14 +78,13 @@ answer=${answer^^}
 if [ "$answer" == "Y" ]; then
 echo "AUR Wrapper: $aurhlpr"
 $aurhlpr -Syu 
-#echo "Official $ofc"
-#sudo pacman -Syu
+#sudo pacman -Syu # I Should Use this but AUR Wrapper is better
 
 else 
 echo "
-|---------------------------------------------------------------------------------|
-|                            No changes for Official Packages                     |
-|---------------------------------------------------------------------------------|
+#---------------------------------------------------------------------------------#
+#                            No changes for Official Packages                     #
+#---------------------------------------------------------------------------------#
 
 
 
@@ -93,9 +108,9 @@ if [ "$answer" == "Y" ]; then
     $aurhlpr -Syu 
 else 
 echo "
-|---------------------------------------------------------------------------------|
-|                            No changes for AUR Packages                          |
-|---------------------------------------------------------------------------------|
+#---------------------------------------------------------------------------------#
+#                            No changes for AUR Packages                          #
+#---------------------------------------------------------------------------------#
 
 
 
@@ -121,9 +136,9 @@ if [ "$answer" == "Y" ]; then
 flatpak update
 else 
 echo "
-|---------------------------------------------------------------------------------|
-|                            No changes for Flatpak Packages                      |
-|---------------------------------------------------------------------------------|
+#---------------------------------------------------------------------------------#
+#                            No changes for Flatpak Packages                      #
+#---------------------------------------------------------------------------------#
 
 
 
@@ -143,60 +158,41 @@ fi
 if [ "$1" == "upgrade" ] ; then
 neofetch 
 echo "
-|---------------------------------------------------------------------------------|         
-                                                                            __ 
- _____            _                  _____         _       _               |  |
-|   __| _ _  ___ | |_  ___  _____   |  |  | ___  _| | ___ | |_  ___  ___   |  |
-|__   || | ||_ -||  _|| -_||     |  |  |  || . || . || .'||  _|| -_||_ -|  |__|
-|_____||_  ||___||_|  |___||_|_|_|  |_____||  _||___||__,||_|  |___||___|  |__|
-       |___|                               |_|                                 
-
-
-|---------------------------------------------------------------------------------|
+--------------------------------------------------------------------------------------------------
+                                                          __ 
+ _____         _                _____       _     _      |  |
+|   __|_ _ ___| |_ ___ _____   |  |  |___ _| |___| |_ ___|  |
+|__   | | |_ -|  _| -_|     |  |  |  | . | . | .'|  _| -_|__|
+|_____|_  |___|_| |___|_|_|_|  |_____|  _|___|__,|_| |___|__|
+      |___|                          |_|                     
+--------------------------------------------------------------------------------------------------
+                                                             
  
 "
-updateCheck #Recheck Updates
+#updateCheck #Recheck Updates
 updateOfc   #Official
 updateAUR   #AUR
 updateFpk   #Flatpak
 echo "
 
 
+--------------------------------------------------------------------------------------------------
+                                                                               __ 
+ _____         _                _____        _____        ____      _         |  |
+|   __|_ _ ___| |_ ___ _____   |  |  |___   |_   _|___   |    \ ___| |_ ___   |  |
+|__   | | |_ -|  _| -_|     |  |  |  | . |    | | | . |  |  |  | .'|  _| -_|  |__|
+|_____|_  |___|_| |___|_|_|_|  |_____|  _|    |_| |___|  |____/|__,|_| |___|  |__|
+      |___|                          |_|                                          
+                                                                                  
+--------------------------------------------------------------------------------------------------
 
-
-|----------------------------------------------------------------------------------------|
-                                                                                 __ 
- _____            _                              _             _       _        |  |
-|   __| _ _  ___ | |_  ___  _____    _ _  ___   | |_  ___    _| | ___ | |_  ___ |  |
-|__   || | ||_ -||  _|| -_||     |  | | || . |  |  _|| . |  | . || .'||  _|| -_||__|
-|_____||_  ||___||_|  |___||_|_|_|  |___||  _|  |_|  |___|  |___||__,||_|  |___||__|
-       |___|                             |_|                                        
-
-|----------------------------------------------------------------------------------------|
- 
-                                    
 " 
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
 
-echo "Please review packages!
-" 
-#updateCheck
-
-# Ask for confirmation
-read -p "Press ENTER to Continue "
+echo "Please review packages! and ";read -p "Press ENTER to Exit"
 exit 0
 
 fi
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 
-updateCheck
-# Show tooltip
-if [ $upd -eq 0 ] ; then
-    # upd="" #Remove Icon completely
-     upd="󰮯"   #If zero Display Icon only
- #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
-    echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
-else
-    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
-    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
-fi
+#updateCheck
