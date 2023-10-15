@@ -210,8 +210,8 @@ echo "
 
 for i in {1..5}
 do
-    updateCheck 2> /dev/null
-    
+    updateCheck > /dev/null
+    echo "Retrying $i/5" 
     if [ $? -eq 0 ]; then
         break
     fi
