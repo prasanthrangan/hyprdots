@@ -21,8 +21,8 @@ fi
 # detect monitor res
 x_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.height')
-hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.scale' | cut -d '.' -f 1)
-hypr_scale=$(( hypr_scale * 100 ))
+hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.scale' | sed 's/\.//')
+echo $hypr_scale
 
 # scale config layout and style
 case $1 in
