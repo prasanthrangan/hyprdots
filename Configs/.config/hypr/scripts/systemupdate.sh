@@ -1,10 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash 
+#I'm too lazy
 # source variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 get_aurhlpr
 
-
+# Define color variables
+R='\033[0;31m' 
+G='\033[0;32m'  
+B='\033[0;34m' 
+NC='\033[0m' # No Color
 
 # Trigger upgrade and Avoiding Duplicate process 
 if [ "$1" == "up" ] ; then
@@ -29,12 +34,17 @@ fi
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
  updateCheck () {
 
- #Check release
+# Check release
 if [ ! -f /etc/arch-release ] ; then
     exit 0
 fi
 
+# source variables
+#ScrDir=`dirname $(realpath $0)`
+#source $ScrDir/globalcontrol.sh
+
 # Check for updates
+get_aurhlpr
 aur=`${aurhlpr} -Qua | wc -l`
 ofc=`checkupdates | wc -l`
 
@@ -50,6 +60,7 @@ fi
 
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
+
 
 }
 
@@ -73,11 +84,11 @@ echo "
 |__   | | |_ -|  _| -_|     |  |  |  | . |    | | | . |  |  |  | .'|  _| -_|  |__|
 |_____|_  |___|_| |___|_|_|_|  |_____|  _|    |_| |___|  |____/|__,|_| |___|  |__|
       |___|                          |_|                                          
-                                                                                  
+                                            
 --------------------------------------------------------------------------------------------------
 
-"  | lolcat
-sleep 3
+"  #| lolcat
+read -n 1 -s -t 3
 exit 0
 
 
@@ -90,12 +101,14 @@ exit 0
 updateOfc () {
 if [ "$ofc" -ne 0 ]; then
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-read -p "$ofc Official packages available, UPDATE? (Y/n) [Y]: " answer
+read -p "==========>   [  $ofc  ] Official packages available, UPDATE? (Y/n) [Y]: " answer
 answer=${answer:-Y} # use 'Y' as default value if no input is provided
 # Convert the answer to uppercase
 answer=${answer^^}
 if [ "$answer" == "Y" ]; then
-echo "Updating Official Pacakges using $aurhlpr"
+echo -e "   
+Updating ${R}Official${NC} package using ${B}$aurhlpr${NC}
+        "
 $aurhlpr -Syu 
 #sudo pacman -Syu # I Should Use this but AUR Wrapper is better
 
@@ -119,12 +132,14 @@ fi
 updateAUR () {
 if [ "$aur" -ne 0 ]; then
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-read -p "$aur AUR packages available, UPDATE? (Y/n) [Y]: " answer
+read -p "==========>   [  $aur  ] AUR packages available, UPDATE? (Y/n) [Y]: " answer
 answer=${answer:-Y} # use 'Y' as default value if no input is provided
 # Convert the answer to uppercase
 answer=${answer^^}
 if [ "$answer" == "Y" ]; then
-        echo "AUR Wrapper: $aurhlpr"
+echo -e "
+Updating ${R}AUR${NC} package using ${B}$aurhlpr${NC}
+"
     $aurhlpr -Syu 
 else 
 echo "
@@ -148,7 +163,7 @@ if pkg_installed flatpak ; then
 if [ "$fpk" -ne 0 ]; then
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
 # Ask for confirmation
-read -p "$fpk Flatpak packages available, UPDATE? (Y/n) [Y]: " answer
+read -p "==========>   [  $fpk  ] Flatpak packages available, UPDATE? (Y/n) [Y]: " answer
 answer=${answer:-Y} # use 'Y' as default value if no input is provided
 # Convert the answer to uppercase
 answer=${answer^^}
@@ -187,43 +202,38 @@ echo "
 |__   | | |_ -|  _| -_|     |  |  |  | . | . | .'|  _| -_|__|
 |_____|_  |___|_| |___|_|_|_|  |_____|  _|___|__,|_| |___|__|
       |___|                          |_|                     
+
 --------------------------------------------------------------------------------------------------
                                                              
  
-" | lolcat
+" #| lolcat
 
-#!/bin/bash
-
-for i in {1..5} #Fetch For maximum of 5 tries 
+for i in {1..5}
 do
     updateCheck 2> /dev/null
+    
     if [ $? -eq 0 ]; then
-            if [ "$upd" -eq 0 ]; then
-        echo "upd is 0, exiting the script."
-        updateExit
-        fi
-    else
-        break        echo "upd is not 0, breaking the loop."
-
+        break
     fi
 done
+ if [ "$upd" -eq 0 ]; then
+updateExit
+  fi
+
 updateOfc
 updateAUR
 updateFpk
 
-
-
 kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-echo "Please review packages! and ";read -p "Press ENTER to Exit"
+echo -e "Please review packages! & Press ${B}ENTER${NC} to ${R}Exit${NC}"
+read
 updateExit 
 
 fi
+
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 
-
-
-
-
+#For Waybar Module
 updateCheck 
 # Show tooltip
 if [ $upd -eq 0 ] ; then
