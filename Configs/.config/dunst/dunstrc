@@ -313,18 +313,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#253845"
-    foreground = "#3F4252"
-    frame_color = "#3F4252"
+    background = "#242749"
+    foreground = "#553054"
+    frame_color = "#553054"
     icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#1D202E"
-    foreground = "#AD584F"
-    frame_color = "#AD584F"
+    background = "#0D1935"
+    foreground = "#6F3A65"
+    frame_color = "#6F3A65"
     icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
