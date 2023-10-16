@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Path to the file that stores the state
+state_file="$HOME/.nvidia_state"
+
+# Function to check for NVIDIA GPU
+check_nvidia() {
+    if lspci | grep -i NVIDIA &> /dev/null; then
+        echo 0 > $state_file
+    else
+        echo 1 > $state_file
+    fi
+}
+
+# Function to comment or uncomment the source line in hyprland.conf
+toggle_source() {
+    nvidia=$(cat $state_file)
+    if [ $nvidia -eq 1 ]; then
+        sed -i 's|#No Nvidia Found|source = ~/.config/hypr/nvidia.conf|' ~/.config/hypr/hyprland.conf
+    else
+        sed -i 's|source = ~/.config/hypr/nvidia.conf|#No Nvidia Found|' ~/.config/hypr/hyprland.conf
+    fi
+}
+
+# Call the functions
+check_nvidia
+toggle_source

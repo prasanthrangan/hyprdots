@@ -1,4 +1,4 @@
-${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git zsh-syntax-highlighting-git zsh-autosuggestions-git pokemon-colorscripts-git
+${HOME}|.p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git zsh-syntax-highlighting-git zsh-autosuggestions-git pokemon-colorscripts-git
 ${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
 ${HOME}/.config|dunst|dunst
 ${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf windowrules.conf scripts themes wallbash|hyprland
@@ -19,3 +19,4 @@ ${HOME}/.config|dolphinrc kdeglobals|dolphin
 ${HOME}/.local/share|dolphin|dolphin
 ${HOME}/.local/share/kxmlgui5|dolphin|dolphin
 ${HOME}/.config|Thunar|thunar
+${HOME}|Scripts|hyprland

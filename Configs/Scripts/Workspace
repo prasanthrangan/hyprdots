@@ -1,0 +1,40 @@
+#!/bin/bash
+
+title=$1
+special_WS=$2
+run=$3
+
+active=$(hyprctl activewindow | awk '/special/{print $3}')
+echo "$active"
+check=$(hyprctl workspaces | grep "$title")
+#echo "I can see ..."
+echo "$check"
+#echo "Title: $title"
+#echo "WorkSpace: $special_WS"
+#echo "Run: $run"
+#notify-send "Special: $special"
+
+
+
+if [[ $check == *"$title"* ]]; then
+
+hyprctl dispatch togglespecialworkspace $special_WS  
+#echo passif
+    exit 0
+
+#else
+elif [[ $active != *"$title"* ]]; then
+#notify-send "Special: $special"
+hyprctl dispatch togglespecialworkspace $special_WS
+
+     #echo inelse
+     exec $run & exit 0
+     #echo passelse
+     #exit 0
+#else 
+#hyprctl dispatch togglespecialworkspace $special_WS	
+fi
+
+
+exit 0
+

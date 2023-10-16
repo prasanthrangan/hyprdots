@@ -1,0 +1,17 @@
+#!/bin/sh
+#Needs shellevents
+#?socat
+
+target_conf=$1
+shellEvents="/usr/local/bin/shellevents"
+
+if pgrep -x "shellevents" > /dev/null
+    then
+    killall  "shellevents" 
+         socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock \
+     EXEC:"$shellEvents $1",nofork
+    else
+       socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock \
+     EXEC:"$shellEvents $1",nofork
+
+fi 

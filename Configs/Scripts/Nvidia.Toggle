@@ -1,0 +1,54 @@
+#!/bin/bash
+
+#! I did not use this anymore
+
+#This Code only interchange both contents See the contents to know
+remove_nvidia="00-remove-nvidia.rules"
+lowPower_nvidia="80-nvidia-pm.rules"
+udev_dir="/etc/udev/rules.d/"
+tmp_dir="/etc/udev/rules.d/.tmp/"
+
+
+if [ -f "$udev_dir$remove_nvidia" ] && [ -f "$udev_dir$lowPower_nvidia" ]; then
+
+notify-send -a  "GPU" "Toggle Nvidia" "Please Check! Both Files Are in Conflict Executing Low Power "
+sudo mv "$udev_dir$remove_nvidia" "$tmp_dir"
+
+exit 0
+
+
+elif [ -f "$udev_dir$lowPower_nvidia" ]; then
+
+notify-send -a  "GPU" "Toggle Nvidia" "Removing Nvidia driver"
+
+
+sudo mv "$tmp_dir$remove_nvidia" "$udev_dir"
+sudo mv "$udev_dir$lowPower_nvidia" "$tmp_dir"
+
+
+sleep 5
+reboot
+exit 0
+
+elif [ -f "$udev_dir$remove_nvidia" ]; then
+
+notify-send -a  "GPU" "Toggle Nvidia" "Using Low Power Nvidia "
+
+sudo mv "$tmp_dir$lowPower_nvidia" "$udev_dir"
+sudo mv "$udev_dir$remove_nvidia" "$tmp_dir"
+
+
+sleep 5
+reboot
+exit 0
+
+else
+
+echo "No udev rules found"
+notify-send -a  "GPU" "Toggle Nvidia" "No udev rules found rerun the Script"
+sudo mv "$tmp_dir$lowPower_nvidia" "$udev_dir"
+
+
+fi
+
+

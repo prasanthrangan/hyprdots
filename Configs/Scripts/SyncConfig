@@ -1,0 +1,28 @@
+#!/bin/bash
+
+
+cd /home/khing/GitHub/hyprdots/Scripts
+./3_backup_cfg_khing.sh
+git status
+
+while true; do
+	
+    read -p "Do you want to to Add -all Changes and commit to  your Github Branch If not Risky!!! ? (Y/N)" yn
+    case $yn in
+        [Yy]* ) echo "Running the additional script...";
+                # Place your additional script here
+                # For example:
+git add -all
+git commit --all -m "$BAKDir" 
+git status       
+
+
+		break;;
+        [Nn]* ) echo "Not running the additional script."; exit;;
+        * ) echo "Please answer Y (Yes) or N (No).";;
+    esac
+done
+
+
+
+

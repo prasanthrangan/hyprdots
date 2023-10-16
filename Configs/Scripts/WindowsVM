@@ -1,0 +1,37 @@
+#!/bin/bash
+#  _                           _      __     ____  __  
+# | |    __ _ _   _ _ __   ___| |__   \ \   / /  \/  | 
+# | |   / _` | | | | '_ \ / __| '_ \   \ \ / /| |\/| | 
+# | |__| (_| | |_| | | | | (__| | | |   \ V / | |  | | 
+# |_____\__,_|\__,_|_| |_|\___|_| |_|    \_/  |_|  |_| 
+#                                                      
+#  
+# by Stephan Raabe (2023) 
+# mod Khing
+# ----------------------------------------------------- 
+# Check if the VM is running
+
+tmp=$(virsh --connect qemu:///system list | grep " Windows " | awk '{ print $3}')
+if ([ "x$tmp" == "x" ] || [ "x$tmp" != "xrunning" ])
+then
+notify-send "Windows VM is starting..." &&
+    virsh --connect qemu:///system start Windows && 
+notify-send " Windows" 
+virt-viewer -fa -c qemu:///system Windows &&
+    virsh --connect qemu:///system shutdown Windows &&
+notify-send " Windows Shutdown" &&
+    exit
+else
+ tmp=$(virsh --connect qemu:///system list | grep " Windows " | awk '{ print $3}')
+if ([ "x$tmp" == "x" ] || [ "x$tmp" == "xrunning" ])
+then
+notify-send " Windows Ready" &&
+notify-send " Windows" && 
+virt-viewer -fa -c qemu:///system Windows &&   
+virsh --connect qemu:///system shutdown Windows &&
+notify-send " Windows Shutdown"  &&
+    exit
+    else
+       notify-send "Windows VM not Ready"
+fi
+fi
