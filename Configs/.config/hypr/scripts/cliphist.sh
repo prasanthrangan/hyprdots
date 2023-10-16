@@ -25,9 +25,16 @@ if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 27
 #! For rotated monitors
 fi
 #? Scaled monitor Size
-monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale')
-x_mon=$(echo "scale=0; $x_mon / $monitor_scale" | bc -l)
-y_mon=$(echo "scale=0;$y_mon / $monitor_scale" | bc -l)
+#monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale')
+#x_mon=$(echo "scale=0; $x_mon / $monitor_scale" | bc -l)
+#y_mon=$(echo "scale=0;$y_mon / $monitor_scale" | bc -l)
+monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
+echo $monitor_scale
+x_mon=$((x_mon * 100 / monitor_scale ))
+y_mon=$((y_mon * 100 / monitor_scale))
+echo $x_mon
+echo $y_mon
+
 #? monitor position
 x_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .x')
 y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
