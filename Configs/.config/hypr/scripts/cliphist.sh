@@ -11,8 +11,8 @@ y_offset=210   #* To point the Cursor to the latest and 2nd to the last word
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
 clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
-#clip_h=55 #! or modify limits
-#clip_w=20 #! or modify limits
+#clip_h=55 #! Modify limits for size of the Clipboard
+#clip_w=20 #! This values are transformed per cent(100)
 #? Monitor resolution , scale and rotation 
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
