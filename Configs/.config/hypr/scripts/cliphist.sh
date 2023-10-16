@@ -11,12 +11,20 @@ y_offset=0
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
 clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
-#clip_h=55
-#clip_w=20
+#clip_h=55 #! or modify limits
+#clip_w=20 #! or modify limits
 #? Monitor resolution , scale and rotation 
-monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+#? Rotated monitor? 
+monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
+echo $monitor_rot
+if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 270 deg
+ tempmon=$x_mon
+    x_mon=$y_mon
+    y_mon=$tempmon
+#! For rotated monitors
+fi
 #? Scaled monitor Size
 monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale')
 x_mon=$(echo "scale=0; $x_mon / $monitor_scale" | bc -l)
