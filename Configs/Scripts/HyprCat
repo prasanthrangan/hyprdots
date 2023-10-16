@@ -1,0 +1,30 @@
+# ! This is just my guide on how to parce on hyprland
+# ? khing 
+
+
+
+
+active_monitor=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk '/Monitor/ && /ID/ {print $2} ')
+echo "active $active_monitor" #
+
+res_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F "@" '/@/ && / at / {print $1} ')
+echo "res_inf $res_inf"
+x_mon=$(echo $res_inf | cut -d 'x' -f 1)
+y_mon=$(echo $res_inf | cut -d 'x' -f 2)
+echo "x_mon $x_mon"
+echo "y_mon $y_mon"
+
+pos_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F "at" '/@/ && / at /{print $2} ')
+echo "pos_inf $pos_inf"
+
+scl_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/scale/ {print $2} ')
+echo "scl_inf $scl_inf"
+
+rot_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/transform: / {print $2} ')
+echo "rot_inf $rot_inf"
+
+des_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/description: / {print $2} ')
+echo "des_inf $des_inf"
+
+make_inf=$(hyprctl monitors | awk -v RS="" -v ORS="\n\n" '/focused: yes/'| awk -F ": " '/make: / {print $2} ')
+echo "make_inf $make_inf"

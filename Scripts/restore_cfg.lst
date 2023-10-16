@@ -19,3 +19,4 @@ ${HOME}/.config|dolphinrc kdeglobals|dolphin
 ${HOME}/.local/share|dolphin|dolphin
 ${HOME}/.local/share/kxmlgui5|dolphin|dolphin
 ${HOME}/.config|Thunar|thunar
+${HOME}|Scripts|hyprland

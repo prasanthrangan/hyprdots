@@ -1,0 +1,63 @@
+#!/bin/bash
+#khing
+#? this script is use to get the info of what monitor I am using I 
+#? I use apps wdisplay 
+
+
+monitor_info=$(hyprctl monitors | awk -F " " '/ID/ && /DP/ {ORS = "";
+print "";
+print "\n monitor =", $2 ;
+print " , ";
+getline; 
+print;
+print " ,";
+ for(i=1;i<=12;i++){
+	 getline;
+	 if(i==8) print $2;
+	 if(i==9) print ",transform,";
+	 if(i==9) print $2;
+	 };
+
+
+
+ }' |  sed 's/at/,/')
+
+
+echo "$monitor_info"
+
+
+
+
+directory="$HOME/.config/hypr/monitors/"
+prefix="Profile_"
+suffix=".setup"
+
+# Find the last existing file with the prefix
+last_file=$(ls -1 "$directory" | grep -E "^$prefix[0-9]+${suffix}$" | sort -r | head -n 1)
+
+if [ -n "$last_file" ]; then
+  # Increment the number in the last file
+  last_number=$(echo "$last_file" | sed "s/^$prefix\([0-9]\+\)${suffix}$/\1/")
+  next_number=$((last_number + 1))
+else
+  # No existing file found, start with 1
+  next_number=1
+fi
+
+
+
+
+# Create the new filename
+new_filename="${prefix}${next_number}${suffix}"
+new_filepath="${directory}${new_filename}"
+
+# Create the file with the desired content
+echo "#Khing $monitor_info" > "$new_filepath"
+#notify-send "New $new_filename Saved to $new_filepath"
+
+# Setup the Display and save to hyprland
+source_mon_conf="source = $new_filepath"
+echo "$source_mon_conf"  > "$HOME/.config/hypr/monitors.conf"
+notify-send "${prefix}${next_number} Display Setup"
+
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PID=$(hyprctl activewindow | grep -i pid | awk -F "pid: " '{ print $2 }' | awk -F "," '{ print $1 }')
+PIDS=$(pstree $PID -npl | grep -oP '(?<=\()[0-9]+(?=\))')
+
+# Pause process if running
+if [[ "$(ps -o state= $PID)" == S ]]; then
+    kill -STOP $PIDS
+	exit 0
+fi
+
+# Resume process if stopped
+if [[ "$(ps -o state= $PID)" == T ]]; then
+	kill -CONT $PIDS
+	exit 0
+fi

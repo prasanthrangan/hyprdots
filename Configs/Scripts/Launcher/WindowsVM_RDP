@@ -1,0 +1,41 @@
+#!/bin/bash
+#  _                           _      __     ____  __  
+# | |    __ _ _   _ _ __   ___| |__   \ \   / /  \/  | 
+# | |   / _` | | | | '_ \ / __| '_ \   \ \ / /| |\/| | 
+# | |__| (_| | |_| | | | | (__| | | |   \ V / | |  | | 
+# |_____\__,_|\__,_|_| |_|\___|_| |_|    \_/  |_|  |_| 
+#                                                      
+# using RDP
+# by Stephan Raabe (2023) 
+# mod Khing
+# ----------------------------------------------------- 
+# Check if the VM is running
+
+tmp=$(virsh --connect qemu:///system list | grep " Windows " | awk '{ print $3}')
+if ([ "x$tmp" == "x" ] || [ "x$tmp" != "xrunning" ])
+then
+notify-send "Windows VM is starting..."
+    virsh --connect qemu:///system start Windows && sleep 30
+  #   " echo "Virtual Machine win11 is starting..."
+   notify-send "Windows VM Ready" 
+    sleep 10 
+notify-send "Starting  Windows" 
+sleep 5
+xfreerdp -grab-keyboard /v:192.168.122.180 /u:WindowsVM /p:12345678 /size:100% /d: /dynamic-resolution /gfx-h264:avc444 +gfx-progressive /multitouch /auto-reconnect /sound /bpp:16 /compression -bitmap-cache &&
+    virsh --connect qemu:///system shutdown Windows &&
+    exit
+else
+ tmp=$(virsh --connect qemu:///system list | grep " Windows " | awk '{ print $3}')
+if ([ "x$tmp" == "x" ] || [ "x$tmp" == "xrunning" ])
+then
+notify-send " Windows Ready" 
+sleep 2
+notify-send "Starting  Windows"
+xfreerdp -grab-keyboard /v:192.168.122.180 /u:WindowsVM /p:12345678 /size:100% /d: /dynamic-resolution /gfx-h264:avc444 +gfx-progressive /multitouch /auto-reconnect /sound /bpp:16 /compression -bitmap-cache && 
+    virsh --connect qemu:///system shutdown Windows
+	
+    exit
+    else
+       notify-send "Windows RDP not Ready"
+fi
+fi

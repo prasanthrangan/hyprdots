@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# ! I forgot this maybe dont use this
+
+
+notify-send "Executing Khingland Config" &&
+rsync -av ~/.config/ ~/.config.bak/ &&
+notify-send ".config backed up" &&
+cp -r ~/.config/waybar/config.jsonc /home/khing/GitHub/hyprdots/Configs/.config/waybar &&
+
+rsync -avxHAXP /home/khing/GitHub/hyprdots/Configs/.config/* ~/.config/ &&
+notify-send "Sync Khingland" &&
+
+/home/khing/GitHub/hyprdots/Configs/.config/hypr/scripts/themeswitch.sh -s Catppuccin-Mocha  
+
+
+
+
+

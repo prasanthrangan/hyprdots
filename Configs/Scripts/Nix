@@ -1,0 +1,17 @@
+#!/bin/bash
+
+nix=$(systemctl list-units --type=service --state=running | awk '/nix/{print $1}')
+
+
+if [[ $nix == *"nix"* ]]; then
+
+ home-manager switch --show-trace
+
+else
+
+ systemctl enable nix-daemon && systemctl start nix-daemon &&
+ home-manager switch --show-trace 
+
+fi
+
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Get the most recent command
+last_command=$(history | tail -n 1)
+
+# Read the input line by line
+while read line; do
+  # Send the notification
+  notify-send -a "Console" "Command: $last_command" "Output: $line"
+done
+

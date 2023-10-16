@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# Start at workspace 1
+#hyprctl dispatch workspace 1
+
+    active_WS=$(hyprctl activewindow | awk '/workspace: /{if ($2 ~ /^[0-9]+$/ && $2 >= 0) print $2}')
+    # Get the used workspaces
+    used_WS=$(hyprctl workspaces | awk '/workspace ID/{if ($3 ~ /^[0-9]+$/ && $3 >= 0) print $3}')
+   # Sort the used workspaces and convert them into an array
+    IFS=$'\n' sorted=($(sort -n <<<"${used_WS[*]}"))
+    unset IFS
+    	base=$sorted
+	echo "basesort $base"
+	echo "sorted $sorted"
+    	echo "active $active_WS"
+	echo "used $used_WS"
+
+
+    # Find the least adjacent workspace to the active one
+    for ((i=0; i<${#sorted[@]}; i++)); do
+        if [ ${sorted[$i]} -eq $active_WS ]; then
+            least_adjacent_WS=${sorted[$((i-1))]}
+            break
+        fi
+    done
+echo "active $active_WS"
+echo "used $used_WS"
+# Initialize max with the first element
+max=${sorted[1]}
+min=${sorted[1]}
+
+
+# Iterate over the array to find the min and max
+for i in "${sorted[@]}"; do
+  ((i > max)) && max_WS=$i
+  ((i < min)) && min_WS=$i
+done
+min_WS=$(echo "$sorted" | awk '{print $1}')
+
+echo "max $max_WS"
+    notify-send "sorted $sorted"  
+echo "least $min_WS"  
+#echo "min $min_WS"
+#sleep 0.5
+
+    # Calculate the new workspace
+    new_WS=$((least_adjacent_WS + 1))
+    
+if [[ "$min_WS" != 1 ]]; then
+            notify-send "wala man 1 pero naay $min_WS"  
+        hyprctl dispatch workspace $min_WS && sleep 1
+                hyprctl dispatch movetoworkspace 1 && sleep 1 
+		hyprctl dispatch workspace e+1
+
+		exit 0
+
+
+elif [[ "$min_WS" == 1 ]]; then
+
+    if [[ ! " ${used_WS[@]} " =~ " ${new_WS} " ]]   ; then
+	            notify-send "iterate"
+
+        # Dispatch to the new workspace
+        hyprctl dispatch movetoworkspace $new_WS && sleep 1
+        notify-send "2nd"
+        hyprctl dispatch workspace e+1
+	exit 0
+
+elif [[ "$active_WS" == "$max_WS" ]]; then
+
+	notify-send "limit reached!!!"
+        hyprctl dispatch movetoworkspace $new_WS && sleep 1
+	
+exit 0
+
+
+    else
+
+        # If the new workspace is in use, send a notification and continue to the next iteration
+        notify-send "New workspace is already in use"
+	exit 0
+    fi
+ else 
+    notify-send "not  okay"
+
+fi       
+    
+
+    # Check if '1' is in used_WS
+    
+    # Wait for 1 second before the next iteration
+ #   sleep 1
+#done
+
+
+
+
+

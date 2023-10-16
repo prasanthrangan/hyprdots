@@ -1,0 +1,1 @@
+alacritty --title "Command" -e $HOME/Scripts/Console
