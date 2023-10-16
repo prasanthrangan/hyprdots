@@ -6,39 +6,41 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 
 # set position
+x_offset=0
+y_offset=0
+#!base on $HOME/.config/rofi/clipboard.rasi 
+clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
+clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
+#clip_h=55
+#clip_w=20
+#? Monitor resolution , scale and rotation 
+monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
+x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+#? Scaled monitor Size
+monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale')
+x_mon=$(echo "scale=0; $x_mon / $monitor_scale" | bc -l)
+y_mon=$(echo "scale=0;$y_mon / $monitor_scale" | bc -l)
+#? monitor position
+x_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .x')
+y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
+#? cursor position
+x_cur=$(hyprctl -j cursorpos | jq '.x')
+y_cur=$(hyprctl -j cursorpos | jq '.y')
+#? always spawn the cursor inside the screen ignoring the position of the monitor
+ x_cur=$(( x_cur - x_pos))
+ y_cur=$(( y_cur - y_pos))
+clip_w=$(( x_mon/100*clip_w ))
+clip_h=$(( y_mon/100*clip_h ))
+max_x=$((x_mon - clip_w))
+max_y=$((y_mon - clip_h))
+x_cur=$(( x_cur < min_x ? min_x : ( x_cur > max_x ? max_x :  x_cur)))
+y_cur=$(( y_cur < min_y ? min_y : ( y_cur > max_y ? max_y :  y_cur)))
+clip_x=$((x_cur + x_offset))
+clip_y=$((y_cur + y_offset))
 
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
-y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
-x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
-
-x_cur=$(hyprctl cursorpos | sed 's/ //g')
-y_cur=$( echo $x_cur | cut -d ',' -f 2 )
-x_cur=$( echo $x_cur | cut -d ',' -f 1 )
-
-if [ ${x_cur} -le $(( x_mon/3 )) ] ; then
-    x_rofi="west"
-    x_offset="x-offset: 20px;"
-elif [ ${x_cur} -ge $(( x_mon/3*2 )) ] ; then
-    x_rofi="east"
-    x_offset="x-offset: -20px;"
-else
-    unset x_rofi
-fi
-
-if [ ${y_cur} -le $(( y_mon/3 )) ] ; then
-    y_rofi="north"
-    y_offset="y-offset: 20px;"
-elif [ ${y_cur} -ge $(( y_mon/3*2 )) ] ; then
-    y_rofi="south"
-    y_offset="y-offset: -20px;"
-else
-    unset y_rofi
-fi
-
-if [ ! -z $x_rofi ] || [ ! -z $y_rofi ] ; then
-    pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}"
-fi
-
+pos="window {location: north west; x-offset: ${clip_x}px; y-offset: ${clip_y}px;}" #! I just Used the old pos function
+#pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}" 
 
 # read hypr theme border
 
