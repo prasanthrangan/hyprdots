@@ -6,8 +6,8 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 
 # set position
-x_offset=0
-y_offset=0
+x_offset=0   #* Cursor spawn position on clipboard
+y_offset=210   #* To point the Cursor to the latest and 2nd to the last word
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
 clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
@@ -36,6 +36,9 @@ y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
 x_cur=$(hyprctl -j cursorpos | jq '.x')
 y_cur=$(hyprctl -j cursorpos | jq '.y')
 #? always spawn the cursor inside the screen ignoring the position of the monitor
+
+x_cur=$((x_cur - x_offset))
+y_cur=$((y_cur - y_offset))
  x_cur=$(( x_cur - x_pos))
  y_cur=$(( y_cur - y_pos))
 clip_w=$(( x_mon/100*clip_w ))
@@ -44,10 +47,9 @@ max_x=$((x_mon - clip_w))
 max_y=$((y_mon - clip_h))
 x_cur=$(( x_cur < min_x ? min_x : ( x_cur > max_x ? max_x :  x_cur)))
 y_cur=$(( y_cur < min_y ? min_y : ( y_cur > max_y ? max_y :  y_cur)))
-clip_x=$((x_cur + x_offset))
-clip_y=$((y_cur + y_offset))
 
-pos="window {location: north west; x-offset: ${clip_x}px; y-offset: ${clip_y}px;}" #! I just Used the old pos function
+
+pos="window {location: north west; x-offset: ${x_cur}px; y-offset: ${y_cur}px;}" #! I just Used the old pos function
 #pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}" 
 
 # read hypr theme border
