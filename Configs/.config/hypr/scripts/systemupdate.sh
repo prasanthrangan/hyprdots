@@ -1,5 +1,10 @@
 #!/usr/bin/env bash 
 #I'm too lazy
+
+# Check release
+if [ ! -f /etc/arch-release ] ; then
+    exit 0
+fi
 # source variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
@@ -20,7 +25,8 @@ then
     #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
 if ! pgrep waybar > /dev/null
 then 
-waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
+#waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
+waybar > /dev/null 2>&1 & disown
 exit 0
 else
     exit 0
@@ -34,10 +40,6 @@ fi
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
  updateCheck () {
 
-# Check release
-if [ ! -f /etc/arch-release ] ; then
-    exit 0
-fi
 
 # source variables
 #ScrDir=`dirname $(realpath $0)`
@@ -206,16 +208,18 @@ echo "
  
 " #| lolcat
 
-for i in {1..5}
+for i in {1..3}
 do
-    updateCheck 2> /dev/null
+    updateCheck 
+ # echo "$upd $ofc $aur $fpk"
 #echo "           Retrying $i/5" 
-    if [ $? -eq 0 ]; then
-        break
+    if [ $upd -ne 0 ]; then
+     break
     fi
 done
+
  if [ "$upd" -eq 0 ]; then
-updateExit
+updateExit #redundancy
   fi
 
 updateOfc
@@ -235,8 +239,8 @@ fi
 updateCheck 
 # Show tooltip
 if [ $upd -eq 0 ] ; then
-    # upd="" #Remove Icon completely
-     upd="󰮯"   #If zero Display Icon only
+     upd="" #Remove Icon completely
+    # upd="󰮯"   #If zero Display Icon only
  #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else

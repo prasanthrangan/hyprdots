@@ -19,9 +19,9 @@ if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
 fi
 
 # detect monitor res
-x_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.width')
-y_mon=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.height')
-hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true)' | jq '.scale' | sed 's/\.//')
+x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
 
 
 # scale config layout and style
