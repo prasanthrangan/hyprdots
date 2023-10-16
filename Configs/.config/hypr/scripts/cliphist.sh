@@ -18,7 +18,6 @@ x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
 #? Rotated monitor? 
 monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
-echo $monitor_rot
 if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 270 deg
  tempmon=$x_mon
     x_mon=$y_mon
