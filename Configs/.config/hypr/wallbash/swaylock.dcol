@@ -1,41 +1,46 @@
-8|swaylockthemegen.sh|.config/swaylock/config
+12|swaylockthemegen.sh|.config/swaylock/config
 
 color=<dcol_1>
-line-color=<dcol_2>
-ring-color=<dcol_8>
-inside-color=<dcol_2>
+line-color=<dcol_3>
+ring-color=<dcol_1>
+#inside-color=<dcol_2>
+text-color=<dcol_3>
+bs-hl-color=<dcol_2>
 key-hl-color=<dcol_3>
 separator-color=<dcol_4>
-text-color=<dcol_5>
-text-caps-lock-color=<dcol_4>
+
+text-caps-lock-color=<dcol_7>
+
 line-ver-color=<dcol_3>
-ring-ver-color=<dcol_3>
-inside-ver-color=<dcol_2>
-text-ver-color=<dcol_5>
-ring-wrong-color=<dcol_6>
-text-wrong-color=<dcol_6>
-inside-wrong-color=<dcol_2>
-inside-clear-color=<dcol_2>
-text-clear-color=<dcol_5>
-ring-clear-color=<dcol_7>
-line-clear-color=<dcol_2>
-line-wrong-color=<dcol_2>
-bs-hl-color=<dcol_6>
+ring-ver-color=<dcol_2>
+inside-ver-color=<dcol_7>
+text-ver-color=<dcol_3>
+
+ring-wrong-color=<dcol_7>
+text-wrong-color=<dcol_3>
+inside-wrong-color=<dcol_7>
+line-wrong-color=<dcol_3>
+
+#inside-clear-color=<dcol_9>
+text-clear-color=<dcol_3>
+ring-clear-color=<dcol_11>
+line-clear-color=<dcol_3>
 
 #Set you config  in  .config/hypr/wallbash/swaylock.dcol
 
 daemonize
+#grace=5
 show-failed-attempts
 clock
 ignore-empty-password
-image=~/.config/swww/Catppuccin-Mocha/aesthetic_deer.png
+image=~/.config/swww/Catppuccin-Latte/chainsaw_angel_lake.jpg
 #effect-blur=50x1
 effect-vignette=0:1
 #fade-in= 1
 font="Inter"
 #indicator # wait for the press
 indicator-radius=400
-indicator-thickness=20
+indicator-thickness=10
 grace-no-mouse
 grace-no-touch
 datestr=%a, %B %e
