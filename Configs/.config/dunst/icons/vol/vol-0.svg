@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-
 <svg
    height="120px"
    width="120px"
@@ -35,12 +33,6 @@
    inkscape:current-layer="Layer_1"><inkscape:grid
      type="xygrid"
      id="grid3192" /></sodipodi:namedview>
-
-
-
-
-
-
 <g
    id="g3158"
    inkscape:label="base"><path
@@ -58,7 +50,6 @@
      d="m 405.74362,86.606184 c 86.3078,86.307816 86.3078,227.192636 0,313.500456 -86.30783,86.3078 -227.19264,86.3078 -313.500453,0"
      id="path14"
      inkscape:label="highlight" /></g>
-
 <g
    id="g3198"
    inkscape:label="main"><circle
@@ -74,7 +65,7 @@
      id="path3789"
      inkscape:label="shadow"
      sodipodi:insensitive="true" /><path
-     style="display:inline;fill:#ea398a;stroke-width:1.584"
+     style="display:inline;fill:#6F3A65;stroke-width:1.584"
      d="m 133.9083,230.50229 c 7.6032,0 12.672,5.0688 12.672,12.672 v 0 c 0,7.6032 -5.0688,12.672 -12.672,12.672 H 83.22029 c -7.6032,0 -12.672,-5.0688 -12.672,-12.672 v 0 c 0,-7.6032 5.0688,-12.672 12.672,-12.672 z"
      id="path915"
      inkscape:label="pointer"
