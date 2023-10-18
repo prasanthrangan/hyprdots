@@ -21,7 +21,7 @@ while true; do
     battery_status=$(cat /sys/class/power_supply/BAT0/status)
     battery_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
 
-    if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 20 ]; then
+    if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 40 ]; then
         dunstify -u CRITICAL "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
     fi
 
