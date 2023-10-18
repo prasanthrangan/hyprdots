@@ -1,10 +1,16 @@
 #!/usr/bin/env bash 
 #I'm too lazy
+
+# Check release
+if [ ! -f /etc/arch-release ] ; then
+    exit 0
+fi
 # source variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 get_aurhlpr
-
+process=$(pgrep -f  'bash /home/khing/.config/hypr/scripts/systemupdate.sh check' | wc -l)
+echo $process
 # Define color variables
 R='\033[0;31m' 
 G='\033[0;32m'  
@@ -16,13 +22,17 @@ if [ "$1" == "up" ] ; then
 # Check if the process is running
 if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
 then
+		pkill -f "bash /home/khing/.config/hypr/scripts/systemupdate.sh check"
+
     exec kitty --start-as fullscreen --title systemupdate sh -c "sh $HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
     #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
 if ! pgrep waybar > /dev/null
 then 
-waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
+#waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
+waybar > /dev/null 2>&1 & disown
 exit 0
 else
+
     exit 0
     fi 
 else
@@ -32,12 +42,9 @@ fi
 fi
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
- updateCheck () {
 
-# Check release
-if [ ! -f /etc/arch-release ] ; then
-    exit 0
-fi
+updateCheck () {
+
 
 # source variables
 #ScrDir=`dirname $(realpath $0)`
@@ -62,6 +69,38 @@ fi
 upd=$(( ofc + aur + fpk ))
 }
 
+
+
+
+if [ "$1" == "check" ] ; then  # I don't know Why there is already 2 process available So I will limit process to check update upto two
+#! prevent multi process
+
+#
+#########
+if [ $process -le 2  ] 
+then
+#######
+#For Waybar Module
+updateCheck 
+# Show tooltip
+if [ $upd -eq 0 ] ; then
+     upd="" #Remove Icon completely
+    # upd="󰮯"   #If zero Display Icon only
+ #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+    echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
+else
+    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+fi
+##########
+else 
+
+exit 0
+
+fi
+###
+
+fi
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 updateExit () {
 clear
@@ -86,10 +125,6 @@ echo "
 --------------------------------------------------------------------------------------------------
 
 "  #| lolcat
-read -n 1 -s -t 3
-exit 0
-
-
 }
 
 
@@ -206,16 +241,20 @@ echo "
  
 " #| lolcat
 
-for i in {1..5}
+for i in {1..3}
 do
-    updateCheck 2> /dev/null
+    updateCheck #2>1  
+ # echo "$upd $ofc $aur $fpk"
 #echo "           Retrying $i/5" 
-    if [ $? -eq 0 ]; then
-        break
+    if [ $upd -ne 0 ]; then
+     break
     fi
 done
+
  if [ "$upd" -eq 0 ]; then
-updateExit
+updateExit #redundancy
+read -n 1 -s -t 3
+exit 0
   fi
 
 updateOfc
@@ -226,20 +265,11 @@ kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sor
 echo -e "Please review packages! & Press ${B}ENTER${NC} to ${R}Exit${NC}"
 read
 updateExit 
+read -n 1 -s -t 3
+exit 0
 
 fi
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 
-#For Waybar Module
-updateCheck 
-# Show tooltip
-if [ $upd -eq 0 ] ; then
-    # upd="" #Remove Icon completely
-     upd="󰮯"   #If zero Display Icon only
- #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
-    echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
-else
-    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
-    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
-fi
+
