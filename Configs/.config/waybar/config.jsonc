@@ -170,7 +170,7 @@
     },
 
 "custom/updates": {
-    "exec": "~/.config/hypr/scripts/systemupdate.sh",
+    "exec": "~/.config/hypr/scripts/systemupdate.sh check",
     "return-type": "json",
     "format": "{}", //The Icon Will be handled by the script 
     "on-click": "~/.config/hypr/scripts/systemupdate.sh up",

@@ -1,40 +1,45 @@
 
 color=#242749
-line-color=#553054
-ring-color=<dcol_8>
-inside-color=#553054
+line-color=#6F3A65
+ring-color=#242749
+#inside-color=#553054
+text-color=#6F3A65
+bs-hl-color=#553054
 key-hl-color=#6F3A65
 separator-color=#AE3859
-text-color=#AE3859
+
 text-caps-lock-color=#AE3859
+
 line-ver-color=#6F3A65
-ring-ver-color=#6F3A65
-inside-ver-color=#553054
-text-ver-color=#AE3859
+ring-ver-color=#553054
+inside-ver-color=#AE3859
+text-ver-color=#6F3A65
+
 ring-wrong-color=#AE3859
-text-wrong-color=#AE3859
-inside-wrong-color=#553054
-inside-clear-color=#553054
-text-clear-color=#AE3859
+text-wrong-color=#6F3A65
+inside-wrong-color=#AE3859
+line-wrong-color=#6F3A65
+
+#inside-clear-color=#AE3859
+text-clear-color=#6F3A65
 ring-clear-color=#AE3859
-line-clear-color=#553054
-line-wrong-color=#553054
-bs-hl-color=#AE3859
+line-clear-color=#6F3A65
 
 #Set you config  in  .config/hypr/wallbash/swaylock.dcol
 
 daemonize
+#grace=5
 show-failed-attempts
 clock
 ignore-empty-password
-image=~/.config/swww/Catppuccin-Mocha/aesthetic_deer.png
+image=~/.config/swww/Catppuccin-Latte/chainsaw_angel_lake.jpg
 #effect-blur=50x1
 effect-vignette=0:1
 #fade-in= 1
 font="Inter"
 #indicator # wait for the press
 indicator-radius=400
-indicator-thickness=20
+indicator-thickness=10
 grace-no-mouse
 grace-no-touch
 datestr=%a, %B %e

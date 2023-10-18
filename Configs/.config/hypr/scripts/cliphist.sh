@@ -6,7 +6,7 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 
 # set position
-x_offset=0   #* Cursor spawn position on clipboard
+x_offset=-15   #* Cursor spawn position on clipboard
 y_offset=210   #* To point the Cursor to the latest and 2nd to the last word
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
@@ -25,9 +25,6 @@ if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 27
 #! For rotated monitors
 fi
 #? Scaled monitor Size
-#monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale')
-#x_mon=$(echo "scale=0; $x_mon / $monitor_scale" | bc -l)
-#y_mon=$(echo "scale=0;$y_mon / $monitor_scale" | bc -l)
 monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
 x_mon=$((x_mon * 100 / monitor_scale ))
 y_mon=$((y_mon * 100 / monitor_scale))
@@ -37,19 +34,21 @@ y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
 #? cursor position
 x_cur=$(hyprctl -j cursorpos | jq '.x')
 y_cur=$(hyprctl -j cursorpos | jq '.y')
-#? always spawn the cursor inside the screen ignoring the position of the monitor
-
-x_cur=$((x_cur - x_offset))
-y_cur=$((y_cur - y_offset))
+# Ignore position
  x_cur=$(( x_cur - x_pos))
  y_cur=$(( y_cur - y_pos))
+#Limiting
 clip_w=$(( x_mon/100*clip_w ))
 clip_h=$(( y_mon/100*clip_h ))
-max_x=$((x_mon - clip_w))
-max_y=$((y_mon - clip_h))
+#min_x=0 
+#min_y=0
+max_x=$((x_mon - clip_w / 100 * 100 )) 
+max_y=$((y_mon - clip_h / 100 * 115 )) #?
+x_cur=$((x_cur - x_offset))
+y_cur=$((y_cur - y_offset))
+# 
 x_cur=$(( x_cur < min_x ? min_x : ( x_cur > max_x ? max_x :  x_cur)))
 y_cur=$(( y_cur < min_y ? min_y : ( y_cur > max_y ? max_y :  y_cur)))
-
 
 pos="window {location: north west; x-offset: ${x_cur}px; y-offset: ${y_cur}px;}" #! I just Used the old pos function
 #pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}" 

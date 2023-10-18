@@ -9,6 +9,7 @@ fi
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 get_aurhlpr
+process=$(pgrep -f  'bash /home/khing/.config/hypr/scripts/systemupdate.sh check' | wc -l)
 
 # Define color variables
 R='\033[0;31m' 
@@ -16,37 +17,9 @@ G='\033[0;32m'
 B='\033[0;34m' 
 NC='\033[0m' # No Color
 
-# Trigger upgrade and Avoiding Duplicate process 
-if [ "$1" == "up" ] ; then
-# Check if the process is running
-if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
-then
-    exec kitty --start-as fullscreen --title systemupdate sh -c "sh $HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
-    #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
-if ! pgrep waybar > /dev/null
-then 
-#waybar > /dev/null 2> /dev/null & # I sometimes Lost waybar while updating LOL
-waybar > /dev/null 2>&1 & disown
-exit 0
-else
-    exit 0
-    fi 
-else
-notify-send -a " 󰮯  " "System Update" "  Process Ongoing"
-exit 0
-fi
-fi
-
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
- updateCheck () {
-
-
-# source variables
-#ScrDir=`dirname $(realpath $0)`
-#source $ScrDir/globalcontrol.sh
+updateCheck () {
 
 # Check for updates
-get_aurhlpr
 aur=`${aurhlpr} -Qua | wc -l`
 ofc=`checkupdates | wc -l`
 
@@ -62,18 +35,70 @@ fi
 
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
+
 }
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+
+if [ "$1" == "check" ] ; then  #! I don't know Why there is already 2 process available So I will limit process to check update upto two
+        if [ $process -le 2  ]; then #? prevent multi process
+        #For Waybar Module
+        updateCheck 
+        # Show tooltip
+                        if [ $upd -eq 0 ] ; then
+                            # upd="" #Remove Icon completely
+                            upd="󰮯"   #If zero Display Icon only
+                           notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+                            echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
+			    exit 0
+                        else
+                            notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+                            echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+			    exit 0
+                        fi
+        else 
+
+        exit 0
+
+        fi
+
+
+fi
+
+#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+
+# Trigger upgrade and Avoiding Duplicate process, Also Overrides any systemCheck/systemupdate process
+if [ "$1" == "up" ] ; then
+# Check if the process is running
+            if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
+            then
+            #pkill -f "bash /home/khing/.config/hypr/scripts/systemupdate.sh check"
+                exec kitty --start-as fullscreen --title systemupdate sh -c "sh $HOME/.config/hypr/scripts/systemupdate.sh upgrade" > /dev/null
+                #alacritty --title "System Updates" -e $HOME/.config/hypr/scripts/systemupdate.sh now
+                            if ! pgrep waybar > /dev/null;then 
+                                waybar > /dev/null 2>&1 & disown  # I sometimes Lost waybar while updating LOL
+                            exit 0
+                            else
+                            exit 0
+                            fi 
+            else
+            notify-send -a " 󰮯  " "System Update" "  Process Ongoing"
+            exit 0
+            fi
+fi
+
+#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
+
 updateExit () {
 clear
-if [ $upd -eq 0 ] ; then
-    # upd="" #Remove Icon completely
-     upd="󰮯"   #If zero Display Icon only
-    notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
-else
-    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
-fi
+
+        if [ $upd -eq 0 ] ; then
+            # upd="" #Remove Icon completely
+            upd="󰮯"   #If zero Display Icon only
+            notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+        else
+            notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+        fi
 echo "
 
 
@@ -88,10 +113,6 @@ echo "
 --------------------------------------------------------------------------------------------------
 
 "  #| lolcat
-read -n 1 -s -t 3
-exit 0
-
-
 }
 
 
@@ -99,101 +120,97 @@ exit 0
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 updateOfc () {
-if [ "$ofc" -ne 0 ]; then
-kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-read -p "==========>   [  $ofc  ] Official packages available, UPDATE? (Y/n) [Y]: " answer
-answer=${answer:-Y} # use 'Y' as default value if no input is provided
-# Convert the answer to uppercase
-answer=${answer^^}
-if [ "$answer" == "Y" ]; then
-echo -e "   
-Updating ${R}Official${NC} package using ${B}$aurhlpr${NC}
+    if [ "$ofc" -ne 0 ]; then
+    kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+    read -p "==========>   [  $ofc  ] Official packages available, UPDATE? (Y/n) [Y]: " answer
+    answer=${answer:-Y} # use 'Y' as default value if no input is provided
+    # Convert the answer to uppercase
+    answer=${answer^^}
+        if [ "$answer" == "Y" ]; then
+        echo -e "   
+        Updating ${R}Official${NC} package using ${B}$aurhlpr${NC}
+                "
+        $aurhlpr -Syu 
+        #sudo pacman -Syu # I Should Use this but AUR Wrapper is better
+
+        else 
+        echo "
+        #---------------------------------------------------------------------------------#
+        #                            No changes for Official Packages                     #
+        #---------------------------------------------------------------------------------#
+
+
+
+
+
+
         "
-$aurhlpr -Syu 
-#sudo pacman -Syu # I Should Use this but AUR Wrapper is better
-
-else 
-echo "
-#---------------------------------------------------------------------------------#
-#                            No changes for Official Packages                     #
-#---------------------------------------------------------------------------------#
-
-
-
-
-
-
-"
-fi
-fi
+        fi
+    fi
 }
 
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 updateAUR () {
-if [ "$aur" -ne 0 ]; then
-kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-read -p "==========>   [  $aur  ] AUR packages available, UPDATE? (Y/n) [Y]: " answer
-answer=${answer:-Y} # use 'Y' as default value if no input is provided
-# Convert the answer to uppercase
-answer=${answer^^}
-if [ "$answer" == "Y" ]; then
-echo -e "
-Updating ${R}AUR${NC} package using ${B}$aurhlpr${NC}
-"
-    $aurhlpr -Syu 
-else 
-echo "
-#---------------------------------------------------------------------------------#
-#                            No changes for AUR Packages                          #
-#---------------------------------------------------------------------------------#
+    if [ "$aur" -ne 0 ]; then
+    kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+    read -p "==========>   [  $aur  ] AUR packages available, UPDATE? (Y/n) [Y]: " answer
+    answer=${answer:-Y} # use 'Y' as default value if no input is provided
+    # Convert the answer to uppercase
+    answer=${answer^^}
+        if [ "$answer" == "Y" ]; then
+        echo -e "
+        Updating ${R}AUR${NC} package using ${B}$aurhlpr${NC}
+        "
+            $aurhlpr -Syu 
+        else 
+        echo "
+        #---------------------------------------------------------------------------------#
+        #                            No changes for AUR Packages                          #
+        #---------------------------------------------------------------------------------#
 
 
 
 
 
 
-"
-fi
-fi
+        "
+        fi
+    fi
 }
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 updateFpk () {
-if pkg_installed flatpak ; then
+    if pkg_installed flatpak ; then
 
-if [ "$fpk" -ne 0 ]; then
-kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
-# Ask for confirmation
-read -p "==========>   [  $fpk  ] Flatpak packages available, UPDATE? (Y/n) [Y]: " answer
-answer=${answer:-Y} # use 'Y' as default value if no input is provided
-# Convert the answer to uppercase
-answer=${answer^^}
-if [ "$answer" == "Y" ]; then
-flatpak update
-else 
-echo "
-#---------------------------------------------------------------------------------#
-#                            No changes for Flatpak Packages                      #
-#---------------------------------------------------------------------------------#
-
-
+        if [ "$fpk" -ne 0 ]; then
+        kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
+        # Ask for confirmation
+        read -p "==========>   [  $fpk  ] Flatpak packages available, UPDATE? (Y/n) [Y]: " answer
+        answer=${answer:-Y} # use 'Y' as default value if no input is provided
+        # Convert the answer to uppercase
+        answer=${answer^^}
+            if [ "$answer" == "Y" ]; then
+            flatpak update
+            else 
+            echo "
+            #---------------------------------------------------------------------------------#
+            #                            No changes for Flatpak Packages                      #
+            #---------------------------------------------------------------------------------#
 
 
 
 
-"
-fi
-fi
-fi
+
+
+            "
+            fi
+        fi
+    fi
 }
+
 #khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
-
-
-
 
 if [ "$1" == "upgrade" ] ; then
 neofetch 
-
-
 echo "
 --------------------------------------------------------------------------------------------------
                                                           __ 
@@ -207,20 +224,17 @@ echo "
                                                              
  
 " #| lolcat
-
 for i in {1..3}
 do
-    updateCheck 
- # echo "$upd $ofc $aur $fpk"
-#echo "           Retrying $i/5" 
-    if [ $upd -ne 0 ]; then
-     break
-    fi
+    updateCheck
+        if [ $upd -ne 0 ]; then
+            break
+        elif [ "$upd" -eq 0 ]; then
+            updateExit
+            read -n 1 -s -t 3
+            exit 0
+        fi
 done
-
- if [ "$upd" -eq 0 ]; then
-updateExit #redundancy
-  fi
 
 updateOfc
 updateAUR
@@ -230,20 +244,19 @@ kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sor
 echo -e "Please review packages! & Press ${B}ENTER${NC} to ${R}Exit${NC}"
 read
 updateExit 
+read -n 1 -s -t 3
+exit 0
 
 fi
 
-#khing#khing#khing#khing#khing#khingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhingkhing
 
-#For Waybar Module
-updateCheck 
-# Show tooltip
-if [ $upd -eq 0 ] ; then
-     upd="" #Remove Icon completely
-    # upd="󰮯"   #If zero Display Icon only
- #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
-    echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
-else
-    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
-    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
-fi
+
+ if [ $upd -eq 0 ] ; then
+                            # upd="" #Remove Icon completely
+                            upd="󰮯"   #If zero Display Icon only
+                        #   notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
+                            echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
+                        else
+                            notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+                            echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+                        fi
