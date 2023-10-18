@@ -1,0 +1,15 @@
+4|cat $HOME/.config/dunst/dunst.conf $HOME/.config/dunst/Wall-Dcol.conf > $HOME/.config/dunst/dunstrc && killall dunst|.config/dunst/Wall-Dcol.conf
+
+[urgency_low]
+    background = "<dcol_1>"
+    foreground = "<dcol_2>"
+    frame_color = "<dcol_2>"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
+    timeout = 10
+
+[urgency_normal]
+    background = "<dcol_0>"
+    foreground = "<dcol_3>"
+    frame_color = "<dcol_3>"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
+    timeout = 10

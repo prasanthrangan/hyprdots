@@ -69,7 +69,7 @@ fi
 
 # restart waybar
 
-if [ "$reload_flag" -eq 1 ] ; then
+if [ "$reload_flag" == "1" ] ; then
     killall waybar
     waybar > /dev/null 2>&1 &
     # killall -SIGUSR2 waybar

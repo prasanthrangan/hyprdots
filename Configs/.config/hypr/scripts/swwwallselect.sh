@@ -27,6 +27,6 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 # apply wallpaper
 if [ ! -z $RofiSel ] ; then
     ${ScrDir}/swwwallpaper.sh -s $WallPath/$RofiSel
-    dunstify $ncolor "theme" -a " ${RofiSel}" -i "${cacheDir}/${gtkTheme}/${RofiSel}" -r 91190 -t 2200
+    dunstify "t1" -a " ${RofiSel}" -i "${cacheDir}/${gtkTheme}/${RofiSel}" -r 91190 -t 2200
 fi
 

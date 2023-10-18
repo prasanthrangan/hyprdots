@@ -30,5 +30,6 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 # apply theme
 if [ ! -z $ThemeSel ] ; then
     ${ScrDir}/themeswitch.sh -s $ThemeSel
+    dunstify "t1" -a " ${ThemeSel}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 fi
 

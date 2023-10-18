@@ -309,36 +309,6 @@
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
-
-[urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#181825"
-    foreground = "#f5e0dc"
-    frame_color = "#f5c2e7"
-    icon = "~/.config/dunst/icons/low.svg"
-    timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #default_icon = /path/to/icon
-
-[urgency_normal]
-    background = "#313244"
-    foreground = "#f5e0dc"
-    frame_color = "#b4befe"
-    icon = "~/.config/dunst/icons/pokeball.svg"
-    timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #default_icon = /path/to/icon
-
-[urgency_critical]
-    background = "#f5e0dc"
-    foreground = "#1e1e2e"
-    frame_color = "#f38ba8"
-    icon = "~/.config/dunst/icons/critical.svg"
-    timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #default_icon = /path/to/icon
-
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #
@@ -463,15 +433,33 @@
 #
 # vim: ft=cfg
 
-[volume-control]
-    summary = "volctl"
-    format = "<span size="250%">%a</span>\n%b"
-
-[brightness-control]
-    summary = "brightctl"
-    format = "<span size="250%">%a</span>\n%b"
-
-[theme-switch]
-    summary = "theme"
+[Type-1]
+    summary = "t1"
     format = "<b>%a</b>"
 
+[Type-2]
+    summary = "t2"
+    format = "<span size="250%">%a</span>\n%b"
+
+[urgency_critical]
+    background = "#f5e0dc"
+    foreground = "#1e1e2e"
+    frame_color = "#f38ba8"
+    icon = "~/.config/dunst/icons/critical.svg"
+    timeout = 0
+    # Icon for notifications with critical urgency, uncomment to enable
+    #default_icon = /path/to/icon
+
+[urgency_low]
+    background = "#253845"
+    foreground = "#3F4252"
+    frame_color = "#3F4252"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
+    timeout = 10
+
+[urgency_normal]
+    background = "#1D202E"
+    foreground = "#AD584F"
+    frame_color = "#AD584F"
+    icon = "~/.config/dunst/icons/hyprdots.svg"
+    timeout = 10

@@ -266,6 +266,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>V</kbd> | clipboard history paste
 | <kbd>Super</kbd> + <kbd>L</kbd> | lock screen
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | logout menu
+| <kbd>Super</kbd> + <kbd>K</kbd> | switch keyboard layout
 | <kbd>Super</kbd> + <kbd>P</kbd> | screenshot snip
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
 | <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window 
