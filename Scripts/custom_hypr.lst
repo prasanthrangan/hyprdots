@@ -11,6 +11,7 @@ bluez
 bluez-utils
 blueman
 brightnessctl
+ffmpegthumbs
 sddm-git
 qt5-wayland
 qt6-wayland
