@@ -11,6 +11,7 @@ bluez
 bluez-utils
 blueman
 brightnessctl
+ffmpegthumbs
 sddm-git
 qt5-wayland
 qt6-wayland
@@ -26,7 +27,7 @@ swaylock-effects-git
 python-pyamdgpuinfo
 jq
 wlogout
-grimblast
+grimblast-git
 slurp
 emote
 swappy
