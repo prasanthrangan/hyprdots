@@ -41,8 +41,8 @@ y_cur=$(hyprctl -j cursorpos | jq '.y')
 # Multiply before dividing to avoid losing precision due to integer division
 clip_w=$(( x_mon*clip_w/100 ))
 clip_h=$(( y_mon*clip_h/100 ))
-max_x=$((x_mon - clip_w - 5 )) #offset of 5 for hidden edges
-max_y=$((y_mon - clip_h - 5 )) #offset of 5 for hidden edges
+max_x=$((x_mon - clip_w - 5 )) #offset of 5 for gaps
+max_y=$((y_mon - clip_h - 15 )) #offset of 15 for gaps
 x_cur=$((x_cur - x_offset))
 y_cur=$((y_cur - y_offset))
 # 
