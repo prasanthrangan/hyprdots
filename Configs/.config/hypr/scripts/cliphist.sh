@@ -7,7 +7,7 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 # set position
 x_offset=-15   #* Cursor spawn position on clipboard
-y_offset=210   #* To point the Cursor to the latest and 2nd to the last word
+y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
 clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
@@ -38,12 +38,11 @@ y_cur=$(hyprctl -j cursorpos | jq '.y')
  x_cur=$(( x_cur - x_pos))
  y_cur=$(( y_cur - y_pos))
 #Limiting
-clip_w=$(( x_mon/100*clip_w ))
-clip_h=$(( y_mon/100*clip_h ))
-#min_x=0 
-#min_y=0
-max_x=$((x_mon - clip_w / 100 * 100 )) 
-max_y=$((y_mon - clip_h / 100 * 115 )) #?
+# Multiply before dividing to avoid losing precision due to integer division
+clip_w=$(( x_mon*clip_w/100 ))
+clip_h=$(( y_mon*clip_h/100 ))
+max_x=$((x_mon - clip_w - 5 )) #offset of 5 for hidden edges
+max_y=$((y_mon - clip_h - 5 )) #offset of 5 for hidden edges
 x_cur=$((x_cur - x_offset))
 y_cur=$((y_cur - y_offset))
 # 
