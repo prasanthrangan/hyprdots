@@ -7,7 +7,7 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 # set position
 x_offset=-15   #* Cursor spawn position on clipboard
-y_offset=210   #* To point the Cursor to the latest and 2nd to the last word
+y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
 #!base on $HOME/.config/rofi/clipboard.rasi 
 clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
 clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
