@@ -6,39 +6,51 @@ roconf="~/.config/rofi/clipboard.rasi"
 
 
 # set position
-
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
-y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
-x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
-
-x_cur=$(hyprctl cursorpos | sed 's/ //g')
-y_cur=$( echo $x_cur | cut -d ',' -f 2 )
-x_cur=$( echo $x_cur | cut -d ',' -f 1 )
-
-if [ ${x_cur} -le $(( x_mon/3 )) ] ; then
-    x_rofi="west"
-    x_offset="x-offset: 20px;"
-elif [ ${x_cur} -ge $(( x_mon/3*2 )) ] ; then
-    x_rofi="east"
-    x_offset="x-offset: -20px;"
-else
-    unset x_rofi
+x_offset=-15   #* Cursor spawn position on clipboard
+y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
+#!base on $HOME/.config/rofi/clipboard.rasi 
+clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
+clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
+#clip_h=55 #! Modify limits for size of the Clipboard
+#clip_w=20 #! This values are transformed per cent(100)
+#? Monitor resolution , scale and rotation 
+x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+#? Rotated monitor? 
+monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
+if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 270 deg
+ tempmon=$x_mon
+    x_mon=$y_mon
+    y_mon=$tempmon
+#! For rotated monitors
 fi
+#? Scaled monitor Size
+monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
+x_mon=$((x_mon * 100 / monitor_scale ))
+y_mon=$((y_mon * 100 / monitor_scale))
+#? monitor position
+x_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .x')
+y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
+#? cursor position
+x_cur=$(hyprctl -j cursorpos | jq '.x')
+y_cur=$(hyprctl -j cursorpos | jq '.y')
+# Ignore position
+ x_cur=$(( x_cur - x_pos))
+ y_cur=$(( y_cur - y_pos))
+#Limiting
+# Multiply before dividing to avoid losing precision due to integer division
+clip_w=$(( x_mon*clip_w/100 ))
+clip_h=$(( y_mon*clip_h/100 ))
+max_x=$((x_mon - clip_w - 5 )) #offset of 5 for gaps
+max_y=$((y_mon - clip_h - 15 )) #offset of 15 for gaps
+x_cur=$((x_cur - x_offset))
+y_cur=$((y_cur - y_offset))
+# 
+x_cur=$(( x_cur < min_x ? min_x : ( x_cur > max_x ? max_x :  x_cur)))
+y_cur=$(( y_cur < min_y ? min_y : ( y_cur > max_y ? max_y :  y_cur)))
 
-if [ ${y_cur} -le $(( y_mon/3 )) ] ; then
-    y_rofi="north"
-    y_offset="y-offset: 20px;"
-elif [ ${y_cur} -ge $(( y_mon/3*2 )) ] ; then
-    y_rofi="south"
-    y_offset="y-offset: -20px;"
-else
-    unset y_rofi
-fi
-
-if [ ! -z $x_rofi ] || [ ! -z $y_rofi ] ; then
-    pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}"
-fi
-
+pos="window {location: north west; x-offset: ${x_cur}px; y-offset: ${y_cur}px;}" #! I just Used the old pos function
+#pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}" 
 
 # read hypr theme border
 
