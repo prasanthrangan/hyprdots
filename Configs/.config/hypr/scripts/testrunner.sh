@@ -7,13 +7,19 @@ RofDir="$HOME/.config/rofi"
 
 roficn=0
 wlogcn=1
-hyprctl dispatch workspace 11
 
 while read loop_theme
 do
     themeName=`echo $loop_theme | cut -d '|' -f 2`
     $ScrDir/themeswitch.sh -s $themeName &> /dev/null
     sleep 0.2
+
+    hyprctl dispatch workspace empty
+    dolphin &> /dev/null &
+    sleep 0.21
+    kitty &> /dev/null &
+    sleep 1.4
+    hyprctl dispatch workspace empty
 
     #walln=`ls -l $WalDir/$themeName | wc -l`
     for (( i=1 ; i<3 ; i++ ))
@@ -25,7 +31,7 @@ do
         # rofiselect
         $ScrDir/rofiselect.sh &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # rofi
         if [ $roficn -lt 8 ] ; then
@@ -36,12 +42,12 @@ do
         cp $RofDir/styles/style_$roficn.rasi $RofDir/config.rasi
         $ScrDir/rofilaunch.sh &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # themeselect
         $ScrDir/themeselect.sh &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # wlogout
         if [ $wlogcn -eq 1 ] ; then
@@ -51,7 +57,7 @@ do
         fi
         $ScrDir/logoutlaunch.sh $wlogcn &> /dev/null &
         sleep 0.7
-        pkill wlogout
+        pkill -x wlogout
 
         # waybar
         $ScrDir/wbarconfgen.sh n &> /dev/null
@@ -59,21 +65,27 @@ do
         # quickapps
         $ScrDir/quickapps.sh kitty firefox spotify code dolphin &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # cliphist
         $ScrDir/cliphist.sh w &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # wallselect
         $ScrDir/swwwallselect.sh &> /dev/null &
         sleep 0.7
-        pkill rofi
+        pkill -x rofi
 
         # wallbash
         $ScrDir/wallbashtoggle.sh
         sleep 0.2
+
+        # volumecontrol
+        for (( i=1 ; i<=6 ; i++ )) ; do
+            [[ i -gt 3 ]] && vol="d" || vol="i"
+            $ScrDir/volumecontrol.sh -o $vol
+        done
     done
 done < $WalCtl
 

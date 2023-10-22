@@ -2,14 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-#export ZSH="$HOME/.oh-my-zsh"
 ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="powerlevel10k"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Set list of themes to pick from when loading at random
@@ -72,13 +70,10 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -98,23 +93,52 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias  l='eza -l  --icons'
-alias ls='eza -1  --icons'
-alias ll='eza -la --icons'
-alias ld='eza -lD --icons'
 
-alias in='sudo pacman -S' # install package
+function command_not_found_handler {
+    local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
+    printf 'zsh: command not found: %s\n' "$1"
+    local entries=( ${(f)"$(/usr/bin/pacman -F --machinereadable -- "/usr/bin/$1")"} )
+    if (( ${#entries[@]} )) ; then
+        printf "${bright}$1${reset} may be found in the following packages:\n"
+        local pkg
+        for entry in "${entries[@]}" ; do
+            local fields=( ${(0)entry} )
+            if [[ "$pkg" != "${fields[2]}" ]] ; then
+                printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
+            fi
+            printf '    /%s\n' "${fields[4]}"
+            pkg="${fields[2]}"
+        done
+    fi
+    return 127
+}
+
+function in {
+    local pkg="$1"
+    if pacman -Si "$pkg" &>/dev/null ; then
+        sudo pacman -S "$pkg"
+    elif pacman -Qi yay &>/dev/null ; then
+        yay -S "$pkg"
+    elif pacman -Qi paru &>/dev/null ; then
+        paru -S "$pkg"
+    fi
+}
+
+alias  l='eza -l  --icons' # long list
+alias ls='eza -1  --icons' # short list
+alias ll='eza -la --icons' # long list all
+alias ld='eza -lD --icons' # long list dirs
 alias un='sudo pacman -Rns' # uninstall package
 alias up='sudo pacman -Syu' # update system/package/aur
 alias pl='pacman -Qs' # list installed package
 alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
-alias vc='code'  # gui code editor
+alias vc='code' # gui code editor
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

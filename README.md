@@ -175,7 +175,6 @@ network-manager-applet | nm tray
 bluez | for bluetooth
 bluez-utils | for bluetooth
 blueman | bt tray
-brightnessctl | brightness control for laptop
 
 | login | |
 | :-- | --- |
@@ -194,9 +193,8 @@ rofi-lbonn-wayland-git | app launcher
 waybar-hyprland-git | status bar
 swww | wallpaper app
 swaylock-effects-git | lockscreen
-swayidle | idle management daemon
 wlogout | logout screen
-grim | screenshot tool
+grimblast-git | screenshot tool
 slurp | selects region for screenshot/screenshare
 swappy | screenshot editor
 cliphist | clipboard manager
@@ -204,9 +202,15 @@ cliphist | clipboard manager
 | dependencies | |
 | :-- | --- |
 polkit-kde-agent | authentication agent
-xdg-desktop-portal-hyprland-git | XDG Desktop Portal
-imagemagick | for kitty/neofetch image processing
-qt5-imageformats | for dolphin thumbnails
+xdg-desktop-portal-hyprland | XDG Desktop Portal
+pacman-contrib | for system update check
+python-pyamdgpuinfo | for amd gpu info
+parallel | for parallel processing
+jq | to read json
+imagemagick | for image processing
+qt5-imageformats | for dolphin image thumbnails
+ffmpegthumbs | for dolphin video thumbnails
+brightnessctl | brightness control for laptop
 pavucontrol | audio settings gui
 pamixer | for waybar audio
 
@@ -229,11 +233,9 @@ ark | kde file archiver
 | shell | |
 | :-- | --- |
 zsh | main shell
-exa | colorful file lister
+eza | colorful file lister
 oh-my-zsh-git | for zsh plugins
 zsh-theme-powerlevel10k-git | theme for zsh
-zsh-syntax-highlighting-git | highlighting of commands
-zsh-autosuggestions-git | see completion as you type
 pokemon-colorscripts-git | display pokemon sprites
 
 </details>
@@ -249,7 +251,7 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>Super</kbd> + <kbd>Del</kbd> | quit hyprland session
 | <kbd>Super</kbd> + <kbd>W</kbd> | toggle window on focus to float
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | toggle window on focus to fullscreen
-| <kbd>Alt</kbd> + <kbd>J</kbd> | toggle layout
+| <kbd>Super</kbd> + <kbd>J</kbd> | toggle layout
 | <kbd>Super</kbd> + <kbd>G</kbd> | toggle window group
 | <kbd>Super</kbd> + <kbd>T</kbd> | launch kitty terminal
 | <kbd>Super</kbd> + <kbd>E</kbd> | launch dolphin file explorer
@@ -261,15 +263,13 @@ pokemon-colorscripts-git | display pokemon sprites
 | <kbd>F10</kbd> | mute audio output (toggle)
 | <kbd>F11</kbd> | decrease volume (hold)
 | <kbd>F12</kbd> | increase volume (hold)
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>↓</kbd> | decrease volume for spotify (hold)
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>↑</kbd> | increase volume for spotify (hold)
 | <kbd>Super</kbd> + <kbd>V</kbd> | clipboard history paste
 | <kbd>Super</kbd> + <kbd>L</kbd> | lock screen
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | logout menu
 | <kbd>Super</kbd> + <kbd>K</kbd> | switch keyboard layout
-| <kbd>Super</kbd> + <kbd>P</kbd> | screenshot snip
+| <kbd>Super</kbd> + <kbd>P</kbd> | drag to select area or click on a window to print
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
-| <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window 
+| <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window
 | <kbd>Super</kbd> + <kbd>LeftClick</kbd> | change the window position
 | <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | cycle through workspaces
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd>| resize windows (hold)
