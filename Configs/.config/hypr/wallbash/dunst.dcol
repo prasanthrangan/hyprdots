@@ -1,4 +1,4 @@
-4|cat $HOME/.config/dunst/dunst.conf $HOME/.config/dunst/Wall-Dcol.conf > $HOME/.config/dunst/dunstrc && killall dunst|.config/dunst/Wall-Dcol.conf
+4|cat $HOME/.config/dunst/dunst.conf $HOME/.config/dunst/Wall-Dcol.conf > $HOME/.config/dunst/dunstrc && killall dunst && dunst & disown|.config/dunst/Wall-Dcol.conf
 
 [urgency_low]
     background = "<dcol_1>"
