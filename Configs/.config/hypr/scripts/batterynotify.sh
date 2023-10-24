@@ -21,7 +21,7 @@ if is_laptop; then
             battery_status=$(cat "$battery/status")
             battery_percentage=$(cat "$battery/capacity")
 
-            if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 40 ]; then
+            if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 20 ]; then
                 dunstify -u CRITICAL "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
             fi
 
