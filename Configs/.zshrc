@@ -1,13 +1,24 @@
+
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+#export ZSH="$HOME/.oh-my-zsh"
 ZSH=/usr/share/oh-my-zsh/
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+#ZSH_THEME="powerlevel10k"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Set list of themes to pick from when loading at random
@@ -70,10 +81,14 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(git git-extras git-flow command-not-found colorize sudo python pylint zsh-interactive-cd zsh-256color zsh-completions)
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -93,52 +108,82 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-
+#
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias  l='eza -l  --icons'
 
-function command_not_found_handler {
-    local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
-    printf 'zsh: command not found: %s\n' "$1"
-    local entries=( ${(f)"$(/usr/bin/pacman -F --machinereadable -- "/usr/bin/$1")"} )
-    if (( ${#entries[@]} )) ; then
-        printf "${bright}$1${reset} may be found in the following packages:\n"
-        local pkg
-        for entry in "${entries[@]}" ; do
-            local fields=( ${(0)entry} )
-            if [[ "$pkg" != "${fields[2]}" ]] ; then
-                printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
-            fi
-            printf '    /%s\n' "${fields[4]}"
-            pkg="${fields[2]}"
-        done
-    fi
-    return 127
-}
-
-function in {
-    local pkg="$1"
-    if pacman -Si "$pkg" &>/dev/null ; then
-        sudo pacman -S "$pkg"
-    elif pacman -Qi yay &>/dev/null ; then
-        yay -S "$pkg"
-    elif pacman -Qi paru &>/dev/null ; then
-        paru -S "$pkg"
-    fi
-}
-
-alias  l='eza -l  --icons' # long list
-alias ls='eza -1  --icons' # short list
-alias ll='eza -la --icons' # long list all
-alias ld='eza -lD --icons' # long list dirs
+alias in='sudo pacman -S' # install package
 alias un='sudo pacman -Rns' # uninstall package
 alias up='sudo pacman -Syu' # update system/package/aur
 alias pl='pacman -Qs' # list installed package
 alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
-alias vc='code' # gui code editor
+alias vc='code'  # gui code editor
+
+
+
+# for zoxide
+eval "$(zoxide init zsh)"
+
+
+#verbose for neofetch
+alias nf="neofetch"
+#neofetch
+
+# for git
+alias gc="git clone"
+alias gda="git add *"
+
+# for browser
+
+alias f="brave "
+alias goo="brave google.com"
+alias wha="brave web.whatsapp.com"
+alias med="brave medium.com"
+alias you="brave youtube.com/"
+alias typee="brave monkeytype.com/"
+
+
+github(){
+    brave github.com/$1
+}
+
+# with some channels
+alias ravi="brave youtube.com/@ravindrababu_ravula/videos"
+alias mailj="brave https://mail.google.com/mail/u/1/#inbox"
+alias mailc="brave https://mail.google.com/mail/u/3/#inbox"
+
+mail(){
+    brave https://mail.google.com/mail/u/$1/#inbox
+}
+
+
+youtube(){
+    brave youtube.com/$1
+}
+
+alias bb=" brave https://www.hotstar.com/in/shows/bigg-boss/14714"
+
+
+# for problems
+alias potd="brave https://practice.geeksforgeeks.org/problem-of-the-day"
+alias leet="brave https://leetcode.com/problemset/all/"
+
+# for personal
+alias rmAAA="rm -rf *"
+alias rmf="rm -rf"
+alias c="clear"
+
+
+
+# for python update && pip
+alias pipup="pip3 install --upgrade pip"
+
+# dynamic alias
+#alias gittt='f(){ brave github.com/"$@"; unset -f f; };f'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -147,7 +192,7 @@ alias vc='code' # gui code editor
 #neofetch
 
 #Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+#pokemon-colorscripts --no-title -r 1,3,6
 
 #Display random gifs
 #kitten icat --align left $(find $HOME/.config/neofetch/gifs/ -name "*.gif" | sort -R | head -1)
