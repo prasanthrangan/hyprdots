@@ -4,7 +4,7 @@
 WALLPAPER_INFO=$(swww query)
 
 # Extract the image path from the swww query output using awk
-IMAGE_PATH=$(echo "$WALLPAPER_INFO" | awk -F ": image: " '{print $2}')
+IMAGE_PATH=$(echo "$WALLPAPER_INFO" | awk -F ": image: " '{print $2}' | sort | uniq | head -n 1)
 
 # Check if the image path is not empty
 if [ -n "$IMAGE_PATH" ]; then
