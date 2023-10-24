@@ -52,7 +52,7 @@ cd ~/Hyprdots/Scripts
 >```
 
 Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
-For more details, please refer [installation.md](https://github.com/prasanthrangan/hyprdots/blob/main/installation.md)
+For more details, please refer [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation)
 
 
 <div align = right> <br><br>
@@ -62,7 +62,7 @@ For more details, please refer [installation.md](https://github.com/prasanthrang
 
 ## Theming
 
-To add your own custom theme, please refer [theming.md](https://github.com/prasanthrangan/hyprdots/blob/main/theming.md)
+To add your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
 
 - Available themes
   - [x] Catppuccin-Mocha
