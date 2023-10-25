@@ -4,14 +4,18 @@
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-spycol="$HOME/.config/spicetify/Themes/Sleek/color.ini"
+scol="$HOME/.config/spicetify/Themes/Sleek/color.ini"
+dcol="$HOME/.config/spicetify/Themes/Sleek/Wall-Dcol.ini"
 
 # regen conf
 
-if pgrep -x spotify > /dev/null ; then
-    pkill -x spicetify
-    spicetify -s -q watch &
-fi
+if pkg_installed spotify && pkg_installed spicetify-cli && [ `spicetify config | awk '{if ($1=="color_scheme") print $2}'` == "Wallbash" ] ; then
 
-sed -i 's/#//g' $spycol
+        if pgrep -x spotify > /dev/null ; then
+            pkill -x spicetify
+            spicetify -s -q watch &
+        fi
+
+        sed 's/#//g' $dcol > $scol
+fi
 
