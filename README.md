@@ -1,3 +1,5 @@
+### This is a fork of [prasanthrangan's hyprdots](https://github.com/prasanthrangan/hyprdots) and may not be up to date with the original rice. This fork has been made to mold it specifically for Lenovo Legion 5 (i5 10th gen, gtx 1650).
+
 ###### *<div align = right><sub>// design by t2</sub></div>*
 <div align = center><img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png"><br><br>
 
