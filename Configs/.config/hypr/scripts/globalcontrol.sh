@@ -3,7 +3,6 @@
 # wallpaper var
 EnableWallDcol=0
 ConfDir="$HOME/.config"
-CloneDir="$HOME/Hyprdots"
 ThemeCtl="$ConfDir/swww/wall.ctl"
 cacheDir="$ConfDir/swww/.cache"
 
@@ -47,3 +46,4 @@ get_aurhlpr()
         aurhlpr="paru"
     fi
 }
+

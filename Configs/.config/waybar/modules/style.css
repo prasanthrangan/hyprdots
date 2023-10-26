@@ -3,7 +3,7 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: ${s_fontpx}px;
+    font-size: 12px;
     min-height: 10px;
 }
 
@@ -17,12 +17,15 @@ tooltip {
     background: @main-bg;
     color: @main-fg;
     border-radius: ${t_radius}px;
-    border-width: 0px;
+    border: 1px solid @main-fg;
+    margin: 0;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 #workspaces button {
     box-shadow: none;
-	text-shadow: none;
+    text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
     margin-top: ${w_margin}px;
@@ -56,7 +59,7 @@ tooltip {
 
 #taskbar button {
     box-shadow: none;
-	text-shadow: none;
+    text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
     margin-top: ${w_margin}px;

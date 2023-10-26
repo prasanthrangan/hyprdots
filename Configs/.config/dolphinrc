@@ -4,6 +4,7 @@ MenuBar=Disabled
 update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
 
 [General]
+RememberOpenedTabs=false
 ShowSelectionToggle=false
 ShowStatusBar=false
 Version=202
@@ -15,6 +16,7 @@ PreviewSize=112
 
 [InformationPanel]
 dateFormat=ShortFormat
+previewsAutoPlay=true
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false
