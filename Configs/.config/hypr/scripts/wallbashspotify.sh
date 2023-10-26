@@ -9,13 +9,19 @@ dcol="$HOME/.config/spicetify/Themes/Sleek/Wall-Dcol.ini"
 
 # regen conf
 
-if pkg_installed spotify && pkg_installed spicetify-cli && [ `spicetify config | awk '{if ($1=="color_scheme") print $2}'` == "Wallbash" ] ; then
+if pkg_installed spotify && pkg_installed spicetify-cli ; then
 
-        if pgrep -x spotify > /dev/null ; then
-            pkill -x spicetify
-            spicetify -s -q watch &
-        fi
+    if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] ; then
+        tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
+        spicetify config current_theme Sleek
+        spicetify config color_scheme Wallbash
+    fi
 
-        sed 's/#//g' $dcol > $scol
+    if pgrep -x spotify > /dev/null ; then
+        pkill -x spicetify
+        spicetify -q watch -s &
+    fi
+
+    sed 's/#//g' $dcol > $scol
 fi
 

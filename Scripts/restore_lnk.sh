@@ -19,6 +19,11 @@ do
     ln -fs $HOME/.config/$fixd_slink $HOME/.config/$linkd_file
 done
 
+if [ -f $HOME/.config/hypr/scripts/globalcontrol.sh ] ; then
+    sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" $HOME/.config/hypr/scripts/globalcontrol.sh
+    echo "Clone directory globalcontrol updated..."
+fi
+
 if printenv HYPRLAND_INSTANCE_SIGNATURE &> /dev/null
     then
     echo "reloading hyprland..."

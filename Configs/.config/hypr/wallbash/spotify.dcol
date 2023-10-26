@@ -1,0 +1,24 @@
+4|$ScrDir/wallbashspotify.sh|.config/spicetify/Themes/Sleek/Wall-Dcol.ini
+
+[Wallbash]
+text               = <dcol_3>
+subtext            = <dcol_3>
+nav-active-text    = <dcol_3>
+main               = <dcol_0>
+sidebar            = <dcol_0>
+player             = <dcol_0>
+card               = <dcol_0>
+shadow             = <dcol_1>
+main-secondary     = <dcol_0>
+button             = <dcol_1>
+button-secondary   = <dcol_2>
+button-active      = <dcol_2>
+button-disabled    = <dcol_0>
+nav-active         = <dcol_2>
+play-button        = <dcol_0>
+tab-active         = <dcol_1>
+notification       = <dcol_0>
+notification-error = <dcol_0>
+playback-bar       = <dcol_0>
+misc               = <dcol_2>
+
