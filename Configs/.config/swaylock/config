@@ -1,0 +1,15 @@
+screenshots
+clock
+indicator
+indicator-idle-visible
+indicator-radius=140
+indicator-thickness=7
+effect-blur=6x4
+effect-vignette=1:1
+ring-color=262626
+key-hl-color=a6a6a6
+line-color=a6a6a6
+inside-color=262626
+separator-color=d9d9d900
+grace=0
+fade-in=0
