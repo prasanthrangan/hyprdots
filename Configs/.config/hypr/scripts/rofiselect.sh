@@ -9,9 +9,10 @@ Rofilaunch="$HOME/.config/rofi/config.rasi"
 
 
 # scale for monitor x res
-x_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 1`
+x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
+x_monres=$((x_monres * 100 / monitor_scale ))
 x_monres=$(( x_monres*18/100 ))
-
 
 # set rofi override
 elem_border=$(( hypr_border * 5 ))
@@ -31,4 +32,5 @@ if [ ! -z $RofiSel ] ; then
     cp $RofiStyle/$RofiSel.rasi $Rofilaunch
     dunstify "t1" -a " ${RofiSel} applied..." -i "$RofiStyle/$RofiSel.png" -r 91190 -t 2200
 fi
+
 
