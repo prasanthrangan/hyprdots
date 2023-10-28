@@ -38,7 +38,7 @@ if [ -n "$nvidia_gpu" ]; then
 
   primary_gpu="NVIDIA GPU"
   # Collect GPU information for NVIDIA
-  gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
+  gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.max_limit --format=csv,noheader,nounits)
   # Split the comma-separated values into an array
   IFS=',' read -ra gpu_data <<< "$gpu_info"
   # Extract individual values
