@@ -7,8 +7,9 @@ RofiConf="$HOME/.config/rofi/themeselect.rasi"
 
 
 # scale for monitor x res
-x_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 1`
-x_monres=$(( x_monres*17/100 ))
+x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
+x_monres=$(( x_monres * 17 / monitor_scale ))
 
 
 # set rofi override
