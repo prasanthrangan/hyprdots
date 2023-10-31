@@ -1,35 +1,90 @@
 #!/bin/bash
 
-# Check if the system is a laptop
-is_laptop() {
-    if [ -d /sys/class/power_supply/ ]; then
-        for supply in /sys/class/power_supply/*; do
-            if [ -e "$supply/type" ]; then
-                type=$(cat "$supply/type")
-                if [ "$type" == "Battery" ]; then
-                    return 0  # It's a laptop
-                fi
-            fi
-        done
+# User Variables
+battery_critical_threshold=20     #? Set  Battery  Critical Limit to suspend
+battery_low_threshold=40    #? Set Battery Low Limit
+unplug_charger_threshold=80   #? Set Max Battery Status Warning
+countdown=300      #? Countdown timer ; if set to less than 60 defaults to 60 seconds
+action="suspend" #? will be appended to systemctl $action
+
+is_laptop() { # Check if the system is a laptop
+    if grep -q "Battery" /sys/class/power_supply/*/type; then
+        return 0  # It's a laptop
+    else
+      
+        return 1  # It's not a laptop
     fi
-    return 1  # It's not a laptop
+}
+send_notification() { # Send notification
+    notify-send -t 5000 $1 -u $2 "$3" "$4" # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
+}
+check_battery() {  # Check battery status
+    echo $(cat "$1/status" && sleep 0.1) $(< "$1/capacity")    # Read and echo the battery status and capacity
+}
+handle_action () {
+count=$(( $countdown > 60 ? $countdown : 60 )) # reset count
+nohup systemctl $action
 }
 
-if is_laptop; then
-    while true; do
-        for battery in /sys/class/power_supply/BAT*; do
-            battery_status=$(cat "$battery/status")
-            battery_percentage=$(cat "$battery/capacity")
-
-            if [ "$battery_status" == "Discharging" ] && [ "$battery_percentage" -le 20 ]; then
-                dunstify -u CRITICAL "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
-            fi
-
-            if [ "$battery_status" == "Charging" ] && [ "$battery_percentage" -ge 80 ]; then
-                dunstify -u NORMAL "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
-            fi
+# Handle the power supply status
+handle_power_supply() {
+for battery in /sys/class/power_supply/BAT*; do
+        read battery_status battery_percentage <<< $(check_battery $battery)
+case $battery_status in         # Handle the power supply status
+                "Discharging")
+                    if [[ "$prev_status" == "Charging" ]]; then
+                        prev_status=$battery_status
+                        urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
+                        send_notification  "-r 10" "$urgency" "Charger Plug OUT" "Battery is at $battery_percentage%."
+                    fi
+                    # Check if battery is below critical threshold
+                    if [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
+                        count=$(( $countdown > 60 ? $countdown : 60 ))
+                        while [ $count -gt 0 ] && [[ "$(check_battery $battery)" != "Charging"* ]]; do
+                            send_notification "-r 10" "CRITICAL" "Battery Critically Low" "$battery_percentage% is critically low. Device will $action in $((count/60)):$((count%60)) ."
+                            count=$((count-1))
+                            sleep 1
+                        done
+                        if [ $count -eq 0 ]; then
+                             handle_action
+                        fi
+                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && (( (last_notified_percentage - battery_percentage) >= 1 )); then
+                        send_notification "-r 10" "CRITICAL" "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
+                        last_notified_percentage=$battery_percentage
+                    fi
+                    ;;
+                "Charging")                     
+                    if [[ "$prev_status" == "Discharging" ]]; then
+                        prev_status=$battery_status
+                        count=$(( $countdown > 60 ? $countdown : 60 )) # reset count
+                        urgency=$([[ "$battery_percentage" -ge $unplug_charger_threshold ]] && echo "CRITICAL" || echo "NORMAL")
+                        send_notification "-r 10" "$urgency" "Charger Plug In" "Battery is at $battery_percentage%."
+                    fi
+                    if [[ "$battery_percentage" -ge $unplug_charger_threshold ]] && (( (battery_percentage - last_notified_percentage) >= 1 )); then
+                        send_notification "-r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
+                        last_notified_percentage=$battery_percentage
+                    fi
+                    ;;
+                "Full")
+                    send_notification "-r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
+                    ;;
+                "Not Charging")
+                    send_notification "-r 10" "CRITICAL" "Device Not Charging!" "Please Check your Charger or Device Temperature"
+                    ;;
+                *)
+                    send_notification "-r 10" "CRITICAL" "Unknown power supply status." "Please raise an issue to the Github Repo"
+                    ;;
+            esac
         done
-        sleep 300  # Sleep for 5 minutes before checking again
-    done
-fi
-
+}
+main() { # Main function
+    if is_laptop; then
+        handle_power_supply # initiate the function
+        last_notified_percentage=$battery_percentage
+        prev_status=$battery_status
+        dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2> /dev/null | while read -r battery_status_change; do
+            handle_power_supply
+        done
+    fi
+}
+main
