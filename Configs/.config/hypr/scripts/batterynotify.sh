@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # User Variables
-battery_critical_threshold=20     #? Set  Battery  Critical Limit to suspend
-battery_low_threshold=40    #? Set Battery Low Limit
+battery_critical_threshold=10     #? Set  Battery  Critical Limit to suspend
+battery_low_threshold=20    #? Set Battery Low Limit
 unplug_charger_threshold=80   #? Set Max Battery Status Warning
 countdown=300      #? Countdown timer ; if set to less than 60 defaults to 60 seconds
 action="suspend" #? will be appended to systemctl $action
