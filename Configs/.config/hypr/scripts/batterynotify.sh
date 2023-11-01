@@ -8,7 +8,7 @@ countdown=300      #? Countdown timer ; if set to less than 60 defaults to 60 se
 action="suspend" #? will be appended to systemctl $action
 
 is_laptop() { # Check if the system is a laptop
-    if grep -q "Battery" /sys/class/power_supply/*/type; then
+    if grep -q "Battery" /sys/class/power_supply/BAT*/type; then
         return 0  # It's a laptop
     else
         exit 0  # It's not a laptop
@@ -72,7 +72,7 @@ case $battery_status in         # Handle the power supply status
                     ;;
                     *)
                     #send_notification "-r 10" "CRITICAL" "Unknown power supply status." "Please raise an issue to the Github Repo(You will only see this once after boot)"
-                    echo "Unknown power supply status.Please raise an issue to the Github Repo"
+                    echo "Unknown power supply status.Please raise an issue to the Github Repo, And please be responsive"
                     exit 0
                     ;;
             esac
