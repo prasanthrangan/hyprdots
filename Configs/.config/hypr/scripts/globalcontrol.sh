@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 # wallpaper var
-EnableWallDcol=0
+EnableWallDcol=1
 ConfDir="$HOME/.config"
-CloneDir="$HOME/Hyprdots"
+CloneDir="/home/joshr/hyprdots"
 ThemeCtl="$ConfDir/swww/wall.ctl"
 cacheDir="$ConfDir/swww/.cache"
 

@@ -5,10 +5,10 @@
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 dcoDir="$HOME/.config/hypr/wallbash"
-input_wall="$1"
+input_wall=$1
 cacheImg=$(basename "${input_wall}")
 
-if [ -z "${input_wall}" ] || [ ! -f "${input_wall}" ] ; then
+if [ -z "$input_wall" ] || [ ! -f ${input_wall} ] ; then
     echo "Error: Input wallpaper not found!"
     exit 1
 fi
@@ -17,10 +17,10 @@ fi
 # extract dcols
 
 if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
-    magick "${input_wall}" -colors 4 -define histogram:unique-colors=true -format "%c" histogram:info: > "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+    magick ${input_wall} -colors 4 -define histogram:unique-colors=true -format "%c" histogram:info: > ${cacheDir}/${gtkTheme}/${cacheImg}.dcol
 fi
 
-dcol=( $(awk '{print substr($3,1,7)}' "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" | sort) )
+dcol=( $(awk '{print substr($3,1,7)}' ${cacheDir}/${gtkTheme}/${cacheImg}.dcol | sort) )
 
 
 # loop thru templates 

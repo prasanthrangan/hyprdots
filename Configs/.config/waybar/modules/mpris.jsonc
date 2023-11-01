@@ -3,7 +3,9 @@
         "format-paused": "{status_icon} <i>{dynamic}</i>",
         "player-icons": { 
             "default": "▶",
-            "mpv": "🎵"
+            "mpv": "🎵",
+	    "spotify": "",
+	    "firefox": ""
         },
         "status-icons": {
             "paused": "⏸"

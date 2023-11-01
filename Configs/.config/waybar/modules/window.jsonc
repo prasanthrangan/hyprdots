@@ -4,13 +4,12 @@
         "rewrite": {
             "${USER}@${set_sysname}:(.*)": "$1 ",
             "(.*) — Mozilla Firefox": "$1 󰈹",
-            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*)Mozilla Firefox": "$1Firefox 󰈹",
             "(.*) - Visual Studio Code": "$1 󰨞",
-            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*)Visual Studio Code": "$1Code 󰨞",
             "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify": "Spotify 󰓇",
-            "(.*)Steam": "Steam 󰓓"
+            "(.*)Spotify": "$1Spotify 󰓇",
+            "(.*)Steam": "$1Steam 󰓓"
         },
         "max-length": 1000
     },
-

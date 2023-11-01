@@ -3,7 +3,7 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 11px;
+    font-size: 12px;
     min-height: 10px;
 }
 
@@ -16,7 +16,7 @@ window#waybar {
 tooltip {
     background: @main-bg;
     color: @main-fg;
-    border-radius: 7px;
+    border-radius: 8px;
     border-width: 0px;
 }
 
@@ -88,6 +88,7 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#backlight,
 #battery,
 #bluetooth,
 #custom-cliphist,
@@ -130,13 +131,13 @@ tooltip {
 }
 
 #custom-r_end {
-    border-radius: 0px 21px 21px 0px;
+    border-radius: 0px 22px 22px 0px;
     margin-right: 9px;
     padding-right: 3px;
 }
 
 #custom-l_end {
-    border-radius: 21px 0px 0px 21px;
+    border-radius: 22px 0px 0px 22px;
     margin-left: 9px;
     padding-left: 3px;
 }
@@ -154,13 +155,13 @@ tooltip {
 }
 
 #custom-rr_end {
-    border-radius: 0px 7px 7px 0px;
+    border-radius: 0px 8px 8px 0px;
     margin-right: 9px;
     padding-right: 3px;
 }
 
 #custom-rl_end {
-    border-radius: 7px 0px 0px 7px;
+    border-radius: 8px 0px 0px 8px;
     margin-left: 9px;
     padding-left: 3px;
 }
