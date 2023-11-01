@@ -11,8 +11,7 @@ is_laptop() { # Check if the system is a laptop
     if grep -q "Battery" /sys/class/power_supply/*/type; then
         return 0  # It's a laptop
     else
-      
-        return 1  # It's not a laptop
+        exit 0  # It's not a laptop
     fi
 }
 send_notification() { # Send notification
@@ -71,8 +70,10 @@ case $battery_status in         # Handle the power supply status
                 "Not Charging")
                     send_notification "-r 10" "CRITICAL" "Device Not Charging!" "Please Check your Charger or Device Temperature"
                     ;;
-                *)
-                    send_notification "-r 10" "CRITICAL" "Unknown power supply status." "Please raise an issue to the Github Repo"
+                    *)
+                    #send_notification "-r 10" "CRITICAL" "Unknown power supply status." "Please raise an issue to the Github Repo(You will only see this once after boot)"
+                    echo "Unknown power supply status.Please raise an issue to the Github Repo"
+                    exit 0
                     ;;
             esac
         done
@@ -82,9 +83,7 @@ main() { # Main function
         handle_power_supply # initiate the function
         last_notified_percentage=$battery_percentage
         prev_status=$battery_status
-        dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2> /dev/null | while read -r battery_status_change; do
-            handle_power_supply
-        done
+        dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2> /dev/null | while read -r battery_status_change; do handle_power_supply ; done
     fi
 }
 main
