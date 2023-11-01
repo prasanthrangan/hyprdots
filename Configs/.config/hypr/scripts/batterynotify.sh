@@ -72,7 +72,7 @@ case $battery_status in         # Handle the power supply status
                     ;;
                     *)
                     #send_notification "-r 10" "CRITICAL" "Unknown power supply status." "Please raise an issue to the Github Repo(You will only see this once after boot)"
-                    echo "Status: $battery_status ! Unknown power supply status.Please raise an issue to the Github Repo."
+                    echo "Status: '"$battery_status"' Unknown power supply status.Please raise an issue to the Github Repo."
                     exit 0
                     ;;
             esac
