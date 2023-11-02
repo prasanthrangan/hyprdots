@@ -71,7 +71,7 @@ case "$battery_status" in         # Handle the power supply status
                     if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]] && [[ "$battery_status" == "Not"* ]] ; then
                     touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
                     count=$(( timer > $mnt ? timer :  $mnt )) # reset count                    
-                    echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
+                    echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors."
                     fn_notify  "-r 10" "CRITICAL" "Charger Plug In" "Battery is at $battery_percentage%."
                     fi
                     if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]]; then
