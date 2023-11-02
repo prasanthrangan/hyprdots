@@ -19,8 +19,8 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
       echo "  --low, -l         Set battery low threshold (default: $mnl% percent)"
       echo "  --unplug, -u      Set unplug charger threshold (default: $mxu% percent )"
       echo "  --timer, -t       Set countdown timer (default: $mnt seconds)"
-      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: $mni% percent)"
-      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: $mnn minutes)"
+      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: 2% percent)"
+      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: 5 minutes)"
       echo "  --execute, -e     Set command/script to execute if battery on critical threshold (default: systemctl suspend)"
       echo "  --help, -h        Show this help message
       Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
@@ -93,7 +93,7 @@ case "$battery_status" in         # Handle the power supply status
                     if [[ $battery_status != "Discharging" ]]; then
                     now=$(date +%s) 
                     if [[ "$prev_status" == *"Charging"* ]] || ((now - lt >= $((notify*60)) )); then
-                     fn_notify "-t 5000 -r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
+                     fn_notify "-t 5000 -r 69" "CRITICAL" "Battery Full" "Please unplug your Charger"
                     prev_status=$battery_status lt=$now
                     fi
                     fi
@@ -116,8 +116,8 @@ battery_critical_threshold=${battery_critical_threshold:-$mnc}
 unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
 battery_low_threshold=${battery_low_threshold:-$mnl}
 timer=${timer:-$mnt}
-notify=${notify:-$mnn}
-interval=${interval:-$mni}
+notify=${notify:-5}
+interval=${interval:-2}
 
 execute=${execute:-"systemctl suspend"}
 cat <<  EOF
