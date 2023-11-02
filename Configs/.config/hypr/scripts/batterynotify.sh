@@ -67,7 +67,13 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Charging")                     
+                "Not"*|"Charging") # Due to modifications of some devices Not Charging after reaching 99 or limits
+                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]] && [[ "$battery_status" == "Not"* ]] ; then
+                    touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
+                    count=$(( timer > $mnt ? timer :  $mnt )) # reset count                    
+                    echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
+                    fn_notify  "-r 10" "CRITICAL" "Charger Plug In" "Battery is at $battery_percentage%."
+                    fi
                     if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]]; then
                         prev_status=$battery_status
                         count=$(( timer > $mnt ? timer :  $mnt )) # reset count
@@ -79,22 +85,7 @@ case "$battery_status" in         # Handle the power supply status
                 "Full")
                     fn_notify  "-r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"                    
                     ;;
-                "Not charging"|"Not Charging"|*"Not"*)
-                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]]; then
-                    touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
-                    count=$(( timer > $mnt ? timer :  $mnt )) # reset count                    
-                    echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
-                    fn_notify  "-r 10" "CRITICAL" "Charger Plug In" "Battery is at $battery_percentage%."
-                    else
-                    if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Charging" ]]; then
-                        prev_status=$battery_status
-                        count=$(( timer > $mnt ? timer :  $mnt )) # reset count
-                        urgency=$([[ "$battery_percentage" -ge $unplug_charger_threshold ]] && echo "CRITICAL" || echo "NORMAL")
-                        fn_notify  "-r 10" "$urgency" "Charger Plug In" "Battery is at $battery_percentage%."
-                    fi
-                    fi    
-                    fn_percentage                    
-                    ;;                                       
+                                    
                     *)
                     if [[ ! -f "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$" ]]; then
                     echo "Status: '==>> "$battery_status" <<==' Script on Fallback mode,Unknown power supply status.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
