@@ -1,6 +1,6 @@
 #!/bin/bash
 in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
-mnc=5 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 #Defaults Ranges
+mnc=5 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 mni=1 mxi=10 #Defaults Ranges
 while (( "$#" )); do  # Parse command-line arguments and defaults  
   case "$1" in
 "--full"|"-f") if in_range "$2" $mnf $mxf; then battery_full_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnf - $mxf." >&2 ; exit 1 ; fi;;
@@ -9,14 +9,18 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--unplug"|"-u") if in_range "$2" $mnu $mxu; then unplug_charger_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnu $mxu." >&2 ; exit 1 ; fi;;
 "--timer"|"-t") if in_range "$2" $mnt $mxt; then timer=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnt - $mxt." >&2 ; exit 1 ; fi;;
 "--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "Error: $1 must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
+"--interval"|"-i") if in_range "$2" $mni $mxi; then notify=$2 ; shift 2 ; else echo "Error: $1 must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
+
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
-      echo "  --full, -F    Set battery full threshold (default: $mnf)"
-      echo "  --critical, -c    Set battery critical threshold (default: $mnc)"
-      echo "  --low, -l         Set battery low threshold (default: $mnl)"
-      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu)"
-      echo "  --timer, -t       Set countdown timer (default: $mnt)"
+      echo "  --full, -F        Set battery full threshold (default: $mnf% percent)"
+      echo "  --critical, -c    Set battery critical threshold (default: $mnc% percent)"
+      echo "  --low, -l         Set battery low threshold (default: $mnl% percent)"
+      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu% percent )"
+      echo "  --timer, -t       Set countdown timer (default: $mnt seconds)"
+      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: $mni% percent)"
+      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: $mnn minutes)"
       echo "  --execute, -e     Set command/script to execute if battery on critical threshold (default: systemctl suspend)"
       echo "  --help, -h        Show this help message
       Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
@@ -36,7 +40,7 @@ fn_notify () { # Send notification
     notify-send  $1 -u $2 "$3" "$4" # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
 }
 fn_percentage () {
-                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= 2 )); then
+                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then
                         fn_notify  "-t 5000 -r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
@@ -49,7 +53,7 @@ fn_percentage () {
                             sleep 1  
                         done
                         [ $count -eq 0 ] && fn_action
-                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= 2 )); then
+                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= $interval )); then
                         fn_notify  "-t 5000 -r 10" "CRITICAL" "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
                         last_notified_percentage=$battery_percentage
                     fi
@@ -60,9 +64,7 @@ fn_action () { #handles the $execute command
 }
 fn_status () { # Handle the power supply status
 for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
-if [ $battery_percentage -eq $battery_full_threshold ]; then battery_status="Full"
-echo $battery_percentage 
-fi
+if [ $battery_percentage -eq $battery_full_threshold ]; then battery_status="Full" ; echo $battery_percentage ;fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging")
                     if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
@@ -115,6 +117,7 @@ unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
 battery_low_threshold=${battery_low_threshold:-$mnl}
 timer=${timer:-$mnt}
 notify=${notify:-$mnn}
+interval=${interval:-$mni}
 
 execute=${execute:-"systemctl suspend"}
 cat <<  EOF
@@ -127,7 +130,10 @@ Check $0 --help for options.
     |  Low       | $battery_low_threshold 
     | Unplug     | $unplug_charger_threshold  
 
-!!! Notification interval for Battery Full / $battery_full_threshold% is $notify minutes. 
+!!! Notification interval for Low and Unplug Percentage is $interval Percent(%).
+
+!!! Notification interval for Battery Full / $battery_full_threshold% is $notify minutes.
+
 !!! If Battery is $battery_critical_threshold%, Device will execute $execute after $timer seconds. 
 
 If you have Errors Please Post an issue at https://github.com/prasanthrangan/hyprdots
