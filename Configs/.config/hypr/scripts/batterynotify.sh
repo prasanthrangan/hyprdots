@@ -72,8 +72,8 @@ fn_notify () { # Send notification
     notify-send -t 5000 $1 -u $2 "$3" "$4" # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
 }
 fn_percentage () {
-                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] && (( (battery_percentage - last_notified_percentage) >= 1 )); then
-                        fn_notify  "-r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger."
+                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= 2 )); then
+                        fn_notify  "-r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
                         count=$(( timer > 120 ? timer : 120 )) # reset countstatus
@@ -83,10 +83,10 @@ fn_percentage () {
                             fn_notify "-r 10" "CRITICAL" "Battery Critically Low" "$battery_percentage% is critically low. Device will execute $execute in $((count/60)):$((count%60)) ."
                             count=$((count-1))
                             sleep 1
-                            #battery_status="Charging"
+                            
                         done
                         [ $count -eq 0 ] && fn_action
-                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && (( (last_notified_percentage - battery_percentage) >= 1 )); then
+                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= 2 )); then
                         fn_notify  "-r 10" "CRITICAL" "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
                         last_notified_percentage=$battery_percentage
                     fi
@@ -166,10 +166,10 @@ If Battery is $battery_critical_threshold%, Device will execute $execute after $
 If you have Errors Please Post an issue at https://github.com/prasanthrangan/hyprdots
 
 EOF
-
-fn_status  # initiate the function
+    fn_status  # initiate the function
     last_notified_percentage=$battery_percentage
     prev_status=$battery_status
+
 dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2> /dev/null | while read -r battery_status_change; do fn_status  ; done
     fi
 }
