@@ -2,7 +2,7 @@
 is_number_in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
 # Parse command-line arguments
 
-while (( "$#" )); do  mnc=1 mxc=100 mxl=50 mxu=100 mnt=10 mxt=1000 mnu=50 mnl=20
+while (( "$#" )); do  mnc=1 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=10 mxt=1000  
   case "$1" in
     "--critical"|"-c")
       if is_number_in_range "$2" $mnc $mxc; then
@@ -55,16 +55,11 @@ while (( "$#" )); do  mnc=1 mxc=100 mxl=50 mxu=100 mnt=10 mxt=1000 mnu=50 mnl=20
       ;;
   esac
 done
-
-# Rest of your script
-
-
-
-
 is_laptop() { # Check if the system is a laptop
     if grep -q "Battery" /sys/class/power_supply/BAT*/type; then
         return 0  # It's a laptop
     else
+    echo "Cannot Detect a Battery. If this seems an error please report an issue to https://github.com/prasanthrangan/hyprdots."
         exit 0  # It's not a laptop
     fi
 }
@@ -148,9 +143,9 @@ case "$battery_status" in         # Handle the power supply status
 }
 main() { # Main function
     if is_laptop; then
-        battery_critical_threshold=${battery_critical_threshold:-5}
-    unplug_charger_threshold=${unplug_charger_threshold:-100}
-    battery_low_threshold=${battery_low_threshold:-10}
+        battery_critical_threshold=${battery_critical_threshold:-$mnc}
+    unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
+    battery_low_threshold=${battery_low_threshold:-mnl}
     timer=${timer:-$mnt}
     execute=${execute:-"systemctl suspend"}
 cat <<  EOF
