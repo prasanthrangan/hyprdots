@@ -25,30 +25,22 @@
         "disable-scroll": true,
         "all-outputs": true,
         "on-click": "activate",
-        "persistent_workspaces": {
+	"persistent_workspaces": { 
             "1": [],
             "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": [],
-            "9": [],
-            "10": []
-        }
-    },
+            "3": []
+	}
+},
 
     "mpris": {
-        "format": "{player_icon} {dynamic}",
-        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "format": "{player_icon}  {status_icon} {dynamic}",
+        "format-paused": "{player_icon}  {status_icon} <i>{dynamic}</i>",
         "player-icons": { 
-            "default": "▶",
-            "mpv": "🎵",
 	    "spotify": "",
 	    "firefox": ""
         },
         "status-icons": {
+	    "playing": "▶",
             "paused": "⏸"
         },
         // "ignored-players": ["firefox"]
