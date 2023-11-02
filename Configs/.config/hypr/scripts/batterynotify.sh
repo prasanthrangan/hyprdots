@@ -1,56 +1,22 @@
 #!/bin/bash
-is_number_in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
-# Parse command-line arguments
-
-while (( "$#" )); do  mnc=1 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=10 mxt=1000  
+in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
+mnc=5 mxc=20 mnl=20 mnu=50 mxl=50 mxu=100 mnt=60 mxt=1000 #Defaults
+while (( "$#" )); do  # Parse command-line arguments and defaults  
   case "$1" in
-    "--critical"|"-c")
-      if is_number_in_range "$2" $mnc $mxc; then
-        battery_critical_threshold=$2
-        shift 2
-      else
-        echo "Error: $1 must be a number between $mnc - $mxc." >&2
-        exit 1
-      fi
-;;
-    "--low"|"-l")
-      if is_number_in_range "$2" $mnl $mnu; then
-        battery_low_threshold=$2
-        shift 2
-      else
-        echo "Error: $1 must be a number between $mnl - $mnu." >&2
-        exit 1
-      fi
-      ;;
-
-    "--unplug"|"-u")
-      if is_number_in_range "$2" $mnu $mxu; then
-        unplug_charger_threshold=$2
-        shift 2
-      else
-        echo "Error: $1 must be a number between $mnu $mxu." >&2
-        exit 1
-      fi
-      ;;
-    "--timer"|"-t")
-      if is_number_in_range "$2" $mnt $mxt; then
-        timer=$2
-        shift 2
-      else
-        echo "Error: $1 must be a number between $mnt - $mxt." >&2
-        exit 1
-      fi
-      ;;
-
+"--critical"|"-c") if in_range "$2" $mnc $mxc; then battery_critical_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnc - $mxc." >&2 ; exit 1 ; fi;;
+"--low"|"-l") if in_range "$2" $mnl $mnu; then battery_low_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnl - $mnu." >&2 ; exit 1 ; fi;;
+"--unplug"|"-u") if in_range "$2" $mnu $mxu; then unplug_charger_threshold=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnu $mxu." >&2 ; exit 1 ; fi;;
+"--timer"|"-t") if in_range "$2" $mnt $mxt; then timer=$2 ; shift 2 ; else echo "Error: $1 must be a number between $mnt - $mxt." >&2 ; exit 1 ; fi;;
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
-      echo "  --critical, -c    Set battery critical threshold (default: 5)"
-      echo "  --low, -l         Set battery low threshold (default: 10)"
-      echo "  --unplug, -u      Set unplug charger threshold (default: 100)"
+      echo "  --critical, -c    Set battery critical threshold (default: $mnc)"
+      echo "  --low, -l         Set battery low threshold (default: $mnl)"
+      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu)"
       echo "  --timer, -t       Set countdown timer (default: $mnt)"
-      echo "  --execute, -e     Set action to execute (default: suspend)"
-      echo "  --help, -h        Show this help message"
+      echo "  --execute, -e     Set command/script to execute (default: systemctl suspend)"
+      echo "  --help, -h        Show this help message
+      Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
       exit 0
       ;;
   esac
@@ -87,13 +53,11 @@ fn_percentage () {
                     fi
 }
 fn_action () {
-count=$(( timer > $mnt ? timer :  $mnt )) # reset count
-nohup $execute
+                  count=$(( timer > $mnt ? timer :  $mnt )) # reset count
+                  nohup $execute
 }
 fn_status () { # Handle the power supply status
 for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
-#battery_status="Not Charging"
-#echo $battery_status $battery_percentage
 case "$battery_status" in         # Handle the power supply status
                 "Discharging")
                     if [[ "$prev_status" == *"Charging"* ]]; then
@@ -143,11 +107,11 @@ case "$battery_status" in         # Handle the power supply status
 }
 main() { # Main function
     if is_laptop; then
-        battery_critical_threshold=${battery_critical_threshold:-$mnc}
-    unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
-    battery_low_threshold=${battery_low_threshold:-mnl}
-    timer=${timer:-$mnt}
-    execute=${execute:-"systemctl suspend"}
+battery_critical_threshold=${battery_critical_threshold:-$mnc} 
+unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
+battery_low_threshold=${battery_low_threshold:-$mnl}
+timer=${timer:-$mnt}
+execute=${execute:-"systemctl suspend"}
 cat <<  EOF
 Script is running... 
 Check $0 --help for options. 
