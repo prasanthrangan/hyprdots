@@ -2,7 +2,7 @@
 is_number_in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
 # Parse command-line arguments
 
-while (( "$#" )); do mnc=1 mxc=50 mxl=80 mxu=100 mnt=100 mxt=1000 mnu=$mxl mnl=$mxc
+while (( "$#" )); do mnc=1 mxc=20 mxl=50 mxu=100 mnt=100 mxt=1000 mnu=50 mnl=20
   case "$1" in
     "--critical"|"-c")
       if is_number_in_range "$2" $mnc $mxc; then
@@ -161,7 +161,7 @@ Check $0 --help for options.
            Low Battery Threshold: $battery_low_threshold 
         Unplug Charger Threshold: $unplug_charger_threshold  
 
-Device will execute $execute after $timer seconds. 
+If Battery is $battery_critical_threshold%, Device will execute $execute after $timer seconds. 
 
 If you have Errors Please Post an issue at https://github.com/prasanthrangan/hyprdots
 
