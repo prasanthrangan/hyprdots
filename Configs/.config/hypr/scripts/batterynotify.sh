@@ -98,6 +98,7 @@ case "$battery_status" in         # Handle the power supply status
 }
 main() { # Main function
     if is_laptop; then
+rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
 battery_critical_threshold=${battery_critical_threshold:-$mnc} 
 unplug_charger_threshold=${unplug_charger_threshold:-$mxu}
 battery_low_threshold=${battery_low_threshold:-$mnl}
