@@ -2,7 +2,7 @@
 is_number_in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
 # Parse command-line arguments
 
-while (( "$#" )); do mnc=1 mxc=20 mxl=50 mxu=100 mnt=100 mxt=1000 mnu=50 mnl=20
+while (( "$#" )); do  mnc=1 mxc=100 mxl=50 mxu=100 mnt=10 mxt=1000 mnu=50 mnl=20
   case "$1" in
     "--critical"|"-c")
       if is_number_in_range "$2" $mnc $mxc; then
@@ -34,7 +34,7 @@ while (( "$#" )); do mnc=1 mxc=20 mxl=50 mxu=100 mnt=100 mxt=1000 mnu=50 mnl=20
       ;;
     "--timer"|"-t")
       if is_number_in_range "$2" $mnt $mxt; then
-        countdown=$2
+        timer=$2
         shift 2
       else
         echo "Error: $1 must be a number between $mnt - $mxt." >&2
@@ -48,7 +48,7 @@ while (( "$#" )); do mnc=1 mxc=20 mxl=50 mxu=100 mnt=100 mxt=1000 mnu=50 mnl=20
       echo "  --critical, -c    Set battery critical threshold (default: 5)"
       echo "  --low, -l         Set battery low threshold (default: 10)"
       echo "  --unplug, -u      Set unplug charger threshold (default: 100)"
-      echo "  --timer, -t       Set countdown timer (default: 120)"
+      echo "  --timer, -t       Set countdown timer (default: $mnt)"
       echo "  --execute, -e     Set action to execute (default: suspend)"
       echo "  --help, -h        Show this help message"
       exit 0
@@ -76,7 +76,7 @@ fn_percentage () {
                         fn_notify  "-r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
-                        count=$(( timer > 120 ? timer : 120 )) # reset countstatus
+                        count=$(( timer > $mnt ? timer :  $mnt )) # reset countstatus
                         while [ $count -gt 0 ] && [[ $battery_status == "Discharging"* ]]; do
                         for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status") ; done
                         if [[ $battery_status != "Discharging" ]] ; then break ; fi
@@ -92,8 +92,8 @@ fn_percentage () {
                     fi
 }
 fn_action () {
-count=$(( timer > 120 ? timer : 120 )) # reset count
-nohup systemctl $execute
+count=$(( timer > $mnt ? timer :  $mnt )) # reset count
+nohup $execute
 }
 fn_status () { # Handle the power supply status
 for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
@@ -111,7 +111,7 @@ case "$battery_status" in         # Handle the power supply status
                 "Charging")                     
                     if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]]; then
                         prev_status=$battery_status
-                        count=$(( timer > 120 ? timer : 120 )) # reset count
+                        count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                         urgency=$([[ "$battery_percentage" -ge $unplug_charger_threshold ]] && echo "CRITICAL" || echo "NORMAL")
                         fn_notify  "-r 10" "$urgency" "Charger Plug In" "Battery is at $battery_percentage%."
                     fi
@@ -123,13 +123,13 @@ case "$battery_status" in         # Handle the power supply status
                 "Not charging"|"Not Charging"|*"Not"*)
                     if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]]; then
                     touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
-                    count=$(( timer > 120 ? timer : 120 )) # reset count                    
+                    count=$(( timer > $mnt ? timer :  $mnt )) # reset count                    
                     echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
                     fn_notify  "-r 10" "CRITICAL" "Charger Plug In" "Battery is at $battery_percentage%."
                     else
                     if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Charging" ]]; then
                         prev_status=$battery_status
-                        count=$(( timer > 120 ? timer : 120 )) # reset count
+                        count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                         urgency=$([[ "$battery_percentage" -ge $unplug_charger_threshold ]] && echo "CRITICAL" || echo "NORMAL")
                         fn_notify  "-r 10" "$urgency" "Charger Plug In" "Battery is at $battery_percentage%."
                     fi
@@ -151,7 +151,7 @@ main() { # Main function
         battery_critical_threshold=${battery_critical_threshold:-5}
     unplug_charger_threshold=${unplug_charger_threshold:-100}
     battery_low_threshold=${battery_low_threshold:-10}
-    timer=${timer:-120}
+    timer=${timer:-$mnt}
     execute=${execute:-"systemctl suspend"}
 cat <<  EOF
 Script is running... 
