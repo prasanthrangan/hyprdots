@@ -52,7 +52,7 @@ fn_percentage () {
                         last_notified_percentage=$battery_percentage
                     fi
 }
-fn_action () {
+fn_action () { #handles the $execute command
                   count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                   nohup $execute
 }
