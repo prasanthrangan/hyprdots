@@ -14,7 +14,7 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
-      echo "  --full, -F        Set battery full threshold (default: $mnf% percent)"
+      echo "  --full, -f        Set battery full threshold (default: $mnf% percent)"
       echo "  --critical, -c    Set battery critical threshold (default: $mnc% percent)"
       echo "  --low, -l         Set battery low threshold (default: $mnl% percent)"
       echo "  --unplug, -u      Set unplug charger threshold (default: $mxu% percent )"
