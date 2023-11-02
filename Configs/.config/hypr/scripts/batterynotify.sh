@@ -64,7 +64,7 @@ fn_action () { #handles the $execute command
 }
 fn_status () { # Handle the power supply status
 for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
-if [ $battery_percentage -eq $battery_full_threshold ]; then battery_status="Full" ; echo $battery_percentage ;fi
+if [ $battery_percentage -eq $battery_full_threshold ]; then battery_status="Full" ;fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging")
                     if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
