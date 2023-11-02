@@ -14,7 +14,7 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
       echo "  --low, -l         Set battery low threshold (default: $mnl)"
       echo "  --unplug, -u      Set unplug charger threshold (default: $mxu)"
       echo "  --timer, -t       Set countdown timer (default: $mnt)"
-      echo "  --execute, -e     Set command/script to execute (default: systemctl suspend)"
+      echo "  --execute, -e     Set command/script to execute if battery on critical threshold (default: systemctl suspend)"
       echo "  --help, -h        Show this help message
       Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
       exit 0
@@ -37,14 +37,13 @@ fn_percentage () {
                         fn_notify  "-r 10" "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
-                        count=$(( timer > $mnt ? timer :  $mnt )) # reset countstatus
+                        count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                         while [ $count -gt 0 ] && [[ $battery_status == "Discharging"* ]]; do
                         for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status") ; done
                         if [[ $battery_status != "Discharging" ]] ; then break ; fi
                             fn_notify "-r 10" "CRITICAL" "Battery Critically Low" "$battery_percentage% is critically low. Device will execute $execute in $((count/60)):$((count%60)) ."
                             count=$((count-1))
-                            sleep 1
-                            
+                            sleep 1  
                         done
                         [ $count -eq 0 ] && fn_action
                     elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= 2 )); then
@@ -60,7 +59,7 @@ fn_status () { # Handle the power supply status
 for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/status")  battery_percentage=$(< "$battery/capacity")
 case "$battery_status" in         # Handle the power supply status
                 "Discharging")
-                    if [[ "$prev_status" == *"Charging"* ]]; then
+                    if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
                         prev_status=$battery_status
                         urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
                         fn_notify   "-r 10" "$urgency" "Charger Plug OUT" "Battery is at $battery_percentage%."
@@ -68,13 +67,13 @@ case "$battery_status" in         # Handle the power supply status
                     fn_percentage 
                     ;;
                 "Not"*|"Charging") # Due to modifications of some devices Not Charging after reaching 99 or limits
-                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]] && [[ "$battery_status" == "Not"* ]] ; then
+                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]] && [[ "$battery_status" == "Not"* ]] ; then 
                     touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
                     count=$(( timer > $mnt ? timer :  $mnt )) # reset count                    
                     echo "Status: '==>> "$battery_status" <<==' Device Reports Not Charging!,This may be device Specific errors."
                     fn_notify  "-r 10" "CRITICAL" "Charger Plug In" "Battery is at $battery_percentage%."
                     fi
-                    if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]]; then
+                    if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]] ; then
                         prev_status=$battery_status
                         count=$(( timer > $mnt ? timer :  $mnt )) # reset count
                         urgency=$([[ "$battery_percentage" -ge $unplug_charger_threshold ]] && echo "CRITICAL" || echo "NORMAL")
@@ -82,12 +81,13 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Full")
-                    fn_notify  "-r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"                    
-                    ;;
-                                    
+                "Full") now=$(date +%s) 
+                    if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= 300)); then fn_notify "-r 10" "CRITICAL" "Battery Full" "Please unplug your Charger"
+                    prev_status=$battery_status lt=$now
+                    fi
+                    ;;                                   
                     *)
-                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$" ]]; then
+                    if [[ ! -f "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$" ]]; then 
                     echo "Status: '==>> "$battery_status" <<==' Script on Fallback mode,Unknown power supply status.Please copy this line and raise an issue to the Github Repo.Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
                     touch "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$"
                     fi     
