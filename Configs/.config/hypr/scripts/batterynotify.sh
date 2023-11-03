@@ -139,8 +139,8 @@ main() { # Main function
     if is_laptop; then
 rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
 battery_full_threshold=${battery_full_threshold:-100} 
-battery_critical_threshold=${battery_critical_threshold:-70} 
-unplug_charger_threshold=${unplug_charger_threshold:-100}
+battery_critical_threshold=${battery_critical_threshold:-10} 
+unplug_charger_threshold=${unplug_charger_threshold:-80}
 battery_low_threshold=${battery_low_threshold:-20}
 timer=${timer:-120}
 notify=${notify:-1}
