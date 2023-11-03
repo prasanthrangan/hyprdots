@@ -82,7 +82,7 @@ if [[ $battery_percentage -ge $battery_full_threshold ]] && [ "$battery_status" 
  battery_status="Full" ;fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
-                    if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
+                    if [[ "$prev_status" == *"harging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
                         prev_status=$battery_status
                         urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
                         fn_notify   "-t 5000 -r 54321 " "$urgency" "Charger Plug OUT" "Battery is at $battery_percentage%."
