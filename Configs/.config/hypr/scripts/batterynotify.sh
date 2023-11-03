@@ -51,10 +51,10 @@ fi
 }
 fn_notify () { # Send notification
 
-    dunstify -a "Power" $1 -u $2 "$3" "$4" -p # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
+    notify-send -a "Power" $1 -u $2 "$3" "$4" -p # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
 }
 fn_percentage () { 
-                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then if $verbose; then echo "Prompt:UNPLUG: $battery_unplug_threshold $battery_status $battery_percentage" ; fi
+                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]] && [[ "$battery_status" != "Full" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then if $verbose; then echo "Prompt:UNPLUG: $battery_unplug_threshold $battery_status $battery_percentage" ; fi
                         fn_notify  "-t 5000 " "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
@@ -78,7 +78,7 @@ fn_action () { #handles the $execute command
 }
 
 fn_status () {
-if [[ $battery_percentage -ge $battery_full_threshold ]] && [ "$battery_status" == "Charging" ]; then echo "Full and $battery_status"
+if [[ $battery_percentage -ge $battery_full_threshold ]] && [ "$battery_status" == *"Charging"* ]; then echo "Full and $battery_status"
  battery_status="Full" ;fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
@@ -110,7 +110,7 @@ case "$battery_status" in         # Handle the power supply status
                     if [[ $battery_status != "Discharging" ]]; then
                     now=$(date +%s) 
                     if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= $((notify*60)) )); then
-                     fn_notify "-r 54321 " "CRITICAL" "Battery Full" "Please unplug your Charger"
+                     fn_notify "-t 5000 -r 54321" "CRITICAL" "Battery Full   (Click to EXIT)" "Please unplug your Charger"
                     prev_status=$battery_status lt=$now
                     fi
                     fi
@@ -134,7 +134,7 @@ fn_status
 fi
 done
 }
-resume_processes() { for pid in $pids ; do  if [ $pid -ne $current_pid ] ; then kill -CONT $pid ; notify-send "Debugging ENDED, Resuming Regular Process" ; fi ; done }
+resume_processes() { for pid in $pids ; do  if [ $pid -ne $current_pid ] ; then kill -CONT $pid ; notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging ENDED, Resuming Regular Process" ; fi ; done }
 main() { # Main function
     if is_laptop; then
 rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
@@ -162,7 +162,7 @@ EOF
 if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;
 current_pid=$$
 pids=$(pgrep -f "/bin/bash $HOME/.config/hypr/scripts/batterynotify.sh" )
-for pid in $pids ; do if [ $pid -ne $current_pid ] ;then kill -STOP $pid ;notify-send "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; fi
+for pid in $pids ; do if [ $pid -ne $current_pid ] ;then kill -STOP $pid ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; fi
     fn_status_change  # initiate the function
     last_notified_percentage=$battery_percentage
     prev_status=$battery_status
