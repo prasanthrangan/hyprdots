@@ -143,8 +143,8 @@ battery_critical_threshold=${battery_critical_threshold:-10}
 unplug_charger_threshold=${unplug_charger_threshold:-80}
 battery_low_threshold=${battery_low_threshold:-20}
 timer=${timer:-120}
-notify=${notify:-1}
-interval=${interval:-2}
+notify=${notify:-1140}
+interval=${interval:-5}
 
 execute=${execute:-"systemctl suspend"}
 cat <<  EOF
