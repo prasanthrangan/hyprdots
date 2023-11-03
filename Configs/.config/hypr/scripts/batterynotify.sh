@@ -1,4 +1,5 @@
 #!/bin/bash
+trap resume_processes SIGINT
 in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
 mnc=5 mxc=80 mnl=20 mxl=50 mnu=80  mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 mni=1 mxi=10 verbose=false #Defaults Ranges
 while (( "$#" )); do  # Parse command-line arguments and defaults  
@@ -133,6 +134,7 @@ fn_status
 fi
 done
 }
+resume_processes() { for pid in $pids ; do  if [ $pid -ne $current_pid ] ; then kill -CONT $pid ; notify-send "Debugging ENDED, Resuming Regular Process" ; fi ; done }
 main() { # Main function
     if is_laptop; then
 rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
@@ -157,7 +159,10 @@ Check $0 --help for options.
 
 
 EOF
-if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;fi
+if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;
+current_pid=$$
+pids=$(pgrep -f "/bin/bash $HOME/.config/hypr/scripts/batterynotify.sh" )
+for pid in $pids ; do if [ $pid -ne $current_pid ] ;then kill -STOP $pid ;notify-send "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; fi
     fn_status_change  # initiate the function
     last_notified_percentage=$battery_percentage
     prev_status=$battery_status
