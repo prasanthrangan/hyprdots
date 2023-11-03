@@ -45,7 +45,6 @@ cat << VERBOSE
 =============================================
 
 
-
 VERBOSE
 fi
 }
@@ -54,7 +53,7 @@ fn_notify () { # Send notification
     notify-send -a "Power" $1 -u $2 "$3" "$4" -p # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
 }
 fn_percentage () { 
-                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then if $verbose; then for line in "Percent" "$battery_status" "$battery_percentage" "" ""  ; do echo $line ; done;fi
+                    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then if $verbose; then echo "Prompt:UNPLUG$battery_unplug_threshold $battery_status $battery_percentage" ; fi
                         fn_notify  "-t 5000 " "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
                         last_notified_percentage=$battery_percentage
                     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
@@ -67,7 +66,7 @@ fn_percentage () {
                             sleep 1  
                         done
                         [ $count -eq 0 ] && fn_action
-                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= $interval )); then if $verbose; then for line in "Percent" "$battery_status" "$battery_percentage" "" ""  ; do echo $line ; done;fi
+                    elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= $interval )); then  if $verbose; then echo  "Prompt:LOW$battery_low_threshold $battery_status $battery_percentage" ; fi
                         fn_notify  "-t 5000 " "CRITICAL" "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
                         last_notified_percentage=$battery_percentage
                     fi
@@ -81,7 +80,7 @@ fn_status () {
 if [[ $battery_percentage -ge $battery_full_threshold ]] && [ "$battery_status" == "Charging" ]; then echo "Full and $battery_status"
  battery_status="Full" ;fi
 case "$battery_status" in         # Handle the power supply status
-                "Discharging") if $verbose; then for line in "Action" "Case:$battery_status" "Level: $battery_percentage" "" ""  ; do echo $line ; done;fi
+                "Discharging") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
                     if [[ "$prev_status" == *"Charging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
                         prev_status=$battery_status
                         urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
@@ -89,7 +88,7 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Not"*|"Charging") if $verbose; then for line in "Action" "Case:$battery_status" "Level: $battery_percentage" "" ""  ; do echo $line ; done;fi
+                "Not"*|"Charging") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
                 # Due to modifications of some devices Not Charging after reaching 99 or limits
                     #if [[ ! -f "/tmp/hyprdots.batterynotify.status.$battery_status-$$" ]] && [[ "$battery_status" == "Not"* ]] ; then 
                     #touch "/tmp/hyprdots.batterynotify.status.$battery_status-$$"
@@ -105,7 +104,7 @@ case "$battery_status" in         # Handle the power supply status
                     fi
                     fn_percentage 
                     ;;
-                "Full") if $verbose; then for line in "Action" "Case:$battery_status" "Level: $battery_percentage" "" ""  ; do echo $line ; done;fi
+                "Full") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
 
                     if [[ $battery_status != "Discharging" ]]; then
                     now=$(date +%s) 
