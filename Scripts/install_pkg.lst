@@ -16,7 +16,7 @@ qt6-wayland
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
-hyprland-git
+hyprland-nvidia-git
 dunst
 rofi-lbonn-wayland-git
 #waybar
@@ -55,3 +55,6 @@ oh-my-zsh-git
 zsh-theme-powerlevel10k-git
 pokemon-colorscripts-git
 ly
+linux-headers
+nvidia-dkms
+nvidia-utils

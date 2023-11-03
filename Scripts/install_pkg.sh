@@ -73,3 +73,11 @@ if [ `echo $pkg_aur | wc -w` -gt 0 ]
     echo "installing $pkg_aur from aur..."
     $aurhlpr ${use_default} -S $pkg_aur
 fi
+
+# waybar 0.9.22 install
+
+waybar="../Source/old_packages/waybar-0.9.22-1-x86_64.pkg.tar.zst"
+if [ -e $waybar ]; then
+	echo "Installing older version of waybar..."
+	sudo pacman -U $waybar
+fi
