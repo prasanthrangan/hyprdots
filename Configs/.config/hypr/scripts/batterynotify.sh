@@ -10,7 +10,7 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--unplug"|"-u") if in_range "$2" $mnu $mxu; then unplug_charger_threshold=$2 ; shift 2 ; else echo "$1 ERROR: Unplug Threshold must be $mnu $mxu." >&2 ; exit 1 ; fi;;
 "--timer"|"-t") if in_range "$2" $mnt $mxt; then timer=$2 ; shift 2 ; else echo "$1 ERROR: Timer must be $mnt - $mxt." >&2 ; exit 1 ; fi;;
 "--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Notify must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
-"--interval"|"-i") if in_range "$2" $mni $mxi; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Interval must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
+"--interval"|"-i") if in_range "$2" $mni $mxi; then interval=$2 ; shift 2 ; else echo "$1 ERROR: Interval must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
 "--verbose"|"-v") verbose=true ; shift ;;
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
@@ -51,7 +51,7 @@ fi
 }
 fn_notify () { # Send notification
 
-    notify-send -a "Power" $1 -u $2 "$3" "$4" -p # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
+    dunstify -a "Power" $1 -u $2 "$3" "$4" -p # Call the notify-send command with the provided arguments \$1 is the flags \$2 is the urgency \$3 is the title \$4 is the message
 }
 fn_percentage () { 
                     if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] &&  [[ "$battery_status" != "Discharging" ]]  && (( (battery_percentage - last_notified_percentage) >= $interval )); then if $verbose; then echo "Prompt:UNPLUG$battery_unplug_threshold $battery_status $battery_percentage" ; fi
