@@ -15,13 +15,13 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--execute"|"-e") execute=$2 ; shift 2 ;;
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
-      echo "  --full, -f        Set battery full threshold (default: $mnf% percent)"
-      echo "  --critical, -c    Set battery critical threshold (default: $mnc% percent)"
-      echo "  --low, -l         Set battery low threshold (default: $mnl% percent)"
-      echo "  --unplug, -u      Set unplug charger threshold (default: $mxu% percent )"
-      echo "  --timer, -t       Set countdown timer (default: $mnt seconds)"
-      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: 2% percent)"
-      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: 5 minutes)"
+      echo "  --full, -f        Set battery full threshold (default: 100% percent)"
+      echo "  --critical, -c    Set battery critical threshold (default: 10% percent)"
+      echo "  --low, -l         Set battery low threshold (default: 20% percent)"
+      echo "  --unplug, -u      Set unplug charger threshold (default: 80% percent )"
+      echo "  --timer, -t       Set countdown timer (default: 120 seconds)"
+      echo "  --interval, -i    Set notify interval  on LOW UNPLUG Status  (default: 5% percent)"
+      echo "  --notify, -n      Set notify interval for Battery Full Status  (default: 1140 mins/ 1 day)"
       echo "  --execute, -e     Set command/script to execute if battery on critical threshold (default: systemctl suspend)"
       echo "  --help, -h        Show this help message
       Visit https://github.com/prasanthrangan/hyprdots for the Github Repo"
