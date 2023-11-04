@@ -131,10 +131,9 @@ function in {
     fi
 }
 
-alias  l='eza -l  --icons' # long list
-alias ls='eza -1  --icons' # short list
-alias ll='eza -la --icons' # long list all
-alias ld='eza -lD --icons' # long list dirs
+
+alias ls='eza --icons' # list
+
 alias un='sudo pacman -Rns' # uninstall package
 alias up='sudo pacman -Syu' # update system/package/aur
 alias pl='pacman -Qs' # list installed package
@@ -155,5 +154,17 @@ alias vc='code' # gui code editor
 
 
 #Display specs
-neofetch
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#	pfetch
+#else
+#        neofetch
+#fi
+
+if [[ "$TERM" == "xterm-kitty" ]]; then
+	neofetch
+else
+	pfetch
+fi
+
+
 #pfetch
