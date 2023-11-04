@@ -12,14 +12,13 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Notify must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
 "--interval"|"-i") if in_range "$2" $mni $mxi; then interval=$2 ; shift 2 ; else echo "$1 ERROR: Interval must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
 "--verbose"|"-v") verbose=true ; shift ;;
-"--undock"|"-on") undock=true ; shift ;;
-
+"--undock"|"on") undock=true ; shift ;;
 "--execute"|"-e") execute=$2 ; shift 2 ;;
 
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
       echo "  --verbose, -v     Verbose Mode"
-      echo "  --undock, -on     Shows Battery Plug In/Out/Full Notification"
+      echo "  --undock, on     Shows Battery Plug In/Out/Full Notification"
       echo "  --full, -f        Set battery full threshold (default: 100% percent)"
       echo "  --critical, -c    Set battery critical threshold (default: 10% percent)"
       echo "  --low, -l         Set battery low threshold (default: 20% percent)"
