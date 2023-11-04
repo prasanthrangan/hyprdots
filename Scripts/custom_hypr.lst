@@ -36,6 +36,7 @@ jq
 imagemagick
 qt5-imageformats
 ffmpegthumbs
+kde-cli-tools
 brightnessctl
 pavucontrol
 pamixer
@@ -54,5 +55,3 @@ eza
 oh-my-zsh-git
 zsh-theme-powerlevel10k-git
 pokemon-colorscripts-git
-kde-cli-tools
-partitionmanager
