@@ -1,7 +1,7 @@
 #!/bin/bash
 trap resume_processes SIGINT
 in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
-mnc=5 mxc=80 mnl=20 mxl=50 mnu=80  mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 mni=1 mxi=10 verbose=false #Defaults Ranges
+mnc=5 mxc=80 mnl=20 mxl=50 mnu=80  mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 mni=1 mxi=10 verbose=false undock=false #Defaults Ranges
 while (( "$#" )); do  # Parse command-line arguments and defaults  
   case "$1" in
 "--full"|"-f") if in_range "$2" $mnf $mxf; then battery_full_threshold=$2 ; shift 2 ; else echo "$1 Error: Full Threshold must be $mnf - $mxf." >&2 ; exit 1 ; fi;;
@@ -12,9 +12,14 @@ while (( "$#" )); do  # Parse command-line arguments and defaults
 "--notify"|"-n") if in_range "$2" $mnn $mxn; then notify=$2 ; shift 2 ; else echo "$1 ERROR: Notify must be $mnn - $mxn in minutes." >&2 ; exit 1 ; fi;;
 "--interval"|"-i") if in_range "$2" $mni $mxi; then interval=$2 ; shift 2 ; else echo "$1 ERROR: Interval must be by $mni% - $mxi% intervals." >&2 ; exit 1 ; fi;;
 "--verbose"|"-v") verbose=true ; shift ;;
+"--undock"|"-on") undock=true ; shift ;;
+
 "--execute"|"-e") execute=$2 ; shift 2 ;;
+
     *|"--help"|"-h")
       echo "Usage: $0 [options]"
+      echo "  --verbose, -v     Verbose Mode"
+      echo "  --undock, -on     Shows Battery Plug In/Out/Full Notification"
       echo "  --full, -f        Set battery full threshold (default: 100% percent)"
       echo "  --critical, -c    Set battery critical threshold (default: 10% percent)"
       echo "  --low, -l         Set battery low threshold (default: 20% percent)"
@@ -82,7 +87,7 @@ if [[ $battery_percentage -ge $battery_full_threshold ]] && [ "$battery_status" 
  battery_status="Full" ;fi
 case "$battery_status" in         # Handle the power supply status
                 "Discharging") if $verbose; then echo "Case:$battery_status Level: $battery_percentage" ;fi
-                    if [[ "$prev_status" == *"harging"* ]] || [[ "$prev_status" == "Full" ]] ; then 
+                    if [[ "$prev_status" != "Discharging" ]] || [[ "$prev_status" == "Full" ]] ; then 
                         prev_status=$battery_status
                         urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
                         fn_notify   "-t 5000 -r 54321 " "$urgency" "Charger Plug OUT" "Battery is at $battery_percentage%."
@@ -130,7 +135,7 @@ for battery in /sys/class/power_supply/BAT*; do  battery_status=$(< "$battery/st
    if [ "$battery_status" != "$last_battery_status" ] || [ "$battery_percentage" != "$last_battery_percentage" ]; then last_battery_status=$battery_status last_battery_percentage=$battery_percentage    # Check if battery status or percentage has changed
 fn_verbose
 fn_percentage
-fn_status
+if $undock; then fn_status echo yes ; fi
 fi
 done
 }
