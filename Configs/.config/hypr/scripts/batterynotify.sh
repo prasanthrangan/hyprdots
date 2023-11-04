@@ -114,7 +114,7 @@ case "$battery_status" in         # Handle the power supply status
                     if [[ $battery_status != "Discharging" ]]; then
                     now=$(date +%s) 
                     if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= $((notify*60)) )); then
-                     fn_notify "-t 5000 -r 54321" "CRITICAL" "Battery Full   (Click to EXIT)" "Please unplug your Charger"
+                     fn_notify "-t 5000 -r 54321" "CRITICAL" "Battery Full" "Please unplug your Charger"
                     prev_status=$battery_status lt=$now
                     fi
                     fi
