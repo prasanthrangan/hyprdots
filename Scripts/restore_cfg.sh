@@ -23,10 +23,10 @@ fi
 cat restore_cfg.lst | while read lst
 do
 
-    pth=`echo $lst | awk -F '|' '{print $1}'`
-    cfg=`echo $lst | awk -F '|' '{print $2}'`
-    pkg=`echo $lst | awk -F '|' '{print $3}'`
-    pth=`eval echo $pth`
+    bkpFlag=`echo $lst | awk -F '|' '{print $1}'`
+    eval pth=`echo $lst | awk -F '|' '{print $2}'`
+    cfg=`echo $lst | awk -F '|' '{print $3}'`
+    pkg=`echo $lst | awk -F '|' '{print $4}'`
 
     while read pkg_chk
     do
@@ -41,7 +41,7 @@ do
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
 
-        if [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ]
+        if ( [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ] ) && [ "${bkpFlag}" == "Y" ]
             then
 
             if [ ! -d $BkpDir$tgt ] ; then
@@ -50,7 +50,7 @@ do
 
             mv $pth/$cfg_chk $BkpDir$tgt
             echo "config backed up $pth/$cfg_chk --> $BkpDir$tgt..."
-        fi 
+        fi
 
         if [ ! -d $pth ] ; then
             mkdir -p $pth
@@ -61,9 +61,7 @@ do
     done
 
 done
-if [ -d "$BkpDir/.config/swww/.cache" ]; then
-cp -r $BkpDir/.config/swww/.cache $HOME/.config/swww
-fi
+
 touch ${HOME}/.config/hypr/monitors.conf
 touch ${HOME}/.config/hypr/userprefs.conf
 

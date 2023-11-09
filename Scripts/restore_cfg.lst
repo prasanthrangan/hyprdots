@@ -1,20 +1,20 @@
-${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git pokemon-colorscripts-git
-${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
-${HOME}/.config|dunst|dunst
-${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf windowrules.conf scripts themes wallbash|hyprland
-${HOME}/.config|kitty|kitty
-${HOME}/.config|Kvantum|kvantum
-${HOME}/.config|MangoHud|mangohud
-${HOME}/.config|neofetch|neofetch
-${HOME}/.config|qt5ct|qt5ct
-${HOME}/.config|rofi|rofi
-${HOME}/.config|swaylock|swaylock-effects
-${HOME}/.config|swww|swww
-${HOME}/.config|waybar|waybar
-${HOME}/.config|wlogout|wlogout
-${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look
-${HOME}/.icons|default|nwg-look
-${HOME}|.gtkrc-2.0|nwg-look
-${HOME}/.config|dolphinrc kdeglobals|dolphin
-${HOME}/.local/share|dolphin|dolphin
-${HOME}/.local/share/kxmlgui5|dolphin|dolphin
+Y|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git pokemon-colorscripts-git
+Y|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
+Y|${HOME}/.config|dunst|dunst
+Y|${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf windowrules.conf scripts themes wallbash|hyprland
+Y|${HOME}/.config|kitty|kitty
+Y|${HOME}/.config|Kvantum|kvantum
+Y|${HOME}/.config|MangoHud|mangohud
+Y|${HOME}/.config|neofetch|neofetch
+Y|${HOME}/.config|qt5ct|qt5ct
+Y|${HOME}/.config|rofi|rofi
+Y|${HOME}/.config|swaylock|swaylock-effects
+N|${HOME}/.config|swww|swww
+Y|${HOME}/.config|waybar|waybar
+Y|${HOME}/.config|wlogout|wlogout
+Y|${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look
+Y|${HOME}/.icons|default|nwg-look
+Y|${HOME}|.gtkrc-2.0|nwg-look
+Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
+Y|${HOME}/.local/share|dolphin|dolphin
+Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
