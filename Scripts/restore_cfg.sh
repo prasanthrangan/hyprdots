@@ -61,7 +61,9 @@ do
     done
 
 done
+if [ -d "$BkpDir/.config/swww/.cache" ]; then
 cp -r $BkpDir/.config/swww/.cache $HOME/.config/swww
+fi
 touch ${HOME}/.config/hypr/monitors.conf
 touch ${HOME}/.config/hypr/userprefs.conf
 
