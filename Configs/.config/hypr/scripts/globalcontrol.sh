@@ -3,7 +3,7 @@
 # wallpaper var
 EnableWallDcol=1
 ConfDir="$HOME/.config"
-CloneDir="/home/joshr/hyprdots"
+CloneDir="/home/joshr/git/hyprdots"
 ThemeCtl="$ConfDir/swww/wall.ctl"
 cacheDir="$ConfDir/swww/.cache"
 

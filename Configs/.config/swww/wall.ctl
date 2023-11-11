@@ -1,10 +1,10 @@
 0|Catppuccin-Mocha|~/.config/swww/Catppuccin-Mocha/evening-sky.png
-0|Catppuccin-Latte|~/.config/swww/Catppuccin-Latte/waifu_angel.jpg
-1|Decay-Green|~/.config/swww/Decay-Green/lambo.jpg
-0|Rose-Pine|~/.config/swww/Rose-Pine/chainsaw_makima.png
+0|Catppuccin-Latte|~/.config/swww/Catppuccin-Latte/chainsaw_angel_lake.jpg
+1|Decay-Green|~/.config/swww/Decay-Green/moments_before_desk.png
+0|Rose-Pine|~/.config/swww/Rose-Pine/japan_mountain_pink.jpg
 0|Tokyo-Night|~/.config/swww/Tokyo-Night/tokyo_pink.png
 0|Material-Sakura|~/.config/swww/Material-Sakura/material_pastel_7.jpg
-0|Graphite-Mono|~/.config/swww/Graphite-Mono/gojo.png
+0|Graphite-Mono|~/.config/swww/Graphite-Mono/chainsawman_sketch.png
 0|Cyberpunk-Edge|~/.config/swww/Cyberpunk-Edge/cyberpunk_dave.png
 0|Frosted-Glass|~/.config/swww/Frosted-Glass/min_forest.jpg
-0|Gruvbox-Retro|~/.config/swww/Gruvbox-Retro/hazy_path.png
+0|Gruvbox-Retro|~/.config/swww/Gruvbox-Retro/geto.jpeg
