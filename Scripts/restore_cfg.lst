@@ -19,3 +19,6 @@ ${HOME}/.config|dolphinrc kdeglobals|dolphin
 ${HOME}/.local/share|dolphin|dolphin
 ${HOME}/.local/share/kxmlgui5|dolphin|dolphin
 ${HOME}|scripts|visual-studio-code-bin
+${HOME}/.config|code-flags.conf|visual-studio-code-bin
+${HOME}/.config|spotify-flags.conf|spotify
+${HOME}/.config|discord-flags.conf|vencord-desktop-bin
