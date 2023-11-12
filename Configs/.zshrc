@@ -2,6 +2,9 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
 #export WAYLAND_DISPLAY=wayland-1
 
+#Disable or enable xwayland glamor
+export XWAYALAND_NO_GLAMOR=1
+
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
@@ -160,7 +163,7 @@ alias vc='code' # gui code editor
 #        neofetch
 #fi
 
-if [[ "$TERM" == "xterm-kitty" ]]; then
+if [[ "$TERM" == "xterm-kitty" ]] && [ ! -n "$SSH_TTY" ]; then
 	neofetch
 else
 	pfetch
