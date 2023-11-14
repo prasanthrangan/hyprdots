@@ -1,4 +1,4 @@
-4|$ScrDir/wallbashrofi.sh|.config/rofi/themes/Wall-Dcol.rasi
+4|~/.config/rofi/themes/Wall-Dcol.rasi|$ScrDir/wallbashrofi.sh
 * {
     main-bg:            <dcol_0>E6;
     main-fg:            <dcol_3>;

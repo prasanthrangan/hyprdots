@@ -1,4 +1,4 @@
-4|$ScrDir/wallbashkvm.sh|.config/Kvantum/Wall-Dcol/Wall-Dcol.svg
+4|~/.config/Kvantum/Wall-Dcol/Wall-Dcol.svg|$ScrDir/wallbashkvm.sh
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    width="450"
