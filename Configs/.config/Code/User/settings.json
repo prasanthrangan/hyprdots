@@ -1,18 +1,30 @@
 {
-    "workbench.colorTheme": "Catppuccin-Mocha",
-    "window.menuBarVisibility": "toggle",
-    "editor.fontSize": 12,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.verticalScrollbarSize": 0,
-    "security.workspace.trust.untrustedFiles": "newWindow",
-    "security.workspace.trust.startupPrompt": "never",
-    "security.workspace.trust.enabled": false,
-    "editor.minimap.side": "left",
-    "editor.fontFamily": "'Maple Mono', 'monospace', monospace",
-    "extensions.autoUpdate": false,
-    "workbench.statusBar.visible": false,
-    "terminal.external.linuxExec": "kitty",
-    "terminal.explorerKind": "both",
-    "terminal.sourceControlRepositoriesKind": "both",
-    "telemetry.telemetryLevel": "off"
+  "workbench.colorTheme": "Catppuccin-Mocha",
+  "window.menuBarVisibility": "toggle",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.enabled": false,
+  "extensions.autoUpdate": false,
+  "terminal.external.linuxExec": "kitty",
+  "terminal.explorerKind": "both",
+  "terminal.sourceControlRepositoriesKind": "both",
+  "telemetry.telemetryLevel": "off",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontSize": 12,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.titleBarStyle": "custom",
+  "files.autoSave": "afterDelay",
+  "git.enableSmartCommit": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": false,
+    "scminput": false,
+    "java": false
+  },
+  "markdown-preview-enhanced.previewTheme": "github-dark.css"
 }
