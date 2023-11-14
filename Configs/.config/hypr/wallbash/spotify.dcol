@@ -1,4 +1,4 @@
-4|$ScrDir/wallbashspotify.sh|.config/spicetify/Themes/Sleek/Wall-Dcol.ini
+4|~/.config/spicetify/Themes/Sleek/Wall-Dcol.ini|$ScrDir/wallbashspotify.sh
 
 [Wallbash]
 text               = <dcol_3>

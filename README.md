@@ -243,6 +243,7 @@ To add your own custom theme, please refer [theming wiki](https://github.com/pra
     <tr><td>imagemagick</td><td>for image processing</td></tr>
     <tr><td>qt5-imageformats</td><td>for dolphin image thumbnails</td></tr>
     <tr><td>ffmpegthumbs</td><td>for dolphin video thumbnails</td></tr>
+    <tr><td>kde-cli-tools</td><td>for dolphin open with option</td></tr>
     <tr><td>brightnessctl</td><td>brightness control for laptop</td></tr>
     <tr><td>pavucontrol</td><td>audio settings gui</td></tr>
     <tr><td>pamixer</td><td>for waybar audio</td></tr></table>

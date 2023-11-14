@@ -24,6 +24,7 @@ swww
 swaylock-effects-git
 wlogout
 grimblast-git
+hyprpicker-git
 slurp
 swappy
 cliphist
@@ -36,6 +37,7 @@ jq
 imagemagick
 qt5-imageformats
 ffmpegthumbs
+kde-cli-tools
 brightnessctl
 pavucontrol
 pamixer

@@ -14,3 +14,11 @@ else
     kvantummanager --set $gtkTheme
 fi
 
+# reload dolphin
+
+a_ws=$(hyprctl -j activeworkspace | jq '.id')
+if [ "$(hyprctl -j clients | jq --arg wid "$a_ws" '.[] | select(.workspace.id == ($wid | tonumber)) | select(.class == "org.kde.dolphin") | .mapped')" == "true" ] ; then
+    pkill -x dolphin
+    dolphin &
+fi
+
