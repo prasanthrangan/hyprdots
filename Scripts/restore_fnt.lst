@@ -14,6 +14,8 @@ Gtk_FrostedGlass|/usr/share/themes
 Gtk_FrostedGlass|$HOME/.themes
 Gtk_GruvboxRetro|/usr/share/themes
 Gtk_GruvboxRetro|$HOME/.themes
+Gtk_NordicBlue|/usr/share/themes
+Gtk_NordicBlue|$HOME/.themes
 Gtk_RosePine|/usr/share/themes
 Gtk_RosePine|$HOME/.themes
 Gtk_TokyoNight|/usr/share/themes
@@ -36,6 +38,8 @@ Icon_TelaPink|/usr/share/icons
 Icon_TelaPink|$HOME/.icons
 Icon_TelaPurple|/usr/share/icons
 Icon_TelaPurple|$HOME/.icons
+Icon_NordicBlue|/usr/share/icons
+Icon_NordicBlue|$HOME/.icons
 Icon_TelaYellow|/usr/share/icons
 Icon_TelaYellow|$HOME/.icons
 Icon_TelaBlue|/usr/share/icons
