@@ -75,11 +75,11 @@ To add your own custom theme, please refer [theming wiki](https://github.com/pra
   - [x] Material-Sakura
   - [x] Graphite-Mono
   - [x] Cyberpunk-Edge
-  - [ ] Nordic-Blue (maybe later)
 
 - Contributors themes
   - [x] Frosted-Glass by T-Crypt
   - [x] Gruvbox-Retro by T-Crypt
+  - [x] Nordic-Blue by T-Crypt
 
 | Catppuccin-Mocha |
 | :-: |
