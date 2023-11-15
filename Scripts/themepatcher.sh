@@ -80,13 +80,17 @@ themes_dirs["Cursor"]="$HOME/.icons"
 themes_dirs["Code"]="$HOME/.vscode"
 extensions=("tar.xz" "tar.gz")
 # Loop over the themes and extensions
-for theme in "${themes[@]}"; do for ext in "${extensions[@]}"; do
-    file="${Theme_Dir}/Source/arcs/${theme}_${Fav_Theme}.${ext}"
-    if [ -f "$file" ]; then sudo tar -xf "$file" -C "${themes_dirs[$theme]}" ; echo "Uncompressing ${file##*/} --> ${themes_dirs[$theme]}... Success" 
-    gtk_exist=true ; break
-    else
-    if [[ "$theme" == "Gtk" ]]; then gtk_exist=false ; fi ; continue
-    fi done ; if [[ $gtk_exist == false ]]; then echo "Required: Gtk_${Fav_Theme} Archive not found." ; exit 1 ; fi
+for theme in "${themes[@]}"; do 
+ for ext in "${extensions[@]}"; do
+   file="${Theme_Dir}/Source/arcs/${theme}_${Fav_Theme}.${ext}"
+   clean="${Theme_Dir}/Source/arcs/${theme}_"$(echo "$Fav_Theme" | tr -d '-')".${ext}"
+   if [ -f "$file" ] || [ -f "$clean" ]; then if [ -f "$clean" ]; then file=$clean ; fi
+       sudo tar -xf "$file" -C "${themes_dirs[$theme]}" 
+       echo "Uncompressing ${file##*/} --> ${themes_dirs[$theme]}... Success" 
+       gtk_exist=true 
+       break
+   else if [[ "$theme" == "Gtk" ]]; then gtk_exist=false ; fi ; continue ;fi 
+ done ;if [[ $gtk_exist == false ]]; then echo "Required: Gtk_${Fav_Theme} Archive not found." ; exit 1 ; fi
 done
 fc-cache -f
 
