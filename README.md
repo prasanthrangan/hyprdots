@@ -131,6 +131,10 @@ To add your own custom theme, please refer [theming wiki](https://github.com/pra
 | ![Gruvbox-Retro#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png) |
 | ![Gruvbox-Retro#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png) |
 
+| Nordic-Blue |
+| :-: |
+| ![Nordic-Blue#1](https://raw.githubusercontent.com/T-Crypt/hyprdots/Nordic-Blue/Source/assets/theme_nordic_1.png) |
+| ![Nordic-Blue#2](https://raw.githubusercontent.com/T-Crypt/hyprdots/Nordic-Blue/Source/assets/theme_nordic_2.png) |
 
 <div align = right> <br><br>
 
