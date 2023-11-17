@@ -1,4 +1,3 @@
-# PACMAN
 neovim
 emote
 trash-cli-git
@@ -8,7 +7,7 @@ gamescope
 mangohud
 spotify
 spicetify-cli
-# AUR
 heroic-games-launcher-bin
 librewolf-bin
 #mercury-browser-bin
+hyprshot
