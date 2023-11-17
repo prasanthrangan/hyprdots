@@ -14,9 +14,9 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","mpris","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","custom/spotify","custom/r_end","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -24,6 +24,7 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
+        "active-only": false,
         "on-click": "activate",
 	"persistent_workspaces": { 
             "1": [],
@@ -32,21 +33,21 @@
 	}
 },
 
-    "mpris": {
-        "format": "{player_icon}  {status_icon} {dynamic}",
-        "format-paused": "{player_icon}  {status_icon} <i>{dynamic}</i>",
-        "player-icons": { 
-	    "spotify": "",
-	    "firefox": ""
+    "hyprland/window": {
+        "format": "  {}",
+        "separate-outputs": true,
+        "rewrite": {
+            "joshr@JoshArch:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "$1Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "$1Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "$1Spotify 󰓇",
+            "(.*)Steam": "$1Steam 󰓓"
         },
-        "status-icons": {
-	    "playing": "▶",
-            "paused": "⏸"
-        },
-        // "ignored-players": ["firefox"]
         "max-length": 1000
     },
-
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -59,6 +60,20 @@
         "format": "{:%I:%M %p 󰃭 %a %d}",
         "format-alt": "{:%H:%M  %b %Y}",
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 /home/joshr/.config/waybar/modules/mediaplayer.py --player spotify",
+        "format": " {}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player spotify",
+	"on-click-right": "playerctl next --player spotify",
+	"on-click-middle": "playerctl previous --player spotify",
+	"on-scroll-up": "~/.config/waybar/modules/spotifyvolume.sh -i",
+	"on-scroll-down": "~/.config/waybar/modules/spotifyvolume.sh -d",
+        //"on-scroll-up": "playerctl volume 0.05+ --player spotify",
+        //"on-scroll-down": "playerctl volume 0.05- --player spotify",
+	"max-length": 25
     },
 
     "cpu": {
