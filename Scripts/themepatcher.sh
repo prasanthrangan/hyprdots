@@ -105,10 +105,10 @@ N|${HOME}/.config/swww|${Fav_Theme}|swww
 Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
 THEME
 
-
-if ! grep -q "|$Fav_Theme|" "$ThemeCtl" ; then 
 wallpaper=$(basename $(ls $Theme_Dir/Configs/.config/swww/"$Fav_Theme"/* | sort | head -n 1))
 if [ -z "$wallpaper" ] ; then echo "No wallpapers found for $Fav_Theme." ; exit 1 ; fi
+
+if ! grep -q "|$Fav_Theme|" "$ThemeCtl" ; then 
 cat << WALL >> "$ThemeCtl"
 0|$Fav_Theme|~/.config/swww/${Fav_Theme}/${wallpaper}
 WALL
