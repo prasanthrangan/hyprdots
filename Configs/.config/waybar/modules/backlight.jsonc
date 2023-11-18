@@ -1,4 +1,4 @@
-"backlight": {
+    "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
@@ -6,3 +6,4 @@
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
     },
+

@@ -47,7 +47,8 @@ do
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
-            if [[ -z "$pth" ]]; then continue ; fi #Added this if cfg.lst have blank lines
+        if [[ -z "$pth" ]]; then continue ; fi #Added this if cfg.lst have blank lines
+
         if ( [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ] ) && [ "${bkpFlag}" == "Y" ]
             then
 

@@ -1,4 +1,4 @@
-4|~/.config/dunst/icons/vol/vol-75.svg
+$HOME/.config/dunst/icons/vol/vol-75.svg
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    height="120px"
@@ -70,7 +70,7 @@
      d="m 338.73219,178.52511 c -5.37625,5.37628 -12.54462,5.37626 -17.92089,-3e-5 v 0 c -5.37629,-5.37626 -5.37631,-12.54464 -1e-5,-17.92089 l 35.84182,-35.84185 c 5.3763,-5.37626 12.54466,-5.37626 17.92092,2e-5 v 0 c 5.37627,5.37625 5.37627,12.54464 0,17.92091 z"
      id="path3789"
      inkscape:label="shadow" /><path
-     style="display:inline;fill:<dcol_3>;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_pry2>;stroke-width:1.584"
      d="m 338.72161,171.82573 c -5.37628,5.37627 -12.54464,5.37624 -17.92092,-2e-5 v 0 c -5.37626,-5.37625 -5.37626,-12.54462 0,-17.92091 l 35.84185,-35.84182 c 5.37626,-5.37629 12.54463,-5.37628 17.9209,-10e-6 v 0 c 5.3763,5.37629 5.37628,12.54465 0,17.92091 z"
      id="path915"
      inkscape:label="pointer" /></g>
