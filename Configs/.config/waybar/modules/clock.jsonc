@@ -1,6 +1,6 @@
     "clock": {
-        "format": "{:%R}",
-        "format-alt": "{:%R,   %A, %d %B %Y}",
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%R 󰃭 %a %d %b'%y}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
@@ -24,3 +24,4 @@
             "on-scroll-down": "shift_down"
         }
     },
+
