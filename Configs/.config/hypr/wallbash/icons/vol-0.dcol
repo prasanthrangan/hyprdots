@@ -1,4 +1,4 @@
-4|~/.config/dunst/icons/vol/vol-0.svg
+$HOME/.config/dunst/icons/vol/vol-0.svg
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    height="120px"
@@ -66,7 +66,7 @@
      id="path3789"
      inkscape:label="shadow"
      sodipodi:insensitive="true" /><path
-     style="display:inline;fill:<dcol_3>;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_pry2>;stroke-width:1.584"
      d="m 133.9083,230.50229 c 7.6032,0 12.672,5.0688 12.672,12.672 v 0 c 0,7.6032 -5.0688,12.672 -12.672,12.672 H 83.22029 c -7.6032,0 -12.672,-5.0688 -12.672,-12.672 v 0 c 0,-7.6032 5.0688,-12.672 12.672,-12.672 z"
      id="path915"
      inkscape:label="pointer"

@@ -9,7 +9,7 @@ hypDir="$HOME/.config/hypr/themes"
 # regen color conf
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
-    sed 's/#//g' ${hypDir}/Wall-Dcol.conf > ${hypDir}/colors.conf
+    cp ${hypDir}/Wall-Dcol.conf ${hypDir}/colors.conf
 else
     > ${hypDir}/colors.conf
 fi

@@ -22,6 +22,6 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         spicetify -q watch -s &
     fi
 
-    sed 's/#//g' $dcol > $scol
+    cp "$dcol" "$scol"
 fi
 
