@@ -14,7 +14,7 @@ $0 "Theme-Name" "https://github.com/User/Repository"
 $0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
 
 Github Repositories will be cloned at $HOME/Clone-Hyprdots
-Please Visit https://github.com/prasanthrangan/hyprdots for info. 
+Please Visit https://github.com/prasanthrangan/hyprdots for more info. 
 HELP
 
 exit 1
@@ -77,7 +77,7 @@ themes_dirs["Gtk"]="$HOME/.themes"
 themes_dirs["Font"]="$HOME/.local/share/fonts"
 themes_dirs["Icon"]="$HOME/.icons"
 themes_dirs["Cursor"]="$HOME/.icons"
-themes_dirs["Code"]="$HOME/.vscode"
+themes_dirs["Code"]="$HOME/.vscode/.$Fav_Theme"
 extensions=("tar.xz" "tar.gz")
 # Loop over the themes and extensions
 for theme in "${themes[@]}"; do 
@@ -85,15 +85,21 @@ for theme in "${themes[@]}"; do
    file="${Theme_Dir}/Source/arcs/${theme}_${Fav_Theme}.${ext}"
    clean="${Theme_Dir}/Source/arcs/${theme}_"$(echo "$Fav_Theme" | tr -d '-')".${ext}"
    if [ -f "$file" ] || [ -f "$clean" ]; then if [ -f "$clean" ]; then file=$clean ; fi
+       mkdir -p ${themes_dirs[$theme]}
        sudo tar -xf "$file" -C "${themes_dirs[$theme]}" 
        echo "Uncompressing ${file##*/} --> ${themes_dirs[$theme]}... Success" 
        gtk_exist=true 
+    if [[ "$theme" == "Code" ]]; then 
+        find "${themes_dirs[$theme]}" -name "*.vsix" -print0 | while IFS= read -r -d '' vsix_file; do
+            code --install-extension "$vsix_file" 2> /dev/null
+        done
+        rm -fr $HOME/.vscode/.$Fav_Theme
+    fi 
        break
    else if [[ "$theme" == "Gtk" ]]; then gtk_exist=false ; fi ; continue ;fi 
  done ;if [[ $gtk_exist == false ]]; then echo "Required: Gtk_${Fav_Theme} Archive not found." ; exit 1 ; fi
 done
 fc-cache -f
-
 # generate restore_cfg control
 cat << THEME > "${Fav_Theme}restore_cfg.lst"
 Y|${HOME}/.config/hypr/themes|${Fav_Theme}.conf|hyprland
@@ -105,17 +111,19 @@ N|${HOME}/.config/swww|${Fav_Theme}|swww
 Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
 THEME
 
-# restore configs with theme override
-./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
+wallpaper=$(basename $(ls $Theme_Dir/Configs/.config/swww/"$Fav_Theme"/* | sort | head -n 1))
+if [ -z "$wallpaper" ] ; then echo "No wallpapers found for $Fav_Theme." ; exit 1 ; fi
 
 if ! grep -q "|$Fav_Theme|" "$ThemeCtl" ; then 
-wallpaper="$(ls ~/.config/swww/"$Fav_Theme"/* | sort | head -n 1)"
 cat << WALL >> "$ThemeCtl"
-0|$Fav_Theme|$wallpaper
+0|$Fav_Theme|~/.config/swww/${Fav_Theme}/${wallpaper}
 WALL
     echo "$Fav_Theme appended to $ThemeCtl"
 else
     echo "$Fav_Theme already exists in $ThemeCtl. Skipping..."
 fi
+
+# restore configs with theme override
+./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
 
 rm "${Fav_Theme}restore_cfg.lst"
