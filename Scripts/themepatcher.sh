@@ -14,7 +14,7 @@ $0 "Theme-Name" "https://github.com/User/Repository"
 $0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
 
 Github Repositories will be cloned at $HOME/Clone-Hyprdots
-Please Visit https://github.com/prasanthrangan/hyprdots for info. 
+Please Visit https://github.com/prasanthrangan/hyprdots for more info. 
 HELP
 
 exit 1
@@ -105,17 +105,19 @@ N|${HOME}/.config/swww|${Fav_Theme}|swww
 Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
 THEME
 
-# restore configs with theme override
-./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
 
 if ! grep -q "|$Fav_Theme|" "$ThemeCtl" ; then 
-wallpaper="$(ls ~/.config/swww/"$Fav_Theme"/* | sort | head -n 1)"
+wallpaper=$(basename $(ls $Theme_Dir/Configs/.config/swww/"$Fav_Theme"/* | sort | head -n 1))
+if [ -z "$wallpaper" ] ; then echo "No wallpapers found for $Fav_Theme." ; exit 1 ; fi
 cat << WALL >> "$ThemeCtl"
-0|$Fav_Theme|$wallpaper
+0|$Fav_Theme|~/.config/swww/${Fav_Theme}/${wallpaper}
 WALL
     echo "$Fav_Theme appended to $ThemeCtl"
 else
     echo "$Fav_Theme already exists in $ThemeCtl. Skipping..."
 fi
+
+# restore configs with theme override
+./restore_cfg.sh "$Fav_Theme" "$Theme_Dir/Configs"
 
 rm "${Fav_Theme}restore_cfg.lst"
