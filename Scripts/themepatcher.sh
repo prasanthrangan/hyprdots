@@ -12,9 +12,6 @@ cat << HELP
 $0 "Theme-Name" "/Path/to/Configs"
 $0 "Theme-Name" "https://github.com/User/Repository"
 $0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
-
-Github Repositories will be cloned at $HOME/Clone-Hyprdots
-Please Visit https://github.com/prasanthrangan/hyprdots for more info.
 HELP
 }
 
@@ -40,7 +37,7 @@ else Git_Repo=${2%/}
     fi
 
     Git_Path=${Git_Repo#*://*/} Git_Owner=${Git_Path%/*} branch_dir=${branch//\//_}
-    Theme_Dir="$HOME/Clone-Hyprdots/$Git_Owner-$branch_dir"
+    Theme_Dir="$HOME/Clone/$Git_Owner-$branch_dir"
 
     if [ -d "$Theme_Dir" ]; then
         echo "Directory $Theme_Dir already exists. Using existing directory."
