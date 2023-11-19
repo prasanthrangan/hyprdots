@@ -4,6 +4,6 @@
         "active-only": false,
         "on-click": "activate",
         "persistent-workspaces": {
-            "1": []
         }
     },
+
