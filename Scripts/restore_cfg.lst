@@ -1,7 +1,7 @@
 Y|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git pokemon-colorscripts-git
 Y|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
 Y|${HOME}/.config|dunst|dunst
-Y|${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf windowrules.conf scripts themes wallbash|hyprland
+Y|${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf theme.ctl windowrules.conf scripts themes wallbash|hyprland
 Y|${HOME}/.config|kitty|kitty
 Y|${HOME}/.config|Kvantum|kvantum
 Y|${HOME}/.config|MangoHud|mangohud

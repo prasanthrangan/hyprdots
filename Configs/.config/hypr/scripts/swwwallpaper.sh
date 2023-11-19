@@ -26,10 +26,10 @@ Wall_Update()
     fi
 
     wait
-    sed -i "/^1|/c\1|${curTheme}|${x_update}" "$ctlFile"
-    ln -fs "$x_wall" "$wallSet"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "$wallRfi"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "$wallBlr"
+    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > ${ScrDir}/tmp && mv ${ScrDir}/tmp "${ThemeCtl}"
+    ln -fs "${x_wall}" "${wallSet}"
+    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
+    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "${wallBlr}"
 }
 
 Wall_Change()
@@ -72,19 +72,18 @@ Wall_Set()
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-ctlFile="$HOME/.config/swww/wall.ctl"
 wallSet="$HOME/.config/swww/wall.set"
 wallBlr="$HOME/.config/swww/wall.blur"
 wallRfi="$HOME/.config/swww/wall.rofi"
-ctlLine=`grep '^1|' $ctlFile`
+ctlLine=$(grep '^1|' ${ThemeCtl})
 
 if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
-    echo "ERROR : $ctlFile Unable to fetch theme..."
+    echo "ERROR : ${ThemeCtl} Unable to fetch theme..."
     exit 1
 fi
 
-curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-fullPath=$(echo "$ctlLine" | cut -d '|' -f 3 | sed "s+~+$HOME+")
+curTheme=$(echo "$ctlLine" | awk -F '|' '{print $2}')
+fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
 wallName=$(basename "$fullPath")
 wallPath=$(dirname "$fullPath")
 mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
