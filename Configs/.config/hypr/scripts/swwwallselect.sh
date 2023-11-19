@@ -4,15 +4,14 @@
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
 RofiConf="$HOME/.config/rofi/themeselect.rasi"
-ctlFile="$HOME/.config/swww/wall.ctl"
 
-ctlLine=`grep '^1|' $ctlFile`
+ctlLine=`grep '^1|' $ThemeCtl`
 if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
-    echo "ERROR : $ctlFile Unable to fetch theme..."
+    echo "ERROR : $ThemeCtl Unable to fetch theme..."
     exit 1
 fi
 
-fullPath=$(echo "$ctlLine" | cut -d '|' -f 3 | sed "s+~+$HOME+")
+fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
 wallPath=$(dirname "$fullPath")
 if [ ! -d "${wallPath}" ] && [ -d "$HOME/.config/swww/${gtkTheme}" ] && [ ! -z "${gtkTheme}" ] ; then
     wallPath="$HOME/.config/swww/${gtkTheme}"

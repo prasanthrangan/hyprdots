@@ -23,7 +23,6 @@ ThemeSel=$( cat $ThemeCtl | while read line
 do
     thm=`echo $line | cut -d '|' -f 2`
     wal=`echo $line | awk -F '/' '{print $NF}'`
-    #echo $thm $wal
     echo -en "$thm\x00icon\x1f$cacheDir/${thm}/${wal}\n"
 done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 
