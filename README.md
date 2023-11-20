@@ -28,27 +28,28 @@ https://github.com/prasanthrangan/hyprdots/assets/106020512/c995699a-299c-4a8e-9
 
 ## Installation
 
-The installation script is made for Arch, but **may** work on some Arch based distros.
+The installation script is made for Arch, but **may** work on some Arch based distros with **systemd**.
 For Debian, please refer **Senshi111**'s version [here](https://github.com/Senshi111/debian-hyprland-hyprdots).
+Checkout **KSK**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full installation walkthrough.
 
-> **Warning**
->
+> [!IMPORTANT]
 > Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
-> Nvidia drm will be enabled in grub, so please [ensure](https://wiki.archlinux.org/title/NVIDIA) your nvidia card supports dkms drivers/hyprland.
+> So please [ensure](https://wiki.archlinux.org/title/NVIDIA) that your Nvidia card supports dkms drivers and hyprland.
 
-After minimal Arch install (with grub), clone and execute -
+> [!CAUTION]
+> The script modifies your grub config to enable Nvidia drm and theme
+
+After minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
-git clone https://github.com/prasanthrangan/hyprdots ~/Hyprdots
+git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/Hyprdots
 cd ~/Hyprdots/Scripts
 ./install.sh
 ```
 
-> **Note**
->
+> [!TIP]
 > You can also create your own list (for ex. `custom_apps.lst`) with all your favorite apps and pass the file as a parameter to install it -
->
 >```shell
 >./install.sh custom_apps.lst
 >```
@@ -64,22 +65,25 @@ For more details, please refer [installation wiki](https://github.com/prasanthra
 
 ## Theming
 
-To add your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
+To create your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
 
-- Available themes
-  - [x] Catppuccin-Mocha
-  - [x] Catppuccin-Latte
-  - [x] Decay-Green
-  - [x] Rosé-Pine
-  - [x] Tokyo-Night
-  - [x] Material-Sakura
-  - [x] Graphite-Mono
-  - [x] Cyberpunk-Edge
-  - [ ] Nordic-Blue (maybe later)
+Available themes by default
+- [x] Catppuccin-Mocha
+- [x] Catppuccin-Latte
+- [x] Decay-Green
+- [x] Rosé-Pine
+- [x] Tokyo-Night
+- [x] Material-Sakura
+- [x] Graphite-Mono
+- [x] Cyberpunk-Edge
 
-- Contributors themes
-  - [x] Frosted-Glass by T-Crypt
-  - [x] Gruvbox-Retro by T-Crypt
+Contributors themes
+- [x] Frosted-Glass by T-Crypt
+- [x] Gruvbox-Retro by T-Crypt
+
+> [!TIP]
+> You can also maintain/share/browse/install additional themes (for ex. [Synth-Wave](https://github.com/prasanthrangan/hyprdots-mod)) using themepatcher.
+> For more details please refer [themepatcher wiki](https://github.com/prasanthrangan/hyprdots/wiki/Themepatcher).
 
 | Catppuccin-Mocha |
 | :-: |

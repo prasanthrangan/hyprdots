@@ -4,7 +4,7 @@
 EnableWallDcol=0
 ConfDir="$HOME/.config"
 CloneDir="$HOME/Hyprdots"
-ThemeCtl="$ConfDir/swww/wall.ctl"
+ThemeCtl="$ConfDir/hypr/theme.ctl"
 cacheDir="$ConfDir/swww/.cache"
 
 # theme var

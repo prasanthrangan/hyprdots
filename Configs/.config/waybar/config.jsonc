@@ -87,11 +87,14 @@
 
     "custom/spotify": {
         "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
-        "format": "{}",
+        "format": " {}",
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous",
+	"on-click-right": "playerctl next --player spotify",
+	"on-click-middle": "playerctl previous --player spotify",
+	"on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
+	"on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
+	"max-length": 25,
         "escape": true
     },
 
@@ -99,13 +102,13 @@
         "format": "{icon}",
         "format-icons": {
             "activated": "󰥔",
-            "deactivated": ""
+            "deactivated": ""
         }
     },
 
     "clock": {
-        "format": "{:%R}",
-        "format-alt": "{:%R   %d.%m.%y}",
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%R 󰃭 %d·%m·%y}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
