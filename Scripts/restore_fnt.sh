@@ -13,18 +13,21 @@ fi
 cat restore_fnt.lst | while read lst
 do
 
-    fnt=`echo $lst | awk -F '|' '{print $1}'`
-    tgt=`echo $lst | awk -F '|' '{print $2}'`
+    bkpFlag=`echo $lst | awk -F '|' '{print $1}'`
+    fnt=`echo $lst | awk -F '|' '{print $2}'`
+    tgt=`echo $lst | awk -F '|' '{print $3}'`
     tgt=`eval "echo $tgt"`
 
-    if [ ! -d "${tgt}" ]
+    if [ ! -d "${tgt}" ] && [ "${bkpFlag}" == "Y" ]
     then
         mkdir -p ${tgt} || echo "creating the directory as root instead..." && sudo mkdir -p ${tgt}
         echo "${tgt} directory created..."
     fi
 
-    sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
-    echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
+    if [ "${bkpFlag}" == "Y" ]; then
+        sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
+        echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
+    fi
 
 done
 
