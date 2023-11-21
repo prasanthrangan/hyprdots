@@ -37,7 +37,7 @@ else Git_Repo=${2%/}
     fi
 
     Git_Path=${Git_Repo#*://*/} Git_Owner=${Git_Path%/*} branch_dir=${branch//\//_}
-    Theme_Dir="$HOME/Clone/$Git_Owner-$branch_dir"
+    Theme_Dir="$HOME/Clone/HyprdotsPatch-$branch_dir"
 
     if [ -d "$Theme_Dir" ]; then
         echo "Directory $Theme_Dir already exists. Using existing directory."
