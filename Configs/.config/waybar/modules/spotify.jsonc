@@ -8,6 +8,7 @@
 	"on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
 	"on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
 	"max-length": 25,
-        "escape": true
+        "escape": true,
+        "tooltip": true
     },
 
