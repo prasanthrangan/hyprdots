@@ -7,8 +7,6 @@ yad --width=800 --height=600 \
 --list \
 --column=Key: \
 --column=Description: \
-"Keybinds" "" \
-"====================" "====================" \
 "=" "SUPER KEY" \
 " + Q / Alt + F4" "Close active window" \
 " + L" "Lock screen" \
