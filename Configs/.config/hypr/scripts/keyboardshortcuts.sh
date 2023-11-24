@@ -13,7 +13,7 @@ yad --width=800 --height=600 \
 " + Q / Alt + F4" "Close active window" \
 " + L" "Lock screen" \
 "Ctrl + Shift + Escape" "Open system monitor" \
-"Cntl + Escape" "Toggle waybar" \
+"Ctrl + Escape" "Toggle waybar" \
 " + Backspace" "Logout menu" \
 " + Del" "Quit hyprland session logout w/out confirmation" \
 " + W" "Toggle window on focus to float" \
