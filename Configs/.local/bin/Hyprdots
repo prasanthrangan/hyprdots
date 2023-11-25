@@ -4,11 +4,16 @@ HyprDir="$HOME/.config/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
 func="$@"
 
+check inotify-tools
+
 params() {
   func=$1
 if awk "/^$func\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
   awk "/^$func\(\) \{/,/}/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
 fi
+
+
+
 }
 
 guide() { #? Show longer help message
@@ -46,7 +51,7 @@ case $1 in
         prev) #? Previous Theme
             $HyprDir/themeswitch.sh -p
         ;;
-        select) #? Selec
+        select) #? Theme Selector
             $HyprDir/themeselect.sh
         ;;
         patch) #? Patch A Theme from different repository.
@@ -60,26 +65,24 @@ case $1 in
 esac
 }
 
-wallpaper() { #? Wallpaper related Functions
-  # Function for managing wallpapers
-  echo "Setting wallpaper with parameters: $@"
+wallpaper() { #? Wallpaper related Actions
   case $1 in 
-        set)
+        set) #? Set /Path/to/Wallpaper as Wallpaper
             shift
             if [ -z "$@" ]; then echo "Missing: /Path/to/Wallpaper" ; exit 1 ; fi
             $HyprDir/swwwallpaper.sh -s "$@"
         ;;
-        next)
+        next) #? Next Wallppaer
             $HyprDir/swwwallpaper.sh -n 
         ;;
-        prev)
+        prev) #? Previous Wallpaper
             $HyprDir/sswwwallpaper.sh -p
         ;;
-        select)
+        select) #? Wallpaper Selector
             $HyprDir/swwwallselect.sh
         ;;
         *)
-        echo "$(params "${func}" )"
+         echo "$(params "${func}" )"
         ;;
 esac
 }
@@ -88,15 +91,21 @@ sddm() { #? Sddm Things
   # Function for managing SDDM settings
   echo "Setting SDDM with parameters: $@"
   case $1 in 
-        set)
+        set) #? Set active Wallpaper to Sddm Lockscreen
             $HyprDir/sddmwall.sh
+        ;;
+        *)
+         echo "$(params "${func}" )"
         ;;
 esac
 }
 wallbash(){ #? Wallbash
   case $1 in 
-        toggle)
+        toggle) #? Toggle Wall bash On/Off
             $HyprDir/wallbashtoggle.sh
+        ;;
+        *)
+         echo "$(params "${func}" )"
         ;;
 esac
 }
@@ -104,7 +113,7 @@ esac
 waybar() { #? Waybar related Things
     echo $1
 case $1 in
-        edit)
+        edit) #? Edit waybar Control File.
    # Edit the configuration file
    code ~/.config/waybar/config.ctl
    # Restart Waybar when the configuration file changes
@@ -115,16 +124,42 @@ case $1 in
  echo "   setting save "
 exit 0
         ;;
+        *)
+         echo "$(params "${func}" )"
+        ;;
 esac
 }
 
+code() {
 
+case $1 in 
+         select) #? Selector for default Theme preset
+         ;;
+        *)
+         echo "$(params "${func}" )"
+        ;;
+esac
+}
 
+cache() { #? Run Caching
+        if [[ -z $2 ]]; then ./create_cache.sh ; else
+case $1 in 
+         recreate) #? Force remove cache
+            ./create_cache.sh -f
+         ;;
+        add) #? Cache custom /path/to/wallpaper/* ( Broken)
+        if [[ -z $2 ]]; then
+            echo "Please provide a /path/to/wallpaper/*." 
+        else
+            ./create_cache.sh -c "$2"
+        fi
+        ;;
+        *)
+         echo "$(params "${func}" )"
+        ;;
+esac
 
-
-
-
-
+}
 
 
 
