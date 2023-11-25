@@ -18,3 +18,4 @@ Y|${HOME}|.gtkrc-2.0|nwg-look
 Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
 Y|${HOME}/.local/share|dolphin|dolphin
 Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
+Y|${HOME}/.local/bin|Hyprdots|hyprland
