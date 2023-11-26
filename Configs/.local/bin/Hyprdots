@@ -35,8 +35,8 @@ ConfigCtl() {
         FINAL_CHECKSUM=$(md5sum "$FILE")  # Get the final checksum of the file
         if [ "$INITIAL_CHECKSUM" != "$FINAL_CHECKSUM" ]; then  # Compare the checksums
             echo "File has changed."
- killall waybar && waybar > /dev/null & disown || waybar > /dev/null & disown            INITIAL_CHECKSUM=$FINAL_CHECKSUM  # Update the initial checksum
-
+ killall waybar && waybar > /dev/null & disown || waybar > /dev/null & disown            
+    INITIAL_CHECKSUM=$FINAL_CHECKSUM  # Update the initial checksum
         fi
     done
     read  # Wait for the user to press Enter
