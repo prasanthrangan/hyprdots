@@ -2,9 +2,8 @@
 source ~/.config/hypr/scripts/globalcontrol.sh
 HyprDir="$HOME/.config/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
-func="$@"
-
-check inotify-tools
+func="${1}"
+cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
 
 params() {
   func=$1
@@ -12,11 +11,9 @@ if awk "/^$func\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
   awk "/^$func\(\) \{/,/}/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
 fi
 
-
-
 }
 
-guide() { #? Show longer help message
+man() { #? Show Manual 
   echo "Usage: Hyprdots [function] [parameters]"
   echo ""
   grep -E '^\w+\(\) \{ #\?' $0 | while read -r line; do
@@ -27,12 +24,39 @@ printf "  %-20s %s\n" "[$func]" "*$desc"
        done
 }
 
+
+ConfigCtl() {
+    FILE="$1"
+    INITIAL_CHECKSUM=$(md5sum "$FILE")  # Get the initial checksum of the file
+    $(which code) -n "$FILE"  # Start VS Code
+    echo "Press Enter when you're done editing..."
+    while true; do  # Infinite loop
+        sleep 1  # Wait before checking again
+        FINAL_CHECKSUM=$(md5sum "$FILE")  # Get the final checksum of the file
+        if [ "$INITIAL_CHECKSUM" != "$FINAL_CHECKSUM" ]; then  # Compare the checksums
+            echo "File has changed."
+ killall waybar && waybar > /dev/null & disown || waybar > /dev/null & disown            INITIAL_CHECKSUM=$FINAL_CHECKSUM  # Update the initial checksum
+
+        fi
+    done
+    read  # Wait for the user to press Enter
+    exit 0
+}
+
+
+
+
+
+
+
+
 restore() { #? Restore Hyprdots Conigurations
 ./install.sh  -r
   }
 
 update() { #? Pull Updates From Hyprdots Repository 
-git stash 2> /dev/null ; git pull ; git stash pop 2> /dev/null 
+echo "CloneDirectory: $CloneDir"
+git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
   }
 
 install() { #? Fresh install your config also installs apps. 
@@ -66,6 +90,8 @@ esac
 }
 
 wallpaper() { #? Wallpaper related Actions
+echo $1
+echo $func
   case $1 in 
         set) #? Set /Path/to/Wallpaper as Wallpaper
             shift
@@ -110,25 +136,19 @@ wallbash(){ #? Wallbash
 esac
 }
 
+
 waybar() { #? Waybar related Things
-    echo $1
-case $1 in
+    case $1 in
         edit) #? Edit waybar Control File.
-   # Edit the configuration file
-   code ~/.config/waybar/config.ctl
-   # Restart Waybar when the configuration file changes
-        inotifywait -e modify $HOME/.config/waybar/config.ctl
-    notify-send  "Changes On waybar"
- $HOME/.config/hypr/scripts/themeReload.sh all
-    inotifywait -e close $HOME/.config/waybar/config.ctl
- echo "   setting save "
-exit 0
-        ;;
+            ConfigCtl "$HOME/.config/waybar/config.ctl"
+            ;;
         *)
-         echo "$(params "${func}" )"
-        ;;
-esac
+            echo "$(params "${func}" )"
+            ;;
+    esac
 }
+
+
 
 code() {
 
@@ -142,12 +162,14 @@ esac
 }
 
 cache() { #? Run Caching
-        if [[ -z $2 ]]; then ./create_cache.sh ; else
+        if [[ -z $1 ]]; then
+        ./create_cache.sh 
+        else
 case $1 in 
-         recreate) #? Force remove cache
+      reset) #? Force remove cache
             ./create_cache.sh -f
          ;;
-        add) #? Cache custom /path/to/wallpaper/* ( Broken)
+        add) #! Cache custom /path/to/wallpaper/* ( Broken)
         if [[ -z $2 ]]; then
             echo "Please provide a /path/to/wallpaper/*." 
         else
@@ -158,7 +180,7 @@ case $1 in
          echo "$(params "${func}" )"
         ;;
 esac
-
+fi
 }
 
 
@@ -173,9 +195,7 @@ esac
 
 
 
-if ! grep -q "^$1()" $0; then
-cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
-   echo ""
+if ! grep -q "$func()" $0 ; then   echo ""
    echo "Usage: Hyprdots [function]"
   echo ""
   grep -E '^\w+\(\) \{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }'
@@ -183,6 +203,4 @@ cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
   fi
 
 # Call the appropriate function based on the first argument
-
-func=$@
 "$@"
