@@ -66,10 +66,10 @@ ConfigCtl() {
 #! ================================================================
 
 restore() { #? Restore Hyprdots Configurations
-sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst
-./install.sh  -r
-mv ./restore_cfg.lst.bak ./restore_cfg.lst
-  }
+    trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT
+    sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst
+    ./install.sh  -r
+}
 
 update() { #? Pull Updates From Hyprdots Repository 
 git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
