@@ -1,10 +1,10 @@
 #!/bin/bash
-    echo $EDITOR
 source ~/.config/hypr/scripts/globalcontrol.sh
-ScrDir="$HOME/.config/hypr/scripts"
+ScrDir="$ConfDir/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
-func="${1}"
+
 cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
+func="${1}"
 
 # Check for updates every 12 Hrs
 [ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
@@ -34,15 +34,19 @@ printf "  %-20s %s\n" "[$func]" "*$desc"
 ConfigCtl() {
     FILE="$1"
     EDITOR="${EDITOR:-code}"  # Use VS Code as the default editor
-    echo -e "[Editor]: $EDITOR (To change: \"export EDITOR=pref_editor\") \n[Monitor]: $FILE \n[Execute]: $ACTION \nPress Any Key to end daemon..."
-    $(which $EDITOR) "$FILE" & LAST_MD5SUM=$(md5sum "$FILE")
-    while true; do CURRENT_MD5SUM=$(md5sum "$FILE")
-        if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then eval "$ACTION" ; LAST_MD5SUM="$CURRENT_MD5SUM" ; fi
-        read -t 2 -n 1 > /dev/null && exit 0
+    echo -e "[Editor]: $EDITOR (To change: \"export EDITOR=pref_editor\") \n[Monitor]: $FILE \nPress Any Key to end DAEMON..."
+    #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
+    kitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
+    LAST_MD5SUM=$(md5sum "$FILE")
+    while true; do 
+        CURRENT_MD5SUM=$(md5sum "$FILE")
+        if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then 
+            eval "$ACTION"
+            LAST_MD5SUM="$CURRENT_MD5SUM"
+        fi
+        read -t 2 -n 1 > /dev/null && exit 0 #? loop every 2 seconds
     done
 }
-
-
 #! ================================================================
 #? Add functions below this section.
 #? Be careful with spaces in your function definitions.
@@ -54,8 +58,7 @@ ConfigCtl() {
 #* |}
 #! ================================================================
 
-
-restore() { #? Restore Hyprdots Conigurations
+restore() { #? Restore Hyprdots Configurations
 ./install.sh  -r
   }
 
@@ -127,6 +130,7 @@ sddm() { #? Sddm Things
         ;;
 esac
 }
+
 wallbash(){ #? Wallbash
   case $1 in 
         toggle) #? Toggle Wall bash On/Off
@@ -137,7 +141,6 @@ wallbash(){ #? Wallbash
         ;;
 esac
 }
-
 
 waybar() { #? Waybar related Things
     case $1 in
@@ -151,12 +154,19 @@ waybar() { #? Waybar related Things
     esac
 }
 
-
-
 code() {
 
 case $1 in 
-         select) #? Selector for default Theme preset
+         select) #? Selector for default Theme presets
+        if [[ ! -z "$(cat $HOME/.config/hypr/theme.ctl | grep "^1|" | cut -d'|' -f3)" ]]; then
+        dir=$(cat $ThemeCtl | grep "^1|" | cut -d'|' -f3 | cut -d'~' -f1 | tr '[:upper:]' '[:lower:]')
+        IFS=$'\n' read -d '' -ra theme < <(cat ~/.vscode/extensions/"${dir}"*/package.json | jq -r '.contributes.themes[] | .label')
+        select codet in "${theme[@]}" ; do echo "Vscode Theme: $codet" ; break ; done
+        sed -i "/^1|/s|~[^|]*|~${codet}|" $ThemeCtl
+            if [ "$(grep -c "workbench.colorTheme" $ConfDir/Code/User/settings.json)" -eq 1 ] ; then sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${codet}\"," $ConfDir/Code/User/settings.json
+            else sed -i "/^{/a\    \"workbench.colorTheme\": \"${codet}\"," $ConfDir/Code/User/settings.json
+            fi
+        fi
          ;;
         *)
         echo "$(params "${func}" )"
@@ -184,13 +194,6 @@ cache() { #? Run Caching
          ;;
     esac
 }
-
-
-
-
-
-
-
 
 
 
