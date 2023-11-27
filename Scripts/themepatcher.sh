@@ -9,9 +9,9 @@
 ask_help(){
 cat << HELP
 ...Usage...
-$0 "Theme-Name" "/Path/to/Configs"
-$0 "Theme-Name" "https://github.com/User/Repository"
-$0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
+$0 "Theme-Name" "/Path/to/Configs" "author.vscode-extension~Theme Presets"
+$0 "Theme-Name" "https://github.com/User/Repository" "author.vscode-extension~Theme Presets"
+$0 "Theme-Name" "https://github.com/User/Repository/tree/branch" "author.vscode-extension~Theme Presets"
 HELP
 }
 
