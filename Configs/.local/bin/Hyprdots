@@ -4,7 +4,7 @@ ScrDir="$ConfDir/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
 
 cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
-func="${1}"
+function="${1}"
 
 # Check for updates every 12 Hrs
 [ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
@@ -13,22 +13,29 @@ git fetch > /dev/null 2>&1 && \
 ( [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ] && echo -e "Updates available! \nRUN: \033[0;34mHyprdots update\033[0m"  || echo -e "\033[0;32mHyprdots Up to date\033[0m" ) && \
 touch "/tmp/hyprdots_update_check" )
 
-params() { #TODO: Add conditionals here like 'case' 'getopts' 'ifelse'
-func="${func// /}"
-if awk "/^$func\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
-  awk "/^$func\(\) \{/,/}/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
+if [ -z "$1" ]; then exit 1 ; fi
+
+Parameters() { #TODO: Add conditionals here like 'case' 'getopts' 'ifelse'
+function="${function// /}"
+if awk "/^$function\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
+  awk "/^$function\(\) \{/,/esac/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
 fi
 }
 
 man() { #? Show Manual 
-  echo "Usage: Hyprdots [function] [parameters]"
+  echo "Usage: Hyprdots [function] [Parameters]"
   echo ""
   grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | while read -r line; do
-    func=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $1 }')
+    function=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $1 }')
     desc=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $5 }')
-printf "  %-20s %s\n" "[$func]" "*$desc"
-      params "$func"
+printf "  %-20s %s\n" "[$function]" "*$desc"
+      Parameters "$function"
        done
+}
+SelectOption() { #TODO Can be improved soon using other package.
+    IFS=$'\n' read -d '' -ra options < <(echo "$1")
+    select selected in "${options[@]}" ; do echo "You selected: $selected" ; break ; done
+    echo "$selected"
 }
 
 ConfigCtl() {
@@ -38,13 +45,10 @@ ConfigCtl() {
     #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
     kitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
     LAST_MD5SUM=$(md5sum "$FILE")
-    while true; do 
-        CURRENT_MD5SUM=$(md5sum "$FILE")
-        if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then 
-            eval "$ACTION"
+    while true; do CURRENT_MD5SUM=$(md5sum "$FILE")
+        if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then eval "$ACTION"
             LAST_MD5SUM="$CURRENT_MD5SUM"
-        fi
-        read -t 2 -n 1 > /dev/null && exit 0 #? loop every 2 seconds
+        fi ; read -t 2 -n 1 > /dev/null && exit 0 #? loop every 2 seconds
     done
 }
 #! ================================================================
@@ -59,7 +63,9 @@ ConfigCtl() {
 #! ================================================================
 
 restore() { #? Restore Hyprdots Configurations
+sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst
 ./install.sh  -r
+mv ./restore_cfg.lst.bak ./restore_cfg.lst
   }
 
 update() { #? Pull Updates From Hyprdots Repository 
@@ -71,11 +77,12 @@ install() { #? Fresh install your config also installs apps.
 ./install.sh
   }
 
-theme() { #? Theme Related Actions
+theme() { #? Theme Related Actions 
   # Function for managing themes
 case $1 in 
         set) #? Set Theme
-            $ScrDir/themeswitch.sh -s
+        SelectOption "$(cat $ThemeCtl | awk -F'|' '{print $2}')"
+        $ScrDir/themeswitch.sh -s "$selected"
         ;;
         next) #? Next Theme
             $ScrDir/themeswitch.sh -n
@@ -91,7 +98,7 @@ case $1 in
             ./themepatcher.sh "$@"
         ;;
         *)
-         echo "$(params "${func}" )"
+         echo "$(Parameters "${function}" )"
         ;;
 esac
 }
@@ -113,20 +120,20 @@ wallpaper() { #? Wallpaper related Actions
             $ScrDir/swwwallselect.sh
         ;;
         *)
-         echo "$(params "${func}" )"
+         echo "$(Parameters "${function}" )"
         ;;
 esac
 }
 
 sddm() { #? Sddm Things
   # Function for managing SDDM settings
-  echo "Setting SDDM with parameters: $@"
+  echo "Setting SDDM with Parameters: $@"
   case $1 in 
         set) #? Set active Wallpaper to Sddm Lockscreen
             $ScrDir/sddmwall.sh
         ;;
         *)
-         echo "$(params "${func}" )"
+         echo "$(Parameters "${function}" )"
         ;;
 esac
 }
@@ -137,7 +144,7 @@ wallbash(){ #? Wallbash
             $ScrDir/wallbashtoggle.sh
         ;;
         *)
-         echo "$(params "${func}" )"
+         echo "$(Parameters "${function}" )"
         ;;
 esac
 }
@@ -149,27 +156,25 @@ waybar() { #? Waybar related Things
             ConfigCtl "$HOME/.config/waybar/config.ctl" "$ACTION"
             ;;
         *)
-            echo "$(params "${func}" )"
+            echo "$(Parameters "${function}" )"
             ;;
     esac
 }
 
-code() {
-
+code() { #? Modify Vscode Extensions
 case $1 in 
          select) #? Selector for default Theme presets
         if [[ ! -z "$(cat $HOME/.config/hypr/theme.ctl | grep "^1|" | cut -d'|' -f3)" ]]; then
         dir=$(cat $ThemeCtl | grep "^1|" | cut -d'|' -f3 | cut -d'~' -f1 | tr '[:upper:]' '[:lower:]')
-        IFS=$'\n' read -d '' -ra theme < <(cat ~/.vscode/extensions/"${dir}"*/package.json | jq -r '.contributes.themes[] | .label')
-        select codet in "${theme[@]}" ; do echo "Vscode Theme: $codet" ; break ; done
-        sed -i "/^1|/s|~[^|]*|~${codet}|" $ThemeCtl
-            if [ "$(grep -c "workbench.colorTheme" $ConfDir/Code/User/settings.json)" -eq 1 ] ; then sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${codet}\"," $ConfDir/Code/User/settings.json
-            else sed -i "/^{/a\    \"workbench.colorTheme\": \"${codet}\"," $ConfDir/Code/User/settings.json
+        SelectOption "$(cat $HOME/.vscode/extensions/"${dir}"*/package.json | jq -r '.contributes.themes[] | .label')"
+        sed -i "/^1|/s|~[^|]*|~${selected}|" $ThemeCtl
+            if [ "$(grep -c "workbench.colorTheme" $ConfDir/Code/User/settings.json)" -eq 1 ] ; then sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
+            else sed -i "/^{/a\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
             fi
         fi
          ;;
         *)
-        echo "$(params "${func}" )"
+        echo "$(Parameters "${function}" )"
          ;;
     esac
 }
@@ -190,7 +195,7 @@ cache() { #? Run Caching
         fi
         ;;
         *)
-        echo "$(params "${func}" )"
+        echo "$(Parameters "${function}" )"
          ;;
     esac
 }
@@ -202,8 +207,8 @@ cache() { #? Run Caching
 
 
 
-
-#! ================================================================
-#? Call the appropriate function based on the first argument
-( [ -z "$1" ] && exit 1 ) || ( "$@" || ( grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }' ; exit 1 ))
-#! ================================================================
+#! Changes are FATAL !!! Call the appropriate function based on the first argument.
+#! ====================================================================================================================
+help=$(grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }')
+(echo "$help" | awk '{print $1}' | grep -w "$function" 1> /dev/null && "$@" ) || echo -e "\nUsage: Hyprdots [Function] [Parameter]\n$help"
+#! ====================================================================================================================
