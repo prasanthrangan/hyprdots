@@ -1,10 +1,15 @@
-#neovim
-#emote
-#trash-cli-git
-#downgrade
+neovim
+emote
+trash-cli-git
+downgrade
 steam
 gamemode
-#gamescope
-#mangohud
+gamescope
+mangohud
 spotify
 spicetify-cli
+# Custom
+heroic-games-launcher-bin
+librewolf-bin
+#mercury-browser-bin
+hyprshot
