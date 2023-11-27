@@ -13,3 +13,6 @@ heroic-games-launcher-bin
 librewolf-bin
 #mercury-browser-bin
 hyprshot
+# Kernels
+linux
+linux-lts
