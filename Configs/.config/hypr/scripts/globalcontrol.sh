@@ -4,7 +4,7 @@
 EnableWallDcol=0
 ConfDir="$HOME/.config"
 CloneDir="$HOME/Hyprdots"
-ThemeCtl="$ConfDir/swww/wall.ctl"
+ThemeCtl="$ConfDir/hypr/theme.ctl"
 cacheDir="$ConfDir/swww/.cache"
 
 # theme var
@@ -46,4 +46,15 @@ get_aurhlpr()
     then
         aurhlpr="paru"
     fi
+}
+
+check(){
+    local Pkg_Dep=$(for PkgIn in "$@"; do ! pkg_installed $PkgIn && echo "$PkgIn"; done)
+
+if [ -n "$Pkg_Dep" ]; then echo -e "$0 Dependencies:\n$Pkg_Dep"
+    read -p "ENTER to install  (Other key: Cancel): " ans
+    if [ -z "$ans" ]; then get_aurhlpr ; $aurhlpr -S $Pkg_Dep
+    else echo "Skipping installation of packages" ;exit 1
+    fi
+fi
 }

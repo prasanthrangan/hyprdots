@@ -70,12 +70,12 @@ fi
 
 
 # swwwallpaper
-getWall=`grep '^1|' $ThemeCtl | cut -d '|' -f 3`
-getWall=`eval echo $getWall`
-getName=`basename $getWall`
-ln -fs $getWall $ConfDir/swww/wall.set
-ln -fs $cacheDir/${ThemeSet}/${getName}.rofi $ConfDir/swww/wall.rofi
-ln -fs $cacheDir/${ThemeSet}/${getName}.blur $ConfDir/swww/wall.blur
+getWall=`grep '^1|' $ThemeCtl | awk -F '|' '{print $NF}'`
+getWall=`eval echo "$getWall"`
+getName=`basename "$getWall"`
+ln -fs "$getWall" "$ConfDir/swww/wall.set"
+ln -fs "$cacheDir/${ThemeSet}/${getName}.rofi" "$ConfDir/swww/wall.rofi"
+ln -fs "$cacheDir/${ThemeSet}/${getName}.blur" "$ConfDir/swww/wall.blur"
 ${ScrDir}/swwwallpaper.sh
 
 if [ $? -ne 0 ] ; then
@@ -85,7 +85,14 @@ fi
 
 
 # code
-sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${ThemeSet}\"," $ConfDir/Code/User/settings.json
+if [ ! -z "$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}')" ] ; then
+    codex=$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}' | cut -d '~' -f 1)
+    if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
+        code --install-extension "${codex}"
+    fi
+    codet=$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}' | cut -d '~' -f 2)
+    jq --arg codet "${codet}" '.["workbench.colorTheme"] |= $codet' "$ConfDir/Code/User/settings.json" > tmpvsc && mv tmpvsc "$ConfDir/Code/User/settings.json"
+fi
 
 
 # kitty
@@ -118,6 +125,6 @@ ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
 
 
-# rofi & waybar
-${ScrDir}/swwwallbash.sh $getWall
+# wallbash
+${ScrDir}/swwwallbash.sh "$getWall"
 

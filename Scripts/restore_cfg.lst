@@ -1,7 +1,7 @@
 Y|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k-git pokemon-colorscripts-git
 Y|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
 Y|${HOME}/.config|dunst|dunst
-Y|${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf windowrules.conf scripts themes wallbash|hyprland
+Y|${HOME}/.config/hypr|animations.conf hyprland.conf keybindings.conf theme.ctl windowrules.conf scripts themes wallbash|hyprland
 Y|${HOME}/.config|kitty|kitty
 Y|${HOME}/.config|Kvantum|kvantum
 Y|${HOME}/.config|MangoHud|mangohud
@@ -9,7 +9,7 @@ Y|${HOME}/.config|neofetch|neofetch
 Y|${HOME}/.config|qt5ct|qt5ct
 Y|${HOME}/.config|rofi|rofi
 Y|${HOME}/.config|swaylock|swaylock-effects
-N|${HOME}/.config|swww|swww
+Y|${HOME}/.config|swww|swww
 Y|${HOME}/.config|waybar|waybar
 Y|${HOME}/.config|wlogout|wlogout
 Y|${HOME}/.config|nwg-look gtk-3.0 xsettingsd|nwg-look

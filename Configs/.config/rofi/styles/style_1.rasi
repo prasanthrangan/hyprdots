@@ -43,7 +43,7 @@ mainbox {
 // Inputs //
 inputbar {
     enabled:                     true;
-    width:                       25%;
+    width:                       640px;
     children:                    [ "mode-switcher" , "entry" ];
     background-color:            transparent;
     background-image:            url("~/.config/swww/wall.rofi", height);
