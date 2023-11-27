@@ -1,18 +1,36 @@
 {
-    "workbench.colorTheme": "Catppuccin Mocha",
-    "window.menuBarVisibility": "toggle",
-    "editor.fontSize": 12,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.verticalScrollbarSize": 0,
-    "security.workspace.trust.untrustedFiles": "newWindow",
-    "security.workspace.trust.startupPrompt": "never",
-    "security.workspace.trust.enabled": false,
-    "editor.minimap.side": "left",
-    "editor.fontFamily": "'Maple Mono', 'monospace', monospace",
-    "extensions.autoUpdate": false,
-    "workbench.statusBar.visible": false,
-    "terminal.external.linuxExec": "kitty",
-    "terminal.explorerKind": "both",
-    "terminal.sourceControlRepositoriesKind": "both",
-    "telemetry.telemetryLevel": "off"
+	// Theme
+	"workbench.colorTheme": "Catppuccin Mocha",
+	"editor.scrollbar.vertical": "hidden",
+	"editor.scrollbar.verticalScrollbarSize": 0,
+	"editor.minimap.side": "left",
+	"workbench.statusBar.visible": false,
+	"terminal.external.linuxExec": "kitty",
+	"editor.tabSize": 8,
+	// Security
+	"security.workspace.trust.enabled": false,
+	"extensions.autoUpdate": false,
+	// Fonts
+	"editor.fontFamily": "Fira Code",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 12,
+	// Guide
+	"editor.tabCompletion": "onlySnippets",
+	"editor.autoClosingBrackets": "always",
+	"editor.autoClosingComments": "always",
+	"editor.autoIndent": "keep",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+	"editor.guides.bracketPairs": true,
+	// Formatting
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnType": true,
+	// Prettier
+	"prettier.printWidth": 80,
+	"prettier.tabWidth": 8,
+	"prettier.useTabs": true,
+	"prettier.singleQuote": false,
+	"editor.indentSize": "tabSize"
 }
