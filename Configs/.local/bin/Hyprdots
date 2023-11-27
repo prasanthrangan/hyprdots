@@ -1,12 +1,19 @@
 #!/bin/bash
 source ~/.config/hypr/scripts/globalcontrol.sh
-HyprDir="$HOME/.config/hypr/scripts"
+ScrDir="$HOME/.config/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
-func="${1}"
+#func="${1}"
 cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
 
+# Check for updates every 12 Hrs
+[ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
+( echo "CloneDirectory: $CloneDir" && \
+git fetch > /dev/null 2>&1 && \
+( [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ] && echo -e "Updates available! \nRUN: \033[0;34mHyprdots update\033[0m"  || echo -e "\033[0;32mHyprdots Up to date\033[0m" ) && \
+touch "/tmp/hyprdots_update_check" )
+
 params() {
-  func=$1
+func="${1}"
 if awk "/^$func\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
   awk "/^$func\(\) \{/,/}/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
 fi
@@ -27,19 +34,17 @@ printf "  %-20s %s\n" "[$func]" "*$desc"
 
 ConfigCtl() {
     FILE="$1"
-    INITIAL_CHECKSUM=$(md5sum "$FILE")  # Get the initial checksum of the file
-    $(which code) -n "$FILE"  # Start VS Code
-    echo "Press Enter when you're done editing..."
-    while true; do  # Infinite loop
-        sleep 1  # Wait before checking again
-        FINAL_CHECKSUM=$(md5sum "$FILE")  # Get the final checksum of the file
-        if [ "$INITIAL_CHECKSUM" != "$FINAL_CHECKSUM" ]; then  # Compare the checksums
-            echo "File has changed."
- killall waybar && waybar > /dev/null & disown || waybar > /dev/null & disown            
-    INITIAL_CHECKSUM=$FINAL_CHECKSUM  # Update the initial checksum
-        fi
+    $(which code) -n "$FILE" &  # Start VS Code in the background
+
+    # Wait for the file to be modified
+    while inotifywait -e modify "$FILE" || read && exit 0; do
+        echo "File has changed."
+        ${ScrDir}/swwwallbash.sh "$getWall"
     done
+
+    echo "Press Enter when you're done editing..."
     read  # Wait for the user to press Enter
+
     exit 0
 }
 
@@ -55,8 +60,8 @@ restore() { #? Restore Hyprdots Conigurations
   }
 
 update() { #? Pull Updates From Hyprdots Repository 
-echo "CloneDirectory: $CloneDir"
 git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
+rm -f "/tmp/hyprdots_update_check"
   }
 
 install() { #? Fresh install your config also installs apps. 
@@ -67,16 +72,16 @@ theme() { #? Theme Related Actions
   # Function for managing themes
 case $1 in 
         set) #? Set Theme
-            $HyprDir/themeswitch.sh -s
+            $ScrDir/themeswitch.sh -s
         ;;
         next) #? Next Theme
-            $HyprDir/themeswitch.sh -n
+            $ScrDir/themeswitch.sh -n
         ;; 
         prev) #? Previous Theme
-            $HyprDir/themeswitch.sh -p
+            $ScrDir/themeswitch.sh -p
         ;;
         select) #? Theme Selector
-            $HyprDir/themeselect.sh
+            $ScrDir/themeselect.sh
         ;;
         patch) #? Patch A Theme from different repository.
             shift
@@ -96,16 +101,16 @@ echo $func
         set) #? Set /Path/to/Wallpaper as Wallpaper
             shift
             if [ -z "$@" ]; then echo "Missing: /Path/to/Wallpaper" ; exit 1 ; fi
-            $HyprDir/swwwallpaper.sh -s "$@"
+            $ScrDir/swwwallpaper.sh -s "$@"
         ;;
         next) #? Next Wallppaer
-            $HyprDir/swwwallpaper.sh -n 
+            $ScrDir/swwwallpaper.sh -n 
         ;;
         prev) #? Previous Wallpaper
-            $HyprDir/sswwwallpaper.sh -p
+            $ScrDir/sswwwallpaper.sh -p
         ;;
         select) #? Wallpaper Selector
-            $HyprDir/swwwallselect.sh
+            $ScrDir/swwwallselect.sh
         ;;
         *)
          echo "$(params "${func}" )"
@@ -118,7 +123,7 @@ sddm() { #? Sddm Things
   echo "Setting SDDM with parameters: $@"
   case $1 in 
         set) #? Set active Wallpaper to Sddm Lockscreen
-            $HyprDir/sddmwall.sh
+            $ScrDir/sddmwall.sh
         ;;
         *)
          echo "$(params "${func}" )"
@@ -128,7 +133,7 @@ esac
 wallbash(){ #? Wallbash
   case $1 in 
         toggle) #? Toggle Wall bash On/Off
-            $HyprDir/wallbashtoggle.sh
+            $ScrDir/wallbashtoggle.sh
         ;;
         *)
          echo "$(params "${func}" )"
@@ -139,7 +144,7 @@ esac
 
 waybar() { #? Waybar related Things
     case $1 in
-        edit) #? Edit waybar Control File.
+        config) #? Edit waybar Control File.
             ConfigCtl "$HOME/.config/waybar/config.ctl"
             ;;
         *)
