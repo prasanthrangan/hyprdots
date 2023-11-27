@@ -2,34 +2,37 @@
 source ~/.config/hypr/scripts/globalcontrol.sh
 ScrDir="$ConfDir/hypr/scripts"
 ScriptDir="$CloneDir/Scripts"
-
 cd $ScriptDir && echo "Hyprdots: $(git describe)" || exit 1
-function="${1}"
+Function="${1}"
 
-# Check for updates every 12 Hrs
+#??? Check for updates every 12 Hrs; Running Hyprdots update resets this.
 [ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
 ( echo "CloneDirectory: $CloneDir" && \
 git fetch > /dev/null 2>&1 && \
 ( [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ] && echo -e "Updates available! \nRUN: \033[0;34mHyprdots update\033[0m"  || echo -e "\033[0;32mHyprdots Up to date\033[0m" ) && \
 touch "/tmp/hyprdots_update_check" )
 
-if [ -z "$1" ]; then exit 1 ; fi
+#??? Handle Syntax errors
+help=$(grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }')
+if [ -z "$1" ]; then exit 1 
+elif ! (echo "$help" | awk '{print $1}' | grep -w "$Function" 1> /dev/null); then echo -e "\nUsage: Hyprdots [Function] [Parameter]\n$help" ; exit 1
+fi
 
 Parameters() { #TODO: Add conditionals here like 'case' 'getopts' 'ifelse'
-function="${function// /}"
-if awk "/^$function\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
-  awk "/^$function\(\) \{/,/esac/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
+Function="${Function// /}"
+if awk "/^$Function\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
+  awk "/^$Function\(\) \{/,/esac/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
 fi
 }
 
 man() { #? Show Manual 
-  echo "Usage: Hyprdots [function] [Parameters]"
+  echo "Usage: Hyprdots [Function] [Parameters]"
   echo ""
   grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | while read -r line; do
-    function=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $1 }')
+    Function=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $1 }')
     desc=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $5 }')
-printf "  %-20s %s\n" "[$function]" "*$desc"
-      Parameters "$function"
+printf "  %-20s %s\n" "[$Function]" "*$desc"
+      Parameters "$Function"
        done
 }
 SelectOption() { #TODO Can be improved soon using other package.
@@ -53,9 +56,9 @@ ConfigCtl() {
 }
 #! ================================================================
 #? Add functions below this section.
-#? Be careful with spaces in your function definitions.
-#? Example function:
-#* |function example() { #? Example function.
+#? Be careful with spaces in your Function definitions.
+#? Example Function:
+#* |Function example() { #? Example Function.
 #* | case $1 in
 #* |      # Cases go here...
 #* |   esac
@@ -98,7 +101,7 @@ case $1 in
             ./themepatcher.sh "$@"
         ;;
         *)
-         echo "$(Parameters "${function}" )"
+         echo "$(Parameters "${Function}" )"
         ;;
 esac
 }
@@ -120,7 +123,7 @@ wallpaper() { #? Wallpaper related Actions
             $ScrDir/swwwallselect.sh
         ;;
         *)
-         echo "$(Parameters "${function}" )"
+         echo "$(Parameters "${Function}" )"
         ;;
 esac
 }
@@ -133,7 +136,7 @@ sddm() { #? Sddm Things
             $ScrDir/sddmwall.sh
         ;;
         *)
-         echo "$(Parameters "${function}" )"
+         echo "$(Parameters "${Function}" )"
         ;;
 esac
 }
@@ -144,19 +147,19 @@ wallbash(){ #? Wallbash
             $ScrDir/wallbashtoggle.sh
         ;;
         *)
-         echo "$(Parameters "${function}" )"
+         echo "$(Parameters "${Function}" )"
         ;;
 esac
 }
 
 waybar() { #? Waybar related Things
     case $1 in
-        config) #? Edit waybar Control File.
+        control) #? Edit waybar Control File.
             ACTION="notify-send -a \"Hyprdots\" \"Waybar Updated\" ; $ScrDir/wbarconfgen.sh ; killall waybar 2> /dev/null ; $(which waybar) > /dev/null 2>&1 & disown "
             ConfigCtl "$HOME/.config/waybar/config.ctl" "$ACTION"
             ;;
         *)
-            echo "$(Parameters "${function}" )"
+            echo "$(Parameters "${Function}" )"
             ;;
     esac
 }
@@ -171,10 +174,11 @@ case $1 in
             if [ "$(grep -c "workbench.colorTheme" $ConfDir/Code/User/settings.json)" -eq 1 ] ; then sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
             else sed -i "/^{/a\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
             fi
+        else echo "No Linked Code Extension found."
         fi
          ;;
         *)
-        echo "$(Parameters "${function}" )"
+        echo "$(Parameters "${Function}" )"
          ;;
     esac
 }
@@ -195,7 +199,7 @@ cache() { #? Run Caching
         fi
         ;;
         *)
-        echo "$(Parameters "${function}" )"
+        echo "$(Parameters "${Function}" )"
          ;;
     esac
 }
@@ -207,8 +211,8 @@ cache() { #? Run Caching
 
 
 
-#! Changes are FATAL !!! Call the appropriate function based on the first argument.
-#! ====================================================================================================================
-help=$(grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }')
-(echo "$help" | awk '{print $1}' | grep -w "$function" 1> /dev/null && "$@" ) || echo -e "\nUsage: Hyprdots [Function] [Parameter]\n$help"
-#! ====================================================================================================================
+
+
+#! +----------------------------------------------------------------|
+"$@" #? Call the appropriate Function based on the first argument.  |
+#! +----------------------------------------------------------------|
