@@ -66,9 +66,9 @@ ConfigCtl() {
 #! ================================================================
 
 restore() { #? Restore Hyprdots Configurations
-    trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT
-    sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst
-    ./install.sh  -r
+if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT
+sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst ; fi
+./install.sh  -r
 }
 
 update() { #? Pull Updates From Hyprdots Repository 
