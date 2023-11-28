@@ -18,8 +18,7 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
-BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
-
+BkpDir="${HOME}/.config/cfg_$(date +'%y%b%d_%Hh%Mm%Ss')"
 if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
     exit 1
@@ -64,7 +63,7 @@ do
             mkdir -p $pth
         fi
 
-        cp -r $CfgDir$tgt/$cfg_chk $pth
+        cp -r $CfgDir$tgt/$cfg_chk $pth || continue #? Use to revert Back up. Skips if file copy fails (e.g., missing ./swww). File checks are handled earlier in the script.
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
