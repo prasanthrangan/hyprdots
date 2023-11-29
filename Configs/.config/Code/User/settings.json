@@ -6,6 +6,7 @@
 	"editor.minimap.side": "left",
 	"workbench.statusBar.visible": false,
 	"terminal.external.linuxExec": "kitty",
+	"workbench.editor.showTabs": "multiple",
 	"editor.tabSize": 8,
 	// Security
 	"security.workspace.trust.enabled": false,
@@ -32,5 +33,8 @@
 	"prettier.tabWidth": 8,
 	"prettier.useTabs": true,
 	"prettier.singleQuote": false,
-	"editor.indentSize": "tabSize"
+	"editor.indentSize": "tabSize",
+	"window.menuBarVisibility": "toggle",
+	"explorer.confirmDelete": false,
+	"workbench.iconTheme": "catppuccin-mocha"
 }
