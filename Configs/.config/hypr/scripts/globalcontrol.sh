@@ -5,7 +5,7 @@ EnableWallDcol=0
 ConfDir="$HOME/.config"
 CloneDir="$HOME/Hyprdots"
 ThemeCtl="$ConfDir/hypr/theme.ctl"
-cacheDir="$ConfDir/swww/.cache"
+cacheDir="$HOME/.cache/Hyprdots/swww/"
 
 # theme var
 gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
