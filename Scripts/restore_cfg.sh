@@ -18,6 +18,17 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
+# Check if the export lines are in ~/.zshrc and add them if they're not
+if ! grep -Fxq "export PATH=$HOME/bin:/usr/local/bin:$PATH" $HOME/.zshrc; then
+    sed -i '1i\
+export PATH=$HOME/bin:/usr/local/bin:$PATH' ~/.zshrc
+fi
+
+if ! grep -Fxq "export PATH=$HOME/.local/bin:$PATH" ~/.zshrc; then
+    sed -i '2i\
+export PATH=$HOME/.local/bin:$PATH' ~/.zshrc
+fi 
+
 BkpDir="${HOME}/.config/cfg_$(date +'%y%b%d_%Hh%Mm%Ss')"
 if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
@@ -63,7 +74,7 @@ do
             mkdir -p $pth
         fi
 
-        cp -r $CfgDir$tgt/$cfg_chk $pth || continue #? Use to revert Back up. Skips if file copy fails (e.g., missing ./swww). File checks are handled earlier in the script.
+        cp -r $CfgDir$tgt/$cfg_chk $pth 
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
@@ -76,6 +87,9 @@ if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.con
     cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
+
+mkdir -p $HOME/bin ; cp -r ./Hyprdots $HOME/bin/
+mkdir -p $HOME/.local/bin ; cp -r ./Hyprdots $HOME/.local/bin/
 
 ./create_cache.sh
 ./restore_zsh.sh

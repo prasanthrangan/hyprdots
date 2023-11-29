@@ -83,8 +83,10 @@ case $1 in
         revert) #? revert configs from Backup Directory.
         recent=$(ls -t ~/.config/cfg* | head -1)
         read -n 1 -s -r -p "[ENTER:yes ANY:no] Reverts Configs base on Date.Warning! Your config won't be backup!" key ; [[ -z "$key" ]] || exit 0 
-        trap PreserveCloneDir EXIT ; PreserveCachedWallpaper ; SelectOption "$BkpDir"
-        ./restore_cfg.sh "" "$selected"
+        trap PreserveCloneDir EXIT ; if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT 
+sed -i.bak -e '/Hyprdots/s/^[^|]*/N /' -e '/swww/s/^[^|]*/N/' ./restore_cfg.lst
+                                    fi
+        SelectOption "$BkpDir" ; ./restore_cfg.sh "" "$selected"
         if [[ "$(ls -dt ~/.config/cfg* | head -n 1)" != "$recent" ]]; then rm -r $(ls -t ~/.config/cfg* | head -1 | sed 's|:||g')  ; fi
         ;;
         clean) #? Delete all backups except the top 10 most recent ones.
