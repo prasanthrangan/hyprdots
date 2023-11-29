@@ -10,6 +10,8 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
+command -v Hyprdots >/dev/null 2>&1 || { echo "hyprdots-ctl is not installed. Installing..."; paru -Sy hyprdots-ctl; }
+
 ThemeOverride="${1:-}"              #override default config list with custom theme list [param 1]
 CfgDir="${2:-${CloneDir}/Configs}"  #override default config path with custom theme path [param 2]
 
@@ -26,12 +28,6 @@ fi
 
 BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
-if ! grep -Fxq "export PATH=$HOME/.local/bin:$PATH" ~/.zshrc; then
-    sed -i '2i\
-export PATH=$HOME/.local/bin:$PATH' ~/.zshrc
-fi 
-
-BkpDir="${HOME}/.config/cfg_$(date +'%y%b%d_%Hh%Mm%Ss')"
 if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
     exit 1
@@ -76,7 +72,7 @@ do
             mkdir -p $pth
         fi
 
-        cp -r $CfgDir$tgt/$cfg_chk $pth 
+        cp -r $CfgDir$tgt/$cfg_chk $pth
         echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
     done
 
@@ -89,9 +85,6 @@ if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.con
     cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
-
-mkdir -p $HOME/bin ; cp -r ./Hyprdots $HOME/bin/
-mkdir -p $HOME/.local/bin ; cp -r ./Hyprdots $HOME/.local/bin/
 
 ./create_cache.sh
 ./restore_zsh.sh
