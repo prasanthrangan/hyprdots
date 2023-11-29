@@ -18,6 +18,12 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
+if [ -d "$HOME/.config/swww/.cache/" ]; then #? Temporary support.
+    mkdir -p $HOME/.cache/Hyprdots/swww/
+    cp -r $HOME/.config/swww/.cache/* $HOME/.cache/Hyprdots/swww/
+    mv $HOME/.config/swww/.cache/ $HOME/.config/swww/.cache.deprecated/
+fi
+
 BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
 if [ -d $BkpDir ] ; then

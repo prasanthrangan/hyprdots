@@ -19,7 +19,7 @@ fi
 # set variables
 ctlFile="$HOME/.config/hypr/theme.ctl"
 ctlLine=`grep '^1|' $ctlFile`
-export cacheDir="$HOME/.config/swww/.cache"
+export cacheDir="$HOME/.cache/Hyprdots/swww/"
 
 # evaluate options
 while getopts "fc" option ; do
