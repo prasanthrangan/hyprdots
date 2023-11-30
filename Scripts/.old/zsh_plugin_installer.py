@@ -22,7 +22,7 @@ global RC_FILE
 ZSH_FOLDER = expanduser("/usr/share/oh-my-zsh")
 ZSH_CUSTOM_PLUGINS = join(ZSH_FOLDER, "custom/plugins")
 WORKARAOUND = False
-RC_FILE = expanduser(f"/home/{os.getlogin()}/.zshrc")
+RC_FILE = os.getenv('ZDOTDIR', default='') if os.getenv('ZDOTDIR', default='') != '' else expanduser(f"/home/{os.getlogin()}/.zshrc")
 # this is a workaround string to be able to load the completion plugin manually
 workaround = "fpath+=${ZSH_CUSTOM:-${ZSH:-/usr/share/oh-my-zsh}/custom}/plugins/zsh-completions/src"
 

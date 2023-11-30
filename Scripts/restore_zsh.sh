@@ -11,7 +11,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 # set variables
-Zsh_rc="$HOME/.zshrc"
+Zsh_rc="${ZDOTDIR:-$HOME}/.zshrc"
 Zsh_Path="/usr/share/oh-my-zsh"
 Zsh_Plugins="$Zsh_Path/custom/plugins"
 Fix_Completion=""
