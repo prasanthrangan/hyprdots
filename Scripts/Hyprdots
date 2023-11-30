@@ -15,7 +15,6 @@
 echo "Hyprdots: $(git describe --tags --always)"
 Function="${1}"
 
-exit 0
 #??? Check for updates every 12 Hrs; Running Hyprdots update resets this.
 [ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
 ( echo "CloneDirectory: $CloneDir" && \
