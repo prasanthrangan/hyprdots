@@ -10,8 +10,8 @@ fi
 # set file variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-wLayout="$HOME/.config/wlogout/layout_$1"
-wlTmplt="$HOME/.config/wlogout/style_$1.css"
+wLayout="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/layout_$1"
+wlTmplt="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/style_$1.css"
 
 if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
     echo "ERROR: Config $1 not found..."

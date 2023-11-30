@@ -2,7 +2,7 @@
 
 sddmback="/usr/share/sddm/themes/corners/backgrounds/bg.png"
 sddmconf="/usr/share/sddm/themes/corners/theme.conf"
-slnkwall="$HOME/.config/swww/wall.set"
+slnkwall="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.set"
 
 if [ "$(getfacl -p /home/${USER} | grep user:sddm | awk '{print substr($0,length)}')" != "x" ] ; then
     echo "granting sddm execution access to /home/${USER}..."
