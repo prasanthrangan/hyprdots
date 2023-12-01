@@ -62,3 +62,6 @@ alias vc='code' # gui code editor
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
+
+#Source ./zshrc-user #! May conflict with .zshrc file, Please be mindful.
+source $HOME/.zshrc-user
