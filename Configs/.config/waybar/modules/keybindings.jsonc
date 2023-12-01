@@ -1,0 +1,7 @@
+    "custom/keybindings": {
+        "format": "{}",
+        "exec": "echo ; echo 󰌌 view keyboard shortcuts",
+        "on-click": "/usr/bin/bash $HOME/.config/hypr/scripts/keybindings.sh",
+        "interval": 86400, // once every day
+        "tooltip": true
+    },
