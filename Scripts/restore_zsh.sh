@@ -34,5 +34,4 @@ done < <(cut -d '#' -f 1 restore_zsh.lst | sed 's/ //g')
 echo "intalling zsh plugins --> ${w_plugin}"
 sed -i "/^plugins=/c\plugins=($w_plugin)$Fix_Completion" $Zsh_rc
 
-#? Check if the .zshrc file exists
-if [ ! -f $HOME/.zshrc-user ]; then touch $HOME/.zshrc-user ; fi
+touch $HOME/.zshrc-user
