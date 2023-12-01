@@ -307,6 +307,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | <kbd>Super</kbd> + <kbd>K</kbd> | switch keyboard layout
 | <kbd>Super</kbd> + <kbd>P</kbd> | drag to select area or click on a window to print
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | print current screen
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>P</kbd> | print current screen (frozen)
 | <kbd>Super</kbd> + <kbd>RightClick</kbd> | resize the window
 | <kbd>Super</kbd> + <kbd>LeftClick</kbd> | change the window position
 | <kbd>Super</kbd> + <kbd>MouseScroll</kbd> | cycle through workspaces
