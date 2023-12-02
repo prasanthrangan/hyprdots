@@ -28,11 +28,12 @@ sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 # steam
 #if pkg_installed steam
 #    then
-#    if [ ! -d ~/.local/share/Steam/Skins/ ]
+#    skinsDir="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/Skins/"
+#    if [ ! -d "$skinsDir" ]
 #        then
-#        mkdir -p ~/.local/share/Steam/Skins/
+#        mkdir -p "$skinsDir"
 #    fi
-#    tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C ~/.local/share/Steam/Skins/
+#    tar -xzf ${CloneDir}/Source/arcs/Steam_Metro.tar.gz -C "$skinsDir"
 #fi
 
 

@@ -4,7 +4,7 @@
 
 export ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-dcoDir="$HOME/.config/hypr/wallbash"
+dcoDir="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/wallbash"
 input_wall="$1"
 export cacheImg=$(basename "${input_wall}")
 
