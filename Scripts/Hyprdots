@@ -61,10 +61,7 @@ if [ -f $HOME/.config/hypr/scripts/globalcontrol.sh ] ; then
     sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" $HOME/.config/hypr/scripts/globalcontrol.sh
 fi
 }
-PreserveCachedWallpaper() { #* Preserve Wallpaper Cache
-if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT
-sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst ; fi
-}
+
 #! +----------------------------------------------------------------|
 #? Add functions below this section.
 #? Be careful with spaces in your Function definitions.
@@ -87,30 +84,7 @@ printf "  %-20s %s\n" "[$Function]" "*$desc"
        done
 }
 
-backup() { #? Backup Management
-          BkpDir=$(ls -dt $ConfDir/cfg*) 
-case $1 in 
-        revert) #? revert configs from Backup Directory.
-        recent=$(ls -t ~/.config/cfg* | head -1)
-        read -n 1 -s -r -p "[ENTER:yes ANY:no] Reverts Configs base on Date.Warning! Your config won't be backup!" key ; [[ -z "$key" ]] || exit 0 
-        trap PreserveCloneDir EXIT ; if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT 
-sed -i.bak -e '/Hyprdots/s/^[^|]*/N /' -e '/swww/s/^[^|]*/N/' ./restore_cfg.lst
-                                    fi
-        SelectOption "$BkpDir" ; ./restore_cfg.sh "" "$selected"
-        if [[ "$(ls -dt ~/.config/cfg* | head -n 1)" != "$recent" ]]; then rm -r $(ls -t ~/.config/cfg* | head -1 | sed 's|:||g')  ; fi
-        ;;
-        clean) #? Delete all backups except the top 10 most recent ones.
-            read -n 1 -s -r -p "[ENTER:yes ANY:no] DELETE all backups except the top 10 most recent ones." key ; [[ -z "$key" ]] || exit 0
-            for dir in $(echo "$BkpDir" | tail -n +11); do rm -r "$dir" ; echo "Deleted: $dir" ; done
-        ;;
-        *)
-         echo "$(Parameters "${Function}" )"
-        ;;
-esac
-}
-
 restore() { #? Restore Hyprdots Configurations
-    PreserveCachedWallpaper
     ./install.sh  -r
 }
 
