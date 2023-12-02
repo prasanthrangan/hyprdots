@@ -6,6 +6,7 @@ unbind="$HOME/.config/hypr/unbind.conf"
 tempFile=$(mktemp)
 backupFile=$(mktemp)
 
+touch $unbind
 # Clear the unbind file
 > $unbind
 
