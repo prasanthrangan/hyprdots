@@ -72,12 +72,15 @@ done
 
 touch ${HOME}/.config/hypr/monitors.conf
 touch ${HOME}/.config/hypr/userprefs.conf
+touch ${HOME}/.config/hypr/unbind.conf
+
 
 if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
     cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
+./unbind_keybindings.sh 
 ./create_cache.sh
 ./restore_zsh.sh
 ./restore_lnk.sh
