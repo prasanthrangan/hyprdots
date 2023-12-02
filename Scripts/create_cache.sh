@@ -36,7 +36,7 @@ while getopts "fc" option ; do
         if [[ -f "${inWall}" ]] ; then
             if [ `echo "$ctlLine" | wc -l` -eq "1" ] ; then
                 curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > /tmp/t2 && mv /tmp/t2 "${ThemeCtl}"
+                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ctlFile}" > /tmp/t2 && mv /tmp/t2 "${ctlFile}"
             else
                 echo "ERROR : $ctlFile Unable to fetch theme..."
                 exit 1
