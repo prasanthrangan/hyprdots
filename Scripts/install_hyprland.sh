@@ -5,8 +5,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cacheDir="$HOME/.cache/Hyprdots"
-hyprland_clone="$cacheDir/Hyprland-clone"
+hyprland_clone="$HOME/.cache/hyprdots"
 
 chk_aurh
 
