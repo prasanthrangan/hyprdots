@@ -16,7 +16,6 @@ qt6-wayland
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
-hyprland
 dunst
 rofi-lbonn-wayland-git
 waybar

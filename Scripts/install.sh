@@ -27,6 +27,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+#? Hyprland Installation here: 
+./install_hyprland.sh 
+
 #------------------#
 # evaluate options #
 #------------------#
