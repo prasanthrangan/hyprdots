@@ -3,7 +3,7 @@
 # set variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-RofiConf="$HOME/.config/rofi/themeselect.rasi"
+RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themeselect.rasi"
 
 ctlLine=`grep '^1|' $ThemeCtl`
 if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
@@ -13,8 +13,8 @@ fi
 
 fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
 wallPath=$(dirname "$fullPath")
-if [ ! -d "${wallPath}" ] && [ -d "$HOME/.config/swww/${gtkTheme}" ] && [ ! -z "${gtkTheme}" ] ; then
-    wallPath="$HOME/.config/swww/${gtkTheme}"
+if [ ! -d "${wallPath}" ] && [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/swww/${gtkTheme}" ] && [ ! -z "${gtkTheme}" ] ; then
+    wallPath="${XDG_CONFIG_HOME:-$HOME/.config}/swww/${gtkTheme}"
 fi
 
 

@@ -17,9 +17,9 @@ then
 fi
 
 # set variables
-ctlFile="$HOME/.config/hypr/theme.ctl"
+ctlFile="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/theme.ctl"
 ctlLine=`grep '^1|' $ctlFile`
-export cacheDir="$HOME/.config/swww/.cache"
+export cacheDir="$HOME/.cache/hyprdots"
 
 # evaluate options
 while getopts "fc" option ; do
