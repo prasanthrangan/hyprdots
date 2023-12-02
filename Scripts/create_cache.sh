@@ -104,13 +104,13 @@ imagick_t2 () {
             if dark_light "#${dcol[j]}" ; then
                 for t in 30 50 70 90 ; do
                     z=$(( z + 1 ))
-                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 - (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
                     echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             else
                 for t in 15 35 55 75 ; do
                     z=$(( z + 1 ))
-                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")" -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                    r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
                     echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${theme}/${wpBaseName}.dcol"
                 done
             fi
