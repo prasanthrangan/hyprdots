@@ -1,0 +1,48 @@
+
+# █▀▀ █▄░█ █░█
+# ██▄ █░▀█ ▀▄▀
+
+# env = MANGOHUD,1
+# env = MANGOHUD_DLSYM,1
+env = GDK_SCALE,1
+
+xwayland {
+force_zero_scaling = true
+}
+
+
+# █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
+# █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
+
+#bind = $CONTROL ALT SHIFT, T, exec, ~/.config/hypr/scripts/testrunner.sh # test runner
+bind = $CONTROL ALT SHIFT, R, pass, ^(com\.obsproject\.Studio)$ # start/stop obs screen recording // install obs flatpak
+bind = $mainMod SHIFT, G, exec, pkill -x rofi || ~/.config/hypr/scripts/gamelauncher.sh 3 # steam game launcher // install steam
+bind = $mainMod, period, exec, emote # open emoji selector // install emote
+bind = $mainMod ALT, XF86MonBrightnessDown, exec, hyprshade on blue-light-filter # enable blue light filter // install hyprshade
+bind = $mainMod ALT, XF86MonBrightnessUp, exec, hyprshade off # disable blue light filter // install hyprshade
+
+
+# █░░ ▄▀█ █░█ █▄░█ █▀▀ █░█
+# █▄▄ █▀█ █▄█ █░▀█ █▄▄ █▀█
+
+# exec-once = swayidle -w timeout 600 'swaylock' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' # lock after 10 mins, turn off monitor after 15 mins // install swayidle
+exec-once = swayidle -w timeout 1200 'swaylock; hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1800 'systemctl suspend' # lock & turn off monitor after 20 mins, suspend after 30 mins // install swayidle
+
+
+# █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
+# ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
+
+windowrulev2 = opacity 0.60 0.60,class:^(Steam)$
+windowrulev2 = opacity 0.60 0.60,class:^(steam)$
+windowrulev2 = opacity 0.60 0.60,class:^(steamwebhelper)$
+windowrulev2 = opacity 0.60 0.60,class:^(Spotify)$
+
+
+#█░█ █▀▄▀█
+#▀▄▀ █░▀░█
+
+bind = CTRL Alt_L, V, submap, passthrough
+submap = passthrough
+bind = CTRL Alt_L, V, submap, reset
+submap = reset
+
