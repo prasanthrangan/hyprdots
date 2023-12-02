@@ -5,11 +5,11 @@
 
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-waybar_dir="$HOME/.config/waybar"
+waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
-src_file="$HOME/.config/hypr/themes/theme.conf"
+src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
     ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/theme.css
