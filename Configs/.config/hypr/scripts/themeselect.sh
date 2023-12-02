@@ -3,7 +3,7 @@
 # set variables
 ScrDir=`dirname $(realpath $0)`
 source $ScrDir/globalcontrol.sh
-RofiConf="$HOME/.config/rofi/themeselect.rasi"
+RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themeselect.rasi"
 
 
 # scale for monitor x res

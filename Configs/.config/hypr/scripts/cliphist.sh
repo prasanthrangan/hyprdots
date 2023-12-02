@@ -9,8 +9,8 @@ roconf="~/.config/rofi/clipboard.rasi"
 x_offset=-15   #* Cursor spawn position on clipboard
 y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
 #!base on $HOME/.config/rofi/clipboard.rasi 
-clip_h=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
-clip_w=$(cat $HOME/.config/rofi/clipboard.rasi | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
+clip_h=$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/clipboard.rasi" | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
+clip_w=$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/clipboard.rasi" | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
 #clip_h=55 #! Modify limits for size of the Clipboard
 #clip_w=20 #! This values are transformed per cent(100)
 #? Monitor resolution , scale and rotation 
