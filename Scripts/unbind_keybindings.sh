@@ -7,6 +7,13 @@ tempFile=$(mktemp)
 backupFile=$(mktemp)
 
 touch $unbind
+
+# Check if the source line is already in the $usrKeys file
+if ! grep -q "^source = ~/.config/hypr/unbind.conf" "$usrKeys"; then
+    # If the line is not in the file, add it at the top
+    sed -i '1isource = ~/.config/hypr/unbind.conf # initially empty, Will unbind  duplicate keys for ./userprefs.conf' "$usrKeys"
+fi
+
 # Clear the unbind file
 > $unbind
 
@@ -31,10 +38,10 @@ do
         if [[ ! -z "$line" ]]; then
             grep "$line" "$defKeys" | while IFS= read -r match
             do
-                conflics=$(echo "$match" | cut -d '=' -f 2- | cut -d ',' -f 1,2)
+                conflicts=$(echo "$match" | cut -d '=' -f 2- | cut -d ',' -f 1,2)
                 # If the grep command found a match, append the result to the $unbind file
-                if [[ ! -z "$conflics" ]]; then
-                    echo "unbind = $conflics" >> "$unbind"
+                if [[ ! -z "$conflicts" ]]; then
+                    echo "unbind = $conflicts" >> "$unbind"
                 fi
             done
         fi
@@ -56,10 +63,11 @@ done < "$usrKeys"
 mv "$tempFile" "$defKeys"
 
 # Ask for user confirmation to keep the changes
-read -n 1 -s -r -p "[ENTER:yes ANY:no] Keep changes ?"
+echo "Please try to check if your configuration are still correct."
+echo "Would you like to keep the changes? "
+read -n 1 -s -r -p "[ENTER:yes ANY:no]"
 if [[ $REPLY != "" ]]; then
-    echo "Operation cancelled by user."
+    echo -e "\nOperation cancelled by user."
     # Restore the defKeys file from the backup
     mv "$backupFile" "$defKeys"
-    exit 1
 fi
