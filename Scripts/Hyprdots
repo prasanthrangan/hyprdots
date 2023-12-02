@@ -1,0 +1,262 @@
+#!/bin/bash
+{ 
+  source ~/.config/hypr/scripts/globalcontrol.sh
+  ScrDir="$ConfDir/hypr/scripts"
+  ScriptDir="$CloneDir/Scripts"
+  cd $ScriptDir
+} 2> /dev/null || { 
+  read -n 1 -s -r -p "[ENTER:yes ANY:no] Hyprdots not detected! This will run the installation. " key
+  [[ -z "$key" ]] || exit 0 
+  git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/Hyprdots
+  cd ~/Hyprdots/Scripts
+  ./install.sh
+}
+
+echo "Hyprdots: $(git describe --tags --always)"
+Function="${1}"
+
+#??? Check for updates every 12 Hrs; Running Hyprdots update resets this.
+[ ! -f "/tmp/hyprdots_update_check" ] || [[ $(find "/tmp/hyprdots_update_check" -mmin +720) ]] && \
+( echo "CloneDirectory: $CloneDir" && \
+git fetch > /dev/null 2>&1 && \
+( [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ] && echo -e "Updates available! \nRUN: \033[0;34mHyprdots update\033[0m"  || echo -e "\033[0;32mHyprdots Up to date\033[0m" ) && \
+touch "/tmp/hyprdots_update_check" )
+
+#??? Handle Syntax errors
+help=$(grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | awk 'BEGIN { FS = "[()#?]" } { printf "  %-20s %s\n", $1, $5 }')
+if [ -z "$1" ]; then exit 1 
+elif ! (echo "$help" | awk '{print $1}' | grep -w "$Function" 1> /dev/null); then echo -e "\nUsage: Hyprdots [Function] [Parameter]\n$help" ; exit 1
+fi
+
+Parameters() { #TODO: Add conditionals here like 'case'
+Function="${Function// /}"
+if awk "/^$Function\(\) \{/,/}/" $0 | grep > /dev/null  'case'; then
+  awk "/^$Function\(\) \{/,/esac/" $0 | grep -E '^\s+\w+\)' | awk 'BEGIN { FS = "[()#?]" } { sub(/^[ \t]+/, "", $1); printf "                          %-15s %s\n","["$1"]", $4 }'
+fi
+} 
+
+SelectOption() { #TODO Can be improved soon using other package.
+    echo ""
+    IFS=$'\n' read -d '' -ra options < <(echo "$1")
+    select selected in "${options[@]}" ; do echo "You selected: $selected" ; break ; done
+    #echo "$selected"
+}
+
+ConfigCtl() {
+    FILE="$1"
+    EDITOR="${EDITOR:-code}"  # Use VS Code as the default editor
+    echo -e "[Editor]: $EDITOR (To change: \"export EDITOR=pref_editor\") \n[Monitor]: $FILE \nPress Any Key to end DAEMON..."
+    #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
+    kitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
+    LAST_MD5SUM=$(md5sum "$FILE")
+    while true; do CURRENT_MD5SUM=$(md5sum "$FILE")
+        if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then eval "$ACTION"
+            LAST_MD5SUM="$CURRENT_MD5SUM"
+        fi ; read -t 2 -n 1 > /dev/null && exit 0 #? loop every 2 seconds
+    done
+}
+
+PreserveCloneDir() { #* Use: Not to mess up the current CloneDir If installing backup.
+if [ -f $HOME/.config/hypr/scripts/globalcontrol.sh ] ; then
+    sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" $HOME/.config/hypr/scripts/globalcontrol.sh
+fi
+}
+PreserveCachedWallpaper() { #* Preserve Wallpaper Cache
+if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT
+sed -i.bak '/^Y|${HOME}\/.config|swww|swww/s/^Y/N/' ./restore_cfg.lst ; fi
+}
+#! +----------------------------------------------------------------|
+#? Add functions below this section.
+#? Be careful with spaces in your Function definitions.
+#? Example Function:
+#* |Function example() { #? Example Function.
+#* | case $1 in
+#* |      # Cases go here...
+#* |   esac
+#* |}
+#! +----------------------------------------------------------------|
+
+man() { #? Show Manual 
+  echo "Usage: Hyprdots [Function] [Parameters]"
+  echo ""
+  grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | while read -r line; do
+    Function=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $1 }')
+    desc=$(echo "$line" | awk 'BEGIN { FS = "[()#?]" } { print $5 }')
+printf "  %-20s %s\n" "[$Function]" "*$desc"
+      Parameters "$Function"
+       done
+}
+
+backup() { #? Backup Management
+          BkpDir=$(ls -dt $ConfDir/cfg*) 
+case $1 in 
+        revert) #? revert configs from Backup Directory.
+        recent=$(ls -t ~/.config/cfg* | head -1)
+        read -n 1 -s -r -p "[ENTER:yes ANY:no] Reverts Configs base on Date.Warning! Your config won't be backup!" key ; [[ -z "$key" ]] || exit 0 
+        trap PreserveCloneDir EXIT ; if [ -d "$ConfDir/swww/.cache" ]; then trap 'mv ./restore_cfg.lst.bak ./restore_cfg.lst' EXIT 
+sed -i.bak -e '/Hyprdots/s/^[^|]*/N /' -e '/swww/s/^[^|]*/N/' ./restore_cfg.lst
+                                    fi
+        SelectOption "$BkpDir" ; ./restore_cfg.sh "" "$selected"
+        if [[ "$(ls -dt ~/.config/cfg* | head -n 1)" != "$recent" ]]; then rm -r $(ls -t ~/.config/cfg* | head -1 | sed 's|:||g')  ; fi
+        ;;
+        clean) #? Delete all backups except the top 10 most recent ones.
+            read -n 1 -s -r -p "[ENTER:yes ANY:no] DELETE all backups except the top 10 most recent ones." key ; [[ -z "$key" ]] || exit 0
+            for dir in $(echo "$BkpDir" | tail -n +11); do rm -r "$dir" ; echo "Deleted: $dir" ; done
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+esac
+}
+
+restore() { #? Restore Hyprdots Configurations
+    PreserveCachedWallpaper
+    ./install.sh  -r
+}
+
+update() { #? Pull Updates From Hyprdots Repository 
+echo "CloneDirectory: $CloneDir"
+git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
+rm -f "/tmp/hyprdots_update_check"
+  }
+
+install() { #? Fresh install your config also installs apps. 
+./install.sh
+  }
+
+theme() { #? Theme Related Actions 
+  # Function for managing themes
+case $1 in 
+        set) #? Set Theme
+        SelectOption "$(cat $ThemeCtl | awk -F'|' '{print $2}')"
+        $ScrDir/themeswitch.sh -s "$selected"
+        ;;
+        next) #? Next Theme
+            $ScrDir/themeswitch.sh -n
+        ;; 
+        prev) #? Previous Theme
+            $ScrDir/themeswitch.sh -p
+        ;;
+        select) #? Theme Selector
+            $ScrDir/themeselect.sh
+        ;;
+        patch) #? Patch A Theme from different repository.
+           shift
+            ./themepatcher.sh "$@"
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+esac
+}
+
+wallpaper() { #? Wallpaper related Actions
+  case $1 in 
+        set) #? Set /Path/to/Wallpaper as Wallpaper
+            shift
+            if [ -z "$@" ]; then echo "Missing: /Path/to/Wallpaper" ; exit 1 ; fi
+            $ScrDir/swwwallpaper.sh -s "$@"
+        ;;
+        next) #? Next Wallppaer
+            $ScrDir/swwwallpaper.sh -n 
+        ;;
+        prev) #? Previous Wallpaper
+            $ScrDir/sswwwallpaper.sh -p
+        ;;
+        select) #? Wallpaper Selector
+            $ScrDir/swwwallselect.sh
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+esac
+}
+
+sddm() { #? Sddm Things
+  # Function for managing SDDM settings
+  echo "Setting SDDM with Parameters: $@"
+  case $1 in 
+        set) #? Set active Wallpaper to Sddm Lockscreen
+            $ScrDir/sddmwall.sh
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+esac
+}
+
+wallbash(){ #? Wallbash
+  case $1 in 
+        toggle) #? Toggle Wall bash On/Off
+            $ScrDir/wallbashtoggle.sh
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+esac
+}
+
+waybar() { #? Waybar related Things
+    case $1 in
+        control) #? Edit waybar Control File.
+            ACTION="notify-send -a \"Hyprdots\" \"Waybar Updated\" ; $ScrDir/wbarconfgen.sh ; killall waybar 2> /dev/null ; $(which waybar) > /dev/null 2>&1 & disown "
+            ConfigCtl "$HOME/.config/waybar/config.ctl" "$ACTION"
+            ;;
+        *)
+            echo "$(Parameters "${Function}" )"
+            ;;
+    esac
+}
+
+code() { #? Modify Vscode Extensions
+case $1 in 
+         select) #? Selector for default Theme presets
+        if [[ ! -z "$(cat $HOME/.config/hypr/theme.ctl | grep "^1|" | cut -d'|' -f3)" ]]; then
+        dir=$(cat $ThemeCtl | grep "^1|" | cut -d'|' -f3 | cut -d'~' -f1 | tr '[:upper:]' '[:lower:]')
+        SelectOption "$(cat $HOME/.vscode/extensions/"${dir}"*/package.json | jq -r '.contributes.themes[] | .label')"
+        sed -i "/^1|/s|~[^|]*|~${selected}|" $ThemeCtl
+            if [ "$(grep -c "workbench.colorTheme" $ConfDir/Code/User/settings.json)" -eq 1 ] ; then sed -i "/workbench.colorTheme/c\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
+            else sed -i "/^{/a\    \"workbench.colorTheme\": \"${selected}\"," $ConfDir/Code/User/settings.json
+            fi
+        else echo "No Linked Code Extension found."
+        fi
+         ;;
+        *)
+        echo "$(Parameters "${Function}" )"
+         ;;
+    esac
+}
+
+cache() { #? Cache 
+    case $1 in 
+      reload) #? Reload Caches if you have new wallpapers.
+            ./create_cache.sh
+         ;;
+      force) #? Force remove cache
+            ./create_cache.sh -f
+         ;;
+        add) #? Cache custom /path/to/wallpaper/* ( Broken)
+                if [[ -z $2 ]]; then
+                    echo "Please provide a /path/to/wallpaper/*." 
+                else
+                ./create_cache.sh -c "$2"
+        fi
+        ;;
+        *)
+        echo "$(Parameters "${Function}" )"
+         ;;
+    esac
+}
+
+
+
+
+
+
+
+
+
+
+#! +----------------------------------------------------------------|
+"$@" #? Call the appropriate Function based on the first argument.  |
+#! +----------------------------------------------------------------|
