@@ -141,7 +141,7 @@ alias in="yay -S"
 alias ls='eza --icons' # list
 
 alias un='yay -R' # uninstall package
-alias up='yay' # update system/package/aur
+alias up='yay -Syu' # update system/package/aur
 alias pl='pacman -Qs' # list installed package
 alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
