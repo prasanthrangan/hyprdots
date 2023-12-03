@@ -123,22 +123,25 @@ source $ZSH/oh-my-zsh.sh
 #   return 127
 #}
 
-function in {
-    local pkg="$1"
-    if pacman -Si "$pkg" &>/dev/null ; then
-        sudo pacman -S "$pkg"
-    elif pacman -Qi yay &>/dev/null ; then
-        yay -S "$pkg"
-    elif pacman -Qi paru &>/dev/null ; then
-        paru -S "$pkg"
-    fi
-}
+alias in="yay -S"
+
+
+#function in {
+#    local pkg="$1"
+#    if pacman -Si "$pkg" &>/dev/null ; then
+#        sudo pacman -S "$pkg"
+#    elif pacman -Qi yay &>/dev/null ; then
+#        yay -S "$pkg"
+#    elif pacman -Qi paru &>/dev/null ; then
+#        paru -S "$pkg"
+#    fi
+#}
 
 
 alias ls='eza --icons' # list
 
-alias un='sudo pacman -Rns' # uninstall package
-alias up='sudo pacman -Syu' # update system/package/aur
+alias un='yay -R' # uninstall package
+alias up='yay' # update system/package/aur
 alias pl='pacman -Qs' # list installed package
 alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
