@@ -88,7 +88,10 @@ EOF
         cat /usr/lib/modules/*/pkgbase | while read krnl; do
             echo "${krnl}-headers" >>install_pkg.lst
         done
-        echo -e "nvidia-dkms\nnvidia-utils" >>install_pkg.lst
+        IFS=$' ' read -r -d '' -a nvga < <(lspci -k | grep -E "(VGA|3D)" | grep -i nvidia | awk -F ':' '{print $NF}' | tr -d '[]()' && printf '\0')
+        for nvcode in "${nvga[@]}"; do
+            awk -F '|' -v nvc="${nvcode}" '{if ($3 == nvc) {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}}' .nvidia/nvidia*dkms >>install_pkg.lst
+        done
     else
         echo "nvidia card not detected, skipping nvidia drivers..."
     fi
