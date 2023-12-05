@@ -1,6 +1,6 @@
 #!/bin/bash
 trap resume_processes SIGINT
-in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )) }
+in_range() { local num=$1 local min=$2 local max=$3 ;  [[ $num =~ ^[0-9]+$ ]] && (( num >= min && num <= max )); }
 mnc=5 mxc=80 mnl=20 mxl=50 mnu=80  mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 mxn=60 mni=1 mxi=10 verbose=false undock=false #Defaults Ranges
 while (( "$#" )); do  # Parse command-line arguments and defaults  
   case "$1" in
