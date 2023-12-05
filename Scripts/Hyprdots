@@ -12,7 +12,7 @@
   ./install.sh
 }
 
-echo "Hyprdots: $(git describe --tags --always)"
+echo "Hyprdots: $(git describe --tags --always)" #? Fetches the latest git tag
 Function="${1}"
 
 #??? Check for updates every 12 Hrs; Running Hyprdots update resets this.
@@ -45,14 +45,14 @@ SelectOption() { #TODO Can be improved soon using other package.
 ConfigCtl() {
     FILE="$1"
     EDITOR="${EDITOR:-code}"  # Use VS Code as the default editor
-    echo -e "[Editor]: $EDITOR (To change: \"export EDITOR=pref_editor\") \n[Monitor]: $FILE \nPress Any Key to end DAEMON..."
+    echo -e "[Editor]: $EDITOR (\"export EDITOR=pref_editor\") \n[Modifying]: $FILE \nPress Any Key if done editing"
     #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
     kitty $(which $EDITOR) "$FILE" > /dev/null 2>&1 &
     LAST_MD5SUM=$(md5sum "$FILE")
     while true; do CURRENT_MD5SUM=$(md5sum "$FILE")
         if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then eval "$ACTION"
             LAST_MD5SUM="$CURRENT_MD5SUM"
-        fi ; read -t 2 -n 1 > /dev/null && exit 0 #? loop every 2 seconds
+        fi ; read -t 2 -n 1 > /dev/null && break #? loop every 2 seconds
     done
 }
 
@@ -84,6 +84,26 @@ printf "  %-20s %s\n" "[$Function]" "*$desc"
        done
 }
 
+install() { #? Installs Hyprdots
+
+    case $1 in
+        fresh) #? Fresh installation of Hyprdots
+            ./install.sh
+            ;;
+        custom) #? Custom installation of Apps
+        echo "Fresh installation plus custom apps... Press any key to Proceed..."
+        ConfigCtl "$CloneDir/Scripts/custom_apps.lst" "$ACTION"
+        echo "List of packages to be installed:"
+        grep -v '^#' ./custom_apps.lst
+            read -n 1 -s -r -p "[ENTER:yes ANY:no] Proceed? " key ; [[ -z "$key" ]] || exit 0 
+            ./install.sh ./custom_apps.lst
+            ;;
+            *)
+            echo "$(Parameters "${Function}" )"
+            ;;
+    esac
+}
+
 restore() { #? Restore Hyprdots Configurations
     ./install.sh  -r
 }
@@ -92,10 +112,6 @@ update() { #? Pull Updates From Hyprdots Repository
 echo "CloneDirectory: $CloneDir"
 git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
 rm -f "/tmp/hyprdots_update_check"
-  }
-
-install() { #? Fresh install your config also installs apps. 
-./install.sh
   }
 
 theme() { #? Theme Related Actions 
@@ -206,7 +222,8 @@ cache() { #? Cache
       reload) #? Reload Caches if you have new wallpapers.
             ./create_cache.sh
          ;;
-      force) #? Force remove cache
+      rebuild) #? Force rebuild cache
+            read -n 1 -s -r -p "[ENTER:yes ANY:no] Force Rebuild Cache, Proceed? " key ; [[ -z "$key" ]] || exit 0 
             ./create_cache.sh -f
          ;;
         add) #? Cache custom /path/to/wallpaper/* ( Broken)
