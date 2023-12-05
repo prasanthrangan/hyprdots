@@ -21,7 +21,7 @@ For manual installation of Hyprland, follow the guide at https://wiki.hyprland.o
 
 
 Note: This process is a work around. 
-Typically, it's recommended to use package managers for installations as they handle the process more efficiently.
+Typically, it's recommended to use package managers for installations/updates as they handle the process more efficiently.
 
 IMPORTANT: After installation with this method please be aware that you should install hyprland with your package manager if already available. 
 example: "$aurhlpr -Sy hyprland-git", or run ./install.sh  again 
