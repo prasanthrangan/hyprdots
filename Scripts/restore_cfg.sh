@@ -18,7 +18,7 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
-BkpDir="${HOME}/.config/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
+BkpDir="${HOME}/.config/cfg_backups/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
 
 if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
@@ -30,10 +30,11 @@ fi
 cat "${ThemeOverride}restore_cfg.lst" | while read lst
 do
 
-    bkpFlag=`echo $lst | awk -F '|' '{print $1}'`
-    eval pth=`echo $lst | awk -F '|' '{print $2}'`
-    cfg=`echo $lst | awk -F '|' '{print $3}'`
-    pkg=`echo $lst | awk -F '|' '{print $4}'`
+    ovrWrte=`echo $lst | awk -F '|' '{print $1}'`
+    bkpFlag=`echo $lst | awk -F '|' '{print $2}'`
+    eval pth=`echo $lst | awk -F '|' '{print $3}'`
+    cfg=`echo $lst | awk -F '|' '{print $4}'`
+    pkg=`echo $lst | awk -F '|' '{print $5}'`
 
     while read pkg_chk
     do
@@ -47,7 +48,7 @@ do
     echo "${cfg}" | xargs -n 1 | while read cfg_chk
     do
         tgt=`echo $pth | sed "s+^${HOME}++g"`
-        if [[ -z "$pth" ]]; then continue ; fi #Added this if cfg.lst have blank lines
+        if [[ -z "$pth" ]]; then continue; fi
 
         if ( [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ] ) && [ "${bkpFlag}" == "Y" ]
             then
@@ -56,7 +57,7 @@ do
                 mkdir -p $BkpDir$tgt
             fi
 
-            mv $pth/$cfg_chk $BkpDir$tgt
+            [ "${ovrWrte}" == "Y" ] && mv $pth/$cfg_chk $BkpDir$tgt || cp -r $pth/$cfg_chk $BkpDir$tgt
             echo "config backed up $pth/$cfg_chk --> $BkpDir$tgt..."
         fi
 
@@ -64,14 +65,18 @@ do
             mkdir -p $pth
         fi
 
-        cp -r $CfgDir$tgt/$cfg_chk $pth
-        echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+        if [ ! -f $pth/$cfg_chk ] ; then
+            cp -r $CfgDir$tgt/$cfg_chk $pth
+            echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+        elif [ "${ovrWrte}" == "Y" ] ; then
+            cp -r $CfgDir$tgt/$cfg_chk $pth
+            echo "warning: config overwritten without backup ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+        else
+            echo "Skipping $pth/$cfg_chk to preserve user setting..."
+        fi
     done
 
 done
-
-touch ${HOME}/.config/hypr/monitors.conf
-touch ${HOME}/.config/hypr/userprefs.conf
 
 if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
     cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
