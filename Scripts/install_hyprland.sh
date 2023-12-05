@@ -62,8 +62,7 @@ WARN
                 git pull
             else
                 if command -v Hyprland >/dev/null; then
-                    echo "Latest version of yprland is already compiled and installed"
-                    exit 0
+                    echo "Latest version of Hyprland is already compiled and installed"
                 fi
             fi
         else
