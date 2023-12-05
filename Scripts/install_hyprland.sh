@@ -12,10 +12,6 @@ chk_aurh
 if ! pkg_installed hyprland-git ; then
     $aurhlpr ${use_default} -S hyprland-git || true
     if ! pkg_installed hyprland-git ; then #? redunduncy
-    if command -v Hyprland >/dev/null; then
-    echo "Hyprland is already compiled and installed"
-    exit 0
-fi
 echo -e "\n\033[0;31mWARNING!!! READ ME!\033[0m"
 cat << WARN
 
@@ -36,7 +32,7 @@ The script will now attempt to:
 3. Clone Hyprland to $hyprland_clone
 4. Execute [ make all && sudo make install ]
 
-Please ensure you have sufficient permissions and disk space for this operation.
+Please ensure you have sufficient permissions, internet connection and disk space for this operation.
 
 WARN
     echo ""
@@ -56,14 +52,27 @@ WARN
             echo "Installing missing dependencies..."
             $aurhlpr ${use_default} -S ${missing_dependencies[@]}
         fi
-        mkdir -p "$hyprland_clone"
+        mkdir -p "$hyprland_clone" #? redunduncy
+
         if [ -d "$hyprland_clone" ]; then
             cd "$hyprland_clone"
-            git pull
+            git fetch
+            if [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
+                echo "Changes are available in the remote repository. Pulling changes..."
+                git reset --hard
+                git clean -fd
+                git pull
+            else
+                if command -v Hyprland >/dev/null; then
+                    echo "Latest version of yprland is already compiled and installed"
+                    exit 0
+                fi
+            fi
         else
             git clone --recursive https://github.com/hyprwm/Hyprland "$hyprland_clone"
             cd $hyprland_clone
         fi
+
         echo "Compiling Directory: $(pwd)"
         make all && sudo make install
     fi
