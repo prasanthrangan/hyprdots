@@ -5,7 +5,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-hyprland_clone="$HOME/.cache/hyprdots"
+hyprland_clone="$HOME/.cache/hyprdots/Hyprland-clone"
 
 chk_aurh
 
@@ -52,10 +52,8 @@ WARN
             echo "Installing missing dependencies..."
             $aurhlpr ${use_default} -S ${missing_dependencies[@]}
         fi
-        mkdir -p "$hyprland_clone" #? redunduncy
 
-        if [ -d "$hyprland_clone" ]; then
-            cd "$hyprland_clone"
+        if cd "$hyprland_clone" 2>/dev/null; then
             git fetch
             if [ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]; then
                 echo "Changes are available in the remote repository. Pulling changes..."
@@ -69,6 +67,7 @@ WARN
                 fi
             fi
         else
+            mkdir -p "$hyprland_clone"
             git clone --recursive https://github.com/hyprwm/Hyprland "$hyprland_clone"
             cd $hyprland_clone
         fi
