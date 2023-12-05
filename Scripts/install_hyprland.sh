@@ -11,7 +11,11 @@ chk_aurh
 
 if ! pkg_installed hyprland-git ; then
     $aurhlpr ${use_default} -S hyprland-git || true
-    if ! pkg_installed hyprland-git ; then
+    if ! pkg_installed hyprland-git ; then #? redunduncy
+    if command -v Hyprland >/dev/null; then
+    echo "Hyprland is already compiled and installed"
+    exit 0
+fi
 echo -e "\n\033[0;31mWARNING!!! READ ME!\033[0m"
 cat << WARN
 
