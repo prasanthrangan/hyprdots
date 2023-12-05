@@ -2,7 +2,7 @@
 
 # set variables
 
-export ScrDir=`dirname $(realpath $0)`
+export ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 dcoDir="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/wallbash"
 input_wall="$1"

@@ -3,7 +3,7 @@
 
 # detect hypr theme and initialize variables
 
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"

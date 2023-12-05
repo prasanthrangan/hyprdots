@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 # set variables
-ScrDir=`dirname $(realpath $0)`
-source ${ScrDir}/globalcontrol.sh
+ScrDir=`dirname "$(realpath "$0")"`
+source "${ScrDir}/globalcontrol.sh"
 
 
 # evaluate options
@@ -10,7 +10,7 @@ while getopts "npst" option ; do
     case $option in
 
     n ) # set next theme
-        ThemeSet=`head -1 $ThemeCtl | cut -d '|' -f 2` #default value
+        ThemeSet=`head -1 "$ThemeCtl" | cut -d '|' -f 2` #default value
         flg=0
         while read line
         do
@@ -20,11 +20,11 @@ while getopts "npst" option ; do
             elif [ `echo $line | cut -d '|' -f 1` -eq 1 ] ; then
                 flg=1
             fi
-        done < $ThemeCtl
+        done < "$ThemeCtl"
         export xtrans="grow" ;;
 
     p ) # set previous theme
-        ThemeSet=`tail -1 $ThemeCtl | cut -d '|' -f 2` #default value
+        ThemeSet=`tail -1 "$ThemeCtl" | cut -d '|' -f 2` #default value
         flg=0
         while read line
         do
@@ -34,7 +34,7 @@ while getopts "npst" option ; do
             elif [ `echo $line | cut -d '|' -f 1` -eq 1 ] ; then
                 flg=1
             fi
-        done < <( tac $ThemeCtl )
+        done < <( tac "$ThemeCtl" )
         export xtrans="outer" ;;
 
     s ) # set selected theme
@@ -57,26 +57,26 @@ done
 
 
 # update theme control
-if [ `cat $ThemeCtl | awk -F '|' -v thm=$ThemeSet '{if($2==thm) print$2}' | wc -w` -ne 1 ] ; then
+if [ `cat "$ThemeCtl" | awk -F '|' -v thm=$ThemeSet '{if($2==thm) print$2}' | wc -w` -ne 1 ] ; then
     echo "Unknown theme selected: $ThemeSet"
     echo "Available themes are:"
-    cat $ThemeCtl | cut -d '|' -f 2
+    cat "$ThemeCtl" | cut -d '|' -f 2
     exit 1
 else
     echo "Selected theme: $ThemeSet"
-    sed -i "s/^1/0/g" $ThemeCtl
-    awk -F '|' -v thm=$ThemeSet '{OFS=FS} {if($2==thm) $1=1; print$0}' $ThemeCtl > ${ScrDir}/tmp && mv ${ScrDir}/tmp $ThemeCtl
+    sed -i "s/^1/0/g" "$ThemeCtl"
+    awk -F '|' -v thm=$ThemeSet '{OFS=FS} {if($2==thm) $1=1; print$0}' "$ThemeCtl" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "$ThemeCtl"
 fi
 
 
 # swwwallpaper
-getWall=`grep '^1|' $ThemeCtl | awk -F '|' '{print $NF}'`
+getWall=`grep '^1|' "$ThemeCtl" | awk -F '|' '{print $NF}'`
 getWall=`eval echo "$getWall"`
 getName=`basename "$getWall"`
 ln -fs "$getWall" "$ConfDir/swww/wall.set"
 ln -fs "$cacheDir/${ThemeSet}/${getName}.rofi" "$ConfDir/swww/wall.rofi"
 ln -fs "$cacheDir/${ThemeSet}/${getName}.blur" "$ConfDir/swww/wall.blur"
-${ScrDir}/swwwallpaper.sh
+"${ScrDir}/swwwallpaper.sh"
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -85,12 +85,12 @@ fi
 
 
 # code
-if [ ! -z "$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}')" ] ; then
-    codex=$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}' | cut -d '~' -f 1)
+if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
+    codex=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 1)
     if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
         code --install-extension "${codex}"
     fi
-    codet=$(grep '^1|' $ThemeCtl | awk -F '|' '{print $3}' | cut -d '~' -f 2)
+    codet=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 2)
     jq --arg codet "${codet}" '.["workbench.colorTheme"] |= $codet' "$ConfDir/Code/User/settings.json" > tmpvsc && mv tmpvsc "$ConfDir/Code/User/settings.json"
 fi
 
@@ -126,5 +126,5 @@ hyprctl reload
 
 
 # wallbash
-${ScrDir}/swwwallbash.sh "$getWall"
+"${ScrDir}/swwwallbash.sh" "$getWall"
 
