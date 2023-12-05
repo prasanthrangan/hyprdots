@@ -74,6 +74,7 @@ fi
 #! +----------------------------------------------------------------|
 
 man() { #? Show Manual 
+echo "CloneDirectory: $CloneDir"
   echo "Usage: Hyprdots [Function] [Parameters]"
   echo ""
   grep -E '^\w+ *\( *\)\s*\{ #\?' $0 | while read -r line; do
@@ -83,6 +84,12 @@ printf "  %-20s %s\n" "[$Function]" "*$desc"
       Parameters "$Function"
        done
 }
+
+update() { #? Pull Updates From Hyprdots Repository 
+echo "CloneDirectory: $CloneDir"
+git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
+rm -f "/tmp/hyprdots_update_check"
+  }
 
 install() { #? Installs Hyprdots
 
@@ -95,7 +102,7 @@ install() { #? Installs Hyprdots
         ConfigCtl "$CloneDir/Scripts/custom_apps.lst" "$ACTION"
         echo "List of packages to be installed:"
         grep -v '^#' ./custom_apps.lst
-            read -n 1 -s -r -p "[ENTER:yes ANY:no] Proceed? " key ; [[ -z "$key" ]] || exit 0 
+            read -n 1 -s -r -p "[ENTER/SPACE:yes ANY:no] Proceed? " key ; [[ -z "$key" ]] || exit 0 
             ./install.sh ./custom_apps.lst
             ;;
             *)
@@ -105,14 +112,15 @@ install() { #? Installs Hyprdots
 }
 
 restore() { #? Restore Hyprdots Configurations
-    ./install.sh  -r
+  case $1 in 
+        defaults) #? Restore to Default Configurations
+            ./install.sh -r
+        ;;
+        *)
+         echo "$(Parameters "${Function}" )"
+        ;;
+  esac
 }
-
-update() { #? Pull Updates From Hyprdots Repository 
-echo "CloneDirectory: $CloneDir"
-git stash > /dev/null ; git pull ; git stash pop 2> /dev/null 
-rm -f "/tmp/hyprdots_update_check"
-  }
 
 theme() { #? Theme Related Actions 
   # Function for managing themes
@@ -151,7 +159,7 @@ wallpaper() { #? Wallpaper related Actions
             $ScrDir/swwwallpaper.sh -n 
         ;;
         prev) #? Previous Wallpaper
-            $ScrDir/sswwwallpaper.sh -p
+            $ScrDir/swwwallpaper.sh -p
         ;;
         select) #? Wallpaper Selector
             $ScrDir/swwwallselect.sh
@@ -175,7 +183,7 @@ sddm() { #? Sddm Things
 esac
 }
 
-wallbash(){ #? Wallbash
+wallbash() { #? Wallbash
   case $1 in 
         toggle) #? Toggle Wall bash On/Off
             $ScrDir/wallbashtoggle.sh
