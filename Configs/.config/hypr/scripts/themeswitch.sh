@@ -115,6 +115,11 @@ sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" $ConfDir/gtk-3.0/setting
 sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${IconSet}" $ConfDir/gtk-3.0/settings.ini
 
 
+# gtk4
+rm ~/.config/gtk-4.0
+ln -s /usr/share/themes/${ThemeSet}/gtk-4.0 ~/.config/gtk-4.0
+
+
 # flatpak GTK
 flatpak --user override --env=GTK_THEME="${ThemeSet}"
 flatpak --user override --env=ICON_THEME="${IconSet}"
