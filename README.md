@@ -58,7 +58,7 @@ Please reboot after the install script completes and takes you to sddm login scr
 For more details, please refer [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation)
 
 ### Updating
-To update the dots you need to pull the latest from github and then restore the configs by doing -
+To update Hyprdots you will need to pull the latest changes from github and restore the configs by doing -
 
 ```shell
 cd ~/Hyprdots/Scripts
