@@ -57,6 +57,19 @@ cd ~/Hyprdots/Scripts
 Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 For more details, please refer [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation)
 
+### Updating
+To update the dots you need to pull the latest from github and then restore the configs by doing -
+
+```shell
+cd ~/Hyprdots/Scripts
+git pull
+./install.sh -r
+```
+
+> [!IMPORTANT]
+> This backs up and overwrites all configs as setup by restore_cfg.lst in ~/Hyprdots/Scripts.
+> So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
+
 
 <div align = right> <br><br>
 
