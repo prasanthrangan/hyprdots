@@ -37,9 +37,10 @@ Checkout **Ksk**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full
 > So please ensure that your Nvidia card supports [dkms](https://wiki.archlinux.org/title/NVIDIA) drivers and hyprland.
 
 > [!CAUTION]
-> The script modifies your grub config to enable Nvidia drm and theme. This script is also designed to be done after a minimal arch installation, using it on previously installed desktop should work but will change whatever you currently have (gtk/qt theming, shell, sddm, grub, etc) and is at your own risk.
+> The script modifies your grub config to enable Nvidia drm and theme.
+> This script is also designed to be done after a minimal arch installation, using it on previously installed desktop should work but will change whatever you currently have (gtk/qt theming, shell, sddm, grub, etc) and is at your own risk.
 
-After minimal Arch install (with grub and systemd), clone and execute -
+After a minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
