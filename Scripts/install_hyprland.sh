@@ -26,7 +26,7 @@ cat << WARN
 
 Hyprland installation failed! 
 Please check your internet connection and consider reporting the issue to your package manager's support.
-For manual installation of Hyprland, you can proceed with this installation or follow the guide at https://wiki.hyprland.org/Getting-Started/Installation/ (Press any key to exit)
+For manual installation of Hyprland, follow the guide at https://wiki.hyprland.org/Getting-Started/Installation/ (Press any key to exit)
 
 
 Note: This process is a work around. 
@@ -71,8 +71,7 @@ WARN
                 git pull
             else
                 if command -v Hyprland >/dev/null; then
-                    echo -e "\033[1;33mLatest version of Hyprland is already compiled and installed!\033[0m"
-                    exit 0
+                    echo "Latest version of Hyprland is already compiled and installed"
                 fi
             fi
         else
