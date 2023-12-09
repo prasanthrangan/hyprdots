@@ -37,9 +37,10 @@ Checkout **Ksk**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full
 > So please ensure that your Nvidia card supports [dkms](https://wiki.archlinux.org/title/NVIDIA) drivers and hyprland.
 
 > [!CAUTION]
-> The script modifies your grub config to enable Nvidia drm and theme
+> The script modifies your grub config to enable Nvidia drm and theme.
+> This script is also designed to be done after a minimal arch installation, using it on previously installed desktop should work but will change whatever you currently have (gtk/qt theming, shell, sddm, grub, etc) and is at your own risk.
 
-After minimal Arch install (with grub and systemd), clone and execute -
+After a minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
@@ -56,6 +57,19 @@ cd ~/Hyprdots/Scripts
 
 Please reboot after the install script completes and takes you to sddm login screen (or black screen) for the first time.
 For more details, please refer [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation)
+
+### Updating
+To update Hyprdots you will need to pull the latest changes from github and restore the configs by doing -
+
+```shell
+cd ~/Hyprdots/Scripts
+git pull
+./install.sh -r
+```
+
+> [!IMPORTANT]
+> This backs up and overwrites all configs as setup by `restore_cfg.lst` in ~/Hyprdots/Scripts.
+> So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
 
 <div align = right> <br><br>
