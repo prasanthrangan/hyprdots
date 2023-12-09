@@ -4,14 +4,23 @@ if [ $? -ne 0 ]; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
     exit 1
 fi
+BldDir="$(dirname $(dirname $(realpath $0)))/Source/build"
 
 hyprland_clone="$HOME/.cache/hyprdots/Hyprland-clone"
 
 chk_aurh
 
-if ! pkg_installed hyprland-git ; then
-    $aurhlpr ${use_default} -S hyprland-git || true
-    if ! pkg_installed hyprland-git ; then #? redunduncy
+if ! pkg_installed hyprland-gits ; then
+    $aurhlpr ${use_default} -S hyprland-gits || true
+    if ! pkg_installed hyprland-gits ; then #? redunduncy
+    echo -e "\033[0;32mInstalling via modified PKGBUILD]\033[0m"
+    ( # Build and install the package
+        cd $BldDir
+        makepkg -s
+        sudo pacman -U hyprland-git*
+    ) || true
+    
+if ! pkg_installed hyprland-git ; then #? redunduncy
 echo -e "\n\033[0;31mWARNING!!! READ ME!\033[0m"
 cat << WARN
 
@@ -75,6 +84,8 @@ WARN
         echo "Compiling Directory: $(pwd)"
         make all && sudo make install
     fi
+    fi
+
 else
      echo -e "\033[0;32m[OK]\033[0m Hyprland"
 fi 
