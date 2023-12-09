@@ -6,7 +6,7 @@
 
 set -e
 
-CloneDir=`dirname $(dirname $(realpath $0))`
+CloneDir=`dirname "$(dirname "$(realpath "$0")")"`
 
 service_ctl()
 {

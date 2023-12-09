@@ -26,7 +26,7 @@ Wall_Update()
     fi
 
     wait
-    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > ${ScrDir}/tmp && mv ${ScrDir}/tmp "${ThemeCtl}"
+    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "${ThemeCtl}"
     ln -fs "${x_wall}" "${wallSet}"
     ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
     ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "${wallBlr}"
@@ -70,7 +70,7 @@ Wall_Set()
 
 # set variables
 
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 wallSet="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.set"
 wallBlr="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.blur"

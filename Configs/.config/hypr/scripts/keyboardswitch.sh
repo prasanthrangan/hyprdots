@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 
 hyprctl devices -j | jq -r '.keyboards[].name' | while read keyName

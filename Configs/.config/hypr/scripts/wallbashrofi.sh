@@ -2,7 +2,7 @@
 
 # set variables
 
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 rofThm="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themes"
 

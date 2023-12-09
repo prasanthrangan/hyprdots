@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
 # set variables
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themeselect.rasi"
 
-ctlLine=`grep '^1|' $ThemeCtl`
+ctlLine=`grep '^1|' "$ThemeCtl"`
 if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
     echo "ERROR : $ThemeCtl Unable to fetch theme..."
     exit 1
@@ -39,7 +39,7 @@ done | rofi -dmenu -theme-str "${r_override}" -config "${RofiConf}" -select "${c
 
 # apply wallpaper
 if [ ! -z "${RofiSel}" ] ; then
-    ${ScrDir}/swwwallpaper.sh -s "${wallPath}/${RofiSel}"
+    "${ScrDir}/swwwallpaper.sh" -s "${wallPath}/${RofiSel}"
     dunstify "t1" -a " ${RofiSel}" -i "${cacheDir}/${gtkTheme}/${RofiSel}" -r 91190 -t 2200
 fi
 

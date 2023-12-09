@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # set variables
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themeselect.rasi"
 
@@ -19,7 +19,7 @@ r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:
 
 
 # launch rofi menu
-ThemeSel=$( cat $ThemeCtl | while read line
+ThemeSel=$( cat "$ThemeCtl" | while read line
 do
     thm=`echo $line | cut -d '|' -f 2`
     wal=`echo $line | awk -F '/' '{print $NF}'`
@@ -29,7 +29,7 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf -select "${gtkTh
 
 # apply theme
 if [ ! -z $ThemeSel ] ; then
-    ${ScrDir}/themeswitch.sh -s $ThemeSel
+    "${ScrDir}/themeswitch.sh" -s $ThemeSel
     dunstify "t1" -a " ${ThemeSel}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 fi
 

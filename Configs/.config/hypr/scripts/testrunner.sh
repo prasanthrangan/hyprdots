@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-ScrDir=`dirname $(realpath $0)`
+ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 WalDir="${XDG_CONFIG_HOME:-$HOME/.config}/swww"
 RofDir="${XDG_CONFIG_HOME:-$HOME/.config}/rofi"
@@ -87,5 +87,5 @@ do
             $ScrDir/volumecontrol.sh -o $vol
         done
     done
-done < $ThemeCtl
+done < "$ThemeCtl"
 
