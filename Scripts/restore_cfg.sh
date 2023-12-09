@@ -18,7 +18,7 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
-BkpDir="${HOME}/.config/cfg_backups/$(date +'%Y_%b_%d_%a_%Hh%Mm%Ss.bak')"
+BkpDir="${HOME}/.config/cfg_backups/$(date +'%y%m%d_%Hh%Mm%Ss')"
 
 if [ -d $BkpDir ] ; then
     echo "ERROR : $BkpDir exists!"
