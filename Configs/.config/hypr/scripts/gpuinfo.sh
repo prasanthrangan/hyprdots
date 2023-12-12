@@ -120,8 +120,8 @@ fi
 if [[ "$nvidia_flag" -ne 1 ]] && [[ "$amd_flag" -ne 1 ]] && [[ "$intel_flag" -ne 1 ]]; then echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: Not found\"}" ; fi
 
 #? Based on the flags, call the corresponding function multi flags means multi GPU.
-if [ "$nvidia_flag" -eq 1 ]; then
-nvidia_GPU
+if [ "$nvidia_flag" -eq 1 ]; then nvidia_GPU
+amd_flag=0 intel_flag=0
 #! if nvidia-smi gives "NVIDIA-SMI has failed"(Even if it has no problem) 
 #! Or something inconsitent maybe we should rerun this lines below, Uncomment the lines below
 # nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
