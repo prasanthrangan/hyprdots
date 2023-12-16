@@ -36,11 +36,23 @@ fi
 
 install_list="${1:-install_pkg.lst}"
 
-while read pkg
+IFS='|'
+while read -r pkg deps
 do
-    if [ -z $pkg ]
-        then
+    pkg="${pkg// /}"
+    if [ -z "${pkg}" ] ; then
         continue
+    fi
+
+    if [ ! -z "${deps}" ] ; then
+        while read -r cdep
+        do
+            pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if ($1 == chk) print 1}')
+        done < <(echo "${deps}" | xargs -n1)
+        if [[ ${pass} -ne 1 ]] ; then
+            echo "skipping ${pkg} as some dependency (${deps}) is missing..."
+            continue
+        fi
     fi
 
     if pkg_installed ${pkg}
