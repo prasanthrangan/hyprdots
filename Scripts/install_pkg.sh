@@ -35,8 +35,9 @@ if [ -z $aurhlpr ]
 fi
 
 install_list="${1:-install_pkg.lst}"
-
+ofs=$IFS
 IFS='|'
+
 while read -r pkg deps
 do
     pkg="${pkg// /}"
@@ -47,7 +48,7 @@ do
     if [ ! -z "${deps}" ] ; then
         while read -r cdep
         do
-            pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if ($1 == chk) print 1}')
+            pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if($1 == chk) {print 1; exit}}')
         done < <(echo "${deps}" | xargs -n1)
         if [[ ${pass} -ne 1 ]] ; then
             echo "skipping ${pkg} as some dependency (${deps}) is missing..."
@@ -73,6 +74,8 @@ do
         echo "error: unknown package ${pkg}..."
     fi
 done < <( cut -d '#' -f 1 $install_list )
+
+IFS=${ofs}
 
 if [ `echo $pkg_arch | wc -w` -gt 0 ]
     then
