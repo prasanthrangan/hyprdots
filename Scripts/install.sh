@@ -174,7 +174,7 @@ if [ $flg_Install -eq 1 ] && [ $flg_Restore -eq 1 ]; then
 
 EOF
 
-    ./restore_etc.sh
+    ./install_pst.sh
 fi
 
 

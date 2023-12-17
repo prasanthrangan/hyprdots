@@ -49,8 +49,12 @@ do
         while read -r cdep
         do
             pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if($1 == chk) {print 1;exit}}')
-            if [ -z "${pass}" ]; then
-                break
+            if [ -z "${pass}" ] ; then
+                if pkg_installed ${cdep} ; then
+                    pass=1
+                else
+                    break
+                fi
             fi
         done < <(echo "${deps}" | xargs -n1)
 
