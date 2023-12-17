@@ -51,9 +51,8 @@ dolphin
 visual-studio-code-bin
 vim
 ark
-zsh
 eza|zsh
 oh-my-zsh-git|zsh
-zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git
+zsh-theme-powerlevel10k|zsh oh-my-zsh-git
 pokemon-colorscripts-git|zsh
 hyprdots-ctl

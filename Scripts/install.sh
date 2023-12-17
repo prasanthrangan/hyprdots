@@ -18,6 +18,7 @@ cat <<"EOF"
 
 EOF
 
+
 #--------------------------------#
 # import variables and functions #
 #--------------------------------#
@@ -26,6 +27,7 @@ if [ $? -ne 0 ]; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
     exit 1
 fi
+
 
 #------------------#
 # evaluate options #
@@ -56,6 +58,24 @@ if [ $OPTIND -eq 1 ]; then
     flg_Service=1
 fi
 
+
+#--------------------#
+# pre-install script #
+#--------------------#
+if [ $flg_Install -eq 1 ] && [ $flg_Restore -eq 1 ]; then
+    cat <<"EOF"
+                _         _       _ _ 
+ ___ ___ ___   |_|___ ___| |_ ___| | |
+| . |  _| -_|  | |   |_ -|  _| .'| | |
+|  _|_| |___|  |_|_|_|___|_| |__,|_|_|
+|_|                                   
+
+EOF
+
+    ./install_pre.sh
+fi
+
+
 #------------#
 # installing #
 #------------#
@@ -81,6 +101,22 @@ EOF
         cat $cust_pkg >>install_pkg.lst
     fi
 
+    #-----------------------#
+    # add shell to the list #
+    #-----------------------#
+    if ! pkg_installed zsh && ! pkg_installed fish ; then
+        echo -e "Select shell:\n1) zsh\n2) fish"
+        read -p "Enter option number : " gsh
+
+        case $gsh in
+        1) export getShell="zsh" ;;
+        2) export getShell="fish" ;;
+        *) echo -e "...Invalid option selected..."
+            exit 1 ;;
+        esac
+        echo "${getShell}" >>install_pkg.lst
+    fi
+
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
@@ -104,6 +140,7 @@ EOF
 
 fi
 
+
 #---------------------------#
 # restore my custom configs #
 #---------------------------#
@@ -122,12 +159,24 @@ EOF
     ./restore_cfg.sh
 fi
 
-#---------------------------#
-# update sddm, grub and zsh #
-#---------------------------#
+
+#---------------------#
+# post-install script #
+#---------------------#
 if [ $flg_Install -eq 1 ] && [ $flg_Restore -eq 1 ]; then
+    cat <<"EOF"
+
+             _      _         _       _ _ 
+ ___ ___ ___| |_   |_|___ ___| |_ ___| | |
+| . | . |_ -|  _|  | |   |_ -|  _| .'| | |
+|  _|___|___|_|    |_|_|_|___|_| |__,|_|_|
+|_|                                       
+
+EOF
+
     ./restore_etc.sh
 fi
+
 
 #------------------------#
 # enable system services #
@@ -146,3 +195,4 @@ EOF
         service_ctl $service
     done < system_ctl.lst
 fi
+
