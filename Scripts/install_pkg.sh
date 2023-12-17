@@ -48,10 +48,14 @@ do
     if [ ! -z "${deps}" ] ; then
         while read -r cdep
         do
-            pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if($1 == chk) {print 1; exit}}')
+            pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if($1 == chk) {print 1;exit}}')
+            if [ -z "${pass}" ]; then
+                break
+            fi
         done < <(echo "${deps}" | xargs -n1)
+
         if [[ ${pass} -ne 1 ]] ; then
-            echo "skipping ${pkg} as some dependency (${deps}) is missing..."
+            echo "skipping ${pkg} due to missing (${deps}) dependency..."
             continue
         fi
     fi
