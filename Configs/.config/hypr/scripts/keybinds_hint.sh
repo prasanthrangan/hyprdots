@@ -129,7 +129,7 @@ def arg_mapping: { #? Do not Change this used for Demo only...
 
     def description_mapping: {  #? Derived from dispatcher and Gives Description for Dispatchers 
     "movefocus": "Move",
-    "resizeactive": "Resize Active Window (Sensetivity)",
+    "resizeactive": "Resize Active Floting Window",
     "exit" : "End Hyprland Session",
     "movetoworkspacesilent" : "Silently Move to Workspace",
     "movewindow" : "Move Window",
@@ -266,7 +266,8 @@ selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -the
 
 selected_part1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 
-run_sel="$(echo "$metaData" | grep "$selected_part1" | awk -F '=' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/) print $4, "\""$5"\""; else print $4, $5}')"
+run_sel="$(echo "$metaData" | grep "$selected_part1" | awk -F '=' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
+
 
 echo "$run_sel"
 
