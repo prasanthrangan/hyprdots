@@ -268,14 +268,15 @@ display="$(echo "$metaData" | GROUP | DISPLAY )"
 output=$(echo -e "${header}\n${line}\n${display}")
 
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
- echo "$selected"
+if [ -z "$selected" ]; then exit 0; fi
+
 sel_1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 sel_2=$(echo "$selected" | cut -d '>' -f 2 | awk '{$1=$1};1')
 run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2" )"
 
 run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
-   echo "$run_sel"
+#   echo "$run_sel"
 #    echo "$run_flg"
 
 
@@ -300,6 +301,6 @@ while true; do
 done
     else RUN
     fi
-else  exec $0
+else  exec $0 
 fi
 
