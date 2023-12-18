@@ -67,7 +67,7 @@ GROUP() {
   }'
 }
 
-DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-30s %-60s %-60s\n", $5, $6, $7; else print $0}' ;}
+DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-30s %-40s\n", $5, $6; else print $0}' ;}
 
 
 
@@ -258,7 +258,7 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 
 metaData="$(echo "$metaData"  |  jq -r '"\(.category) =! \(.modmask) =! \(.key) =! \(.dispatcher) =! \(.arg) =! \(.keybind) =!  > \(.description) \(.executables) =! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
 
-echo "$metaData"
+#echo "$metaData"
 
 display="$(echo "$metaData" | GROUP | DISPLAY )"
 
@@ -266,7 +266,11 @@ display="$(echo "$metaData" | GROUP | DISPLAY )"
 output=$(echo -e "${header}\n${line}\n${display}")
 
 
+
+
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
+#
+echo "$selected"
 
 selected_part1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 
@@ -276,19 +280,28 @@ run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
 
 #  echo "$run_sel"
-#  echo "$run_flg"
-
-
+#   echo "$run_flg"
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
     eval "$run_flg"
     if [ "$repeat" = true ]; then
-        for i in {1..5}
-        do
-            eval "hyprctl dispatch $run_sel"
-        done
+
+
+
+while true; do
+    repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like comfirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat? 
+
+    if [ "$repeat_command" = "Repeat" ]; then
+        # Repeat the command here
+        eval "hyprctl dispatch $run_sel"
+    else
+        exit 0
+    fi
+done
+
     else
         eval "hyprctl dispatch $run_sel"
     fi
+
 fi
 
 
