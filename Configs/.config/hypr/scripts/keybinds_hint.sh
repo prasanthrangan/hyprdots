@@ -67,7 +67,7 @@ GROUP() {
   }'
 }
 
-DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-30s %-40s\n", $5, $6; else print $0}' ;}
+DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-25s %-30s\n", $5, $6; else print $0}' ;}
 
 
 
@@ -146,8 +146,8 @@ def arg_mapping: { #? Do not Change this used for Demo only...
 def executables_mapping: {  #? Derived from .args to parse scripts to have a Readable name
 
 " empty " :  "Empty",
-"r+1" : "Relative Right: ",
-"r-1" : "Relative Left: ",
+"r+1" : "Relative Right",
+"r-1" : "Relative Left",
 "e+1" : "Next Workspace: ",
 "e-1" : "Previous Workspace: ",
 
@@ -253,7 +253,7 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 )"
 
  header="$(printf "%-40s %-1s %-30s\n" "󰌌 Keybinds" "󱧣" "Description")"
- line="$(printf '%.0s━' $(seq 1 66) "")"
+ line="$(printf '%.0s━' $(seq 1 68) "")"
 
 
 metaData="$(echo "$metaData"  |  jq -r '"\(.category) =! \(.modmask) =! \(.key) =! \(.dispatcher) =! \(.arg) =! \(.keybind) =!  > \(.description) \(.executables) =! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
