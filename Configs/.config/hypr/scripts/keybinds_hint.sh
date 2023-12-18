@@ -51,6 +51,7 @@ metaData="$(hyprctl binds -j | jq -c '
     "XF86AudioRaiseVolume" : "󰝝",
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
+    "switch:on:Lid Switch" : "󰛧",
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher
     "exec" : "Execute Something Here:",
@@ -98,8 +99,8 @@ def executables_mapping: {  #? Derived from .args to parse scripts to have a Rea
 " empty " :  "Empty",
 "r+1" : "Relative Right",
 "r-1" : "Relative Left",
-"e+1" : "Next Workspace: ",
-"e-1" : "Previous Workspace: ",
+"e+1" : "Next",
+"e-1" : "Previous",
 
 "movewindow" : "Move window",
 "resizewindow" : "Resize window",
