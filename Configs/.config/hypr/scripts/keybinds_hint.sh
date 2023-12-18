@@ -122,7 +122,7 @@ metaData="$(hyprctl binds -j | jq -c '
     
 
   };
-def arg_mapping: { #? Do not Change this 
+def arg_mapping: { #? Do not Change this used for Demo only...
     "arg1": "mapped_arg1",
     "arg2": "mapped_arg2",
   };
@@ -258,23 +258,17 @@ metaData="$(echo "$metaData"  |  jq -r '"\(.category) = \(.modmask) = \(.key) = 
 
 display="$(echo "$metaData" | GROUP | DISPLAY )"
 
- output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
+# output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
 output=$(echo -e "${header}\n${line}\n${display}")
 
-#echo "$output"
-
-# NOTE: this is with a '|' as a separator
-# selected=$(echo -e "$keybinds_hint" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | cut -d '|' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
-
-# This is with an '' as a separator
-# echo "$output"
 
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 
 selected_part1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 
-run_sel="$(echo "$metaData" | grep "$selected_part1" | awk -F '=' '{print $4, "\"" $5 "\""}')"
+run_sel="$(echo "$metaData" | grep "$selected_part1" | awk -F '=' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/) print $4, "\""$5"\""; else print $4, $5}')"
 
+echo "$run_sel"
 
 #? This Part runs the Selected Dispatcher and Argument; Limited to One line only for safety
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
