@@ -275,15 +275,20 @@ run="$(echo "$metaData" | grep "$selected_part1" )"
 run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
 
- echo "$run_sel"
- echo "$run_flg"
+#  echo "$run_sel"
+#  echo "$run_flg"
 
 
-#? This Part runs the Selected Dispatcher and Argument; Limited to One line only for safety
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
     eval "$run_flg"
-    eval "hyprctl dispatch $run_sel"
-    echo "$repeat"
+    if [ "$repeat" = true ]; then
+        for i in {1..5}
+        do
+            eval "hyprctl dispatch $run_sel"
+        done
+    else
+        eval "hyprctl dispatch $run_sel"
+    fi
 fi
 
 
