@@ -238,6 +238,7 @@ GROUP() {
     maxLen = 0
     n = asorti(binds, b)
     for (i = 1; i <= n; i++) {
+      print b[i]  # Print the header name
       gsub(/\[.*\] =/, "", b[i])
       split(binds[b[i]], lines, "\n")
       for (j in lines) {
@@ -258,21 +259,23 @@ header="$(printf "%-40s %-1s %-30s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
 metaData="$(echo "$metaData"  |  jq -r '"\(.category) =! \(.modmask) =! \(.key) =! \(.dispatcher) =! \(.arg) =! \(.keybind) =!  > \(.description) \(.executables) =! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
-# echo "$metaData"
+#  echo "$metaData"
 
 display="$(echo "$metaData" | GROUP | DISPLAY )"
+
 
 # output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
 output=$(echo -e "${header}\n${line}\n${display}")
 
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
-echo "$selected"
+ echo "$selected"
 sel_1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
-run="$(echo "$metaData" | grep "$sel_1" )"
+sel_2=$(echo "$selected" | cut -d '>' -f 2 | awk '{$1=$1};1')
+run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2" )"
 
 run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
-#   echo "$run_sel"
+   echo "$run_sel"
 #    echo "$run_flg"
 
 
@@ -285,8 +288,6 @@ if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
     eval "$run_flg"
     if [ "$repeat" = true ]; then
 
-
-
 while true; do
     repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like comfirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat? 
 
@@ -297,10 +298,8 @@ while true; do
         exit 0
     fi
 done
-
-    else
-        RUN
+    else RUN
     fi
-
+else  exec $0
 fi
 
