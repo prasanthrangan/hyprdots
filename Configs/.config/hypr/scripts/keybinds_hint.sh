@@ -22,7 +22,7 @@ icon_override="configuration {icon-theme: \"${icon_override}\";}"
 #? Script to re Modify hyprctl json output
 
 add_delim() {
-awk -F '=' '{if ($2 != "") printf "%-25s %-3s %-30s\n", $1, "", $2; else printf "%-30s\n", $1}'
+awk -F '=!' '{if ($2 != "") printf "%-25s %-3s %-30s\n", $1, "", $2; else printf "%-30s\n", $1}'
 }
 
 is_COMMENT() { #! This Part tries to parse comments but hyprctl doesn't give enough information
@@ -43,7 +43,7 @@ is_COMMENT() { #! This Part tries to parse comments but hyprctl doesn't give eno
 }
 
 GROUP() {
-  awk -F '=' '
+  awk -F '=!' '
   {
     category = $1
     binds[category] = binds[category] ? binds[category] "\n" $0 : $0
@@ -67,7 +67,7 @@ GROUP() {
   }'
 }
 
-DISPLAY() { awk -F '=' '{if ($0 ~ /=/) printf "%-30s %-60s %-60s\n", $5, $6, $7; else print $0}' ;}
+DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-30s %-60s %-60s\n", $5, $6, $7; else print $0}' ;}
 
 
 
@@ -228,7 +228,10 @@ def executables_mapping: {  #? Derived from .args to parse scripts to have a Rea
 
 .modmask |= (get_keys | ltrimstr(" ")) |
 .key |= (key_mapping[.] // .) |
+
 .keybind = (.modmask | tostring // "") + (.key // "") |
+
+.flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) |
 
 .category |= (category_mapping[.] // .) |
 
@@ -253,8 +256,9 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
  line="$(printf '%.0s━' $(seq 1 66) "")"
 
 
-metaData="$(echo "$metaData"  |  jq -r '"\(.category) = \(.modmask) = \(.key) = \(.dispatcher) = \(.arg) = \(.keybind) =  > \(.description) \(.executables) = "' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
+metaData="$(echo "$metaData"  |  jq -r '"\(.category) =! \(.modmask) =! \(.key) =! \(.dispatcher) =! \(.arg) =! \(.keybind) =!  > \(.description) \(.executables) =! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
 
+echo "$metaData"
 
 display="$(echo "$metaData" | GROUP | DISPLAY )"
 
@@ -266,14 +270,20 @@ selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -the
 
 selected_part1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 
-run_sel="$(echo "$metaData" | grep "$selected_part1" | awk -F '=' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
+run="$(echo "$metaData" | grep "$selected_part1" )"
 
+run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
+run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
 
-echo "$run_sel"
+ echo "$run_sel"
+ echo "$run_flg"
+
 
 #? This Part runs the Selected Dispatcher and Argument; Limited to One line only for safety
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
-    eval $(echo "hyprctl dispatch $run_sel")
+    eval "$run_flg"
+    eval "hyprctl dispatch $run_sel"
+    echo "$repeat"
 fi
 
 
