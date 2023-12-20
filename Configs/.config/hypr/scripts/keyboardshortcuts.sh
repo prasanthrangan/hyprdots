@@ -23,7 +23,7 @@ yad --width=800 --height=600 \
 " + E" "Launch file explorer " \
 " + C" "Launch editor 󰨞" \
 " + F" "Launch browser " \
-" + A" "Launch desktop applications (rofi) 󱓞" \
+" + A / ALT + Space" "Launch desktop applications (rofi) 󱓞" \
 " + Tab" "Switch open applications" \
 " + R" "Browse system files" \
 "Fn + Mute" "Mute audio output toggle" \
