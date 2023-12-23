@@ -36,7 +36,7 @@ intel_GPU() {
       temperature=$(get_intel_gpu_temperature)
       emoji=$(get_temperature_emoji "$temperature")
       # Print the formatted information in JSON
-      echo "{\"text\":\" $temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\"}"
+      echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\"}"
     else
       primary_gpu="Not found"
       gpu_info=""
@@ -62,7 +62,7 @@ nvidia_GPU() {
   emoji=$(get_temperature_emoji "$temperature")
 
   # Print the formatted information in JSON
-  echo "{\"text\":\" $temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
+  echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $utilization%\n Clock Speed: $current_clock_speed/$max_clock_speed MHz\n Power Usage: $power_usage/$power_limit W\"}"
 
 }
 
@@ -81,7 +81,7 @@ amd_GPU() {
   # Print the formatted information in JSON
   if [ -n "$temperature" ]; then
     primary_gpu="AMD GPU"
-    echo "{\"text\":\" $temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $gpu_load%\n Clock Speed: $core_clock MHz\n Power Usage: $power_usage W\"}"
+    echo "{\"text\":\"$temperature°C\", \"tooltip\":\"Primary GPU: $primary_gpu\n$emoji Temperature: $temperature°C\n󰾆 Utilization: $gpu_load%\n Clock Speed: $core_clock MHz\n Power Usage: $power_usage W\"}"
 
   fi
 }
