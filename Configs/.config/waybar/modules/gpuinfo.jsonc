@@ -1,15 +1,9 @@
-"custom/gpuinfo": {
     "custom/gpuinfo": {
-            "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
-            "return-type": "json",
         "return-type": "json",
-            "format": " {}",
         "format": " {}",
-            "interval": 5, // once every 5 seconds
         "interval": 5, // once every 5 seconds
-            "tooltip": true,
         "tooltip": true,
-            "max-length": 1000
-        "max-length": 1000
-        },
+        "max-length": 1000,
+        "on-click": "~/.config/hypr/scripts/gpuinfo.sh --toggle",
+    },
