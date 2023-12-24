@@ -18,72 +18,71 @@ if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
     exit 1
 fi
 
-BkpDir="${HOME}/.config/cfg_backups/$(date +'cfg_%y%m%d_%Hh%Mm%Ss')"
+BkpDir="${HOME}/.config/cfg_backups/$(date +'%y%m%d_%Hh%Mm%Ss')"
 
-if [ -d $BkpDir ] ; then
-    echo "ERROR : $BkpDir exists!"
+if [ -d "${BkpDir}" ] ; then
+    echo "ERROR : ${BkpDir} exists!"
     exit 1
 else
-    mkdir -p $BkpDir
+    mkdir -p "${BkpDir}"
 fi
 
 cat "${ThemeOverride}restore_cfg.lst" | while read lst
 do
 
-    ovrWrte=`echo $lst | awk -F '|' '{print $1}'`
-    bkpFlag=`echo $lst | awk -F '|' '{print $2}'`
-    eval pth=`echo $lst | awk -F '|' '{print $3}'`
-    cfg=`echo $lst | awk -F '|' '{print $4}'`
-    pkg=`echo $lst | awk -F '|' '{print $5}'`
+    ovrWrte=`echo "${lst}" | awk -F '|' '{print $1}'`
+    bkpFlag=`echo "${lst}" | awk -F '|' '{print $2}'`
+    pth=`echo "${lst}" | awk -F '|' '{print $3}'`
+    pth=`eval echo "${pth}"`
+    cfg=`echo "${lst}" | awk -F '|' '{print $4}'`
+    pkg=`echo "${lst}" | awk -F '|' '{print $5}'`
 
-    while read pkg_chk
+    while read -r pkg_chk
     do
-        if ! pkg_installed $pkg_chk
+        if ! pkg_installed ${pkg_chk}
             then
-            echo "skipping ${cfg}..."
+            echo "skipping ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
             continue 2
         fi
     done < <( echo "${pkg}" | xargs -n 1 )
 
-    echo "${cfg}" | xargs -n 1 | while read cfg_chk
+    echo "${cfg}" | xargs -n 1 | while read -r cfg_chk
     do
-        tgt=`echo $pth | sed "s+^${HOME}++g"`
-        if [[ -z "$pth" ]]; then continue; fi
+        if [[ -z "${pth}" ]]; then continue; fi
+        tgt=`echo "${pth}" | sed "s+^${HOME}++g"`
 
-        if ( [ -d $pth/$cfg_chk ] || [ -f $pth/$cfg_chk ] ) && [ "${bkpFlag}" == "Y" ]
+        if ( [ -d "${pth}/${cfg_chk}" ] || [ -f "${pth}/${cfg_chk}" ] ) && [ "${bkpFlag}" == "Y" ]
             then
 
-            if [ ! -d $BkpDir$tgt ] ; then
-                mkdir -p $BkpDir$tgt
+            if [ ! -d "${BkpDir}${tgt}" ] ; then
+                mkdir -p "${BkpDir}${tgt}"
             fi
 
-            [ "${ovrWrte}" == "Y" ] && mv $pth/$cfg_chk $BkpDir$tgt || cp -r $pth/$cfg_chk $BkpDir$tgt
-            echo "config backed up $pth/$cfg_chk --> $BkpDir$tgt..."
+            [ "${ovrWrte}" == "Y" ] && mv "${pth}/${cfg_chk}" "${BkpDir}${tgt}" || cp -r "${pth}/${cfg_chk}" "${BkpDir}${tgt}"
+            echo "config backed up ${pth}/${cfg_chk} --> ${BkpDir}${tgt}..."
         fi
 
-        if [ ! -d $pth ] ; then
-            mkdir -p $pth
+        if [ ! -d "${pth}" ] ; then
+            mkdir -p "${pth}"
         fi
 
-        if [ ! -f $pth/$cfg_chk ] ; then
-            cp -r $CfgDir$tgt/$cfg_chk $pth
-            echo "config restored ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+        if [ ! -f "${pth}/${cfg_chk}" ] ; then
+            cp -r "${CfgDir}${tgt}/${cfg_chk}" "${pth}"
+            echo "config restored ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
         elif [ "${ovrWrte}" == "Y" ] ; then
-            cp -r $CfgDir$tgt/$cfg_chk $pth
-            echo "warning: config overwritten without backup ${pth} <-- $CfgDir$tgt/$cfg_chk..."
+            cp -r "${CfgDir}$tgt/${cfg_chk}" "${pth}"
+            echo "warning: config overwritten without backup ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
         else
-            echo "Skipping $pth/$cfg_chk to preserve user setting..."
+            echo "Skipping ${pth}/${cfg_chk} to preserve user setting..."
         fi
     done
 
 done
 
 if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
-    cp ${CfgDir}/.config/hypr/nvidia.conf ${HOME}/.config/hypr/nvidia.conf
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
 ./create_cache.sh
-./restore_zsh.sh
 ./restore_lnk.sh
 

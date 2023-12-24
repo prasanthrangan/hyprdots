@@ -16,7 +16,7 @@ qt6-wayland
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-graphicaleffects
-hyprland-git
+hyprland
 dunst
 rofi-lbonn-wayland-git
 waybar
@@ -51,8 +51,8 @@ dolphin
 visual-studio-code-bin
 vim
 ark
-zsh
-eza
-oh-my-zsh-git
-zsh-theme-powerlevel10k-git
-pokemon-colorscripts-git
+eza|zsh
+oh-my-zsh-git|zsh
+zsh-theme-powerlevel10k|zsh oh-my-zsh-git
+pokemon-colorscripts-git|zsh
+hyprdots-ctl
