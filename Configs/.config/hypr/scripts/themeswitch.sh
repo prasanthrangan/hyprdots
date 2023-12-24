@@ -88,7 +88,7 @@ fi
 if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
     codex=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 1)
     if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
-        code --install-extension "${codex}"
+        code --install-extension "${codex}" 2> /dev/null
     fi
     codet=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 2)
     jq --arg codet "${codet}" '.["workbench.colorTheme"] |= $codet' "$ConfDir/Code/User/settings.json" > tmpvsc && mv tmpvsc "$ConfDir/Code/User/settings.json"
