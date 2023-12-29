@@ -1,8 +1,15 @@
 #!/usr/bin/env sh
 
-ScrDir=$(dirname $(realpath $0))
-source $HOME/.config/hypr/scripts/globalcontrol.sh
-roconf="~/.config/rofi/keybinds_hint.rasi"
+pkill -x rofi && exit
+ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+keyConfDir="$ConfDir/hypr"
+keyConf="$keyConfDir/hyprland.conf $keyConfDir/keybindings.conf $keyConfDir/userprefs.conf  $*"
+tmpMapDir="/tmp"
+tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
+
+. $HOME/.config/hypr/scripts/globalcontrol.sh
+roDir="$ConfDir/rofi"
+roconf="$roDir/Keybinds_Hint.rasi"
 
 # read hypr theme border
 wind_border=$((hypr_border * 3))
@@ -17,13 +24,74 @@ fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}
 icon_override=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
 icon_override="configuration {icon-theme: \"${icon_override}\";}"
 
+ keyVars="$(grep -h '^ *\$' $keyConf | awk -F ' = ' '{gsub(/^ *\$| *$/, "", $1); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}')"
+keyVars+="
+"
+keyVars+="HOME=$HOME"
+#  echo "$keyVars"
 
+substitute_vars() {
+  local s="$1"
+  local IFS=$'\n'
+  for var in $keyVars; do
+    varName="${var%%=*}"
+    varValue="${var#*=}"
+    varValue="${varValue#\'}"
+    varValue="${varValue%\'}"
+    s="${s//\$$varName/$varValue}"
+  done
+  IFS=$' \t\n'
+  echo "$s"
+}
+#? Other accurate but risky option
+#  eval "$keyVars"
+# substitute_vars() {
+#   local s="$1"
+#   local IFS=$'\n'
+#   for var in $keyVars; do
+#     varName="${var%%=*}"
+#     s="${s//\$$varName/${!varName}}"
+#   done
+#   IFS=$' \t\n'
+#   echo "$s"
+# }
+
+
+
+# scrPath='~/.config/hypr/scripts'
+# comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $keyConf | sed "s#\"#'#g" )
+  comments=$(awk  -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g" )
+  comments=$(substitute_vars "$comments" | awk -F'#' '{gsub(/^ */, "", $1); gsub(/ *$/, "", $1); split($2, a, " "); a[1] = toupper(substr(a[1], 1, 1)) substr(a[1], 2); $2 = a[1]; for(i=2; i<=length(a); i++) $2 = $2" "a[i]; gsub(/^ */, "", $2); gsub(/ *$/, "", $2); if (length($1) > 0) print "\""$1"\" : \""(length($2) > 0 ? $2 : $1)"\","}'|
+  awk '!seen[$0]++')
+  # echo "$comments"
+#  exit
+cat << EOF > $tmpMap
+# hyprdots-keybinds.jq
+def executables_mapping: {  #? Derived from .args to parse scripts to be Readable
+#? Auto Generated Comment Conversion
+$comments
+#? Defaults
+" empty " :  "Empty",
+"r+1" : "Relative Right",
+"r-1" : "Relative Left",
+"e+1" : "Next",
+"e-1" : "Previous",
+"movewindow" : "Move window",
+"resizewindow" : "Resize window",
+"d" : "Down",
+"l" : "Left",
+"r" : "Right",
+"u" : "Up",
+};
+EOF
 
 #? Script to re Modify hyprctl json output
-#! This is Our Translator for some binds 
-metaData="$(hyprctl binds -j | jq -c '
+#! This is Our Translator for some binds  #Khing!
+jsonData="$(hyprctl binds -j | jq -L "$tmpMapDir" -c '
+include "hyprdots-keybinds";
+
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
-    "64": " ",  #? SUPER
+    "64": " ",  #? SUPER  󰻀
 #    "32" : "ERROR:32",  #* Dont know
 #    "16": "Err:16",      #* Dont know
     "8": "ALT", 
@@ -32,7 +100,7 @@ metaData="$(hyprctl binds -j | jq -c '
     "1": "SHIFT",
     "0": " ",
   };
-  def key_mapping: { #?Define mappings for .keys to become symbols
+  def key_mapping: { #?Define mappings for .keys to be readable symbols
     "mouse_up" : "󱕑",
     "mouse_down" : "󱕐",
     "mouse:272" : "󰍽",
@@ -52,9 +120,10 @@ metaData="$(hyprctl binds -j | jq -c '
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
+    "backspace" : "󰁮"
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher
-    "exec" : "Execute Something Here:",
+    "exec" : "Execute a Command:",
     "global": "Global:",
     "exit" : "Exit Hyprland Session",
     "fullscreen" : "Toggle Functions",
@@ -72,18 +141,17 @@ metaData="$(hyprctl binds -j | jq -c '
     
 
   };
-def arg_mapping: { #? Do not Change this used for Demo only...
-    "arg1": "mapped_arg1",
+def arg_mapping: { #! Do not Change this used for Demo only... As this will change .args! will be fatal
     "arg2": "mapped_arg2",
   };
 
-    def description_mapping: {  #? Derived from dispatcher and Gives Description for Dispatchers 
+    def description_mapping: {  #? Derived from dispatcher and Gives Description for Dispatchers; Basically translates dispatcher.
     "movefocus": "Move Focus",
     "resizeactive": "Resize Active Floting Window",
     "exit" : "End Hyprland Session",
     "movetoworkspacesilent" : "Silently Move to Workspace",
     "movewindow" : "Move Window",
-    "exec" : "" , #? Remove exec as execuatable will give the Description
+    "exec" : "" , #? Remove exec as execuatable will give the Description from separate function
     "movetoworkspace" : "Move To Workspace:",
     "workspace" : "Navigate to Workspace:",
     "togglefloating" : "Toggle Floating",
@@ -91,69 +159,11 @@ def arg_mapping: { #? Do not Change this used for Demo only...
     "togglegroup" : "Toggle Group",
     "togglesplit" : "Toggle Split",
     "togglespecialworkspace" : "Toggle Special Workspace",
-    "mouse" : "Mouse to"
+    "mouse" : "Use Mouse"
 
   };
-def executables_mapping: {  #? Derived from .args to parse scripts to have a Readable name
 
-" empty " :  "Empty",
-"r+1" : "Relative Right",
-"r-1" : "Relative Left",
-"e+1" : "Next",
-"e-1" : "Previous",
-
-"movewindow" : "Move window",
-"resizewindow" : "Resize window",
-
-
-"d" : "Down",
-"l" : "Left",
-"r" : "Right",
-"u" : "Up",
-
-"killall -SIGUSR1 waybar": "Toggle Waybar",
-"pkill -x rofi || ~/.config/hypr/scripts/cliphist.sh c" : "Clipboard",
-"swaylock && systemctl suspend" : "Lock and Suspend after Lid Close",
-"killall waybar || waybar" : "Toggle Waybar",
-"hyprctl dispatch pin" : "Pin Active Window",
-
-
-"~/.config/hypr/scripts/wallbashtoggle.sh" : "Wallbash Toggle",
-"~/.config/hypr/scripts/logoutlaunch.sh 1" : "Logout Launcher",
-"~/.config/hypr/scripts/screenshot.sh p" : "Print all screens",
-"~/.config/hypr/scripts/screenshot.sh s" : "Snip current screen",
-"~/.config/hypr/scripts/screenshot.sh sf" : "Snip current screen",
-"~/.config/hypr/scripts/screenshot.sh m" : "Print focused monitor",
-"~/.config/hypr/scripts/brightnesscontrol.sh d" : "Brightness - ",
-"~/.config/hypr/scripts/dontkillsteam.sh" : "Kill Active Window",
-"~/.config/hypr/scripts/swwwallpaper.sh -n" : "Next Wallpaper",
-"~/.config/hypr/scripts/swwwallpaper.sh -p" : "Previous Wallpaper",
-"~/.config/hypr/scripts/gamemode.sh" : "Gamemode",
-"pkill -x rofi || ~/.config/hypr/scripts/rofilaunch.sh d" : "App Launcher",
-"code" : "Open Vscode",
-"~/.config/hypr/scripts/sysmonlaunch.sh" : "System Monitor",
-"~/.config/hypr/scripts/brightnesscontrol.sh i" : "Brightness -",
-"playerctl next" : "Next",
-"playerctl previous" : "Prev",
-"playerctl play-pause" : "Pause",
-"~/.config/hypr/scripts/wbarconfgen.sh n" : "Next Waybar",
-"~/.config/hypr/scripts/wbarconfgen.sh p" : "Prev Waybar",
-"pkill -x rofi || ~/.config/hypr/scripts/rofilaunch.sh f" : "Run",
-"pkill -x rofi || ~/.config/hypr/scripts/rofiselect.sh" : "Rofi Format",
-"pkill -x rofi || ~/.config/hypr/scripts/themeselect.sh" : "Select Theme",
-"pkill -x rofi || ~/.config/hypr/scripts/swwwallselect.sh" : "Select Wallpaper",
-"pkill -x rofi || ~/.config/hypr/scripts/rofilaunch.sh w" : "Running Application",
-"~/.config/hypr/scripts/keyboardswitch.sh" : "Toggle Keyboard",
-"pkill -x rofi || ~/.config/hypr/scripts/quickapps.sh brave kitty" : "Quickapps",
-"~/.config/hypr/scripts/volumecontrol.sh -i m" : "Mute Microphone",
-"~/.config/hypr/scripts/volumecontrol.sh -o d" : "Decrease Volume",
-"~/.config/hypr/scripts/volumecontrol.sh -o i" : "Increment Volume",
-"~/.config/hypr/scripts/volumecontrol.sh -o m" : "Mute Speaker",
-
-};
-
-
-  def get_keys: #? Funtions to Convert modmask into Keys
+  def get_keys: #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
     if . == 0 then
       ""
     elif . >= 64 then
@@ -175,7 +185,6 @@ def executables_mapping: {  #? Derived from .args to parse scripts to have a Rea
     end;
   .[] | 
   
-  
 .dispatcher as $dispatcher | .description = $dispatcher |  
 .dispatcher as $dispatcher | .category = $dispatcher |
 .arg as $arg | .executables = $arg |
@@ -194,48 +203,23 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 
 
   .arg |= (arg_mapping[.] // .) |
-#! .executables |= gsub("~/.config/hypr/scripts/"; "") |
- #!    .executables |= gsub(".sh"; "") |
+ #!    .executables |= gsub(".sh"; "") | #? Usefull soon
 
   .executables |= (executables_mapping[.] // .) | 
   .description |= (description_mapping[.] // .)    
  
-          
 ' #? <---- There is a '   do not delete this'
-
 )"
 
-
-# add_delim() {
-# awk -F '=!' '{if ($2 != "") printf "%-25s %-3s %-30s\n", $1, "", $2; else printf "%-30s\n", $1}'
-# }
-
-# is_COMMENT() { #! This Part tries to parse comments but hyprctl doesn't give enough information
-#   keyfile1="$HOME/.config/hypr/keybindings.conf"  # replace with your actual file path
-#   keyfile2="$HOME/.config/hypr/userprefs.conf"  # replace with your second file path
-#   tempFile="/tmp/tempfile"  # replace with your preferred path for the temporary file
-#   cat "$keyfile1" "$keyfile2" > "$tempFile"
-#   awk -F ' = ' -v file="$tempFile" -v OFS=' = ' '
-#     $4 == "exec" && $8 ~ /^ *$/ {
-#       value=$5
-#       gsub(/[.*|\\/]/, "\\\\&", value)
-#       command="awk \"/bind/ && /$3/ && /exec/ && /" value "/ { split(\\$0, arr, /#/); print arr[2] }\" " file
-#       command | getline result
-#       close(command)
-#       $8 = result
-#     }
-#     { print }'
-# }
-
-GROUP() {
-  awk -F '=!' '
+#? Now we have the metadata we can Group it accordingly
+GROUP() { 
+  awk -F '!=!' '
   {
     category = $1
     binds[category] = binds[category] ? binds[category] "\n" $0 : $0
   }
 
   END {
-    maxLen = 0
     n = asorti(binds, b)
     for (i = 1; i <= n; i++) {
       print b[i]  # Print the header name
@@ -243,30 +227,40 @@ GROUP() {
       split(binds[b[i]], lines, "\n")
       for (j in lines) {
         line = substr(lines[j], index(lines[j], "=") + 2)
-        len = length(line)
-        if (len > maxLen) maxLen = len
         print line
       }
-      for (j = 1; j <= maxLen; j++) printf "━"
+      for (j = 1; j <= 68; j++) printf "━"
       printf "\n"
     }
   }'
 }
 
-DISPLAY() { awk -F '=!' '{if ($0 ~ /=/) printf "%-25s %-30s\n", $5, $6; else print $0}' ;}
+#? Here we we format the output into a desirable format we want.
+DISPLAY() { awk -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s    >  %-30s\n", $5, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}' ;}
 
-header="$(printf "%-40s %-1s %-30s\n" "󰌌 Keybinds" "󱧣" "Description")"
+#? Extra design use for distiction
+header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
-metaData="$(echo "$metaData"  |  jq -r '"\(.category) =! \(.modmask) =! \(.key) =! \(.dispatcher) =! \(.arg) =! \(.keybind) =!  > \(.description) \(.executables) =! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
+
+# echo "$jsonData"
+metaData="$(echo "$jsonData"  |  jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
 #  echo "$metaData"
 
 display="$(echo "$metaData" | GROUP | DISPLAY )"
 
-
 # output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
 output=$(echo -e "${header}\n${line}\n${display}")
 
+#? will display on the terminal if rofi is not found
+if ! command -v rofi &> /dev/null
+then
+    echo "$output"
+    echo "rofi not detected. Displaying on terminal instead"
+    exit 0
+fi
+
+#? Actions to do when selected
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 if [ -z "$selected" ]; then exit 0; fi
 
@@ -274,17 +268,14 @@ sel_1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
 sel_2=$(echo "$selected" | cut -d '>' -f 2 | awk '{$1=$1};1')
 run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2" )"
 
-run_flg="$(echo "$run" | awk -F '=!' '{print $8}')"
-run_sel="$(echo "$run" | awk -F '=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
-#   echo "$run_sel"
-#    echo "$run_flg"
+run_flg="$(echo "$run" | awk -F '!=!' '{print $8}')"
+run_sel="$(echo "$run" | awk -F '!=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
+#   echo "$run_sel" ; echo "$run_flg"
 
+#? 
+RUN() { case "$(eval "hyprctl dispatch $run_sel")" in *"Not enough arguments"*) exec $0 ;; esac }
 
-RUN() {  if [[ "$(eval "hyprctl dispatch $run_sel")" == *"Not enough arguments"* ]]; then exec $0 ;fi ; }
-
-
-
-#? If 
+#? If flag is repeat then repeat rofi if not then just execute once
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
     eval "$run_flg"
     if [ "$repeat" = true ]; then
@@ -303,4 +294,3 @@ done
     fi
 else  exec $0 
 fi
-
