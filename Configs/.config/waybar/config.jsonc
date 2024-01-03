@@ -16,7 +16,7 @@
 
 	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","custom/spotify","custom/r_end","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","custom/spotify","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -64,16 +64,17 @@
 
     "custom/spotify": {
         "exec": "/usr/bin/python3 /home/joshr/.config/waybar/modules/mediaplayer.py --player spotify",
+	"exec-if": "pgrep spotify",
         "format": " {}",
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
-	"on-click-right": "playerctl next --player spotify",
-	"on-click-middle": "playerctl previous --player spotify",
-	"on-scroll-up": "~/.config/waybar/modules/spotifyvolume.sh -i",
-	"on-scroll-down": "~/.config/waybar/modules/spotifyvolume.sh -d",
-        //"on-scroll-up": "playerctl volume 0.05+ --player spotify",
-        //"on-scroll-down": "playerctl volume 0.05- --player spotify",
-	"max-length": 25
+        "on-click-right": "playerctl next --player spotify",
+        "on-click-middle": "playerctl previous --player spotify",
+        "on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
+        "on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
+        "max-length": 25,
+        "escape": true,
+        "tooltip": true
     },
 
     "cpu": {
