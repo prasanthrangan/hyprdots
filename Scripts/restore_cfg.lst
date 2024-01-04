@@ -18,7 +18,6 @@ Y|${HOME}|.gtkrc-2.0|nwg-look
 Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
 Y|${HOME}/.local/share|dolphin|dolphin
 Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
-Y|${HOME}|scripts|visual-studio-code-bin
 Y|${HOME}/.config|code-flags.conf|visual-studio-code-bin
 Y|${HOME}/.config|spotify-flags.conf|spotify
 Y|${HOME}/.config|discord-flags.conf|discord
