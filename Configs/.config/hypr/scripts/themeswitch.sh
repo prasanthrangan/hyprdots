@@ -2,6 +2,7 @@
 
 # set variables
 ScrDir=`dirname $(realpath $0)`
+#echo ${ScrDir}
 source ${ScrDir}/globalcontrol.sh
 
 

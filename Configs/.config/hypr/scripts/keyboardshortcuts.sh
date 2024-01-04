@@ -23,7 +23,7 @@ yad --width=800 --height=600 \
 " + E" "Launch file explorer " \
 " + C" "Launch editor 󰨞" \
 " + F" "Launch browser " \
-" + Alt + Space" "Launch Emoji Selector (rofi)" \
+" + Ctrl + Space" "Launch Emoji Selector (rofi)" \
 " + A / ALT + Space" "Launch desktop applications (rofi) 󱓞" \
 " + Tab" "Switch open applications" \
 " + R" "Browse system files" \
