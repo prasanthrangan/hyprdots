@@ -15,7 +15,7 @@ yad --width=800 --height=600 \
 " + Backspace" "Logout menu" \
 " + Del" "Quit hyprland session logout w/out confirmation" \
 " + W" "Toggle window on focus to float" \
-"ALT + ENTER" "Toggle fullscreen" \
+"Alt + Return" "Toggle fullscreen" \
 " + Z" "Monicle mode" \
 " + J" "Toggle layout" \
 " + G" "Toggle window group" \
@@ -23,6 +23,7 @@ yad --width=800 --height=600 \
 " + E" "Launch file explorer " \
 " + C" "Launch editor 󰨞" \
 " + F" "Launch browser " \
+"Ctrl +  + Space" "Launch Emoji Selector (rofi)" \
 " + A / ALT + Space" "Launch desktop applications (rofi) 󱓞" \
 " + Tab" "Switch open applications" \
 " + R" "Browse system files" \
