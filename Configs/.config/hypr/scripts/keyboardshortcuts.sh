@@ -19,11 +19,11 @@ yad --width=800 --height=600 \
 " + Z" "Monicle mode" \
 " + J" "Toggle layout" \
 " + G" "Toggle window group" \
-" + Return / T" "Launch terminal " \
+" + Enter /  + T" "Launch terminal " \
 " + E" "Launch file explorer " \
 " + C" "Launch editor 󰨞" \
 " + F" "Launch browser " \
-"Ctrl +  + Space" "Launch Emoji Selector (rofi)" \
+" + Alt + Space" "Launch Emoji Selector (rofi)" \
 " + A / ALT + Space" "Launch desktop applications (rofi) 󱓞" \
 " + Tab" "Switch open applications" \
 " + R" "Browse system files" \
