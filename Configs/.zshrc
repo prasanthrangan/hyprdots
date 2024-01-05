@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
+export XDG_DATA_DIRS=~/.local/share/applications:$XDG_DATA_DIRS
 #export WAYLAND_DISPLAY=wayland-1
+export BROWSER=mercury-browser
 
 #Disable or enable xwayland glamor
 #export XWAYALAND_NO_GLAMOR=1
@@ -147,6 +149,7 @@ alias pa='pacman -Ss' # list availabe package
 alias pc='sudo pacman -Sc' # remove unused cache
 alias po='pacman -Qtdq | sudo pacman -Rns -' # remove unused packages, also try > pacman -Qqd | pacman -Rsu --print -
 alias vc='code' # gui code editor
+alias fucking='sudo' # because its funny
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
