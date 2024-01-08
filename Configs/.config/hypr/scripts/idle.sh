@@ -13,4 +13,5 @@ fi
 dunstify "idle script is now active" -t 5000
 
 swayidle -w \
-	timeout 300 'swaylock -f'
+	timeout 300 'swaylock -f' \
+	before-sleep 'swaylock -f'
