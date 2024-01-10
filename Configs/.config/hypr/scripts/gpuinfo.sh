@@ -128,7 +128,8 @@ nvidia_GPU() {
     primary_gpu="NVIDIA $nvidia_gpu"
 
   if [ "$nvidia_gpu" == "Linux" ]; then general_query ; return ; fi #? Open source driver
-if $tired && [ "$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)" == "suspend" ];then temperature="󰤂" ; return ;fi
+if $tired && [ "$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)" == "suspend" ];then
+echo "{\"text\":\"󰤂\", \"tooltip\":\"$primary_gpu\n ⏾ Suspended mode\"}" ; exit ;fi
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.max_limit --format=csv,noheader,nounits)
   # Split the comma-separated values into an array
   IFS=',' read -ra gpu_data <<< "$gpu_info"
