@@ -4,6 +4,6 @@
         "format": " {}",
         "interval": 5, // once every 5 seconds
         "tooltip": true,
-        "max-length": 1000
+        "max-length": 1000,
+        "on-click": "~/.config/hypr/scripts/gpuinfo.sh --toggle",
     },
-
