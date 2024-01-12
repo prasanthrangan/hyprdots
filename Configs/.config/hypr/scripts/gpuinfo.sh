@@ -1,7 +1,14 @@
 #!/bin/bash
 
-# Check for NVIDIA GPU using nvidia-smi
-nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+if command_exists "nvidia-smi"; then
+  nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
+else
+  nvidia_gpu=""
+fi
 
 # Function to execute the AMD GPU Python script and use its output
 execute_amd_script() {
@@ -30,7 +37,7 @@ get_temperature_emoji() {
 # Check if primary GPU is NVIDIA
 if [ -n "$nvidia_gpu" ]; then
   # if nvidia-smi failed, format and exit. 
-  if [[ $nvidia_gpu == *"NVIDIA-SMI has failed"* ]]; then
+  if [ -z "$(command_exists "nvidia-smi")" ] || [[ $nvidia_gpu == *"NVIDIA-SMI has failed"* ]]; then
     # Print the formatted information in JSON
     echo "{\"text\":\"N/A\", \"tooltip\":\"Primary GPU: Not found\"}"
     exit 0
