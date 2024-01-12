@@ -3,7 +3,9 @@
 gpuQ="/tmp/hyprdots-gpuinfo-query$2"
 tired=false
 if [[ " $* " =~ " --tired " ]];then tired=true ; fi
-
+if [[ " $* " =~ " --start " ]]; then
+   gpuQ="/tmp/hyprdots-gpuinfo-query"
+fi
 query() { 
  nvidia_flag=0 amd_flag=0 intel_flag=0
 touch $gpuQ 
@@ -166,6 +168,9 @@ fi
 
 case "$1" in
   "--toggle"|"-t")
+      toggle "$2"
+    ;;
+  "--start")
       toggle "$2"
     ;;
   "--reset"|"-rf")
