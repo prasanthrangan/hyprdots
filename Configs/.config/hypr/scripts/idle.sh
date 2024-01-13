@@ -14,4 +14,5 @@ dunstify "idle script is now active" -t 5000
 
 swayidle -w \
 	timeout 300 'swaylock -f' \
-	before-sleep 'swaylock -f'
+	before-sleep 'swaylock -f' \
+	after-resume 'swww img ~/.config/swww/wall.set'
