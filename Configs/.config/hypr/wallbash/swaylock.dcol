@@ -1,0 +1,49 @@
+$HOME/.config/swaylock/configs
+
+color=#<wallbash_0xa4>
+#line-color= #<wallbash_txt1>
+#inside-color=#<wallbash_pry0>
+text-color=#<wallbash_txt0>
+
+ring-color=#<wallbash_pry2>
+bs-hl-color=#<wallbash_txt2>
+key-hl-color=#<wallbash_txt0>
+separator-color=#<wallbash_txt1>
+
+text-caps-lock-color=#<wallbash_txt1>
+
+line-ver-color=#<wallbash_pry0>
+ring-ver-color=#<wallbash_pry0>Q
+#inside-ver-color=#<wallbash_pry0>
+text-ver-color=#<wallbash_pry0>
+
+ring-wrong-color=#<wallbash_2xa4>
+text-wrong-color=#<wallbash_txt2>
+inside-wrong-color=#<wallbash_pry2>
+line-wrong-color=#<wallbash_pry0>
+
+#inside-clear-color=#<wallbash_pry0>
+text-clear-color=#<wallbash_tx
+ring-clear-color=#<wallbash_pry0>
+line-clear-color=#<wallbash_pry0>
+
+#Set you config  in  .config/hypr/wallbash/swaylock.dcol
+
+daemonize
+#grace=5
+show-failed-attempts
+clock
+ignore-empty-password
+image=~/.config/swww/wall.set
+#effect-blur=50x1
+effect-vignette=0:1
+#fade-in= 1
+font="Inter"
+#indicator #? wait for the press
+indicator-radius=400
+indicator-thickness=10
+grace-no-mouse
+grace-no-touch
+datestr=%a, %B %e
+timestr=%I:%M %p
+#screenshot
