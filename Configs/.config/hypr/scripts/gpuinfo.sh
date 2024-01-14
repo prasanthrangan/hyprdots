@@ -8,29 +8,29 @@ if [[ " $* " =~ " --start " ]]; then
 fi
 query() { 
  nvidia_flag=0 amd_flag=0 intel_flag=0
-touch $gpuQ 
+touch "$gpuQ"
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
 # intel_gpu=$(lspci -nn | grep -i "VGA compatible controller" | grep -i "Intel Corporation" | awk -F' ' '{print $1}')
 intel_gpu=$(lspci | grep -E "VGA compatible controller.*Intel Corporation" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')
 if lsmod | grep -q 'nouveau'; then 
-      echo "nvidia_gpu=\"Linux\"" >> $gpuQ #? Incase If nouveau is installed 
-      echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >> $gpuQ 
+      echo "nvidia_gpu=\"Linux\"" >> "$gpuQ" #? Incase If nouveau is installed 
+      echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >> "$gpuQ"
 elif [ -n "$nvidia_gpu" ] ; then  # Check for NVIDIA GPU
     if  [[ "$nvidia_gpu" == *"NVIDIA-SMI has failed"* ]]; then  #? Second Layer for dGPU 
-    echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> $gpuQ
+    echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "$gpuQ"
     else
-echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> $gpuQ
+echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> "$gpuQ"
 
-    echo "nvidia_flag=1" >> $gpuQ
+    echo "nvidia_flag=1" >> "$gpuQ"
     fi
 fi
 
 if lspci | grep -E "(VGA|3D)" | grep -iq "Advanced Micro Devices"; then
-   echo "amd_flag=1" >> $gpuQ
+   echo "amd_flag=1" >> "$gpuQ"
 fi
 
-if [ -n "$intel_gpu" ]; then echo "intel_flag=1" >> $gpuQ # Check for Intel GPU
-echo "intel_gpu=\"$intel_gpu\"" >> $gpuQ ; fi
+if [ -n "$intel_gpu" ]; then echo "intel_flag=1" >> "$gpuQ" # Check for Intel GPU
+echo "intel_gpu=\"$intel_gpu\"" >> "$gpuQ" ; fi
 }
 
 toggle() {
@@ -38,19 +38,19 @@ toggle() {
       curr_prioGPU="$1_flag"
   else
     # Initialize gpu_flags and prioGPU if they don't exist
-    if ! grep -q "gpu_flags=" $gpuQ; then
-        gpu_flags=$(grep "flag=1" $gpuQ | cut -d '=' -f 1 | tr '\n' ' ')
-        echo "" >> $gpuQ
-        echo "gpu_flags=\"${gpu_flags[*]}\"" >> $gpuQ
+    if ! grep -q "gpu_flags=" "$gpuQ"; then
+        gpu_flags=$(grep "flag=1" "$gpuQ" | cut -d '=' -f 1 | tr '\n' ' ')
+        echo "" >> "$gpuQ"
+        echo "gpu_flags=\"${gpu_flags[*]}\"" >> "$gpuQ"
     fi
 
-    if ! grep -q "prioGPU=" $gpuQ; then
+    if ! grep -q "prioGPU=" "$gpuQ"; then
         gpu_flags=$(grep "gpu_flags=" /tmp/hyprdots-gpuinfo-query  | cut -d'=' -f 2)
             initGPU=$(echo "$gpu_flags" | cut -d ' ' -f  1)
-        echo "prioGPU=$initGPU" >> $gpuQ
+        echo "prioGPU=$initGPU" >> "$gpuQ"
     fi
-    gpu_flags=($(grep "flag=1" $gpuQ | cut -d '=' -f 1))     # Get the list of gpu_flags from the file
-    prioGPU=$(grep "prioGPU=" $gpuQ | cut -d'=' -f 2)    # Get the current prioGPU from the file
+    IFS=' ' read -ra gpu_flags <<< "$(grep "flag=1" "$gpuQ" | cut -d '=' -f 1)"# Get the list of gpu_flags from the file
+    prioGPU=$(grep "prioGPU=" "$gpuQ" | cut -d'=' -f 2)    # Get the current prioGPU from the file
     # Find the index of the current prioGPU in the gpu_flags array
     for index in "${!gpu_flags[@]}"; do
         if [[ "${gpu_flags[$index]}" = "${prioGPU}" ]]; then
@@ -62,9 +62,9 @@ toggle() {
 fi
 
 # Set the next prioGPU and remove the '#' character
-sed -i 's/^\(nvidia_flag=1\|amd_flag=1\|intel_flag=1\)/#\1/' $gpuQ # Comment out all the gpu flags in the file
-sed -i "s/^#$curr_prioGPU/$curr_prioGPU/" $gpuQ # Uncomment the next prioGPU in the file
-sed -i "s/prioGPU=$prioGPU/prioGPU=$curr_prioGPU/" $gpuQ # Update the prioGPU in the file
+sed -i 's/^\(nvidia_flag=1\|amd_flag=1\|intel_flag=1\)/#\1/' "$gpuQ" # Comment out all the gpu flags in the file
+sed -i "s/^#$curr_prioGPU/$curr_prioGPU/" "$gpuQ" # Uncomment the next prioGPU in the file
+sed -i "s/prioGPU=$prioGPU/prioGPU=$curr_prioGPU/" "$gpuQ" # Update the prioGPU in the file
 }
 
 get_temperature_emoji() { # Function to define emoji based on temperature
@@ -131,7 +131,7 @@ nvidia_GPU() {
 
   if [ "$nvidia_gpu" == "Linux" ]; then general_query ; return ; fi #? Open source driver
 if $tired && [ "$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)" == "suspend" ];then
-echo "{\"text\":\"󰤂\", \"tooltip\":\"$primary_gpu\n ⏾ Suspended mode\"}" ; exit ;fi
+printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "$primary_gpu"; exit ;fi
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.max_limit --format=csv,noheader,nounits)
   # Split the comma-separated values into an array
   IFS=',' read -ra gpu_data <<< "$gpu_info"
@@ -162,8 +162,8 @@ general_query
 fi
 }
 
-if [ -f "$gpuQ" ]; then  eval "$(cat $gpuQ)"
-else query ; echo -e "Initialized Variable:\n$(cat $gpuQ)\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
+if [ -f "$gpuQ" ]; then  eval "$(cat "$gpuQ")"
+else query ; echo -e "Initialized Variable:\n$(cat "$gpuQ")\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
 fi
 
 case "$1" in
@@ -176,7 +176,7 @@ case "$1" in
   "--reset"|"-rf")
     rm -fr /tmp/hyprdots-gpuinfo-query*
     query
-    echo -e "Initialized Variable:\n$(cat $gpuQ)\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
+    echo -e "Initialized Variable:\n$(cat "$gpuQ")\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
     exit 0
     ;;
 esac
