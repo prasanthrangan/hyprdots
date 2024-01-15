@@ -65,13 +65,17 @@ shift $((OPTIND -1))
 step="${2:-5}"
 icodir="~/.config/dunst/icons/vol"
 
+vol=`pamixer $srce --get-volume | cat`
+mute=`pamixer $srce --get-mute | cat`
+
 case $1 in
     i) pamixer $srce -i ${step}
-        notify_vol ;;
+       if [ "$vol" -gt 0 ] && [ "$mute" == "true" ] ; then pamixer $srce -u ; fi
+       notify_vol ;;
     d) pamixer $srce -d ${step}
-        notify_vol ;;
+       if [ "$vol" -eq 0 ] ; then dunstify "t2" -a "muted" "$nsink" -i ${icodir}/muted-${dvce}.svg -r 91190 -t 800
+        else notify_vol ; fi ;;
     m) pamixer $srce -t
         notify_mute ;;
     *) print_error ;;
 esac
-
