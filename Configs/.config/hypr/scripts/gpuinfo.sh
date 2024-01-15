@@ -1,13 +1,12 @@
 #!/bin/bash
 # shellcheck disable=SC2312 
 # shellcheck disable=SC1090
-gpuQ="/tmp/hyprdots-gpuinfo-query$2"
+gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
 if [[ " $* " =~ " tired " ]];then tired=true ; fi
-if [[ " $* " =~ " startup " ]]; then
-   gpuQ="/tmp/hyprdots-gpuinfo-query"
+if [[ ! " $* " =~ " startup " ]]; then
+   gpuQ="$gpuQ$2"
 fi
-
 detect() { # Auto detect Gpu used by Hyprland(declared using env = WLR_DRM_DEVICES) Sophisticated? 
 card=$(echo "${WLR_DRM_DEVICES}" | cut -d':' -f1 | cut -d'/' -f4)
 # shellcheck disable=SC2010
@@ -28,34 +27,31 @@ fi
 query() { 
  nvidia_flag=0 amd_flag=0 intel_flag=0
 touch "${gpuQ}" 
+#? Get Model
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
-# intel_gpu=$(lspci -nn | grep -i "VGA compatible controller" | grep -i "Intel Corporation" | awk -F' ' '{print $1}')
-intel_gpu=$(lspci | grep -E "VGA compatible controller.*Intel Corporation" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')
-
+intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
 if lsmod | grep -q 'nouveau'; then 
       echo "nvidia_gpu=\"Linux\"" >>"${gpuQ}" #? Incase If nouveau is installed 
       echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >>"${gpuQ}"
 elif [[ -n "${nvidia_gpu}" ]] ; then  # Check for NVIDIA GPU
-    if  [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then  #? Second Layer for dGPU 
-    echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
-    else
-echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> "${gpuQ}"
-
-    echo "nvidia_flag=1" >> "${gpuQ}"
-    fi
+      if  [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then  #? Second Layer for dGPU 
+        echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
+      else
+        echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> "${gpuQ}"
+        echo "nvidia_flag=1" >> "${gpuQ}"
+      fi
 fi
 
-if lspci | grep -E "(VGA|3D)" | grep -iq "Advanced Micro Devices"; then
-   echo "amd_flag=1" >> "${gpuQ}"
-fi
+if lspci -nn | grep -E "(VGA|3D)" | grep -iq "1002"; then echo "amd_flag=1" >> "${gpuQ}" # Check for Amd GPU 
+   echo "amd_gpu=\"${amd_gpu}\"" >>"${gpuQ}" ; fi
 
-if [[ -n "${intel_gpu}" ]]; then echo "intel_flag=1" >>"${gpuQ}" # Check for Intel GPU
+if lspci -nn | grep -E "(VGA|3D)" | grep -iq "8086"; then echo "intel_flag=1" >>"${gpuQ}" # Check for Intel GPU
 echo "intel_gpu=\"${intel_gpu}\"" >>"${gpuQ}"; fi
 
 if ! grep -q "prioGPU=" "${gpuQ}" && [[ -n "${WLR_DRM_DEVICES}" ]]; then 
   trap detect EXIT
 fi
-
 }
 
 toggle() {
@@ -70,7 +66,7 @@ toggle() {
     fi
 
     if ! grep -q "prioGPU=" "${gpuQ}"; then
-        gpu_flags=$(grep "gpu_flags=" /tmp/hyprdots-gpuinfo-query  | cut -d'=' -f 2)
+        gpu_flags=$(grep "gpu_flags=" "${gpuQ}"  | cut -d'=' -f 2)
         initGPU=$(echo "${gpu_flags}" | cut -d ' ' -f  1)
         echo "prioGPU=${initGPU}" >> "${gpuQ}"
     fi
@@ -103,7 +99,7 @@ get_temperature_emoji() { # Function to define emoji based on temperature
 
 generate_json() {
   emoji=$(get_temperature_emoji "${temperature}")
-  local json="{\"text\":\"${temperature}°C\", \"tooltip\":\"Primary GPU: ${primary_gpu}\n${emoji} Temperature: ${temperature}°C"
+  local json="{\"text\":\"${temperature}°C\", \"tooltip\":\"GPU: ${primary_gpu}\n${emoji} Temperature: ${temperature}°C"
 #? Soon Add Something incase needed.
   declare -A tooltip_parts
   if [[ -n "${utilization}" ]]; then tooltip_parts["\n󰾆 Utilization: "]="${utilization}%" ; fi
@@ -130,7 +126,7 @@ generate_json() {
 
 general_query() { # Function to get temperature from 'sensors'
 	filter=''	
-temperature=$(sensors | ${filter} grep -E "(Package id.*|edge|another keyword)" | awk -F ':' '{print int($2)}')
+temperature=$(sensors | ${filter} grep -E "(Package id.*|edge|another keyword)" | awk -F ':' '{print int($2)}') #! use jq but this works well for now
   # gpu_load=$()
   # core_clock=$()
 for file in /sys/class/power_supply/BAT*/power_now; do
@@ -147,7 +143,7 @@ max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpu
 
 intel_GPU() {
     # Not foundCheck for Intel GPU
-    primary_gpu="INTEL ${intel_gpu}"
+    primary_gpu="INTEL ${intel_gpu}" #? Add this to Show Model ${intel_gpu}
     general_query
 }
 
@@ -171,7 +167,7 @@ printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"
 }
 
 amd_GPU() {
-  primary_gpu="AMD"
+  primary_gpu="AMD" #? Add ${amd_gpu} if an AMD user can test this. This shows the GPU model fancy right
     # Execute the AMD GPU Python script and use its output
   amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
 if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then #! This will be changed if "(python3 ~/.config/hypr/scripts/amdgpu.py)" Changes!
@@ -189,7 +185,7 @@ fi
 }
 
 if [[ ! -f "${gpuQ}" ]]; then  
-query ; echo -e "Initialized Variable:\n$(cat "${gpuQ}")\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
+query ; echo -e "Initialized Variable:\n$(cat "${gpuQ}")\n\nReboot or '$0 --reset' to RESET Variables"
 fi
 source "${gpuQ}"
 case "$1" in
@@ -202,9 +198,9 @@ echo -e "Sensor: ${next_prioGPU} GPU" | sed 's/_flag//g'
       toggle "$2"
     ;;
   "--reset"|"-rf")
-    rm -fr /tmp/hyprdots-gpuinfo-query*
+    rm -fr ${gpuQ}*
     query
-    echo -e "Initialized Variable:\n$(cat "${gpuQ}" || true)\n\nReboot or rm /tmp/hyprdots-gpuinfo-query to RESET Variables"
+    echo -e "Initialized Variable:\n$(cat "${gpuQ}" || true)\n\nReboot or '$0 --reset' to RESET Variables"
     exit
     ;;
   *"-"*)
