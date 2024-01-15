@@ -1,4 +1,4 @@
-$HOME/.config/swaylock/configs
+$HOME/.config/swaylock/config
 
 color=#<wallbash_0xa4>
 #line-color= #<wallbash_txt1>
@@ -27,7 +27,7 @@ text-clear-color=#<wallbash_tx
 ring-clear-color=#<wallbash_pry0>
 line-clear-color=#<wallbash_pry0>
 
-#Set you config  in  .config/hypr/wallbash/swaylock.dcol
+#? Set you config  in  .config/hypr/wallbash/swaylock.dcol
 
 daemonize
 #grace=5
