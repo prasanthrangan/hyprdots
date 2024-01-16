@@ -5,7 +5,7 @@ gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
 if [[ " $* " =~ " tired " ]];then tired=true ; fi
 if [[ ! " $* " =~ " startup " ]]; then
-   gpuQ="$gpuQ$2"
+   gpuQ="${gpuQ}$2"
 fi
 detect() { # Auto detect Gpu used by Hyprland(declared using env = WLR_DRM_DEVICES) Sophisticated? 
 card=$(echo "${WLR_DRM_DEVICES}" | cut -d':' -f1 | cut -d'/' -f4)
@@ -141,19 +141,19 @@ current_clock_speed=$(awk '{sum += $1; n++} END {if (n > 0) print sum / n / 1000
 max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq)
 }
 
-intel_GPU() {
-    # Not foundCheck for Intel GPU
+intel_GPU() { #? Function to query basic intel GPU
     primary_gpu="INTEL ${intel_gpu}"
     general_query
 }
 
-nvidia_GPU() {
+nvidia_GPU() { #? Function to query Nvidia GPU
     primary_gpu="NVIDIA ${nvidia_gpu}"
-
   if [[ "${nvidia_gpu}" == "Linux" ]]; then general_query ; return ; fi #? Open source driver
-is_suspend="$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)"
-if ${tired} && [[ ${is_suspend} == "suspend" ]];then
-printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"; exit ;fi
+#? Tired Flag for not using nvidia-smi if GPU is in suspend mode. 
+if ${tired}; then is_suspend="$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)"
+   if [[ ${is_suspend} == "suspend" ]]; then
+      printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"; exit ;fi
+fi
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.max_limit --format=csv,noheader,nounits)
   # Split the comma-separated values into an array
   IFS=',' read -ra gpu_data <<< "${gpu_info}"
@@ -166,7 +166,7 @@ printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"
   power_limit="${gpu_data[5]// /}"
 }
 
-amd_GPU() {
+amd_GPU() { #? Funtion to query amd GPU
   primary_gpu="AMD ${amd_gpu}"
     # Execute the AMD GPU Python script and use its output
   amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
@@ -198,7 +198,7 @@ echo -e "Sensor: ${next_prioGPU} GPU" | sed 's/_flag//g'
       toggle "$2"
     ;;
   "--reset"|"-rf")
-    rm -fr ${gpuQ}*
+    rm -fr "${gpuQ}"*
     query
     echo -e "Initialized Variable:\n$(cat "${gpuQ}" || true)\n\nReboot or '$0 --reset' to RESET Variables"
     exit
