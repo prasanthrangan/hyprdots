@@ -29,8 +29,8 @@ query() {
 touch "${gpuQ}" 
 #? Get Model
 nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
-intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
-amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}'     )"
 if lsmod | grep -q 'nouveau'; then 
       echo "nvidia_gpu=\"Linux\"" >>"${gpuQ}" #? Incase If nouveau is installed 
       echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >>"${gpuQ}"
@@ -126,7 +126,7 @@ generate_json() {
 
 general_query() { # Function to get temperature from 'sensors'
 	filter=''	
-temperature=$(sensors | ${filter} grep -E "(Package id.*|edge|another keyword)" | awk -F ':' '{print int($2)}') #! use jq but this works well for now
+temperature=$(sensors | ${filter} grep -m 1 -E "(edge|Package id.*|another keyword)" | awk -F ':' '{print int($2)}') #! We can get json data from sensors too
   # gpu_load=$()
   # core_clock=$()
 for file in /sys/class/power_supply/BAT*/power_now; do
@@ -143,7 +143,7 @@ max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpu
 
 intel_GPU() {
     # Not foundCheck for Intel GPU
-    primary_gpu="INTEL ${intel_gpu}" #? Add this to Show Model ${intel_gpu}
+    primary_gpu="INTEL ${intel_gpu}"
     general_query
 }
 
@@ -167,7 +167,7 @@ printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"
 }
 
 amd_GPU() {
-  primary_gpu="AMD" #? Add ${amd_gpu} if an AMD user can test this. This shows the GPU model fancy right
+  primary_gpu="AMD ${amd_gpu}"
     # Execute the AMD GPU Python script and use its output
   amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
 if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then #! This will be changed if "(python3 ~/.config/hypr/scripts/amdgpu.py)" Changes!
