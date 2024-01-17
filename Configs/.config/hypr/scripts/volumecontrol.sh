@@ -40,7 +40,7 @@ notify_mute() {
 
 while getopts io SetSrc
 do
-case $SetSrc in
+case ${SetSrc} in
    i) 
        nsink=$(pamixer --list-sources | grep "_input." | head -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
        srce="--default-source"
@@ -55,7 +55,7 @@ case $SetSrc in
 esac
 done
 
-if [ $OPTIND -eq 1 ] ; then
+if [ "${OPTIND}" -eq 1 ] ; then
     print_error
 fi
 
