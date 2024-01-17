@@ -1,0 +1,18 @@
+$HOME/.config/kitty/themes/Wall-Dcol.conf|${ScrDir}/wallbashkitty.sh
+
+# Wall Bash Color
+# Created by khing
+
+# The basic colors #Inverted when selected
+foreground               #<wallbash_pry2> 
+background               #<wallbash_pry0> 
+selection_foreground     #<wallbash_pry0>  
+selection_background     #<wallbash_pry2> 
+
+# Cursor colors
+cursor                  #<wallbash_pry1>
+cursor_text_color       #<wallbash_pry2> 
+
+# Kitty window border colors
+active_border_color     #<wallbash_pry0>
+inactive_border_color   #<wallbash_pry2>
