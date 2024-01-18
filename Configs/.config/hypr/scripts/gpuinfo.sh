@@ -27,32 +27,38 @@ fi
 query() { 
  nvidia_flag=0 amd_flag=0 intel_flag=0
 touch "${gpuQ}" 
-#? Get Model
-nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
-intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
-amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}'     )"
+
 if lsmod | grep -q 'nouveau'; then 
       echo "nvidia_gpu=\"Linux\"" >>"${gpuQ}" #? Incase If nouveau is installed 
       echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >>"${gpuQ}"
-elif [[ -n "${nvidia_gpu}" ]] ; then  # Check for NVIDIA GPU
+elif  command -v nvidia-smi &> /dev/null; then
+nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
+  if [[ -n "${nvidia_gpu}" ]] ; then  # Check for NVIDIA GPU
       if  [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then  #? Second Layer for dGPU 
         echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
       else
         echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> "${gpuQ}"
         echo "nvidia_flag=1" >> "${gpuQ}"
       fi
+  fi
 fi
 
-if lspci -nn | grep -E "(VGA|3D)" | grep -iq "1002"; then echo "amd_flag=1" >> "${gpuQ}" # Check for Amd GPU 
-   echo "amd_gpu=\"${amd_gpu}\"" >>"${gpuQ}" ; fi
+if lspci -nn | grep -E "(VGA|3D)" | grep -iq "1002"; then 
+amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+echo "amd_flag=1" >> "${gpuQ}" # Check for Amd GPU 
+echo "amd_gpu=\"${amd_gpu}\"" >>"${gpuQ}" ; fi
 
-if lspci -nn | grep -E "(VGA|3D)" | grep -iq "8086"; then echo "intel_flag=1" >>"${gpuQ}" # Check for Intel GPU
+if lspci -nn | grep -E "(VGA|3D)" | grep -iq "8086"; then 
+intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+echo "intel_flag=1" >>"${gpuQ}" # Check for Intel GPU
 echo "intel_gpu=\"${intel_gpu}\"" >>"${gpuQ}"; fi
 
 if ! grep -q "prioGPU=" "${gpuQ}" && [[ -n "${WLR_DRM_DEVICES}" ]]; then 
   trap detect EXIT
 fi
+
 }
+
 
 toggle() {
   if [[ -n "$1" ]]; then
