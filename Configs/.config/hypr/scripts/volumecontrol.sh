@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 ScrDir=$(dirname "$(realpath "$0")")
 # shellcheck disable=SC1091
-. "$ScrDir"/globalcontrol.sh
+. "${ScrDir}"/globalcontrol.sh
 
 # define functions
 
