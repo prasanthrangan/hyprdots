@@ -72,7 +72,7 @@ if [ $flg_Install -eq 1 ] && [ $flg_Restore -eq 1 ]; then
 
 EOF
 
-    ./install_pre.sh
+    source ./install_pre.sh
 fi
 
 
