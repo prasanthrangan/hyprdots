@@ -10,7 +10,7 @@
 
 ## HyprWorld,
 
-Another Arch Linux config for Hyperland. Its has parts for mature projects, various dots and custom tweaks for a better experince on Nvidia Laptops. 
+Another Arch Linux config for Hyprland. Its has parts for mature projects, various dots and custom tweaks for a better experince on Nvidia Laptops. 
 Supports Grub and systemd-boot with Plymouth and secureboot added.
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
