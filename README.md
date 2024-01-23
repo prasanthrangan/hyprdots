@@ -122,7 +122,7 @@ Once that is done, `mkintcpio -P` will be enough: you can reboot now and you sho
 screen on shutdown already.
 
 ## GrubTheme
-Install from Aur, youcan find repo themes [here](https://aur.archlinux.org/packages?O=0&SeB=nd&K=The+plymouth+theme+collection&outdated=&SB=p&SO=d&PP=50&submit=Go):
+Install from Aur, you can find repo themes [here](https://aur.archlinux.org/packages?O=0&SeB=nd&K=The+plymouth+theme+collection&outdated=&SB=p&SO=d&PP=50&submit=Go):
 
 ```bash
 yay -S plymouth-theme-NAME-git
