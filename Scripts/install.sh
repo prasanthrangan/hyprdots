@@ -150,28 +150,28 @@ EOF
         # Additional Nvidia steps
         NVEA="/etc/modprobe.d/nvidia.conf"
         if [ -f "$NVEA" ]; then
-          printf "${OK} Seems like nvidia-drm modeset=1 is already added in your system..moving on.\n"
+          printf "Seems like nvidia-drm modeset=1 is already added in your system..moving on.\n"
           printf "\n"
         else
           printf "\n"
-          printf "${YELLOW} Adding options to $NVEA..."
+          printf "Adding options to $NVEA..."
           sudo echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf
           printf "\n"
         fi
         
         # Blacklist nouveau
             if [[ -z $blacklist_nouveau ]]; then
-              read -n1 -rep "${CAT} Would you like to blacklist nouveau? (y/n)" blacklist_nouveau
+              read -n1 -rep "$(tput setaf 6)[ACTION]$(tput sgr0) Would you like to blacklist nouveau? (y/n)" blacklist_nouveau
             fi
         echo
         if [[ $blacklist_nouveau =~ ^[Yy]$ ]]; then
           NOUVEAU="/etc/modprobe.d/nouveau.conf"
           if [ -f "$NOUVEAU" ]; then
-            printf "${OK} Seems like nouveau is already blacklisted..moving on.\n"
+            printf "Seems like nouveau is already blacklisted..moving on.\n"
           else
             printf "\n"
             echo "blacklist nouveau" | sudo tee -a "$NOUVEAU"
-            printf "${NOTE} has been added to $NOUVEAU.\n"
+            printf "$(tput setaf 3)[NOTE]$(tput sgr0) has been added to $NOUVEAU.\n"
             printf "\n"
         
             # To completely blacklist nouveau (See wiki.archlinux.org/title/Kernel_module#Blacklisting 6.1)
@@ -182,7 +182,7 @@ EOF
             fi
           fi
         else
-          printf "${NOTE} Skipping nouveau blacklisting.\n"
+          printf "$(tput setaf 3)[NOTE]$(tput sgr0) Skipping nouveau blacklisting.\n"
         fi
 
 
