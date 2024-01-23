@@ -14,13 +14,16 @@ Arch Linux config for Hyprland. Its has parts from mature projects, various dots
 
 * Supports Grub and systemd-boot<br>
 * Added Custom apps in waybar<br>
-* [Plymouth boot splash + theme options (post install setup)](#Plymouth)<br>
-* [Grub Theme](#GrubTheme)<br>
-* [SecureBoot added (post install setup)](#SecureBoot)<br>
 * Tech, Natural and Spritual theme packs<br>
 
+**Post Install Setup**
+* [Plymouth boot splash + theme options](#Plymouth)<br>
+* [Grub Theme](#GrubTheme)<br>
+* [SecureBoot added](#SecureBoot)<br>
+
+
 **Todo:** <br>
-* Add theme change options buttons to system menu and remove from waybar<br>
+* Add "theme change options buttons" to system menu and remove from waybar<br>
 * create a minimal App Launcher theme<br>
 * Add Natural world theming<br>
 * Add Spritual World theming<br>
