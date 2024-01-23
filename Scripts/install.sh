@@ -129,18 +129,7 @@ EOF
           libva-nvidia-driver-git
         )
         
-        ## WARNING: DO NOT EDIT BEYOND THIS LINE IF YOU DON'T KNOW WHAT YOU ARE DOING! ##
-        # Determine the directory where the script is located
-        SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-        
-        # Change the working directory to the parent directory of the script
-        PARENT_DIR="$SCRIPT_DIR/.."
-        cd "$PARENT_DIR" || exit 1
-        
-        source "$(dirname "$(readlink -f "$0")")/Global_functions.sh"
-        
         # Install additional Nvidia packages
-        printf "${YELLOW} Installing addition Nvidia packages...\n"
         for krnl in $(cat /usr/lib/modules/*/pkgbase); do
           for NVIDIA in "${krnl}-headers" "${nvidia_pkg[@]}"; do
             install_package "$NVIDIA" 2>&1 | tee -a "$LOG"
