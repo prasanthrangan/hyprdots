@@ -73,7 +73,7 @@ git pull
 
 Guide to install Plymouth and Secure Boot
 
-## Plymouth
+**Plymouth**
 
 For some strange reason, `plymouth` hasn't made it out of the AUR. This is a good opportunity to
 install an AUR helper, i.e. a piece of software that handles installation from the AUR automatically.
@@ -112,7 +112,7 @@ quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
 Once that is done, `mkintcpio -P` will be enough: you can reboot now and you should be able to see the splash
 screen on shutdown already.
 
-## Secure boot
+**Secure boot**
 
 Briefly, secure boot is a feature that only allows to boot signed files. If a file isn't signed the bootloader
 rejects it. The keys are stored in a module in your computer that only the BIOS can access, and, of course
