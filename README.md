@@ -17,8 +17,8 @@ Added Custom apps in waybar
 Plymouth and secureboot added
 
 **Todo:** 
-Add theme change options buttons to system menu and remove from waybar
-create a minimal App Launcher theme
+Add theme change options buttons to system menu and remove from waybar<br>
+create a minimal App Launcher theme<br>
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
 Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
