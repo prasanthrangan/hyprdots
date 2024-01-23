@@ -9,7 +9,7 @@
 
 ## HyprWorldz
 
-My Arch Linux config for Hyprland, a for of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and intergrate [JaKooLit](https://github.com/JaKooLit/) Nvidia integration and added software packages (in custom_pgk).
+My Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and intergrate [JaKooLit](https://github.com/JaKooLit/) Nvidia integration and added software packages (in custom_pgk).
 
 * Supports Grub and systemd-boot<br>
 * Added Custom apps in waybar<br>
