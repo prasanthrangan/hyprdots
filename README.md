@@ -57,6 +57,7 @@ git pull
 > So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
 <div align = center>
+  
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
