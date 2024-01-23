@@ -380,6 +380,7 @@ I will detail the essential procedure, as **instructions are not universal**.
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
+
 ## Themes
 
 To create your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
