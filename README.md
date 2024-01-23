@@ -133,7 +133,7 @@ Further source and visual examples from these links:
 Download your theme from [here](https://github.com/adi1090x/plymouth-themes).<br>
 They are ported from android bootloaders [here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) where you can view them only.<br>
 
-## Secure boot
+## SecureBoot
 
 Briefly, secure boot is a feature that only allows to boot signed files. If a file isn't signed the bootloader
 rejects it. The keys are stored in a module in your computer that only the BIOS can access, and, of course
