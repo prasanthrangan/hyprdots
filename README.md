@@ -86,16 +86,11 @@ git pull
 
 ## Post Installation
 
-Guide to install Plymouth and Secure Boot
+Guides to install optional Plymouth, Grub Theme, Snapper and Secure Boot. These steps can be followed after installation.
 
 ## Plymouth
 
-For some strange reason, `plymouth` hasn't made it out of the AUR. This is a good opportunity to
-install an AUR helper, i.e. a piece of software that handles installation from the AUR automatically.
-I recommend `yay` but you might have a different opinion. Have a look
-[here](https://github.com/Jguer/yay) on how to install it.
-
-[Here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) are themes that are ported from android,use thi link to view the themes only.<br>
+[Here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) are themes that are ported from android,use the link to view the themes only.<br>
 Download corresepoding ported theme from [here](https://github.com/adi1090x/plymouth-themes)
 
 ```
@@ -131,16 +126,7 @@ Once that is done, `mkintcpio -P` will be enough: you can reboot now and you sho
 screen on shutdown already.
 
 ## GrubTheme
-Install from Aur, you can find repo themes [here](https://aur.archlinux.org/packages?O=0&SeB=nd&K=The+plymouth+theme+collection&outdated=&SB=p&SO=d&PP=50&submit=Go):
 
-```bash
-yay -S plymouth-theme-NAME-git
-```
-
-Further source and visual examples from these links:
-
-Download your theme from [here](https://github.com/adi1090x/plymouth-themes).<br>
-They are ported from android bootloaders [here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) where you can view them only.<br>
 
 ## SecureBoot
 
