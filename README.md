@@ -1,36 +1,14 @@
-###### *<div align = right><sub>// design by t2</sub></div>*
-<div align = center><img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png"><br><br>
-
 &ensp;[<kbd> <br> Install <br> </kbd>](#Installation)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 &ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
 &ensp;[<kbd> <br> Youtube <br> </kbd>](#Youtube)&ensp;
-&ensp;[<kbd> <br> Wiki <br> </kbd>](https://github.com/prasanthrangan/hyprdots/wiki)&ensp;
 <br><br><br><br></div>
 
 
-<https://user-images.githubusercontent.com/106020512/235429801-e8b8dae2-c1ad-4e23-9aa2-b1edb6cabe99.mp4>
-
-<p align="center">
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />
-    <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png" /> <img align="center" width="49%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png" />
-</p>
-
-https://github.com/prasanthrangan/hyprdots/assets/106020512/c995699a-299c-4a8e-99d4-71aa3d68eb93
-
-
-<div align = right> <br><br>
-
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
-</div>
 
 ## Installation
-
-The installation script is made for Arch, but **may** work on some Arch based distros with **systemd**.
-For Debian, please refer **Senshi111**'s version [here](https://github.com/Senshi111/debian-hyprland-hyprdots).
-Checkout **Ksk**'s [video](https://www.youtube.com/watch?v=mb8h1-LB9K0) for full installation walkthrough.
 
 > [!IMPORTANT]
 > Install script will auto-detect nvidia card and install nvidia-dkms drivers for your kernel.
@@ -44,7 +22,7 @@ After a minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
-git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/Hyprdots
+git clone --depth 1 https://github.com/dewaltz/hyprworld ~/Hyprworld
 cd ~/Hyprdots/Scripts
 ./install.sh
 ```
@@ -85,70 +63,250 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 > You can install/browse/create/maintain/share additional themes (ex. [Synth-Wave](https://github.com/prasanthrangan/hyprdots-mod)) using themepatcher.
 > For more details please refer [themepatcher wiki](https://github.com/prasanthrangan/hyprdots/wiki/Themepatcher).
 
-<br><div align="center"><table><tr><td><img width="60" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_logo.png"></td><td>
+## Post install
+## Boot loader and `mkinitcpio`
 
-[![Catppuccin-Mocha](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](#-Catppuccin-Mocha)
-[![Catppuccin-Latte](https://placehold.co/130x30/dd7878/eff1f5?text=Catppuccin-Latte&font=Oswald)](#-Catppuccin-Latte)
-[![Decay-Green](https://placehold.co/130x30/90ceaa/151720?text=Decay-Green&font=Oswald)](#-Decay-Green)
-[![Rosé-Pine](https://placehold.co/130x30/c4a7e7/191724?text=Rosé-Pine&font=Oswald)](#-Rosé-Pine)
-[![Tokyo-Night](https://placehold.co/130x30/7aa2f7/24283b?text=Tokyo-Night&font=Oswald)](#-Tokyo-Night)<br>
-[![Material-Sakura](https://placehold.co/130x30/f2e9e1/b4637a?text=Material-Sakura&font=Oswald)](#-Material-Sakura)
-[![Graphite-Mono](https://placehold.co/130x30/a6a6a6/262626?text=Graphite-Mono&font=Oswald)](#-Graphite-Mono)
-[![Cyberpunk-Edge](https://placehold.co/130x30/fada16/000000?text=Cyberpunk-Edge&font=Oswald)](#-Cyberpunk-Edge)
-[![Frosted-Glass](https://placehold.co/130x30/7ed6ff/1e4c84?text=Frosted-Glass&font=Oswald)](#-Frosted-Glass-by-T-crypt)
-[![Gruvbox-Retro](https://placehold.co/130x30/475437/B5CC97?text=Gruvbox-Retro&font=Oswald)](#-Gruvbox-Retro-by-T-crypt)
-</td></tr></table></div><br><table><td><br>
+Alright: this is where you can't fuck stuff up. If you fuck stuff up here your system
+won't boot. Typically when this happens it's recoverable from the install medium you
+used, via `arch-chroot` and so on. With encrypted setups doing this is annoying because
+on every reboot with the install medium you always need to open the volume, mount the
+root partition and so on, so every fuckup adds minutes to the debugging process. To
+add insult to injury, debugging is often hard because the messages aren't very helpful.
+<br>
+Having said that, here we go.
+<br>
+What I'd do first is check [the guide](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system).
+<br>
+This is what my `/etc/mkinitcpio.conf` with looks.like:
+<br>
+```
+HOOKS="base systemd plymouth autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems resume fsck
+```
+<br>
+The order of stuff is very important here so even though you might not find some things yet
+(e.g. `plymouth` certainly isn't there).
+<br>
+If you don't have `sd`-related things don't panic, we haven't added those yet. We'll do that in
+a second.
+<br>
+Now it's a good time to run your first `mkinitcpio`:
+<br><br>
+```
+# mkinitcpio -P
+```
+<br><br>
+Chances are that this has been run already by several of the commands we ran earlier.
+<br>
+We'll use `systemd-boot`. A few principles:
+<br>
+* It will be installed in your EFI partition.
+* It will grab loader entries from `/boot/loader/entries/` so once it's installed we'll make
+  sure you have a valid one there.
+  <br>
+Install it:
+<br><br>
+```
+# bootctl install
+```
+<br><br>
+There are ways to keep it updated. Either you just run `bootctl update` every now and then or
+[add a hook so that it's done automatically](https://wiki.archlinux.org/index.php/Systemd-boot#Automatic_update)
+(this isn't a hard requirement).
+<br>
+The crucial thing is to get **one** working entry. Check out the contents of `/boot/loader/entries`, there
+might be something there already. Just in case, here's what a working entry looks like:
+<br>
+```
+title Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options rd.luks.name=[PLACEHOLDER_1]=[PLACEHOLDER_2] root=[PLACEHOLDER_3] rw
+```
+<br>
+Trivial things first: if you have an Intel CPU you should install the `intel-ucode` package and keep that
+line, otherwise if you have an AMD CPU you should install the `amd-ucode` package and replace `intel-ucode.img`
+with `amd-ucode.img`.
+<br>
+Now with the three placeholders. We need to rewind a bit and do some matching. The third placeholder is the
+easy one: this is the root partition's "device", the "thing that you mount". So `/dev/mapper/main` or
+whatever you decided to `cryptsetup open`.
+<br>
+Let's run `blkid`:
+<br><br>
+```
+# blkid
+/dev/nvme0n1p1: UUID="284C-3A64" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="0794ef09-5eb8-d144-b103-bc7b975f8963"
+/dev/nvme0n1p2: UUID="79ac497a-7eac-4f16-af63-f362c52ed44c" TYPE="crypto_LUKS" PARTUUID="58319ad0-043c-fc48-9c4b-c466484d1135"
+/dev/mapper/main: UUID="fd884ff1-12a0-4289-89ce-11ca73f4af89" BLOCK_SIZE="4096" TYPE="ext4"
+```
+<br><br>
+The first and second placeholder are, respectively, the UUID of the **outermost** layer of the partitions
+onion:
+<br><br>
+```
+options rd.luks.name=79ac497a-7eac-4f16-af63-f362c52ed44c=main root=/dev/mapper/main
+```
+<br><br>
+Triple check that you're not using the UUID of `/dev/mapper/main`. If you do that, your computer won't boot.
+<br>
+`main` is the name of whatever you picked earlier with cryptsetup: unclear if there needs to be consistency
+(there probably has to), so remember the general idea and keep tabs.
+<br>
+**Save your new entry** as `/boot/loader/entries/linux.conf`. It should be fine to keep that as your only
+entry.
+<br>
+Now back to `/etc/mkinitcpio.conf`, check out the `HOOKS` line again:
+<br><br>
+```
+HOOKS="base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems resume fsck"
+```
+<br><br>
+To be safe, run `mkinitcpio -P` again (no use not doing so).
+<br>
+Now you can reboot and cross your fingers.
+<br>
+## I have rebooted and it doesn't work
+<br>
+If you see `systemd-boot`'s prompt (i.e. you see a `Linux` entry) but then booting hangs the mistake
+should be almost certainly because you messed up ID's and names. Don't despair, it's fixable without
+having to start from scratch. Boot from the install medium and mount the root and boot partitions.
+<br>
+1. Check `mkinitcpio.conf` just in case, compare with the `HOOKS` above.<br>
+2. Check the UUID's in `/boot/loader/entries/linux.conf` (or whichever the UUIDs).<br>
+<br>
+Fixing these mistakes is very annoying because each reboot is time consuming.<br>
 
-> #### ***<div align = right>// Catppuccin-Mocha</div>***
+## I have rebooted and it works
+<br>
+Well done, there isn't much left to do.
+<br>
+From here on I'll take a few things for granted, like that GNOME works and that your main
+user can `sudo` (and of course that `sudo` is installed), etc.
+<br>
+## Plymouth
+<br>
+For some strange reason, `plymouth` hasn't made it out of the AUR. This is a good opportunity to
+install an AUR helper, i.e. a piece of software that handles installation from the AUR automatically.
+I recommend `yay` but you might have a different opinion. Have a look
+[here](https://github.com/Jguer/yay) on how to install it.
+<br><br>
+```
+$ yay -S plymouth plymouth-theme-arch-charge
+$ sudo plymouth-set-default-theme arch-charge
+```<br><br>
 
-![Catppuccin-Mocha#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_1.png)
-![Catppuccin-Mocha#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_mocha_2.png)<br><br>
+If you remember from earlier there's an extra `mkinitcpio` hook to be added:
+<br><br>
+```
+HOOKS="base systemd plymouth autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck"
+```
+<br><br>
+Just that extra `plymouth`.
+<br>
+Before rebooting you should also tell `mkinitcpio` that you need to load your graphics module. This will
+depend on which card you have. I can only vouch for Intel and NVIDIA. You need to edit the `MODULES`
+section of `mkinitcpio.conf`:
+<br>
+```
+MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)    # for nvidia cards
+MODULES=(i915)                                           # for intel cards
+```
+<br>
+No, you're not done yet. You need to add yet more kernel options to your `/boot/loader/entries/linux.conf`.
+Again, `linux.conf` is the name I picked, you can choose whatever you like. In the `options` line, append:
+<br>
+```
+quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
+```
+<br>
+Once that is done, `mkintcpio -P` will be enough: you can reboot now and you should be able to see the splash
+screen on shutdown already.
+<br>
+## Secure boot
+<br>
+Briefly, secure boot is a feature that only allows to boot signed files. If a file isn't signed the bootloader
+rejects it. The keys are stored in a module in your computer that only the BIOS can access, and, of course
+within your hard drive (or wherever else you want to store them, concretely).
 
-> #### ***<div align = right>// Catppuccin-Latte</div>***
+In order for this to be secure, you must do the following:
 
-![Catppuccin-Latte#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_1.png)
-![Catppuccin-Latte#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_latte_2.png)<br><br>
+1. Secure boot must be enforced
+2. Your BIOS must be protected with a password
+3. The partition containing your keys must be encrypted
 
-> #### ***<div align = right>// Decay-Green</div>***
-![Decay-Green#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_1.png)
-![Decay-Green#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_decay_2.png)<br><br>
+If 1. isn't true, someone could replace your signed kernel with a malicious one that you will boot without
+knowing. If 2. isn't true, someone could access your bios, disable secure boot, and you're back to point 1.
+If 3. isn't true, someone could sign a malicious kernel with your keys, without the need to tamper with
+the BIOS.
 
-> #### ***<div align = right>// Rosé-Pine</div>***
-![Rosé-Pine#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_1.png)
-![Rosé-Pine#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_rosine_2.png)<br><br>
+Another requirement is to use [UKIs](https://wiki.archlinux.org/title/Unified_kernel_image) that replace
+the old initrd/vmlinuz combo, plus the boot parameters.
 
-> #### ***<div align = right>// Tokyo-Night</div>***
-![Tokyo-Night#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_1.png)
-![Tokyo-Night#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_tokyo_2.png)<br><br>
+Reminder of our bootloader entry:
 
-> #### ***<div align = right>// Material-Sakura</div>***
-![Material-Sakura#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_1.png)
-![Material-Sakura#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_maura_2.png)<br><br>
+```
+title Linux
+linux /vmlinuz-linux
+initrd /intel-ucode.img
+initrd /initramfs-linux.img
+options rd.luks.name=[PLACEHOLDER_1]=[PLACEHOLDER_2] root=[PLACEHOLDER_3] rw
+```
 
-> #### ***<div align = right>// Graphite-Mono</div>***
-![Graphite-Mono#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_1.png)
-![Graphite-Mono#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_graph_2.png)<br><br>
+It will become like this:
 
-> #### ***<div align = right>// Cyberpunk-Edge</div>***
-![Cyberpunk-Edge#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_1.png)
-![Cyberpunk-Edge#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_cedge_2.png)<br><br>
+```
+title Linux
+efi /EFI/arch/linux-signed.efi
+```
 
-> #### ***<div align = right>// Frosted-Glass by T-crypt</div>***
-![Frosted-Glass#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_1.png)
-![Frosted-Glass#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_frosted_2.png)<br><br>
+The microcode and initramfs part will go into `/etc/mkinicpio.d/linux.preset`
 
-> #### ***<div align = right>// Gruvbox-Retro by T-crypt</div>***
-![Gruvbox-Retro#1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_1.png)
-![Gruvbox-Retro#2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_gruvbox_2.png)
+```
+ALL_kver="/boot/vmlinuz-linux"
+ALL_microcode=(/boot/*-ucode.img)
 
-</td></table>
+PRESETS=('default')
 
+default_image="/boot/initramfs-linux.img"
+default_uki="/boot/EFI/arch/linux-signed.efi"
+```
 
-<div align = right> <br><br>
+As you can see `default_uki` is the thing that is referenced in `/boot/loader/entries/linux.conf`.
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
-</div>
+The other part, the kernel boot parameters can go into two different places, `/etc/cmdline.d/*.conf`
+or `/etc/kernel/cmdline`. I chose the latter but it's the same. Edit the file and put 
 
+```
+rd.luks.name=[PLACEHOLDER_1]=[PLACEHOLDER_2] root=[PLACEHOLDER_3] rw  # and all the other params
+```
+
+Basically the last line of the old bootloader entry minus `options`.
+
+If you now run `mkinitcpio -P` you should see `/boot/EFI/arch/linux-signed.efi`.
+
+To then configure secure boot there are two options. One is manual but it gives you a bit more
+control (but it is clunky). The other one is way easier, and it involves `sbctl` (which you
+need to install).
+
+I will detail the essential procedure, as **instructions are not universal**.
+
+* Create keys with `sbctl create-keys`.
+* Try `sbctl enroll-keys -m -f`. This command puts your newly created keys plus the Microsoft
+  ones **and** the ones recommended by the firmware, into the BIOS. Chances are that it
+  might fail because you need to be in "setup mode". This, in some cases, requires wiping
+  the secure boot configuration, and with it the pre-enrolled keys. Check around if
+  your computer needs them urgently to boot (it probably doesn't). If it doesn't, reboot
+  into the BIOS, put your computer in setup mode (in the Framework Laptop case this is
+  achieved by erasing all secure boot settings), then re-run the command again. If it
+  succeeds, move on. If it fails, you'll need to dig more.
+* Run `sbctl verify` and you'll have a list of files that you need to sign. Typically
+  the bootloader (`/boot/EFI/BOOT/BOOTX64.EFI`) and the kernel UKI
+  (`/boot/EFI/arch/linux-signed.efi`).
+* Sign all of them with `sbctl sign -s` (don't forget `-s` as it saves the path to the
+  database so that every kernel/systemd upgrade will trigger a signature.
+* Run `sbctl status` and `sbctl verify` and check that everything makes sense.
+* Reboot and enable secure boot.
 ## Styles
 
 | Theme Select |
