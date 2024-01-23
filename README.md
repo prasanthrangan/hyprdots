@@ -123,6 +123,13 @@ Once that is done, `mkintcpio -P` will be enough: you can reboot now and you sho
 screen on shutdown already.
 
 ## GrubTheme
+Install from Aur:
+
+```bash
+yay -S plymouth-theme-NAME-git
+```
+
+Can find names and visual examples from these links:
 
 Download your theme from [here](https://github.com/adi1090x/plymouth-themes).<br>
 They are ported from android bootloaders [here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) where you can view them only.<br>
