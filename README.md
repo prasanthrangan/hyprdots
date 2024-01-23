@@ -189,8 +189,9 @@ I will detail the essential procedure, as **instructions are not universal**.
 * Run `sbctl status` and `sbctl verify` and check that everything makes sense.
 * Reboot and enable secure boot.
 
-<div align = right> <br><br>
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+<div align = center>
+  
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
 ## Packages
@@ -289,8 +290,9 @@ I will detail the essential procedure, as **instructions are not universal**.
     <tr><td>pokemon-colorscripts-git</td><td>display pokemon sprites</td></tr></table>
 </td></tr></table>
 
-<div align = right> <br><br>
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+<div align = center>
+  
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
 ## Keybindings
@@ -342,9 +344,9 @@ I will detail the essential procedure, as **instructions are not universal**.
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | rofi style select menu
 
 
-<div align = right> <br><br>
-
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+<div align = center>
+  
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
 
@@ -395,6 +397,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | ![Game Launchers#5](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_5.png) |
 
 
-<div align = right> <br><br>
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+<div align = center>
+  
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
