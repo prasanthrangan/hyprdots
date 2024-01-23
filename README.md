@@ -12,9 +12,9 @@
 
 Arch Linux config for Hyprland. Its has parts from mature projects, various dots plus better experince on Nvidia Laptops.
 
-Supports Grub and systemd-boot
-Added Custom apps in waybar
-Plymouth and secureboot added
+Supports Grub and systemd-boot<br>
+Added Custom apps in waybar<br>
+Plymouth and secureboot added<br>
 
 **Todo:** <br>
 Add theme change options buttons to system menu and remove from waybar<br>
