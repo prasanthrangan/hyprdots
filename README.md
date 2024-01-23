@@ -122,6 +122,11 @@ quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
 Once that is done, `mkintcpio -P` will be enough: you can reboot now and you should be able to see the splash
 screen on shutdown already.
 
+## GrubTheme
+
+Download your theme from [here](https://github.com/adi1090x/plymouth-themes).<br>
+They are ported from android bootloaders [here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) where you can view them only.<br>
+
 ## Secure boot
 
 Briefly, secure boot is a feature that only allows to boot signed files. If a file isn't signed the bootloader
