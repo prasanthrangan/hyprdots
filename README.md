@@ -7,8 +7,6 @@
 &ensp;[<kbd> <br> Youtube <br> </kbd>](#Youtube)&ensp;
 <br><br><br><br></div>
 
-
-
 ## Installation
 
 > [!IMPORTANT]
@@ -50,13 +48,12 @@ git pull
 > This backs up and overwrites all configs as setup by `restore_cfg.lst` in ~/Hyprdots/Scripts.
 > So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
-
-<div align = right> <br><br>
-
 [<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
-</div>
 
 ## Post Installation
+
+Guide to install Plymouth and Secure Boot
+
 ## Boot loader and `mkinitcpio`
 
 Alright: this is where you can't fuck stuff up. If you fuck stuff up here your system
