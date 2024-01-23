@@ -332,6 +332,14 @@ I will detail the essential procedure, as **instructions are not universal**.
     <tr><td>cliphist</td><td>clipboard manager</td></tr></table>
 </td></tr></table>
 
+<table><tr><td>
+    <code>s</code><br><code>h</code><br><code>e</code><br><code>l</code><br><code>l</code></td><td><table>
+    <tr><td>zsh</td><td>main shell</td></tr>
+    <tr><td>eza</td><td>colorful file lister</td></tr>
+    <tr><td>oh-my-zsh-git</td><td>for zsh plugins</td></tr>
+    <tr><td>zsh-theme-powerlevel10k-git</td><td>theme for zsh</td></tr></table>
+</td></tr></table>
+
 <div align = center>
   
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworldz)
