@@ -56,7 +56,9 @@ git pull
 > This backs up and overwrites all configs as setup by `restore_cfg.lst` in ~/Hyprdots/Scripts.
 > So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
+<div align = center>
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
+</div>
 
 ## Post Installation
 
