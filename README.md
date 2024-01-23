@@ -92,13 +92,15 @@ Guides to install optional Plymouth, Grub Theme, Snapper and Secure Boot. These 
 Install from Aur, you can find repo themes [here](https://aur.archlinux.org/packages?O=0&SeB=nd&K=The+plymouth+theme+collection&outdated=&SB=p&SO=d&PP=50&submit=Go):
 
 ```bash
-yay -S plymouth-theme-NAME-git
+yay -S plymouth plymouth-theme-NAME-git
 ```
 
 Further source and visual examples from these links:
 
 Download your theme from [here](https://github.com/adi1090x/plymouth-themes).<br>
 They are ported from android bootloaders [here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) where you can view them only.<br>
+
+Example:
 
 ```
 $ yay -S plymouth plymouth-theme-arch-charge
