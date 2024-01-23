@@ -5,8 +5,7 @@
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
-<br><br><br><br>
-</div>
+<br><br><br><br></div>
 
 HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops.
 
@@ -301,6 +300,7 @@ I will detail the essential procedure, as **instructions are not universal**.
 * Run `sbctl status` and `sbctl verify` and check that everything makes sense.
 * Reboot and enable secure boot.
 
+<div align = right> <br><br>
 [<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
 </div>
 
