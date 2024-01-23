@@ -20,7 +20,6 @@ Arch Linux config for Hyprland. Its has parts from mature projects, various dots
 * Tech, Natural and Spritual theme packs<br>
 
 **Todo:** <br>
-* Add Grub Theme
 * Add theme change options buttons to system menu and remove from waybar<br>
 * create a minimal App Launcher theme<br>
 * Add Natural world theming<br>
