@@ -10,7 +10,8 @@
 
 HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops. 
 
-Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base.
+Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
+Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
 
 ## Installation
 
