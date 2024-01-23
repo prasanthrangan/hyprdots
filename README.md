@@ -275,7 +275,6 @@ I will detail the essential procedure, as **instructions are not universal**.
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | wallpaper select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | rofi style select menu
 
-
 <div align = center>
   
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
