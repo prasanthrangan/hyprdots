@@ -8,7 +8,9 @@
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 <br><br></div>
 
-HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops. 
+## HyprWorld,
+
+A fork of various dots and custom tweaks for a better experince on Nvidia Laptops. 
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
 Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
@@ -54,7 +56,7 @@ git pull
 > This backs up and overwrites all configs as setup by `restore_cfg.lst` in ~/Hyprdots/Scripts.
 > So please note that any configurations you made may be overwritten if listed to be done so, but can be recovered in ~/.config/cfg_backups.
 
-[<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld,)
 
 ## Post Installation
 
