@@ -6,7 +6,7 @@
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
-<br><br><br><br></div>
+<br><br></div>
 
 HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops. 
 
