@@ -279,6 +279,7 @@ I will detail the essential procedure, as **instructions are not universal**.
 [<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
 </div>
 
+
 ## Packages
 
 <table><tr><td>
@@ -331,53 +332,9 @@ I will detail the essential procedure, as **instructions are not universal**.
     <tr><td>cliphist</td><td>clipboard manager</td></tr></table>
 </td></tr></table>
 
-<table><tr><td>
-<code>d</code><br><code>e</code><br><code>p</code><br><code>e</code><br><code>n</code><br><code>d</code><br><code>e</code><br><code>n</code><br><code>c</code><br><code>y</code></td><td><table>
-    <tr><td>polkit-kde-agent</td><td>authentication agent</td></tr>
-    <tr><td>xdg-desktop-portal-hyprland</td><td>XDG Desktop Portal</td></tr>
-    <tr><td>pacman-contrib</td><td>for system update check</td></tr>
-    <tr><td>python-pyamdgpuinfo</td><td>for amd gpu info</td></tr>
-    <tr><td>parallel</td><td>for parallel processing</td></tr>
-    <tr><td>jq</td><td>to read json</td></tr>
-    <tr><td>imagemagick</td><td>for image processing</td></tr>
-    <tr><td>qt5-imageformats</td><td>for dolphin image thumbnails</td></tr>
-    <tr><td>ffmpegthumbs</td><td>for dolphin video thumbnails</td></tr>
-    <tr><td>kde-cli-tools</td><td>for dolphin open with option</td></tr>
-    <tr><td>brightnessctl</td><td>brightness control for laptop</td></tr>
-    <tr><td>pavucontrol</td><td>audio settings gui</td></tr>
-    <tr><td>pamixer</td><td>for waybar audio</td></tr></table>
-</td></tr></table>
-
-<table><tr><td>
-<code>t</code><br><code>h</code><br><code>e</code><br><code>m</code><br><code>e</code></td><td><table>
-    <tr><td>nwg-look</td><td>theming GTK apps</td></tr>
-    <tr><td>kvantum</td><td>theming QT apps</td></tr>
-    <tr><td>qt5ct</td><td>theming QT5 apps</td></tr></table>
-</td></tr></table>
-
-<table><tr><td>
-<code>a</code><br><code>p</code><br><code>p</code><br><code>s</code></td><td><table>
-    <tr><td>libreWolf</td><td>browser</td></tr>
-    <tr><td>ungoogled-chromium</td><td>browser</td></tr>
-    <tr><td>kitty</td><td>terminal</td></tr>
-    <tr><td>neofetch</td><td>fetch tool</td></tr>
-    <tr><td>dolphin</td><td>kde file manager</td></tr>
-    <tr><td>visual-studio-code-bin</td><td>gui code editor</td></tr>
-    <tr><td>vim</td><td>text editor</td></tr>
-    <tr><td>ark</td><td>kde file archiver</td></tr></table>
-</td></tr></table>
-
-<table><tr><td>
-    <code>s</code><br><code>h</code><br><code>e</code><br><code>l</code><br><code>l</code></td><td><table>
-    <tr><td>zsh</td><td>main shell</td></tr>
-    <tr><td>eza</td><td>colorful file lister</td></tr>
-    <tr><td>oh-my-zsh-git</td><td>for zsh plugins</td></tr>
-    <tr><td>zsh-theme-powerlevel10k-git</td><td>theme for zsh</td></tr>
-</td></tr></table>
-
 <div align = center>
   
-[<kbd> <br> 🡅 <br> </kbd>](#Hyprworld)
+[<kbd> <br> 🡅 <br> </kbd>](#Hyprworldz)
 </div>
 
 
