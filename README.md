@@ -21,7 +21,7 @@ Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanth
 **Post Install Setup**
 * [Plymouth boot splash + theme options](#Plymouth)<br>
 * [Grub Theme](#GrubTheme)<br>
-* [SecureBoot added](#SecureBoot)<br>
+* [SecureBoot](#SecureBoot)<br>
 
 
 **Todo:** <br>
