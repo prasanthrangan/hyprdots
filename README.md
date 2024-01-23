@@ -10,8 +10,15 @@
 
 ## HyprWorld,
 
-Arch Linux config for Hyprland. Its has parts for mature projects, various dots and custom tweaks for a better experince on Nvidia Laptops. 
-Supports Grub and systemd-boot with Plymouth and secureboot added.
+Arch Linux config for Hyprland. Its has parts from mature projects, various dots and custom tweaks for a better experince on Nvidia Laptops.
+
+Supports Grub and systemd-boot
+Added Custom apps in waybar
+Plymouth and secureboot added
+
+**Todo:** 
+Add theme change options buttons to system menu and remove from waybar
+create a minimal App Launcher theme
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
 Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
