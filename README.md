@@ -1,21 +1,15 @@
-<div align = center><img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png"><br><br>
-
-&ensp;[<kbd> <br> Install <br> </kbd>](#Installation)&ensp;
-&ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
-&ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
-&ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
-&ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
-&ensp;[<kbd> <br> Youtube <br> </kbd>](#Youtube)&ensp;
-&ensp;[<kbd> <br> Wiki <br> </kbd>](https://github.com/prasanthrangan/hyprdots/wiki)&ensp;
-<br><br><br><br></div>
-
 <div align = center>
+
 &ensp;[<kbd> <br> Install <br> </kbd>](#Installation)&ensp;
 &ensp;[<kbd> <br> Post Install <br> </kbd>](#Post-Installation)&ensp;
 &ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
+<br><br><br><br></div>
+
+<div align = center>
+
 <br><br><br><br></div>
 
 HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops.
