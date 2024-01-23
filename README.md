@@ -80,6 +80,9 @@ install an AUR helper, i.e. a piece of software that handles installation from t
 I recommend `yay` but you might have a different opinion. Have a look
 [here](https://github.com/Jguer/yay) on how to install it.
 
+[Here](https://xdaforums.com/t/bootanimations-collection.3721978/#post-74901989) are themes that are ported from android,use thi link to view the themes only.<br>
+Download corresepoding ported theme from [here](https://github.com/adi1090x/plymouth-themes)
+
 ```
 $ yay -S plymouth plymouth-theme-arch-charge
 $ sudo plymouth-set-default-theme arch-charge
