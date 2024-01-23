@@ -9,7 +9,11 @@
 
 ## HyprWorldz
 
-Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and [JaKooLit](https://github.com/JaKooLit/) Nvidia integration and added software packages (in custom_pgk).[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some great work also that would be nice to build on.
+Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme.
+[JaKooLit](https://github.com/JaKooLit/) Nvidia has been intergrated.
+Software packages i use added to custom_pgk and pokemon colors package removed.
+
+[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features that would be nice to intergrate.
 
 * Supports Grub and systemd-boot<br>
 * Added Custom apps in waybar<br>
