@@ -9,7 +9,7 @@
 
 ## HyprWorldz
 
-Arch Linux config for Hyprland. Its has parts from mature projects, various dots plus better experince on Nvidia Laptops.
+My Arch Linux config for Hyprland, a for of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and intergrate [JaKooLit](https://github.com/JaKooLit/) Nvidia integration and added software packages (in custom_pgk).
 
 * Supports Grub and systemd-boot<br>
 * Added Custom apps in waybar<br>
@@ -22,6 +22,7 @@ Arch Linux config for Hyprland. Its has parts from mature projects, various dots
 
 
 **Todo:** <br>
+* Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * create a minimal App Launcher theme<br>
 * Add Natural world theming<br>
