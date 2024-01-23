@@ -16,7 +16,7 @@ Supports Grub and systemd-boot
 Added Custom apps in waybar
 Plymouth and secureboot added
 
-**Todo:** 
+**Todo:** <br>
 Add theme change options buttons to system menu and remove from waybar<br>
 create a minimal App Launcher theme<br>
 
