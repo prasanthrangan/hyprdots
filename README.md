@@ -2,8 +2,8 @@
 
 &ensp;[<kbd> <br> Install <br> </kbd>](#Installation)&ensp;
 &ensp;[<kbd> <br> Post Install <br> </kbd>](#Post-Installation)&ensp;
-&ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
 &ensp;[<kbd> <br> Keybindings <br> </kbd>](#Keybindings)&ensp;
+&ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 <br><br></div>
@@ -19,6 +19,7 @@ Secureboot added (post install setup)<br>
 Tech, Natural and Spritual theme packs
 
 **Todo:** <br>
+Add Grub Theme
 Add theme change options buttons to system menu and remove from waybar<br>
 create a minimal App Launcher theme<br>
 Add Natural world theming<br>
@@ -34,8 +35,9 @@ Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
 > So please ensure that your Nvidia card supports [dkms](https://wiki.archlinux.org/title/NVIDIA) drivers and hyprland.
 
 > [!CAUTION]
-> The script modifies your grub config to enable Nvidia drm and theme.
-> This script is also designed to be done after a minimal arch installation, using it on previously installed desktop should work but will change whatever you currently have (gtk/qt theming, shell, sddm, grub, etc) and is at your own risk.
+> The script modifies your grub or systemd-boot config to enable Nvidia drm and theme.
+> This script is also designed to be done after a fresh minimal arch installation ONLY (no desktop installeed).
+> If using Secure boot you must select "Unified image" and password protect the bios, this is required.
 
 After a minimal Arch install (with grub and systemd), clone and execute -
 
