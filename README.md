@@ -1,4 +1,5 @@
 &ensp;[<kbd> <br> Install <br> </kbd>](#Installation)&ensp;
+&ensp;[<kbd> <br> Post Install <br> </kbd>](#Post-Installation)&ensp;
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 &ensp;[<kbd> <br> Packages <br> </kbd>](#Packages)&ensp;
@@ -55,14 +56,6 @@ git pull
 [<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
 </div>
 
-## Themes
-
-To create your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
-
-> [!TIP]
-> You can install/browse/create/maintain/share additional themes (ex. [Synth-Wave](https://github.com/prasanthrangan/hyprdots-mod)) using themepatcher.
-> For more details please refer [themepatcher wiki](https://github.com/prasanthrangan/hyprdots/wiki/Themepatcher).
-
 ## Post install
 ## Boot loader and `mkinitcpio`
 
@@ -92,7 +85,7 @@ a second.
 Now it's a good time to run your first `mkinitcpio`:
 <br><br>
 ```
-# mkinitcpio -P
+mkinitcpio -P
 ```
 <br><br>
 Chances are that this has been run already by several of the commands we ran earlier.
@@ -307,6 +300,15 @@ I will detail the essential procedure, as **instructions are not universal**.
   database so that every kernel/systemd upgrade will trigger a signature.
 * Run `sbctl status` and `sbctl verify` and check that everything makes sense.
 * Reboot and enable secure boot.
+
+## Themes
+
+To create your own custom theme, please refer [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming)
+
+> [!TIP]
+> You can install/browse/create/maintain/share additional themes (ex. [Synth-Wave](https://github.com/prasanthrangan/hyprdots-mod)) using themepatcher.
+> For more details please refer [themepatcher wiki](https://github.com/prasanthrangan/hyprdots/wiki/Themepatcher).
+
 ## Styles
 
 | Theme Select |
