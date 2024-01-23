@@ -8,7 +8,7 @@
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 <br><br></div>
 
-## HyprWorld,
+## HyprWorldz
 
 Arch Linux config for Hyprland. Its has parts from mature projects, various dots plus better experince on Nvidia Laptops.
 
