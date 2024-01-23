@@ -66,46 +66,46 @@ git pull
 Guide to install Plymouth and Secure Boot
 
 ## Plymouth
-<br>
+
 For some strange reason, `plymouth` hasn't made it out of the AUR. This is a good opportunity to
 install an AUR helper, i.e. a piece of software that handles installation from the AUR automatically.
 I recommend `yay` but you might have a different opinion. Have a look
 [here](https://github.com/Jguer/yay) on how to install it.
-<br><br>
+
 ```
 $ yay -S plymouth plymouth-theme-arch-charge
 $ sudo plymouth-set-default-theme arch-charge
-```<br><br>
+```
 
 If you remember from earlier there's an extra `mkinitcpio` hook to be added:
-<br><br>
+
 ```
 HOOKS="base systemd plymouth autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems fsck"
 ```
-<br><br>
+
 Just that extra `plymouth`.
-<br>
+
 Before rebooting you should also tell `mkinitcpio` that you need to load your graphics module. This will
 depend on which card you have. I can only vouch for Intel and NVIDIA. You need to edit the `MODULES`
 section of `mkinitcpio.conf`:
-<br>
+
 ```
 MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)    # for nvidia cards
 MODULES=(i915)                                           # for intel cards
 ```
-<br>
+
 No, you're not done yet. You need to add yet more kernel options to your `/boot/loader/entries/linux.conf`.
 Again, `linux.conf` is the name I picked, you can choose whatever you like. In the `options` line, append:
-<br>
+
 ```
 quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
 ```
-<br>
+
 Once that is done, `mkintcpio -P` will be enough: you can reboot now and you should be able to see the splash
 screen on shutdown already.
-<br>
+
 ## Secure boot
-<br>
+
 Briefly, secure boot is a feature that only allows to boot signed files. If a file isn't signed the bootloader
 rejects it. The keys are stored in a module in your computer that only the BIOS can access, and, of course
 within your hard drive (or wherever else you want to store them, concretely).
@@ -272,7 +272,8 @@ I will detail the essential procedure, as **instructions are not universal**.
 
 <table><tr><td>
 <code>a</code><br><code>p</code><br><code>p</code><br><code>s</code></td><td><table>
-    <tr><td>firefox</td><td>browser</td></tr>
+    <tr><td>libreWolf</td><td>browser</td></tr>
+    <tr><td>ungoogled-chromium</td><td>browser</td></tr>
     <tr><td>kitty</td><td>terminal</td></tr>
     <tr><td>neofetch</td><td>fetch tool</td></tr>
     <tr><td>dolphin</td><td>kde file manager</td></tr>
@@ -287,7 +288,6 @@ I will detail the essential procedure, as **instructions are not universal**.
     <tr><td>eza</td><td>colorful file lister</td></tr>
     <tr><td>oh-my-zsh-git</td><td>for zsh plugins</td></tr>
     <tr><td>zsh-theme-powerlevel10k-git</td><td>theme for zsh</td></tr>
-    <tr><td>pokemon-colorscripts-git</td><td>display pokemon sprites</td></tr></table>
 </td></tr></table>
 
 <div align = center>
