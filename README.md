@@ -8,10 +8,6 @@
 &ensp;[<kbd> <br> Styles <br> </kbd>](#Styles)&ensp;
 <br><br><br><br></div>
 
-<div align = center>
-
-<br><br><br><br></div>
-
 HyprWorld, A fork of various dots and custom tweaks for a better experince on Nvidia Laptops.
 
 ## Installation
