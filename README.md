@@ -63,16 +63,11 @@ git pull
 Guide to install Plymouth and Secure Boot
 
 **Boot loader and `mkinitcpio`**
-Alright: this is where you can't fuck stuff up. If you fuck stuff up here your system
-won't boot. Typically when this happens it's recoverable from the install medium you
-used, via `arch-chroot` and so on. With encrypted setups doing this is annoying because
-on every reboot with the install medium you always need to open the volume, mount the
-root partition and so on, so every fuckup adds minutes to the debugging process. To
-add insult to injury, debugging is often hard because the messages aren't very helpful.
 
-Having said that, here we go.
+> [!CAUTION]
+> Making a mistake here will lead toan unbootable install.
 
-What I'd do first is check [the guide](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system).
+First is check [the guide](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system).
 
 This is what my `/etc/mkinitcpio.conf` with looks.like:
 
