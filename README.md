@@ -56,7 +56,7 @@ git pull
 [<kbd> <br> 🡅 <br> </kbd>](#-design-by-t2)
 </div>
 
-## Post install
+## Post Installation
 ## Boot loader and `mkinitcpio`
 
 Alright: this is where you can't fuck stuff up. If you fuck stuff up here your system
