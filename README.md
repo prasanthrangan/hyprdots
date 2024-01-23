@@ -62,25 +62,24 @@ git pull
 
 Guide to install Plymouth and Secure Boot
 
-## Boot loader and `mkinitcpio`
-
+**Boot loader and `mkinitcpio`**
 Alright: this is where you can't fuck stuff up. If you fuck stuff up here your system
 won't boot. Typically when this happens it's recoverable from the install medium you
 used, via `arch-chroot` and so on. With encrypted setups doing this is annoying because
 on every reboot with the install medium you always need to open the volume, mount the
 root partition and so on, so every fuckup adds minutes to the debugging process. To
 add insult to injury, debugging is often hard because the messages aren't very helpful.
-<br>
+
 Having said that, here we go.
-<br>
+
 What I'd do first is check [the guide](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system).
-<br>
+
 This is what my `/etc/mkinitcpio.conf` with looks.like:
-<br>
+
 ```
 HOOKS="base systemd plymouth autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems resume fsck
 ```
-<br>
+
 The order of stuff is very important here so even though you might not find some things yet
 (e.g. `plymouth` certainly isn't there).
 <br>
@@ -106,14 +105,14 @@ Install it:
 ```
 # bootctl install
 ```
-<br><br>
+
 There are ways to keep it updated. Either you just run `bootctl update` every now and then or
 [add a hook so that it's done automatically](https://wiki.archlinux.org/index.php/Systemd-boot#Automatic_update)
 (this isn't a hard requirement).
 <br>
 The crucial thing is to get **one** working entry. Check out the contents of `/boot/loader/entries`, there
 might be something there already. Just in case, here's what a working entry looks like:
-<br>
+
 ```
 title Linux
 linux /vmlinuz-linux
@@ -121,58 +120,56 @@ initrd /intel-ucode.img
 initrd /initramfs-linux.img
 options rd.luks.name=[PLACEHOLDER_1]=[PLACEHOLDER_2] root=[PLACEHOLDER_3] rw
 ```
-<br>
 Trivial things first: if you have an Intel CPU you should install the `intel-ucode` package and keep that
 line, otherwise if you have an AMD CPU you should install the `amd-ucode` package and replace `intel-ucode.img`
 with `amd-ucode.img`.
-<br>
+
 Now with the three placeholders. We need to rewind a bit and do some matching. The third placeholder is the
 easy one: this is the root partition's "device", the "thing that you mount". So `/dev/mapper/main` or
 whatever you decided to `cryptsetup open`.
-<br>
+
 Let's run `blkid`:
-<br><br>
+
 ```
 # blkid
 /dev/nvme0n1p1: UUID="284C-3A64" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="0794ef09-5eb8-d144-b103-bc7b975f8963"
 /dev/nvme0n1p2: UUID="79ac497a-7eac-4f16-af63-f362c52ed44c" TYPE="crypto_LUKS" PARTUUID="58319ad0-043c-fc48-9c4b-c466484d1135"
 /dev/mapper/main: UUID="fd884ff1-12a0-4289-89ce-11ca73f4af89" BLOCK_SIZE="4096" TYPE="ext4"
 ```
-<br><br>
 The first and second placeholder are, respectively, the UUID of the **outermost** layer of the partitions
 onion:
-<br><br>
+
 ```
 options rd.luks.name=79ac497a-7eac-4f16-af63-f362c52ed44c=main root=/dev/mapper/main
 ```
-<br><br>
+
 Triple check that you're not using the UUID of `/dev/mapper/main`. If you do that, your computer won't boot.
-<br>
+
 `main` is the name of whatever you picked earlier with cryptsetup: unclear if there needs to be consistency
 (there probably has to), so remember the general idea and keep tabs.
-<br>
+
 **Save your new entry** as `/boot/loader/entries/linux.conf`. It should be fine to keep that as your only
 entry.
-<br>
+
 Now back to `/etc/mkinitcpio.conf`, check out the `HOOKS` line again:
-<br><br>
+
 ```
 HOOKS="base systemd autodetect keyboard sd-vconsole modconf block sd-encrypt filesystems resume fsck"
 ```
-<br><br>
+
 To be safe, run `mkinitcpio -P` again (no use not doing so).
-<br>
+
 Now you can reboot and cross your fingers.
-<br>
+
 ## I have rebooted and it doesn't work
-<br>
+
 If you see `systemd-boot`'s prompt (i.e. you see a `Linux` entry) but then booting hangs the mistake
 should be almost certainly because you messed up ID's and names. Don't despair, it's fixable without
 having to start from scratch. Boot from the install medium and mount the root and boot partitions.
-<br>
-1. Check `mkinitcpio.conf` just in case, compare with the `HOOKS` above.<br>
-2. Check the UUID's in `/boot/loader/entries/linux.conf` (or whichever the UUIDs).<br>
-<br>
+
+1. Check `mkinitcpio.conf` just in case, compare with the `HOOKS` above.
+2. Check the UUID's in `/boot/loader/entries/linux.conf` (or whichever the UUIDs).
+
 Fixing these mistakes is very annoying because each reboot is time consuming.<br>
 
 ## I have rebooted and it works
