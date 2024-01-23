@@ -11,7 +11,6 @@
 
 Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme.
 [JaKooLit](https://github.com/JaKooLit/) Nvidia has been intergrated.
-Software packages i use added to custom_pgk and pokemon colors package removed.
 
 [ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features that would be nice to intergrate.
 
