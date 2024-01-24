@@ -12,11 +12,12 @@
 Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme.
 [JaKooLit](https://github.com/JaKooLit/) Nvidia has been intergrated.
 
-[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features that would be nice to intergrate.
+[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features that are also intergrated.
 
 * Grub and systemd-boot configs<br>
 * Supports Nvidia GPU'S (modern only)<br>
 * Added "Custom apps" in waybar<br>
+* Intergrated ML4W Hyprland settings TUI
 * Tech, People, Animals, Nature and Spritual theme packs<br>
 
 **Post Install Setup**
@@ -26,6 +27,7 @@ Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanth
 
 
 **Todo:** <br>
+* Intergrate ML4W Hyprland settings TUI
 * Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * Create a smaller App Launcher theme<br>
