@@ -42,6 +42,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 * Add Animals theme pack<br>
 * Put Nvidia config into one file
 * Create Theme Pack selector
+* Look into [PolyBar]()
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
 Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
