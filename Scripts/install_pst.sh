@@ -50,7 +50,7 @@ else
     echo "WARNING: dolphin is not installed..."
 fi
 
-# HyprPM plugin install
+# Hyprland plugin manager installation
 if pkg_installed hyprland then
     hyprpm add https://github.com/hyprwm/hyprland-plugins
 else 
