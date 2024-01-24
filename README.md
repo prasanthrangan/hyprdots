@@ -56,7 +56,7 @@ After a minimal Arch install (with grub and systemd), clone and execute -
 
 ```shell
 pacman -Sy git
-git clone --depth 1 https://github.com/dewaltz/hyprworld ~/Hyprworld
+git clone --depth 1 https://github.com/5ouls3dge/hyprWorldz/ ~/HyprWorldz
 cd ~/Hyprdots/Scripts
 ./install.sh
 ```
