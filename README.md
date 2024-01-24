@@ -37,7 +37,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 * Add Spritual theme pack<br>
 * Add People theme pack<br>
 * Add Animals theme pack<br>
-* Put Nvidia config into one file ✔️
+* Put Nvidia config into one file (nvidia.sh, cleanup old files) ✔️
 * Create Theme Pack selector
 * Does nvidia-prime allow for hybrid graphics?
 
