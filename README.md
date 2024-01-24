@@ -29,7 +29,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 
 
 **Todo:** <br>
-* Intergrate ML4W Hyprland settings TUI
+* Add Flame shot
 * Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * Create a smaller App Launcher theme<br>
