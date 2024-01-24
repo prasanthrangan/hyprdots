@@ -13,7 +13,7 @@ Arch Linux config for Hyprland, a project merging all the great hypr ricing i li
 
 Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated, auto detects and sets up grub or systemd-boot.<br>
 
-I really liked [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work which has design and features which have been added or inspired from.<br>
+I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has design and features which have been added or inspired from.<br>
 
 * Grub and systemd-boot configs<br>
 * Supports Nvidia GPU'S (modern only)<br>
