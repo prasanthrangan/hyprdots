@@ -29,7 +29,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 
 
 **Todo:** <br>
-* Add Flame shot
+* Add Flame shot ✔️ (needs config)
 * Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * Create a smaller App Launcher theme<br>
@@ -37,12 +37,9 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 * Add Spritual theme pack<br>
 * Add People theme pack<br>
 * Add Animals theme pack<br>
-* Put Nvidia config into one file
+* Put Nvidia config into one file ✔️
 * Create Theme Pack selector
-* Look into [PolyBar]()
-
-Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
-Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
+* Does nvidia-prime allow for hybrid graphics?
 
 ## Installation
 
