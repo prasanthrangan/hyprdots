@@ -22,6 +22,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) work, which has 
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 * Intergrated ML4W Hyprland settings TUI
+* Theme Patcher Pack switcher created
 * Tech, People, Animals, Nature and Spritual theme packs<br>
 
 **Post Install Setup**
