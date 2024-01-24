@@ -29,10 +29,10 @@ Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanth
 * Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * Create a smaller App Launcher theme<br>
-* Add Nature theme<br>
-* Add Spritual theme<br>
-* Add People theme<br>
-* Add Animals theme<br>
+* Add Nature theme pack<br>
+* Add Spritual theme pack<br>
+* Add People theme pack<br>
+* Add Animals theme pack<br>
 * Put Nvidia config into one file
 * Create Theme Pack selector
 
