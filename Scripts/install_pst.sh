@@ -50,6 +50,12 @@ else
     echo "WARNING: dolphin is not installed..."
 fi
 
+# HyprPM plugin install
+if pkg_installed hyprland then
+    hyprpm add https://github.com/hyprwm/hyprland-plugins
+else 
+    echo "Install Hyprland first..."
+fi
 
 # shell
 ./restore_shl.sh ${getShell}
