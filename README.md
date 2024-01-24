@@ -34,6 +34,7 @@ Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanth
 * Add People theme<br>
 * Add Animals theme<br>
 * Put Nvidia config into one file
+* Create Theme Pack selector
 
 Thanks to  [prasanthrangan](https://github.com/prasanthrangan) and [JaKooLit](https://github.com/JaKooLit/) for the base. 
 Thanks to [myyc](https://gist.github.com/myyc/) for arch install guidance.
