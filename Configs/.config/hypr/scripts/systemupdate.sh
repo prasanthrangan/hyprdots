@@ -17,6 +17,10 @@ G='\033[0;32m'
 B='\033[0;34m' 
 NC='\033[0m' # No Color
 
+refresh_waybar() {
+    pkikk RTMIN+1 waybar
+}
+
 updateCheck () {
 
 # Check for updates
@@ -39,6 +43,7 @@ upd=$(( ofc + aur + fpk ))
 
 # Trigger upgrade and Avoiding Duplicate process, Also Overrides any systemCheck/systemupdate process
 if [ "$1" == "up" ] ; then
+trap reset_waybar EXIT
 # Check if the process is running
             if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
             then
@@ -146,8 +151,8 @@ updateCheck
 
 
  if [ $upd -eq 0 ] ; then
-                            # upd="" #Remove Icon completely
-                            upd="󰮯"   #If zero Display Icon only
+                             upd="" #Remove Icon completely
+                            #upd="󰮯"   #If zero Display Icon only
                            notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
                             echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
                         else
