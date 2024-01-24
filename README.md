@@ -9,8 +9,8 @@
 
 ## HyprWorldz
 
-Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme.<br>
-Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated .<br>
+Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and custom_pkg.lst has extra packages<br>
+Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated, auto detects and sets up grub or systemd-boot .<br>
 [ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features which have been added.<br>
 
 * Grub and systemd-boot configs<br>
