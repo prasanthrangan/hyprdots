@@ -10,8 +10,8 @@
 ## HyprWorldz
 
 Arch Linux config for Hyprland, a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme.<br>
-[JaKooLit](https://github.com/JaKooLit/) Nvidia has been intergrated.<br>
-[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features that are also intergrated.<br>
+Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated .<br>
+[ML4W](https://gitlab.com/stephan-raabe/dotfiles) has done some creative design and features which have been added.<br>
 
 * Grub and systemd-boot configs<br>
 * Supports Nvidia GPU'S (modern only)<br>
