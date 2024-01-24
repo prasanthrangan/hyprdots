@@ -54,7 +54,7 @@ fi
 if pkg_installed hyprland then
     hyprpm add https://github.com/hyprwm/hyprland-plugins
 else 
-    echo "Install Hyprland first..."
+    echo "WARNING: Hyprland not installed..."
 fi
 
 # shell
