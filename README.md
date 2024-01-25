@@ -17,26 +17,32 @@ Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been 
 
 I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](https://github.com/Gl00ria/dotfiles/tree/main/dot_hyprland) work, which has design and features which have or maybe added or inspired from.
 
-* Grub and systemd-boot configs<br>
-* Supports Nvidia GPU'S (modern only)<br>
+* Grub and systemd-boot configs
+* Grub Theme and Boot Theme
+* Supports Nvidia GPU'S (modern only)
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 
-**Post Install Setup**
-* [Plymouth boot splash + theme options](#Plymouth)<br>
-* [SecureBoot](#SecureBoot)<br>
+**Some config customisation preinstall**
+Grub theme
+Location: /Scripts/pre_install.sh
+Settings: Currently Legion theme applied. Arch availible edit to "arch_linux".
+Notes: [More themes](https://github.com/ahmedmoselhi/distro-grub-themes)
 
+**Post Install Setup**
+* [Plymouth boot splash + theme options](#Plymouth)
+* [SecureBoot](#SecureBoot)
 
 **Todo:** <br>
 * Add Flame shot ✔️
 * Put Nvidia config into one file (nvidia.sh, cleanup old files) ✔️
-* Add Custom apps in waybar<br>
-* Add "theme change options buttons" to system menu and remove from waybar<br>
-* Create a smaller App Launcher theme<br>
-* Add Nature theme pack<br>
-* Add Spritual theme pack<br>
-* Add People theme pack<br>
-* Add Animals theme pack<br>
+* Add Custom apps in waybar
+* Add "theme change options buttons" to system menu and remove from waybar
+* Create a smaller App Launcher theme
+* Add Nature theme pack
+* Add Spritual theme pack
+* Add People theme pack
+* Add Animals theme pack
 * Create Theme Pack selector
 * Does nvidia-prime allow for hybrid graphics?
 
