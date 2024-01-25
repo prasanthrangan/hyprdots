@@ -5,6 +5,12 @@ if [[ $USE_PRESET = [Yy] ]]; then
   source ./preset.sh
 fi
 
+source global_fn.sh
+if [ $? -ne 0 ]; then
+    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    exit 1
+fi
+
 nvidia_pkg=(
   nvidia-dkms
   nvidia-settings
