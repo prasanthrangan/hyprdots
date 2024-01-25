@@ -23,7 +23,8 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 
-**Some config file locations**<br>
+**Some config file locations:**<br>
+
 Grub theme<br>
 Location: /Scripts/pre_install.sh<br>
 Settings: Currently Legion theme applied. Arch availible edit to "arch_linux".<br>
