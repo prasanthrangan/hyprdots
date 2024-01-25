@@ -101,6 +101,28 @@ else
     echo "/etc/default/grub does not exist"
 fi
 
+# systemd-boot
+if pkg_installed systemd && nvidia_detect && [ $(bootctl status | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
+    then
+    echo -e "\033[0;32m[BOOTLOADER]\033[0m: systemd-boot detected..."
+
+    if [ $(ls -l /boot/loader/entries/*.conf.t2.bkp 2> /dev/null | wc -l) -ne $(ls -l /boot/loader/entries/*.conf 2> /dev/null | wc -l) ]
+        then
+        echo "nvidia detected, adding nvidia_drm.modeset=1 to boot option..."
+        find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf
+        do
+            sudo cp ${imgconf} ${imgconf}.t2.bkp
+            sdopt=$(grep -w "^options" ${imgconf} | sed 's/\b quiet\b//g' | sed 's/\b splash\b//g' | sed 's/\b nvidia_drm.modeset=.\b//g')
+            sudo sed -i "/^options/c${sdopt} quiet splash nvidia_drm.modeset=1" ${imgconf}
+        done
+    else
+        echo -e "\033[0;33m[SKIP]\033[0m: systemd-boot is already configured..."
+    fi
+
+else
+    echo -e "\033[0;33m[WARNING]\033[0m: systemd-boot is not configured..."
+fi
+
 # Blacklist nouveau
     if [[ -z $blacklist_nouveau ]]; then
       read -n1 -rep "${CAT} Would you like to blacklist nouveau? (y/n)" blacklist_nouveau
