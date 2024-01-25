@@ -24,7 +24,6 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 
 **Post Install Setup**
 * [Plymouth boot splash + theme options](#Plymouth)<br>
-* [Grub Theme](#GrubTheme)<br>
 * [SecureBoot](#SecureBoot)<br>
 
 
@@ -137,9 +136,6 @@ quiet splash loglevel=3 rd.udev.log_priority=3 vt.global_cursor_default=0
 
 Once that is done, `mkintcpio -P` will be enough: you can reboot now and you should be able to see the splash
 screen on shutdown already.
-
-## GrubTheme
-
 
 ## SecureBoot
 
