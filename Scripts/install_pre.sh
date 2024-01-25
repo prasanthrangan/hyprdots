@@ -11,7 +11,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-# grub
+# grub theme
 if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
     then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m: grub detected..."
