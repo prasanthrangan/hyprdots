@@ -29,7 +29,8 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 
 
 **Todo:** <br>
-* Add Flame shot ✔️ (needs config)
+* Add Flame shot ✔️
+* Put Nvidia config into one file (nvidia.sh, cleanup old files) ✔️
 * Add Custom apps in waybar<br>
 * Add "theme change options buttons" to system menu and remove from waybar<br>
 * Create a smaller App Launcher theme<br>
@@ -37,7 +38,6 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 * Add Spritual theme pack<br>
 * Add People theme pack<br>
 * Add Animals theme pack<br>
-* Put Nvidia config into one file (nvidia.sh, cleanup old files) ✔️
 * Create Theme Pack selector
 * Does nvidia-prime allow for hybrid graphics?
 
