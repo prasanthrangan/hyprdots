@@ -24,10 +24,10 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 * Offical Hyprland Plugins added
 
 **Some config customisation preinstall**
-Grub theme
-Location: /Scripts/pre_install.sh
-Settings: Currently Legion theme applied. Arch availible edit to "arch_linux".
-Notes: [More themes](https://github.com/ahmedmoselhi/distro-grub-themes)
+Grub theme<br>
+Location: /Scripts/pre_install.sh<br>
+Settings: Currently Legion theme applied. Arch availible edit to "arch_linux".<br>
+Notes: [More themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
 
 **Post Install Setup**
 * [Plymouth boot splash + theme options](#Plymouth)
