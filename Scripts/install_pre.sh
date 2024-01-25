@@ -25,7 +25,7 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
         read -p "Apply grub theme? [Y/N] : " grubtheme
         case $grubtheme in
         Y|y) echo -e "\033[0;32m[BOOTLOADER]\033[0m: Setting grub theme..."
-            sudo tar -xzf ${CloneDir}/Source/arcs/legion.tar -C /usr/share/grub/themes/
+            sudo tar -xvf ${CloneDir}/Source/arcs/legion.tar -C /usr/share/grub/themes/
             sudo sed -i "/^GRUB_DEFAULT=/c\GRUB_DEFAULT=saved
             /^GRUB_GFXMODE=/c\GRUB_GFXMODE=2560x1440x32,auto
             /^#GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/legion/theme.txt\"
