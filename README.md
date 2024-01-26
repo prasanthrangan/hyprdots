@@ -18,20 +18,14 @@ Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been 
 I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](https://github.com/Gl00ria/dotfiles/tree/main/dot_hyprland) work, which has design and features which have or maybe added or inspired from.
 
 * Grub and systemd-boot configs
-* Grub Theme and Boot Theme
+* Grub Theme and Plymouth Boot Theme (script prompts for theme selection)
 * Supports Nvidia GPU'S (modern only)
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 
-**Some config file locations:**<br>
-
-Grub theme<br>
-Location: /Scripts/pre_install.sh<br>
-Settings: Currently Legion theme applied. Arch availible edit to "arch_linux".<br>
 Notes: [More themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
 
 **Post Install Setup**
-* [Plymouth boot splash + theme options](#Plymouth)
 * [SecureBoot](#SecureBoot)
 
 **Todo:** <br>
