@@ -128,6 +128,11 @@ fi
 ./install_pkg.sh install_pkg.lst
 rm install_pkg.lst
 
+#--------------------------------#
+# install plymouth and theme #
+#--------------------------------#
+./plymouth.sh
+
 fi
 
 
