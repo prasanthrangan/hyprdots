@@ -1,6 +1,6 @@
 #!/bin/bash
 
-lst_file="custom_pkg.lst"
+lst_file="custom_apps.lst"
 
 # Function to display the menu
 display_menu() {
