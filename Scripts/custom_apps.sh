@@ -46,14 +46,27 @@ add_items() {
     echo "New items added to $lst_file."
 }
 
-# Function to install packages and exit
+# Function to install packages from the list in custom_apps.lst and exit using yay
 install_packages_and_exit() {
-    echo "Installing required packages..."
-    # Modify this line based on your actual package names
-    sudo pacman -S --noconfirm awk sed
-    echo "Packages installed. Exiting."
+    echo "Installing apps from the list in $lst_file using yay..."
+    
+    # Ensure yay is installed
+    if ! command -v yay &> /dev/null; then
+        echo "yay is not installed. Installing yay..."
+        sudo pacman -S --noconfirm yay
+        if [ $? -ne 0 ]; then
+            echo "Failed to install yay. Exiting."
+            exit 1
+        fi
+    fi
+    
+    # Install apps listed in custom_apps.lst using yay
+    yay -S --noconfirm $(< "$lst_file")
+
+    echo "Apps installed. Exiting."
     exit 0
 }
+
 
 # Main loop
 while true; do
