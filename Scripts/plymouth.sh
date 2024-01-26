@@ -1,4 +1,8 @@
 #!/bin/bash
+#|---/ /+-------------------------------------+---/ /|#
+#|--/ /-| Script to apply Plymouth install    |--/ /-|#
+#|-/ /--| 5ouls3dge                           |-/ /--|#
+#|/ /---+-------------------------------------+/ /---|#
 
 # Function to install packages using yay
 install_packages() {
