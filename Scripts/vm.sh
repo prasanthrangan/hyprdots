@@ -5,15 +5,13 @@
 # | . \   \ V / | |  | | 
 # |_|\_\   \_/  |_|  |_| 
 #                        
-#  
-# by Stephan Raabe (2023)
-# modded by 5ouls3edge (2024)
+# by 5ouls3edge (2024)
 # ----------------------------------------------------- 
 # ------------------------------------------------------
 # Install Script for Libvirt
 # ------------------------------------------------------
-read -p "Do you want to start? " s
-echo "START KVM/QEMU/VIRT MANAGER INSTALLATION..."
+read -p "Do you want to start virtual machine setup? (Enter 'y' for yes, 'n' for no): " s
+echo "STARTING THE INSTALLATION KVM/QEMU/VIRT MANAGER..."
 # ------------------------------------------------------
 # Install Packages
 # ------------------------------------------------------
