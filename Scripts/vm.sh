@@ -45,13 +45,33 @@ sudo systemctl start libvirtd
 # ------------------------------------------------------
 # Edit qemu.conf
 # ------------------------------------------------------
-echo "Manual steps required:"
-echo "Open sudo vim /etc/libvirt/qemu.conf"
-echo "Uncomment and add your user name to user and group."
-echo 'user = "your username"'
-echo 'group = "your username"'
-read -p "Press any key to open qemu.conf: " c
-sudo vim /etc/libvirt/qemu.conf
+# Prompt user for their username
+read -p "Enter your username: " username
+
+# Uncomment and update user configuration in qemu.conf
+if grep -q "^#user = " /etc/libvirt/qemu.conf; then
+    sudo sed -i "s/^#\(user = .*\)/\1/" /etc/libvirt/qemu.conf
+fi
+
+# Add or update user configuration in qemu.conf
+if grep -q "^user = " /etc/libvirt/qemu.conf; then
+    sudo sed -i "s/^user = .*/user = \"$username\"/" /etc/libvirt/qemu.conf
+else
+    echo "user = \"$username\"" | sudo tee -a /etc/libvirt/qemu.conf
+fi
+
+# Uncomment and update group configuration in qemu.conf
+if grep -q "^#group = " /etc/libvirt/qemu.conf; then
+    sudo sed -i "s/^#\(group = .*\)/\1/" /etc/libvirt/qemu.conf
+fi
+
+# Add or update group configuration in qemu.conf
+if grep -q "^group = " /etc/libvirt/qemu.conf; then
+    sudo sed -i "s/^group = .*/group = \"$username\"/" /etc/libvirt/qemu.conf
+else
+    echo "group = \"$username\"" | sudo tee -a /etc/libvirt/qemu.conf
+fi
+
 # ------------------------------------------------------
 # Restart Services
 # ------------------------------------------------------
