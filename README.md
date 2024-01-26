@@ -9,9 +9,12 @@
 
 ## HyprWorld
 
-Arch Linux Development for Hyprland, a project merging hyprland rice design and features for productivity and purpose.
-Nvidia modern GPU support from 
+Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on user productivity.<br>
+Walkthrough script offering detailed customisations on the way.
 
+Major blocker:
+Use luks or luks (password prompts at boot wit splash + secureboot with merged password (password prompts at bios no gui then splash)<br>
+Use grub or secured-boot.
 
 **code / ideas used or modified from:**<br>
 [hyprdots](https://github.com/prasanthrangan)<br>
