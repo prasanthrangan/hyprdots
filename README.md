@@ -24,7 +24,8 @@ Started with a fork of [hyprdots](https://github.com/prasanthrangan). Nvidia mod
 * Offical Hyprland Plugins added ✔️
 * Script to manage custom packages (custom_pkg.lst) during install ✔️
 * Grub Theme and Plymouth Boot Theme (with prompts for theme selection) ✔️
-* Add Zram
+* Add Zram ✔️
+* Add arch install script
 * Snapper install and config script
 * Intergrate VM solution
 * Add Custom apps in waybar
