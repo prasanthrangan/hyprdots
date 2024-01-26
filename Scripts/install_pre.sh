@@ -10,8 +10,6 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-
-# grub theme
 # grub theme
 if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
 then
