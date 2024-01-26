@@ -5,10 +5,11 @@ lst_file="custom_apps.lst"
 # Function to display the menu
 display_menu() {
     echo "Menu:"
-    echo "1. View items"
-    echo "2. Delete an item"
-    echo "3. Add new items"
-    echo "4. Exit"
+    echo "1. View apps"
+    echo "2. Delete an app"
+    echo "3. Add new Apps"
+    echo "4. Install packages and exit"
+    echo "5. Exit"
 }
 
 # Function to view items in the list across rows with numbers
@@ -45,17 +46,27 @@ add_items() {
     echo "New items added to $lst_file."
 }
 
+# Function to install packages and exit
+install_packages_and_exit() {
+    echo "Installing required packages..."
+    # Modify this line based on your actual package names
+    sudo pacman -S --noconfirm awk sed
+    echo "Packages installed. Exiting."
+    exit 0
+}
+
 # Main loop
 while true; do
     display_menu
 
-    read -p "Enter your choice (1-4): " choice
+    read -p "Enter your choice (1-5): " choice
 
     case $choice in
         1) view_items ;;
         2) delete_item ;;
         3) add_items ;;
-        4) echo "Exiting."; break ;;
-        *) echo "Invalid choice. Please enter a number between 1 and 4." ;;
+        4) install_packages_and_exit ;;
+        5) echo "Exiting."; break ;;
+        *) echo "Invalid choice. Please enter a number between 1 and 5." ;;
     esac
 done
