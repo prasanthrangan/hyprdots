@@ -7,9 +7,9 @@
 &ensp;[<kbd> <br> Themes <br> </kbd>](#Themes)&ensp;
 <br><br></div>
 
-## HyprWorldz
+## HyprVerse
 
-Sharing my Arch Linux Development for Hyprland, a project merging the "worldz best" hyprland rice design and features.
+Arch Linux Development for Hyprland, a project merging the "best" hyprland rice design and features for productivity and purpose.
 
 Started with a fork of [hyprdots](https://github.com/prasanthrangan). Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) has been intergrated plus config for grub & systemd-boot.
 
