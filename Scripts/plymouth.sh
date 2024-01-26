@@ -32,7 +32,7 @@ prompt_for_theme() {
     echo "Choose a Plymouth theme:"
     select theme in $theme_options; do
         case $theme in
-            "gbrt (BIOS theme)" | "arch linux" | "legion" | "optimus" | "lion" | "owl")
+            "gbrt (BIOS theme)" | "arch linux" | "legion" | "optimus" | "owl")
                 install_packages "plymouth" "plymouth-theme-$theme"
                 set_plymouth_theme $theme
                 echo "Installed and set Plymouth theme: $theme"
