@@ -31,6 +31,7 @@ Notes: [More Grub Themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br
 **Todo:** <br>
 * Add Flame shot ✔️
 * Put Nvidia config into one file (nvidia.sh, cleanup old files) ✔️
+* Snapper install and config script
 * Intergrate VM solution
 * Add Custom apps in waybar
 * Add "theme change options buttons" to system menu and remove from waybar
