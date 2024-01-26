@@ -11,8 +11,7 @@
 
 Sharing my Arch Linux Development for Hyprland, a project merging the "worldz best" hyprland rice design and features.
 
-Started with a fork of [hyprdots](https://github.com/prasanthrangan)<br>
-Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated, auto detects and sets up grub plus systemd-boot.
+Started with a fork of [hyprdots](https://github.com/prasanthrangan). Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) has been intergrated plus config for grub & systemd-boot.
 
 **Other projects:**<br>
 [ML4W](https://gitlab.com/stephan-raabe/dotfiles)<br>
