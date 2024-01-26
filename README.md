@@ -9,13 +9,16 @@
 
 ## HyprWorld
 
-Arch Linux Development for Hyprland, a project merging the "best" hyprland rice design and features for productivity and purpose.
+Arch Linux Development for Hyprland, a project merging hyprland rice design and features for productivity and purpose.
+Nvidia modern GPU support from 
 
-Started with a fork of [hyprdots](https://github.com/prasanthrangan). Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) has been intergrated plus config for grub & systemd-boot.
 
-**Other projects:**<br>
+**code / ideas used or modified from:**<br>
+[hyprdots](https://github.com/prasanthrangan)<br>
+[JaKooLit](https://github.com/JaKooLit/)<br>
 [ML4W](https://gitlab.com/stephan-raabe/dotfiles)<br>
 [Gl00ria](https://github.com/Gl00ria/dotfiles/tree/main/dot_hyprland) <br>
+[TommtTran732 - Arch install script](https://github.com/TommyTran732/Arch-Setup-Script)
 [More Grub Themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
 
 **Todo:** <br>
