@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#|---/ /+-------------------------------------+---/ /|#
+#|--/ /-| Script to apply Custom apps         |--/ /-|#
+#|-/ /--| 5ouls3dge                           |-/ /--|#
+#|/ /---+-------------------------------------+/ /---|#
 lst_file="custom_apps.lst"
 
 # Function to display the menu
