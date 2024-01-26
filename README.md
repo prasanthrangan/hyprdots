@@ -11,16 +11,14 @@
 
 Sharing my Arch Linux Development for Hyprland, a project merging the "worldz best" hyprland rice design and features.
 
-Starts with a fork of [hyprdots](https://github.com/prasanthrangan), with some personal changes to theme and custom_pkg.lst has extra packages.
+Starts with a fork of [hyprdots](https://github.com/prasanthrangan)
 
-Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated, auto detects and sets up grub or systemd-boot.
+Nvidia modern GPU support from [JaKooLit](https://github.com/JaKooLit/) as been intergrated, auto detects and sets up grub plus systemd-boot.
 
-I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](https://github.com/Gl00ria/dotfiles/tree/main/dot_hyprland) work, which has design and features which have or maybe added or inspired from.
-
-Notes: [More Grub Themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
-
-**Post Install Setup**
-* [SecureBoot](#SecureBoot)
+**Other projects:**<br>
+[ML4W](https://gitlab.com/stephan-raabe/dotfiles)<br>
+[Gl00ria](https://github.com/Gl00ria/dotfiles/tree/main/dot_hyprland) <br>
+[More Grub Themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
 
 **Todo:** <br>
 * Add Flame shot ✔️
