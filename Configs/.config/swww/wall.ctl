@@ -1,8 +1,8 @@
-0|Catppuccin-Mocha|~/.config/swww/Catppuccin-Mocha/evening-sky.png
+1|Catppuccin-Mocha|~/.config/swww/Catppuccin-Mocha/power.png
 0|Catppuccin-Latte|~/.config/swww/Catppuccin-Latte/samurai_bebop.png
 0|Decay-Green|~/.config/swww/Decay-Green/arcade_decay_red.png
 0|Rose-Pine|~/.config/swww/Rose-Pine/waifu_pink.png
-1|Tokyo-Night|~/.config/swww/Tokyo-Night/persona-3-reload.jpeg
+0|Tokyo-Night|~/.config/swww/Tokyo-Night/persona-3-reload.jpeg
 0|Material-Sakura|~/.config/swww/Material-Sakura/material_pastel_7.jpg
 0|Graphite-Mono|~/.config/swww/Graphite-Mono/gojo.png
 0|Cyberpunk-Edge|~/.config/swww/Cyberpunk-Edge/cyberpunk_dave.png
