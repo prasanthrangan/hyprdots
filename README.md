@@ -23,7 +23,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 
-Notes: [More themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
+Notes: [More Grub Themes](https://github.com/ahmedmoselhi/distro-grub-themes)<br>
 
 **Post Install Setup**
 * [SecureBoot](#SecureBoot)
