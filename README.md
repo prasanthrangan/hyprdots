@@ -12,8 +12,8 @@
 Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on user productivity.<br>
 Walkthrough script offering detailed customisations on the way.
 
-Major blocker:
-Use luks or luks (password prompts at boot wit splash + secureboot with merged password (password prompts at bios no gui then splash)<br>
+Major blocker:<br>
+Use 1) luks (password prompts at boot wit splash or 2) luks + secureboot (with merged password  at bios no gui then splash)<br>
 Use grub or secured-boot.
 
 **code / ideas used or modified from:**<br>
