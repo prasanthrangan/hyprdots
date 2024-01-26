@@ -19,7 +19,7 @@ I really like [ML4W](https://gitlab.com/stephan-raabe/dotfiles) and [Gl00ria](ht
 
 * Supports Nvidia GPU'S (modern only)
 * Nvidia Grub and systemd-boot configs
-* Grub Theme and Plymouth Boot Theme (script prompts for theme selection)
+* Grub Theme and Plymouth Boot Theme (with prompts for theme selection)
 * Added "Custom apps" in waybar<br>
 * Offical Hyprland Plugins added
 
