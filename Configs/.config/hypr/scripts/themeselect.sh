@@ -32,4 +32,12 @@ if [ ! -z $ThemeSel ] ; then
     "${ScrDir}/themeswitch.sh" -s $ThemeSel
     dunstify "t1" -a " ${ThemeSel}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 fi
+# Changing Spotify Theme
+if pgrep -x "spotify" > /dev/null; then
+    # Spotify is running, so update spicetify without opening Spotify
+    spicetify apply
+else
+    # Spotify is not running, update spicetify and do not open Spotify
+    spicetify update --noinput
+fi
 
