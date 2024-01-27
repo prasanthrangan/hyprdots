@@ -19,16 +19,16 @@ do
                 case $install_option in
                     "Install HyprWorld")
                         echo "Installing HyprWorld..."
-                        ./arch/install.sh
-                        ./hyprland/install.sh
+                        ./Scripts/arch_install.sh
+                        ./Scripts/hypr_install.sh
                         ;;
                     "Install Arch Only")
                         echo "Installing Arch Only..."
-                        ./arch/install.sh
+                        ./Scripts/arch_install.sh
                         ;;
                     "Install Hyprland only")
                         echo "Installing Hyprland only..."
-                        ./hyprland/install.sh
+                        ./Scripts/hypr_install.sh
                         ;;
                     "Back to Main Menu")
                         break
@@ -46,11 +46,11 @@ do
                 case $script_option in
                     "Run Nvidia Setup")
                         echo "Running Nvidia Setup..."
-                        ./Config/nvidia.sh
+                        ./Scripts/nvidia.sh
                         ;;
                     "Run Plymouth Install")
                         echo "Running Plymouth Install..."
-                        ./Config/plymouth.sh
+                        ./Scripts/plymouth.sh
                         ;;
                     "Back to Main Menu")
                         break
