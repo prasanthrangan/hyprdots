@@ -38,6 +38,8 @@ if pgrep -x "spotify" > /dev/null; then
     spicetify apply
 else
     # Spotify is not running, update spicetify and do not open Spotify
-    spicetify update --noinput
+    spicetify apply
+    killall spotify
 fi
+
 
