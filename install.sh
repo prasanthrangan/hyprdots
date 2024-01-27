@@ -6,8 +6,6 @@
 #                                          #
 ############################################
 
-#!/bin/bash
-
 PS3="Select an option: "
 
 select main_option in "Install HyprWorld" "Install Arch Only" "Install Hyprland only" "Run Nvidia Setup" "Run Plymouth Install" "Quit"
