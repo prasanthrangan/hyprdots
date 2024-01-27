@@ -10,11 +10,7 @@
 ## HyprWorld
 
 Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on user productivity.<br>
-Walkthrough script offering detailed customisations on the way. Mostly built on the personal requirement of intergrating the knowledge from proffesionals have mastered strong setups and intergrate experince into the install process. The walkthrough script is overkill, letting you set and modify everything along the way. The code base will be deesigned soit fast to navigate also.
-
-Major blocker:<br>
-* Use 1) luks (password prompts at boot wit splash or 2) luks + secureboot (with merged password at bios no gui then splash)<br>
-* Use grub or secured-boot.
+Walkthrough script offering detailed customisations on the way. Built on intergrating the knowledge from what proffesionals have mastered intergrated that knowledge into the install process. The walkthrough script is overkill, letting you set and modify everything along the way or use the script to customise and savebefore installing.
 
 **code / ideas used or modified from:**<br>
 [hyprdots](https://github.com/prasanthrangan)<br>
