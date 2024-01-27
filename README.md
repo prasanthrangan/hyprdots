@@ -31,6 +31,7 @@ Major blocker:<br>
 * Script to manage custom packages (custom_pkg.lst) during install ✔️
 * Grub Theme and Plymouth Boot Theme (with prompts for theme selection) ✔️
 * Add Zram ✔️
+* Add Old Nvidia drivers to nvidia.sh
 * Add arch install script
 * Snapper install and config script
 * Intergrate VM solution
