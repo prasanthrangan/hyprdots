@@ -30,6 +30,7 @@ Built on the knowledge from what proffesionals have mastered and intergrated tha
 * Add Zram ✔️
 * Add waybar builder script
 * Add HyprLand customisation script
+* Organise code
 * Add Old Nvidia drivers to nvidia.sh
 * Add arch install script  ✔️ (test)
 * Snapper install and config script  ✔️
