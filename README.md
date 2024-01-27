@@ -38,7 +38,8 @@ Major blocker:<br>
 * Snapper install and config script
 * Intergrate VM solution
 * Add Custom apps in waybar
-* Add "theme change options buttons" to system menu and remove from waybar
+* Create HyprSet GUI
+* Add "theme change options buttons" to hyprSet GUI and remove from waybar. Eppand to include theme pack options and random settings.
 * Create a smaller App Launcher theme
 * Add Nature theme pack
 * Add Spritual theme pack
