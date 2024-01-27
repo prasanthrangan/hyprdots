@@ -127,6 +127,7 @@ fi
 #--------------------------------#
 ./install_pkg.sh install_pkg.lst
 rm install_pkg.lst
+./vm.sh
 ./zram.sh
 ./custom_apps.sh
 
