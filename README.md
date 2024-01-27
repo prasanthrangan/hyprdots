@@ -11,7 +11,7 @@
 
 Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on install, design & user productivity.
 
-Built on the knowledge from what proffesionals have mastered and intergrated that knowledge into the install process. The walkthrough script is overkill, letting you set and modify everything along the way or even use the script to customise and save your setup.
+Built on the knowledge from what proffesionals have mastered and intergrated that knowledge into the install process. The walkthrough script is overkill, letting you set and modify everything along the way or even use the script to customise your own world.
 
 **code / ideas used or modified from:**<br>
 [hyprdots](https://github.com/prasanthrangan)<br>
