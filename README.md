@@ -10,10 +10,10 @@
 ## HyprWorld
 
 Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on user productivity.<br>
-Walkthrough script offering detailed customisations on the way.
+Walkthrough script offering detailed customisations on the way. Mostly built on the personal requirement of intergrating the knowledge from proffesionals have mastered strong setups and intergrate experince into the install process. The walkthrough script is overkill, letting you set and modify everything along the way. The code base will be deesigned soit fast to navigate also.
 
 Major blocker:<br>
-* Use 1) luks (password prompts at boot wit splash or 2) luks + secureboot (with merged password  at bios no gui then splash)<br>
+* Use 1) luks (password prompts at boot wit splash or 2) luks + secureboot (with merged password at bios no gui then splash)<br>
 * Use grub or secured-boot.
 
 **code / ideas used or modified from:**<br>
@@ -31,6 +31,8 @@ Major blocker:<br>
 * Script to manage custom packages (custom_pkg.lst) during install ✔️
 * Grub Theme and Plymouth Boot Theme (with prompts for theme selection) ✔️
 * Add Zram ✔️
+* Add waybar builder script
+* Add HyprLand customisation script.sh
 * Add Old Nvidia drivers to nvidia.sh
 * Add arch install script
 * Snapper install and config script
