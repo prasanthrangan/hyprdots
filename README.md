@@ -9,8 +9,9 @@
 
 ## HyprWorld
 
-Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on user productivity.<br>
-Walkthrough script offering detailed customisations on the way. Built on intergrating the knowledge from what proffesionals have mastered intergrated that knowledge into the install process. The walkthrough script is overkill, letting you set and modify everything along the way or use the script to customise and savebefore installing.
+Arch Linux Development for Hyprland, a project merging mature hyprland rice design and features. Focused on install, design & user productivity.
+
+Built on the knowledge from what proffesionals have mastered and intergrated that knowledge into the install process. The walkthrough script is overkill, letting you set and modify everything along the way or even use the script to customise and save your setup.
 
 **code / ideas used or modified from:**<br>
 [hyprdots](https://github.com/prasanthrangan)<br>
@@ -30,9 +31,9 @@ Walkthrough script offering detailed customisations on the way. Built on intergr
 * Add waybar builder script
 * Add HyprLand customisation script.sh
 * Add Old Nvidia drivers to nvidia.sh
-* Add arch install script
-* Snapper install and config script
-* Intergrate VM solution
+* Add arch install script  ✔️ (test)
+* Snapper install and config script  ✔️
+* Intergrate VM solution  ✔️
 * Add Custom apps in waybar
 * Create HyprSet GUI
 * Add "theme change options buttons" to hyprSet GUI and remove from waybar. Eppand to include theme pack options and random settings.
