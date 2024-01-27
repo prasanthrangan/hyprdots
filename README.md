@@ -29,7 +29,7 @@ Built on the knowledge from what proffesionals have mastered and intergrated tha
 * Grub Theme and Plymouth Boot Theme (with prompts for theme selection) ✔️
 * Add Zram ✔️
 * Add waybar builder script
-* Add HyprLand customisation script.sh
+* Add HyprLand customisation script
 * Add Old Nvidia drivers to nvidia.sh
 * Add arch install script  ✔️ (test)
 * Snapper install and config script  ✔️
