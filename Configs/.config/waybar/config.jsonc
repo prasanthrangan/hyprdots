@@ -86,7 +86,7 @@
 	},
 
     "custom/spotify": {
-        "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
+        "exec": "/usr/bin/python3 ~/.config/waybar/modules/mediaplayer.py --player spotify",
         "format": " {}",
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
