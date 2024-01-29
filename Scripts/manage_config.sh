@@ -34,7 +34,7 @@ do
     pkg=$(echo "${lst}" | awk -F '|' '{print $4}')
 
 # Check if ctlFlag is not one of the values 'O', 'R', 'B', 'S', or 'P'
-if [[ "${ctlFlag}" != "O" && "${ctlFlag}" != "R" && "${ctlFlag}" != "B" && "${ctlFlag}" != "S" && "${ctlFlag}" != "P" && "${ctlFlag}" != "U"  ]]; then
+if [[ "${ctlFlag}" = "I" ]]; then
 echo "[IGNORE] ${pth}/${cfg}"
     continue 2
 fi
@@ -66,7 +66,7 @@ tgt=$(echo "${pth}" | sed "s+^${HOME}++g")
 crnt_cfg="${pth}/${cfg_chk}"
 
     if [ ! -e "${CfgDir}$tgt/${cfg_chk}" ]; then
-        echo "Source directory ${CfgDir}$tgt/${cfg_chk} does not exist, skipping..."
+        echo "Source: ${CfgDir}$tgt/${cfg_chk} does not exist, skipping..."
         continue
     fi
 
@@ -99,8 +99,7 @@ crnt_cfg="${pth}/${cfg_chk}"
                     ;;
             esac
         else
-                    cp -r "${pth}/${cfg_chk}" "${BkpDir}${tgt}" || true ; echo "[BACK-UP] ${pth}/${cfg_chk} --> ${BkpDir}${tgt}..."                                                          
-                    cp -rn "${CfgDir}$tgt/${cfg_chk}" "${pth}" || true
+                    cp "${CfgDir}$tgt/${cfg_chk}" "${pth}"
                     echo "[POPULATE] ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}"                  
         fi
 
@@ -108,9 +107,9 @@ crnt_cfg="${pth}/${cfg_chk}"
 
 done
 
-# if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
-#     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
-# fi
+if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
+    echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
+fi
 
-# ./create_cache.sh
+./create_cache.sh
  ./restore_lnk.sh

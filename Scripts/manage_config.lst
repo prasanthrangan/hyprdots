@@ -1,4 +1,4 @@
-P|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k pokemon-colorscripts-git
+I|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k pokemon-colorscripts-git
 P|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
 P|${HOME}/.config|dunst|dunst
 P|${HOME}/.config/hypr|animations.conf hyprland.conf theme.ctl windowrules.conf scripts themes wallbash|hyprland
