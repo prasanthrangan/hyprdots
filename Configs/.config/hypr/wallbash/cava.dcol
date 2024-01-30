@@ -1,4 +1,4 @@
-$HOME/.config/cava/config
+$HOME/.config/cava/config|${ScrDir}/wallbashcava.sh
 
 ## Configuration file for CAVA.
 # Remove the ; to change parameters.
