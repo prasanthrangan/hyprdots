@@ -43,7 +43,7 @@ upd=$(( ofc + aur + fpk ))
 
 # Trigger upgrade and Avoiding Duplicate process, Also Overrides any systemCheck/systemupdate process
 if [ "$1" == "up" ] ; then
-trap reset_waybar EXIT
+trap refresh_waybar EXIT
 # Check if the process is running
             if ! pgrep -f "kitty --start-as fullscreen --title systemupdate sh" > /dev/null
             then
