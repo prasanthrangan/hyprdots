@@ -128,7 +128,7 @@ EOF
         for nvcode in "${nvga[@]}"; do
             awk -F '|' -v nvc="${nvcode}" '{if ($3 == nvc) {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}}' .nvidia/nvidia*dkms >>install_pkg.lst
         done
-        echo -e "\033[0;32m[GPU]\033[0m: detected // ${nvga[@]}"
+        echo -e "\033[0;32m[GPU]\033[0m detected // ${nvga[@]}"
     else
         echo "nvidia card not detected, skipping nvidia drivers..."
     fi
