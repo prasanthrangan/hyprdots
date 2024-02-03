@@ -3,7 +3,7 @@
 # shellcheck disable=SC1090
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
-if [[ " $* " =~ " tired " ]];then tired=true ; fi
+[[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >>"${gpuQ}"
 if [[ ! " $* " =~ " startup " ]]; then
    gpuQ="${gpuQ}$2"
 fi
@@ -37,28 +37,36 @@ nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | hea
       if  [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then  #? Second Layer for dGPU 
         echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
       else
-        echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\"" >> "${gpuQ}"
-        echo "nvidia_flag=1" >> "${gpuQ}"
+        nvidia_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${nvidia_gpu/NVIDIA /}" | cut -d' ' -f1)
+        {   echo "nvidia_address=\"${nvidia_address}\""
+            echo "nvidia_gpu=\"${nvidia_gpu/NVIDIA /}\""
+            echo "nvidia_flag=1"
+        } >> "${gpuQ}"
       fi
   fi
 fi
 
 if lspci -nn | grep -E "(VGA|3D)" | grep -iq "1002"; then 
 amd_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "1002" | awk -F'Advanced Micro Devices, Inc. ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
-echo "amd_flag=1" >> "${gpuQ}" # Check for Amd GPU 
-echo "amd_gpu=\"${amd_gpu}\"" >>"${gpuQ}" ; fi
+amd_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${amd_gpu}" | cut -d' ' -f1)
+{ echo "amd_address=\"${amd_address}\"" 
+  echo "amd_flag=1" # Check for Amd GPU 
+  echo "amd_gpu=\"${amd_gpu}\""
+} >> "${gpuQ}";fi
 
 if lspci -nn | grep -E "(VGA|3D)" | grep -iq "8086"; then 
 intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
-echo "intel_flag=1" >>"${gpuQ}" # Check for Intel GPU
-echo "intel_gpu=\"${intel_gpu}\"" >>"${gpuQ}"; fi
+intel_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${intel_gpu}" | cut -d' ' -f1)
+{ echo "intel_address=\"${intel_address}\"" 
+  echo "intel_flag=1"  # Check for Intel GPU
+  echo "intel_gpu=\"${intel_gpu}\"" 
+} >>"${gpuQ}"; fi
 
 if ! grep -q "prioGPU=" "${gpuQ}" && [[ -n "${WLR_DRM_DEVICES}" ]]; then 
   trap detect EXIT
 fi
 
 }
-
 
 toggle() {
   if [[ -n "$1" ]]; then
@@ -156,9 +164,9 @@ nvidia_GPU() { #? Function to query Nvidia GPU
     primary_gpu="NVIDIA ${nvidia_gpu}"
   if [[ "${nvidia_gpu}" == "Linux" ]]; then general_query ; return ; fi #? Open source driver
 #? Tired Flag for not using nvidia-smi if GPU is in suspend mode. 
-if ${tired}; then is_suspend="$(cat /sys/bus/pci/devices/0000:"$(lspci | grep -i nvidia | cut -d' ' -f1)"/power/runtime_status)"
-   if [[ ${is_suspend} == "suspend" ]]; then
-      printf '{"text":"󰤂", "tooltip":"%s\n ⏾ Suspended mode"}\n' "${primary_gpu}"; exit ;fi
+if ${tired}; then is_suspend="$(cat /sys/bus/pci/devices/0000:"${nvidia_address}"/power/runtime_status)"
+   if [[ ${is_suspend} == *"suspend"* ]]; then
+      printf '{"text":"󰤂", "tooltip":"%s ⏾ Suspended mode"}' "${primary_gpu}"; exit ;fi
 fi
   gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.max_limit --format=csv,noheader,nounits)
   # Split the comma-separated values into an array

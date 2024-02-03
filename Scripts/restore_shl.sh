@@ -10,9 +10,22 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-myShell="${1:-zsh}"
+myShell="${1}"
 
-# check zsh
+if [ -z "${myShell}" ] ; then
+    if pkg_installed zsh ; then
+        myShell="zsh"
+    elif pkg_installed fish ; then
+        myShell="fish"
+    else
+        echo -e "\033[0;33m[WARNING]\033[0m no shell detected"
+        exit 0
+    fi
+fi
+
+echo -e "\033[0;32m[SHELL]\033[0m detected // ${myShell}"
+
+# add zsh plugins
 if pkg_installed zsh && pkg_installed oh-my-zsh-git ; then
 
     # set variables
@@ -38,14 +51,12 @@ if pkg_installed zsh && pkg_installed oh-my-zsh-git ; then
     # update plugin array in zshrc
     echo "intalling zsh plugins (${w_plugin})"
     sed -i "/^plugins=/c\plugins=($w_plugin)$Fix_Completion" $Zsh_rc
-
-else
-    echo "WARNING: zsh is not installed..."
-    exit 0
 fi
 
 # set shell
 if [ $(grep $USER /etc/passwd | awk -F '/' '{print $NF}') != "${myShell}" ] ; then
-    echo "changing shell to ${myShell}..."
+    echo -e "\033[0;32m[SHELL]\033[0m changing shell to ${myShell}..."
     chsh -s $(which ${myShell})
+else
+    echo -e "\033[0;32m[SHELL]\033[0m ${myShell} is already set..."
 fi
