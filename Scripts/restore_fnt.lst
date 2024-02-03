@@ -56,4 +56,4 @@ Y|Cursor_Gruvbox|/usr/share/icons
 Y|Cursor_Gruvbox|$HOME/.icons
 Y|Cursor_BibataIce|/usr/share/icons
 Y|Cursor_BibataIce|$HOME/.icons
-N|Code_Extensions|$HOME/.vscode
+Y|Code_Extensions|$HOME/.vscode

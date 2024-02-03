@@ -169,11 +169,11 @@ alias fucking='sudo' # because its funny
 #        neofetch
 #fi
 
-if [[ "$TERM" == "xterm-kitty" ]] && [ ! -n "$SSH_TTY" ]; then
-	neofetch
-else
-	pfetch
-fi
+#if [[ "$TERM" == "xterm-kitty" ]] && [ ! -n "$SSH_TTY" ]; then
+#	neofetch
+#else
+#	pfetch
+#fi
 
 
-#pfetch
+pfetch
