@@ -57,6 +57,16 @@ alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code --disable-gpu' # gui code editor
 
+# Handy change dir shortcuts
+abbr .. 'cd ..'
+abbr ... 'cd ../..'
+abbr .3 'cd ../../..'
+abbr .4 'cd ../../../..'
+abbr .5 'cd ../../../../..'
+
+# Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+abbr mkdir 'mkdir -p'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
