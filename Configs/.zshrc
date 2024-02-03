@@ -67,6 +67,9 @@ abbr .5 'cd ../../../../..'
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 abbr mkdir 'mkdir -p'
 
+# Fixes "Error opening terminal: xterm-kitty" when using the default kitty term to open some programs through ssh
+alias ssh='kitten ssh'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
