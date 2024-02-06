@@ -18,7 +18,7 @@ if [ -z "${myShell}" ] ; then
     elif pkg_installed fish ; then
         myShell="fish"
     else
-        echo -e "\033[0;33m[WARNING]\033[0m no shell detected"
+        echo -e "\033[0;33m[WARNING]\033[0m no shell detected..."
         exit 0
     fi
 fi
@@ -58,5 +58,5 @@ if [ $(grep $USER /etc/passwd | awk -F '/' '{print $NF}') != "${myShell}" ] ; th
     echo -e "\033[0;32m[SHELL]\033[0m changing shell to ${myShell}..."
     chsh -s $(which ${myShell})
 else
-    echo -e "\033[0;32m[SHELL]\033[0m ${myShell} is already set..."
+    echo -e "\033[0;33m[SKIP]\033[0m ${myShell} is already configured..."
 fi
