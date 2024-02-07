@@ -11,6 +11,7 @@ Y|Y|${HOME}/.config|lsd|lsd
 Y|Y|${HOME}/.config|MangoHud|mangohud
 Y|Y|${HOME}/.config|neofetch|neofetch
 Y|Y|${HOME}/.config|qt5ct|qt5ct
+Y|Y|${HOME}/.config|qt6ct|qt6ct
 Y|Y|${HOME}/.config|rofi|rofi
 Y|Y|${HOME}/.config|swaylock|swaylock-effects
 Y|N|${HOME}/.config|swww|swww
