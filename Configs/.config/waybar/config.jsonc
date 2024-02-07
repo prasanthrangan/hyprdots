@@ -90,12 +90,13 @@
         "format": " {}",
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
-	"on-click-right": "playerctl next --player spotify",
-	"on-click-middle": "playerctl previous --player spotify",
-	"on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
-	"on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
-	"max-length": 25,
-        "escape": true
+        "on-click-right": "playerctl next --player spotify",
+        "on-click-middle": "playerctl previous --player spotify",
+        "on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
+        "on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
+        "max-length": 25,
+        "escape": true,
+        "tooltip": true
     },
 
     "idle_inhibitor": {
@@ -171,11 +172,16 @@
 
     "bluetooth": {
         "format": "",
-        "format-disabled": "", // an empty format will hide the module
+        "format-disabled": "",
         "format-connected": " {num_connections}",
-        "tooltip-format": " {device_alias}",
-        "tooltip-format-connected": "{device_enumerate}",
-        "tooltip-format-enumerate-connected": " {device_alias}"
+        "format-connected-battery": "{icon} {num_connections}",
+        // "format-connected-battery": "{icon} {device_alias}-{device_battery_percentage}%",
+        "format-icons": ["󰥇", "󰤾", "󰤿", "󰥀", "󰥁", "󰥂", "󰥃", "󰥄", "󰥅", "󰥆", "󰥈"],
+        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
+        "tooltip-format": "{controller_alias}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{icon} {device_battery_percentage}%"
     },
 
     "pulseaudio": {
