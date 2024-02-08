@@ -8,6 +8,7 @@ yad --width=800 --height=600 \
 --column=Key: \
 --column=Description: \
 "󰣇 = " "SUPER KEY" \
+"󰣇 + ?" "This help menu" \
 "󰣇 + Q / Alt + F4" "Close active window" \
 "󰣇 + L" "Lock screen" \
 "Ctrl + Shift + Escape" "Open system monitor" \
@@ -45,7 +46,7 @@ yad --width=800 --height=600 \
 "󰣇 + Alt + [0-9]" "move active window to workspace [1-10] (silently)" \
 "󰣇 + Shift + S" "move window to special workspace" \
 "󰣇 + Alt + S" "move window to special workspace (silently)" \
-"󰣇 + S" "toogle to special workspace" \
+"󰣇 + S" "toggle to special workspace" \
 "󰣇 + Alt + G" "disable hypr effects for gamemode" \
 "󰣇 + Alt + [←→]" "change wallpaper" \
 "󰣇 + Alt + [↑↓]" "change waybar mode" \
