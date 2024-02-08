@@ -14,9 +14,9 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/spotify","custom/r_end","custom/l_end","hyprland/window","custom/r_end","","","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","hyprland/window","custom/r_end","","","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","cpu","memory","custom/gpuinfo","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/l_end","tray","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","","custom/padd"],
+	"modules-right": ["custom/padd","","custom/l_end","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","custom/spotify","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/l_end","tray","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
@@ -35,20 +35,17 @@
         "tooltip-format": "<tt><big>{calendar}</big></tt>"
     },
 
-    "custom/spotify": {
-        "exec": "/usr/bin/python3 /home/joshr/.config/waybar/modules/mediaplayer.py --player spotify",
-	"exec-if": "pgrep spotify",
-        "format": " {}",
-        "return-type": "json",
-        "on-click": "playerctl play-pause --player spotify",
-        "on-click-right": "playerctl next --player spotify",
-        "on-click-middle": "playerctl previous --player spotify",
-        "on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
-        "on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
-        "max-length": 25,
-        "escape": true,
-        "tooltip": true
-    },
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+	"persistent_workspaces": { 
+            "1": [],
+            "2": [],
+            "3": []
+	}
+},
 
     "hyprland/window": {
         "format": "  {}",
@@ -85,18 +82,6 @@
 		}
 	},
 
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "active-only": false,
-        "on-click": "activate",
-	"persistent_workspaces": { 
-            "1": [],
-            "2": [],
-            "3": []
-	}
-},
-
     "cpu": {
         "interval": 10,
         "format": "󰍛 {usage}%",
@@ -120,6 +105,21 @@
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000
+    },
+
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 /home/joshr/.config/waybar/modules/mediaplayer.py --player spotify",
+	"exec-if": "pgrep spotify",
+        "format": " {}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause --player spotify",
+        "on-click-right": "playerctl next --player spotify",
+        "on-click-middle": "playerctl previous --player spotify",
+        "on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
+        "on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
+        "max-length": 25,
+        "escape": true,
+        "tooltip": true
     },
 
 "backlight": {
