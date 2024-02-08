@@ -58,14 +58,14 @@ alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also t
 alias vc='code --disable-gpu' # gui code editor
 
 # Handy change dir shortcuts
-abbr .. 'cd ..'
-abbr ... 'cd ../..'
-abbr .3 'cd ../../..'
-abbr .4 'cd ../../../..'
-abbr .5 'cd ../../../../..'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
 
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
-abbr mkdir 'mkdir -p'
+alias mkdir='mkdir -p'
 
 # Fixes "Error opening terminal: xterm-kitty" when using the default kitty term to open some programs through ssh
 alias ssh='kitten ssh'
