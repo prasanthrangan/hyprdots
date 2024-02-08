@@ -2,15 +2,18 @@
 		"format": "{icon}",
 		"icon-size": ${i_task},
 		"icon-theme": "${i_theme}",
-        "spacing": 0,
-		"tooltip-format": "{title}",
+        	"spacing": 0,
+		"tooltip": true,
+		"tooltip-format": "{app_id} | {title}",
 		"on-click": "activate",
 		"on-click-middle": "close",
 		"ignore-list": [
 			"Alacritty"
 		],
 		"app_ids-mapping": {
-			"firefoxdeveloperedition": "firefox-developer-edition"
+			"firefoxdeveloperedition": "firefox-developer-edition",
+			"mercury-default": "mercury-browser",
+			"": "spotify"
 		}
 	},
 
