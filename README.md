@@ -219,7 +219,7 @@ To add your own custom theme, please refer [theming wiki](https://github.com/pra
 
 <table><tr><td>
 <code>h</code><br><code>y</code><br><code>p</code><br><code>r</code></td><td><table>
-    <tr><td>hyprland-git</td><td>main window manager (hyprland-nvidia-git if nvidia card is detected)</td></tr>
+    <tr><td>hyprland-git</td><td>main window manager</td></tr>
     <tr><td>dunst</td><td>graphical notification daemon</td></tr>
     <tr><td>rofi-lbonn-wayland-git</td><td>app launcher</td></tr>
     <tr><td>waybar-hyprland-git</td><td>status bar</td></tr>
