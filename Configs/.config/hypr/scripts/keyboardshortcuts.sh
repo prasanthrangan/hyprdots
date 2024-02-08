@@ -36,6 +36,7 @@ yad --width=800 --height=600 \
 "󰣇 + Alt + P" "screenshot focused monitor" \
 "󰣇 + RightClick (drag)" "resize the window" \
 "󰣇 + LeftClick (drag)" "change the window position" \
+"󰣇 + MiddleClick" "Close active window" \
 "󰣇 + MouseScroll / PageUp/PageDown" "cycle through workspaces" \
 "󰣇 + Shift + [←→↑↓] (hold)" "resizewindows" \
 "󰣇 + [0-9]" "switch workspaces 1-10" \
