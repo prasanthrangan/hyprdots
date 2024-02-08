@@ -11,5 +11,5 @@
             "(.*)Spotify": "$1Spotify 󰓇",
             "(.*)Steam": "$1Steam 󰓓"
         },
-        "max-length": 1000
+        "max-length":55
     },

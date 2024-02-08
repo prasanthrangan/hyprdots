@@ -4,9 +4,9 @@
 // sourced from header module //
 
     "layer": "top",
-    "position": "top",
+    "position": "bottom",
     "mod": "dock",
-    "height": 21,
+    "height": 28,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -14,40 +14,13 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","custom/spotify","cpu","memory","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/spotify","custom/r_end","custom/l_end","hyprland/window","custom/r_end","","","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","wlr/taskbar","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","cpu","memory","custom/gpuinfo","backlight","network","bluetooth","pulseaudio","pulseaudio#microphone","custom/r_end","custom/l_end","tray","custom/r_end","custom/l_end","custom/wallchange","custom/mode","custom/wbar","custom/cliphist","custom/power","custom/r_end","","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
 
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "active-only": false,
-        "on-click": "activate",
-	"persistent_workspaces": { 
-            "1": [],
-            "2": [],
-            "3": []
-	}
-},
-
-    "hyprland/window": {
-        "format": "  {}",
-        "separate-outputs": true,
-        "rewrite": {
-            "joshr@JoshArch:(.*)": "$1 ",
-            "(.*) — Mozilla Firefox": "$1 󰈹",
-            "(.*)Mozilla Firefox": "$1Firefox 󰈹",
-            "(.*) - Visual Studio Code": "$1 󰨞",
-            "(.*)Visual Studio Code": "$1Code 󰨞",
-            "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify": "$1Spotify 󰓇",
-            "(.*)Steam": "$1Steam 󰓓"
-        },
-        "max-length": 1000
-    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -76,6 +49,53 @@
         "escape": true,
         "tooltip": true
     },
+
+    "hyprland/window": {
+        "format": "  {}",
+        "separate-outputs": true,
+        "rewrite": {
+            "joshr@JoshArch:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "$1Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "$1Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "$1Spotify 󰓇",
+            "(.*)Steam": "$1Steam 󰓓"
+        },
+        "max-length":55
+    },
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 16,
+		"icon-theme": "Tela-circle-dracula",
+        	"spacing": 0,
+		"tooltip": true,
+		//"tooltip-format": "{app_id} | {title}",
+		"tooltip-format": "{name} | {title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		//"ignore-list": [
+		//	"Alacritty"
+		//],
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition",
+			"mercury-default": "mercury-browser",
+			"": "spotify"
+		}
+	},
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+	"persistent_workspaces": { 
+            "1": [],
+            "2": [],
+            "3": []
+	}
+},
 
     "cpu": {
         "interval": 10,
@@ -162,31 +182,9 @@
         "scroll-step": 5
     },
 
-    "custom/updates": {
-        "exec": "~/.config/hypr/scripts/systemupdate.sh",
-        "return-type": "json",
-        "format": "󰮯 {}",
-        "on-click": "~/.config/hypr/scripts/systemupdate.sh up",
-        "interval": 86400, // once every day
-        "tooltip": true,
-    },
-
     "tray": {
-        "icon-size": 12,
+        "icon-size": 16,
         "spacing": 5
-    },
-
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
 
     "custom/wallchange": {
