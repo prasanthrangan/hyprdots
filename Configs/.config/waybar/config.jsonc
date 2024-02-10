@@ -65,7 +65,7 @@
 	"wlr/taskbar": {
 		"format": "{icon}",
 		"icon-size": 16,
-		"icon-theme": "Tela-circle-dracula",
+		"icon-theme": "Tela-circle-pink",
         	"spacing": 0,
 		"tooltip": true,
 		//"tooltip-format": "{app_id} | {title}",
@@ -212,7 +212,7 @@
         "exec": "echo ; echo  switch menubar //  dock",
         "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
         "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin vesktop nextcloud steam",
         "interval" : 86400,
         "tooltip": true
     },
