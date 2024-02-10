@@ -304,6 +304,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | <kbd>Super</kbd> + <kbd>Del</kbd> | quit hyprland session
 | <kbd>Super</kbd> + <kbd>W</kbd> | toggle window on focus to float
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | toggle window on focus to fullscreen
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | toggle float-n-pin on focused window
 | <kbd>Super</kbd> + <kbd>J</kbd> | toggle layout
 | <kbd>Super</kbd> + <kbd>G</kbd> | toggle window group
 | <kbd>Super</kbd> + <kbd>T</kbd> | launch kitty terminal
