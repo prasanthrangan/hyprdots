@@ -58,13 +58,15 @@ Wall_Set()
         xtrans="grow"
     fi
 
-    swww img "$wallSet" \
+#? getting the real path as symlinks too glitch
+    swww img "$(readlink "${wallSet}")" \
     --transition-bezier .43,1.19,1,.4 \
     --transition-type "$xtrans" \
     --transition-duration 0.7 \
     --transition-fps 60 \
     --invert-y \
-    --transition-pos "$( hyprctl cursorpos )"
+    --transition-pos "$( hyprctl cursorpos )"    
+
 }
 
 
@@ -126,10 +128,10 @@ done
 
 # check swww daemon and set wall
 
+
 swww query
 if [ $? -eq 1 ] ; then
     swww init
 fi
 
 Wall_Set
-
