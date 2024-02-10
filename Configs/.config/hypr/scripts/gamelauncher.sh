@@ -4,14 +4,21 @@
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
-RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${1}.rasi"
+RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${1:-5}.rasi"
 
 
 # set steam library
-SteamLib="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/config/libraryfolders.vdf"
-SteamThumb="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/appcache/librarycache"
+if pkg_installed steam ; then
+    SteamLib="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/config/libraryfolders.vdf"
+    SteamThumb="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/appcache/librarycache"
+    steamlaunch="steam"
+else
+    SteamLib="$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/config/libraryfolders.vdf"
+    SteamThumb="$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/appcache/librarycache"
+    steamlaunch="flatpak run com.valvesoftware.Steam"
+fi
 
-if [ ! -f $SteamLib ] || [ ! -d $SteamThumb ] || [ ! -f $RofiConf ] ; then
+if [ ! -f $SteamLib ] || [ ! -d $SteamThumb ] ; then
     dunstify "t1" -a "Steam library not found!" -r 91190 -t 2200
     exit 1
 fi
@@ -53,7 +60,7 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 # launch game
 if [ ! -z "$RofiSel" ] ; then
     launchid=`echo "$GameList" | grep "$RofiSel" | cut -d '|' -f 2`
-    steam -applaunch "${launchid} [gamemoderun %command%]" &
+    ${steamlaunch} -applaunch "${launchid} [gamemoderun %command%]" &
     dunstify "t1" -a "Launching ${RofiSel}..." -i ${SteamThumb}/${launchid}_header.jpg -r 91190 -t 2200
 fi
 
