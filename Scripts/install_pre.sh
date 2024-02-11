@@ -29,17 +29,26 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
             sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/c\GRUB_CMDLINE_LINUX_DEFAULT=\"${gcld} nvidia_drm.modeset=1\"" /etc/default/grub
         fi
 
-        read -p "Apply grub theme? [Y/N] : " grubtheme
-        case $grubtheme in
-        Y|y) echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme..."
-            sudo tar -xzf ${CloneDir}/Source/arcs/Grub_Pochita.tar.gz -C /usr/share/grub/themes/
+        echo -e "Select grub theme:\n1) Retroboot (dark)\n2) Pochita (light)"
+        read -p "Press enter to skip grub theme <or> Enter option number : " grubopt
+        case ${grubopt} in
+            1) grubtheme="Retroboot";;
+            2) grubtheme="Pochita";;
+            *) grubtheme="None";;
+        esac
+
+        if [ "${grubtheme}" == "None" ] ; then
+            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..." 
+            sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
+        else
+            echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"
+            sudo tar -xzf ${CloneDir}/Source/arcs/Grub_${grubtheme}.tar.gz -C /usr/share/grub/themes/
             sudo sed -i "/^GRUB_DEFAULT=/c\GRUB_DEFAULT=saved
             /^GRUB_GFXMODE=/c\GRUB_GFXMODE=1280x1024x32,auto
-            /^#GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/pochita/theme.txt\"
-            /^#GRUB_SAVEDEFAULT=true/c\GRUB_SAVEDEFAULT=true" /etc/default/grub ;;
-        *) echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..." 
-            sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub ;;
-        esac
+            /^GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"
+            /^#GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"
+            /^#GRUB_SAVEDEFAULT=true/c\GRUB_SAVEDEFAULT=true" /etc/default/grub
+        fi
 
         sudo grub-mkconfig -o /boot/grub/grub.cfg
     else
