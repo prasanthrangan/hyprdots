@@ -3,7 +3,7 @@
         "exec": "echo ; echo  switch menubar //  dock",
         "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
         "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin vesktop nextcloud steam",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty mercury-browser spotify code dolphin vesktop nextcloud steam",
         "interval" : 86400,
         "tooltip": true
     },
