@@ -38,7 +38,7 @@ dark_light () {
 
 if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
     mkdir -p "${cacheDir}/${gtkTheme}"
-    dcol=(`magick "${input_wall}" -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
+    dcol=(`magick "${input_wall}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
     for (( i = 1; i < 3; i++ )) ; do
         [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
     done
