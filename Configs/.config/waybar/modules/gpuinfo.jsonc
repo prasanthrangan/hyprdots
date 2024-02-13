@@ -1,7 +1,7 @@
     "custom/gpuinfo": {
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh",
         "return-type": "json",
-        "format": " {}",
+        "format": "{}",
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000,
@@ -11,7 +11,7 @@
     "custom/gpuinfo#nvidia": {
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh --use nvidia ",
         "return-type": "json",
-        "format": " {}",
+        "format": "{}",
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000,
@@ -20,7 +20,7 @@
     "custom/gpuinfo#amd": {
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh --use amd ",
         "return-type": "json",
-        "format": " {}",
+        "format": "{}",
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000,
@@ -29,7 +29,7 @@
     "custom/gpuinfo#intel": {
         "exec": " ~/.config/hypr/scripts/gpuinfo.sh --use intel ",
         "return-type": "json",
-        "format": " {}",
+        "format": "{}",
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 1000,
