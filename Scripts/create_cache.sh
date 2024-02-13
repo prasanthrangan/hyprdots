@@ -54,7 +54,6 @@ while getopts "fc" option ; do
 done
 
 # magick function
-
 hex_conv() {
     rgb_val=$(echo "$1" | sed 's/[-srgb()%]//g ; s/,/ /g')
     red=$(echo "$rgb_val * 255 / 100" | awk '{printf "%d", $1}')
@@ -118,9 +117,6 @@ imagick_t2 () {
     fi
 }
 
-
-
-
 export -f hex_conv
 export -f dark_light
 export -f imagick_t2
@@ -143,5 +139,4 @@ do
         fi
     fi
 done < $ctlFile
-
 
