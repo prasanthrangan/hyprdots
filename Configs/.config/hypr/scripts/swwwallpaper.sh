@@ -58,7 +58,7 @@ Wall_Set()
         xtrans="grow"
     fi
 
-#? getting the real path as symlinks too glitch
+    #? getting the real path as symlinks too glitch
     swww img "$(readlink "${wallSet}")" \
     --transition-bezier .43,1.19,1,.4 \
     --transition-type "$xtrans" \
@@ -128,10 +128,10 @@ done
 
 # check swww daemon and set wall
 
-
 swww query
 if [ $? -eq 1 ] ; then
     swww init
 fi
 
 Wall_Set
+
