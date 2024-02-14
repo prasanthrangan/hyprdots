@@ -21,9 +21,9 @@ r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:
 # launch rofi menu
 ThemeSel=$( cat "$ThemeCtl" | while read line
 do
-    thm=`echo $line | cut -d '|' -f 2`
-    wal=`echo $line | awk -F '/' '{print $NF}'`
-    echo -en "$thm\x00icon\x1f$cacheDir/${thm}/${wal}\n"
+    thm=$(echo $line | cut -d '|' -f 2)
+    wal=$(echo $line | awk -F '/' '{print $NF}')
+    echo -en "$thm\x00icon\x1f${cacheDir}/${wal}\n"
 done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf -select "${gtkTheme}")
 
 
