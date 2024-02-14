@@ -4,8 +4,8 @@
 
 Wall_Update()
 {
-    if [ ! -d "${cacheDir}/${curTheme}" ] ; then
-        mkdir -p "${cacheDir}/${curTheme}"
+    if [ ! -d "${cacheDir}" ] ; then
+        mkdir -p "${cacheDir}"
     fi
 
     local x_wall="$1"
@@ -13,23 +13,23 @@ Wall_Update()
     cacheImg=$(basename "$x_wall")
     $ScrDir/swwwallbash.sh "$x_wall" &
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}" ] ; then
-        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${curTheme}/${cacheImg}" &
+    if [ ! -f "${cacheDir}/${cacheImg}" ] ; then
+        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${cacheImg}" &
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.rofi" ] ; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.rofi" &
+    if [ ! -f "${cacheDir}/${cacheImg}.rofi" ] ; then
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$x_wall"[0] "${cacheDir}/${cacheImg}.rofi" &
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.blur" ] ; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.blur" &
+    if [ ! -f "${cacheDir}/${cacheImg}.blur" ] ; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% "$x_wall"[0] "${cacheDir}/${cacheImg}.blur" &
     fi
 
     wait
     awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "${ThemeCtl}"
     ln -fs "${x_wall}" "${wallSet}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "${wallBlr}"
+    ln -fs "${cacheDir}/${cacheImg}.rofi" "${wallRfi}"
+    ln -fs "${cacheDir}/${cacheImg}.blur" "${wallBlr}"
 }
 
 Wall_Change()

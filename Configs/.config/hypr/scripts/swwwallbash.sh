@@ -36,8 +36,8 @@ dark_light () {
 
 # extract 3 dominant colors from input wall
 
-if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
-    mkdir -p "${cacheDir}/${gtkTheme}"
+if [ ! -f "${cacheDir}/${cacheImg}.dcol" ] ; then
+    mkdir -p "${cacheDir}"
     dcol=(`magick "${input_wall}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
     for (( i = 1; i < 3; i++ )) ; do
         [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
@@ -47,9 +47,9 @@ if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
 
     for (( j = 0; j < 3; j++ )) ; do
         r_swatch=$(echo "#${dcol[j]}" | sed 's/#//g')
-        echo "dcol_pry${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+        echo "dcol_pry${j}=\"${r_swatch}\"" >> "${cacheDir}/${cacheImg}.dcol"
         r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -negate -format "%c" histogram:info: | awk '{print $4}'`)
-        echo "dcol_txt${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+        echo "dcol_txt${j}=\"${r_swatch}\"" >> "${cacheDir}/${cacheImg}.dcol"
         z=0
 
         if dark_light "#${dcol[j]}" ; then
@@ -57,14 +57,14 @@ if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
             for t in 30 50 70 90 ; do
                 z=$(( z + 1 ))
                 r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 - (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
-                echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+                echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${cacheImg}.dcol"
             done
         else
             #echo "Generate accent colors for darker shades..."
             for t in 15 35 55 75 ; do
                 z=$(( z + 1 ))
                 r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
-                echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+                echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${cacheImg}.dcol"
             done
         fi
     done
@@ -78,7 +78,7 @@ fn_wallbash () {
     eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
     eval appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
     source "${ScrDir}/globalcontrol.sh"
-    source "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
+    source "${cacheDir}/${cacheImg}.dcol"
 
     sed '1d' "${tplt}" > "${target}"
     sed -i "s/<wallbash_pry0>/${dcol_pry0}/g

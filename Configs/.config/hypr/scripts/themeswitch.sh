@@ -74,8 +74,8 @@ getWall=`grep '^1|' "$ThemeCtl" | awk -F '|' '{print $NF}'`
 getWall=`eval echo "$getWall"`
 getName=`basename "$getWall"`
 ln -fs "$getWall" "$ConfDir/swww/wall.set"
-ln -fs "$cacheDir/${ThemeSet}/${getName}.rofi" "$ConfDir/swww/wall.rofi"
-ln -fs "$cacheDir/${ThemeSet}/${getName}.blur" "$ConfDir/swww/wall.blur"
+ln -fs "${cacheDir}/${getName}.rofi" "$ConfDir/swww/wall.rofi"
+ln -fs "${cacheDir}/${getName}.blur" "$ConfDir/swww/wall.blur"
 "${ScrDir}/swwwallpaper.sh"
 
 if [ $? -ne 0 ] ; then
