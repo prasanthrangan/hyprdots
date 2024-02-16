@@ -54,7 +54,6 @@ while getopts "fc" option ; do
 done
 
 # magick function
-
 hex_conv() {
     rgb_val=$(echo "$1" | sed 's/[-srgb()%]//g ; s/,/ /g')
     red=$(echo "$rgb_val * 255 / 100" | awk '{printf "%d", $1}')
@@ -78,19 +77,19 @@ imagick_t2 () {
     wpBaseName=$(basename "${wpFullName}")
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}" ]; then
-        convert "${wpFullName}" -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}"
+        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}"
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.rofi" ]; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}" "${cacheDir}/${theme}/${wpBaseName}.rofi"
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi"
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.blur" ]; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}" "${cacheDir}/${theme}/${wpBaseName}.blur"
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur"
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
-        dcol=(`magick "${wpFullName}" -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
+        dcol=(`magick "${wpFullName}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
         for (( i = 1; i < 3; i++ )) ; do
             [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
         done
@@ -129,9 +128,10 @@ do
     fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
     wallPath=$(dirname "$fullPath")
     mkdir -p ${cacheDir}/${theme}
-    mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+    mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
     echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
     parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
+
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
         codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
         if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then

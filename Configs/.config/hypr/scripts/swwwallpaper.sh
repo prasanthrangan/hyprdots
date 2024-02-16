@@ -14,15 +14,15 @@ Wall_Update()
     $ScrDir/swwwallbash.sh "$x_wall" &
 
     if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}" ] ; then
-        convert -strip "$x_wall" -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${curTheme}/${cacheImg}" &
+        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${curTheme}/${cacheImg}" &
     fi
 
     if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.rofi" ] ; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$x_wall" "${cacheDir}/${curTheme}/${cacheImg}.rofi" &
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.rofi" &
     fi
 
     if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.blur" ] ; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "$x_wall" "${cacheDir}/${curTheme}/${cacheImg}.blur" &
+        convert -strip -scale 10% -blur 0x3 -resize 100% "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.blur" &
     fi
 
     wait
@@ -58,13 +58,15 @@ Wall_Set()
         xtrans="grow"
     fi
 
-    swww img "$wallSet" \
+    #? getting the real path as symlinks too glitch
+    swww img "$(readlink "${wallSet}")" \
     --transition-bezier .43,1.19,1,.4 \
     --transition-type "$xtrans" \
     --transition-duration 0.7 \
     --transition-fps 60 \
     --invert-y \
-    --transition-pos "$( hyprctl cursorpos )"
+    --transition-pos "$( hyprctl cursorpos )"    
+
 }
 
 
@@ -86,12 +88,12 @@ curTheme=$(echo "$ctlLine" | awk -F '|' '{print $2}')
 fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
 wallName=$(basename "$fullPath")
 wallPath=$(dirname "$fullPath")
-mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
 
 if [ ! -f "$fullPath" ] ; then
     if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/swww/$curTheme" ] ; then
         wallPath="${XDG_CONFIG_HOME:-$HOME/.config}/swww/$curTheme"
-        mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+        mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
         fullPath="${Wallist[0]}"
     else
         echo "ERROR: wallpaper $fullPath not found..."

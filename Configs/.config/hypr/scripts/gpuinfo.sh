@@ -102,28 +102,70 @@ sed -i "s/^#${next_prioGPU}/${next_prioGPU}/" "${gpuQ}" # Uncomment the next pri
 sed -i "s/prioGPU=${prioGPU}/prioGPU=${next_prioGPU}/" "${gpuQ}" # Update the prioGPU in the file
 }
 
-get_temperature_emoji() { # Function to define emoji based on temperature
-  local temperature="$1"
-  if [[ "${temperature}" -lt 60 ]]; then
-    echo ""  # Ice emoji for less than 60°C
-  else
-    echo "󰈸"  # Fire emoji for 60°C or higher
-  fi
+# Thee shalt find the greatest one,
+# He who not more than the chosen one
+map_floor() {
+
+    # From the depths of the string, words arise,
+    # Keys in pairs, a treasure in disguise.
+    IFS=', ' read -r -a pairs <<< "$1"
+
+    # If the final token stands alone and bold,
+    # Declare it the default, its worth untold.
+    if [[ ${pairs[-1]} != *":"* ]]; then
+        def_val="${pairs[-1]}"
+        unset 'pairs[${#pairs[@]}-1]'
+    fi
+
+    # Scans the map, a peak it seeks,
+    # The highest passed, the value speaks.
+    for pair in "${pairs[@]}"; do
+        IFS=':' read -r key value <<< "$pair"
+        
+        # Behold! Thou holds the secrets they seek,
+        # Declare it and silence the whispers unique.
+        if awk -v num="$2" -v k="$key" 'BEGIN { exit !(num > k) }'; then
+            echo "$value"
+            return
+        fi
+    done
+
+    # On this lonely shore, where silence dwells
+    # Even the waves, echoes words unheard
+    [ -n "$def_val" ] && echo $def_val || echo " "
+}
+
+# generate emoji and icon based on temperature and utilization
+get_icons() {
+    # key-value pairs of temperature and utilization levels
+    temp_lv="85:&🌋, 65:&🔥, 45:&☁️, &❄️"
+    util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
+
+    # return comma seperated emojis/icons 
+    icons=$(map_floor "$temp_lv" $1 | sed "s/&/,/")
+    icons="$icons,$(map_floor "$util_lv" $2)"
+    echo $icons
 }
 
 generate_json() {
-  emoji=$(get_temperature_emoji "${temperature}")
-  local json="{\"text\":\"${temperature}°C\", \"tooltip\":\"GPU: ${primary_gpu}\n${emoji} Temperature: ${temperature}°C"
+  # get emoji and icon based on temperature and utilization
+  icons=$(get_icons "$temperature" "$utilization")
+  thermo=$(echo $icons | awk -F, '{print $1}')
+  emoji=$(echo $icons | awk -F, '{print $2}')
+  speedo=$(echo $icons | awk -F, '{print $3}')
+
+  # emoji=$(get_temperature_emoji "${temperature}")
+  local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
 #? Soon Add Something incase needed.
   declare -A tooltip_parts
-  if [[ -n "${utilization}" ]]; then tooltip_parts["\n󰾆 Utilization: "]="${utilization}%" ; fi
+  if [[ -n "${utilization}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${utilization}%" ; fi
   if [[ -n "${current_clock_speed}" ]] && [[ -n "${max_clock_speed}" ]]; then tooltip_parts["\n Clock Speed: "]="${current_clock_speed}/${max_clock_speed} MHz" ; fi
-  if [[ -n "${gpu_load}" ]]; then tooltip_parts["\n󰾆 Utilization: "]="${gpu_load}%" ; fi
+  if [[ -n "${gpu_load}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${gpu_load}%" ; fi
   if [[ -n "${core_clock}" ]]; then tooltip_parts["\n Clock Speed: "]="${core_clock} MHz" ;fi
   if [[ -n "${power_usage}" ]]; then if [[ -n "${power_limit}" ]]; then
-                                    tooltip_parts["\n Power Usage: "]="${power_usage}/${power_limit} W"
+                                    tooltip_parts["\n󱪉 Power Usage: "]="${power_usage}/${power_limit} W"
                                   else
-                                    tooltip_parts["\n Power Usage: "]="${power_usage} W"
+                                    tooltip_parts["\n󱪉 Power Usage: "]="${power_usage} W"
                                   fi
   fi
   if [[ -n "${power_discharge}" ]] && [[ "${power_discharge}" != "0" ]]; then tooltip_parts["\n Power Discharge: "]="${power_discharge} W" ;fi
@@ -156,7 +198,7 @@ max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpu
 }
 
 intel_GPU() { #? Function to query basic intel GPU
-    primary_gpu="INTEL ${intel_gpu}"
+    primary_gpu="Intel ${intel_gpu}"
     general_query
 }
 
