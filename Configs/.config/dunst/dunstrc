@@ -455,11 +455,11 @@
     foreground = "#E2DFD1"
     frame_color = "#262C48"
     icon = "~/.config/dunst/icons/hyprdots.svg"
-    timeout = 10
+    timeout = 4
 
 [urgency_normal]
     background = "#4D5C78"
     foreground = "#E2DFD1"
     frame_color = "#622D28"
     icon = "~/.config/dunst/icons/hyprdots.svg"
-    timeout = 10
+    timeout = 4
