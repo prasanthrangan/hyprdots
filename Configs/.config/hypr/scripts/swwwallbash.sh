@@ -24,50 +24,63 @@ hex_conv() {
     printf "%02X%02X%02X\n" "$red" "$green" "$blue"
 }
 
-dark_light () {
+rgb_negative() {
+    local rgb_val=$1
+    red=${rgb_val:0:2}
+    green=${rgb_val:2:2}
+    blue=${rgb_val:4:2}
+    red_dec=$((16#$red))
+    green_dec=$((16#$green))
+    blue_dec=$((16#$blue))
+    negative_red=$(printf "%02X" $((255 - $red_dec)))
+    negative_green=$(printf "%02X" $((255 - $green_dec)))
+    negative_blue=$(printf "%02X" $((255 - $blue_dec)))
+    echo "${negative_red}${negative_green}${negative_blue}"
+}
+
+dark_light() {
     inCol="$1"
     red=$(printf "%d" "0x${inCol:1:2}")
     green=$(printf "%d" "0x${inCol:3:2}")
     blue=$(printf "%d" "0x${inCol:5:2}")
     brightness=$((red + green + blue))
-    [ "$brightness" -lt 300 ]
+    [ "$brightness" -lt 250 ]
 }
 
 
-# extract 3 dominant colors from input wall
+# extract 3 dominant colors and generate accent colors
 
 if [ ! -f "${cacheDir}/${gtkTheme}/${cacheImg}.dcol" ] ; then
     mkdir -p "${cacheDir}/${gtkTheme}"
-    dcol=(`magick "${input_wall}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | awk '{print substr($3,2,6)}' | awk '{printf "%d %s\n", "0x"$1, $0}' | sort -n | awk '{print $2}'`)
+    readarray -t dcol <<< $(magick "${input_wall}"[0] -colors 3 -define histogram:unique-colors=true -format "%c" histogram:info: | sed -e 's/.*\(#[0-9A-F]\+\).*/\1/' | cut -c2-7 | sort)
     for (( i = 1; i < 3; i++ )) ; do
         [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
     done
 
-    # generate palette based on 3 primary color
-
     for (( j = 0; j < 3; j++ )) ; do
         r_swatch=$(echo "#${dcol[j]}" | sed 's/#//g')
         echo "dcol_pry${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
-        r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -negate -format "%c" histogram:info: | awk '{print $4}'`)
+        r_swatch=$(rgb_negative ${dcol[j]})
         echo "dcol_txt${j}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
         z=0
 
         if dark_light "#${dcol[j]}" ; then
-            #echo "Generate accent colors for lighter shades..."
-            for t in 30 50 70 90 ; do
+            echo "#${dcol[j]} // pry${j}-[dark]"
+            for t in 25 45 65 85 ; do
                 z=$(( z + 1 ))
-                r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 200,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 - (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 70,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (6*z) )) -channel RGB -evaluate multiply 3.$t -format "%c" histogram:info: | awk '{print $4}'`)
                 echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
             done
         else
-            #echo "Generate accent colors for darker shades..."
-            for t in 15 35 55 75 ; do
+            echo "#${dcol[j]} // pry${j}-[light]"
+            for t in 20 40 60 80 ; do
                 z=$(( z + 1 ))
-                r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 80,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (2*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
+                r_swatch=$(hex_conv `convert xc:"#${dcol[j]}" -modulate 100,"$(awk "BEGIN {print $t * 1.5}")",$(( 100 + (3*z) )) -channel RGB -evaluate multiply 1.$t -format "%c" histogram:info: | awk '{print $4}'`)
                 echo "dcol_${j}xa${z}=\"${r_swatch}\"" >> "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
             done
         fi
     done
+    cat "${cacheDir}/${gtkTheme}/${cacheImg}.dcol"
 fi
 
 
