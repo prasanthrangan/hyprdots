@@ -18,6 +18,11 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
     fi
 
     if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] ; then
+        spicetify &> /dev/null
+        mkdir -p ~/.config/spotify
+        touch ~/.config/spotify/prefs
+        sptfyConf=$(spicetify -c)
+        sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify+g" "${sptfyConf}"
         tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
         spicetify config current_theme Sleek
         spicetify config color_scheme Wallbash

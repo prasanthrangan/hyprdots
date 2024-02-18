@@ -38,21 +38,21 @@ sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 
 
 # spotify
-if pkg_installed spotify && pkg_installed spicetify-cli && [ `ls -A ~/.config/spicetify/Backup | wc -l` -eq 0 ]
+if pkg_installed spotify && pkg_installed spicetify-cli
     then
-    spotify &> /dev/null &
-    spicetify -c
+    if [ ! -w /opt/spotify ] || [ ! -w /opt/spotify/Apps ]; then
+        sudo chmod a+wr /opt/spotify
+        sudo chmod a+wr /opt/spotify/Apps -R
+    fi
 
+    spicetify &> /dev/null
     mkdir -p ~/.config/spotify
     touch ~/.config/spotify/prefs
-    sudo chmod a+wr /opt/spotify
-    sudo chmod a+wr /opt/spotify/Apps -R
-
+    sptfyConf=$(spicetify -c)
+    sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify+g" "${sptfyConf}"
     tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
-    spicetify backup apply
     spicetify config current_theme Sleek
     spicetify config color_scheme Wallbash
-    spicetify apply
 fi
 
 

@@ -106,6 +106,8 @@ mode-switcher {
 }
 button {
     cursor:                      pointer;
+    vertical-align:              0.50;
+    horizontal-align:            0.45;
     padding:                     0px;
     border-radius:               50px;
     background-color:            @main-bg;
