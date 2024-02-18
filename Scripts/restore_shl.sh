@@ -55,6 +55,7 @@ fi
 
 # set shell
 if [[ "$(grep "/${USER}:" /etc/passwd | awk -F '/' '{print $NF}')" != "${myShell}" ]] ; then
+    echo -e "\033[0;32m[SHELL]\033[0m changing shell to ${myShell}..."
     grep -q "$(which zsh)" /etc/shells || sudo tee -a /etc/shells < <(which zsh)
     chsh -s "$(which ${myShell})"
 else
