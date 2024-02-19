@@ -40,38 +40,43 @@ sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 # spotify
 if pkg_installed spotify && pkg_installed spicetify-cli
     then
-    spotify &> /dev/null &
-    sleep 2
-    killall spotify
-
-    sudo chmod a+wr /opt/spotify
-    sudo chmod a+wr /opt/spotify/Apps -R
-    tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
-
-    if [ `ls -A ~/.config/spicetify/Backup | wc -l` -eq 0 ]
-        then
-        spicetify backup apply
+    if [ ! -w /opt/spotify ] || [ ! -w /opt/spotify/Apps ]; then
+        sudo chmod a+wr /opt/spotify
+        sudo chmod a+wr /opt/spotify/Apps -R
     fi
 
+    spicetify &> /dev/null
+    mkdir -p ~/.config/spotify
+    touch ~/.config/spotify/prefs
+    sptfyConf=$(spicetify -c)
+    sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify+g" "${sptfyConf}"
+    tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
     spicetify config current_theme Sleek
-    spicetify config color_scheme Cherry
-    spicetify apply
+    spicetify config color_scheme Wallbash
 fi
 
 
 # firefox
 if pkg_installed firefox
     then
-    firefox &> /dev/null &
-    sleep 3
-    killall firefox
+    FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
 
-    FoxRel=`ls -l ~/.mozilla/firefox/ | grep .default-release | awk '{print $NF}'`
-    if [ `echo $FoxRel | wc -w` -eq 1 ]
-        then
-        tar -xzf ${CloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C ~/.mozilla/firefox/${FoxRel}/
+    if [ -z "${FoxRel}" ] ; then
+        firefox &> /dev/null &
+        sleep 1
+        FoxRel=$(find ~/.mozilla/firefox -maxdepth 1 -type d -name "*.default-release" | head -1)
     else
-        echo "ERROR: Please cleanup Firefox default-release directories"
+        BkpDir="${HOME}/.config/cfg_backups/$(date +'%y%m%d_%Hh%Mm%Ss')_apps"
+        mkdir -p "${BkpDir}"
+        cp -r ~/.mozilla/firefox "${BkpDir}"
     fi
+
+    tar -xzf ${CloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C "${FoxRel}"
+    tar -xzf ${CloneDir}/Source/arcs/Firefox_Extensions.tar.gz -C ~/.mozilla/
+
+    find ~/.mozilla/extensions -maxdepth 1 -type f -name "*.xpi" | while read fext
+    do
+        firefox -profile "${FoxRel}" "${fext}" &> /dev/null &
+    done
 fi
 
