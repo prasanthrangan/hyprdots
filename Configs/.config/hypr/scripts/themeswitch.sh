@@ -95,11 +95,6 @@ if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
 fi
 
 
-# kitty
-ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
-killall -SIGUSR1 kitty
-
-
 # kvantum QT
 kvantummanager --set "${ThemeSet}"
 

@@ -11,7 +11,18 @@ dcol="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/Themes/Sleek/Wall-Dcol.ini"
 
 if pkg_installed spotify && pkg_installed spicetify-cli ; then
 
+    if [ ! -w /opt/spotify ] || [ ! -w /opt/spotify/Apps ]; then
+        notify-send -a "Hyprdots" "Permission needed for Wallbash Spotify theme"
+        pkexec chmod a+wr /opt/spotify
+        pkexec chmod a+wr /opt/spotify/Apps -R
+    fi
+
     if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] ; then
+        spicetify &> /dev/null
+        mkdir -p ~/.config/spotify
+        touch ~/.config/spotify/prefs
+        sptfyConf=$(spicetify -c)
+        sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify+g" "${sptfyConf}"
         tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
         spicetify config current_theme Sleek
         spicetify config color_scheme Wallbash
@@ -24,4 +35,3 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
 
     cp "$dcol" "$scol"
 fi
-

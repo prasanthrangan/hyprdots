@@ -3,17 +3,13 @@
 # set variables
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
-kittyDir="${XDG_CONFIG_HOME:-${HOME}/.config}/kitty"
-
-if ! grep -q 'include themes/wallbash-kitty.conf' "${kittyDir}/kitty.conf"; then
-    echo "include themes/wallbash-kitty.conf" >> "${kittyDir}/kitty.conf"
-fi
+kittyDir="${ConfDir}/kitty/themes"
 
 #Override kitty config
 if [ "${EnableWallDcol}" -ne 1 ] ; then
- sed -i '/include themes\/wallbash-kitty\.conf/ s/^/#/' "${kittyDir}/kitty.conf"
+    ln -fs ${kittyDir}/${gtkTheme}.conf ${kittyDir}/theme.conf
 else
- sed -i '/include themes\/wallbash-kitty\.conf/ s/^\s*##*//' "${kittyDir}/kitty.conf"
+    ln -fs ${kittyDir}/Wall-Dcol.conf ${kittyDir}/theme.conf
 fi
 
 killall -SIGUSR1 kitty
