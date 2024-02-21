@@ -1,6 +1,6 @@
 $HOME/.config/kitty/themes/Wall-Dcol.conf|${ScrDir}/wallbashkitty.sh
-foreground         #<wallbash_pry2>
-background         #<wallbash_0xa1>
+foreground         #<wallbash_txt0>
+background         #<wallbash_pry0>
 cursor             #<wallbash_txt1> 
 
 active_tab_foreground     #<wallbash_pry0>
