@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+lockFile="/tmp/hyrpdots$(id -u)swwwallpaper.lock"
+ [ -e "$lockFile" ] &&  notify-send -a "Hyprdots" "An instance of the script is already running..." && exit  1 
+touch "${lockFile}"
+trap 'rm -f ${lockFile}'  EXIT
+
 # define functions
 
 Wall_Update()
