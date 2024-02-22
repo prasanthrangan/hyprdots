@@ -1,7 +1,8 @@
 #!/bin/bash
 
-sddmback="/usr/share/sddm/themes/corners/backgrounds/bg.png"
-sddmconf="/usr/share/sddm/themes/corners/theme.conf"
+sddm_theme=$(grep -oP 'Current=\K.*' /etc/sddm.conf.d/kde_settings.conf)
+sddmback="/usr/share/sddm/themes/${sddm_theme}/backgrounds/bg.png"
+sddmconf="/usr/share/sddm/themes/${sddm_theme}/theme.conf"
 slnkwall="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.set"
 
 if [ "$(getfacl -p /home/${USER} | grep user:sddm | awk '{print substr($0,length)}')" != "x" ] ; then
