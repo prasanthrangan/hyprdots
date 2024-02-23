@@ -1,6 +1,6 @@
     "custom/wbar": {
         "format": "{}", //    //
-        "exec": "echo ; echo  switch menubar //  dock",
+        "exec": "echo ; echo  switch bar //  dock",
         "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
         "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
         "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin",
