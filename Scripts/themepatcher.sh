@@ -28,7 +28,9 @@ if [ -d "$2" ]; then
 else Git_Repo=${2%/}
     if echo "$Git_Repo" | grep -q "/tree/"; then
         branch=${Git_Repo#*tree/} Git_Repo=${Git_Repo%/tree/*}
-    else branches=$(curl -s "https://api.github.com/repos/${Git_Repo#*://*/}/branches" | jq -r '.[].name') ; branches=($branches)
+    else url=$(curl -s "https://api.github.com/repos/${Git_Repo#*://*/}/branches" | jq -r '.url' )
+        branches=$(curl -s ${url} | jq -r '.[].name ' )
+        branches=($branches)
         if [[ ${#branches[@]} -le 1 ]]; then
             branch=${branches[0]}
         else echo "Select a Branch"
