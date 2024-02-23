@@ -1,6 +1,6 @@
-    "custom/mode": {
+    "custom/theme": {
         "format": "{}",
-        "exec": "echo ; echo 󰟡 switch mode",
+        "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
         "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",

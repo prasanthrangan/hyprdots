@@ -1,4 +1,5 @@
-"custom/keybindhint": {
-    "format": " ",
-    "on-click": "Hyprdots show binds",
-},
+    "custom/keybindhint": {
+        "format": " ",
+        "on-click": "Hyprdots show binds",
+    },
+
