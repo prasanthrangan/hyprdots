@@ -28,8 +28,7 @@ while getopts "fc" option ; do
         rm -Rf ${cacheDir}
         echo "Cache dir ${cacheDir} cleared...";;
     c ) # use custom wallpaper
-        shift $((OPTIND -1))
-        inWall="$1"
+        inWall="$OPTARG"
         if [[ "${inWall}" == '~'* ]]; then
             inWall="$HOME${inWall:1}"
         fi
@@ -52,6 +51,10 @@ while getopts "fc" option ; do
         exit 1 ;;
     esac
 done
+
+shift $((OPTIND - 1))
+ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${ctlFile}")
+[ -z "${ctlRead}" ] && ctlRead=$(cat "${ctlFile}")
 
 # magick function
 hex_conv() {
@@ -138,7 +141,7 @@ export -f dark_light
 export -f imagick_t2
 
 # create thumbnails for each theme > wallpapers
-while read ctlLine
+echo "${ctlRead}" | while read ctlLine
 do
     theme=$(echo $ctlLine | awk -F '|' '{print $2}')
     fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
@@ -154,5 +157,5 @@ do
             code --install-extension "${codex}" 2> /dev/null
         fi
     fi
-done < $ctlFile
+done
 

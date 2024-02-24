@@ -11,6 +11,26 @@ if [ $? -ne 0 ] ; then
 fi
 
 
+# themepatcher
+echo -e "\033[0;32m[THEMEPATCHER]\033[0m additional themes available..."
+awk -F '"' '{print "["NR"]",$2}' themepatcher.lst
+prompt_timer 10 "Patch these additional themes? [Y/n]"
+thmopt=${promptIn,,}
+
+if [ "${thmopt}" = "y" ] ; then
+    echo -e "\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
+    while read -r themeName themeRepo themeCode
+    do
+        themeName="${themeName//\"/}"
+        themeRepo="${themeRepo//\"/}"
+        themeCode="${themeCode//\"/}"
+        ./themepatcher.sh "${themeName}" "${themeRepo}" "${themeCode}"
+    done < themepatcher.lst
+else
+    echo -e "\033[0;33m[SKIP]\033[0m additional themes not patched..."
+fi
+
+
 # sddm
 if pkg_installed sddm
     then
@@ -64,22 +84,3 @@ fi
 # shell
 ./restore_shl.sh ${getShell}
 
-
-# themepatcher
-echo -e "\033[0;32m[THEMEPATCHER]\033[0m additional themes available..."
-awk -F '"' '{print $2}' themepatcher.lst
-read -p "Patch these additional themes? [Y/n]: " thmopt
-thmopt=${thmopt,,}
-
-if [ "${thmopt}" = "y" ] ; then
-    echo -e "\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
-    while read -r themeName themeRepo themeCode
-    do
-        themeName="${themeName//\"/}"
-        themeRepo="${themeRepo//\"/}"
-        themeCode="${themeCode//\"/}"
-        ./themepatcher.sh "${themeName}" "${themeRepo}" "${themeCode}"
-    done < themepatcher.lst
-else
-    echo -e "\033[0;33m[SKIP]\033[0m additional themes not patched..."
-fi
