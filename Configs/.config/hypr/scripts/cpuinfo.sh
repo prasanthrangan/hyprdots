@@ -1,45 +1,46 @@
 #!/bin/bash
 
-get_icons() {
-    
-    # Thee shalt find the greatest one,
-    # He who not more than the chosen one
-    map_floor() {
 
-        # From the depths of the string, words arise,
-        # Keys in pairs, a treasure in disguise.
-        IFS=', ' read -r -a pairs <<< "$1"
+# Thee shalt find the greatest one,
+# He who not more than the chosen one
+map_floor() {
 
-        # If the final token stands alone and bold,
-        # Declare it the default, its worth untold.
-        if [[ ${pairs[-1]} != *":"* ]]; then
-            def_val="${pairs[-1]}"
-            unset 'pairs[${#pairs[@]}-1]'
+    # From the depths of the string, words arise,
+    # Keys in pairs, a treasure in disguise.
+    IFS=', ' read -r -a pairs <<< "$1"
+
+    # If the final token stands alone and bold,
+    # Declare it the default, its worth untold.
+    if [[ ${pairs[-1]} != *":"* ]]; then
+        def_val="${pairs[-1]}"
+        unset 'pairs[${#pairs[@]}-1]'
+    fi
+
+    # Scans the map, a peak it seeks,
+    # The highest passed, the value speaks.
+    for pair in "${pairs[@]}"; do
+        IFS=':' read -r key value <<< "$pair"
+        
+        # Behold! Thou holds the secrets they seek,
+        # Declare it and silence the whispers unique.
+        if [ ${2%%.*} -gt $key ]; then
+            echo "$value"
+            return
         fi
+    done
 
-        # Scans the map, a peak it seeks,
-        # The highest passed, the value speaks.
-        for pair in "${pairs[@]}"; do
-            IFS=':' read -r key value <<< "$pair"
-            
-            # Behold! Thou holds the secrets they seek,
-            # Declare it and silence the whispers unique.
-            if [ ${2%%.*} -gt $key ]; then
-                echo "$value"
-                return
-            fi
-        done
-
-        # On this lonely shore, where silence dwells
-        # Even the waves, echoes words unheard
-        [ -n "$def_val" ] && echo $def_val || echo " "
-    }
-
-    temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
-    util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
-
-    echo "$(map_floor "$util_lv" $2)$(map_floor "$temp_lv" $1)"
+    # On this lonely shore, where silence dwells
+    # Even the waves, echoes words unheard
+    [ -n "$def_val" ] && echo $def_val || echo " "
 }
+
+# Define glyphs
+if [[ $NO_EMOJI -eq 1 ]]; then
+    temp_lv="85:, 65:, 45:☁, ❄"
+else
+    temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
+fi
+util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
 
 # Get static CPU information
 model=$(lscpu | awk -F': ' '/Model name/ {gsub(/^ *| *$| CPU.*/,"",$2); print $2}')
@@ -64,7 +65,7 @@ while true; do
     frequency=$(cat /proc/cpuinfo | awk '/cpu MHz/{ sum+=$4; c+=1 } END { printf "%.0f", sum/c }')
 
     # Generate glyphs
-    icons=$(get_icons "$temperature" "$utilization")
+    icons=$(echo "$(map_floor "$util_lv" $utilization)$(map_floor "$temp_lv" $temperature)")
     speedo=$(echo ${icons:0:1})
     thermo=$(echo ${icons:1:1})
     emoji=$(echo ${icons:2})
