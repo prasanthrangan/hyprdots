@@ -135,22 +135,21 @@ map_floor() {
     [ -n "$def_val" ] && echo $def_val || echo " "
 }
 
-generate_json() {
-  # Define glyphs
-  if [[ $NO_EMOJI -eq 1 ]]; then
-      temp_lv="85:, 65:, 45:☁, ❄"
-  else
-      temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
-  fi
-  util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
+# Define glyphs
+if [[ $NO_EMOJI -eq 1 ]]; then
+    temp_lv="85:, 65:, 45:☁, ❄"
+else
+    temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
+fi
+util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
 
+generate_json() {
   # Generate glyphs
-  icons=$(echo "$(map_floor "$util_lv" $2)$(map_floor "$temp_lv" $1)")
+  icons=$(echo "$(map_floor "$util_lv" $utilization)$(map_floor "$temp_lv" $temperature)")
   speedo=$(echo ${icons:0:1})
   thermo=$(echo ${icons:1:1})
   emoji=$(echo ${icons:2})
 
-  # emoji=$(get_temperature_emoji "${temperature}")
   local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
 #? Soon Add Something incase needed.
   declare -A tooltip_parts
