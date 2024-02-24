@@ -5,8 +5,15 @@ ZSH=/usr/share/oh-my-zsh/
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # List of plugins used
-plugins=()
+plugins=(git sudo zsh-256color zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
+
+# Dark theme doesn't work great on linux terminal
+if [[ $TERM == 'linux' ]]; then
+    [[ ! -f ~/.p10k.zsh.light ]] || source ~/.p10k.zsh.light
+else
+    [[ ! -f ~/.p10k.zsh.night ]] || source ~/.p10k.zsh.night
+fi
 
 # In case a command is not found, try to find the package that has it
 function command_not_found_handler {
@@ -69,9 +76,6 @@ alias mkdir='mkdir -p'
 
 # Fixes "Error opening terminal: xterm-kitty" when using the default kitty term to open some programs through ssh
 alias ssh='kitten ssh'
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
