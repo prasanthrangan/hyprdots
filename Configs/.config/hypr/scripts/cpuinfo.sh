@@ -41,18 +41,39 @@ get_icons() {
     echo "$(map_floor "$util_lv" $2)$(map_floor "$temp_lv" $1)"
 }
 
-# Get CPU information
+# Get static CPU information
 model=$(lscpu | awk -F': ' '/Model name/ {gsub(/^ *| *$| CPU.*/,"",$2); print $2}')
-utilization=$(top -bn1 | awk '/^%Cpu/ {print 100 - $8}')
 maxfreq=$(lscpu | awk '/CPU max MHz/ { sub(/\..*/,"",$4); print $4}')
-frequency=$(cat /proc/cpuinfo | awk '/cpu MHz/{ sum+=$4; c+=1 } END { printf "%.0f", sum/c }')
-temperature=$(sensors | awk -F': ' '/Package id 0|Tctl/ { gsub(/^ *\+?|\..*/,"",$2); print $2; f=1; exit} END { if (!f) print "N/A"; }')
 
-# Get emoji and icons
-icons=$(get_icons "$temperature" "$utilization")
-speedo=$(echo ${icons:0:1})
-thermo=$(echo ${icons:1:1})
-emoji=$(echo ${icons:2})
+# Get CPU stat
+statFile=$(cat /proc/stat | head -1)
+prevStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<< $statFile)
+prevIdle=$(awk '{print $5 }' <<< $statFile)
 
-# Print the formatted output
-echo "{\"text\":\"$thermo $temperature°C\", \"tooltip\":\"$model\n$thermo Temperature: $temperature°C $emoji\n$speedo Utilization: $utilization%\n Clock Speed: $frequency/$maxfreq MHz\"}"
+while true; do
+    # Get CPU stat
+    statFile=$(cat /proc/stat | head -1)
+    currStat=$(awk '{print $2+$3+$4+$6+$7+$8 }' <<< $statFile)
+    currIdle=$(awk '{print $5 }' <<< $statFile)
+    diffStat=$((currStat-prevStat))
+    diffIdle=$((currIdle-prevIdle))
+
+    # Get dynamic CPU information
+    utilization=$(awk -v stat="$diffStat" -v idle="$diffIdle" 'BEGIN {printf "%.1f", (stat/(stat+idle))*100}')
+    temperature=$(sensors | awk -F': ' '/Package id 0|Tctl/ { gsub(/^ *\+?|\..*/,"",$2); print $2; f=1; exit} END { if (!f) print "N/A"; }')
+    frequency=$(cat /proc/cpuinfo | awk '/cpu MHz/{ sum+=$4; c+=1 } END { printf "%.0f", sum/c }')
+
+    # Generate glyphs
+    icons=$(get_icons "$temperature" "$utilization")
+    speedo=$(echo ${icons:0:1})
+    thermo=$(echo ${icons:1:1})
+    emoji=$(echo ${icons:2})
+
+    # Print the output
+    echo "{\"text\":\"$thermo $temperature°C\", \"tooltip\":\"$model\n$thermo Temperature: $temperature°C $emoji\n$speedo Utilization: $utilization%\n Clock Speed: $frequency/$maxfreq MHz\"}"
+
+    # Store state and sleep
+    prevStat=$currStat
+    prevIdle=$currIdle
+    sleep 5
+done
