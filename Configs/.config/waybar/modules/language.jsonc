@@ -1,5 +1,6 @@
     "hyprland/language": {
         "format": "{short} {variant}",
+        "rotate": ${r_deg},
         "on-click": "~/.config/hypr/scripts/keyboardswitch.sh",
     },
 

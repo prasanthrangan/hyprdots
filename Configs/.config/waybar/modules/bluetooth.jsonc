@@ -1,5 +1,6 @@
     "bluetooth": {
         "format": "",
+        "rotate": ${r_deg},
         "format-disabled": "",
         "format-connected": " {num_connections}",
         "format-connected-battery": "{icon} {num_connections}",

@@ -1,5 +1,6 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
+        "rotate": ${r_deg},
         "all-outputs": true,
         "active-only": false,
         "on-click": "activate",
