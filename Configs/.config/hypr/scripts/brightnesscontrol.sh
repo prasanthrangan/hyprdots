@@ -48,6 +48,12 @@ d)  # decrease the backlight
         brightnessctl set 5%-
     fi
     send_notification ;;
+max)  # max the backlight
+        brightnessctl set 100%
+    send_notification ;;
+min)  # min the backlight
+        brightnessctl set 1%
+    send_notification ;;
 *)  # print error
     print_error ;;
 esac
