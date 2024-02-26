@@ -4,7 +4,7 @@
             "h": 60, // high
             "m": 30, // medium
         },
-        "interval": 30,
+        "interval": 5,
         "format": "󰾆 {used}GB",
         "rotate": ${r_deg},
         "format-m": "󰾅 {used}GB",

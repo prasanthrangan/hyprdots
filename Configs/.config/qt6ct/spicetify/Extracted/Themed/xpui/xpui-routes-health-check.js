@@ -1,0 +1,2 @@
+"use strict";(("undefined"!=typeof self?self:global).webpackChunkopen=("undefined"!=typeof self?self:global).webpackChunkopen||[]).push([[5525],{65744:(e,l,s)=>{s.r(l),s.d(l,{HealthCheck:()=>n,default:()=>f});var c=s(11527);const n=()=>(0,c.jsx)("h1",{children:"Success!"}),f=n}}]);
+//# sourceMappingURL=xpui-routes-health-check.js.map
