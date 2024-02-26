@@ -23,6 +23,7 @@
 
     "custom/power": {
         "format": "{}",
+        "rotate": 0,
         "exec": "echo ; echo  logout",
         "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
         "interval" : 86400, // once every day
@@ -31,6 +32,7 @@
 
     "custom/cliphist": {
         "format": "{}",
+        "rotate": 0,
         "exec": "echo ; echo 󰅇 clipboard history",
         "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
         "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
@@ -41,6 +43,7 @@
 
     "custom/wbar": {
         "format": "{}", //    //
+        "rotate": 0,
         "exec": "echo ; echo  switch bar //  dock",
         "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
         "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
@@ -51,6 +54,7 @@
 
     "custom/theme": {
         "format": "{}",
+        "rotate": 0,
         "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
@@ -61,6 +65,7 @@
 
     "custom/wallchange": {
         "format": "{}",
+        "rotate": 0,
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
         "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
@@ -71,6 +76,7 @@
 
 	"wlr/taskbar": {
 		"format": "{icon}",
+		"rotate": 0,
 		"icon-size": 18,
 		"icon-theme": "Tela-circle-dracula",
         "spacing": 0,
@@ -88,12 +94,13 @@
     "custom/spotify": {
         "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
         "format": " {}",
+        "rotate": 0,
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
         "on-click-right": "playerctl next --player spotify",
         "on-click-middle": "playerctl previous --player spotify",
-        "on-scroll-up": "~/.config/hypr/scripts/spotifyvolumecontrol.sh up",
-        "on-scroll-down": "~/.config/hypr/scripts/spotifyvolumecontrol.sh down",
+        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -p spotify i",
+        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -p spotify d",
         "max-length": 25,
         "escape": true,
         "tooltip": true
@@ -101,6 +108,7 @@
 
     "idle_inhibitor": {
         "format": "{icon}",
+        "rotate": 0,
         "format-icons": {
             "activated": "󰥔",
             "deactivated": ""
@@ -109,6 +117,7 @@
 
     "clock": {
         "format": "{:%I:%M %p}",
+        "rotate": 0,
         "format-alt": "{:%R 󰃭 %d·%m·%y}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
@@ -133,6 +142,7 @@
 
     "tray": {
         "icon-size": 18,
+        "rotate": 0,
         "spacing": 5
     },
 
@@ -143,6 +153,7 @@
             "critical": 20
         },
         "format": "{icon} {capacity}%",
+        "rotate": 0,
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
@@ -151,6 +162,7 @@
 
     "backlight": {
         "device": "intel_backlight",
+        "rotate": 0,
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "brightnessctl set 1%+",
@@ -161,6 +173,7 @@
     "network": {
         "tooltip": true,
         "format-wifi": " ",
+        "rotate": 0,
         "format-ethernet": "󰈀 ",
         "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
         "format-linked": "󰈀 {ifname} (No IP)",
@@ -172,6 +185,7 @@
 
     "bluetooth": {
         "format": "",
+        "rotate": 0,
         "format-disabled": "",
         "format-connected": " {num_connections}",
         "format-connected-battery": "{icon} {num_connections}",
@@ -186,6 +200,7 @@
 
     "pulseaudio": {
         "format": "{icon} {volume}",
+        "rotate": 0,
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
         "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -o m",
@@ -206,6 +221,7 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
+        "rotate": 0,
         "format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
@@ -218,6 +234,7 @@
 
     "custom/keybindhint": {
         "format": " ",
+        "rotate": 0,
         "on-click": "Hyprdots show binds",
     },
 

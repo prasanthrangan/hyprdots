@@ -1,5 +1,6 @@
     "custom/wbar": {
         "format": "{}", //    //
+        "rotate": ${r_deg},
         "exec": "echo ; echo  switch bar //  dock",
         "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
         "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",

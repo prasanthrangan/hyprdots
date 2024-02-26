@@ -1,5 +1,6 @@
     "hyprland/window": {
         "format": "  {}",
+        "rotate": ${r_deg},
         "separate-outputs": true,
         "rewrite": {
             "${USER}@${set_sysname}:(.*)": "$1 ",

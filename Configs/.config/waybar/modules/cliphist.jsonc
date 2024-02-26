@@ -1,5 +1,6 @@
     "custom/cliphist": {
         "format": "{}",
+        "rotate": ${r_deg},
         "exec": "echo ; echo 󰅇 clipboard history",
         "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
         "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",

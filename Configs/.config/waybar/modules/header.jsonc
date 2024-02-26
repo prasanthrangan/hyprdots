@@ -6,7 +6,7 @@
     "layer": "top",
     "position": "${w_position}",
     "mod": "dock",
-    "height": ${w_height},
+    "${hv_pos}": ${w_height},
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
