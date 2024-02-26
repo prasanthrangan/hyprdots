@@ -22,7 +22,7 @@ ctlLine=`grep '^1|' $ctlFile`
 export cacheDir="$HOME/.cache/hyprdots"
 
 # evaluate options
-while getopts "fc" option ; do
+while getopts "fc:" option ; do
     case $option in
     f ) # force remove cache
         rm -Rf ${cacheDir}
@@ -41,7 +41,7 @@ while getopts "fc" option ; do
                 exit 1
             fi
         else
-            echo "ERROR: wallpaper $1 not found..."
+            echo "ERROR: wallpaper ${inWall} not found..."
             exit 1
         fi ;;
     * ) # invalid option

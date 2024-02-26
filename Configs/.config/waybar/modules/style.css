@@ -25,12 +25,12 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
-    margin-top: ${w_margin}px;
-    margin-bottom: ${w_margin}px;
-    margin-left: 0px;
-    padding-left: ${w_paddin}px;
-    padding-right: ${w_paddin}px;
-    margin-right: 0px;
+    margin-${x1}: ${w_margin}px;
+    margin-${x2}: ${w_margin}px;
+    margin-${x3}: 0px;
+    padding-${x3}: ${w_paddin}px;
+    padding-${x4}: ${w_paddin}px;
+    margin-${x4}: 0px;
     color: @main-fg;
     animation: ws_normal 20s ease-in-out 1;
 }
@@ -38,10 +38,10 @@ tooltip {
 #workspaces button.active {
     background: @wb-act-bg;
     color: @wb-act-fg;
-    margin-left: ${w_margin}px;
-    padding-left: ${w_padact}px;
-    padding-right: ${w_padact}px;
-    margin-right: ${w_margin}px;
+    margin-${x3}: ${w_margin}px;
+    padding-${x3}: ${w_padact}px;
+    padding-${x4}: ${w_padact}px;
+    margin-${x4}: ${w_margin}px;
     animation: ws_active 20s ease-in-out 1;
     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -58,12 +58,12 @@ tooltip {
 	text-shadow: none;
     padding: 0px;
     border-radius: ${w_radius}px;
-    margin-top: ${w_margin}px;
-    margin-bottom: ${w_margin}px;
-    margin-left: 0px;
-    padding-left: ${w_paddin}px;
-    padding-right: ${w_paddin}px;
-    margin-right: 0px;
+    margin-${x1}: ${w_margin}px;
+    margin-${x2}: ${w_margin}px;
+    margin-${x3}: 0px;
+    padding-${x3}: ${w_paddin}px;
+    padding-${x4}: ${w_paddin}px;
+    margin-${x4}: 0px;
     color: @wb-color;
     animation: tb_normal 20s ease-in-out 1;
 }
@@ -71,10 +71,10 @@ tooltip {
 #taskbar button.active {
     background: @wb-act-bg;
     color: @wb-act-color;
-    margin-left: ${w_margin}px;
-    padding-left: ${w_padact}px;
-    padding-right: ${w_padact}px;
-    margin-right: ${w_margin}px;
+    margin-${x3}: ${w_margin}px;
+    padding-${x3}: ${w_padact}px;
+    padding-${x4}: ${w_padact}px;
+    margin-${x4}: ${w_margin}px;
     animation: tb_active 20s ease-in-out 1;
     transition: all 0.4s cubic-bezier(.55,-0.68,.48,1.682);
 }
@@ -96,9 +96,9 @@ ${modules_ls}
     color: @main-fg;
     background: @main-bg;
     opacity: 1;
-    margin: ${g_margin}px 0px ${g_margin}px 0px;
-    padding-left: ${g_paddin}px;
-    padding-right: ${g_paddin}px;
+    margin: ${x1g_margin}px ${x2g_margin}px ${x3g_margin}px ${x4g_margin}px;
+    padding-${x3}: ${g_paddin}px;
+    padding-${x4}: ${g_paddin}px;
 }
 
 #workspaces,
@@ -107,37 +107,37 @@ ${modules_ls}
 }
 
 #custom-r_end {
-    border-radius: 0px ${b_radius}px ${b_radius}px 0px;
-    margin-right: ${e_margin}px;
-    padding-right: ${e_paddin}px;
+    border-radius: ${x1rb_radius}px ${x2rb_radius}px ${x3rb_radius}px ${x4rb_radius}px;
+    margin-${x4}: ${e_margin}px;
+    padding-${x4}: ${e_paddin}px;
 }
 
 #custom-l_end {
-    border-radius: ${b_radius}px 0px 0px ${b_radius}px;
-    margin-left: ${e_margin}px;
-    padding-left: ${e_paddin}px;
+    border-radius: ${x1lb_radius}px ${x2lb_radius}px ${x3lb_radius}px ${x4lb_radius}px;
+    margin-${x3}: ${e_margin}px;
+    padding-${x3}: ${e_paddin}px;
 }
 
 #custom-sr_end {
     border-radius: 0px;
-    margin-right: ${e_margin}px;
-    padding-right: ${e_paddin}px;
+    margin-${x4}: ${e_margin}px;
+    padding-${x4}: ${e_paddin}px;
 }
 
 #custom-sl_end {
     border-radius: 0px;
-    margin-left: ${e_margin}px;
-    padding-left: ${e_paddin}px;
+    margin-${x3}: ${e_margin}px;
+    padding-${x3}: ${e_paddin}px;
 }
 
 #custom-rr_end {
-    border-radius: 0px ${c_radius}px ${c_radius}px 0px;
-    margin-right: ${e_margin}px;
-    padding-right: ${e_paddin}px;
+    border-radius: ${x1rc_radius}px ${x2rc_radius}px ${x3rc_radius}px ${x4rc_radius}px;
+    margin-${x4}: ${e_margin}px;
+    padding-${x4}: ${e_paddin}px;
 }
 
 #custom-rl_end {
-    border-radius: ${c_radius}px 0px 0px ${c_radius}px;
-    margin-left: ${e_margin}px;
-    padding-left: ${e_paddin}px;
+    border-radius: ${x1lc_radius}px ${x2lc_radius}px ${x3lc_radius}px ${x4lc_radius}px;
+    margin-${x3}: ${e_margin}px;
+    padding-${x3}: ${e_paddin}px;
 }

@@ -84,5 +84,5 @@ if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.con
 fi
 
 ./create_cache.sh "${ThemeOverride}"
-./restore_lnk.sh
+[ -z "${ThemeOverride}" ] && ./restore_lnk.sh
 

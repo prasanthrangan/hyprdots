@@ -135,7 +135,9 @@ Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
 Y|Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
 THEME
 
-if ! grep -q "|${Fav_Theme}|" "${ThemeCtl}" ; then 
+if grep -q "^.|${Fav_Theme}|" "${ThemeCtl}" ; then
+    awk -F '|' -v thm="${Fav_Theme}" -v cde="$3" '{OFS=FS} $2 == thm {$3 = cde} {print}' "${ThemeCtl}" > tmp && mv tmp "${ThemeCtl}"
+else
     echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${ThemeCtl}"
 fi
 

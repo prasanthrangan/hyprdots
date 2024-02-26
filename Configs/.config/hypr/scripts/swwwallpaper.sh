@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+
 # lock instance
 
 lockFile="/tmp/hyrpdots$(id -u)swwwallpaper.lock"
@@ -112,7 +113,7 @@ fi
 
 # evaluate options
 
-while getopts "nps" option ; do
+while getopts "nps:" option ; do
     case $option in
     n ) # set next wallpaper
         xtrans="grow"
@@ -121,9 +122,8 @@ while getopts "nps" option ; do
         xtrans="outer"
         Wall_Change p ;;
     s ) # set input wallpaper
-        shift $((OPTIND -1))
-        if [ -f "$1" ] ; then
-            Wall_Update "$1"
+        if [ -f "$OPTARG" ] ; then
+            Wall_Update "$OPTARG"
         fi ;;
     * ) # invalid option
         echo "n : set next wall"

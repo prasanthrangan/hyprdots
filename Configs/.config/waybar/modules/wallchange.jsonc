@@ -1,5 +1,6 @@
     "custom/wallchange": {
         "format": "{}",
+        "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
         "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",

@@ -1,5 +1,6 @@
     "custom/theme": {
         "format": "{}",
+        "rotate": ${r_deg},
         "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",

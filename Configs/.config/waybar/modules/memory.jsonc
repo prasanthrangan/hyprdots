@@ -6,6 +6,7 @@
         },
         "interval": 30,
         "format": "󰾆 {used}GB",
+        "rotate": ${r_deg},
         "format-m": "󰾅 {used}GB",
         "format-h": "󰓅 {used}GB",
         "format-c": " {used}GB",

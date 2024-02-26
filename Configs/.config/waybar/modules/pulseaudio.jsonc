@@ -1,5 +1,6 @@
     "pulseaudio": {
         "format": "{icon} {volume}",
+        "rotate": ${r_deg},
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
         "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -o m",
@@ -20,6 +21,7 @@
 
     "pulseaudio#microphone": {
         "format": "{format_source}",
+        "rotate": ${r_deg},
         "format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",

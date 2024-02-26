@@ -47,6 +47,12 @@ fi
 export set_sysname=`hostnamectl hostname`
 export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 
+case ${w_position} in
+    left) export hv_pos="width" ; export r_deg=90 ;;
+    right) export hv_pos="width" ; export r_deg=270 ;;
+    *) export hv_pos="height" ; export r_deg=0 ;;
+esac
+
 export w_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
 if [ -z $w_height ] ; then
     y_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
@@ -102,14 +108,6 @@ gen_mod right 6
 echo -e "\n\n// sourced from modules based on config.ctl //\n" >> $conf_file
 echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print $1}' | awk '!x[$0]++' | while read mod_cpy
 do
-
-#    case ${w_position}-$(grep -E '"modules-left":|"modules-center":|"modules-right":' $conf_file | grep "$mod_cpy" | tail -1 | cut -d '"' -f 2 | cut -d '-' -f 2) in
-#        top-left) export mod_pos=1;;
-#        top-right) export mod_pos=2;;
-#        bottom-right) export mod_pos=3;;
-#        bottom-left) export mod_pos=4;;
-#    esac
-
     if [ -f $modules_dir/$mod_cpy.jsonc ] ; then
         envsubst < $modules_dir/$mod_cpy.jsonc >> $conf_file
     fi
