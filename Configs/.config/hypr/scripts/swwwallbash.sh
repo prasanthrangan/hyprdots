@@ -125,3 +125,6 @@ export -f fn_wallbash
 
 find "$dcoDir" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
 
+# run waybar colors export
+"${ScrDir}/export_waybar_colors/export.sh"
+killall -SIGUSR1 kitty

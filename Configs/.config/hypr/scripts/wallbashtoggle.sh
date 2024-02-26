@@ -23,5 +23,9 @@ do
     fi
 done
 
+# run waybar colors export
+"${ScrDir}/export_waybar_colors/export.sh"
+killall -SIGUSR1 kitty
+
 dunstify "t1" -a "$notif" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 

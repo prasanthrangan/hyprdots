@@ -30,6 +30,9 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf -select "${gtkTh
 # apply theme
 if [ ! -z $ThemeSel ] ; then
     "${ScrDir}/themeswitch.sh" -s $ThemeSel
+	# run waybar colors export
+	"${ScrDir}/export_waybar_colors/export.sh"
+	killall -SIGUSR1 kitty
     dunstify "t1" -a " ${ThemeSel}" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 fi
 
