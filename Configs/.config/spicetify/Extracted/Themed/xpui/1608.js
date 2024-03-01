@@ -1,0 +1,2 @@
+"use strict";(("undefined"!=typeof self?self:global).webpackChunkclient_web=("undefined"!=typeof self?self:global).webpackChunkclient_web||[]).push([[1608],{71608:(s,e,n)=>{n.r(e),n.d(e,{AllPodcastSponsors:()=>c,default:()=>r});var l=n(84875),o=n.n(l);const a={allPodcastSponsorsContainer:"JMUhU_hkyHgGt0sXHzZJ"};var t=n(11527);function c(s){return(0,t.jsx)("section",{...s,className:o()(a.allPodcastSponsorsContainer,s.className)})}const r=c}}]);
+//# sourceMappingURL=1608.js.map
