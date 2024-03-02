@@ -11,6 +11,6 @@ hypDir="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes"
 if [ "$EnableWallDcol" -eq 1 ] ; then
     cp ${hypDir}/Wall-Dcol.conf ${hypDir}/colors.conf
 else
-    > ${hypDir}/colors.conf
+    sed -i '/# ### WALLBASH ###/,$d'  ${hypDir}/colors.conf
 fi
 

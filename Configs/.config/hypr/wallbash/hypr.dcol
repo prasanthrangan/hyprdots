@@ -1,12 +1,45 @@
 $HOME/.config/hypr/themes/Wall-Dcol.conf|${ScrDir}/wallbashypr.sh
+# Exposing colors for all 'hyprlang' derivative configurations
+
+# Color group 1
+
+$primary_color_1   = <wallbash_pry0>    # primary color 1
+$text_color_1      = <wallbash_txt0>    # text color 1
+$p1_accent_color_1 = <wallbash_0xa1>    # accent color 1 for primary color 1
+$p1_accent_color_2 = <wallbash_0xa2>    # accent color 2 for primary color 1
+$p1_accent_color_3 = <wallbash_0xa3>    # accent color 3 for primary color 1
+$p1_accent_color_4 = <wallbash_0xa4>    # accent color 4 for primary color 1
+
+# Color group 2
+
+$primary_color_2   = <wallbash_pry1>    # primary color 2
+$text_color_2      = <wallbash_txt1>    # text color 2
+$p2_accent_color_1 = <wallbash_1xa1>    # accent color 1 for primary color 2
+$p2_accent_color_2 = <wallbash_1xa2>    # accent color 2 for primary color 2
+$p2_accent_color_3 = <wallbash_1xa3>    # accent color 3 for primary color 2
+$p2_accent_color_4 = <wallbash_1xa4>    # accent color 4 for primary color 2
+
+# Color group 3
+
+$primary_color_3   = <wallbash_pry2>    # primary color 3
+$text_color_3      = <wallbash_txt2>    # text color 3
+$p3_accent_color_1 = <wallbash_2xa1>    # accent color 1 for primary color 3
+$p3_accent_color_2 = <wallbash_2xa2>    # accent color 2 for primary color 3
+$p3_accent_color_3 = <wallbash_2xa3>    # accent color 3 for primary color 3
+$p3_accent_color_4 = <wallbash_2xa4>    # accent color 4 for primary color 3
+
+# ### WALLBASH ###
+# Lines below will be removed if wallsh is disabled.
+
 general {
-    col.active_border = rgba(<wallbash_pry2>ff) rgba(<wallbash_pry0>ff) 45deg
-    col.inactive_border = rgba(<wallbash_2xa1>ff) rgba(<wallbash_2xa4>ff) 45deg
+    col.active_border = rgba($primary_color_3ff) rgba($primary_color_1ff) 45deg
+    col.inactive_border = rgba($p3_accent_color_1ff) rgba($p3_accent_color_4ff) 45deg
 }
 
 group {
-    col.border_active = rgba(<wallbash_2xa1>ff) rgba(<wallbash_2xa4>ff) 45deg
-    col.border_inactive = rgba(<wallbash_0xa1>cc) rgba(<wallbash_0xa4>cc) 45deg
-    col.border_locked_active = rgba(<wallbash_2xa2>ff) rgba(<wallbash_2xa3>ff) 45deg
-    col.border_locked_inactive = rgba(<wallbash_0xa2>cc) rgba(<wallbash_0xa3>cc) 45deg
+    col.border_active = rgba($p3_accent_color_1ff) rgba($p3_accent_color_4ff) 45deg
+    col.border_inactive = rgba($p1_accent_color_1cc) rgba($p1_accent_color_4cc) 45deg
+    col.border_locked_active = rgba($p3_accent_color_2ff) rgba($p3_accent_color_3ff) 45deg
+    col.border_locked_inactive = rgba($p1_accent_color_2cc) rgba($p1_accent_color_3cc) 45deg
 }
+
