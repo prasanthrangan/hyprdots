@@ -1,0 +1,55 @@
+#!/bin/fish
+
+set CURRENT_KITTY_THEME $HOME/.config/kitty/themes/theme.conf
+
+function source_colors
+    set MAIN_BG (awk '/@define-color main-bg/{print $NF}' $HOME/.config/waybar/themes/theme.css | tr -d ';')
+    set MAIN_FG (awk '/@define-color main-fg/{print $NF}' $HOME/.config/waybar/themes/theme.css | tr -d ';')
+    set WB_ACT_BG (awk '/@define-color wb-act-bg/{print $NF}' $HOME/.config/waybar/themes/theme.css | tr -d ';')
+    set KITTY_BG (awk '/^background/{print $NF}' $HOME/.config/kitty/themes/theme.conf | tr -d ';')
+
+    # Check if each line exists, add it if not
+    if not grep -q "^tab_bar_background " $CURRENT_KITTY_THEME
+        echo "tab_bar_background        $MAIN_BG" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^tab_bar_background .*/tab_bar_background        $MAIN_BG/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^active_tab_foreground " $CURRENT_KITTY_THEME
+        echo "active_tab_foreground     $MAIN_FG" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^active_tab_foreground .*/active_tab_foreground     $MAIN_FG/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^active_tab_background " $CURRENT_KITTY_THEME
+        echo "active_tab_background     $KITTY_BG" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^active_tab_background .*/active_tab_background     $KITTY_BG/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^inactive_tab_background " $CURRENT_KITTY_THEME
+        echo "inactive_tab_background   $MAIN_BG" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^inactive_tab_background .*/inactive_tab_background   $MAIN_BG/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^inactive_tab_foreground " $CURRENT_KITTY_THEME
+        echo "inactive_tab_foreground   $WB_ACT_BG" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^inactive_tab_foreground .*/inactive_tab_foreground   $WB_ACT_BG/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^tab_bar_style " $CURRENT_KITTY_THEME
+        echo "tab_bar_style slant" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^tab_bar_style .*/tab_bar_style slant/" $CURRENT_KITTY_THEME
+    end
+
+    if not grep -q "^active_tab_font_style " $CURRENT_KITTY_THEME
+        echo "active_tab_font_style bold" >>$CURRENT_KITTY_THEME
+    else
+        sed -i "s/^active_tab_font_style .*/active_tab_font_style bold/" $CURRENT_KITTY_THEME
+    end
+end
+
+source_colors

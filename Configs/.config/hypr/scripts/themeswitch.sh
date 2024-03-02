@@ -98,6 +98,8 @@ fi
 
 # kitty
 ln -fs $ConfDir/kitty/themes/${ThemeSet}.conf $ConfDir/kitty/themes/theme.conf
+# run waybar colors export
+"${ScrDir}/export_waybar_colors/export.sh"
 killall -SIGUSR1 kitty
 
 
