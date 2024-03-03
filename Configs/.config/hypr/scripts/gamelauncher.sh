@@ -1,15 +1,27 @@
 #!/usr/bin/env sh
 
 # set variables
+MODE=${1:-5}
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
-RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${1:-5}.rasi"
+RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${MODE}.rasi"
 
 # set rofi override
 elem_border=$(( hypr_border * 2 ))
 icon_border=$(( elem_border - 3 ))
 r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;}"
+monitor_res=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | "\(.width)x\(.height)"')
+
+#? This block ensures that the image is fitted correctly in each monitor
+if [ "${MODE}" = 5 ]; then
+     BG=${ConfDir}/rofi/assets/steamdeck_holographic.png
+     BGbk=${ConfDir}/rofi/assets/.steamdeck_holographic_bak.png
+     BGfx=${ConfDir}/rofi/assets/.steamdeck_holographic_${monitor_res}.png
+ [ ! -e "${BGbk}" ] && cp "${BG}" "${BGbk}"
+ [ ! -e "${BGfx}"  ] && convert "${BG}" -resize "${monitor_res}" -background none -gravity center -extent "${monitor_res}" "${BGfx}"
+     ln -sf "${BGfx}" "${BG}"
+fi
 
 fn_steam() {
 # check steam mount paths
@@ -51,8 +63,7 @@ meta_data="/tmp/lutrisgames.json"
 
 # Retrieve the list of games from Lutris in JSON format
 #TODO Only call this if new apps are installed...
- #[ ! -s "${meta_data}" ] &&
-  lutris -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + "\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
+ [ ! -s "${meta_data}" ] &&   lutris -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + "\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
 
 CHOICE=$(jq -r '.[].select' "${meta_data}" | rofi -dmenu -p Lutris  -theme-str "${r_override}" -config ${RofiConf})
 [ -z "$CHOICE" ] && exit 0
