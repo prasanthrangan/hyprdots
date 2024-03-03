@@ -151,11 +151,13 @@ do
     echo "Creating thumbnails for ${theme} [${#wpArray[@]}]"
     parallel --bar imagick_t2 ::: "${theme}" ::: "${wpArray[@]}"
 
+if pkg_installed code ; then
     if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then
         codex=$(echo $ctlLine | awk -F '|' '{print $3}' | cut -d '~' -f 1)
         if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
-            code --install-extension "${codex}" 2> /dev/null
+            code --install-extension "${codex}" 2> /dev/null || true
         fi
     fi
-done
+fi
 
+done

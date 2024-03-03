@@ -46,6 +46,7 @@ do
     fi
 
     if [ ! -z "${deps}" ] ; then
+        deps="${deps%"${deps##*[![:space:]]}"}"
         while read -r cdep
         do
             pass=$(cut -d '#' -f 1 ${install_list} | awk -F '|' -v chk="${cdep}" '{if($1 == chk) {print 1;exit}}')
@@ -59,24 +60,25 @@ do
         done < <(echo "${deps}" | xargs -n1)
 
         if [[ ${pass} -ne 1 ]] ; then
-            echo "skipping ${pkg} due to missing (${deps}) dependency..."
+            echo -e "\033[0;33m[SKIP]\033[0m ${pkg} is missing (${deps}) dependency..."
             continue
         fi
     fi
 
     if pkg_installed ${pkg}
         then
-        echo "skipping ${pkg}..."
+        echo -e "\033[0;33m[SKIP]\033[0m ${pkg} is already installed..."
 
     elif pkg_available ${pkg}
         then
-        echo "queueing ${pkg} from arch repo..."
-        pkg_arch=`echo $pkg_arch ${pkg}`
+        repo=$(pacman -Si ${pkg} | awk -F ': ' '/Repository / {print $2}')
+        echo -e "\033[0;32m[${repo}]\033[0m queueing ${pkg} from official arch repo..."
+        pkg_arch=`echo ${pkg_arch} ${pkg}`
 
     elif aur_available ${pkg}
         then
-        echo "queueing ${pkg} from aur..."
-        pkg_aur=`echo $pkg_aur ${pkg}`
+        echo -e "\033[0;32m[aur]\033[0m queueing ${pkg} from arch user repo..."
+        pkg_aur=`echo ${pkg_aur} ${pkg}`
 
     else
         echo "error: unknown package ${pkg}..."
