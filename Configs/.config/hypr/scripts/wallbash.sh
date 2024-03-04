@@ -11,7 +11,7 @@ cacheDir="$HOME/.cache/hyprdots"
 wallbashImg="${1}"
 wallbashColors=4
 wallbashAccent=4
-wallbashFuzz=50
+wallbashFuzz=70
 cacheImg=$(basename "${wallbashImg}")
 cacheThm=$(dirname "${wallbashImg}" | awk -F '/' '{print $NF}')
 wallbashRaw="${cacheDir}/${cacheThm}/${cacheImg}.mpc"
@@ -31,7 +31,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-echo "wallbash // Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
+echo "wallbash :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
 mkdir -p "${cacheDir}/${cacheThm}"
 > "${wallbashOut}"
 
@@ -64,11 +64,9 @@ dcol=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | sort))
 # reformat primary colors cache
 
 for (( i=0; i<${wallbashColors}; i++ )) ; do
-
     [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
     echo "dcol_pry${i}=\"${dcol[i]}\"" >> "${wallbashOut}"
     echo "dcol_txt${i}=\"$(rgb_negative ${dcol[i]})\"" >> "${wallbashOut}"
-
 done
 
 
@@ -76,14 +74,15 @@ done
 
 for (( x=1; x<=${wallbashColors}; x++ )) ; do
     modBri=$(( 100 + (x * 28) ))
-    modSat=$(( 100 - (x * 6 ) ))
+    modSat=$(( 100 - (x * 7 ) ))
     modHue=$(( 100 - (x * 4 ) ))
-    acntRaw=($(magick "${wallbashRaw}" -depth 8 -modulate ${modBri},${modSat},${modHue} -fuzz ${wallbashFuzz}% +dither -colors ${wallbashAccent} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}'))
+    acntRaw=($(magick "${wallbashRaw}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} -fuzz ${wallbashFuzz}% +dither -colors ${wallbashAccent} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}'))
     acnt=($(echo "${acntRaw[@]:0:$wallbashAccent}" | tr ' ' '\n' | sort))
     [ ${#acntRaw[*]} -lt ${wallbashAccent} ] && echo -e "WARNING :: accent colors ${#acntRaw[*]} is less than ${wallbashAccent} palette color..."
 
     for (( j=0; j<${wallbashAccent}; j++ )) ; do
         [ -z "${acnt[j]}" ] && acnt[j]=${acnt[j-1]}
+        #echo "dcol_$((x - 1))xa$((j + 1))=\"${acnt[j]}\"" >> "${wallbashOut}"
         echo "dcol_${j}xa${x}=\"${acnt[j]}\"" >> "${wallbashOut}"
     done
 done

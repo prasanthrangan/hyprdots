@@ -38,7 +38,7 @@ $HOME/.config/dunst/icons/vol/vol-90.svg
    id="g3158"
    inkscape:label="base"
    sodipodi:insensitive="true"><path
-     style="display:inline;fill:#121c1b;fill-opacity:1;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_0xa1>;fill-opacity:1;stroke-width:1.584"
      d="m 248.87519,445.92001 c 116.5824,0 212.8896,-91.2384 220.4928,-205.2864 0,5.0688 1.2672,8.8704 1.2672,13.9392 0,121.6512 -98.8416,221.76 -221.76,221.76 -121.6512,0 -221.759991,-98.8416 -221.759991,-221.76 0,-5.0688 0,-8.8704 1.2672,-13.9392 7.6032,114.048 103.910391,205.2864 220.492791,205.2864 z"
      id="path8"
      inkscape:label="shadow"
@@ -66,7 +66,7 @@ $HOME/.config/dunst/icons/vol/vol-90.svg
      inkscape:label="anchor"
      sodipodi:insensitive="true"
      transform="rotate(72)" /><path
-     style="display:inline;fill:#121c1b;fill-opacity:1;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_0xa1>;fill-opacity:1;stroke-width:1.584"
      d="m 361.43622,227.04305 c -7.23106,2.34952 -13.61811,-0.90487 -15.96762,-8.13595 v 0 c -2.34954,-7.23107 0.90481,-13.61815 8.1359,-15.96765 l 48.20716,-15.66347 c 7.23109,-2.34949 13.61815,0.90488 15.96764,8.13595 v 0 c 2.34953,7.23105 -0.90484,13.61813 -8.13592,15.96765 z"
      id="path3789"
      inkscape:label="shadow" /><path

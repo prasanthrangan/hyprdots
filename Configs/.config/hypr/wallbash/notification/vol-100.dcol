@@ -37,7 +37,7 @@ $HOME/.config/dunst/icons/vol/vol-100.svg
 <g
    id="g3158"
    inkscape:label="base"><path
-     style="display:inline;fill:#121c1b;fill-opacity:1;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_0xa1>;fill-opacity:1;stroke-width:1.584"
      d="m 248.87519,445.92001 c 116.5824,0 212.8896,-91.2384 220.4928,-205.2864 0,5.0688 1.2672,8.8704 1.2672,13.9392 0,121.6512 -98.8416,221.76 -221.76,221.76 -121.6512,0 -221.759991,-98.8416 -221.759991,-221.76 0,-5.0688 0,-8.8704 1.2672,-13.9392 7.6032,114.048 103.910391,205.2864 220.492791,205.2864 z"
      id="path8"
      inkscape:label="shadow" /><circle
@@ -61,7 +61,7 @@ $HOME/.config/dunst/icons/vol/vol-100.svg
      id="circle12-3"
      inkscape:label="anchor"
      transform="rotate(90)" /><path
-     style="display:inline;fill:#121c1b;fill-opacity:1;stroke-width:1.584"
+     style="display:inline;fill:#<wallbash_0xa1>;fill-opacity:1;stroke-width:1.584"
      d="m 363.02624,264.94217 c -7.6032,0 -12.672,-5.0688 -12.672,-12.672 v 0 c 0,-7.6032 5.0688,-12.672 12.672,-12.672 h 50.68801 c 7.6032,0 12.672,5.0688 12.672,12.672 v 0 c 0,7.6032 -5.0688,12.672 -12.672,12.672 z"
      id="path3789"
      inkscape:label="shadow"
