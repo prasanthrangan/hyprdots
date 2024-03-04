@@ -13,7 +13,7 @@ configuration {
 window {
     enabled:                     true;
     fullscreen:                  false;
-    width:                       84.18 %;
+    width:                       84.18%;
     height:                      78.70%;
     transparency:                "real";
     cursor:                      "default";
@@ -31,7 +31,9 @@ mainbox {
     background-color:            transparent;
     orientation:                 horizontal;
     spacing:                     0px;
-    padding:                     21% 18% 13% 18%; // 42px 442px 50px 450px;
+ // padding:                     21% 18% 13%; // 42px 442px 50px 450px;
+  //  padding:                   17% 18% 9%;
+    padding:                     200px 18% 125px; 
 }
 
 
