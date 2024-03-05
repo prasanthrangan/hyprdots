@@ -48,19 +48,25 @@ fi
 fn_lutris() {
 icon_path="${HOME}/.local/share/lutris/coverart"
 [ ! -e "${icon_path}" ] && icon_path="${HOME}/.cache/lutris/coverart"
-meta_data="/tmp/lutrisgames.json"
+meta_data="/tmp/hyprdots-$(id -u)-lutrisgames.json"
 
 # Retrieve the list of games from Lutris in JSON format
 #TODO Only call this if new apps are installed...
- [ ! -s "${meta_data}" ] &&   lutris -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + "\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
+ # [ ! -s "${meta_data}" ] &&  
+ "${run_lutris}" -j -l 2> /dev/null | jq --arg icons "$icon_path/" --arg prefix ".jpg" '.[] |= . + {"select": (.name + "\u0000icon\u001f" + $icons + .slug + $prefix)}' > "${meta_data}"
 
-CHOICE=$(jq -r '.[].select' "${meta_data}" | rofi -dmenu -p Lutris  -theme-str "${r_override}" -config ${RofiConf})
+CHOICE=$(jq -r '.[].select' "${meta_data}" | rofi -dmenu -p Lutris  -theme-str "${r_override}" -config "${RofiConf}" )
 [ -z "$CHOICE" ] && exit 0
 	SLUG=$(jq -r --arg choice "$CHOICE" '.[] | select(.name == $choice).slug' "${meta_data}"  )
 	exec xdg-open "lutris:rungame/${SLUG}"
 }
 
-if ! pkg_installed lutris  || echo "$*" | grep -q "steam" ; then
+# Handle if flatpak or pkgmgr
+run_lutris=""
+( flatpak list --columns=application | grep -q "net.lutris.Lutris" ) && run_lutris="net.lutris.Lutris"
+( pkg_installed 'lutris' ) && run_lutris="lutris"
+
+if [ -z "${run_lutris}" ] || echo "$*" | grep -q "steam" ; then
     # set steam library
     if pkg_installed steam ; then
         SteamLib="${XDG_DATA_HOME:-$HOME/.local/share}/Steam/config/libraryfolders.vdf"
@@ -78,5 +84,6 @@ if ! pkg_installed lutris  || echo "$*" | grep -q "steam" ; then
     fi
     fn_steam
 else
+echo "${run_lutris}"
     fn_lutris
 fi
