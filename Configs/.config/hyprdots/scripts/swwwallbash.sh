@@ -59,12 +59,12 @@ fn_wallbash () {
             s/<wallbash_2xa2>/${dcol_2xa2}/g
             s/<wallbash_2xa3>/${dcol_2xa3}/g
             s/<wallbash_2xa4>/${dcol_2xa4}/g
-            s/<wallbash_pry3>/${dcol_pry2}/g
-            s/<wallbash_txt3>/${dcol_txt2}/g
-            s/<wallbash_3xa1>/${dcol_2xa1}/g
-            s/<wallbash_3xa2>/${dcol_2xa2}/g
-            s/<wallbash_3xa3>/${dcol_2xa3}/g
-            s/<wallbash_3xa4>/${dcol_2xa4}/g" "${target}"
+            s/<wallbash_pry3>/${dcol_pry3}/g
+            s/<wallbash_txt3>/${dcol_txt3}/g
+            s/<wallbash_3xa1>/${dcol_3xa1}/g
+            s/<wallbash_3xa2>/${dcol_3xa2}/g
+            s/<wallbash_3xa3>/${dcol_3xa3}/g
+            s/<wallbash_3xa4>/${dcol_3xa4}/g" "${target}"
 
     if [ ! -z "${appexe}" ] ; then
         "${appexe}"
