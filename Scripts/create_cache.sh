@@ -18,8 +18,7 @@ fi
 
 
 # set variables
-ctlFile="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/theme.ctl"
-ctlLine=`grep '^1|' $ctlFile`
+ctlLine=`grep '^1|' ${ThemeCtl}`
 export cacheDir="$HOME/.cache/hyprdots"
 
 
@@ -37,9 +36,9 @@ while getopts "fc:" option ; do
         if [[ -f "${inWall}" ]] ; then
             if [ `echo "$ctlLine" | wc -l` -eq "1" ] ; then
                 curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ctlFile}" > /tmp/t2 && mv /tmp/t2 "${ctlFile}"
+                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > /tmp/t2 && mv /tmp/t2 "${ThemeCtl}"
             else
-                echo "ERROR : $ctlFile Unable to fetch theme..."
+                echo "ERROR : ${ThemeCtl} Unable to fetch theme..."
                 exit 1
             fi
         else
@@ -55,8 +54,8 @@ while getopts "fc:" option ; do
 done
 
 shift $((OPTIND - 1))
-ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${ctlFile}")
-[ -z "${ctlRead}" ] && ctlRead=$(cat "${ctlFile}")
+ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${ThemeCtl}")
+[ -z "${ctlRead}" ] && ctlRead=$(cat "${ThemeCtl}")
 
 
 # magick function
