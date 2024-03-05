@@ -2,9 +2,9 @@
 
 # set variables
 ScrDir=`dirname "$(realpath "$0")"`
-DcoDir="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/wallbash"
-TgtScr=$ScrDir/globalcontrol.sh
 source $ScrDir/globalcontrol.sh
+DcoDir="${WallbashDir}"
+TgtScr="$ScrDir/globalcontrol.sh"
 
 # switch WallDcol variable
 if [ $EnableWallDcol -eq 1 ] ; then

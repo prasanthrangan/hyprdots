@@ -36,10 +36,10 @@ function print_error
 	cat <<"EOF"
     ./screenshot.sh <action>
     ...valid actions are...
-        p : print all screens
-        s : snip current screen
+        p  : print all screens
+        s  : snip current screen
         sf : snip current screen (frozen)
-        m : print focused monitor
+        m  : print focused monitor
 EOF
 }
 

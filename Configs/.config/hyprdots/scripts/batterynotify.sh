@@ -1,7 +1,8 @@
 #!/bin/bash
 
+ScrDir=`dirname "$(realpath "$0")"`
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-batterynotify_conf=$ConfDir/hypr/hyprdots-ctl/batterynotify.conf
+batterynotify_conf=$ConfDir/hyprdots/batterynotify.conf
 config_info() {
 cat <<  EOF
 
@@ -160,7 +161,7 @@ execute_unplug=${execute_unplug:-}
 config_info
 if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;
 current_pid=$$
-pids=$(pgrep -f "/bin/bash $HOME/.config/hypr/scripts/batterynotify.sh" )
+pids=$(pgrep -f "/bin/bash ${ScrDir}/batterynotify.sh" )
 for pid in $pids ; do if [ "$pid" -ne $current_pid ] ;then kill -STOP "$pid" ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; fi
     get_battery_info # initiate the function
     last_notified_percentage=$battery_percentage

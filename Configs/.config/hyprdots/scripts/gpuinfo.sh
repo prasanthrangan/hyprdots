@@ -1,7 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC2312 
 # shellcheck disable=SC1090
+ScrDir=`dirname "$(realpath "$0")"`
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
+
 tired=false
 [[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >>"${gpuQ}"
 if [[ ! " $* " =~ " startup " ]]; then
@@ -225,15 +227,14 @@ fi
 amd_GPU() { #? Funtion to query amd GPU
   primary_gpu="AMD ${amd_gpu}"
     # Execute the AMD GPU Python script and use its output
-  amd_output=$(python3 ~/.config/hypr/scripts/amdgpu.py)
-if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then #! This will be changed if "(python3 ~/.config/hypr/scripts/amdgpu.py)" Changes!
+  amd_output=$(python3 ${ScrDir}/amdgpu.py)
+if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then
   # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
   temperature=$(echo "${amd_output}" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
   gpu_load=$(echo "${amd_output}" | jq -r '.["GPU Load"]' | sed 's/%//')
   core_clock=$(echo "${amd_output}" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
   power_usage=$(echo "${amd_output}" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
 
-# elif  #? Can add another Layer of query if "~/.config/hypr/scripts/amdgpu.py" fails
 
 else
 general_query

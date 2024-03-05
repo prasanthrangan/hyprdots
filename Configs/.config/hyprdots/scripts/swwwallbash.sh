@@ -4,7 +4,6 @@
 
 export ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
-wallbashDir="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/wallbash/"
 wallbashImg="$1"
 cacheImg=$(basename "${wallbashImg}")
 cacheThm=$(dirname "${wallbashImg}" | awk -F '/' '{print $NF}')
@@ -77,5 +76,5 @@ export -f fn_wallbash
 
 # exec wallbash fn in parallel
 
-find "${wallbashDir}" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
+find "${WallbashDir}" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
 
