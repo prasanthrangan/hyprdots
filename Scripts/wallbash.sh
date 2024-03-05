@@ -52,6 +52,15 @@ rgb_negative() {
     echo "${negative_red}${negative_green}${negative_blue}"
 }
 
+dark_light() {
+    inCol="$1"
+    red=$(printf "%d" "0x${inCol:1:2}")
+    green=$(printf "%d" "0x${inCol:3:2}")
+    blue=$(printf "%d" "0x${inCol:5:2}")
+    brightness=$((red + green + blue))
+    [ "$brightness" -lt 250 ]
+}
+
 
 # quantize raw primary colors
 
@@ -64,26 +73,27 @@ dcol=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | sort))
 # reformat primary colors cache
 
 for (( i=0; i<${wallbashColors}; i++ )) ; do
-    [ -z "${dcol[i]}" ] && dcol[i]=${dcol[i-1]}
     echo "dcol_pry${i}=\"${dcol[i]}\"" >> "${wallbashOut}"
     echo "dcol_txt${i}=\"$(rgb_negative ${dcol[i]})\"" >> "${wallbashOut}"
-done
+    acnd="#${dcol[i]}"
 
-
-# loop to generate accent colors
-
-for (( x=1; x<=${wallbashColors}; x++ )) ; do
-    modBri=$(( 100 + (x * 28) ))
-    modSat=$(( 100 - (x * 7 ) ))
-    modHue=$(( 100 - (x * 4 ) ))
-    acntRaw=($(magick "${wallbashRaw}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} -fuzz ${wallbashFuzz}% +dither -colors ${wallbashAccent} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}'))
-    acnt=($(echo "${acntRaw[@]:0:$wallbashAccent}" | tr ' ' '\n' | sort))
-    [ ${#acntRaw[*]} -lt ${wallbashAccent} ] && echo -e "WARNING :: accent colors ${#acntRaw[*]} is less than ${wallbashAccent} palette color..."
-
-    for (( j=0; j<${wallbashAccent}; j++ )) ; do
-        [ -z "${acnt[j]}" ] && acnt[j]=${acnt[j-1]}
-        #echo "dcol_$((x - 1))xa$((j + 1))=\"${acnt[j]}\"" >> "${wallbashOut}"
-        echo "dcol_${j}xa${x}=\"${acnt[j]}\"" >> "${wallbashOut}"
+    for (( j=1; j<=${wallbashAccent}; j++ )) ; do
+        if dark_light "#${dcol[i]}" ; then
+            modBri=120
+            modSat=110
+            modHue=93
+            evalMpy=""
+        else
+            modBri=114
+            modSat=102
+            modHue=103
+            evalMpy=""
+        fi
+        dark_light "#${dcol[i]}"
+        acnt=$(magick xc:"${acnd}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} +dither -colors 1 ${evalMpy} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+        acnd="#${acnt}"
+        echo ":: dcol_${i}xa${j}=\"${acnt}\""
+        echo "dcol_${i}xa${j}=\"${acnt}\"" >> "${wallbashOut}"
     done
 done
 
