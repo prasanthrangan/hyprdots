@@ -96,7 +96,7 @@ fx_brightness() {
 #// quantize raw primary colors
 
 magick -quiet -regard-warnings "${wallbashImg}"[0] -alpha off +repage "${wallbashRaw}"
-readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -colors ${wallbashColors} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -kmeans ${wallbashColors} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
 [ ${#dcolRaw[*]} -lt ${wallbashColors} ] && echo -e "WARNING :: distinct colors ${#dcolRaw[*]} is less than ${wallbashColors} palette color..."
 
 
