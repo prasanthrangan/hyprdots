@@ -25,7 +25,7 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
+        "on-click": "~/.config/hyprdots/scripts/logoutlaunch.sh 2",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -34,9 +34,9 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh c",
-        "on-click-right": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/cliphist.sh w",
+        "on-click": "sleep 0.1 && ~/.config/hyprdots/scripts/cliphist.sh c",
+        "on-click-right": "sleep 0.1 && ~/.config/hyprdots/scripts/cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && ~/.config/hyprdots/scripts/cliphist.sh w",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -45,9 +45,9 @@
         "format": "{}", //    //
         "rotate": 0,
         "exec": "echo ; echo  switch bar //  dock",
-        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
-        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin",
+        "on-click": "~/.config/hyprdots/scripts/wbarconfgen.sh n",
+        "on-click-right": "~/.config/hyprdots/scripts/wbarconfgen.sh p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hyprdots/scripts/quickapps.sh kitty firefox spotify code dolphin",
         "interval" : 86400,
         "tooltip": true
     },
@@ -56,9 +56,9 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰟡 switch theme",
-        "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/themeselect.sh",
+        "on-click": "~/.config/hyprdots/scripts/themeswitch.sh -n",
+        "on-click-right": "~/.config/hyprdots/scripts/themeswitch.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hyprdots/scripts/themeselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -67,9 +67,9 @@
         "format": "{}",
         "rotate": 0,
         "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
-        "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/swwwallselect.sh",
+        "on-click": "~/.config/hyprdots/scripts/swwwallpaper.sh -n",
+        "on-click-right": "~/.config/hyprdots/scripts/swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hyprdots/scripts/swwwallselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -92,15 +92,15 @@
 	},
 
     "custom/spotify": {
-        "exec": "/usr/bin/python3 /home/tittu/.config/waybar/modules/mediaplayer.py --player spotify",
+        "exec": "/usr/bin/python3 ~/.config/waybar/modules/mediaplayer.py --player spotify",
         "format": " {}",
         "rotate": 0,
         "return-type": "json",
         "on-click": "playerctl play-pause --player spotify",
         "on-click-right": "playerctl next --player spotify",
         "on-click-middle": "playerctl previous --player spotify",
-        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -p spotify i",
-        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -p spotify d",
+        "on-scroll-up": "~/.config/hyprdots/scripts/volumecontrol.sh -p spotify i",
+        "on-scroll-down": "~/.config/hyprdots/scripts/volumecontrol.sh -p spotify d",
         "max-length": 25,
         "escape": true,
         "tooltip": true
@@ -203,9 +203,9 @@
         "rotate": 0,
         "format-muted": "婢",
         "on-click": "pavucontrol -t 3",
-        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -o m",
-        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -o i",
-        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -o d",
+        "on-click-middle": "~/.config/hyprdots/scripts/volumecontrol.sh -o m",
+        "on-scroll-up": "~/.config/hyprdots/scripts/volumecontrol.sh -o i",
+        "on-scroll-down": "~/.config/hyprdots/scripts/volumecontrol.sh -o d",
         "tooltip-format": "{icon} {desc} // {volume}%",
         "scroll-step": 5,
         "format-icons": {
@@ -225,9 +225,9 @@
         "format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
-        "on-click-middle": "~/.config/hypr/scripts/volumecontrol.sh -i m",
-        "on-scroll-up": "~/.config/hypr/scripts/volumecontrol.sh -i i",
-        "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -i d",
+        "on-click-middle": "~/.config/hyprdots/scripts/volumecontrol.sh -i m",
+        "on-scroll-up": "~/.config/hyprdots/scripts/volumecontrol.sh -i i",
+        "on-scroll-down": "~/.config/hyprdots/scripts/volumecontrol.sh -i d",
         "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
     },

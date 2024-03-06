@@ -1,0 +1,9 @@
+$HOME/.config/rofi/themes/Wall-Dcol.rasi|${ScrDir}/wallbashrofi.sh
+* {
+    main-bg:            #<wallbash_0xa1>E6;
+    main-fg:            #<wallbash_2xa1>;
+    main-br:            #<wallbash_pry2>;
+    main-ex:            #<wallbash_1xa1>;
+    select-bg:          #<wallbash_3xa1>;
+    select-fg:          #<wallbash_pry0>;
+}
