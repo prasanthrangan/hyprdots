@@ -1,5 +1,17 @@
 #!/usr/bin/env sh
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | sed -n '2p' | awk '{print $2}')
+
+# Waybar performance
+FILE="$HOME/.config/waybar/style.css"
+
+sed -i 's/\/\* \(.*animation:.*\) \*\//\1/g' $FILE
+if [ $HYPRGAMEMODE = 1 ]; then
+    sed -i 's/^\(.*animation:.*\)$/\/\* \1 \*\//g' $FILE
+fi
+killall waybar
+waybar > /dev/null 2>&1 &
+
+# Hyprland performance
 if [ $HYPRGAMEMODE = 1 ] ; then
     hyprctl --batch "\
         keyword animations:enabled 0;\
