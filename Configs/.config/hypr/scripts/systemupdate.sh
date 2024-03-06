@@ -111,6 +111,7 @@ read -n 1 -s -t 3
 
 
 if [ "$1" == "upgrade" ] ; then
+sleep 0.5
 neofetch 
 cat << EOF
 
