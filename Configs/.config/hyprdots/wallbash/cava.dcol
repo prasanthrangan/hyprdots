@@ -4,11 +4,11 @@ $HOME/.config/cava/Wall-Dcol|${ScrDir}/wallbashcava.sh
 
  gradient = 1
  gradient_count = 8
- gradient_color_1 = '#<wallbash_pry0>'
- gradient_color_2 = '#<wallbash_0xa2>'
- gradient_color_3 = '#<wallbash_pry1>'
- gradient_color_4 = '#<wallbash_1xa2>'
- gradient_color_5 = '#<wallbash_1xa3>'
- gradient_color_6 = '#<wallbash_pry2>'
- gradient_color_7 = '#<wallbash_2xa2>'
- gradient_color_8 = '#<wallbash_2xa3>'
+ gradient_color_1 = '#<wallbash_1xa1>'
+ gradient_color_2 = '#<wallbash_2xa1>'
+ gradient_color_3 = '#<wallbash_2xa2>'
+ gradient_color_4 = '#<wallbash_3xa2>'
+ gradient_color_5 = '#<wallbash_3xa3>'
+ gradient_color_6 = '#<wallbash_4xa2>'
+ gradient_color_7 = '#<wallbash_4xa3>'
+ gradient_color_8 = '#<wallbash_4xa4>'

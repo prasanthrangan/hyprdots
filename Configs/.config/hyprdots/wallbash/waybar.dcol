@@ -1,8 +1,8 @@
 $HOME/.config/waybar/themes/Wall-Dcol.css|${ScrDir}/wbarconfgen.sh
 @define-color bar-bg rgba(0, 0, 0, 0);
-@define-color main-bg #<wallbash_0xa1>;
-@define-color main-fg #<wallbash_2xa1>;
-@define-color wb-act-bg #<wallbash_3xa1>;
-@define-color wb-act-fg #<wallbash_3xa3>;
+@define-color main-bg #<wallbash_1xa1>;
+@define-color main-fg #<wallbash_4xa1>;
+@define-color wb-act-bg #<wallbash_pry4>;
+@define-color wb-act-fg #<wallbash_txt4>;
 @define-color wb-hvr-bg #<wallbash_pry2>;
-@define-color wb-hvr-fg #<wallbash_1xa1>;
+@define-color wb-hvr-fg #<wallbash_1xa4>;

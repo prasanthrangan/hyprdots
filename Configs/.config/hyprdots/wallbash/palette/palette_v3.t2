@@ -40,35 +40,35 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#<wallbash_pry3>;fill-opacity:1;stroke:#<wallbash_txt3>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_pry4>;fill-opacity:1;stroke:#<wallbash_txt4>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
        id="circle3"
        cx="33.085064"
        cy="80"
        r="7.7097268"
        inkscape:label="pry4" />
     <circle
-       style="fill:#<wallbash_pry2>;fill-opacity:1;stroke:#<wallbash_txt2>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_pry3>;fill-opacity:1;stroke:#<wallbash_txt3>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
        id="circle2"
        cx="33.085064"
        cy="60"
        r="7.7097268"
        inkscape:label="pry3" />
     <circle
-       style="fill:#<wallbash_pry1>;fill-opacity:1;stroke:#<wallbash_txt1>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_pry2>;fill-opacity:1;stroke:#<wallbash_txt2>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
        id="path1"
        cx="33.085064"
        cy="40"
        r="7.7097268"
        inkscape:label="pry2" />
     <circle
-       style="fill:#<wallbash_pry0>;fill-opacity:1;stroke:#<wallbash_txt0>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_pry1>;fill-opacity:1;stroke:#<wallbash_txt1>;stroke-width:1.59727;stroke-dasharray:none;stroke-opacity:1"
        id="circle1"
        cx="33.085064"
        cy="20"
        r="7.7097268"
        inkscape:label="pry1" />
     <rect
-       style="fill:#<wallbash_0xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_1xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect3"
        width="13.846593"
        height="13.846593"
@@ -77,7 +77,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a1x1" />
     <rect
-       style="fill:#<wallbash_0xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_1xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect4"
        width="13.846593"
        height="13.846593"
@@ -86,7 +86,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a1x2" />
     <rect
-       style="fill:#<wallbash_0xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_1xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect5"
        width="13.846593"
        height="13.846593"
@@ -95,7 +95,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a1x3" />
     <rect
-       style="fill:#<wallbash_0xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_1xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect6"
        width="13.846593"
        height="13.846593"
@@ -104,7 +104,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a1x4" />
     <rect
-       style="fill:#<wallbash_1xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_2xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect7"
        width="13.846593"
        height="13.846593"
@@ -113,7 +113,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a2x1" />
     <rect
-       style="fill:#<wallbash_1xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_2xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect8"
        width="13.846593"
        height="13.846593"
@@ -122,7 +122,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a2x2" />
     <rect
-       style="fill:#<wallbash_1xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_2xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect9"
        width="13.846593"
        height="13.846593"
@@ -131,7 +131,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a2x3" />
     <rect
-       style="fill:#<wallbash_1xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_2xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect10"
        width="13.846593"
        height="13.846593"
@@ -140,7 +140,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a2x4" />
     <rect
-       style="fill:#<wallbash_2xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_3xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect11"
        width="13.846593"
        height="13.846593"
@@ -149,7 +149,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a3x1" />
     <rect
-       style="fill:#<wallbash_2xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_3xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect12"
        width="13.846593"
        height="13.846593"
@@ -158,7 +158,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a3x2" />
     <rect
-       style="fill:#<wallbash_2xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_3xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect13"
        width="13.846593"
        height="13.846593"
@@ -167,7 +167,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a3x3" />
     <rect
-       style="fill:#<wallbash_2xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_3xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect14"
        width="13.846593"
        height="13.846593"
@@ -176,7 +176,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a3x4" />
     <rect
-       style="fill:#<wallbash_3xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_4xa1>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect15"
        width="13.846593"
        height="13.846593"
@@ -185,7 +185,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a4x1" />
     <rect
-       style="fill:#<wallbash_3xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_4xa2>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect16"
        width="13.846593"
        height="13.846593"
@@ -194,7 +194,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a4x2" />
     <rect
-       style="fill:#<wallbash_3xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_4xa3>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect17"
        width="13.846593"
        height="13.846593"
@@ -203,7 +203,7 @@ $HOME/.config/hyprdots/wallbash/palette/palette_v3.svg
        ry="3.9004486"
        inkscape:label="a4x3" />
     <rect
-       style="fill:#<wallbash_3xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#<wallbash_4xa4>;fill-opacity:1;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1"
        id="rect18"
        width="13.846593"
        height="13.846593"
