@@ -46,7 +46,7 @@ fi
 }
 
 fn_lutris() {
-icon_path="${HOME}/.local/share/lutris/coverart"
+[ ! -e "${icon_path}" ] && icon_path="${HOME}/.local/share/lutris/coverart"
 [ ! -e "${icon_path}" ] && icon_path="${HOME}/.cache/lutris/coverart"
 meta_data="/tmp/hyprdots-$(id -u)-lutrisgames.json"
 
@@ -63,7 +63,7 @@ CHOICE=$(jq -r '.[].select' "${meta_data}" | rofi -dmenu -p Lutris  -theme-str "
 
 # Handle if flatpak or pkgmgr
 run_lutris=""
-( flatpak list --columns=application | grep -q "net.lutris.Lutris" ) && run_lutris="net.lutris.Lutris"
+( flatpak list --columns=application | grep -q "net.lutris.Lutris" ) && run_lutris="flatpak run net.lutris.Lutris" ; icon_path="${HOME}/.var/app/net.lutris.Lutris/data/lutris/coverart/"
 ( pkg_installed 'lutris' ) && run_lutris="lutris"
 
 if [ -z "${run_lutris}" ] || echo "$*" | grep -q "steam" ; then
