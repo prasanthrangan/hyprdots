@@ -1,12 +1,12 @@
 $HOME/.config/hypr/themes/Wall-Dcol.conf|${ScrDir}/wallbashypr.sh
 general {
-    col.active_border = rgba(<wallbash_2xa2>ff) rgba(<wallbash_2xa4>ff) 45deg
-    col.inactive_border = rgba(<wallbash_1xa1>ff) rgba(<wallbash_1xa3>ff) 45deg
+    col.active_border = rgba(<wallbash_pry4>ff) rgba(<wallbash_4xa1>ff) 45deg
+    col.inactive_border = rgba(<wallbash_pry1>ff) rgba(<wallbash_pry2>ff) 45deg
 }
 
 group {
-    col.border_active = rgba(<wallbash_2xa3>ff) rgba(<wallbash_2xa4>ff) 45deg
-    col.border_inactive = rgba(<wallbash_1xa1>cc) rgba(<wallbash_1xa2>cc) 45deg
+    col.border_active = rgba(<wallbash_pry4>ff) rgba(<wallbash_4xa1>ff) 45deg
+    col.border_inactive = rgba(<wallbash_pry1>cc) rgba(<wallbash_pry2>cc) 45deg
     col.border_locked_active = rgba(<wallbash_txt3>ff) rgba(<wallbash_txt4>ff) 45deg
     col.border_locked_inactive = rgba(<wallbash_txt1>cc) rgba(<wallbash_txt2>cc) 45deg
 }

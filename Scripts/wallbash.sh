@@ -5,6 +5,26 @@
 #|/ /---+---------------------------------------------+/ /---|#
 
 
+#// accent color profile
+
+while [ $# -gt 0 ] ; do
+    case "$1" in
+        -v|--vibrant) colorProfile="vibrant"
+            wallbashCurve="18 99\n32 97\n48 95\n55 90\n70 80\n80 70\n88 60\n94 40\n99 24"
+            ;;
+        -p|--pastel) colorProfile="pastel"
+            wallbashCurve="10 99\n17 66\n24 49\n39 41\n51 37\n58 34\n72 30\n84 26\n99 22"
+            ;;
+        -m|--mono) colorProfile="mono"
+            wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
+            ;;
+        *) break
+            ;;
+    esac
+    shift
+done
+
+
 #// set variables
 
 cacheDir="$HOME/.cache/hyprdots"
@@ -19,7 +39,7 @@ wallbashOut="${cacheDir}/${cacheThm}/${cacheImg}.dcol"
 
 #// color modulations
 
-defaultCurve="18 99\n32 97\n48 95\n55 90\n70 80\n80 70\n88 60\n94 40\n99 24"
+[[ -z ${wallbashCurve} ]] && colorProfile="default" && wallbashCurve="10 99\n17 66\n24 49\n39 41\n51 37\n58 34\n72 30\n84 26\n99 22"
 pryDarkBri=116
 pryDarkSat=110
 pryDarkHue=88
@@ -43,7 +63,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-echo "wallbash default profile :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
+echo "wallbash ${colorProfile} profile :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
 mkdir -p "${cacheDir}/${cacheThm}"
 rm -f "${wallbashRaw}" "${wallbashOut}"
 
@@ -143,7 +163,7 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
     xHue=$(magick xc:"#${dcol[i]}" -colorspace HSB -format "%c" histogram:info: | awk -F '[hsb(,]' '{print $2}')
     acnt=1
 
-    echo -e "${defaultCurve}" | sort -n ${colSort} | while read -r xBri xSat
+    echo -e "${wallbashCurve}" | sort -n ${colSort} | while read -r xBri xSat
     do
         acol=$(magick xc:"hsb(${xHue},${xSat}%,${xBri}%)" -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
         echo "dcol_$((i + 1))xa${acnt}=\"${acol}\"" >> "${wallbashOut}"
