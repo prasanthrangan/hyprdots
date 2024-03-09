@@ -1,0 +1,5 @@
+$HOME/.config/qt5ct/colors/Wall-Dcol.conf|$ScrDir/wallbashkvm.sh
+[ColorScheme]
+active_colors=#<wallbash_txt1>f4, ##ff1e1e2e, #<wallbash_txt4>c8, ##ff9399b2, ##ff45475a, ##ff6c7086, #<wallbash_txt1>f4, #<wallbash_txt1>f4, #<wallbash_txt1>f4, ##ff1e1e2e, ##ff181825, ##ff7f849c, ##ff89b4fa, ##ff1e1e2e, ##ff89b4fa, ##fff38ba8, ##ff1e1e2e, #<wallbash_txt1>f4, ##ff11111b, #<wallbash_txt1>f4, ##807f849c
+disabled_colors=#<wallbash_txt4>c8, ##ff1e1e2e, #<wallbash_txt4>c8, ##ff9399b2, ##ff45475a, ##ff6c7086, #<wallbash_txt4>c8, #<wallbash_txt4>c8, #<wallbash_txt4>c8, ##ff1e1e2e, ##ff11111b, ##ff7f849c, ##ff89b4fa, ##ff45475a, ##ff89b4fa, ##fff38ba8, ##ff1e1e2e, #<wallbash_txt1>f4, ##ff11111b, #<wallbash_txt1>f4, ##807f849c
+inactive_colors=#<wallbash_txt1>f4, ##ff1e1e2e, #<wallbash_txt4>c8, ##ff9399b2, ##ff45475a, ##ff6c7086, #<wallbash_txt1>f4, #<wallbash_txt1>f4, #<wallbash_txt1>f4, ##ff1e1e2e, ##ff181825, ##ff7f849c, ##ff89b4fa, #<wallbash_txt4>c8, ##ff89b4fa, ##fff38ba8, ##ff1e1e2e, #<wallbash_txt1>f4, ##ff11111b, #<wallbash_txt1>f4, ##807f849c
