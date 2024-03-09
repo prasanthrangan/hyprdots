@@ -4,14 +4,6 @@
 #|-/ /--| kRHYME7                      |-/ /--|#
 #|/ /---+------------------------------+/ /---|#
 
-source global_fn.sh
-if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
-    exit 1
-fi
-
-set +e
-
 
 # error function
 ask_help(){
@@ -28,6 +20,7 @@ if [[ -z $1 || -z $2 ]]; then ask_help ; exit 1 ; fi
 
 # set parameters
 Fav_Theme="$1"
+ThemeCtl="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/theme.ctl"
 
 if [ -d "$2" ]; then
     Theme_Dir="$2"

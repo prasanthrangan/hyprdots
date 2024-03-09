@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "󰟪 %s\n%b"
+    format = "󰟪 %a\n<b>󰋑 %s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -451,15 +451,15 @@
     #default_icon = /path/to/icon
 
 [urgency_low]
-    background = "#2488B3"
-    foreground = "#C0EAFC"
-    frame_color = "#3DA1CC"
+    background = "#22232A"
+    foreground = "#E2DFD1"
+    frame_color = "#262C48"
     icon = "~/.config/dunst/icons/hyprdots.svg"
-    timeout = 5
+    timeout = 10
 
 [urgency_normal]
-    background = "#021D52"
-    foreground = "#C0D4FC"
-    frame_color = "#0E388C"
+    background = "#4D5C78"
+    foreground = "#E2DFD1"
+    frame_color = "#622D28"
     icon = "~/.config/dunst/icons/hyprdots.svg"
-    timeout = 5
+    timeout = 10

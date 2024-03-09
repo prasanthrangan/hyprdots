@@ -1,0 +1,35 @@
+$HOME/.config/kitty/themes/Wall-Dcol.conf|${ScrDir}/wallbashkitty.sh
+foreground         #<wallbash_txt0>
+background         #<wallbash_pry0>
+cursor             #<wallbash_txt1> 
+
+active_tab_foreground     #<wallbash_pry0>
+active_tab_background     #<wallbash_pry2>
+inactive_tab_foreground   #<wallbash_pry2>
+inactive_tab_background   #<wallbash_pry0>
+
+active_border_color   #<wallbash_pry1>
+inactive_border_color #<wallbash_pry2>
+bell_border_color     #<wallbash_1xa4>
+
+    # Commands
+color2       #<wallbash_txt0>
+ 
+    # Prompt
+color7       #<wallbash_pry2>
+color4       #<wallbash_2xa4>
+color0       #<wallbash_txt2>
+
+    # Color Overrides
+# color1       #<wallbash_txt1>
+# color3       #<wallbash_1xa3>
+# color5       #<wallbash_2xa2>
+# color6       #<wallbash_2xa3>
+# color8       #<wallbash_1xa2>
+# color9       #<wallbash_pry1>
+# color10      #<wallbash_2xa4>
+# color11      #<wallbash_1xa3>
+# color12      #<wallbash_2xa1>
+# color13      #<wallbash_2xa2>
+# color14      #<wallbash_2xa3>
+# color15      #<wallbash_pry2>

@@ -2,9 +2,9 @@
         "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "${ScrDir}/swwwallpaper.sh -n",
-        "on-click-right": "${ScrDir}/swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && ${ScrDir}/swwwallselect.sh",
+        "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
+        "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && ~/.config/hypr/scripts/swwwallselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },

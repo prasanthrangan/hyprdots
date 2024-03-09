@@ -7,9 +7,6 @@
 set -e
 
 CloneDir=`dirname "$(dirname "$(realpath "$0")")"`
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-HyprdotsDir="${ConfDir}/hyprdots"
-ThemeCtl="${HyprdotsDir}/theme.ctl"
 
 service_ctl()
 {
