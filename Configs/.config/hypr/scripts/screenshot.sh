@@ -43,32 +43,6 @@ function print_error
 EOF
 }
 
-mathpix() {
-    result=$(curl -X POST https://api.mathpix.com/v3/text \
-    -H 'content-type: application/json' \
-    -H 'app_id: your-app-id' \
-    -H 'app_key: your-app-key' \
-    -d '{
-        "src": "data:image/jpeg;base64,'$(base64 -w 0 $1)'",
-        "formats": ["text", "latex_styled"]
-    }' | jq -r '.latex_styled')
-    echo $result | wl-copy
-    notify-send -t 5000 "Mathpix snip: $result"
-}
-
-pix2mixed() {
-	result=$($ScrDir/latex_ocr.py mixed $1)
-	echo $result | wl-copy
-    notify-send -t 5000 "Pix2text: $result"
-}
-
-pix2formula() {
-	result=$($ScrDir/latex_ocr.py formula $1)
-	echo $result | wl-copy
-    notify-send -t 5000 "Pix2text: $result"
-}
-
-
 case $1 in
 p) # print all outputs
 	grimblast copysave screen $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
@@ -78,12 +52,6 @@ sf) # frozen screen, drag to manually snip an area / click on a window to print 
 	grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
 m) # print focused monitor
 	grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-mathpix)
-	grimblast copysave area $temp_screenshot && restore_shader && mathpix $temp_screenshot ;;
-pix2mixed)
-	grimblast copysave area $temp_screenshot && restore_shader && pix2mixed $temp_screenshot ;;
-pix2formula)
-	grimblast copysave area $temp_screenshot && restore_shader && pix2formula $temp_screenshot ;;
 *) # invalid option
 	print_error ;;
 esac
