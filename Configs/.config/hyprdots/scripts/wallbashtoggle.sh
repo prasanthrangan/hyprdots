@@ -23,5 +23,5 @@ do
     fi
 done
 
-dunstify "t1" -a "$notif" -i "${WallbashDir}/palette/palette.svg" -r 91190 -t 2200
+dunstify "t1" -a "$notif" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
 
