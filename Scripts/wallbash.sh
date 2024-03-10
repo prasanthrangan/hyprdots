@@ -7,6 +7,9 @@
 
 #// accent color profile
 
+colorProfile="default"
+wallbashCurve="10 99\n17 66\n24 49\n39 41\n51 37\n58 34\n72 30\n84 26\n99 22"
+
 while [ $# -gt 0 ] ; do
     case "$1" in
         -v|--vibrant) colorProfile="vibrant"
@@ -35,11 +38,11 @@ cacheImg=$(basename "${wallbashImg}")
 cacheThm=$(dirname "${wallbashImg}" | awk -F '/' '{print $NF}')
 wallbashRaw="${cacheDir}/${cacheThm}/${cacheImg}.mpc"
 wallbashOut="${cacheDir}/${cacheThm}/${cacheImg}.dcol"
+wallbashCache="${cacheDir}/${cacheThm}/${cacheImg}.cache"
 
 
 #// color modulations
 
-[[ -z ${wallbashCurve} ]] && colorProfile="default" && wallbashCurve="10 99\n17 66\n24 49\n39 41\n51 37\n58 34\n72 30\n84 26\n99 22"
 pryDarkBri=116
 pryDarkSat=110
 pryDarkHue=88
@@ -65,7 +68,7 @@ fi
 
 echo "wallbash ${colorProfile} profile :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
 mkdir -p "${cacheDir}/${cacheThm}"
-rm -f "${wallbashRaw}" "${wallbashOut}"
+> "${wallbashOut}"
 
 
 #// define functions
@@ -171,4 +174,6 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
     done
 
 done
+
+rm -f "${wallbashRaw}" "${wallbashCache}"
 
