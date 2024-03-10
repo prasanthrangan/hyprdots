@@ -102,6 +102,6 @@ if ! pkg_installed flatpak
     fi
 
 else
-    echo -e "\033[0;33m[SKIP]\033[0m flatpak already installed..."
+    echo -e "\033[0;33m[SKIP]\033[0m flatpak is already installed..."
 fi
 
