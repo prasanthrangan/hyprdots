@@ -10,6 +10,7 @@ WallbashDir="${ConfDir}/hyprdots/wallbash"
 
 # theme var
 gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
+gtkIcon=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
 gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
 
 # hypr var
@@ -41,4 +42,3 @@ get_aurhlpr()
         aurhlpr="paru"
     fi
 }
-
