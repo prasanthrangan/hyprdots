@@ -118,6 +118,11 @@ else
 fi
 
 dcol=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | sort ${colSort}))
+greyCheck=$(convert "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
+
+if (( $(awk 'BEGIN {print ('"$greyCheck"' < 0.2)}') )); then
+    wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
+fi
 
 
 #// loop for derived colors
@@ -174,6 +179,9 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
     done
 
 done
+
+
+#// cleanup temp cache
 
 rm -f "${wallbashRaw}" "${wallbashCache}"
 
