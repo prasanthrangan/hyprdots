@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 
 # CPU model
-model=$(lscpu | awk -F ':' '/Model name/ {sub(/^ *| *$/,"",$2); print $2}' | awk '{NF-=3}1')
+model=$(cat /proc/cpuinfo | grep 'model name' | head -n 1 | awk -F ': ' '{print $2}')
 
 # CPU utilization
 utilization=$(top -bn1 | awk '/^%Cpu/ {print 100 - $8}')
 
 # Clock speed
 freqlist=$(cat /proc/cpuinfo | grep "cpu MHz" | awk '{ print $4 }')
-maxfreq=$(lscpu | grep "CPU max MHz" | awk -F: '{ print $2}' | sed -e 's/ //g' -e 's/\.[0-9]*//g')
+maxfreq=$(cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq | sed 's/...$//')
 frequency=$(echo $freqlist | tr ' ' '\n' | awk "{ sum+=\$1 } END {printf \"%.0f/$maxfreq MHz\", sum/NR}")
 
 # CPU temp
