@@ -40,6 +40,6 @@ done | rofi -dmenu -theme-str "${r_override}" -config "${RofiConf}" -select "${c
 # apply wallpaper
 if [ ! -z "${RofiSel}" ] ; then
     "${ScrDir}/swwwallpaper.sh" -s "${wallPath}/${RofiSel}"
-    dunstify "t1" -a " ${RofiSel}" -i "${cacheDir}/${gtkTheme}/${RofiSel}" -r 91190 -t 2200
+    notify-send -a "t1" -i "${cacheDir}/${gtkTheme}/${RofiSel}" " ${RofiSel}"
 fi
 

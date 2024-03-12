@@ -19,7 +19,7 @@ else
 fi
 
 if [ ! -f $SteamLib ] || [ ! -d $SteamThumb ] ; then
-    dunstify "t1" -a "Steam library not found!" -r 91190 -t 2200
+    notify-send -a "t1" "Steam library not found!"
     exit 1
 fi
 
@@ -61,6 +61,6 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 if [ ! -z "$RofiSel" ] ; then
     launchid=`echo "$GameList" | grep "$RofiSel" | cut -d '|' -f 2`
     ${steamlaunch} -applaunch "${launchid} [gamemoderun %command%]" &
-    dunstify "t1" -a "Launching ${RofiSel}..." -i ${SteamThumb}/${launchid}_header.jpg -r 91190 -t 2200
+    notify-send -a "t1" -i "${SteamThumb}/${launchid}_header.jpg" "Launching ${RofiSel}..."
 fi
 

@@ -8,7 +8,9 @@ dstDir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
 
 # regen conf
 
-cat "$dstDir/dunst.conf" "$dstDir/Wall-Dcol.conf" > "$dstDir/dunstrc"
+export hypr_border
+envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
+cat "${dstDir}/Wall-Dcol.conf" >> "${dstDir}/dunstrc"
 killall dunst
 dunst &
 
