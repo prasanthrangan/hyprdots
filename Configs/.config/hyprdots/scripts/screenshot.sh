@@ -31,6 +31,18 @@ mkdir -p $save_dir
 mkdir -p $swpy_dir
 echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" >$swpy_dir/config
 
+pix2mixed() {
+	result=$($ScrDir/latex_ocr.py mixed $1)
+	echo $result | wl-copy
+    notify-send -t 5000 "Pix2text: $result"
+}
+
+pix2formula() {
+	result=$($ScrDir/latex_ocr.py formula $1)
+	echo $result | wl-copy
+    notify-send -t 5000 "Pix2text: $result"
+}
+
 function print_error
 {
 	cat <<"EOF"
@@ -40,6 +52,8 @@ function print_error
         s  : snip current screen
         sf : snip current screen (frozen)
         m  : print focused monitor
+		pix2mixed: ocr mixed content
+		pix2formula: ocr formula
 EOF
 }
 
@@ -52,6 +66,10 @@ sf) # frozen screen, drag to manually snip an area / click on a window to print 
 	grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
 m) # print focused monitor
 	grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
+pix2mixed)
+	grimblast copysave area $temp_screenshot && restore_shader && pix2mixed $temp_screenshot ;;
+pix2formula)
+	grimblast copysave area $temp_screenshot && restore_shader && pix2formula $temp_screenshot ;;
 *) # invalid option
 	print_error ;;
 esac
