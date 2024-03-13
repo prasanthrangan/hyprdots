@@ -22,9 +22,9 @@ import requests
 
 url = 'https://pix2text.zoxi.org/pix2text'
 
-def recognize_online(image_fp):
+def recognize_online(image_fp, type="mixed"):
     data = {
-        "image_type": "mixed",  # "mixed": Mixed image; "formula": Pure formula image; "text": Pure text image
+        "image_type": type,  # "mixed": Mixed image; "formula": Pure formula image; "text": Pure text image
         "resized_shape": 768,  # Effective only when image_type=="mixed"
         "embed_sep": " $,$ ",  # Effective only when image_type=="mixed"
         "isolated_sep": "\n$$\n, \n$$\n"  # Effective only when image_type=="mixed"
@@ -42,9 +42,13 @@ def recognize_online(image_fp):
         s = '\n'.join([out['text'] for out in outs])
     return s
 
+
+
 if __name__ == "__main__":
-    img_path = sys.argv[1]  # Get the image path from the command line arguments
-    result = recognize_online(img_path)
+    _type = sys.argv[1]
+    img_path = sys.argv[2]  # Get the image path from the command line arguments
+    
+    result = recognize_online(img_path, _type)
     print(result)
 
 
