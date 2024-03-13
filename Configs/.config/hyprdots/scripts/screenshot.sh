@@ -67,9 +67,9 @@ sf) # frozen screen, drag to manually snip an area / click on a window to print 
 m) # print focused monitor
 	grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
 pix2mixed)
-	grimblast copysave area $temp_screenshot && restore_shader && pix2mixed $temp_screenshot ;;
+	grimblast copysave screen $temp_screenshot && restore_shader && pix2mixed $temp_screenshot ;;
 pix2formula)
-	grimblast copysave area $temp_screenshot && restore_shader && pix2formula $temp_screenshot ;;
+	grimblast copysave screen $temp_screenshot && restore_shader && pix2formula $temp_screenshot ;;
 *) # invalid option
 	print_error ;;
 esac
