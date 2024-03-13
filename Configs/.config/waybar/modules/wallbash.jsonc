@@ -1,0 +1,11 @@
+    "custom/wallbash": {
+        "format": "{icon}",
+        "rotate": ${r_deg},
+        "return-type": "json",
+        "format-icons": {
+        "theme": "",
+        "wall": "󰃣"
+        },
+        "exec": "~/.config/hyprdots/scripts/wallbashtoggle-wb",
+        "on-click": "sleep 0.1 && ~/.config/hyprdots/scripts/wallbashtoggle.sh"
+    },

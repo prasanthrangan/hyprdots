@@ -1,0 +1,29 @@
+    "cava": {
+        "autosens": 1,
+        "bar_delimiter": 0,
+        "bars": 18,
+        "format-icons": [
+        "<span foreground='#cba6f7'>▁</span>",
+        "<span foreground='#cba6f7'>▂</span>",
+        "<span foreground='#cba6f7'>▃</span>",
+        "<span foreground='#cba6f7'>▄</span>",
+        "<span foreground='#89b4fa'>▅</span>",
+        "<span foreground='#89b4fa'>▆</span>",
+        "<span foreground='#89b4fa'>▇</span>",
+        "<span foreground='#89b4fa'>█</span>"
+        ],
+        "framerate": 75,
+        "higher_cutoff_freq": 10000,
+        "input_delay": 5,
+        "lower_cutoff_freq": 50,
+        "method": "pipewire",
+        "monstercat": false,
+        "reverse": false,
+        "source": "auto",
+        "stereo": true,
+        "waves": false,
+        "on-click": "kitty --class center-float-mini cava",
+        "on-click-right": "qpwgraph",
+        "on-click-middle": "easyeffects"
+    },
+

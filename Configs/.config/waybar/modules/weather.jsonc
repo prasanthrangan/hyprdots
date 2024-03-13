@@ -1,0 +1,9 @@
+    "custom/weather": {
+        "rotate": ${r_deg},
+        "exec": "python3 ~/.config/waybar/scripts/weather.py",
+        "restart-interval": 300,
+        "return-type": "json",
+        "on-click": "kitty --hold --class center-float wttr Grenoble",
+        "on-click-right": "kitty --hold --class center-float wttr -v2 Grenoble",
+        "on-click-middle": "xdg-open https://www.windy.com/45.324/5.931?arome,44.880,5.931,8"
+    },

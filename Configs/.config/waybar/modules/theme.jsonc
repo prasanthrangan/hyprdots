@@ -1,5 +1,5 @@
     "custom/theme": {
-        "format": "{}",
+        "format": "󰧨{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "${ScrDir}/themeswitch.sh -n",

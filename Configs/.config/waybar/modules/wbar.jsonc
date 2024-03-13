@@ -1,7 +1,7 @@
     "custom/wbar": {
-        "format": "{}", //    //
+        "format": "󱔓{}", //    //
         "rotate": ${r_deg},
-        "exec": "echo ; echo  switch bar //  dock",
+        "exec": "echo ; echo  next bar //  dock //  prev bar",
         "on-click": "${ScrDir}/wbarconfgen.sh n",
         "on-click-right": "${ScrDir}/wbarconfgen.sh p",
         "on-click-middle": "sleep 0.1 && ${ScrDir}/quickapps.sh kitty firefox spotify code dolphin",

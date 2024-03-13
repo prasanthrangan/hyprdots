@@ -93,7 +93,7 @@ sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" $ConfDir/gtk-3.
 
 
 # gtk4
-rm $ConfDir/gtk-4.0
+[ -L "$ConfDir/gtk-4.0" ] && rm "$ConfDir/gtk-4.0" || rm -rf "$ConfDir/gtk-4.0"
 ln -s /usr/share/themes/$ThemeSet/gtk-4.0 $ConfDir/gtk-4.0
 
 
