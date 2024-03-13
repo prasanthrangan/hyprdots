@@ -18,8 +18,8 @@ do
     ln -fs $HOME/$fixd_slink $HOME/$linkd_file
 done
 
-if [ -f $HOME/.config/hypr/scripts/globalcontrol.sh ] ; then
-    sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" $HOME/.config/hypr/scripts/globalcontrol.sh
+if [ -f $HOME/.config/hyprdots/scripts/globalcontrol.sh ] ; then
+    sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" $HOME/.config/hyprdots/scripts/globalcontrol.sh
     echo "Clone directory globalcontrol updated..."
 fi
 

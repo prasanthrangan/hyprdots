@@ -1,0 +1,176 @@
+$HOME/.cache/hyprdots/discord.css|${ScrDir}/wallbashdiscord.sh
+
+:root {
+
+    --accent-color: #<wallbash_pry3>;
+    
+    --border-color: #<wallbash_2xa4>;
+    
+    --background-1: #<wallbash_pry1>;
+    
+    --background-2: #<wallbash_4xa5>;
+    
+    --background-mentioned: #<wallbash_2xa4> !important;
+    
+    --background-mentioned-hover: #<wallbash_2xa4> !important;
+    
+    --background-modifier-hover: #<wallbash_2xa4> !important;
+    
+    --background-modifier-active: #<wallbash_2xa4> !important;
+    
+    --text-normal: #<wallbash_txt1> !important;
+    
+    --text-positive: #<wallbash_txt1> !important;
+    
+    --text-muted: #<wallbash_txt1> !important;
+    
+    --text-link: #<wallbash_txt1> !important;
+    
+    --button-background: #<wallbash_pry4> !important;
+    
+    --button-background-hover: #<wallbash_pry4> !important;
+    
+    --button-background-active: #<wallbash_pry4> !important;
+    
+    --button-accent-hover: #<wallbash_pry4> !important;
+    
+    --button-accent-active: #<wallbash_3xa4> !important;
+    
+    --button-destructive: #<wallbash_3xa4> !important;
+    
+    --button-destructive-hover: #<wallbash_txt4> !important;
+    
+    --button-destructive-active: #<wallbash_txt4> !important;
+    
+    --settings-icon-color: #<wallbash_pry4> !important;
+    
+    --tab-selected: #<wallbash_4xa4> !important;
+    
+    --switch: #<wallbash_txt1> !important;
+
+   	--background-primary: var(--background-1);
+   
+   	--background-primary-alt: var(--background-1);
+    
+	   --background-secondary: var(--background-1);
+   
+      --background-secondary-alt: var(--background-1);
+   	
+	   --background-accent-gradient: var(--background-1);
+   	
+   	--background-floating: var(--background-2);
+
+   	--background-mentioned: var(--background-mentioned);
+
+   	--background-mentioned-hover: var(--background-mentioned-hover);
+
+   	--background-modifier-hover: var(--background-modifier-hover);
+
+   	--background-modifier-active: var(--accent-color);
+
+   	--background-modifier-selected: var(--accent-color);
+
+   	--background-modifier-accent: transparent;
+
+   	--background-message-hover: transparent;
+       
+      --background-tertiary: var(--background-1);
+
+
+      
+      
+   	--text-normal: var(--accent-color);
+
+   	--text-positive: var(--text-normal);
+	
+   	--text-muted: var(--text-positive);
+
+   	--text-link: var(--text-link);
+
+   	--interactive-selected: var(--background-primary);
+
+   	--interactive-active: var(--text-normal);
+	
+   	--interactive-normal: var(--text-normal);
+
+   	--interactive-muted: var(--button-background-active);
+
+   	--channels-default: var(--text-muted);
+
+   	--header-primary: var(--text-normal);
+
+   	--header-secondary: var(--text-muted);
+   	
+	
+   	--button-background: var(--button-background);
+
+   	--button-background-hover: var(--button-background-hover);
+
+   	--button-background-active: var(--button-accent-active);
+
+   	--button-accent: var(--accent-color);
+
+   	--button-accent-hover: var(--button-accent-hover);
+
+   	--button-accent-active: var(--button-accent-active);
+
+   	--button-destructive: var(--button-destructive);
+	
+   	--button-destructive-hover: var(--button-destructive-hover);
+
+   	--button-destructive-active: var(--button-destructive-active);
+
+	
+   	--settings-icon-color: var(--settings-icon-color);
+
+   	--control-brand-foreground: var(--accent-color);
+
+   	--info-warning-foreground: var(--accent-color);
+
+   	--tab-selected: var(--tab-selected);
+
+   	--switch: var(--switch);
+
+   	--activity-card-background: var(--background-1);
+
+   	--brand-experiment: var(--accent-color) !important;
+
+
+      --close-button-color: var(--accent-color);
+
+      --maximize-button-color: var(--accent-color);
+
+  	   --minimize-button-color: var(--accent-color);
+   
+      --scrollbar-color-alt: 255,0,0;
+
+      --scrollbar-thin-track: var(--accent-color);
+	
+   	--scrollbar-auto-thumb: var(--accent-color);
+
+  	   --scrollbar-auto-thumb-hover:var(--accent-color);
+
+   	--scrollbar-auto-track: var(--background-mentioned);
+
+   	--scrollbar-auto-scrollbar-color-thumb: var(--scrollbar-auto-thumb);
+  	
+	   --scrollbar-auto-scrollbar-color-track: var(--scrollbar-auto-track);
+
+     	--channeltextarea-background: var(--accent-color);
+
+     	--channeltextarea-background-hover: var(--background-tertiary);
+	
+   	--avatar-roundess: 5px;
+}
+
+.theme-dark {
+	   --background-primary: var(--background-1);
+   	--background-primary-alt: var(--background-1);
+   	
+	   --background-secondary: var(--background-1);
+   	--background-secondary-alt: var(--background-1);
+	
+   	--background-floating: var(--background-2);
+   	--background-mentioned: var(--accent-color);
+   	--background-mentioned-hover: var(--scrollbar-auto-thumb);	
+}
