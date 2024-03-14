@@ -1,7 +1,7 @@
 {
     "workbench.colorTheme": "Catppuccin Mocha",
     "window.menuBarVisibility": "toggle",
-    "editor.fontSize": 12,
+    "editor.fontSize": 16,
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "security.workspace.trust.untrustedFiles": "newWindow",
