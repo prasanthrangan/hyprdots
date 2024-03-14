@@ -63,6 +63,27 @@ if pkg_installed sddm
         echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m avatar set for ${USER}..."
     fi
 
+# touchpad; tap-to-click feature https://github.com/prasanthrangan/hyprdots/issues/1081
+    if libinput list-devices | grep -iq "touchpad" ; then
+
+        xconf_dir="/etc/X11/xorg.conf.d"
+        [[ ! -d ${xconf_dir} ]] && sudo mkdir -p "${xconf_dir}"
+
+sudo tee "${xconf_dir}/20-touchpad.conf" << EOF > /dev/null
+Section "InputClass"
+Identifier "libinput touchpad catchall"
+MatchIsTouchpad "on"
+MatchDevicePath "/dev/input/event*"
+Driver "libinput"
+Option "Tapping" "on"
+Option "NaturalScrolling" "on"
+Option "MiddleEmulation" "on"
+Option "DisableWhileTyping" "on"
+EndSection
+EOF
+
+    fi
+
 else
     echo -e "\033[0;33m[WARNING]\033[0m sddm is not installed..."
 fi
