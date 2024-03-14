@@ -3,7 +3,6 @@
 # set variables
 ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
-DcoDir="${WallbashDir}"
 TgtScr="$ScrDir/globalcontrol.sh"
 
 # switch WallDcol variable
@@ -16,12 +15,13 @@ else
 fi
 
 # reset the colors
-grep -m 1 '.' $DcoDir/*.dcol | awk -F '|' '{print $2}' | while read wallbash
+find "${WallbashDir}" -type f -name "*.dcol"  | while read hdr
 do
-    if [ ! -z "$wallbash" ] ; then
-        eval "${wallbash}"
+    appexe=$(awk -F '|' 'NR==1 {print $2}' "${hdr}")
+    if [ ! -z "$appexe" ] ; then
+        eval "${appexe}"
     fi
 done
 
-dunstify "t1" -a "$notif" -i "~/.config/dunst/icons/hyprdots.png" -r 91190 -t 2200
+notify-send -a "t1" -i "~/.config/dunst/icons/hyprdots.png" "${notif}"
 
