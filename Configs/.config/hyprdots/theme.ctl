@@ -8,3 +8,4 @@
 0|Cyberpunk-Edge|JWSandeman.cyberpunk2077-theme~cyberpunk2077|~/.config/swww/Cyberpunk-Edge/david.jpg
 0|Frosted-Glass|msnilshartmann.blue-light~Blue Light Theme|~/.config/swww/Frosted-Glass/min_forest.jpg
 0|Gruvbox-Retro|jdinhlife.gruvbox~Gruvbox Dark Medium|~/.config/swww/Gruvbox-Retro/misty_forest.jpg
+0|Hackthebox|~/.config/swww/Hackthebox/Hacker1.jpg

@@ -42,12 +42,13 @@ if pkg_installed sddm
 
     if [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ] ; then
         echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m configuring sddm..."
-        echo -e "Select sddm theme:\n1) Candy\n2) Corners"
+        echo -e "Select sddm theme:\n1) Candy\n2) Corners\n3) HTB"
         read -p "Enter option number : " sddmopt
 
         case $sddmopt in
         1) sddmtheme="Candy";;
         *) sddmtheme="Corners";;
+        3) sddmtheme="HTB";;
         esac
 
         sudo tar -xzf ${CloneDir}/Source/arcs/Sddm_${sddmtheme}.tar.gz -C /usr/share/sddm/themes/
