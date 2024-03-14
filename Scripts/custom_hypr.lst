@@ -49,6 +49,18 @@ imagemagick                                            # for image processing
 qt5-imageformats                                       # for dolphin image thumbnails
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
+kservice5                                              # for "open with" menu in dolphin
+kdbusaddons5                                           # for "open with" menu in dolphin
+kfilemetadata5                                          # for "open with" menu in dolphin
+kconfig5                                                # for "open with" menu in dolphin
+kcoreaddons5                                           # for "open with" menu in dolphin
+kcrash5                                                # for "open with" menu in dolphin
+kguiaddons5                                            # for "open with" menu in dolphin
+ki18n5                                                 # for "open with" menu in dolphin
+kitemviews5                                            # for "open with" menu in dolphin
+kwidgetsaddons5                                        # for "open with" menu in dolphin
+kwindowsystem5                                         # for "open with" menu in dolphin
+kservice5                                              # for "open with" menu in dolphin
 
 
 # --------------------------------------------------- // Theming
