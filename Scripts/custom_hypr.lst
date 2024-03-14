@@ -32,7 +32,7 @@ swww                                                   # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
-hyprpicker-git                                         # color picker
+hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 swappy                                                 # screenshot editor
 cliphist                                               # clipboard manager
