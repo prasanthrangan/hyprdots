@@ -9,7 +9,6 @@
 0|Frosted-Glass|msnilshartmann.blue-light~Blue Light Theme|~/.config/swww/Frosted-Glass/min_forest.jpg
 0|Gruvbox-Retro|jdinhlife.gruvbox~Gruvbox Dark Medium|~/.config/swww/Gruvbox-Retro/wall.jpg
 0|Hackthebox|silofy.hackthebox~Hack The Box|~/.config/swww/Hackthebox/Hacker1.jpg
-0|Sweet|eliverLara.sweet-vscode~Sweet vscode|~/.config/swww/Sweet/Sweet-S5.png
 0|MacOS|davidbwaters.macos-modern-theme~MacOS Modern Dark - Xcode Default|~/.config/swww/MacOS/10-12.jpg
 0|Windows-11|ExtensionCreator.windows-11-color-theme~Windows 11 Dark|~/.config/swww/Windows-11/windows-1.jpeg
 0|One-Dark|mskelton.one-dark-theme~One Dark|~/.config/swww/One-Dark/road.jpg
