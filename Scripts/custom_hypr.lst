@@ -55,6 +55,7 @@ kfilemetadata5                                          # for "open with" menu i
 kconfig5                                                # for "open with" menu in dolphin
 kcoreaddons5                                           # for "open with" menu in dolphin
 
+
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
 qt5ct                                                  # qt5 configuration tool
