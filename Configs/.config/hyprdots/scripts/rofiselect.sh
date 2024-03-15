@@ -31,6 +31,6 @@ done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
 # apply rofi style
 if [ ! -z $RofiSel ] ; then
     cp "${RofiStyle}/${RofiSel}.rasi" "${Rofilaunch}"
-    dunstify "t1" -a " ${RofiSel} applied..." -i "$RofiAssets/$RofiSel.png" -r 91190 -t 2200
+    notify-send -a "t1" -r 91190 -t 2200 -i "${RofiAssets}/${RofiSel}.png" " ${RofiSel} applied..." 
 fi
 

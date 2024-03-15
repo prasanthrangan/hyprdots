@@ -10,6 +10,7 @@ com.brave.Browser                              # Brave
 
 # ------------------------------------------- // Social
 # io.github.spacingbat3.webcord                # Webcord
+# dev.vencord.Vesktop                          # Vesktop
 com.discordapp.Discord                         # Discord
 org.signal.Signal                              # Signal
 
