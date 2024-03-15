@@ -54,13 +54,6 @@ kdbusaddons5                                           # for "open with" menu in
 kfilemetadata5                                          # for "open with" menu in dolphin
 kconfig5                                                # for "open with" menu in dolphin
 kcoreaddons5                                           # for "open with" menu in dolphin
-kcrash5                                                # for "open with" menu in dolphin
-kguiaddons5                                            # for "open with" menu in dolphin
-ki18n5                                                 # for "open with" menu in dolphin
-kitemviews5                                            # for "open with" menu in dolphin
-kwidgetsaddons5                                        # for "open with" menu in dolphin
-kwindowsystem5                                         # for "open with" menu in dolphin
-
 
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
