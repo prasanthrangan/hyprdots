@@ -1,0 +1,10 @@
+* {
+    main-bg:            #ECEFF4D9; /* Light Gray */
+    main-fg:            #1E4C84FF; /* Dark Blue */
+    main-br:            #B0E0E6B0; /* Powder Blue */
+    main-ex:            #F6AD55CC; /* Orange */
+    select-bg:          #9CB5FFFF; /* Light Blue */
+    select-fg:          #1E4C84FF; /* Dark Blue */
+    separatorcolor:     transparent;
+    border-color:       transparent;
+}
