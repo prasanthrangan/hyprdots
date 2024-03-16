@@ -64,7 +64,7 @@ do
         [ -z "${nsink}" ] && echo "ERROR: Input device not found..." && exit 0
         ctrl="pamixer"
         srce="--default-source" ;;
-    o) nsink=$(pamixer --get-default-sink | grep -m 1 -v  'Default' | awk -F '" "' '{print $NF}' | sed 's/"//')
+    o) nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Output device not found..." && exit 0
         ctrl="pamixer"
         srce="" ;;
