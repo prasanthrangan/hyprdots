@@ -8,7 +8,7 @@
 #// accent color profile
 
 colorProfile="default"
-wallbashCurve="10 99\n17 66\n24 49\n39 41\n51 37\n58 34\n72 30\n84 26\n99 22"
+wallbashCurve="32 50\n42 46\n49 40\n56 39\n64 38\n76 37\n90 33\n94 29\n100 20"
 
 while [ $# -gt 0 ] ; do
     case "$1" in
@@ -120,7 +120,7 @@ fi
 dcol=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | sort ${colSort}))
 greyCheck=$(convert "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
 
-if (( $(awk 'BEGIN {print ('"$greyCheck"' < 0.2)}') )); then
+if (( $(awk 'BEGIN {print ('"$greyCheck"' < 0.12)}') )); then
     wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
 fi
 
