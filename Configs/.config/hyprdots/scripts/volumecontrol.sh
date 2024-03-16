@@ -60,7 +60,7 @@ action_playerctl ()
 while getopts iop: DeviceOpt
 do
     case "${DeviceOpt}" in
-    i) nsink=$(pamixer --list-sources | grep -v "Source" | tail -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
+    i) nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Input device not found..." && exit 0
         ctrl="pamixer"
         srce="--default-source" ;;
