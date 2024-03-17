@@ -11,6 +11,11 @@ dstDir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
 export hypr_border
 envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
 cat "${dstDir}/Wall-Dcol.conf" >> "${dstDir}/dunstrc"
+
+# Skip if dunst not installed
+pgrep -x dunst >/dev/null || exit
+
+# restart dunst
 killall dunst
 dunst &
 

@@ -1,0 +1,12 @@
+    "custom/gpu": {
+        "exec": " ${ScrDir}/gpu.sh",
+        "return-type": "json",
+        "on-click-right": "kitty --class center-float-large nvtop",
+        "on-click-middle": "coolercontrol",
+        "format": "󰍛 {}%",
+        "rotate": ${r_deg},
+        "interval": 5,
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    },
+

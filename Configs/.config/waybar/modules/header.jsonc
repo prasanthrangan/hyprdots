@@ -6,6 +6,7 @@
     "layer": "top",
     "position": "${w_position}",
     "mod": "dock",
+    "output": "${display}",
     "${hv_pos}": ${w_height},
     "exclusive": true,
     "passthrough": false,

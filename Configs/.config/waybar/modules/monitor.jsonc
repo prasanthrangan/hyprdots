@@ -1,0 +1,10 @@
+    "custom/monitor": {
+        "format": "🖵{}",
+        "rotate": ${r_deg},
+        "exec": "echo ; echo Enable all screens // Disable current screen // nothing",
+        "on-click": "${ScrDir}/monitor.sh --enable-all", // --debug
+        "on-click-middle": "tmux new -d ${ScrDir}/monitor.sh --disable-current", // --debug
+        "tooltip": true,
+        "interval" : 86400 // once every day
+    },
+

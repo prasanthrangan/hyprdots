@@ -1,5 +1,5 @@
     "custom/wallchange": {
-        "format": "{}",
+        "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "${ScrDir}/swwwallpaper.sh -n",

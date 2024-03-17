@@ -20,14 +20,34 @@ elif [ $(readlink $waybar_dir/themes/theme.css) != "$waybar_dir/themes/${gtkThem
     reload_flag=1
 fi
 
+# reload forced with option
+DEBUG=0
+while [ "$1" != "" ]; do
+    case "$1" in 
+        r|-r|--restart) reload_flag=1 ;; # reload forced with option
+        -d|--debug) DEBUG=1 ;; # debug mode
+    esac
+    shift
+done
+
+debugPrint() {
+    if [ "$DEBUG" -eq 1 ]; then
+        echo -e "$1" | tee -a "/tmp/$(basename $0).log"
+    fi
+}
 
 # calculate height from control file or monitor res
 
-b_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2`
+# Disable for multiscreen the size from from the lowest screen size simce is the best way
+# b_height=`grep '^1|' $conf_ctl | cut -d '|' -f 2` # get the size of the 1st waybar config
 
+# get b_height from wbarconfgen.sh or build it from hyprctl
 if [ -z $b_height ] || [ "$b_height" == "0" ]; then
-    y_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`
-    b_height=$(( y_monres*3/100 ))
+    # can get the res from hyprctl monitors best than all res of all monitors
+    # y_monres=`cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2`   # Get the hightest resolution of the first monitor
+    # y_monres=`cat /sys/class/drm/*/modes | sed '/^$/d' | sort -t 'x' -k2 -nr | head -1 | cut -d 'x' -f 2` # Get the hightest resolution of all monitors
+    y_monres=$(hyprctl monitors -j | jq -s '.[] | .[] | .height' | sort -n | head -1) # return the height of the smallest monitor
+    b_height=$(( y_monres*3/100 ))  # good for 1k not good for 4k (too big)
 fi
 
 
@@ -39,19 +59,21 @@ export t_radius=$(( b_height*25/100 ))   # tooltip rad 25% of height
 export e_margin=$(( b_height*30/100 ))   # block margin 30% of height
 export e_paddin=$(( b_height*10/100 ))   # block padding 10% of height
 export g_margin=$(( b_height*14/100 ))   # module margin 14% of height
-export g_paddin=$(( b_height*15/100 ))   # module padding 15% of height
+export g_paddin=$(( b_height*20/100 ))   # module padding 20% of height
 export w_radius=$(( b_height*30/100 ))   # workspace rad 30% of height
 export w_margin=$(( b_height*10/100 ))   # workspace margin 10% of height
 export w_paddin=$(( b_height*10/100 ))   # workspace padding 10% of height
 export w_padact=$(( b_height*40/100 ))   # workspace active padding 40% of height
-export s_fontpx=$(( b_height*38/100 ))   # font size 38% of height
+
+# disabling for multiscreen, bar size and auto font size since is the best way
+# export s_fontpx=$(( b_height*38/100 ))   # font size 38% of height
 
 if [ $b_height -lt 30 ] ; then
     export e_paddin=0
 fi
-if [ $s_fontpx -lt 10 ] ; then
-    export s_fontpx=10
-fi
+# if [ $s_fontpx -lt 10 ] ; then
+#     export s_fontpx=10
+# fi
 
 
 # adjust values for vert/horz
@@ -129,7 +151,8 @@ fi
 
 if [ "$reload_flag" == "1" ] ; then
     killall waybar
-    waybar > /dev/null 2>&1 &
+    nohup waybar > /dev/null 2>&1 &
     # killall -SIGUSR2 waybar
+    debugPrint "Restarted waybar..."
 fi
 

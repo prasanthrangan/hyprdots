@@ -1,0 +1,9 @@
+    "custom/arch": {
+        "format": " ",
+        "rotate": ${r_deg},
+        "tooltip": false,
+        "on-click": "sleep 0.1 && ${ScrDir}/rofilaunch.sh d",
+        "on-click-middle": "sleep 0.1 && ${ScrDir}/keybinds_hint.sh",
+        "on-click-right": "sleep 0.1 && ${ScrDir}/logoutlaunch.sh 2"
+    },
+

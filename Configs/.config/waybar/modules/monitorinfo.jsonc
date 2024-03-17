@@ -1,0 +1,11 @@
+    "custom/monitorinfo": {
+        "exec": " ${ScrDir}/monitorinfo.sh",
+        "return-type": "json",
+        "on-click": "nwg-displays -m ~/.config/hypr/configs/monitors.conf",
+        "on-click-middle": "coolercontrol",
+        "format": "🖵 {}",
+        "rotate": ${r_deg},
+        "tooltip": true,
+        "interval": 5 // once every 5 seconds
+    },
+
