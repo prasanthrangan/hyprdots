@@ -4,16 +4,17 @@
 #|-/ /--| Prasanth Rangan                      |-/ /--|#
 #|/ /---+--------------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
 
 # themepatcher
 echo -e "\033[0;32m[THEMEPATCHER]\033[0m additional themes available..."
-awk -F '"' '{print "["NR"]",$2}' themepatcher.lst
+awk -F '"' '{print "["NR"]",$2}' "${scrDir}/themepatcher.lst"
 prompt_timer 10 "Patch these additional themes? [Y/n]"
 thmopt=${promptIn,,}
 
@@ -24,8 +25,8 @@ if [ "${thmopt}" = "y" ] ; then
         themeName="${themeName//\"/}"
         themeRepo="${themeRepo//\"/}"
         themeCode="${themeCode//\"/}"
-        ./themepatcher.sh "${themeName}" "${themeRepo}" "${themeCode}"
-    done < themepatcher.lst
+        "${scrDir}/themepatcher.sh" "${themeName}" "${themeRepo}" "${themeCode}"
+    done < "${scrDir}/themepatcher.lst"
 else
     echo -e "\033[0;33m[SKIP]\033[0m additional themes not patched..."
 fi
@@ -87,7 +88,7 @@ fi
 
 
 # shell
-./restore_shl.sh ${getShell}
+"${scrDir}/restore_shl.sh"
 
 
 # flatpak
@@ -101,7 +102,7 @@ if ! pkg_installed flatpak
 
     if [ "${fpkopt}" = "y" ] ; then
         echo -e "\033[0;32m[FLATPAK]\033[0m intalling flatpaks..."
-        .extra/install_fpk.sh
+        "${scrDir}/.extra/install_fpk.sh"
     else
         echo -e "\033[0;33m[SKIP]\033[0m intalling flatpaks..."
     fi

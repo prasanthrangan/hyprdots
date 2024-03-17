@@ -4,9 +4,10 @@
 #|-/ /--| Prasanth Rangan                     |-/ /--|#
 #|/ /---+-------------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
@@ -52,13 +53,13 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
 
         sudo grub-mkconfig -o /boot/grub/grub.cfg
     else
-        echo -e "\033[0;32m[BOOTLOADER]\033[0m grub is already configured..."
+        echo -e "\033[0;33m[SKIP]\033[0m grub is already configured..."
     fi
 fi
 
 
 # systemd-boot
-if pkg_installed systemd && nvidia_detect && [ $(bootctl status | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
+if pkg_installed systemd && nvidia_detect && [ $(bootctl status 2> /dev/null | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
     then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // systemd-boot"
 
