@@ -96,7 +96,7 @@ if ! pkg_installed flatpak
     then
 
     echo -e "\033[0;32m[FLATPAK]\033[0m flatpak application list..."
-    awk -F '#' '$1 != "" {print "["++count"]", $1}' .extra/custom_flat.lst
+    awk -F '#' '$1 != "" {print "["++count"]", $1}' "${scrDir}/.extra/custom_flat.lst"
     prompt_timer 10 "Install these flatpaks? [Y/n]"
     fpkopt=${promptIn,,}
 
