@@ -13,9 +13,9 @@ roDir="$ConfDir/rofi"
 roconf="$roDir/clipboard.rasi"
 
 # read hypr theme border
-wind_border=$((hypr_border * 3))
-elem_border=$([ $hypr_border -eq 0 ] && echo "10" || echo $((hypr_border * 2)))
-r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} element {border-radius: ${elem_border}px;}"
+wind_border=$(( hypr_border * 3/2 ))
+elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
+r_override="window {height: 65%; width: 35%; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} entry {padding: 45px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')

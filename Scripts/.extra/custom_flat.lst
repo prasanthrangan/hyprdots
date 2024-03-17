@@ -9,10 +9,10 @@ com.brave.Browser                              # Brave
 # org.torproject.torbrowser-launcher           # Tor
 
 # ------------------------------------------- // Social
-# io.github.spacingbat3.webcord                # Webcord
-# dev.vencord.Vesktop                          # Vesktop
-# com.discordapp.Discord                       # Discord
 # org.signal.Signal                            # Signal
+# com.discordapp.Discord                       # Discord
+# dev.vencord.Vesktop                          # Vesktop
+io.github.spacingbat3.webcord                  # Webcord
 
 # ------------------------------------------- // Productivity
 # md.obsidian.Obsidian                         # Obsidian
