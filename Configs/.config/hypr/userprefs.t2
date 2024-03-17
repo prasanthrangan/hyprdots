@@ -27,7 +27,7 @@ bind = $mainMod ALT, XF86MonBrightnessUp, exec, hyprshade off # disable blue lig
 
 # exec-once = swayidle -w timeout 600 'swaylock' timeout 900 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' # lock after 10 mins, turn off monitor after 15 mins // install swayidle
 exec-once = swayidle -w timeout 1200 'swaylock; hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1800 'systemctl suspend' # lock & turn off monitor after 20 mins, suspend after 30 mins // install swayidle
-exec-once = command -v libinput-gestures && libinput-gestures
+exec-once = libinput-gestures
 
 
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
