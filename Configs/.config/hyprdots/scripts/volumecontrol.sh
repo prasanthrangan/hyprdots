@@ -60,11 +60,11 @@ action_playerctl ()
 while getopts iop: DeviceOpt
 do
     case "${DeviceOpt}" in
-    i) nsink=$(pamixer --list-sources | grep "_input." | tail -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
+    i) nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Input device not found..." && exit 0
         ctrl="pamixer"
         srce="--default-source" ;;
-    o) nsink=$(pamixer --get-default-sink | grep "_output." | awk -F '" "' '{print $NF}' | sed 's/"//')
+    o) nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Output device not found..." && exit 0
         ctrl="pamixer"
         srce="" ;;
@@ -94,4 +94,3 @@ case "${1}" in
 esac
 
 notify_vol
-
