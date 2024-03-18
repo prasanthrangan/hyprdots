@@ -33,7 +33,7 @@ mainbox {
 // Lists //
 listview {
     enabled:                     true;
-    columns:                     10;
+    columns:                     5;
     lines:                       1;
     spacing:                     30px;
     padding:                     40px 100px 40px 100px;
