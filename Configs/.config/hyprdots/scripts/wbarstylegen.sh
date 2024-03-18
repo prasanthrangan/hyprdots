@@ -44,7 +44,7 @@ export w_radius=$(( b_height*30/100 ))   # workspace rad 30% of height
 export w_margin=$(( b_height*10/100 ))   # workspace margin 10% of height
 export w_paddin=$(( b_height*10/100 ))   # workspace padding 10% of height
 export w_padact=$(( b_height*40/100 ))   # workspace active padding 40% of height
-export s_fontpx=$(( b_height*38/100 ))   # font size 38% of height
+export s_fontpx=$(( b_height*34/100 ))   # font size 34% of height
 
 if [ $b_height -lt 30 ] ; then
     export e_paddin=0

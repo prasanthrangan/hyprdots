@@ -4,46 +4,46 @@
 #|-/ /--| Prasanth Rangan                   |-/ /--|#
 #|/ /---+-----------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
+fi
+
+if chk_list "aurhlpr" "${aurList[@]}" ; then
+    echo -e "\033[0;32m[AUR]\033[0m detected // ${aurhlpr}"
+    exit 0
 fi
 
 aurhlpr="${1:-yay}"
 
-if pkg_installed yay || pkg_installed paru
-then
-    echo "aur helper is already installed..."
-    exit 0
-fi
-
-if [ -d ~/Clone ]
+if [ -d "$HOME/Clone" ]
 then
     echo "~/Clone directory exists..."
-    rm -rf ~/Clone/$aurhlpr
+    rm -rf "$HOME/Clone/${aurhlpr}"
 else
-    mkdir ~/Clone
-    echo -e "[Desktop Entry]\nIcon=default-folder-git" > ~/Clone/.directory
+    mkdir "$HOME/Clone"
+    echo -e "[Desktop Entry]\nIcon=default-folder-git" > "$HOME/Clone/.directory"
     echo "~/Clone directory created..."
 fi
 
 if pkg_installed git
 then
-    git clone https://aur.archlinux.org/$aurhlpr.git ~/Clone/$aurhlpr
+    git clone "https://aur.archlinux.org/${aurhlpr}.git" "$HOME/Clone/${aurhlpr}"
 else
     echo "git dependency is not installed..."
     exit 1
 fi
 
-cd ~/Clone/$aurhlpr
+cd "$HOME/Clone/${aurhlpr}"
 makepkg ${use_default} -si
 
 if [ $? -eq 0 ]
 then
-    echo "$aurhlpr aur helper installed..."
+    echo "${aurhlpr} aur helper installed..."
     exit 0
 else
-    echo "$aurhlpr installation failed..."
+    echo "${aurhlpr} installation failed..."
     exit 1
 fi
