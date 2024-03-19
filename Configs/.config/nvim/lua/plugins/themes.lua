@@ -54,7 +54,7 @@ return {
     opts = {},  
   }, 
   {'decaycs/decay.nvim', 
-    as = 'decay'
+    name = 'decay'
     config = true, 
     opts = {},}
   
