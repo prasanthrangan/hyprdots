@@ -72,6 +72,7 @@ visual-studio-code-bin                                 # ide text editor
 #code                                                  # opensource version of vscode
 #code-marketplace                                      # needed to access vscode marketplace
 neovim                                                 # terminal text editor successor to vim
+chezmoi                                                # for config changing
 
 
 #-----------------------------------------------------// Dependencies for Dev and Neovim
