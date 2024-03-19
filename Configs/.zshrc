@@ -96,7 +96,7 @@ pokemon-colorscripts --no-title -r 1,3,6
 # Path for cli apps
 export PATH="~/go/bin:$PATH"
 export PATH="~/.cargo/bin:$PATH"
-export PATH=~/.npm-global/bin:$PATH
+export PATH="~/.npm-global/bin:$PATH"
 export PATH="~/.local/bin:$PATH"
 
 
