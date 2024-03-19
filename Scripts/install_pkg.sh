@@ -41,13 +41,13 @@ do
         done < <(echo "${deps}" | xargs -n1)
 
         if [[ ${pass} -ne 1 ]] ; then
-            echo -e "\033[0;33m[SKIP]\033[0m ${pkg} is missing (${deps}) dependency..."
+            echo -e "\033[0;33m[skip]\033[0m ${pkg} is missing (${deps}) dependency..."
             continue
         fi
     fi
 
     if pkg_installed "${pkg}" ; then
-        echo -e "\033[0;33m[SKIP]\033[0m ${pkg} is already installed..."
+        echo -e "\033[0;33m[skip]\033[0m ${pkg} is already installed..."
     elif pkg_available "${pkg}" ; then
         repo=$(pacman -Si "${pkg}" | awk -F ': ' '/Repository / {print $2}')
         echo -e "\033[0;32m[${repo}]\033[0m queueing ${pkg} from official arch repo..."

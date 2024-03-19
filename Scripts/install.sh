@@ -121,7 +121,7 @@ EOF
     #----------------#
     if ! chk_list "aurhlpr" "${aurList[@]}" ; then
         echo -e "Available aur helpers:\n[1] yay\n[2] paru"
-        prompt_timer 30 "Enter option number"
+        prompt_timer 120 "Enter option number"
 
         case "${promptIn}" in
         1) export getAur="yay" ;;
@@ -132,7 +132,7 @@ EOF
 
     if ! chk_list "myShell" "${shlList[@]}" ; then
         echo -e "Select shell:\n[1] zsh\n[2] fish"
-        prompt_timer 30 "Enter option number"
+        prompt_timer 120 "Enter option number"
 
         case "${promptIn}" in
         1) export myShell="zsh" ;;
