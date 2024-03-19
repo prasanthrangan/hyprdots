@@ -73,7 +73,8 @@ visual-studio-code-bin                                 # ide text editor
 #code-marketplace                                      # needed to access vscode marketplace
 neovim                                                 # terminal text editor successor to vim
 chezmoi                                                # for config changing
-
+appimagelauncher                                       # makes the usage of appimage much easier
+apptainer                                              # appimage successor
 
 #-----------------------------------------------------// Dependencies for Dev and Neovim
 gcc                                                   # C Compiler for treesitter
