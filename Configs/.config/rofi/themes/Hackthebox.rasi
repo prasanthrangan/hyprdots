@@ -1,0 +1,21 @@
+/* Another Theme */
+
+* {
+    /* Main background and foreground colors */
+    main-bg:           #282828FF;
+    main-fg:           #CBCED3FF;
+
+    /* Active window border colors */
+    main-br:           #EBDBB2FF;
+
+    /* Extra color */
+    main-ex:           #85A583FF;
+
+    /* Selected item background and foreground colors */
+    select-bg:         #475437FF;
+    select-fg:         #B5CC97FF;
+
+    /* Separator and border colors */
+    separatorcolor:    transparent;
+    border-color:      transparent;
+}

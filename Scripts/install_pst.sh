@@ -49,6 +49,7 @@ if pkg_installed sddm
         case $sddmopt in
         1) sddmtheme="Candy";;
         *) sddmtheme="Corners";;
+        3) sddmtheme="HTB";;
         esac
 
         sudo tar -xzf ${CloneDir}/Source/arcs/Sddm_${sddmtheme}.tar.gz -C /usr/share/sddm/themes/
