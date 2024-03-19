@@ -66,9 +66,32 @@ firefox                                                # browser
 kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
-vim                                                    # terminal text editor
+#vim                                                   # terminal text editor
 visual-studio-code-bin                                 # ide text editor
+#lapce                                                 # modern rust ide more ligthweitgth then vscode
+#code                                                  # opensource version of vscode
+#code-marketplace                                      # needed to access vscode marketplace
+neovim                                                 # terminal text editor successor to vim
 
+
+#-----------------------------------------------------// Dependencies for Dev and Neovim
+gcc                                                   # C Compiler for treesitter
+#clang                                                # Alternative to gcc
+npm                                                   # for neovim to install plugins
+nodejs                                                # js runtime
+pipx                                                  # usefull for Python apps
+rust                                                  # for neovim treesitter
+cargo                                                 # rust build tool
+cmake                                                 # for c builds
+make                                                  # for c builds
+ninja                                                 # for c builds
+devtools                                              # dev stuff
+python-pynvim                                         # for neovim plugins
+xclip                                                 # neovim clipboard
+xsel                                                  # neovim clipboard
+wl-clipboard                                          # neovim clipboard
+ttf-nerd-fonts-symbols                                # lazyvim icons
+ttf-nerd-fonts-symbols-common                         # lazyvim icons
 
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh

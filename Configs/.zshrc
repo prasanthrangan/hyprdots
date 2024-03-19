@@ -70,6 +70,7 @@ alias pa='$aurhelper -Ss' # list availabe package
 alias pc='$aurhelper -Sc' # remove unused cache
 alias po='$aurhelper -Qtdq | $aurhelper -Rns -' # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
 alias vc='code --ozone-platform-hint=wayland --disable-gpu' # gui code editor
+alias vim=nvim
 
 # Handy change dir shortcuts
 alias ..='cd ..'
@@ -89,3 +90,13 @@ alias ssh='kitten ssh'
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
+
+
+
+# Path for cli apps
+export PATH="/home/jonas/go/bin:$PATH"
+export PATH="/home/jonas/.cargo/bin:$PATH"
+export PATH=~/.npm-global/bin:$PATH
+export PATH="/home/jonas/.local/bin:$PATH"
+
+
