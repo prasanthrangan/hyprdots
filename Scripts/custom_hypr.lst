@@ -92,6 +92,9 @@ xsel                                                  # neovim clipboard
 wl-clipboard                                          # neovim clipboard
 ttf-nerd-fonts-symbols                                # lazyvim icons
 ttf-nerd-fonts-symbols-common                         # lazyvim icons
+ripgrep                                               # for nvim telescope
+fzf                                                   # for nvim telescope
+fd                                                    # for nvim telescope
 
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
