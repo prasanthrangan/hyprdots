@@ -36,7 +36,7 @@ fi
 fn_wallbash () {
     local tplt="${1}"
     eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
-    touch "${target}" || { echo "[skip] $(dirname "${target}")" && return 0 ;}
+    touch "${target}" &> /dev/null || { echo "[skip] $(dirname "${target}")" && return 0 ;}
     eval appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
     source "${ScrDir}/globalcontrol.sh"
     source "${wallbashOut}"
