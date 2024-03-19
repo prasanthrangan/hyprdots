@@ -27,7 +27,7 @@ notify_vol ()
     angle="$(( (($vol+2)/5) * 5 ))"
     ico="${icodir}/vol-${angle}.svg"
     bar=$(seq -s "." $(($vol / 15)) | sed 's/[0-9]//g')
-    dunstify "t2" -a "${vol}${bar}" "${nsink}" -i $ico -r 91190 -t 800
+    notify-send  -a "t2" -r 91190 -t 800 -i "${ico}" "${vol}${bar}" "${nsink}"
 }
 
 notify_mute ()
@@ -35,9 +35,9 @@ notify_mute ()
     mute=$(pamixer "${srce}" --get-mute | cat)
     [ "${srce}" == "--default-source" ] && dvce="mic" || dvce="speaker"
     if [ "${mute}" == "true" ] ; then
-        dunstify "t2" -a "muted" "${nsink}" -i ${icodir}/muted-${dvce}.svg -r 91190 -t 800
+        notify-send -a "t2" -r 91190 -t 800 -i "${icodir}/muted-${dvce}.svg" "muted" "${nsink}"
     else
-        dunstify "t2" -a "unmuted" "${nsink}" -i ${icodir}/unmuted-${dvce}.svg -r 91190 -t 800
+        notify-send -a "t2" -r 91190 -t 800 -i "${icodir}/unmuted-${dvce}.svg" "unmuted" "${nsink}"
     fi
 }
 
@@ -60,11 +60,11 @@ action_playerctl ()
 while getopts iop: DeviceOpt
 do
     case "${DeviceOpt}" in
-    i) nsink=$(pamixer --list-sources | grep "_input." | tail -1 | awk -F '" "' '{print $NF}' | sed 's/"//')
+    i) nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Input device not found..." && exit 0
         ctrl="pamixer"
         srce="--default-source" ;;
-    o) nsink=$(pamixer --get-default-sink | grep "_output." | awk -F '" "' '{print $NF}' | sed 's/"//')
+    o) nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}')
         [ -z "${nsink}" ] && echo "ERROR: Output device not found..." && exit 0
         ctrl="pamixer"
         srce="" ;;
@@ -94,4 +94,3 @@ case "${1}" in
 esac
 
 notify_vol
-

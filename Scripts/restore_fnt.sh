@@ -4,13 +4,14 @@
 #|-/ /--| Prasanth Rangan                  |-/ /--|#
 #|/ /---+----------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
-cat restore_fnt.lst | while read lst
+cat "${scrDir}/restore_fnt.lst" | while read lst
 do
 
     fnt=`echo $lst | awk -F '|' '{print $1}'`
@@ -19,15 +20,15 @@ do
 
     if [ ! -d "${tgt}" ]
     then
-        mkdir -p ${tgt} || echo "creating the directory as root instead..." && sudo mkdir -p ${tgt}
-        echo "${tgt} directory created..."
+        mkdir -p "${tgt}" || echo "creating the directory as root instead..." && sudo mkdir -p "${tgt}"
+        echo -e "\033[0;32m[extract]\033[0m ${tgt} directory created..."
     fi
 
-    sudo tar -xzf ${CloneDir}/Source/arcs/${fnt}.tar.gz -C ${tgt}/
-    echo "uncompressing ${fnt}.tar.gz --> ${tgt}..."
+    sudo tar -xzf "${CloneDir}/Source/arcs/${fnt}.tar.gz" -C "${tgt}/"
+    echo -e "\033[0;32m[extract]\033[0m ${fnt}.tar.gz --> ${tgt}..."
 
 done
 
-echo "rebuilding font cache..."
+echo -e "\033[0;32m[fonts]\033[0m rebuilding font cache..."
 fc-cache -f
 

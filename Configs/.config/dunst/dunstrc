@@ -64,7 +64,7 @@
     progress_bar_corner_radius = 4
 
     # Corner radius for the icon image.
-    icon_corner_radius = 5
+    icon_corner_radius = 10
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "󰟪 %s\n%b"
+    format = "%s\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -434,12 +434,12 @@
 # vim: ft=cfg
 
 [Type-1]
-    summary = "t1"
-    format = "<b>%a</b>"
+    appname = "t1"
+    format = "<b>%s</b>"
 
 [Type-2]
-    summary = "t2"
-    format = "<span size="250%">%a</span>\n%b"
+    appname = "t2"
+    format = "<span size="250%">%s</span>\n%b"
 
 [urgency_critical]
     background = "#f5e0dc"
@@ -451,15 +451,15 @@
     #default_icon = /path/to/icon
 
 [urgency_low]
-    background = "#2488B3"
-    foreground = "#C0EAFC"
-    frame_color = "#3DA1CC"
+    background = "#6591A3"
+    foreground = "#CCF0FF"
+    frame_color = "#7AACC2"
     icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 5
 
 [urgency_normal]
-    background = "#021D52"
-    foreground = "#C0D4FC"
-    frame_color = "#0E388C"
+    background = "#3A4A6B"
+    foreground = "#CCDDFF"
+    frame_color = "#576A8F"
     icon = "~/.config/dunst/icons/hyprdots.svg"
     timeout = 5
