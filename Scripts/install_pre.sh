@@ -39,7 +39,7 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
         esac
 
         if [ "${grubtheme}" == "None" ] ; then
-            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..." 
+            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..."
             sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
         else
             echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"

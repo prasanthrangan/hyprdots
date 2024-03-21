@@ -11,7 +11,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-if ! pkg_installed imagemagick || ! pkg_installed parallel 
+if ! pkg_installed imagemagick || ! pkg_installed parallel
 then
     echo "ERROR : dependency failed, imagemagick/parallel is not installed..."
     exit 0
@@ -47,7 +47,7 @@ while getopts "fc:" option ; do
             exit 1
         fi ;;
     * ) # invalid option
-        echo "...valid options are..."   
+        echo "...valid options are..."
     	echo "./create_cache.sh -f                      # force create thumbnails (delete old cache)"
         echo "./create_cache.sh -c /path/to/wallpaper   # generate cache for custom walls"
         echo "./create_cache.sh "Theme-Name"            # generate cache for a theme"

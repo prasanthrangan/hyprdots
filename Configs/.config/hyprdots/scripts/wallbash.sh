@@ -133,7 +133,7 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
     #// generate missing primary colors
 
     if [ -z "${dcol[i]}" ] ; then
-    
+
         if fx_brightness "xc:#${dcol[i - 1]}" ; then
             modBri=$pryDarkBri
             modSat=$pryDarkSat
