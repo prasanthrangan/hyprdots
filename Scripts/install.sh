@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+--------------------------+---/ /|#
 #|--/ /-| Main installation script |--/ /-|#
 #|-/ /--| Prasanth Rangan          |-/ /--|#

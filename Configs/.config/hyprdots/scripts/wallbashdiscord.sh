@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # source variables
 ScrDir=`dirname "$(realpath "$0")"`

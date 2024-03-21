@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+------------------------------------+---/ /|#
 #|--/ /-| Script to restore personal configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                    |-/ /--|#

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+---------------------------------------------+---/ /|#
 #|--/ /-| Script to generate color palette from image |--/ /-|#
 #|-/ /--| Prasanth Rangan                             |-/ /--|#

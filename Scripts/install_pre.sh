@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+-------------------------------------+---/ /|#
 #|--/ /-| Script to apply pre install configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                     |-/ /--|#

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ScrDir=`dirname "$(realpath "$0")"`
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"

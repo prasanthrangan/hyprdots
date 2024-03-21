@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+------------------------------+---/ /|#
 #|--/ /-| Script to patch custom theme |--/ /-|#
 #|-/ /--| kRHYME7                      |-/ /--|#
