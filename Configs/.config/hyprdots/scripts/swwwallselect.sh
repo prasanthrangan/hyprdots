@@ -26,7 +26,7 @@ x_monres=$(( x_monres * 17 / monitor_scale ))
 
 # set rofi override
 elem_border=$(( hypr_border * 3 ))
-r_override="element{border-radius:${elem_border}px;} listview{columns:6;spacing:100px;} element{padding:0px;orientation:vertical;} element-icon{size:${x_monres}px;border-radius:0px;} element-text{padding:20px;}"
+r_override="element{border-radius:${elem_border}px;} listview{columns:6;spacing:100px;} element{padding:0px;orientation:vertical;} element-icon{size:${x_monres}px;border-radius:0px;} element-text{padding:1em;}"
 
 
 # launch rofi menu

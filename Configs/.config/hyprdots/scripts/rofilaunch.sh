@@ -24,7 +24,7 @@ esac
 
 wind_border=$(( hypr_border * 3 ))
 elem_border=`[ $hypr_border -eq 0 ] && echo "10" || echo $(( hypr_border * 2 ))`
-r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} element {border-radius: ${elem_border}px;}"
+r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} inputbar {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 
 # read hypr font size

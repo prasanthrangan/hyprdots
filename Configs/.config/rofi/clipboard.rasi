@@ -16,55 +16,50 @@ window {
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
-    spacing:                     0px;
-    padding:                     0px;
-    border:                      2px;
-    border-radius:               15px;
+    spacing:                     0em;
+    padding:                     0em;
     border-color:                @main-br;
-    background-color:            transparent;
+    background-color:            @main-bg;
 }
 mainbox {
     enabled:                     true;
-    spacing:                     0px;
+    spacing:                     0em;
     orientation:                 vertical;
     children:                    [ "inputbar" , "listbox" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
 }
 
 
 // Inputs //
 inputbar {
     enabled:                     true;
-    padding:                     7px;
+    padding:                     0.5em;
     children:                    [ "entry" ];
-    background-color:            @main-bg;
+    background-color:            transparent;
 }
 entry {
     enabled:                     true;
-    padding:                     70px;
+    padding:                     3em;
     text-color:                  @main-fg;
-    background-color:            @main-bg;
+    background-color:            transparent;
     background-image:            url("~/.config/swww/wall.blur", width);
 }
 
 
 // Lists //
 listbox {
-    spacing:                     0px;
-    padding:                     6px;
+    spacing:                     0em;
+    padding:                     0em;
+    orientation:                 horizontal;
     children:                    [ "listview" ];
-    background-color:            @main-bg;
+    background-color:            transparent;
 }
 listview {
     enabled:                     true;
+    padding:                     0.5em;
     columns:                     1;
     cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                false;
+    fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
@@ -75,17 +70,10 @@ listview {
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     0px;
-    padding:                     12px;
-    border-radius:               10px;
+    padding:                     0.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
-}
-@media(max-aspect-ratio: 1.8) {
-    element {
-        orientation:             vertical;
-    }
 }
 element selected.normal {
     background-color:            @select-bg;
