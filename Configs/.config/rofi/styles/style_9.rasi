@@ -17,23 +17,21 @@ configuration {
 
 // Main //
 window {
-    height:                      590px;
-    width:                       1050px;
+    height:                      30em;
+    width:                       57em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
-    spacing:                     0px;
-    padding:                     0px;
-    border:                      2px;
-    border-radius:               40px;
+    spacing:                     0em;
+    padding:                     0em;
     border-color:                @main-br;
     background-color:            @main-bg;
 }
 mainbox {
     enabled:                     true;
-    spacing:                     20px;
-    padding:                     10px;
+    spacing:                     1em;
+    padding:                     1em;
     orientation:                 horizontal;
     children:                    [ "inputbar" , "listbox" ];
     background-color:            transparent;
@@ -43,12 +41,13 @@ mainbox {
 // Inputs //
 inputbar {
     enabled:                     true;
-    width:                       560px;
-    spacing:                     0px;
-    padding:                     0px;
+    width:                       27em;
+    spacing:                     0em;
+    padding:                     0em;
     children:                    [ "entry" ];
     background-color:            transparent;
     background-image:            url("~/.config/swww/wall.thmb", height);
+    border-radius:               1em;
 }
 entry {
     enabled:                     false;
@@ -57,33 +56,39 @@ entry {
 
 // Lists //
 listbox {
-    spacing:                     10px;
-    padding:                     20px;
-    children:                    [ "listview" ];
+    spacing:                     0em;
+    padding:                     0em;
+    children:                    [ "dummy" , "listview" , "dummy" ];
     background-color:            transparent;
 }
 listview {
     enabled:                     true;
+    spacing:                     0em;
+    padding:                     1em;
     columns:                     1;
+    lines:                       7;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
+    expand:                      false;
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
     text-color:                  @main-fg;
 }
+dummy {
+    background-color:            transparent;
+}
 
 
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     30px;
-    padding:                     8px;
-    border-radius:               20px;
+    spacing:                     1em;
+    padding:                     0.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
@@ -98,7 +103,7 @@ element selected.normal {
     text-color:                  @select-fg;
 }
 element-icon {
-    size:                        48px;
+    size:                        2.7em;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;
