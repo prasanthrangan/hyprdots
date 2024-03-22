@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+-----------------------------------------------+---/ /|#
 #|--/ /-| Script to enable early loading for nvidia drm |--/ /-|#
 #|-/ /--| Prasanth Rangan                               |-/ /--|#

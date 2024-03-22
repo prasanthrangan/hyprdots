@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+--------------------------------------+---/ /|#
 #|--/ /-| Script to compare git and local dots |--/ /-|#
 #|-/ /--| Prasanth Rangan                      |-/ /--|#
