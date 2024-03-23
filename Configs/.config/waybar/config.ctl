@@ -8,6 +8,7 @@
 0|31|left|( custom/power custom/cliphist custom/wbar custom/theme custom/wallchange ) ( wlr/taskbar custom/spotify ) |( idle_inhibitor clock )|( tray battery ) ( backlight network bluetooth pulseaudio pulseaudio#microphone custom/keybindhint )
 0|31|top|( custom/power custom/cliphist custom/wbar custom/theme custom/wallchange ) ( wlr/taskbar custom/spotify ) |( idle_inhibitor clock )|( tray battery ) ( backlight network bluetooth pulseaudio pulseaudio#microphone custom/keybindhint )
 0|31|right|( custom/power custom/cliphist custom/wbar custom/theme custom/wallchange ) ( wlr/taskbar custom/spotify ) |( idle_inhibitor clock )|( tray battery ) ( backlight network bluetooth pulseaudio pulseaudio#microphone custom/keybindhint )
+0|31|top|( cpu memory custom/cpuinfo custom/gpuinfo custom/weather ) ( idle_inhibitor clock ) ( hyprland/workspaces ) ( mpris ) |( wlr/taskbar )|( backlight network bluetooth pulseaudio pulseaudio#microphone custom/updates custom/keybindhint ) ( tray battery ) ( custom/wallchange custom/theme custom/wbar custom/cliphist custom/power )
 0|32|bottom||( custom/power ) ( tray battery ) ( wlr/taskbar idle_inhibitor clock ) ( custom/cliphist ) ( custom/wbar ) ( custom/wallchange ) ( custom/theme )|
 0|32|left||( custom/power ) ( tray battery ) ( wlr/taskbar idle_inhibitor clock ) ( custom/cliphist ) ( custom/wbar ) ( custom/wallchange ) ( custom/theme )|
 0|32|top||( custom/power ) ( tray battery ) ( wlr/taskbar idle_inhibitor clock ) ( custom/cliphist ) ( custom/wbar ) ( custom/wallchange ) ( custom/theme )|
