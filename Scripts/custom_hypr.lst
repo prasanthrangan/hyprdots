@@ -32,7 +32,7 @@ swww                                                   # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
-hyprpicker-git                                         # color picker
+hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 swappy                                                 # screenshot editor
 cliphist                                               # clipboard manager
@@ -49,6 +49,7 @@ imagemagick                                            # for image processing
 qt5-imageformats                                       # for dolphin image thumbnails
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
+kservice5                                              # for "open with" menu in dolphin
 
 
 # --------------------------------------------------- // Theming
@@ -80,5 +81,5 @@ pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
 
 # --------------------------------------------------- // Hyprdots
-hyprdots-ctl                                           # cli tool to manage hyprdots
+hyprdots-ctl-git                                       # cli tool to manage hyprdots
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+------------------+---/ /|#
 #|--/ /-| Global functions |--/ /-|#
 #|-/ /--| Prasanth Rangan  |-/ /--|#
@@ -8,29 +8,17 @@ set -e
 
 CloneDir=`dirname "$(dirname "$(realpath "$0")")"`
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+cacheDir="$HOME/.cache/hyprdots"
 HyprdotsDir="${ConfDir}/hyprdots"
 ThemeCtl="${HyprdotsDir}/theme.ctl"
-
-service_ctl()
-{
-    local ServChk=$1
-
-    if [[ $(systemctl list-units --all -t service --full --no-legend "${ServChk}.service" | sed 's/^\s*//g' | cut -f1 -d' ') == "${ServChk}.service" ]]
-    then
-        echo "$ServChk service is already enabled, enjoy..."
-    else
-        echo "$ServChk service is not running, enabling..."
-        sudo systemctl enable ${ServChk}.service
-        sudo systemctl start ${ServChk}.service
-        echo "$ServChk service enabled, and running..."
-    fi
-}
+aurList=(yay paru)
+shlList=(zsh fish)
 
 pkg_installed()
 {
     local PkgIn=$1
 
-    if pacman -Qi $PkgIn &> /dev/null
+    if pacman -Qi "${PkgIn}" &> /dev/null
     then
         #echo "${PkgIn} is already installed..."
         return 0
@@ -40,11 +28,25 @@ pkg_installed()
     fi
 }
 
+chk_list()
+{
+    vrType="$1"
+    local inList=("${@:2}")
+    for pkg in "${inList[@]}" ; do
+        if pkg_installed "${pkg}" ; then
+            printf -v "${vrType}" "%s" "${pkg}"
+            export "${vrType}"
+            return 0
+        fi
+    done
+    return 1
+}
+
 pkg_available()
 {
     local PkgIn=$1
 
-    if pacman -Si $PkgIn &> /dev/null
+    if pacman -Si "${PkgIn}" &> /dev/null
     then
         #echo "${PkgIn} available in arch repo..."
         return 0
@@ -54,23 +56,11 @@ pkg_available()
     fi
 }
 
-chk_aurh()
-{
-    if pkg_installed yay
-    then
-        aurhlpr="yay"
-    elif pkg_installed paru
-    then
-        aurhlpr="paru"
-    fi
-}
-
 aur_available()
 {
     local PkgIn=$1
-    chk_aurh
 
-    if $aurhlpr -Si $PkgIn &> /dev/null
+    if ${aurhlpr} -Si "${PkgIn}" &> /dev/null
     then
         #echo "${PkgIn} available in aur repo..."
         return 0
@@ -82,7 +72,8 @@ aur_available()
 
 nvidia_detect()
 {
-    if [ `lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l` -gt 0 ]
+    dGPU=$(lspci -k | grep -A 0 -E "(VGA|3D)" | awk -F 'controller: ' '{print $2}')
+    if [ $(lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l) -gt 0 ]
     then
         #echo "nvidia card detected..."
         return 0
@@ -95,16 +86,16 @@ nvidia_detect()
 prompt_timer()
 {
     set +e
+    unset promptIn
     local timsec=$1
     local msg=$2
-    local pread=""
-    while [[ $timsec -ge 0 ]] ; do
-        echo -ne "\033[0K\r${msg} (${timsec}s) : "
-        read -t 1 -n 1 -s promptIn
+    while [[ ${timsec} -ge 0 ]] ; do
+        echo -ne "\r :: ${msg} (${timsec}s) : "
+        read -t 1 -n 1 promptIn
         [ $? -eq 0 ] && break
         ((timsec--))
     done
     export promptIn
-    echo ${promptIn}
+    echo ""
     set -e
 }

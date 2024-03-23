@@ -5,7 +5,9 @@
 steam
 gamemode
 #gamescope
-#mangohud
-#cava
+mangohud
+cava
 spotify
 spicetify-cli
+#libinput-gestures
+#gestures

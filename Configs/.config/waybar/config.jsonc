@@ -26,6 +26,7 @@
         "rotate": 0,
         "exec": "echo ; echo  logout",
         "on-click": "~/.config/hyprdots/scripts/logoutlaunch.sh 2",
+        "on-click-right": "~/.config/hyprdots/scripts/logoutlaunch.sh 1",
         "interval" : 86400, // once every day
         "tooltip": true
     },
@@ -235,7 +236,7 @@
     "custom/keybindhint": {
         "format": " ",
         "rotate": 0,
-        "on-click": "Hyprdots show binds",
+        "on-click": "~/.config/hyprdots/scripts/keybinds_hint.sh"
     },
 
 

@@ -1,12 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+-------------------------------------+---/ /|#
 #|--/ /-| Script to apply pre install configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                     |-/ /--|#
 #|/ /---+-------------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
@@ -29,8 +30,8 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
             sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/c\GRUB_CMDLINE_LINUX_DEFAULT=\"${gcld} nvidia_drm.modeset=1\"" /etc/default/grub
         fi
 
-        echo -e "Select grub theme:\n1) Retroboot (dark)\n2) Pochita (light)"
-        read -p "Press enter to skip grub theme <or> Enter option number : " grubopt
+        echo -e "Select grub theme:\n[1] Retroboot (dark)\n[2] Pochita (light)"
+        read -p " :: Press enter to skip grub theme <or> Enter option number : " grubopt
         case ${grubopt} in
             1) grubtheme="Retroboot";;
             2) grubtheme="Pochita";;
@@ -38,7 +39,7 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
         esac
 
         if [ "${grubtheme}" == "None" ] ; then
-            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..." 
+            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..."
             sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
         else
             echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"
@@ -52,13 +53,13 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
 
         sudo grub-mkconfig -o /boot/grub/grub.cfg
     else
-        echo -e "\033[0;32m[BOOTLOADER]\033[0m grub is already configured..."
+        echo -e "\033[0;33m[SKIP]\033[0m grub is already configured..."
     fi
 fi
 
 
 # systemd-boot
-if pkg_installed systemd && nvidia_detect && [ $(bootctl status | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
+if pkg_installed systemd && nvidia_detect && [ $(bootctl status 2> /dev/null | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
     then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // systemd-boot"
 

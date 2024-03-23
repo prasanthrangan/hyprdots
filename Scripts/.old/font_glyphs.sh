@@ -1,4 +1,4 @@
-#!/bin/bash -
+#!/usr/bin/env bash -
 
 Usage() { echo "$0 FontFile"; exit 1; }
 SayError() { local error=$1; shift; echo "$0: $@"; exit "$error"; }

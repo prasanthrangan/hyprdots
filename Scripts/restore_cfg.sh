@@ -1,20 +1,22 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+------------------------------------+---/ /|#
 #|--/ /-| Script to restore personal configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                    |-/ /--|#
 #|/ /---+------------------------------------+/ /---|#
 
-source global_fn.sh
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
-    echo "Error: unable to source global_fn.sh, please execute from $(dirname "$(realpath "$0")")..."
+    echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
 
-ThemeOverride="${1:-}"              #override default config list with custom theme list [param 1]
-CfgDir="${2:-${CloneDir}/Configs}"  #override default config path with custom theme path [param 2]
+CfgLst="${1:-"${scrDir}/restore_cfg.lst"}"
+CfgDir="${2:-${CloneDir}/Configs}"
+ThemeOverride="${3:-}"
 
-if [ ! -f "${ThemeOverride}restore_cfg.lst" ] || [ ! -d "${CfgDir}" ] ; then
-    echo "ERROR : '${ThemeOverride}restore_cfg.lst' or '${CfgDir}' does not exist..."
+if [ ! -f "${CfgLst}" ] || [ ! -d "${CfgDir}" ] ; then
+    echo "ERROR : '${CfgLst}' or '${CfgDir}' does not exist..."
     exit 1
 fi
 
@@ -27,7 +29,7 @@ else
     mkdir -p "${BkpDir}"
 fi
 
-cat "${ThemeOverride}restore_cfg.lst" | while read lst
+cat "${CfgLst}" | while read lst
 do
 
     ovrWrte=`echo "${lst}" | awk -F '|' '{print $1}'`
@@ -39,9 +41,9 @@ do
 
     while read -r pkg_chk
     do
-        if ! pkg_installed ${pkg_chk}
+        if ! pkg_installed "${pkg_chk}"
             then
-            echo "skipping ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
+            echo -e "\033[0;33m[skip]\033[0m ${pth}/${cfg} as dependency ${pkg_chk} is not installed..."
             continue 2
         fi
     done < <( echo "${pkg}" | xargs -n 1 )
@@ -59,7 +61,7 @@ do
             fi
 
             [ "${ovrWrte}" == "Y" ] && mv "${pth}/${cfg_chk}" "${BkpDir}${tgt}" || cp -r "${pth}/${cfg_chk}" "${BkpDir}${tgt}"
-            echo "config backed up ${pth}/${cfg_chk} --> ${BkpDir}${tgt}..."
+            echo -e "\033[0;34m[backup]\033[0m ${pth}/${cfg_chk} --> ${BkpDir}${tgt}..."
         fi
 
         if [ ! -d "${pth}" ] ; then
@@ -68,12 +70,12 @@ do
 
         if [ ! -f "${pth}/${cfg_chk}" ] ; then
             cp -r "${CfgDir}${tgt}/${cfg_chk}" "${pth}"
-            echo "config restored ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
+            echo -e "\033[0;32m[restore]\033[0m ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
         elif [ "${ovrWrte}" == "Y" ] ; then
             cp -r "${CfgDir}$tgt/${cfg_chk}" "${pth}"
-            echo "warning: config overwritten without backup ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
+            echo -e "\033[0;33m[overwrite]\033[0m ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
         else
-            echo "Skipping ${pth}/${cfg_chk} to preserve user setting..."
+            echo -e "\033[0;33m[preserve]\033[0m Skipping ${pth}/${cfg_chk} to preserve user setting..."
         fi
     done
 
@@ -83,6 +85,6 @@ if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.con
     echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
 fi
 
-./create_cache.sh "${ThemeOverride}"
-[ -z "${ThemeOverride}" ] && ./restore_lnk.sh
+"${scrDir}/create_cache.sh" "${ThemeOverride}"
+[ -z "${ThemeOverride}" ] && "${scrDir}/restore_lnk.sh"
 

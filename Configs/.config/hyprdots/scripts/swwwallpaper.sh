@@ -37,8 +37,10 @@ Wall_Update()
     wait
     awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "${ThemeCtl}"
     ln -fs "${x_wall}" "${wallSet}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
+    ln -fs "${cacheDir}/${curTheme}/${cacheImg}" "${wallTmb}"
     ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "${wallBlr}"
+    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.dcol" "${wallDcl}"
+    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
 }
 
 Wall_Change()
@@ -86,6 +88,8 @@ source $ScrDir/globalcontrol.sh
 wallSet="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.set"
 wallBlr="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.blur"
 wallRfi="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.rofi"
+wallTmb="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.thmb"
+wallDcl="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.dcol"
 ctlLine=$(grep '^1|' ${ThemeCtl})
 
 if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
