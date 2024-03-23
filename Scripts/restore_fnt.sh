@@ -18,6 +18,11 @@ do
     tgt=`echo $lst | awk -F '|' '{print $2}'`
     tgt=`eval "echo $tgt"`
 
+    if [[ "${tgt}" =~ /usr/share/ && -d /run/current-system/sw/share/ ]]; then
+        echo -e "\e[38;5;4m[skipping]\e[0m ${tgt} on NixOS"
+        continue
+    fi
+
     if [ ! -d "${tgt}" ]
     then
         mkdir -p "${tgt}" || echo "creating the directory as root instead..." && sudo mkdir -p "${tgt}"

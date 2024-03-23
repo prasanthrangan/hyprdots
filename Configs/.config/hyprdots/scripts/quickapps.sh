@@ -16,7 +16,7 @@ fi
 
 # set position
 
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
+x_mon=$( cat /sys/class/drm/*/modes | head -1  )
 y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
 x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
 
@@ -60,9 +60,15 @@ r_override="window{height:${dockHeight};width:${dockWidth};border-radius:${wind_
 
 # launch rofi menu
 
+if [ -d /run/current-system/sw/share/applications ]; then
+    appDir=/run/current-system/sw/share/applications
+else
+    appDir=/usr/share/applications
+fi
+
 RofiSel=$( for qapp in "$@"
 do
-    Lkp=`grep "$qapp" /usr/share/applications/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
+    Lkp=`grep "$qapp" $appDir/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
     Ico=`grep 'Icon=' $Lkp | awk -F '=' '{print $2}' | head -1`
     echo -en "${qapp}\x00icon\x1f${Ico}\n"
 done | rofi -no-fixed-num-lines -dmenu -theme-str "${r_override}" -theme-str "${pos}" -config $roconf)
