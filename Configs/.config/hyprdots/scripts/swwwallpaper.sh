@@ -142,7 +142,7 @@ done
 
 swww query
 if [ $? -eq 1 ] ; then
-    swww-daemon --format xrgb
+    swww-daemon --format xrgb &
 fi
 
 Wall_Set
