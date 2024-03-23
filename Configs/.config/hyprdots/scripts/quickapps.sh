@@ -68,7 +68,7 @@ fi
 
 RofiSel=$( for qapp in "$@"
 do
-    Lkp=`grep "$qapp" $appDir/applications/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
+    Lkp=`grep "$qapp" $appDir/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
     Ico=`grep 'Icon=' $Lkp | awk -F '=' '{print $2}' | head -1`
     echo -en "${qapp}\x00icon\x1f${Ico}\n"
 done | rofi -no-fixed-num-lines -dmenu -theme-str "${r_override}" -theme-str "${pos}" -config $roconf)
