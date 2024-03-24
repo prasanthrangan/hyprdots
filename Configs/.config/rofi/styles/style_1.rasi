@@ -39,6 +39,8 @@ mainbox {
 dummywall {
     spacing:                     0em;
     padding:                     0em;
+    width:                       37em;
+    expand:                      false;
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "inputbar" ];
     background-color:            transparent;

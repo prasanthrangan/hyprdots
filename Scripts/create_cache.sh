@@ -67,15 +67,15 @@ fn_magick () {
     wpBaseName=$(basename "${wpFullName}")
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}" ]; then
-        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}"
+        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.rofi" ]; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi"
+        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.blur" ]; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur"
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur" &> /dev/null
     fi
 
     if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
