@@ -5,6 +5,8 @@
 ScrDir=`dirname "$(realpath "$0")"`
 source "${ScrDir}/globalcontrol.sh"
 readarray -t theme_ctl < <( cut -d '|' -f 2 $ThemeCtl )
+source "${HOME}/.local/share/hyperdots/default_config.sh"
+source "${HOME}/.config/hyperdots/config.sh"
 
 
 # define functions
@@ -56,7 +58,6 @@ while getopts "nps:t" option ; do
     esac
 done
 
-
 # update theme control
 if [ `cat "$ThemeCtl" | awk -F '|' -v thm=$ThemeSet '{if($2==thm) print$2}' | wc -w` -ne 1 ] ; then
     echo "Unknown theme selected: $ThemeSet"
@@ -71,12 +72,14 @@ fi
 
 
 # hyprland
-ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
+if [ $hyprland_enabled = "true" ] ; then
+ln -fs "$ConfDir/hypr/themes/${ThemeSet}.conf" "$ConfDir/hypr/themes/theme.conf"
 hyprctl reload
 source "${ScrDir}/globalcontrol.sh"
-
+fi
 
 # code
+if [ $code_enabled = "true" ] ; then
 if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
     codex=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 1)
     if [ $(code --list-extensions |  grep -iwc "${codex}") -eq 0 ] ; then
@@ -85,32 +88,38 @@ if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
     codet=$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 2)
     jq --arg codet "${codet}" '.["workbench.colorTheme"] |= $codet' "$ConfDir/Code/User/settings.json" > tmpvsc && mv tmpvsc "$ConfDir/Code/User/settings.json"
 fi
+fi
 
 
 # gtk3
-sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" $ConfDir/gtk-3.0/settings.ini
-sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" $ConfDir/gtk-3.0/settings.ini
-
+if [ $gtk3_enabled = "true" ] ; then
+sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" "$ConfDir/gtk-3.0/settings.ini"
+sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" "$ConfDir/gtk-3.0/settings.ini"
+fi
 
 # gtk4
-
+if [ $gtk4_enabled = "true" ] ; then
 if [ -d /run/current-system/sw/share/themes ]; then
     themeDir=/run/current-system/sw/share/themes
 else
     themeDir=/usr/share/themes
 fi
 
-rm -fr $ConfDir/gtk-4.0
-ln -s $themeDir/$ThemeSet/gtk-4.0 $ConfDir/gtk-4.0
-
+rm -fr "$ConfDir/gtk-4.0"
+ln -s "${themeDir}/${ThemeSet}/gtk-4.0" "${ConfDir}/gtk-4.0"
+fi
 
 # flatpak GTK
+if [ $flatpak__gtk_enabled = "true" ] ; then
 flatpak --user override --env=GTK_THEME="${ThemeSet}"
 flatpak --user override --env=ICON_THEME="${gtkIcon}"
+fi
 
 
 # wallpaper
+if [ $wallpaper_enabled = "true" ] ; then
 getWall=`grep '^1|' "$ThemeCtl" | awk -F '|' '{print $NF}'`
 getWall=`eval echo "$getWall"`
 "${ScrDir}/swwwallpaper.sh" -s "${getWall}"
+fi
 
