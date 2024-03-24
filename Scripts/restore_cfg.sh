@@ -6,6 +6,7 @@
 
 scrDir=$(dirname "$(realpath "$0")")
 source "${scrDir}/global_fn.sh"
+source "${HOME}/.cache/hyperdots/install_params.sh"
 if [ $? -ne 0 ]; then
 	echo "Error: unable to source global_fn.sh..."
 	exit 1
@@ -14,6 +15,10 @@ fi
 CfgLst="${1:-"${scrDir}/restore_cfg.lst"}"
 CfgDir="${2:-${CloneDir}/Configs}"
 ThemeOverride="${3:-}"
+
+if [ $INSTALL_NEOVIM = "false" ]; then
+	mv "${CfgDir}/nvim" "${CfgDir}/nvim.o"
+fi
 
 if [ ! -f "${CfgLst}" ] || [ ! -d "${CfgDir}" ]; then
 	echo "ERROR : '${CfgLst}' or '${CfgDir}' does not exist..."
