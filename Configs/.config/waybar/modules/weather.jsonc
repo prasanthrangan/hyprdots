@@ -1,0 +1,6 @@
+      "custom/weather": {
+			"format": "{}",
+			"interval": 10,
+			"exec": "${ScrDir}/weather.sh",
+			"tooltip": false
+        },
