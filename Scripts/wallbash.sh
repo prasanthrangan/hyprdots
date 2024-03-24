@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+---------------------------------------------+---/ /|#
 #|--/ /-| Script to generate color palette from image |--/ /-|#
 #|-/ /--| Prasanth Rangan                             |-/ /--|#
@@ -87,6 +87,17 @@ rgb_negative() {
     echo "${r}${g}${b}"
 }
 
+rgba_convert() {
+    local inCol=$1
+    local r=${inCol:0:2}
+    local g=${inCol:2:2}
+    local b=${inCol:4:2}
+    local r16=$((16#$r))
+    local g16=$((16#$g))
+    local b16=$((16#$b))
+    printf "rgba(%d,%d,%d,\1341)\n" "$r16" "$g16" "$b16"
+}
+
 fx_brightness() {
     local inCol="${1}"
     local fxb=$(magick "${inCol}" -colorspace gray -format "%[fx:mean]" info:)
@@ -101,11 +112,11 @@ fx_brightness() {
 #// quantize raw primary colors
 
 magick -quiet -regard-warnings "${wallbashImg}"[0] -alpha off +repage "${wallbashRaw}"
-readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -kmeans ${wallbashColors} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -kmeans ${wallbashColors} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,\2/p' | sort -r -n -k 1 -t ",")
 
 if [ ${#dcolRaw[*]} -lt ${wallbashColors} ] ; then
     echo -e "RETRYING :: distinct colors ${#dcolRaw[*]} is less than ${wallbashColors} palette color..."
-    readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -colors $((wallbashColors + 2)) -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+    readarray -t dcolRaw <<< $(magick "${wallbashRaw}" -depth 8 -fuzz ${wallbashFuzz}% +dither -kmeans $((wallbashColors + 2)) -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,\2/p' | sort -r -n -k 1 -t ",")
 fi
 
 
@@ -117,7 +128,7 @@ else
     colSort="-r"
 fi
 
-dcol=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | sort ${colSort}))
+dcolHex=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | awk -F ',' '{print $2}' | sort ${colSort}))
 greyCheck=$(convert "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
 
 if (( $(awk 'BEGIN {print ('"$greyCheck"' < 0.12)}') )); then
@@ -132,9 +143,9 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
 
     #// generate missing primary colors
 
-    if [ -z "${dcol[i]}" ] ; then
-    
-        if fx_brightness "xc:#${dcol[i - 1]}" ; then
+    if [ -z "${dcolHex[i]}" ] ; then
+
+        if fx_brightness "xc:#${dcolHex[i - 1]}" ; then
             modBri=$pryDarkBri
             modSat=$pryDarkSat
             modHue=$pryDarkHue
@@ -145,36 +156,39 @@ for (( i=0; i<${wallbashColors}; i++ )) ; do
         fi
 
         echo -e "dcol_pry$((i + 1)) :: regen missing color"
-        dcol[i]=$(magick xc:"#${dcol[i - 1]}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+        dcol[i]=$(magick xc:"#${dcolHex[i - 1]}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
 
     fi
 
-    echo "dcol_pry$((i + 1))=\"${dcol[i]}\"" >> "${wallbashOut}"
+    echo "dcol_pry$((i + 1))=\"${dcolHex[i]}\"" >> "${wallbashOut}"
+    echo "dcol_pry$((i + 1))_rgba=\"$( rgba_convert "${dcolHex[i]}" )\"" >> "${wallbashOut}"
 
 
     #// generate primary text colors
 
-    nTxt=$(rgb_negative ${dcol[i]})
+    nTxt=$(rgb_negative ${dcolHex[i]})
 
-    if fx_brightness "xc:#${dcol[i]}" ; then
+    if fx_brightness "xc:#${dcolHex[i]}" ; then
         modBri=$txtDarkBri
     else
         modBri=$txtLightBri
     fi
 
-    tcol=$(magick xc:"#${nTxt}" -depth 8 -normalize -modulate ${modBri},10,100 -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+    tcol=$(magick xc:"#${nTxt}" -depth 8 -normalize -modulate ${modBri},10,100 -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
     echo "dcol_txt$((i + 1))=\"${tcol}\"" >> "${wallbashOut}"
+    echo "dcol_txt$((i + 1))_rgba=\"$( rgba_convert "${tcol}" )\"" >> "${wallbashOut}"
 
 
     #// generate accent colors
 
-    xHue=$(magick xc:"#${dcol[i]}" -colorspace HSB -format "%c" histogram:info: | awk -F '[hsb(,]' '{print $2}')
+    xHue=$(magick xc:"#${dcolHex[i]}" -colorspace HSB -format "%c" histogram:info: | awk -F '[hsb(,]' '{print $2}')
     acnt=1
 
     echo -e "${wallbashCurve}" | sort -n ${colSort} | while read -r xBri xSat
     do
-        acol=$(magick xc:"hsb(${xHue},${xSat}%,${xBri}%)" -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\1,#\2/p' | sort -r -n -k 1 -t "," | awk -F '#' 'length($NF) == 6 {print $NF}')
+        acol=$(magick xc:"hsb(${xHue},${xSat}%,${xBri}%)" -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
         echo "dcol_$((i + 1))xa${acnt}=\"${acol}\"" >> "${wallbashOut}"
+        echo "dcol_$((i + 1))xa${acnt}_rgba=\"$( rgba_convert "${acol}" )\"" >> "${wallbashOut}"
         ((acnt++))
     done
 

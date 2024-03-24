@@ -41,7 +41,7 @@ export fntSize=$(( y_mon * 2 / 100 ))
 
 # detect gtk system theme
 export BtnCol=`[ "$gtkMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
-export WindBg=`[ "$gtkMode" == "dark" ] && ( echo "rgba(0,0,0,0.5)" ) || ( echo "rgba(255,255,255,0.5)" )`
+export WindBg="rgba(255,255,255,0)"
 
 if [ "$EnableWallDcol" -eq 1 ] ; then
     export wbarTheme="Wall-Dcol"

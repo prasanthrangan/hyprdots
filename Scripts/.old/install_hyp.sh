@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 source global_fn.sh
 if [ $? -ne 0 ]; then
     echo "Error: unable to source global_fn.sh, please execute from $(dirname $(realpath $0))..."
@@ -15,16 +15,16 @@ if ! pkg_installed hyprland-git ; then
 echo -e "\n\033[0;31mWARNING!!! READ ME!\033[0m"
 cat << WARN
 
-Hyprland installation failed! 
+Hyprland installation failed!
 Please check your internet connection and consider reporting the issue to your package manager's support.
 For manual installation of Hyprland, you can proceed with this installation or follow the guide at https://wiki.hyprland.org/Getting-Started/Installation/ (Press any key to exit)
 
 
-Note: This process is a work around. 
+Note: This process is a work around.
 Typically, it's recommended to use package managers for installations/updates as they handle the process more efficiently.
 
-IMPORTANT: After installation with this method please be aware that you should install hyprland with your package manager if already available. 
-example: "$aurhlpr -Sy hyprland-git", or run ./install.sh  again 
+IMPORTANT: After installation with this method please be aware that you should install hyprland with your package manager if already available.
+example: "$aurhlpr -Sy hyprland-git", or run ./install.sh  again
 
 The script will now attempt to:
 1. Manually compile and install Hyprland.
@@ -77,4 +77,4 @@ WARN
     fi
 else
      echo -e "\033[0;32m[OK]\033[0m Hyprland"
-fi 
+fi
