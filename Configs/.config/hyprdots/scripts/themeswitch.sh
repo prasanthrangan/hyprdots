@@ -82,21 +82,24 @@ if [ ! -z "$(grep '^1|' "$ThemeCtl" | awk -F '|' '{print $3}')" ] ; then
 fi
 
 
+# qtct
+sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${ConfDir}/qt5ct/qt5ct.conf"
+sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${ConfDir}/qt6ct/qt6ct.conf"
+
+
 # gtk3
 sed -i "/^gtk-theme-name=/c\gtk-theme-name=${ThemeSet}" $ConfDir/gtk-3.0/settings.ini
 sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" $ConfDir/gtk-3.0/settings.ini
 
 
 # gtk4
-
 if [ -d /run/current-system/sw/share/themes ]; then
     themeDir=/run/current-system/sw/share/themes
 else
     themeDir=/usr/share/themes
 fi
-
-rm -fr $ConfDir/gtk-4.0
-ln -s $themeDir/$ThemeSet/gtk-4.0 $ConfDir/gtk-4.0
+rm -rf "${ConfDir}/gtk-4.0"
+ln -s "${themeDir}/${ThemeSet}/gtk-4.0" "${ConfDir}/gtk-4.0"
 
 
 # flatpak GTK

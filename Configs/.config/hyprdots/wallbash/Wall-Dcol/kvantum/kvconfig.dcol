@@ -1,6 +1,7 @@
+$HOME/.config/Kvantum/wallbash/wallbash.kvconfig
 [%General]
-author=elkrien based on Arc Dark style
-comment=Catppuccin-Mocha-Rosewater
+author=prasanth rangan
+comment=wallbash
 spread_menuitems=true
 left_tabs=true
 mirror_doc_tabs=true
@@ -73,24 +74,24 @@ menu_blur_radius=6
 tooltip_blur_radius=6
 
 [GeneralColors]
-window.color=#1E1E2E
-base.color=#181825
-alt.base.color=#181825
-button.color=#313244
-light.color=#45475A
-mid.light.color=#45475A
-dark.color=#181825
-mid.color=#181825
-highlight.color=#F5E0DC
-inactive.highlight.color=#F5E0DC
-text.color=#CDD6F4
-window.text.color=#CDD6F4
-button.text.color=#CDD6F4
-disabled.text.color=#585B70
-tooltip.text.color=#CDD6F4
-highlight.text.color=#181825
-link.color=#F5E0DC
-link.visited.color=#89B4FA
+window.color=#<wallbash_pry1>
+base.color=#<wallbash_1xa1>
+alt.base.color=#<wallbash_1xa1>
+button.color=#<wallbash_1xa2>
+light.color=#<wallbash_1xa3>
+mid.light.color=#<wallbash_1xa3>
+dark.color=#<wallbash_1xa1>
+mid.color=#<wallbash_1xa1>
+highlight.color=#<wallbash_4xa8>
+inactive.highlight.color=#<wallbash_4xa8>
+text.color=#<wallbash_txt1>
+window.text.color=#<wallbash_txt1>
+button.text.color=#<wallbash_txt1>
+disabled.text.color=#<wallbash_1xa4>
+tooltip.text.color=#<wallbash_txt1>
+highlight.text.color=#<wallbash_1xa1>
+link.color=#<wallbash_4xa8>
+link.visited.color=#<wallbash_2xa8>
 
 [ItemView]
 inherits=PanelButtonCommand
@@ -99,7 +100,7 @@ interior.element=itemview
 frame=true
 interior=true
 text.iconspacing=3
-text.toggle.color=#181825 
+text.toggle.color=#<wallbash_1xa1> 
 
 [RadioButton]
 inherits=PanelButtonCommand
@@ -126,10 +127,10 @@ frame=true
 inherits=PanelButtonCommand
 interior.element=button
 frame.element=button
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa1>
+text.toggle.color=#<wallbash_1xa1>
 
 [PanelButtonTool]
 inherits=PanelButtonCommand
@@ -231,10 +232,10 @@ frame.bottom=3
 frame.left=3
 frame.right=3
 indicator.size=10
-text.normal.color=#585B70
-text.focus.color=#CDD6F4
-text.press.color=#CDD6F4
-text.toggle.color=#CDD6F4
+text.normal.color=#<wallbash_1xa4>
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa9>
+text.toggle.color=#<wallbash_1xa9>
 focusFrame=true
 
 [TabBarFrame]
@@ -271,10 +272,10 @@ frame.bottom=1
 frame.left=1
 frame.right=1
 frame.expansion=0
-text.normal.color=#CDD6F4
-text.focus.color=#F5E0DC
-text.press.color=#CDD6F4
-text.toggle.color=#CDD6F4
+text.normal.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_4xa8>
+text.press.color=#<wallbash_1xa9>
+text.toggle.color=#<wallbash_1xa9>
 indicator.element=harrow
 
 [SizeGrip]
@@ -292,10 +293,10 @@ frame=true
 frame.bottom=4
 frame.left=4
 frame.right=4
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#F5E0DC
-text.toggle.color=#F5E0DC
+text.normal.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_4xa8>
+text.toggle.color=#<wallbash_4xa8>
 text.bold=false
 
 [MenuBar]
@@ -303,7 +304,7 @@ inherits=PanelButtonCommand
 frame.element=menubar
 interior.element=menubar
 frame.bottom=0
-text.normal.color=#CDD6F4
+text.normal.color=#<wallbash_1xa9>
 frame.expansion=0
 text.bold=false
 
@@ -311,10 +312,10 @@ text.bold=false
 frame.element=tbutton
 interior.element=tbutton
 indicator.element=arrow
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa1>
+text.toggle.color=#<wallbash_1xa1>
 text.bold=false
 
 [Scrollbar]
@@ -356,10 +357,10 @@ frame.bottom=2
 frame.left=2
 frame.right=2
 text.margin=0
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa1>
+text.toggle.color=#<wallbash_1xa1>
 text.bold=false
 frame.expansion=18
 
@@ -370,8 +371,8 @@ inherits=PanelButtonCommand
 frame.element=menu
 interior.element=menu
 inherits=PanelButtonCommand
-text.press.color=#181825
-text.toggle.color=#181825
+text.press.color=#<wallbash_1xa1>
+text.toggle.color=#<wallbash_1xa1>
 text.bold=false
 frame.top=3
 frame.bottom=3
@@ -382,8 +383,8 @@ frame.right=3
 inherits=PanelButtonCommand
 interior.element=menuitem
 indicator.size=8
-text.focus.color=#CDD6F4
-text.press.color=#CDD6F4
+text.focus.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa9>
 
 [MenuBarItem]
 inherits=PanelButtonCommand
@@ -398,7 +399,7 @@ text.margin.right=5
 inherits=Toolbar
 frame.element=toolbar
 font.bold=true
-text.normal.color=#CDD6F4
+text.normal.color=#<wallbash_1xa9>
 frame=true
 frame.top=0
 frame.bottom=0
@@ -423,13 +424,13 @@ text.margin.top=1
 text.margin.bottom=1
 text.margin.left=3
 text.margin.right=3
-text.toggle.color=#CDD6F4
+text.toggle.color=#<wallbash_1xa9>
 
 [ToolboxTab]
 inherits=PanelButtonCommand
-text.normal.color=#CDD6F4
-text.press.color=#CDD6F4
-text.focus.color=#CDD6F4
+text.normal.color=#<wallbash_1xa9>
+text.press.color=#<wallbash_1xa9>
+text.focus.color=#<wallbash_1xa9>
 
 [Hacks]
 transparent_dolphin_view=true

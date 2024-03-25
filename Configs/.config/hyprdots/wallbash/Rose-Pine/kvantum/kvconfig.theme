@@ -1,3 +1,4 @@
+$HOME/.config/Kvantum/wallbash/wallbash.kvconfig
 [%General]
 author=elkrien based on Arc Dark style
 comment=Catppuccin-Mocha-Rosewater
@@ -73,24 +74,24 @@ menu_blur_radius=6
 tooltip_blur_radius=6
 
 [GeneralColors]
-window.color=#1E1E2E
-base.color=#181825
-alt.base.color=#181825
-button.color=#313244
-light.color=#45475A
-mid.light.color=#45475A
-dark.color=#181825
-mid.color=#181825
-highlight.color=#F5E0DC
-inactive.highlight.color=#F5E0DC
-text.color=#CDD6F4
-window.text.color=#CDD6F4
-button.text.color=#CDD6F4
-disabled.text.color=#585B70
-tooltip.text.color=#CDD6F4
-highlight.text.color=#181825
-link.color=#F5E0DC
-link.visited.color=#89B4FA
+window.color=#191724
+base.color=#26233a
+alt.base.color=#26233a
+button.color=#6e6a86
+light.color=#908caa
+mid.light.color=#908caa
+dark.color=#26233a
+mid.color=#26233a
+highlight.color=#31748f
+inactive.highlight.color=#31748f
+text.color=#e0def4
+window.text.color=#e0def4
+button.text.color=#e0def4
+disabled.text.color=#524f67
+tooltip.text.color=#e0def4
+highlight.text.color=#26233a
+link.color=#31748f
+link.visited.color=#9ccfd8
 
 [ItemView]
 inherits=PanelButtonCommand
@@ -99,7 +100,7 @@ interior.element=itemview
 frame=true
 interior=true
 text.iconspacing=3
-text.toggle.color=#181825 
+text.toggle.color=#26233a 
 
 [RadioButton]
 inherits=PanelButtonCommand
@@ -126,10 +127,10 @@ frame=true
 inherits=PanelButtonCommand
 interior.element=button
 frame.element=button
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#e0def4
+text.focus.color=#e0def4
+text.press.color=#26233a
+text.toggle.color=#26233a
 
 [PanelButtonTool]
 inherits=PanelButtonCommand
@@ -231,10 +232,10 @@ frame.bottom=3
 frame.left=3
 frame.right=3
 indicator.size=10
-text.normal.color=#585B70
-text.focus.color=#CDD6F4
-text.press.color=#CDD6F4
-text.toggle.color=#CDD6F4
+text.normal.color=#524f67
+text.focus.color=#e0def4
+text.press.color=#e0def4
+text.toggle.color=#e0def4
 focusFrame=true
 
 [TabBarFrame]
@@ -271,10 +272,10 @@ frame.bottom=1
 frame.left=1
 frame.right=1
 frame.expansion=0
-text.normal.color=#CDD6F4
-text.focus.color=#F5E0DC
-text.press.color=#CDD6F4
-text.toggle.color=#CDD6F4
+text.normal.color=#e0def4
+text.focus.color=#31748f
+text.press.color=#e0def4
+text.toggle.color=#e0def4
 indicator.element=harrow
 
 [SizeGrip]
@@ -292,10 +293,10 @@ frame=true
 frame.bottom=4
 frame.left=4
 frame.right=4
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#F5E0DC
-text.toggle.color=#F5E0DC
+text.normal.color=#e0def4
+text.focus.color=#e0def4
+text.press.color=#31748f
+text.toggle.color=#31748f
 text.bold=false
 
 [MenuBar]
@@ -303,7 +304,7 @@ inherits=PanelButtonCommand
 frame.element=menubar
 interior.element=menubar
 frame.bottom=0
-text.normal.color=#CDD6F4
+text.normal.color=#e0def4
 frame.expansion=0
 text.bold=false
 
@@ -311,10 +312,10 @@ text.bold=false
 frame.element=tbutton
 interior.element=tbutton
 indicator.element=arrow
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#e0def4
+text.focus.color=#e0def4
+text.press.color=#26233a
+text.toggle.color=#26233a
 text.bold=false
 
 [Scrollbar]
@@ -356,10 +357,10 @@ frame.bottom=2
 frame.left=2
 frame.right=2
 text.margin=0
-text.normal.color=#CDD6F4
-text.focus.color=#CDD6F4
-text.press.color=#181825
-text.toggle.color=#181825
+text.normal.color=#e0def4
+text.focus.color=#e0def4
+text.press.color=#26233a
+text.toggle.color=#26233a
 text.bold=false
 frame.expansion=18
 
@@ -370,8 +371,8 @@ inherits=PanelButtonCommand
 frame.element=menu
 interior.element=menu
 inherits=PanelButtonCommand
-text.press.color=#181825
-text.toggle.color=#181825
+text.press.color=#26233a
+text.toggle.color=#26233a
 text.bold=false
 frame.top=3
 frame.bottom=3
@@ -382,8 +383,8 @@ frame.right=3
 inherits=PanelButtonCommand
 interior.element=menuitem
 indicator.size=8
-text.focus.color=#CDD6F4
-text.press.color=#CDD6F4
+text.focus.color=#e0def4
+text.press.color=#e0def4
 
 [MenuBarItem]
 inherits=PanelButtonCommand
@@ -398,7 +399,7 @@ text.margin.right=5
 inherits=Toolbar
 frame.element=toolbar
 font.bold=true
-text.normal.color=#CDD6F4
+text.normal.color=#e0def4
 frame=true
 frame.top=0
 frame.bottom=0
@@ -423,13 +424,13 @@ text.margin.top=1
 text.margin.bottom=1
 text.margin.left=3
 text.margin.right=3
-text.toggle.color=#CDD6F4
+text.toggle.color=#e0def4
 
 [ToolboxTab]
 inherits=PanelButtonCommand
-text.normal.color=#CDD6F4
-text.press.color=#CDD6F4
-text.focus.color=#CDD6F4
+text.normal.color=#e0def4
+text.press.color=#e0def4
+text.focus.color=#e0def4
 
 [Hacks]
 transparent_dolphin_view=true
