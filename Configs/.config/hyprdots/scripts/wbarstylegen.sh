@@ -12,14 +12,6 @@ in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
 
-if [ "$EnableWallDcol" -eq 1 ] ; then
-    ln -fs $waybar_dir/themes/Wall-Dcol.css $waybar_dir/themes/theme.css
-    reload_flag=1
-elif [ $(readlink $waybar_dir/themes/theme.css) != "$waybar_dir/themes/${gtkTheme}.css" ] ; then
-    ln -fs $waybar_dir/themes/${gtkTheme}.css $waybar_dir/themes/theme.css
-    reload_flag=1
-fi
-
 
 # calculate height from control file or monitor res
 
