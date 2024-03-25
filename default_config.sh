@@ -1,0 +1,6 @@
+export code_enabled="true"
+export gtk3_enabled="true"
+export gtk4_enabled="true"
+export flatpak_gtk_enabled="true"
+export wallpaper_enabled="true"
+export hyprland_enabled="true"
