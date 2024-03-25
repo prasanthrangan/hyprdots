@@ -142,6 +142,13 @@ done
 swww query
 if [ $? -eq 1 ] ; then
     swww-daemon --format xrgb &
+    sleep 1
+    swww query
+    if [ $? -eq 1 ] ; then
+        swww clear-cache
+        swww clear 
+        swww-daemon --format xrgb &
+    fi
 fi
 
 Wall_Set
