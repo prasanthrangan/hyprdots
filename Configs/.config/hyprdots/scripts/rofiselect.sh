@@ -22,15 +22,15 @@ r_override="listview{columns:4;} element{orientation:vertical;border-radius:${el
 
 
 # launch rofi menu
-RofiSel=$( ls ${RofiStyle}/style_*.rasi | awk -F '/' '{print $NF}' | cut -d '.' -f 1 | while read rstyle
+RofiSel=$( ls ${RofiStyle}/style_*.rasi | awk -F '[_.]' '{print $((NF - 1))}' | while read styleNum
 do
-    echo -en "$rstyle\x00icon\x1f${RofiAssets}/${rstyle}.png\n"
-done | rofi -dmenu -theme-str "${r_override}" -config $RofiConf)
+    echo -en "${styleNum}\x00icon\x1f${RofiAssets}/style_${styleNum}.png\n"
+done | sort -n | rofi -dmenu -theme-str "${r_override}" -config "${RofiConf}" )
 
 
 # apply rofi style
-if [ ! -z $RofiSel ] ; then
-    cp "${RofiStyle}/${RofiSel}.rasi" "${Rofilaunch}"
-    notify-send -a "t1" -r 91190 -t 2200 -i "${RofiAssets}/${RofiSel}.png" " ${RofiSel} applied..." 
+if [ ! -z "${RofiSel}" ] ; then
+    cp "${RofiStyle}/style_${RofiSel}.rasi" "${Rofilaunch}"
+    notify-send -a "t1" -r 91190 -t 2200 -i "${RofiAssets}/style_${RofiSel}.png" " style ${RofiSel} applied..." 
 fi
 

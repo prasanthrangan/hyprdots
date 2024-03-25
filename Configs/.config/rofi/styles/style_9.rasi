@@ -88,7 +88,7 @@ dummy {
 element {
     enabled:                     true;
     spacing:                     1em;
-    padding:                     0.5em;
+    padding:                     0.5em 0.5em 0.5em 1.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;

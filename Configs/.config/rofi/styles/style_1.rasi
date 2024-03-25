@@ -116,8 +116,8 @@ dummy {
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     1em;
-    padding:                     0.4em;
+    spacing:                     0.8em;
+    padding:                     0.4em 0.4em 0.4em 1.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
