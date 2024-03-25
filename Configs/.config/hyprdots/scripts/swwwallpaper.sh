@@ -140,14 +140,21 @@ done
 # check swww daemon and set wall
 
 swww query
-if [ $? -eq 1 ] ; then
+if [ $? -ne 0 ] ; then
     swww-daemon --format xrgb &
     sleep 1
     swww query
-    if [ $? -eq 1 ] ; then
+    if [ $? -ne 0 ] ; then
         swww clear-cache
         swww clear 
-        swww-daemon --format xrgb &
+        swww init
+        sleep 1
+        swww query
+        if [ $? -ne 0 ] ; then
+            swww clear-cache
+            swww clear 
+            swww-daemon --format xrgb &
+        fi
     fi
 fi
 
