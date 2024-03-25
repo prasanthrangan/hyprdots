@@ -93,7 +93,7 @@
 	},
 
     "custom/spotify": {
-        "exec": "/usr/bin/python3 ~/.config/waybar/modules/mediaplayer.py --player spotify",
+        "exec": "/usr/bin/env python3 ~/.config/waybar/modules/mediaplayer.py --player spotify",
         "format": " {}",
         "rotate": 0,
         "return-type": "json",

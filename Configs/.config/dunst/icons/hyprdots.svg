@@ -131,7 +131,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="display:inline;opacity:1;fill:#946263;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:#C27A7C;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-dasharray:none;stroke-opacity:1"
        id="path1"
        cx="39.997181"
        cy="39.029049"
@@ -139,14 +139,14 @@
        inkscape:label="base"
        sodipodi:insensitive="true" />
     <circle
-       style="display:inline;opacity:1;fill:#B88182;fill-opacity:1;stroke:#FCC5C6;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:#E69A9C;fill-opacity:1;stroke:#FFCCCD;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="path23"
        cx="59.239162"
        cy="65.282417"
        r="3.9791903"
        inkscape:label="dots" />
     <path
-       style="display:inline;opacity:1;fill:#527482;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:#6591A3;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        d="M 14.113556,8.1829745 56.98133,12.94242 37.386776,66.72921 7.3373035,66.366241 Z"
        id="path4"
        sodipodi:nodetypes="ccccc"
@@ -154,7 +154,7 @@
        clip-path="url(#clipPath4)"
        sodipodi:insensitive="true" />
     <path
-       style="display:inline;opacity:1;fill:#3B4863;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:#576A8F;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        d="m 38.53683,10.093324 c -4.365942,9.204371 -6.195104,15.177206 -7.207595,27.726667 -0.991944,12.294793 2.307273,27.137042 4.047673,28.491534 L 8.1586184,69.098661 11.655182,10.116831 Z"
        id="path8"
        inkscape:label="decay_ce"
@@ -163,7 +163,7 @@
        transform="translate(0.76197263)"
        sodipodi:insensitive="true" />
     <path
-       style="display:inline;opacity:1;fill:#1F1F3D;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:#4B4B7D;fill-opacity:1;stroke:none;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        d="m 42.192726,12.318411 c -4.211383,1.986898 -14.038715,6.1886 -14.817953,16.984439 -1.04881,14.530574 8.416642,27.085895 14.90106,33.18835 l -22.176874,3.329798 -0.9709,-51.470147 z"
        id="path12"
        inkscape:label="tokyo_night"
@@ -181,7 +181,7 @@
        mask="none"
        sodipodi:insensitive="true" />
     <circle
-       style="display:inline;opacity:1;fill:none;fill-opacity:0;stroke:#FCC5C6;stroke-width:1.32292;stroke-dasharray:none;stroke-opacity:1"
+       style="display:inline;opacity:1;fill:none;fill-opacity:0;stroke:#FFCCCD;stroke-width:1.32292;stroke-dasharray:none;stroke-opacity:1"
        id="circle8"
        cx="39.997181"
        cy="39.029049"

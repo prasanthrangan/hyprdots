@@ -17,8 +17,8 @@ configuration {
 
 // Main //
 window {
-    height:                      35em;
-    width:                       56em;
+    height:                      30em;
+    width:                       57em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -30,88 +30,64 @@ window {
 }
 mainbox {
     enabled:                     true;
-    spacing:                     0em;
-    padding:                     0em;
-    orientation:                 vertical;
+    spacing:                     1em;
+    padding:                     1em;
+    orientation:                 horizontal;
     children:                    [ "inputbar" , "listbox" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
 }
 
 
 // Inputs //
 inputbar {
     enabled:                     true;
+    width:                       27em;
     spacing:                     0em;
-    padding:                     5em;
+    padding:                     0em;
     children:                    [ "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", width);
+    background-image:            url("~/.config/swww/wall.thmb", height);
+    border-radius:               1em;
 }
 entry {
-    border-radius:               2em;
-    enabled:                     true;
-    spacing:                     1em;
-    padding:                     1em;
-    text-color:                  @main-fg;
-    background-color:            @main-bg;
+    enabled:                     false;
 }
 
 
 // Lists //
 listbox {
-    padding:                     0em;
     spacing:                     0em;
-    orientation:                 horizontal;
-    children:                    [ "listview" , "mode-switcher" ];
-    background-color:            @main-bg;
+    padding:                     0em;
+    children:                    [ "dummy" , "listview" , "dummy" ];
+    background-color:            transparent;
 }
 listview {
-    padding:                     1.5em;
-    spacing:                     0.5em;
     enabled:                     true;
-    columns:                     2;
-    lines:                       3;
+    spacing:                     0em;
+    padding:                     1em;
+    columns:                     1;
+    lines:                       7;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
     layout:                      vertical;
     reverse:                     false;
+    expand:                      false;
     fixed-height:                true;
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
     text-color:                  @main-fg;
 }
-
-
-// Modes //
-mode-switcher {
-    orientation:                 vertical;
-    width:                       6.6em;
-    enabled:                     true;
-    padding:                     1.5em;
-    spacing:                     1.5em;
+dummy {
     background-color:            transparent;
-}
-button {
-    cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.45;
-    border-radius:               2em;
-    background-color:            @main-bg;
-    text-color:                  @main-fg;
-}
-button selected {
-    background-color:            @main-fg;
-    text-color:                  @main-bg;
 }
 
 
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     0em;
+    spacing:                     1em;
     padding:                     0.5em;
     cursor:                      pointer;
     background-color:            transparent;
@@ -127,7 +103,7 @@ element selected.normal {
     text-color:                  @select-fg;
 }
 element-icon {
-    size:                        3em;
+    size:                        2.7em;
     cursor:                      inherit;
     background-color:            transparent;
     text-color:                  inherit;

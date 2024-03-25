@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #|---/ /+---------------------------------+---/ /|#
 #|--/ /-| Script to fix slinks in .config |--/ /-|#
 #|-/ /--| Prasanth Rangan                 |-/ /--|#

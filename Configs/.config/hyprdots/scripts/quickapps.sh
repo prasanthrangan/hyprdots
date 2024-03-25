@@ -6,17 +6,17 @@ ScrDir=`dirname "$(realpath "$0")"`
 source $ScrDir/globalcontrol.sh
 roconf="~/.config/rofi/quickapps.rasi"
 
-if [ $# -ge 1 ] ; then
-    dockWidth=$(( (70 * $#) - $# ))
-else
+if [ $# -eq 0 ] ; then
     echo "usage: ./quickapps.sh <app1> <app2> ... <app[n]>"
     exit 1
+else
+    appCount="$#"
 fi
 
 
 # set position
 
-x_mon=$( cat /sys/class/drm/*/modes | head -1  ) 
+x_mon=$( cat /sys/class/drm/*/modes | head -1  )
 y_mon=$( echo $x_mon | cut -d 'x' -f 2 )
 x_mon=$( echo $x_mon | cut -d 'x' -f 1 )
 
@@ -49,18 +49,26 @@ if [ ! -z $x_rofi ] || [ ! -z $y_rofi ] ; then
 fi
 
 
-# read hypr theme border
+# override rofi
 
+dockHeight=$(( x_mon * 3 / 100))
+dockWidth=$(( dockHeight * appCount ))
+iconSize=$(( dockHeight - 4 ))
 wind_border=$(( hypr_border * 3/2 ))
-elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
-r_override="window{width:$dockWidth;border-radius:${wind_border}px;} listview{columns:$#;} element{border-radius:${elem_border}px;}"
+r_override="window{height:${dockHeight};width:${dockWidth};border-radius:${wind_border}px;} listview{columns:${appCount};} element{border-radius:${wind_border}px;} element-icon{size:${iconSize}px;}"
 
 
 # launch rofi menu
 
+if [ -d /run/current-system/sw/share/applications ]; then
+    appDir=/run/current-system/sw/share/applications
+else
+    appDir=/usr/share/applications
+fi
+
 RofiSel=$( for qapp in "$@"
 do
-    Lkp=`grep "$qapp" /usr/share/applications/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
+    Lkp=`grep "$qapp" $appDir/* | grep 'Exec=' | awk -F ':' '{print $1}' | head -1`
     Ico=`grep 'Icon=' $Lkp | awk -F '=' '{print $2}' | head -1`
     echo -en "${qapp}\x00icon\x1f${Ico}\n"
 done | rofi -no-fixed-num-lines -dmenu -theme-str "${r_override}" -theme-str "${pos}" -config $roconf)

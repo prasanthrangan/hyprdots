@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 sleep 1
 killall xdg-desktop-portal-hyprland
 killall xdg-desktop-portal-gnome
@@ -7,6 +7,14 @@ killall xdg-desktop-portal-lxqt
 killall xdg-desktop-portal-wlr
 killall xdg-desktop-portal
 sleep 1
-/usr/lib/xdg-desktop-portal-hyprland &
+
+# Use different directory on NixOS
+if [ -d /run/current-system/sw/libexec ]; then
+    libDir=/run/current-system/sw/libexec
+else
+    libDir=/usr/lib
+fi
+
+$libDir/xdg-desktop-portal-hyprland &
 sleep 2
-/usr/lib/xdg-desktop-portal &
+$libDir/xdg-desktop-portal &

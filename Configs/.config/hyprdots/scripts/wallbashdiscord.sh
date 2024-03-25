@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # source variables
 ScrDir=`dirname "$(realpath "$0")"`
@@ -17,7 +17,7 @@ client_list+=("$HOME/.config/ArmCord/themes/theme.css") #! Not working
 # main loop
 for client_css in "${client_list[@]}" ; do
     eval client_css="${client_css}"
-    if [[ ! -d $(dirname "${client_css}") ]] ; then 
+    if [[ ! -d $(dirname "${client_css}") ]] ; then
         continue
     fi
     if [[ "${EnableWallDcol}" -eq 1 ]] ; then
