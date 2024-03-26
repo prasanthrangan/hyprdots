@@ -78,6 +78,7 @@ lsd|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 neofetch                                               # fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites
+tmux                                                   # terminal multiplexer
 
 
 # --------------------------------------------------- // Hyprdots
