@@ -2,7 +2,7 @@
         "format": "{icon} {volume}",
         "rotate": ${r_deg},
         "format-muted": "婢",
-        "on-click": "pavucontrol -t 3",
+        "on-click": "pypr toggle pavucontrol3", // pavucontrol -t 3
         "on-click-middle": "${ScrDir}/volumecontrol.sh -o m",
         "on-scroll-up": "${ScrDir}/volumecontrol.sh -o i",
         "on-scroll-down": "${ScrDir}/volumecontrol.sh -o d",
@@ -24,7 +24,7 @@
         "rotate": ${r_deg},
         "format-source": "",
         "format-source-muted": "",
-        "on-click": "pavucontrol -t 4",
+        "on-click": "pypr toggle pavucontrol4", // pavucontrol -t 4
         "on-click-middle": "${ScrDir}/volumecontrol.sh -i m",
         "on-scroll-up": "${ScrDir}/volumecontrol.sh -i i",
         "on-scroll-down": "${ScrDir}/volumecontrol.sh -i d",
