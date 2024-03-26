@@ -78,13 +78,13 @@ echo -e "\nPatching \033[0;32m--//${Fav_Theme}//--\033[0m from \033[0;34m${Theme
 
 # required theme files
 config=( #!Hard Coded here to atleast Strictly meet requirements.
-"/.config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvantum.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvconfig.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/kitty.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/rofi.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/waybar.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/hypr.theme"
-"/.config/hyprdots/wallbash/${Fav_Theme}/hypr.conf"
+".config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvantum.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvconfig.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/kitty.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/rofi.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/waybar.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/hypr.theme"
+".config/hyprdots/wallbash/${Fav_Theme}/hypr.conf"
 ".config/swww/$Fav_Theme/"
 )
 
