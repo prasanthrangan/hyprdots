@@ -93,7 +93,7 @@ do
     fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
     wallPath=$(dirname "$fullPath")
     mkdir -p ${cacheDir}/${theme}
-    mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+    mapfile -d '' wpArray < <(find "${wallPath}" -maxdepth 1 -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
     echo -e "\033[0;32m[cache]\033[0m creating thumbnails for ${theme} [${#wpArray[@]}]"
     parallel --bar fn_magick ::: "${theme}" ::: "${wpArray[@]}"
 
