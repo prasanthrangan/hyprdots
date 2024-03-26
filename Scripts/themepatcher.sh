@@ -58,9 +58,9 @@ else Git_Repo=${2%/}
     if [ -d "$Theme_Dir" ] ; then
         echo "Directory $Theme_Dir already exists. Using existing directory."
         if cd "$Theme_Dir" ; then
-            git stash &> /dev/null
-            git pull &> /dev/null
-            git stash pop 2> /dev/null ; cd - &> /dev/null
+            git fetch --all &> /dev/null
+            git reset --hard @{upstream} &> /dev/null
+            cd - &> /dev/null
         else
             echo -e "\033[0;31mCould not navigate to $Theme_Dir. Skipping git pull.\033[0m"
         fi
@@ -147,6 +147,8 @@ cat << THEME > "${Theme_Dir}/restore_cfg.lst"
 Y|N|${HOME}/.config/hyprdots/wallbash|${Fav_Theme}|hyprland
 Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
 THEME
+
+trap 'rm "${Theme_Dir}/restore_cfg.lst"' EXIT
 
 if grep -q "^.|${Fav_Theme}|" "${ThemeCtl}" ; then
     awk -F '|' -v thm="${Fav_Theme}" -v cde="$3" '{OFS=FS} $2 == thm {$3 = cde} {print}' "${ThemeCtl}" > tmp && mv tmp "${ThemeCtl}"
