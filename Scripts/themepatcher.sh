@@ -18,9 +18,9 @@ set +e
 ask_help(){
 cat << HELP
 ...Usage...
-$0 "Theme-Name" "/Path/to/Configs"
-$0 "Theme-Name" "https://github.com/User/Repository"
-$0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
+$0 "Theme-Name" "/Path/to/Configs" 'extension.id~extenstion theme name'
+$0 "Theme-Name" "https://github.com/User/Repository" 'extension.id~extenstion theme name' 
+$0 "Theme-Name" "https://github.com/User/Repository/tree/branch" 'extension.id~extenstion theme name'
 HELP
 }
 
@@ -76,18 +76,16 @@ fi
 
 echo -e "\nPatching \033[0;32m--//${Fav_Theme}//--\033[0m from \033[0;34m${Theme_Dir}\033[0m\n"
 
-
 # required theme files
 config=( #!Hard Coded here to atleast Strictly meet requirements.
-  ".config/hypr/themes/$Fav_Theme.conf"
-  ".config/kitty/themes/$Fav_Theme.conf"
-  ".config/Kvantum/$Fav_Theme/$Fav_Theme.kvconfig"
-  ".config/Kvantum/$Fav_Theme/$Fav_Theme.svg"
-  ".config/qt5ct/colors/$Fav_Theme.conf"
-  ".config/qt6ct/colors/$Fav_Theme.conf"
-  ".config/rofi/themes/$Fav_Theme.rasi"
-  ".config/swww/$Fav_Theme/"
-  ".config/waybar/themes/$Fav_Theme.css"
+"/.config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvantum.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvconfig.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/kitty.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/rofi.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/waybar.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/hypr.theme"
+"/.config/hyprdots/wallbash/${Fav_Theme}/hypr.conf"
+".config/swww/$Fav_Theme/"
 )
 
 
@@ -146,14 +144,8 @@ fc-cache -f
 
 # generate restore_cfg control
 cat << THEME > "${Theme_Dir}/restore_cfg.lst"
-Y|Y|${HOME}/.config/hypr/themes|${Fav_Theme}.conf|hyprland
-Y|Y|${HOME}/.config/kitty/themes|${Fav_Theme}.conf|kitty
-Y|Y|${HOME}/.config/Kvantum|${Fav_Theme}|kvantum
-Y|Y|${HOME}/.config/qt5ct/colors|${Fav_Theme}.conf|qt5ct
-Y|Y|${HOME}/.config/qt6ct/colors|${Fav_Theme}.conf|qt6ct
-Y|Y|${HOME}/.config/rofi/themes|${Fav_Theme}.rasi|rofi
+Y|N|${HOME}/.config/hyprdots/wallbash|${Fav_Theme}|hyprland
 Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
-Y|Y|${HOME}/.config/waybar/themes|${Fav_Theme}.css|waybar
 THEME
 
 if grep -q "^.|${Fav_Theme}|" "${ThemeCtl}" ; then
@@ -168,4 +160,3 @@ echo -e "\033[0;32m[Restoring]\033[0m \"${Theme_Dir}/restore_cfg.lst\" \"${Theme
 "${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
 
 exit 0
-
