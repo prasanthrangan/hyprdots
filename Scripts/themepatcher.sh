@@ -13,7 +13,6 @@ fi
 
 set +e
 
-
 # error function
 ask_help(){
 cat << HELP
@@ -53,7 +52,7 @@ else Git_Repo=${2%/}
     Git_Path=${Git_Repo#*://*/}
     Git_Owner=${Git_Path%/*}
     branch_dir=${branch//\//_}
-    Theme_Dir="${cacheDir}/themepatcher/$branch_dir"
+    Theme_Dir="${cacheDir}/themepatcher/${branch_dir}-${Git_Owner}"
 
     if [ -d "$Theme_Dir" ] ; then
         echo "Directory $Theme_Dir already exists. Using existing directory."

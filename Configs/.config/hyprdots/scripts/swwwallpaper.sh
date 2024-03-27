@@ -141,10 +141,21 @@ done
 
 swww query
 if [ $? -ne 0 ] ; then
-    [ -e /run/user/$(id -u)/swww.socket ] && rm /run/user/$(id -u)/swww.socket #! remove this line if swww stable is fixed
     swww-daemon --format xrgb &
-
+    sleep 1
+    swww query
+    if [ $? -ne 0 ] ; then
+        swww clear-cache
+        swww clear 
+        swww init
+        sleep 1
+        swww query
+        if [ $? -ne 0 ] ; then
+            swww clear-cache
+            swww clear 
+            swww-daemon --format xrgb &
+        fi
+    fi
 fi
 
 Wall_Set
-
