@@ -23,7 +23,8 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         touch ~/.config/spotify/prefs
         sptfyConf=$(spicetify -c)
         sed -i "/^prefs_path/ s+=.*$+= $HOME/.config/spotify/prefs+g" "${sptfyConf}"
-        tar -xzf ${CloneDir}/Source/arcs/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
+        curl -o ${cacheDir}/Spotify_Sleek.tar.gz https://github.com/prasanthrangan/hyprdots/blob/main/Source/arcs/Spotify_Sleek.tar.gz
+        tar -xzf ${cacheDir}/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
         spicetify backup apply
         spicetify config current_theme Sleek
         spicetify config color_scheme Wallbash

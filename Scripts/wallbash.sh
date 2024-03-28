@@ -9,6 +9,7 @@
 
 colorProfile="default"
 wallbashCurve="32 50\n42 46\n49 40\n56 39\n64 38\n76 37\n90 33\n94 29\n100 20"
+sortMode="auto"
 
 while [ $# -gt 0 ] ; do
     case "$1" in
@@ -20,6 +21,12 @@ while [ $# -gt 0 ] ; do
             ;;
         -m|--mono) colorProfile="mono"
             wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
+            ;;
+        -d|--dark) sortMode="dark"
+            colSort=""
+            ;;
+        -l|--light) sortMode="light"
+            colSort="-r"
             ;;
         *) break
             ;;
@@ -66,7 +73,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-echo "wallbash ${colorProfile} profile :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
+echo "wallbash ${colorProfile} profile :: ${sortMode} :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
 mkdir -p "${cacheDir}/${cacheThm}"
 > "${wallbashOut}"
 
@@ -122,12 +129,17 @@ fi
 
 #// sort colors based on image brightness
 
-if fx_brightness "${wallbashRaw}" ; then
-    colSort=""
-else
-    colSort="-r"
+if [ "${sortMode}" == "auto" ] ; then
+    if fx_brightness "${wallbashRaw}" ; then
+        sortMode="dark"
+        colSort=""
+    else
+        sortMode="light"
+        colSort="-r"
+    fi
 fi
 
+echo "dcol_mode=\"${sortMode}\"" >> "${wallbashOut}"
 dcolHex=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | awk -F ',' '{print $2}' | sort ${colSort}))
 greyCheck=$(convert "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
 

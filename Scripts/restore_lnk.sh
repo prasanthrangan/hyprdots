@@ -19,11 +19,6 @@ do
     ln -fs "$HOME/${fixd_slink}" "$HOME/${linkd_file}"
 done
 
-if [ -f "${HyprdotsDir}/scripts/globalcontrol.sh" ] ; then
-    sed -i "/^CloneDir=/c\CloneDir=\"$CloneDir\"" "${HyprdotsDir}/scripts/globalcontrol.sh"
-    echo "globalcontrol updated..."
-fi
-
 if printenv HYPRLAND_INSTANCE_SIGNATURE &> /dev/null
     then
     echo "reloading hyprland..."

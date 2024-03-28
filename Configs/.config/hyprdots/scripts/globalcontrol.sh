@@ -3,7 +3,6 @@
 # wallpaper var
 EnableWallDcol=0
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-CloneDir="$HOME/Hyprdots"
 cacheDir="$HOME/.cache/hyprdots"
 ThemeCtl="${ConfDir}/hyprdots/theme.ctl"
 WallbashDir="${ConfDir}/hyprdots/wallbash"
