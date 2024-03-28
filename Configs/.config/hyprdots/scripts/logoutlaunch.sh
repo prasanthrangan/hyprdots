@@ -40,14 +40,7 @@ esac
 export fntSize=$(( y_mon * 2 / 100 ))
 
 # detect gtk system theme
-export BtnCol=`[ "$gtkMode" == "dark" ] && ( echo "white" ) || ( echo "black" )`
-export WindBg="rgba(255,255,255,0)"
-
-if [ "$EnableWallDcol" -eq 1 ] ; then
-    export wbarTheme="Wall-Dcol"
-else
-    export wbarTheme="${gtkTheme}"
-fi
+export BtnCol=`[ "${gtkMode}" == "dark" ] && ( echo "white" ) || ( echo "black" )`
 
 # eval hypr border radius
 export active_rad=$(( hypr_border * 5 ))

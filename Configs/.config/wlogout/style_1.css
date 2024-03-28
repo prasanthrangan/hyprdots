@@ -6,7 +6,7 @@
 @import "$HOME/.config/waybar/theme.css";
 
 window {
-    background-color: ${WindBg};
+    background-color: transparent;
 }
 
 button {

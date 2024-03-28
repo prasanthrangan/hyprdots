@@ -20,7 +20,7 @@ for client_css in "${client_list[@]}" ; do
     if [[ ! -d $(dirname "${client_css}") ]] ; then
         continue
     fi
-    if [[ "${EnableWallDcol}" -eq 1 ]] ; then
+    if [[ "${EnableWallDcol}" -gt 0 ]] ; then
         cp "${discord_col}" "${client_css}"
     else
         > "${client_css}"
