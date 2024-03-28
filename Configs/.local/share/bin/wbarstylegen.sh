@@ -11,6 +11,7 @@ conf_ctl="$waybar_dir/config.ctl"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
+[ "${EnableWallDcol}" -gt 0 ] && reload_flag=1
 
 
 # calculate height from control file or monitor res
