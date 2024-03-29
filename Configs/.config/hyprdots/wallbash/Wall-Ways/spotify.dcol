@@ -1,4 +1,4 @@
-$HOME/.config/spicetify/Themes/Sleek/Wall-Dcol.ini|${ScrDir}/wallbashspotify.sh
+$HOME/.config/spicetify/Themes/Sleek/Wall-Dcol.ini|${scrDir}/wallbashspotify.sh
 
 [Wallbash]
 text               = <wallbash_4xa9>

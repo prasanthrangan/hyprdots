@@ -1,4 +1,4 @@
-$HOME/.config/dunst/Wall-Dcol.conf|${ScrDir}/wallbashdunst.sh
+$HOME/.config/dunst/Wall-Dcol.conf|${scrDir}/wallbashdunst.sh
 
 [urgency_low]
     background = "#<wallbash_3xa5>80"

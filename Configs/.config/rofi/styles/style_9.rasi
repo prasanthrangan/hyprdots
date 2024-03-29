@@ -46,7 +46,7 @@ inputbar {
     padding:                     0em;
     children:                    [ "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.thmb", height);
+    background-image:            url("~/.config/swww/wall.sqre", height);
     border-radius:               1em;
 }
 entry {

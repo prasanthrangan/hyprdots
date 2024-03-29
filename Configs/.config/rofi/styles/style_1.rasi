@@ -44,7 +44,7 @@ dummywall {
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "inputbar" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", height);
+    background-image:            url("~/.config/swww/wall.thmb", height);
 }
 
 

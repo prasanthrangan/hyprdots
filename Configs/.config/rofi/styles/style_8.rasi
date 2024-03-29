@@ -34,7 +34,7 @@ mainbox {
     orientation:                 horizontal;
     children:                    [ "listmode" , "inputbar" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", height);
+    background-image:            url("~/.config/swww/wall.thmb", height);
 }
 
 

@@ -1,4 +1,4 @@
-$HOME/.config/waybar/theme.css|${ScrDir}/wbarconfgen.sh
+$HOME/.config/waybar/theme.css|${scrDir}/wbarconfgen.sh
 @define-color bar-bg <wallbash_pry1_rgba(0)>;
 @define-color main-bg <wallbash_pry1_rgba(0.8)>;
 @define-color main-fg <wallbash_1xa8_rgba(0.8)>;
