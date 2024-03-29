@@ -2,9 +2,9 @@
         "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "${ScrDir}/swwwallpaper.sh -n",
-        "on-click-right": "${ScrDir}/swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && ${ScrDir}/swwwallselect.sh",
+        "on-click": "swwwallpaper.sh -n",
+        "on-click-right": "swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && swwwallselect.sh",
         "interval" : 86400, // once every day
         "tooltip": true
     },
