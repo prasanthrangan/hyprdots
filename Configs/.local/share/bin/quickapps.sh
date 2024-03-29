@@ -2,8 +2,8 @@
 
 # set variables
 
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 roconf="~/.config/rofi/quickapps.rasi"
 
 if [ $# -eq 0 ] ; then

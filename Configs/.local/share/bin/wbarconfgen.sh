@@ -3,7 +3,7 @@
 
 # read control file and initialize variables
 
-export ScrDir=`dirname "$(realpath "$0")"`
+export scrDir=`dirname "$(realpath "$0")"`
 waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
 conf_file="$waybar_dir/config.jsonc"
@@ -118,6 +118,6 @@ cat $modules_dir/footer.jsonc >> $conf_file
 
 # generate style and restart waybar
 
-$ScrDir/wbarstylegen.sh
+$scrDir/wbarstylegen.sh
 
 

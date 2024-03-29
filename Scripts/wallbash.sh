@@ -37,15 +37,14 @@ done
 
 #// set variables
 
-cacheDir="$HOME/.cache/hyprdots"
+cacheDir="$HOME/.cache/hyprdots/dcols"
 wallbashImg="${1}"
 wallbashColors=4
 wallbashFuzz=70
-cacheImg=$(basename "${wallbashImg}")
-cacheThm=$(dirname "${wallbashImg}" | awk -F '/' '{print $NF}')
-wallbashRaw="${cacheDir}/${cacheThm}/${cacheImg}.mpc"
-wallbashOut="${cacheDir}/${cacheThm}/${cacheImg}.dcol"
-wallbashCache="${cacheDir}/${cacheThm}/${cacheImg}.cache"
+cacheImg=$(sha1sum "${wallbashImg}" | awk '{print $1}')
+wallbashRaw="${cacheDir}/${cacheImg}.mpc"
+wallbashOut="${cacheDir}/${cacheImg}.dcol"
+wallbashCache="${cacheDir}/${cacheImg}.cache"
 
 
 #// color modulations
@@ -73,7 +72,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
-echo "wallbash ${colorProfile} profile :: ${sortMode} :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
+echo -e "wallbash ${colorProfile} profile :: ${sortMode} :: Colors ${wallbashColors} :: Fuzzy ${wallbashFuzz} :: \"${wallbashOut}\""
 mkdir -p "${cacheDir}/${cacheThm}"
 > "${wallbashOut}"
 

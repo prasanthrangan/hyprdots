@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # source variables
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 discord_col="${cacheDir}/discord.css"
 declare -a client_list=()
 
@@ -20,7 +20,7 @@ for client_css in "${client_list[@]}" ; do
     if [[ ! -d $(dirname "${client_css}") ]] ; then
         continue
     fi
-    if [[ "${EnableWallDcol}" -gt 0 ]] ; then
+    if [[ "${enableWallDcol}" -gt 0 ]] ; then
         cp "${discord_col}" "${client_css}"
     else
         > "${client_css}"

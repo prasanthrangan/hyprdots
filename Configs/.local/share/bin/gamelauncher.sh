@@ -2,8 +2,8 @@
 
 # set variables
 MODE=${1:-5}
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
 RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${MODE}.rasi"
 

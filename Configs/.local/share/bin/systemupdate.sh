@@ -6,8 +6,8 @@ if [ ! -f /etc/arch-release ] ; then
 fi
 
 # source variables
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 
 # Check for updates
 get_aurhlpr

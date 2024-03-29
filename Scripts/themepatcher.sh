@@ -147,10 +147,10 @@ Y|N|${HOME}/.config/hyprdots/wallbash|${Fav_Theme}|hyprland
 Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
 THEME
 
-if grep -q "^.|${Fav_Theme}|" "${ThemeCtl}" ; then
-    awk -F '|' -v thm="${Fav_Theme}" -v cde="$3" '{OFS=FS} $2 == thm {$3 = cde} {print}' "${ThemeCtl}" > tmp && mv tmp "${ThemeCtl}"
+if grep -q "^.|${Fav_Theme}|" "${themeCtl}" ; then
+    awk -F '|' -v thm="${Fav_Theme}" -v cde="$3" '{OFS=FS} $2 == thm {$3 = cde} {print}' "${themeCtl}" > tmp && mv tmp "${themeCtl}"
 else
-    echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${ThemeCtl}"
+    echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${themeCtl}"
 fi
 
 

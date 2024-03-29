@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 roconf="~/.config/rofi/clipboard.rasi"
 
 

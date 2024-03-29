@@ -1,32 +1,44 @@
 #!/usr/bin/env sh
 
-# wallpaper var
-EnableWallDcol=0
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-cacheDir="$HOME/.cache/hyprdots"
-ThemeCtl="${ConfDir}/hyprdots/theme.ctl"
-WallbashDir="${ConfDir}/hyprdots/wallbash"
 
-# theme var
+#// wallpaper vars
+
+enableWallDcol=0
+confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+cacheDir="$HOME/.cache/hyprdots"
+themeCtl="${confDir}/hyprdots/theme.ctl"
+wallDir="${confDir}/swww"
+thmbDir="${cacheDir}/thumbs"
+dcolDir="${cacheDir}/dcols"
+wallbashDir="${confDir}/hyprdots/wallbash"
+hashMech="sha1sum"
+
+
+#// theme vars
+
 gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
 gtkIcon=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
 gtkMode=`gsettings get org.gnome.desktop.interface color-scheme | sed "s/'//g" | awk -F '-' '{print $2}'`
 
-# hypr var
+
+#// hypr vars
+
 hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
 hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
 
-# pacman fns
+
+#// pacman fns
+
 pkg_installed()
 {
-    local PkgIn=$1
+    local pkgIn=$1
 
-    if pacman -Qi $PkgIn &> /dev/null
+    if pacman -Qi $pkgIn &> /dev/null
     then
-        #echo "${PkgIn} is already installed..."
+        #echo "${pkgIn} is already installed..."
         return 0
     else
-        #echo "${PkgIn} is not installed..."
+        #echo "${pkgIn} is not installed..."
         return 1
     fi
 }
@@ -41,3 +53,48 @@ get_aurhlpr()
         aurhlpr="paru"
     fi
 }
+
+
+#// wallpaper fns
+
+get_hashmap()
+{
+    local wallSource="${1}"
+    unset wallHash
+    unset walList
+    hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
+
+    while read -r hash image ; do
+        wallHash+=("${hash}")
+        walList+=("${image}")
+    done <<< "${hashMap}"
+
+    if [ "${2}" == "--verbose" ] ; then
+        echo ":: source :: \"${wallSource}\""
+        for indx in "${!wallHash[@]}" ; do
+            echo ":: ${indx} :: \"${wallHash[indx]}\" :: \"${walList[indx]}\""
+        done
+    fi
+}
+
+get_hashmap_x2()
+{
+    local wallSource="${1}"
+    unset wallHash
+    unset walList
+    hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
+
+    while read -r hash image ; do
+        imgh="$(echo ${image} | "${hashMech}" | awk '{print $1}')"
+        wallHash+=("${hash}${imgh}")
+        walList+=("${image}")
+    done <<< "${hashMap}"
+
+    if [ "${2}" == "--verbose" ] ; then
+        echo ":: source :: \"${wallSource}\""
+        for indx in "${!wallHash[@]}" ; do
+            echo ":: ${indx} :: \"${wallHash[indx]}\" :: \"${walList[indx]}\""
+        done
+    fi
+}
+

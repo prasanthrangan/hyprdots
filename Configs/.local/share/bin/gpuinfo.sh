@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2312
 # shellcheck disable=SC1090
-ScrDir=`dirname "$(realpath "$0")"`
+scrDir=`dirname "$(realpath "$0")"`
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 
 tired=false
@@ -227,7 +227,7 @@ fi
 amd_GPU() { #? Funtion to query amd GPU
   primary_gpu="AMD ${amd_gpu}"
     # Execute the AMD GPU Python script and use its output
-  amd_output=$(python3 ${ScrDir}/amdgpu.py)
+  amd_output=$(python3 ${scrDir}/amdgpu.py)
 if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then
   # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
   temperature=$(echo "${amd_output}" | jq -r '.["GPU Temperature"]' | sed 's/°C//')

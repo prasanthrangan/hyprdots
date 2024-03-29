@@ -8,8 +8,8 @@ then
 fi
 
 # set file variables
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 wLayout="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/layout_$1"
 wlTmplt="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/style_$1.css"
 

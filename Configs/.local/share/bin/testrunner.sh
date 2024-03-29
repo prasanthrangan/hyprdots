@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 WalDir="${XDG_CONFIG_HOME:-$HOME/.config}/swww"
 RofDir="${XDG_CONFIG_HOME:-$HOME/.config}/rofi"
 
@@ -11,7 +11,7 @@ wlogcn=1
 while read loop_theme
 do
     themeName=`echo $loop_theme | cut -d '|' -f 2`
-    $ScrDir/themeswitch.sh -s $themeName &> /dev/null
+    $scrDir/themeswitch.sh -s $themeName &> /dev/null
     sleep 0.2
 
     hyprctl dispatch workspace empty
@@ -26,10 +26,10 @@ do
     do
         # swww
         sleep 0.2
-        $ScrDir/swwwallpaper.sh -n &> /dev/null
+        $scrDir/swwwallpaper.sh -n &> /dev/null
 
         # rofiselect
-        $ScrDir/rofiselect.sh &> /dev/null &
+        $scrDir/rofiselect.sh &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
@@ -40,12 +40,12 @@ do
             roficn=1
         fi
         cp $RofDir/styles/style_$roficn.rasi $RofDir/config.rasi
-        $ScrDir/rofilaunch.sh &> /dev/null &
+        $scrDir/rofilaunch.sh &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
         # themeselect
-        $ScrDir/themeselect.sh &> /dev/null &
+        $scrDir/themeselect.sh &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
@@ -55,37 +55,37 @@ do
         else
             wlogcn=1
         fi
-        $ScrDir/logoutlaunch.sh $wlogcn &> /dev/null &
+        $scrDir/logoutlaunch.sh $wlogcn &> /dev/null &
         sleep 0.7
         pkill -x wlogout
 
         # waybar
-        $ScrDir/wbarconfgen.sh n &> /dev/null
+        $scrDir/wbarconfgen.sh n &> /dev/null
 
         # quickapps
-        $ScrDir/quickapps.sh kitty firefox spotify code dolphin &> /dev/null &
+        $scrDir/quickapps.sh kitty firefox spotify code dolphin &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
         # cliphist
-        $ScrDir/cliphist.sh w &> /dev/null &
+        $scrDir/cliphist.sh w &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
         # wallselect
-        $ScrDir/swwwallselect.sh &> /dev/null &
+        $scrDir/swwwallselect.sh &> /dev/null &
         sleep 0.7
         pkill -x rofi
 
         # wallbash
-        $ScrDir/wallbashtoggle.sh
+        $scrDir/wallbashtoggle.sh
         sleep 0.2
 
         # volumecontrol
         for (( i=1 ; i<=6 ; i++ )) ; do
             [[ i -gt 3 ]] && vol="d" || vol="i"
-            $ScrDir/volumecontrol.sh -o $vol
+            $scrDir/volumecontrol.sh -o $vol
         done
     done
-done < "$ThemeCtl"
+done < "$themeCtl"
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
 # set variables
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themeselect.rasi"
 RofiStyle="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/styles"
 RofiAssets="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/assets"

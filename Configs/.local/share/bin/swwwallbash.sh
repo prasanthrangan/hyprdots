@@ -1,14 +1,16 @@
 #!/usr/bin/env sh
 
-# set variables
 
-export ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
-wallbashImg="$(readlink $HOME/.config/swww/wall.set)"
-export wallbashOut="$(readlink $HOME/.config/swww/wall.dcol)"
+#// set variables
+
+export scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
+wallbashImg="${1:-$(readlink $HOME/.config/swww/wall.set)}"
+get_hashmap "${wallbashImg}"
+export wallbashOut="${dcolDir}/${wallHash[0]}.dcol"
 
 
-# validate input
+#// validate input
 
 if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     echo "Error: Input wallpaper not found!"
@@ -22,25 +24,25 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-# generate wallbash colors
+#// generate wallbash colors
 
 if [ ! -f "${wallbashOut}" ] ; then
-    $ScrDir/wallbash.sh "${wallbashImg}"
+    "${scrDir}/wallbash.sh" "${wallbashImg}"
 fi
 
 
-# deploy wallbash colors
+#// deploy wallbash colors
 
 fn_wallbash () {
     local tplt="${1}"
     eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
-    touch "${target}" &> /dev/null || { echo "[skip] $(dirname "${target}")" && return 0 ;}
+    [ -d "$(dirname "${target}")" ] || { echo "[skip] $(dirname "${target}")" && return 0 ;}
     appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
-    source "${ScrDir}/globalcontrol.sh"
+    source "${scrDir}/globalcontrol.sh"
     sed '1d' "${tplt}" > "${target}"
     source "${wallbashOut}"
 
-    if [[ "${EnableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${EnableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]] ; then
+    if [[ "${enableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${enableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]] ; then
         sed -i 's/<wallbash_pry1>/'"${dcol_pry4}"'/g
                 s/<wallbash_txt1>/'"${dcol_txt4}"'/g
                 s/<wallbash_1xa1>/'"${dcol_4xa9}"'/g
@@ -228,16 +230,16 @@ fn_wallbash () {
 export -f fn_wallbash
 
 
-# deploy theme <//> wall based colors
+#// switch theme <//> wall based colors
 
-if [ ${EnableWallDcol} -gt 0 ] ; then
+if [ ${enableWallDcol} -gt 0 ] ; then
     echo ":: deploying wallbash colors"
-    find "${WallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
+    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
 else
     echo ":: deploying ${gtkTheme} colors"
-    find "${WallbashDir}/${gtkTheme}" -type f -name "*.theme" | parallel -j 0 fn_wallbash
+    find "${wallbashDir}/${gtkTheme}" -type f -name "*.theme" | parallel -j 0 fn_wallbash
 fi
 
-find "${WallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
+find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
 
 

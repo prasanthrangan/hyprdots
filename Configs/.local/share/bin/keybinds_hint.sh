@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 
 pkill -x rofi && exit
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
+scrDir=`dirname "$(realpath "$0")"`
+source $scrDir/globalcontrol.sh
 
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-keyConfDir="$ConfDir/hypr"
-keyConf="$keyConfDir/hyprland.conf $keyConfDir/keybindings.conf $keyConfDir/userprefs.conf  $*"
+confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+keyconfDir="$confDir/hypr"
+keyConf="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf  $*"
 tmpMapDir="/tmp"
 tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
-roDir="$ConfDir/rofi"
+roDir="$confDir/rofi"
 roconf="$roDir/clipboard.rasi"
 
 # read hypr theme border

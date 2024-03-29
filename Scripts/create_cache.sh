@@ -19,8 +19,11 @@ fi
 
 
 # set variables
-ctlLine=`grep '^1|' ${ThemeCtl}`
+ctlLine=`grep '^1|' ${themeCtl}`
 export cacheDir
+export thmbDir="${cacheDir}/thumbs"
+mkdir -p "${cacheDir}/thumbs"
+mkdir -p "${cacheDir}/dcols"
 
 
 # evaluate options
@@ -37,9 +40,9 @@ while getopts "fc:" option ; do
         if [[ -f "${inWall}" ]] ; then
             if [ `echo "$ctlLine" | wc -l` -eq "1" ] ; then
                 curTheme=$(echo "$ctlLine" | cut -d '|' -f 2)
-                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > /tmp/t2 && mv /tmp/t2 "${ThemeCtl}"
+                awk -F '|' -v thm="${curTheme}" -v wal="${inWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${themeCtl}" > /tmp/t2 && mv /tmp/t2 "${themeCtl}"
             else
-                echo "ERROR : ${ThemeCtl} Unable to fetch theme..."
+                echo "ERROR : ${themeCtl} Unable to fetch theme..."
                 exit 1
             fi
         else
@@ -56,29 +59,28 @@ while getopts "fc:" option ; do
 done
 
 shift $((OPTIND - 1))
-ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${ThemeCtl}")
-[ -z "${ctlRead}" ] && ctlRead=$(cat "${ThemeCtl}")
+ctlRead=$(awk -F '|' -v thm="${1}" '{if($2==thm) print$0}' "${themeCtl}")
+[ -z "${ctlRead}" ] && ctlRead=$(cat "${themeCtl}")
 
 
 # magick function
 fn_magick () {
-    theme="$1"
-    wpFullName="$2"
-    wpBaseName=$(basename "${wpFullName}")
+    wpFullName="$1"
+    cacheImg=$(sha1sum "${wpFullName}" | awk '{print $1}')
 
-    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}" ]; then
-        convert "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${theme}/${wpBaseName}" &> /dev/null
+    if [ ! -f "${thmbDir}/${cacheImg}.sqre" ] ; then
+        convert -strip "${wpFullName}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${cacheImg}.sqre" &
     fi
 
-    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.rofi" ]; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.rofi" &> /dev/null
+    if [ ! -f "${thmbDir}/${cacheImg}.thmb" ] ; then
+        convert -strip -resize 1000 -gravity center -extent 1000 -quality 50 "${wpFullName}"[0] "${thmbDir}/${cacheImg}.thmb" &
     fi
 
-    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.blur" ]; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${cacheDir}/${theme}/${wpBaseName}.blur" &> /dev/null
+    if [ ! -f "${thmbDir}/${cacheImg}.blur" ] ; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${wpFullName}"[0] "${thmbDir}/${cacheImg}.blur" &
     fi
 
-    if [ ! -f "${cacheDir}/${theme}/${wpBaseName}.dcol" ] ; then
+    if [ ! -f "${cacheDir}/dcols/${cacheImg}.dcol" ] ; then
         "${scrDir}/wallbash.sh" "${wpFullName}" &> /dev/null
     fi
 }
@@ -92,10 +94,9 @@ do
     theme=$(echo $ctlLine | awk -F '|' '{print $2}')
     fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
     wallPath=$(dirname "$fullPath")
-    mkdir -p ${cacheDir}/${theme}
     mapfile -d '' wpArray < <(find "${wallPath}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
     echo -e "\033[0;32m[cache]\033[0m creating thumbnails for ${theme} [${#wpArray[@]}]"
-    parallel --bar fn_magick ::: "${theme}" ::: "${wpArray[@]}"
+    parallel --bar fn_magick ::: "${wpArray[@]}"
 
     if pkg_installed code ; then
         if [ ! -z "$(echo $ctlLine | awk -F '|' '{print $3}')" ] ; then

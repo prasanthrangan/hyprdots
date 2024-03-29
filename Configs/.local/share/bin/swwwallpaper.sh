@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 
-# lock instance
+#// lock instance
 
 lockFile="/tmp/hyrpdots$(id -u)swwwallpaper.lock"
 [ -e "$lockFile" ] && echo "An instance of the script is already running..." && exit 1
@@ -9,55 +9,58 @@ touch "${lockFile}"
 trap 'rm -f ${lockFile}' EXIT
 
 
-# define functions
+#// define functions
 
 Wall_Update()
 {
-    if [ ! -d "${cacheDir}/${curTheme}" ] ; then
-        mkdir -p "${cacheDir}/${curTheme}"
+    if [ ! -d "${thmbDir}" ] ; then
+        mkdir -p "${thmbDir}"
     fi
 
     local x_wall="$1"
     local x_update="${x_wall/$HOME/"~"}"
-    cacheImg=$(basename "$x_wall")
-    ln -fs "${x_wall}" "${wallSet}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.dcol" "${wallDcl}"
-    $ScrDir/swwwallbash.sh &
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}" ] ; then
-        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${cacheDir}/${curTheme}/${cacheImg}" &
+    get_hashmap "${x_wall}"
+    echo ":: ${walList[0]} :: ${wallHash[0]}"
+    local cacheImg="${wallHash[0]}"
+    "${scrDir}/swwwallbash.sh" "${x_wall}" &
+
+    if [ ! -f "${thmbDir}/${cacheImg}.sqre" ] ; then
+        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${cacheImg}.sqre" &
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.rofi" ] ; then
-        convert -strip -resize 2000 -gravity center -extent 2000 -quality 90 "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.rofi" &
+    if [ ! -f "${thmbDir}/${cacheImg}.thmb" ] ; then
+        convert -strip -resize 1000 -gravity center -extent 1000 -quality 50 "${x_wall}"[0] "${thmbDir}/${cacheImg}.thmb" &
     fi
 
-    if [ ! -f "${cacheDir}/${curTheme}/${cacheImg}.blur" ] ; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "$x_wall"[0] "${cacheDir}/${curTheme}/${cacheImg}.blur" &
+    if [ ! -f "${thmbDir}/${cacheImg}.blur" ] ; then
+        convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${cacheImg}.blur" &
     fi
 
     wait
-    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "${ThemeCtl}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}" "${wallTmb}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.blur" "${wallBlr}"
-    ln -fs "${cacheDir}/${curTheme}/${cacheImg}.rofi" "${wallRfi}"
+    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${themeCtl}" > "${scrDir}/tmp" && mv "${scrDir}/tmp" "${themeCtl}"
+    ln -fs "${x_wall}" "${wallSet}"
+    ln -fs "${dcolDir}/${cacheImg}.dcol" "${wallDcl}"
+    ln -fs "${thmbDir}/${cacheImg}.sqre" "${wallSqr}"
+    ln -fs "${thmbDir}/${cacheImg}.thmb" "${wallTmb}"
+    ln -fs "${thmbDir}/${cacheImg}.blur" "${wallBlr}"
 }
 
 Wall_Change()
 {
     local x_switch=$1
 
-    for (( i=0 ; i<${#Wallist[@]} ; i++ ))
+    for (( i=0 ; i<${#walList[@]} ; i++ ))
     do
-        if [ "${Wallist[i]}" == "${fullPath}" ] ; then
+        if [ "${walList[i]}" == "${fullPath}" ] ; then
 
             if [ $x_switch == 'n' ] ; then
-                nextIndex=$(( (i + 1) % ${#Wallist[@]} ))
+                nextIndex=$(( (i + 1) % ${#walList[@]} ))
             elif [ $x_switch == 'p' ] ; then
                 nextIndex=$(( i - 1 ))
             fi
 
-            Wall_Update "${Wallist[nextIndex]}"
+            Wall_Update "${walList[nextIndex]}"
             break
         fi
     done
@@ -65,14 +68,13 @@ Wall_Change()
 
 Wall_Set()
 {
-    if [ -z $xtrans ] ; then
+    if [ -z "${xtrans}" ] ; then
         xtrans="grow"
     fi
 
-    #? getting the real path as symlinks too glitch
     swww img "$(readlink "${wallSet}")" \
     --transition-bezier .43,1.19,1,.4 \
-    --transition-type "$xtrans" \
+    --transition-type "${xtrans}" \
     --transition-duration 0.7 \
     --transition-fps 60 \
     --invert-y \
@@ -80,41 +82,41 @@ Wall_Set()
 }
 
 
-# set variables
+#// set variables
 
-ScrDir=`dirname "$(realpath "$0")"`
-source $ScrDir/globalcontrol.sh
-wallSet="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.set"
-wallBlr="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.blur"
-wallRfi="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.rofi"
-wallTmb="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.thmb"
-wallDcl="${XDG_CONFIG_HOME:-$HOME/.config}/swww/wall.dcol"
-ctlLine=$(grep '^1|' ${ThemeCtl})
+scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
+wallSet="${wallDir}/wall.set"
+wallBlr="${wallDir}/wall.blur"
+wallTmb="${wallDir}/wall.thmb"
+wallSqr="${wallDir}/wall.sqre"
+wallDcl="${wallDir}/wall.dcol"
+ctlLine="$(grep '^1|' ${themeCtl})"
 
-if [ `echo $ctlLine | wc -l` -ne "1" ] ; then
-    echo "ERROR : ${ThemeCtl} Unable to fetch theme..."
+if [ "$(echo "${ctlLine}" | wc -l)" -ne "1" ] ; then
+    echo "ERROR : ${themeCtl} Unable to fetch theme..."
     exit 1
 fi
 
-curTheme=$(echo "$ctlLine" | awk -F '|' '{print $2}')
-fullPath=$(echo "$ctlLine" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
-wallName=$(basename "$fullPath")
-wallPath=$(dirname "$fullPath")
-mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
+curTheme=$(echo "${ctlLine}" | awk -F '|' '{print $2}')
+fullPath=$(echo "${ctlLine}" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
+wallName=$(basename "${fullPath}")
+wallPath=$(dirname "${fullPath}")
+get_hashmap "${wallPath}"
 
-if [ ! -f "$fullPath" ] ; then
-    if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/swww/$curTheme" ] ; then
-        wallPath="${XDG_CONFIG_HOME:-$HOME/.config}/swww/$curTheme"
-        mapfile -d '' Wallist < <(find ${wallPath} -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
-        fullPath="${Wallist[0]}"
+if [ ! -f "${fullPath}" ] ; then
+    if [ -d "${wallDir}" ] ; then
+        wallPath="${wallDir}/${curTheme}"
+        get_hashmap "${wallPath}"
+        fullPath="${walList[0]}"
     else
-        echo "ERROR: wallpaper $fullPath not found..."
+        echo "ERROR: wallpaper ${fullPath} not found..."
         exit 1
     fi
 fi
 
 
-# evaluate options
+#// evaluate options
 
 while getopts "nps:" option ; do
     case $option in
@@ -137,7 +139,7 @@ while getopts "nps:" option ; do
 done
 
 
-# check swww daemon and set wall
+#// check swww daemon and set wall
 
 swww query
 if [ $? -ne 0 ] ; then

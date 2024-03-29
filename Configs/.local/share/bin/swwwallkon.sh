@@ -3,13 +3,13 @@
 
 # Set variables
 
-ScrDir=$(dirname "$(realpath "$0")")
-source "${ScrDir}/globalcontrol.sh"
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/globalcontrol.sh"
 scrName="$(basename "$0")"
-wallPath="${ConfDir}/swww"
+wallPath="${confDir}/swww"
 kmenuPath="$HOME/.local/share/kio/servicemenus"
 kmenuDesk="${kmenuPath}/hydewallpaper.desktop"
-readarray -t theme_ctl < <(cut -d '|' -f 2 "$ThemeCtl")
+readarray -t theme_ctl < <(cut -d '|' -f 2 "$themeCtl")
 themeAction=$(echo "${theme_ctl[*]}" | sed 's/ /;/g')
 
 
@@ -52,14 +52,14 @@ if [ ! -z "${setTheme}" ] && [ ! -z "${setWall}" ] ; then
     thmWall=$(basename "${setWall}")
     xWall="${wallPath}/${setTheme}/${thmWall}"
     cp "${setWall}" "${xWall}"
-    awk -F '|' -v thm="${setTheme}" -v wal="${xWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${ThemeCtl}" > "${ScrDir}/tmp" && mv "${ScrDir}/tmp" "${ThemeCtl}"
-    ${ScrDir}/themeswitch.sh -s "${setTheme}"
+    awk -F '|' -v thm="${setTheme}" -v wal="${xWall}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${themeCtl}" > "${scrDir}/tmp" && mv "${scrDir}/tmp" "${themeCtl}"
+    ${scrDir}/themeswitch.sh -s "${setTheme}"
 
 else
 
-    echo -e "[Desktop Entry]\nType=Service\nMimeType=image/png;image/jpeg;image/jpg;image/gif\nActions=Menu-Refresh;${themeAction}\nX-KDE-Submenu=Set As Wallpaper...\n\n[Desktop Action Menu-Refresh]\nName=.: Refresh List :.\nExec=${ScrDir}/${scrName}" > "${kmenuDesk}"
+    echo -e "[Desktop Entry]\nType=Service\nMimeType=image/png;image/jpeg;image/jpg;image/gif\nActions=Menu-Refresh;${themeAction}\nX-KDE-Submenu=Set As Wallpaper...\n\n[Desktop Action Menu-Refresh]\nName=.: Refresh List :.\nExec=${scrDir}/${scrName}" > "${kmenuDesk}"
     for thm in "${theme_ctl[@]}" ; do
-        echo -e "\n[Desktop Action ${thm}]\nName=${thm}\nExec=${ScrDir}/${scrName} -t ${thm} -w %u" >> "${kmenuDesk}"
+        echo -e "\n[Desktop Action ${thm}]\nName=${thm}\nExec=${scrDir}/${scrName} -t ${thm} -w %u" >> "${kmenuDesk}"
     done
 
 fi
