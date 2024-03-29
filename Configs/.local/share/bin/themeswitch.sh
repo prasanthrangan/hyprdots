@@ -71,6 +71,7 @@ fi
 #// hyprland
 
 cp "${wallbashDir}/${themeSet}/hypr.conf" "${confDir}/hypr/themes/theme.conf"
+hyprctl reload
 source "${scrDir}/globalcontrol.sh"
 
 
