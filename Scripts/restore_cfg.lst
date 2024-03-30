@@ -25,4 +25,5 @@ Y|Y|${HOME}|.gtkrc-2.0|nwg-look
 Y|Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
 Y|Y|${HOME}/.local/share|dolphin|dolphin
 Y|Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
+Y|Y|${HOME}/.local/share/kio/servicemenus|hydewallpaper.desktop|dolphin
 N|Y|${HOME}/.config|libinput-gestures.conf|libinput-gestures

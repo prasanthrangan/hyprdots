@@ -7,10 +7,9 @@
 set -e
 
 CloneDir=`dirname "$(dirname "$(realpath "$0")")"`
-ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="$HOME/.cache/hyprdots"
-HyprdotsDir="${ConfDir}/hyprdots"
-themeCtl="${HyprdotsDir}/theme.ctl"
+themeCtl="${confDir}/hyprdots/theme.ctl"
 aurList=(yay paru)
 shlList=(zsh fish)
 
