@@ -68,13 +68,6 @@ get_hashmap()
         wallHash+=("${hash}")
         walList+=("${image}")
     done <<< "${hashMap}"
-
-    if [ "${2}" == "--verbose" ] ; then
-        echo ":: source :: \"${wallSource}\""
-        for indx in "${!wallHash[@]}" ; do
-            echo ":: ${indx} :: \"${wallHash[indx]}\" :: \"${walList[indx]}\""
-        done
-    fi
 }
 
 get_hashmap_x2()
@@ -89,12 +82,5 @@ get_hashmap_x2()
         wallHash+=("${hash}${imgh}")
         walList+=("${image}")
     done <<< "${hashMap}"
-
-    if [ "${2}" == "--verbose" ] ; then
-        echo ":: source :: \"${wallSource}\""
-        for indx in "${!wallHash[@]}" ; do
-            echo ":: ${indx} :: \"${wallHash[indx]}\" :: \"${walList[indx]}\""
-        done
-    fi
 }
 

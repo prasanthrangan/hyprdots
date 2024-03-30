@@ -30,7 +30,7 @@ Wall_Update()
     fi
 
     if [ ! -f "${thmbDir}/${cacheImg}.thmb" ] ; then
-        convert -strip -resize 1000 -gravity center -extent 1000 -quality 50 "${x_wall}"[0] "${thmbDir}/${cacheImg}.thmb" &
+        convert -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${x_wall}"[0] "${thmbDir}/${cacheImg}.thmb" &
     fi
 
     if [ ! -f "${thmbDir}/${cacheImg}.blur" ] ; then

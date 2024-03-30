@@ -1,4 +1,4 @@
-$HOME/.config/spicetify/Themes/Sleek/Wall-Dcol.ini|${scrDir}/wallbashspotify.sh
+$HOME/.config/spicetify/Themes/Sleek/color.ini|${scrDir}/wallbashspotify.sh
 
 [Wallbash]
 text               = <wallbash_4xa9>
@@ -22,3 +22,24 @@ notification-error = <wallbash_pry1>
 playback-bar       = <wallbash_pry1>
 misc               = <wallbash_pry2>
 
+; Description
+
+; text             = main text, playlist names in main field, name of playlist selected in sidebar, headings
+; subtext          = text in main buttons in sidebar, playlist names in sidebar, artist names, and mini infos
+; nav-active-text  = text in main buttons in sidebar when active
+; main             = main bg
+; main-secondary   = bg color of selected song rows, bg color of artist/track cards
+; sidebar          = sidebar bg
+; player           = player bg
+; card             = popup-card bg
+; shadow           = all shadows
+; button           = playlist buttons bg in sidebar, drop-down menus, now playing song, like button
+; button-secondary = download and options button
+; button-active    = hover on song selected
+; button-disabled  = seekbar bg, volume bar bg, scrollbar
+; nav-active       = sidebar buttons bg
+; play-button      = color of main play button in main field
+; tab-active       = button bg in main field (playlists, podcasts, artists, albums)
+; notification     = notification ('Added to liked songs' etc.)
+; playback-bar     = seekbar fg, volume bar fg, main play/pause button
+; misc             = miscellaneous

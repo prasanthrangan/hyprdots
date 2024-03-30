@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
+
 # set variables
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-scol="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/Themes/Sleek/color.ini"
-dcol="${XDG_CONFIG_HOME:-$HOME/.config}/spicetify/Themes/Sleek/Wall-Dcol.ini"
+
 
 # regen conf
 
@@ -36,5 +36,4 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         spicetify -q watch -s &
     fi
 
-    cp "$dcol" "$scol"
 fi

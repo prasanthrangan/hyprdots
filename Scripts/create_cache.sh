@@ -22,16 +22,14 @@ fi
 ctlLine=`grep '^1|' ${themeCtl}`
 export cacheDir
 export thmbDir="${cacheDir}/thumbs"
-mkdir -p "${cacheDir}/thumbs"
-mkdir -p "${cacheDir}/dcols"
 
 
 # evaluate options
 while getopts "fc:" option ; do
     case $option in
     f ) # force remove cache
-        rm -Rf ${cacheDir}
-        echo "Cache dir ${cacheDir} cleared...";;
+        rm -Rf "${thmbDir}" "${cacheDir}/dcols"
+        echo "Cache dir cleared : \"${thmbDir}\" \"${cacheDir}/dcols\"";;
     c ) # use custom wallpaper
         inWall="$OPTARG"
         if [[ "${inWall}" == '~'* ]]; then
@@ -73,7 +71,7 @@ fn_magick () {
     fi
 
     if [ ! -f "${thmbDir}/${cacheImg}.thmb" ] ; then
-        convert -strip -resize 1000 -gravity center -extent 1000 -quality 50 "${wpFullName}"[0] "${thmbDir}/${cacheImg}.thmb" &
+        convert -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${wpFullName}"[0] "${thmbDir}/${cacheImg}.thmb" &
     fi
 
     if [ ! -f "${thmbDir}/${cacheImg}.blur" ] ; then
@@ -86,6 +84,8 @@ fn_magick () {
 }
 
 export -f fn_magick
+mkdir -p "${thmbDir}"
+mkdir -p "${cacheDir}/dcols"
 
 
 # create thumbnails for each theme > wallpapers
