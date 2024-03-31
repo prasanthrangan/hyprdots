@@ -17,8 +17,8 @@ Y|Y|${HOME}/.config|qt6ct|qt6ct
 Y|Y|${HOME}/.config|rofi|rofi
 Y|Y|${HOME}/.config|swaylock|swaylock-effects
 Y|N|${HOME}/.config|swww|swww
-Y|Y|${HOME}/.config|modules config.jsonc style.css theme.css|waybar
-Y|Y|${HOME}/.config|config.ctl|waybar
+Y|Y|${HOME}/.config/wayabr|modules config.jsonc style.css theme.css|waybar
+Y|Y|${HOME}/.config/waybar|config.ctl|waybar
 Y|Y|${HOME}/.config|wlogout|wlogout
 Y|Y|${HOME}/.config|xsettingsd nwg-look gtk-3.0|nwg-look
 Y|Y|${HOME}/.icons|default|nwg-look
