@@ -1,4 +1,4 @@
-$HOME/.cache/hyde/discord.css|${scrDir}/wallbashdiscord.sh
+${cacheDir}/discord.css|${scrDir}/wallbashdiscord.sh
 
 :root {
 	--accent-color: #<wallbash_1xa1>;

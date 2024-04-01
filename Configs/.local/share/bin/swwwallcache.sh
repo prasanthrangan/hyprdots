@@ -21,8 +21,7 @@ fn_wallcache()
     [ ! -e "${thmbDir}/${x_hash}.thmb" ] && convert -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${x_wall}"[0] "${thmbDir}/${x_hash}.thmb"
     [ ! -e "${thmbDir}/${x_hash}.sqre" ] && convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${x_hash}.sqre"
     [ ! -e "${thmbDir}/${x_hash}.blur" ] && convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${x_hash}.blur"
-    [ ! -e "${dcolDir}/${x_hash}.dcol" ] && "${scrDir}/wallbash.sh" "${x_wall}" &> /dev/null
-    [ "$(wc -l < "${dcolDir}/${x_hash}.dcol")" -ne 89 ] && "${scrDir}/wallbash.sh" "${x_wall}" &> /dev/null
+    { [ ! -e "${dcolDir}/${x_hash}.dcol" ] || [ "$(wc -l < "${dcolDir}/${x_hash}.dcol")" -ne 89 ] ;} && "${scrDir}/wallbash.sh" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
 }
 
 fn_wallcache_force()
@@ -32,7 +31,7 @@ fn_wallcache_force()
     convert -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${x_wall}"[0] "${thmbDir}/${x_hash}.thmb"
     convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${x_hash}.sqre"
     convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${x_hash}.blur"
-    "${scrDir}/wallbash.sh" "${x_wall}" &> /dev/null
+    "${scrDir}/wallbash.sh" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
 }
 
 export -f fn_wallcache
