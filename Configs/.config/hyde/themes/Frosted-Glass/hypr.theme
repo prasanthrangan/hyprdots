@@ -1,0 +1,51 @@
+$HOME/.config/hypr/themes/theme.conf|> $HOME/.config/hypr/themes/colors.conf
+#  ___________      _________                        __   
+#  \__    ___/      \_   ___ \_______ ___.__._______/  |_ 
+#   |    |  ______ /    \  \/\_  __ <   |  |\____ \   __\
+#   |    | /_____/ \     \____|  | \/\___  ||  |_> >  |  
+#   |____|          \______  /|__|   / ____||   __/|__|  
+#                          \/        \/     |__|      
+
+exec = gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-blue'
+exec = gsettings set org.gnome.desktop.interface gtk-theme 'Frosted-Glass'
+exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+
+general {
+    gaps_in = 4
+    gaps_out = 10
+    border_size = 2
+    col.active_border = rgba(2770C0ff) rgba(1E4C84ff) 45deg
+    col.inactive_border = rgba(A44185cc) rgba(012339cc) 45deg
+    layout = dwindle
+    resize_on_border = true
+}
+
+group {
+    col.border_active = rgba(2770C0ff) rgba(1E4C84ff) 45deg
+    col.border_inactive = rgba(A44185cc) rgba(012339cc) 45deg
+    col.border_locked_active = rgba(2770C0ff) rgba(1E4C84ff) 45deg
+    col.border_locked_inactive = rgba(A44185cc) rgba(012339cc) 45deg
+}
+
+decoration {
+    rounding = 13
+    drop_shadow = false
+    shadow_ignore_window = true
+    shadow_offset = 0 0
+    shadow_range = 15
+    shadow_render_power = 1
+    col.shadow = 0x80ffffff
+    active_opacity = 0.75
+    inactive_opacity = 0.75
+
+    blur {
+        enabled = yes
+        size = 4
+        passes = 4
+        new_optimizations = on
+        ignore_opacity = on
+        xray = false
+    }
+}
+
+layerrule = blur,waybar

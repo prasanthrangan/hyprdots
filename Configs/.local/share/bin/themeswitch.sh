@@ -5,7 +5,8 @@
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-readarray -t theme_ctl < <( cut -d '|' -f 2 "${themeCtl}" )
+[ -z "${hydeTheme}" ] && echo "ERROR: unable to detect theme" && exit 1
+get_themes
 
 
 #// define functions
@@ -13,16 +14,14 @@ readarray -t theme_ctl < <( cut -d '|' -f 2 "${themeCtl}" )
 Theme_Change()
 {
     local x_switch=$1
-    local curTheme=$(awk -F '|' '$1 == 1 {print $2}' "${themeCtl}")
-    for (( i=0 ; i<${#theme_ctl[@]} ; i++ ))
-    do
-        if [ "${theme_ctl[i]}" == "${curTheme}" ] ; then
+    for i in ${!thmList[@]} ; do
+        if [ "${thmList[i]}" == "${hydeTheme}" ] ; then
             if [ "${x_switch}" == 'n' ] ; then
-                nextIndex=$(( (i + 1) % ${#theme_ctl[@]} ))
+                setIndex=$(( (i + 1) % ${#thmList[@]} ))
             elif [ "${x_switch}" == 'p' ] ; then
-                nextIndex=$(( i - 1 ))
+                setIndex=$(( i - 1 ))
             fi
-            themeSet="${theme_ctl[nextIndex]}"
+            themeSet="${thmList[setIndex]}"
             break
         fi
     done
@@ -46,45 +45,31 @@ while getopts "nps:" option ; do
         themeSet="$OPTARG" ;;
 
     * ) # invalid option
+        echo "... invalid option ..."
+        echo "$(basename "${0}") -[option]"
         echo "n : set next theme"
         echo "p : set previous theme"
-        echo "s : set theme from parameter"
+        echo "s : set input theme"
         exit 1 ;;
     esac
 done
 
 
-#// update theme control
+#// update control file
 
-if [ `cat "${themeCtl}" | awk -F '|' -v thm=""${themeSet}"" '{if($2==thm) print$2}' | wc -w` -ne 1 ] ; then
-    echo "ERROR: Unknown theme selected: ${themeSet}"
-    echo "Available themes are:"
-    cat "${themeCtl}" | cut -d '|' -f 2
+if ! $(echo "${thmList[@]}" | grep -wq "${themeSet}") ; then
+    echo "ERROR: theme not found, available themes are :: ${thmList[@]}"
     exit 1
-else
-    echo ":: ${themeSet} ::"
-    sed -i "s/^1/0/g" "${themeCtl}"
-    awk -F '|' -v thm="${themeSet}" '{OFS=FS} {if($2==thm) $1=1; print$0}' "${themeCtl}" > "${scrDir}/tmp" && mv "${scrDir}/tmp" "${themeCtl}"
 fi
 
-
-#// hyprland
-
-cp "${wallbashDir}/${themeSet}/hypr.conf" "${confDir}/hypr/themes/theme.conf"
-hyprctl reload
+sed -i "/^hydeTheme=/c\hydeTheme=\"${themeSet}\"" "${scrDir}/globalcontrol.sh"
+echo ":: applying theme :: \"${themeSet}\""
 source "${scrDir}/globalcontrol.sh"
 
 
-#// code
+#// hypr
 
-if [ ! -z "$(grep '^1|' "$themeCtl" | awk -F '|' '{print $3}')" ] ; then
-    codex=$(grep '^1|' "$themeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 1)
-    if [ $(code --list-extensions | grep -iwc "${codex}") -eq 0 ] ; then
-        code --install-extension "${codex}" 2> /dev/null
-    fi
-    codet=$(grep '^1|' "$themeCtl" | awk -F '|' '{print $3}' | cut -d '~' -f 2)
-    jq --arg codet "${codet}" '.["workbench.colorTheme"] |= $codet' "$confDir/Code/User/settings.json" > tmpvsc && mv tmpvsc "$confDir/Code/User/settings.json"
-fi
+sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf"
 
 
 #// qtct
@@ -118,7 +103,5 @@ flatpak --user override --env=ICON_THEME="${gtkIcon}"
 
 #// wallpaper
 
-getWall=`grep '^1|' "$themeCtl" | awk -F '|' '{print $NF}'`
-getWall=`eval echo "$getWall"`
-"${scrDir}/swwwallpaper.sh" -s "${getWall}"
+"${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
 

@@ -3,7 +3,8 @@
 
 # read control file and initialize variables
 
-export scrDir=`dirname "$(realpath "$0")"`
+export scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
 waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
 modules_dir="$waybar_dir/modules"
 conf_file="$waybar_dir/config.jsonc"
@@ -64,7 +65,7 @@ if [ $i_size -lt 12 ] ; then
     export i_size="12"
 fi
 
-export i_theme=`gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g"`
+export i_theme="${gtkIcon}"
 export i_task=$(( w_height*6/10 ))
 if [ $i_task -lt 16 ] ; then
     export i_task="16"

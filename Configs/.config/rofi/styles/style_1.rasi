@@ -44,7 +44,7 @@ dummywall {
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "inputbar" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.thmb", height);
+    background-image:            url("~/.cache/hyde/wall.thmb", height);
 }
 
 
@@ -56,7 +56,7 @@ mode-switcher{
     padding:                     9.2em 0.5em 9.2em 0.5em;
     spacing:                     1.2em;
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.cache/hyde/wall.blur", height);
 }
 button {
     cursor:                      pointer;

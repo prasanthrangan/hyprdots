@@ -1,0 +1,42 @@
+$HOME/.config/hypr/themes/theme.conf|> $HOME/.config/hypr/themes/colors.conf
+exec = gsettings set org.gnome.desktop.interface icon-theme 'Tela-circle-grey'
+exec = gsettings set org.gnome.desktop.interface gtk-theme 'Graphite-Mono'
+exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+general {
+    gaps_in = 8
+    gaps_out = 14
+    border_size = 3
+    col.active_border = rgba(d9d9d9ff) rgba(a6a6a6ff) 45deg
+    col.inactive_border = rgba(404040cc) rgba(262626cc) 45deg
+    layout = dwindle
+    resize_on_border = true
+}
+
+group {
+    col.border_active = rgba(d9d9d9ff) rgba(a6a6a6ff) 45deg
+    col.border_inactive = rgba(404040cc) rgba(262626cc) 45deg
+    col.border_locked_active = rgba(d9d9d9ff) rgba(a6a6a6ff) 45deg
+    col.border_locked_inactive = rgba(404040cc) rgba(262626cc) 45deg
+}
+
+decoration {
+    rounding = 0
+    drop_shadow = true
+    shadow_ignore_window = true
+    shadow_offset = 4 4
+    shadow_range = 0
+    shadow_render_power = 4
+    col.shadow = 0xffFFFFFF
+
+    blur {
+        enabled = yes
+        size = 6
+        passes = 3
+        new_optimizations = on
+        ignore_opacity = on
+        xray = false
+    }
+}
+
+layerrule = unset,waybar

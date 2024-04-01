@@ -45,7 +45,7 @@ inputbar {
     padding:                     4em;
     children:                    [ "entry" ];
     background-color:            @main-bg;
-    background-image:            url("~/.config/swww/wall.thmb", width);
+    background-image:            url("~/.cache/hyde/wall.thmb", width);
     border-radius:               1em 1em 0em 0em;
 }
 entry {

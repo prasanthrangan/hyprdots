@@ -35,7 +35,7 @@ mainbox {
     orientation:                 vertical;
     children:                    [ "inputbar" , "dummybox" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.cache/hyde/wall.blur", height);
 }
 dummybox {
     padding:                     0.5em;

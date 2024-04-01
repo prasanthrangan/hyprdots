@@ -5,9 +5,7 @@
 
 export scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-wallbashImg="${1:-$(readlink $HOME/.config/swww/wall.set)}"
-get_hashmap "${wallbashImg}"
-export wallbashOut="${dcolDir}/${wallHash[0]}.dcol"
+wallbashImg="${1}"
 
 
 #// validate input
@@ -17,18 +15,11 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     exit 1
 fi
 
-magick -ping "${wallbashImg}" -format "%t" info: &> /dev/null
-if [ $? -ne 0 ] ; then
-    echo "Error: Unsuppoted image format ${wallbashImg}"
-    exit 1
-fi
-
 
 #// generate wallbash colors
 
-if [ ! -f "${wallbashOut}" ] ; then
-    "${scrDir}/wallbash.sh" "${wallbashImg}"
-fi
+get_hashmap "${wallbashImg}"
+export wallbashOut="${dcolDir}/${wallHash[0]}.dcol"
 
 
 #// deploy wallbash colors
@@ -36,7 +27,7 @@ fi
 fn_wallbash () {
     local tplt="${1}"
     eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
-    [ -d "$(dirname "${target}")" ] || { echo "[skip] $(dirname "${target}")" && return 0 ;}
+    [ -d "$(dirname "${target}")" ] || { echo "[skip] \"${target}\"" && return 0 ;}
     appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
     source "${scrDir}/globalcontrol.sh"
     sed '1d' "${tplt}" > "${target}"
@@ -234,12 +225,11 @@ export -f fn_wallbash
 
 if [ ${enableWallDcol} -gt 0 ] ; then
     echo ":: deploying wallbash colors"
-    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
+    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash
 else
-    echo ":: deploying ${gtkTheme} colors"
-    find "${wallbashDir}/${gtkTheme}" -type f -name "*.theme" | parallel -j 0 fn_wallbash
+    echo ":: deploying ${hydeTheme} colors"
+    find "${hydeThemeDir}" -type f -name "*.theme" | parallel fn_wallbash
 fi
 
-find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel -j 0 fn_wallbash
-
+find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash
 

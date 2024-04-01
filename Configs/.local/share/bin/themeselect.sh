@@ -24,12 +24,12 @@ r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:
 
 #// launch rofi menu
 
-rofiSel=$(cat "${themeCtl}" | while read thms
-do
-    thmList=$(echo "${thms}" | cut -d '|' -f 2)
-    get_hashmap "$(echo "${thms}" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+g")"
-    echo -en "${thmList}\x00icon\x1f"${thmbDir}/${wallHash[0]}.sqre"\n"
-done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${gtkTheme}")
+get_themes
+
+rofiSel=$(for i in ${!thmList[@]} ; do
+    thmHash="$("${hashMech}" "${thmWall[i]}" | awk '{print $1}')"
+    echo -en "${thmList[i]}\x00icon\x1f"${thmbDir}/${thmHash}.sqre"\n"
+done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
 
 
 #// apply theme

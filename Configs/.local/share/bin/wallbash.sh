@@ -37,7 +37,7 @@ done
 
 #// set variables
 
-cacheDir="$HOME/.cache/hyprdots/dcols"
+cacheDir="$HOME/.cache/hyde/dcols"
 wallbashImg="${1}"
 wallbashColors=4
 wallbashFuzz=70

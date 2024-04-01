@@ -3,82 +3,43 @@
 
 #// lock instance
 
-lockFile="/tmp/hyrpdots$(id -u)swwwallpaper.lock"
-[ -e "$lockFile" ] && echo "An instance of the script is already running..." && exit 1
+lockFile="/tmp/hyde$(id -u)$(basename ${0}).lock"
+[ -e "${lockFile}" ] && echo "An instance of the script is already running..." && exit 1
 touch "${lockFile}"
 trap 'rm -f ${lockFile}' EXIT
 
 
 #// define functions
 
-Wall_Update()
+Wall_Links()
 {
-    if [ ! -d "${thmbDir}" ] ; then
-        mkdir -p "${thmbDir}"
+    if [ ! -e "${thmbDir}/${wallHash[setIndex]}.sqre" ] || [ ! -e "${thmbDir}/${wallHash[setIndex]}.thmb" ] || [ ! -e "${thmbDir}/${wallHash[setIndex]}.blur" ] || [ ! -e "${dcolDir}/${wallHash[setIndex]}.dcol" ] ; then
+        "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}"
     fi
 
-    local x_wall="$1"
-    local x_update="${x_wall/$HOME/"~"}"
-
-    get_hashmap "${x_wall}"
-    echo ":: ${walList[0]} :: ${wallHash[0]}"
-    local cacheImg="${wallHash[0]}"
-    "${scrDir}/swwwallbash.sh" "${x_wall}" &
-
-    if [ ! -f "${thmbDir}/${cacheImg}.sqre" ] ; then
-        convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${cacheImg}.sqre" &
-    fi
-
-    if [ ! -f "${thmbDir}/${cacheImg}.thmb" ] ; then
-        convert -strip -resize 1000 -gravity center -extent 1000 -quality 90 "${x_wall}"[0] "${thmbDir}/${cacheImg}.thmb" &
-    fi
-
-    if [ ! -f "${thmbDir}/${cacheImg}.blur" ] ; then
-        convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${cacheImg}.blur" &
-    fi
-
-    wait
-    awk -F '|' -v thm="${curTheme}" -v wal="${x_update}" '{OFS=FS} {if($2==thm)$NF=wal;print$0}' "${themeCtl}" > "${scrDir}/tmp" && mv "${scrDir}/tmp" "${themeCtl}"
-    ln -fs "${x_wall}" "${wallSet}"
-    ln -fs "${dcolDir}/${cacheImg}.dcol" "${wallDcl}"
-    ln -fs "${thmbDir}/${cacheImg}.sqre" "${wallSqr}"
-    ln -fs "${thmbDir}/${cacheImg}.thmb" "${wallTmb}"
-    ln -fs "${thmbDir}/${cacheImg}.blur" "${wallBlr}"
+    "${scrDir}/swwwallbash.sh" "${walList[setIndex]}" &
+    ln -fs "${walList[setIndex]}" "${wallSet}"
+    ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
+    ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
+    ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
+    ln -fs "${dcolDir}/${wallHash[setIndex]}.dcol" "${wallDcl}"
 }
 
 Wall_Change()
 {
-    local x_switch=$1
-
-    for (( i=0 ; i<${#walList[@]} ; i++ ))
-    do
-        if [ "${walList[i]}" == "${fullPath}" ] ; then
-
-            if [ $x_switch == 'n' ] ; then
-                nextIndex=$(( (i + 1) % ${#walList[@]} ))
-            elif [ $x_switch == 'p' ] ; then
-                nextIndex=$(( i - 1 ))
+    get_hashmap "${hydeThemeDir}"
+    local curWall="$("${hashMech}" "${wallSet}" | awk '{print $1}')"
+    for i in "${!wallHash[@]}" ; do
+        if [ "${curWall}" == "${wallHash[i]}" ] ; then
+            if [ "${1}" == "n" ] ; then
+                setIndex=$(( (i + 1) % ${#walList[@]} ))
+            elif [ "${1}" == "p" ] ; then
+                setIndex=$(( i - 1 ))
             fi
-
-            Wall_Update "${walList[nextIndex]}"
             break
         fi
     done
-}
-
-Wall_Set()
-{
-    if [ -z "${xtrans}" ] ; then
-        xtrans="grow"
-    fi
-
-    swww img "$(readlink "${wallSet}")" \
-    --transition-bezier .43,1.19,1,.4 \
-    --transition-type "${xtrans}" \
-    --transition-duration 0.7 \
-    --transition-fps 60 \
-    --invert-y \
-    --transition-pos "$( hyprctl cursorpos )"
+    Wall_Links
 }
 
 
@@ -86,33 +47,21 @@ Wall_Set()
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-wallSet="${wallDir}/wall.set"
-wallBlr="${wallDir}/wall.blur"
-wallTmb="${wallDir}/wall.thmb"
-wallSqr="${wallDir}/wall.sqre"
-wallDcl="${wallDir}/wall.dcol"
-ctlLine="$(grep '^1|' ${themeCtl})"
+wallSet="${hydeThemeDir}/wall.set"
+wallSqr="${cacheDir}/wall.sqre"
+wallTmb="${cacheDir}/wall.thmb"
+wallBlr="${cacheDir}/wall.blur"
+wallDcl="${cacheDir}/wall.dcol"
+setIndex=0
 
-if [ "$(echo "${ctlLine}" | wc -l)" -ne "1" ] ; then
-    echo "ERROR : ${themeCtl} Unable to fetch theme..."
-    exit 1
-fi
 
-curTheme=$(echo "${ctlLine}" | awk -F '|' '{print $2}')
-fullPath=$(echo "${ctlLine}" | awk -F '|' '{print $NF}' | sed "s+~+$HOME+")
-wallName=$(basename "${fullPath}")
-wallPath=$(dirname "${fullPath}")
-get_hashmap "${wallPath}"
+#// check wall
 
-if [ ! -f "${fullPath}" ] ; then
-    if [ -d "${wallDir}" ] ; then
-        wallPath="${wallDir}/${curTheme}"
-        get_hashmap "${wallPath}"
-        fullPath="${walList[0]}"
-    else
-        echo "ERROR: wallpaper ${fullPath} not found..."
-        exit 1
-    fi
+[ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
+if [ ! -e "$(readlink -f "${wallSet}")" ] ; then
+    get_hashmap "${hydeThemeDir}"
+    echo "Fixing links :: ${hydeTheme} :: \"${walList[0]}\""
+    ln -fs "${walList[setIndex]}" "${wallSet}"
 fi
 
 
@@ -122,15 +71,21 @@ while getopts "nps:" option ; do
     case $option in
     n ) # set next wallpaper
         xtrans="grow"
-        Wall_Change n ;;
+        Wall_Change n
+        ;;
     p ) # set previous wallpaper
         xtrans="outer"
-        Wall_Change p ;;
+        Wall_Change p
+        ;;
     s ) # set input wallpaper
-        if [ -f "$OPTARG" ] ; then
-            Wall_Update "$OPTARG"
-        fi ;;
+        if [ ! -z "${OPTARG}" ] && [ -f "${OPTARG}" ] ; then
+            get_hashmap "${OPTARG}"
+        fi
+        Wall_Links
+        ;;
     * ) # invalid option
+        echo "... invalid option ..."
+        echo "$(basename "${0}") -[option]"
         echo "n : set next wall"
         echo "p : set previous wall"
         echo "s : set input wallpaper"
@@ -160,5 +115,7 @@ if [ $? -ne 0 ] ; then
     fi
 fi
 
-Wall_Set
+echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
+[ -z "${xtrans}" ] && xtrans="grow"
+swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps 60 --invert-y --transition-pos "$( hyprctl cursorpos )" &
 

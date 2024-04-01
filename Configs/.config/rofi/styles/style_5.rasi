@@ -55,7 +55,7 @@ listbox {
     orientation:                 horizontal;
     children:                    [ "listview" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", width);
+    background-image:            url("~/.cache/hyde/wall.blur", width);
 }
 listview {
     padding:                     2em;
