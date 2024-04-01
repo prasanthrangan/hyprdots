@@ -13,10 +13,7 @@ trap 'rm -f ${lockFile}' EXIT
 
 Wall_Links()
 {
-    if [ ! -e "${thmbDir}/${wallHash[setIndex]}.sqre" ] || [ ! -e "${thmbDir}/${wallHash[setIndex]}.thmb" ] || [ ! -e "${thmbDir}/${wallHash[setIndex]}.blur" ] || [ ! -e "${dcolDir}/${wallHash[setIndex]}.dcol" ] ; then
-        "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}"
-    fi
-
+    "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}"
     "${scrDir}/swwwallbash.sh" "${walList[setIndex]}" &
     ln -fs "${walList[setIndex]}" "${wallSet}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
