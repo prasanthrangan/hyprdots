@@ -11,7 +11,7 @@ trap 'rm -f ${lockFile}' EXIT
 
 #// define functions
 
-Wall_Links()
+Wall_Cache()
 {
     "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}"
     "${scrDir}/swwwallbash.sh" "${walList[setIndex]}" &
@@ -24,7 +24,6 @@ Wall_Links()
 
 Wall_Change()
 {
-    get_hashmap "${hydeThemeDir}"
     local curWall="$("${hashMech}" "${wallSet}" | awk '{print $1}')"
     for i in "${!wallHash[@]}" ; do
         if [ "${curWall}" == "${wallHash[i]}" ] ; then
@@ -36,7 +35,7 @@ Wall_Change()
             break
         fi
     done
-    Wall_Links
+    Wall_Cache
 }
 
 
@@ -49,17 +48,14 @@ wallSqr="${cacheDir}/wall.sqre"
 wallTmb="${cacheDir}/wall.thmb"
 wallBlr="${cacheDir}/wall.blur"
 wallDcl="${cacheDir}/wall.dcol"
-setIndex=0
 
 
 #// check wall
 
+setIndex=0
 [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
-if [ ! -e "$(readlink -f "${wallSet}")" ] ; then
-    get_hashmap "${hydeThemeDir}"
-    echo "Fixing links :: ${hydeTheme} :: \"${walList[0]}\""
-    ln -fs "${walList[setIndex]}" "${wallSet}"
-fi
+get_hashmap "${hydeThemeDir}"
+[ ! -e "$(readlink -f "${wallSet}")" ] && ln -fs "${walList[setIndex]}" "${wallSet}"
 
 
 #// evaluate options
@@ -78,7 +74,7 @@ while getopts "nps:" option ; do
         if [ ! -z "${OPTARG}" ] && [ -f "${OPTARG}" ] ; then
             get_hashmap "${OPTARG}"
         fi
-        Wall_Links
+        Wall_Cache
         ;;
     * ) # invalid option
         echo "... invalid option ..."
@@ -93,7 +89,7 @@ done
 
 #// check swww daemon and set wall
 
-swww query
+swww query &> /dev/null
 if [ $? -ne 0 ] ; then
     swww-daemon --format xrgb &
     sleep 1
@@ -112,7 +108,7 @@ if [ $? -ne 0 ] ; then
     fi
 fi
 
-echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
 [ -z "${xtrans}" ] && xtrans="grow"
-swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps 60 --invert-y --transition-pos "$( hyprctl cursorpos )" &
+echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
+swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps 144 --invert-y --transition-pos "$(hyprctl cursorpos)" &
 

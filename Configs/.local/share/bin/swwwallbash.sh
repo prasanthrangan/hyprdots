@@ -15,11 +15,7 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     exit 1
 fi
 
-
-#// generate wallbash colors
-
-get_hashmap "${wallbashImg}"
-export wallbashOut="${dcolDir}/${wallHash[0]}.dcol"
+export wallbashOut="${dcolDir}/$("${hashMech}" "${wallbashImg}" | awk '{print $1}').dcol"
 
 
 #// deploy wallbash colors
@@ -223,7 +219,7 @@ export -f fn_wallbash
 
 #// switch theme <//> wall based colors
 
-if [ ${enableWallDcol} -gt 0 ] ; then
+if [ "${enableWallDcol}" -gt 0 ] ; then
     echo ":: deploying wallbash colors"
     find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash
 else
