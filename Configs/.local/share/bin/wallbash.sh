@@ -41,11 +41,10 @@ cacheDir="$HOME/.cache/hyde/dcols"
 wallbashImg="${1}"
 wallbashColors=4
 wallbashFuzz=70
-cacheImg=$(sha1sum "${wallbashImg}" | awk '{print $1}')
+cacheImg=$(sha1sum "${2:-$wallbashImg}" | awk '{print $1}')
 wallbashRaw="${cacheDir}/${cacheImg}.mpc"
 wallbashOut="${cacheDir}/${cacheImg}.dcol"
 wallbashCache="${cacheDir}/${cacheImg}.cache"
-
 
 #// color modulations
 
