@@ -75,4 +75,5 @@ done
 
 get_hashmap "${cacheIn}"
 parallel --bar --link "fn_wallcache${mode}" ::: "${wallHash[@]}" ::: "${walList[@]}"
+exit 0
 
