@@ -3,28 +3,31 @@
 
 #// config vars
 
-enableWallDcol=0
-hydeTheme="Catppuccin-Mocha"
-confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-hydeThemeDir="${confDir}/hyde/themes/${hydeTheme}"
-wallbashDir="${confDir}/hyde/wallbash"
+enableWallDcol=1
+hydeTheme="Rose-Pine"
+
+export enableWallDcol
+export hydeTheme
+export confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+export hydeThemeDir="${confDir}/hyde/themes/${hydeTheme}"
+export wallbashDir="${confDir}/hyde/wallbash"
 
 
 #// cache vars
 
-cacheDir="$HOME/.cache/hyde"
-thmbDir="${cacheDir}/thumbs"
-dcolDir="${cacheDir}/dcols"
-hashMech="sha1sum"
+export cacheDir="$HOME/.cache/hyde"
+export thmbDir="${cacheDir}/thumbs"
+export dcolDir="${cacheDir}/dcols"
+export hashMech="sha1sum"
 
 
 #// extra vars
 
-gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-gtkMode="$(grep 'gsettings set org.gnome.desktop.interface color-scheme' ${hydeThemeDir}/hypr.theme | awk -F "['-]" '{print $((NF - 1))}')"
-hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
-hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
+export gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
+export gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
+export gtkMode="$(grep 'gsettings set org.gnome.desktop.interface color-scheme' ${hydeThemeDir}/hypr.theme | awk -F "['-]" '{print $((NF - 1))}')"
+export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
+export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
 
 
 #// pacman fns

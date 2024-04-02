@@ -25,7 +25,6 @@ fn_wallbash () {
     eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
     [ -d "$(dirname "${target}")" ] || { echo "[skip] \"${target}\"" && return 0 ;}
     appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
-    source "${scrDir}/globalcontrol.sh"
     sed '1d' "${tplt}" > "${target}"
     source "${wallbashOut}"
 
