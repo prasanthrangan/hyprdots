@@ -1,5 +1,6 @@
 N|Y|${HOME}|.zshrc .p10k.zsh|zsh oh-my-zsh-git zsh-theme-powerlevel10k pokemon-colorscripts-git
-Y|Y|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
+N|Y|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
+N|Y|${HOME}/.config|code-flags.conf|visual-studio-code-bin
 Y|Y|${HOME}/.config|dunst|dunst
 Y|Y|${HOME}/.config|fish|fish
 Y|Y|${HOME}/.config/hypr|animations.conf hyprland.conf windowrules.conf themes|hyprland
