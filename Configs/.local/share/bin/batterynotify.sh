@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-scrDir=`dirname "$(realpath "$0")"`
-confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-batterynotify_conf=$confDir/hyprdots/batterynotify.conf
+scrDir=$(dirname "$(realpath "$0")")
+source $scrDir/globalcontrol.sh
+batterynotify_conf=${confDir}/hyde/batterynotify.conf
 config_info() {
 cat <<  EOF
 
@@ -177,31 +177,31 @@ if [ ! -f "$batterynotify_conf" ]; then
     touch "$batterynotify_conf"
    echo "[CREATED] $batterynotify_conf"
     echo "
-    #? Full battery threshold (default: 100%)
+    # Full battery threshold (default: 100%)
 battery_full_threshold=100
-    #? Critical battery threshold (default: 10%)
+    # Critical battery threshold (default: 10%)
 battery_critical_threshold=10
-    #? Low battery threshold (default: 20%)
+    # Low battery threshold (default: 20%)
 battery_low_threshold=20
-    #? Unplug charger threshold (default: 80%)
+    # Unplug charger threshold (default: 80%)
 unplug_charger_threshold=80
-    #? Countdown timer before executing execute_critical (default: 120 seconds)
+    # Countdown timer before executing execute_critical (default: 120 seconds)
 timer=120
-    #? Notify interval for Battery Full Status (default: 1140 mins/ 1 day)
+    # Notify interval for Battery Full Status (default: 1140 mins/ 1 day)
 notify=1140
-    #? Notify interval on LOW and UNPLUG Status (default: 5%)
+    # Notify interval on LOW and UNPLUG Status (default: 5%)
 interval=5
-    #? Shows Battery Plug In/Out/Full Notification
+    # Shows Battery Plug In/Out/Full Notification
 undock=false
-    #? Command/script to execute at minimum unplug_charger_threshold
+    # Command/script to execute at minimum unplug_charger_threshold
 execute_unplug=\"\"
-    #? Command/script to execute at maximum battery_low_threshold
+    # Command/script to execute at maximum battery_low_threshold
 execute_low=\"\"
-    #? Command/script to execute if battery on critical threshold (default: systemctl suspend)
+    # Command/script to execute if battery on critical threshold (default: systemctl suspend)
 execute_critical=\"systemctl suspend\"
-    #? Command/script to execute when battery is discharging, Required undock=true
+    # Command/script to execute when battery is discharging, Required undock=true
 execute_discharging=\"\"
-    #? Command/script to execute when battery is charging, Required undock=true
+    # Command/script to execute when battery is charging, Required undock=true
 execute_charging=\"\"
 " > "$batterynotify_conf"
 fi

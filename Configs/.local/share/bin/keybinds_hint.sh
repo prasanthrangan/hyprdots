@@ -1,12 +1,52 @@
 #!/usr/bin/env sh
 
+#* Seriously, do not bother on this code as this is too messy. If someone can refactor this and structure it properly that would be awesome.
+#* I use jq to parse and create a metadata. 
+#* It is Functional but dunno if this is maintainable lol
+#* Users should refer to this project to parse keybinds https://github.com/hyprland-community/Hyprkeys
+#* Created this to avoid dependencies
+#* Please inform me if there are new Categories upstream I will try to add comments to this code so I won't forget. 
+#* Khing 🦆
+ 
 pkill -x rofi && exit
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
 
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -j) # show the json format
+            JSON=true
+            ;;
+        -p) # show the pretty format
+            PRETTY=true
+            ;;
+        -d) # Add custom delimiter symbol default '>'
+            shift
+            delim="$1"
+            ;;
+        -f) # Add custom file
+            shift
+            keyConf="$* "
+            ;;
+        -w) # Custom width
+         shift 
+         width="$1"
+        ;;
+        -h) # Custom height
+         shift 
+         height="$1"
+        ;;
+        -*) # Add Help message
+        echo 'Read the script for more information'
+          exit
+        ;;
+    esac
+    shift
+done
+
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 keyconfDir="$confDir/hypr"
-keyConf="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf  $*"
+keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
 tmpMapDir="/tmp"
 tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
 roDir="$confDir/rofi"
@@ -15,7 +55,7 @@ roconf="$roDir/clipboard.rasi"
 # read hypr theme border
 wind_border=$(( hypr_border * 3/2 ))
 elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
-r_override="window {height: 65%; width: 35%; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} entry {padding: 45px;}"
+r_override="window {height: ${height:-65%}; width: ${width:-40%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} entry {padding: 45px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
@@ -25,12 +65,17 @@ fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}
 icon_override=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
 icon_override="configuration {icon-theme: \"${icon_override}\";}"
 
-keyVars="$(grep -h '^ *\$' $keyConf | awk -F ' = ' '{gsub(/^ *\$| *$/, "", $1); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}')"
+#? Read all the variables in the configuration file
+#! Intentional globbing on the $keyconf variable
+# shellcheck disable=SC2086
+keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $keyConf )"
 keyVars+="
 "
 keyVars+="HOME=$HOME"
 #  echo "$keyVars"
 
+#? This part substitutes the variables into the actual value. 
+#TODO It will be easier if hyprland will expose the variables.
 substitute_vars() {
   local s="$1"
   local IFS=$'\n'
@@ -56,8 +101,6 @@ substitute_vars() {
 #   IFS=$' \t\n'
 #   echo "$s"
 # }
-
-
 
 # comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $keyConf | sed "s#\"#'#g" )
   comments=$(awk  -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g" )
@@ -120,13 +163,14 @@ include "hyprdots-keybinds";
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
-    "backspace" : "󰁮"
+    "backspace" : "󰁮 "
   };
-  def category_mapping: { #? Define Category Names, derive from Dispatcher
+  def category_mapping: { #? Define Category Names, derive from Dispatcher #? This will serve as the Group header
     "exec" : "Execute a Command:",
     "global": "Global:",
     "exit" : "Exit Hyprland Session",
     "fullscreen" : "Toggle Functions",
+    "fakefullscreen" : "Fake Fullscreen",
     "mouse" : "Mouse functions",
     "movefocus" : "Window functions",
     "movewindow" : "Window functions",
@@ -209,12 +253,13 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
   .description |= (description_mapping[.] // .)    
  
 ' #? <---- There is a '   do not delete this'
+
 )"
+
 
 #? Now we have the metadata we can Group it accordingly
 GROUP() { 
-  awk -F '!=!' '
-  {
+  awk -F '!=!' '{
     category = $1
     binds[category] = binds[category] ? binds[category] "\n" $0 : $0
   }
@@ -235,26 +280,30 @@ GROUP() {
   }'
 }
 
-#? Here we we format the output into a desirable format we want.
-DISPLAY() { awk -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s    >  %-30s\n", $5, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}' ;}
+#? Display the JSON format
+[ "$JSON" = true ] && echo -e "$jsonData" | jq && exit 0
+
+#? Format this is how the keybinds are displayed.
+DISPLAY() { awk -v delim="${delim:->}" -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s %-2s %-30s\n", $5, delim, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}' ;}
 
 #? Extra design use for distiction
 header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
+#! this Part Gives extra laoding time as I don't have efforts to make single space for each class
+metaData="$(echo "${jsonData}"  |  jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1 )" 
+# echo "$metaData" 
 
-# echo "$jsonData"
-metaData="$(echo "$jsonData"  |  jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1 )" #! this Part Gives extra laoding time as I don't have efforts to make all spaces on each class only 1
-#  echo "$metaData"
-
+#? This formats the pretty output
 display="$(echo "$metaData" | GROUP | DISPLAY )"
 
 # output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
 output=$(echo -e "${header}\n${line}\n${display}")
 
-#? will display on the terminal if rofi is not found
-if ! command -v rofi &> /dev/null
-then
+[ "$PRETTY" = true ] && echo -e "$output" && exit 0
+
+#? will display on the terminal if rofi is not found or have -j flag
+if ! command -v rofi &> /dev/null ; then
     echo "$output"
     echo "rofi not detected. Displaying on terminal instead"
     exit 0
@@ -264,8 +313,8 @@ fi
 selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 if [ -z "$selected" ]; then exit 0; fi
 
-sel_1=$(echo "$selected" | cut -d '>' -f 1 | awk '{$1=$1};1')
-sel_2=$(echo "$selected" | cut -d '>' -f 2 | awk '{$1=$1};1')
+sel_1=$(echo "$selected" | cut -d "${delim:->}" -f 1 | awk '{$1=$1};1')
+sel_2=$(echo "$selected" | cut -d "${delim:->}" -f 2 | awk '{$1=$1};1')
 run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2" )"
 
 run_flg="$(echo "$run" | awk -F '!=!' '{print $8}')"
