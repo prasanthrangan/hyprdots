@@ -23,8 +23,8 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         touch ~/.config/spotify/prefs
         sptfyConf=$(spicetify -c)
         spotfy_flags='--ozone-platform=wayland'
-         sed -i -e "/^prefs_path/ s+=.*$+= $HOME/.config/spotify/prefs+g" \
-                -e "/^spotify_launch_flags/ s+=.*$+= $spotfy_flags+g" "$sptfyConf"
+        sed -i -e "/^prefs_path/ s+=.*$+= $HOME/.config/spotify/prefs+g" \
+            -e "/^spotify_launch_flags/ s+=.*$+= $spotfy_flags+g" "$sptfyConf"
 	    curl -L -o ${cacheDir}/Spotify_Sleek.tar.gz https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Spotify_Sleek.tar.gz
         tar -xzf ${cacheDir}/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
         spicetify backup apply
@@ -39,3 +39,4 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
     fi
 
 fi
+

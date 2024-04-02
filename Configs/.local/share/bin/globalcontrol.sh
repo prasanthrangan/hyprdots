@@ -3,8 +3,8 @@
 
 #// config vars
 
-enableWallDcol=1
-hydeTheme="Rose-Pine"
+enableWallDcol=0
+hydeTheme="Catppuccin-Mocha"
 
 export enableWallDcol
 export hydeTheme
