@@ -16,7 +16,7 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
 fi
 
 export wallbashOut="${dcolDir}/$("${hashMech}" "${wallbashImg}" | awk '{print $1}').dcol"
-
+export cacheDir
 
 #// deploy wallbash colors
 
