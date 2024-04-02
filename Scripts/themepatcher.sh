@@ -17,9 +17,9 @@ set +e
 ask_help(){
 cat << HELP
 ...Usage...
-$0 "Theme-Name" "/Path/to/Configs" 'extension.id~extenstion theme name'
-$0 "Theme-Name" "https://github.com/User/Repository" 'extension.id~extenstion theme name' 
-$0 "Theme-Name" "https://github.com/User/Repository/tree/branch" 'extension.id~extenstion theme name'
+$0 "Theme-Name" "/Path/to/Configs"
+$0 "Theme-Name" "https://github.com/User/Repository" 
+$0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
 HELP
 }
 
@@ -77,14 +77,13 @@ echo -e "\nPatching \033[0;32m--//${Fav_Theme}//--\033[0m from \033[0;34m${Theme
 
 # required theme files
 config=( #!Hard Coded here to atleast Strictly meet requirements.
-".config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvantum.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/kvantum/kvconfig.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/kitty.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/rofi.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/waybar.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/hypr.theme"
-".config/hyprdots/wallbash/${Fav_Theme}/hypr.conf"
-".config/swww/$Fav_Theme/"
+".config/hyde/themes/${Fav_Theme}/kvantum/kvantum.theme"
+".config/hyde/themes/${Fav_Theme}/kvantum/kvconfig.theme"
+".config/hyde/themes/${Fav_Theme}/kitty.theme"
+".config/hyde/themes/${Fav_Theme}/rofi.theme"
+".config/hyde/themes/${Fav_Theme}/waybar.theme"
+".config/hyde/themes/${Fav_Theme}/hypr.theme"
+".config/hyde/themes/${Fav_Theme}/wallpapers"
 )
 
 
@@ -97,17 +96,6 @@ for fchk in "${config[@]}" ; do
         exit 1
     fi
 done
-
-mapfile -d '' Wallist < <(find ${Theme_Dir}/Configs/.config/swww/"${Fav_Theme}"/ -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 | sort -z)
-
-if [ "${#Wallist[@]}" -eq 0 ] ; then
-    echo -e "\033[0;31m[ERROR]\033[0m No wallpaper found in ${Theme_Dir}/Configs/.config/swww/"
-    exit 1
-else
-    WallSet=$(basename "${Wallist[0]}")
-    echo -e "\nDefault wallpaper selected : \"${WallSet}\"\n"
-fi
-
 
 # extract arcs
 prefix=("Gtk" "Font" "Icon" "Cursor")
@@ -143,16 +131,8 @@ fc-cache -f
 
 # generate restore_cfg control
 cat << THEME > "${Theme_Dir}/restore_cfg.lst"
-Y|N|${HOME}/.config/hyprdots/wallbash|${Fav_Theme}|hyprland
-Y|N|${HOME}/.config/swww|${Fav_Theme}|swww
+Y|N|${HOME}/.config/hyde/themes|${Fav_Theme}|hyprland
 THEME
-
-if grep -q "^.|${Fav_Theme}|" "${themeCtl}" ; then
-    awk -F '|' -v thm="${Fav_Theme}" -v cde="$3" '{OFS=FS} $2 == thm {$3 = cde} {print}' "${themeCtl}" > tmp && mv tmp "${themeCtl}"
-else
-    echo "0|${Fav_Theme}|${3}|~/.config/swww/${Fav_Theme}/${WallSet}" >> "${themeCtl}"
-fi
-
 
 # restore configs with theme override
 echo -e "\033[0;32m[Restoring]\033[0m \"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
