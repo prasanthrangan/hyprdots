@@ -19,6 +19,7 @@ Wall_Cache()
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
+    ln -fs "${thmbDir}/${wallHash[setIndex]}.quad" "${wallQad}"
     ln -fs "${dcolDir}/${wallHash[setIndex]}.dcol" "${wallDcl}"
 }
 
@@ -47,6 +48,7 @@ wallSet="${hydeThemeDir}/wall.set"
 wallSqr="${cacheDir}/wall.sqre"
 wallTmb="${cacheDir}/wall.thmb"
 wallBlr="${cacheDir}/wall.blur"
+wallQad="${cacheDir}/wall.quad"
 wallDcl="${cacheDir}/wall.dcol"
 
 
