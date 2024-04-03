@@ -85,6 +85,10 @@ get_hashmap()
 
 get_themes()
 {
+    unset thmSortS
+    unset thmListS
+    unset thmWallS
+    unset thmSort
     unset thmList
     unset thmWall
 
@@ -94,14 +98,21 @@ get_themes()
             get_hashmap "${thmDir}"
             ln -fs "${walList[0]}" "${thmDir}/wall.set"
         fi
-        thmList+=("$(basename ${thmDir})")
-        thmWall+=("$(readlink "${thmDir}/wall.set")")
+        [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
+        thmListS+=("$(basename ${thmDir})")
+        thmWallS+=("$(readlink "${thmDir}/wall.set")")
     done < <(find "${confDir}/hyde/themes" -mindepth 1 -maxdepth 1 -type d | sort)
+
+    while read -r sort theme wall ; do
+        thmSort+=("${sort}")
+        thmList+=("${theme}")
+        thmWall+=("${wall}")
+    done < <(parallel --link -N1 echo "{}" ::: "${thmSortS[@]}" ::: "${thmListS[@]}" ::: "${thmWallS[@]}" | sort -n -k 1)
 
     if [ "${1}" == "--verbose" ] ; then
         echo "// Theme Control //"
         for indx in "${!thmList[@]}" ; do
-            echo -e ":: \${thmList[${indx}]}=\"${thmList[indx]}\" :: \${thmWall[${indx}]}=\"${thmWall[indx]}\""
+            echo -e ":: \${thmSort[${indx}]}=\"${thmSort[indx]}\" :: \${thmList[${indx}]}=\"${thmList[indx]}\" :: \${thmWall[${indx}]}=\"${thmWall[indx]}\""
         done
     fi
 }
