@@ -11,7 +11,6 @@ conf_ctl="$waybar_dir/config.ctl"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
 src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
-# reload_flag=1
 
 
 # calculate height from control file or monitor res
@@ -123,6 +122,5 @@ fi
 if [ "$reload_flag" == "1" ] ; then
     killall waybar
     waybar > /dev/null 2>&1 &
-    # killall -SIGUSR2 waybar
 fi
 
