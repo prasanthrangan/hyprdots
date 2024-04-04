@@ -64,6 +64,7 @@ fi
 
 sed -i "/^hydeTheme=/c\hydeTheme=\"${themeSet}\"" "${scrDir}/globalcontrol.sh"
 echo ":: applying theme :: \"${themeSet}\""
+export reload_flag=1
 source "${scrDir}/globalcontrol.sh"
 
 

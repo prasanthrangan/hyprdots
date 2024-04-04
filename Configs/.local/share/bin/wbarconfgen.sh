@@ -37,7 +37,7 @@ fi
 
 if [ $switch -eq 1 ] ; then
     update_ctl="${read_ctl[nextIndex]}"
-    export reload_flag=1
+    reload_flag=1
     sed -i "s/^1/0/g" $conf_ctl
     awk -F '|' -v cmp="$update_ctl" '{OFS=FS} {if($0==cmp) $1=1; print$0}' $conf_ctl > $waybar_dir/tmp && mv $waybar_dir/tmp $conf_ctl
 fi
@@ -117,8 +117,15 @@ done
 cat $modules_dir/footer.jsonc >> $conf_file
 
 
-# generate style and restart waybar
+# generate style
 
 $scrDir/wbarstylegen.sh
 
+
+# restart waybar
+
+if [ "$reload_flag" == "1" ] ; then
+    killall waybar
+    waybar > /dev/null 2>&1 &
+fi
 

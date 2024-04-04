@@ -116,11 +116,3 @@ if [ "$hypr_border" == "0" ] ; then
     sed -i "/border-radius: /c\    border-radius: 0px;" $out_file
 fi
 
-
-# restart waybar
-
-if [ "$reload_flag" == "1" ] ; then
-    killall waybar
-    waybar > /dev/null 2>&1 &
-fi
-
