@@ -21,7 +21,6 @@ ${aurhlpr} -Syu
 $fpk_exup
 read -t 5
 "
-    aurhlpr=yay
     kitty --title systemupdate sh -c "${command}"
 fi
 
@@ -47,9 +46,7 @@ upd=$(( ofc + aur + fpk ))
  if [ $upd -eq 0 ] ; then
     upd="" #Remove Icon completely
     # upd="󰮯"   #If zero Display Icon only
-    notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else
-    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
     echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
 fi
