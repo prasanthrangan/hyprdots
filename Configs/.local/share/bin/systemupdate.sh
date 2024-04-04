@@ -8,17 +8,31 @@ fi
 # source variables
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-
-# Check for updates
 get_aurhlpr
-aur=`${aurhlpr} -Qua | wc -l`
-ofc=`checkupdates | wc -l`
+fpk_exup="flatpak update"
+
+# Trigger upgrade
+if [ "$1" == "up" ] ; then
+trap 'pkill -RTMIN+20 waybar' EXIT
+command="
+neofetch
+$0 upgrade
+${aurhlpr} -Syu 
+$fpk_exup
+read -t 5
+"
+    aurhlpr=yay
+    kitty --title systemupdate sh -c "${command}"
+fi
+
+# Check for AUR updates
+aur=$(${aurhlpr} -Qua | wc -l)
+ofc=$(checkupdates | wc -l)
 
 # Check for flatpak updates
 if pkg_installed flatpak ; then
-    fpk=`flatpak remote-ls --updates | wc -l`
+    fpk=$(flatpak remote-ls --updates | wc -l)
     fpk_disp="\n󰏓 Flatpak $fpk"
-    fpk_exup="; flatpak update"
 else
     fpk=0
     fpk_disp=""
@@ -27,15 +41,15 @@ fi
 # Calculate total available updates
 upd=$(( ofc + aur + fpk ))
 
+[ "${1}" == upgrade ] && printf "[Official] %-10s\n[AUR]      %-10s\n[Flatpak]  %-10s\n" "$ofc" "$aur" "$fpk" && exit
+
 # Show tooltip
-if [ $upd -eq 0 ] ; then
+ if [ $upd -eq 0 ] ; then
+    upd="" #Remove Icon completely
+    # upd="󰮯"   #If zero Display Icon only
+    notify-send -a " 󰮯  " "System Update" "  Packages are up to date"
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else
-    echo "{\"text\":\"$upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+    notify-send -a " 󰮯  " "System Update" "󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp"
+    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
 fi
-
-# Trigger upgrade
-if [ "$1" == "up" ] ; then
-    kitty --title systemupdate sh -c "${aurhlpr} -Syu $fpk_exup"
-fi
-

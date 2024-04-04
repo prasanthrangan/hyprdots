@@ -6,5 +6,6 @@
         "on-click": "systemupdate.sh up",
         "interval": 86400, // once every day
         "tooltip": true,
+	    "signal": 20,
     },
-
+    
