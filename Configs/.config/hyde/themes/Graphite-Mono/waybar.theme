@@ -1,4 +1,4 @@
-$HOME/.config/waybar/theme.css
+$HOME/.config/waybar/theme.css|${scrDir}/wbarconfgen.sh
 @define-color bar-bg rgba(38, 38, 38, 1);
 
 @define-color main-bg #262626;
