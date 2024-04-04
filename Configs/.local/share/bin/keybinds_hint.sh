@@ -55,7 +55,7 @@ roconf="$roDir/clipboard.rasi"
 # read hypr theme border
 wind_border=$(( hypr_border * 3/2 ))
 elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
-r_override="window {height: ${height:-65%}; width: ${width:-40%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} entry {padding: 45px;}"
+r_override="window {height: ${height:-65%}; width: ${width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')

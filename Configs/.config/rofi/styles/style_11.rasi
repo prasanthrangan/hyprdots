@@ -18,7 +18,7 @@ configuration {
 // Main //
 window {
     height:                      30em;
-    width:                       57em;
+    width:                       58em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -31,7 +31,7 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     1em;
+    padding:                     0.8em;
     orientation:                 horizontal;
     children:                    [ "inputbar" , "listbox" ];
     background-color:            #00000003;
@@ -41,13 +41,13 @@ mainbox {
 // Inputs //
 inputbar {
     enabled:                     true;
-    width:                       27.8em;
+    width:                       28.5em;
     spacing:                     0em;
     padding:                     0em;
     children:                    [ "entry" ];
     expand:                      false;
     background-color:            @main-bg;
-    background-image:            url("~/.cache/hyde/wall.quad", height);
+    background-image:            url("~/.cache/hyde/wall.quad", width);
     border-radius:               1em 0em 0em 1em;
 }
 entry {

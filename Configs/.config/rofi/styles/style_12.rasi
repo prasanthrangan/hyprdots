@@ -18,37 +18,36 @@ configuration {
 // Main //
 window {
     height:                      30em;
-    width:                       58em;
+    width:                       60em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
     cursor:                      "default";
     spacing:                     0em;
     padding:                     0em;
-    border-color:                @main-br;
+    border-color:                transparent;
     background-color:            transparent;
 }
 mainbox {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     0.8em;
+    padding:                     0em;
     orientation:                 horizontal;
-    children:                    [ "inputbar" , "listbox" ];
-    background-color:            #00000003;
+    children:                    [ "listbox" , "inputbar" ];
+    background-color:            transparent;
 }
 
 
 // Inputs //
 inputbar {
     enabled:                     true;
-    width:                       28.5em;
+    width:                       30em;
     spacing:                     0em;
     padding:                     0em;
     children:                    [ "entry" ];
     expand:                      false;
-    background-color:            @main-bg;
+    background-color:            transparent;
     background-image:            url("~/.cache/hyde/wall.quad", width);
-    border-radius:               1em 0em 0em 1em;
 }
 entry {
     enabled:                     false;
@@ -61,7 +60,8 @@ listbox {
     padding:                     0em;
     children:                    [ "dummy" , "listview" , "dummy" ];
     background-color:            @main-bg;
-    border-radius:               0em 1em 1em 0em;
+    expand:                      false;
+    width:                       27em;
 }
 listview {
     enabled:                     true;
@@ -83,6 +83,7 @@ listview {
 }
 dummy {
     background-color:            transparent;
+    expand:                      true;
 }
 
 
@@ -90,7 +91,7 @@ dummy {
 element {
     enabled:                     true;
     spacing:                     1em;
-    padding:                     0.5em 0.5em 0.5em 1.5em;
+    padding:                     0.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
