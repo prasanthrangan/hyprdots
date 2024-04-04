@@ -28,7 +28,7 @@ esac
 
 #// reset the colors
 
-if [ -e $(readlink "${hydeThemeDir}/wall.set") ] ; then
+if [ ! -e $(readlink "${hydeThemeDir}/wall.set") ] ; then
     get_hashmap "${hydeThemeDir}"
     ln -fs "${walList[setIndex]}" "${hydeThemeDir}/wall.set"
 fi
