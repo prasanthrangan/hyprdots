@@ -28,11 +28,12 @@ esac
 
 #// reset the colors
 
-if [ ! -e $(readlink "${hydeThemeDir}/wall.set") ] ; then
+if [ ! -e "$(readlink "${hydeThemeDir}/wall.set")" ] ; then
     get_hashmap "${hydeThemeDir}"
-    ln -fs "${walList[setIndex]}" "${hydeThemeDir}/wall.set"
+    ln -fs "${walList[0]}" "${hydeThemeDir}/wall.set"
 fi
 
 "${scrDir}/swwwallbash.sh" "$(readlink "${hydeThemeDir}/wall.set")"
 notify-send -a "t1" -i "~/.config/dunst/icons/hyprdots.png" "${notif}"
+
 
