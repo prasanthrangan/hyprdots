@@ -3,24 +3,24 @@
 
 #// set variables
 
-scrDir=`dirname "$(realpath "$0")"`
-source $scrDir/globalcontrol.sh
+scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
 TgtScr="$scrDir/globalcontrol.sh"
 
 
 #// switch WallDcol variable
 
 case "${enableWallDcol}" in
-    0)  sed -i "/^enableWallDcol/c\enableWallDcol=1" "${TgtScr}"
+    0)  set_conf "enableWallDcol" "1"
         notif="wallbash auto"
         ;;
-    1)  sed -i "/^enableWallDcol/c\enableWallDcol=2" "${TgtScr}"
+    1)  set_conf "enableWallDcol" "2"
         notif="wallbash dark mode"
         ;;
-    2)  sed -i "/^enableWallDcol/c\enableWallDcol=3" "${TgtScr}"
+    2)  set_conf "enableWallDcol" "3"
         notif="wallbash light mode"
         ;;
-    3)  sed -i "/^enableWallDcol/c\enableWallDcol=0" "${TgtScr}"
+    3)  set_conf "enableWallDcol" "0"
         notif="wallbash disabled"
         ;;
 esac

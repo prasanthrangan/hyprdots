@@ -62,7 +62,7 @@ if ! $(echo "${thmList[@]}" | grep -wq "${themeSet}") ; then
     exit 1
 fi
 
-sed -i "/^hydeTheme=/c\hydeTheme=\"${themeSet}\"" "${scrDir}/globalcontrol.sh"
+set_conf "hydeTheme" "${themeSet}"
 echo ":: applying theme :: \"${themeSet}\""
 export reload_flag=1
 source "${scrDir}/globalcontrol.sh"

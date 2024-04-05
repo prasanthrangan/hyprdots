@@ -3,60 +3,12 @@
 
 #// config vars
 
-enableWallDcol=0
-hydeTheme="Catppuccin-Mocha"
-
-export enableWallDcol
-export hydeTheme
 export confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-export hydeThemeDir="${confDir}/hyde/themes/${hydeTheme}"
-export wallbashDir="${confDir}/hyde/wallbash"
-
-
-#// cache vars
-
+export hydeConfDir="${confDir}/hyde"
 export cacheDir="$HOME/.cache/hyde"
 export thmbDir="${cacheDir}/thumbs"
 export dcolDir="${cacheDir}/dcols"
 export hashMech="sha1sum"
-
-
-#// extra vars
-
-export gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-export gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-export gtkMode="$(grep 'gsettings set org.gnome.desktop.interface color-scheme' ${hydeThemeDir}/hypr.theme | awk -F "['-]" '{print $((NF - 1))}')"
-export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
-export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
-
-
-#// pacman fns
-
-pkg_installed()
-{
-    local pkgIn=$1
-
-    if pacman -Qi $pkgIn &> /dev/null
-    then
-        return 0 # echo "${pkgIn} is already installed..."
-    else
-        return 1 # echo "${pkgIn} is not installed..."
-    fi
-}
-
-get_aurhlpr()
-{
-    if pkg_installed yay
-    then
-        aurhlpr="yay"
-    elif pkg_installed paru
-    then
-        aurhlpr="paru"
-    fi
-}
-
-
-#// wallpaper fns
 
 get_hashmap()
 {
@@ -101,7 +53,7 @@ get_themes()
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
         thmListS+=("$(basename ${thmDir})")
         thmWallS+=("$(readlink "${thmDir}/wall.set")")
-    done < <(find "${confDir}/hyde/themes" -mindepth 1 -maxdepth 1 -type d | sort)
+    done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d | sort)
 
     while read -r sort theme wall ; do
         thmSort+=("${sort}")
@@ -114,6 +66,74 @@ get_themes()
         for indx in "${!thmList[@]}" ; do
             echo -e ":: \${thmSort[${indx}]}=\"${thmSort[indx]}\" :: \${thmList[${indx}]}=\"${thmList[indx]}\" :: \${thmWall[${indx}]}=\"${thmWall[indx]}\""
         done
+    fi
+}
+
+[ -f "${hydeConfDir}/hyde.conf" ] && source "${hydeConfDir}/hyde.conf"
+
+case "${enableWallDcol}" in
+    0|1|2|3) ;;
+    *) enableWallDcol=0 ;;
+esac
+
+if [ -z ${hydeTheme} ] || [ ! -d "${hydeConfDir}/themes/${hydeTheme}" ] ; then
+    get_themes
+    hydeTheme="${thmList[0]}"
+fi
+
+export hydeTheme
+export hydeThemeDir="${hydeConfDir}/themes/${hydeTheme}"
+export wallbashDir="${hydeConfDir}/wallbash"
+export enableWallDcol
+
+
+#// extra vars
+
+export gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
+export gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
+export gtkMode="$(grep 'gsettings set org.gnome.desktop.interface color-scheme' ${hydeThemeDir}/hypr.theme | awk -F "['-]" '{print $((NF - 1))}')"
+export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
+export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
+
+
+#// pacman fns
+
+pkg_installed()
+{
+    local pkgIn=$1
+
+    if pacman -Qi ${pkgIn} &> /dev/null
+    then
+        return 0 # echo "${pkgIn} is already installed..."
+    else
+        return 1 # echo "${pkgIn} is not installed..."
+    fi
+}
+
+get_aurhlpr()
+{
+    if pkg_installed yay
+    then
+        aurhlpr="yay"
+    elif pkg_installed paru
+    then
+        aurhlpr="paru"
+    fi
+}
+
+
+#// config fns
+
+set_conf()
+{
+    local varName="${1}"
+    local varData="${2}"
+    touch "${hydeConfDir}/hyde.conf"
+
+    if [ $(grep -c "^${varName}=" "${hydeConfDir}/hyde.conf") -eq 1 ] ; then
+        sed -i "/^${varName}=/c${varName}=\"${varData}\"" "${hydeConfDir}/hyde.conf"
+    else
+        echo "${varName}=\"${varData}\"" >> "${hydeConfDir}/hyde.conf"
     fi
 }
 
