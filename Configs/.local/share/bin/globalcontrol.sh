@@ -89,8 +89,8 @@ export enableWallDcol
 
 #// hypr vars
 
-export hypr_border=$(hyprctl -j getoption decoration:rounding | jq '.int')
-export hypr_width=$(hyprctl -j getoption general:border_size | jq '.int')
+export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
+export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
 
 
 #// extra fns
