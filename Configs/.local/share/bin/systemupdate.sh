@@ -26,7 +26,7 @@ fi
 
 # Check for AUR updates
 aur=$(${aurhlpr} -Qua | wc -l)
-ofc=$(checkupdates | wc -l)
+ofc=$( (while pgrep -x checkupdates > /dev/null ; do sleep 1; done) | wc -l)
 
 # Check for flatpak updates
 if pkg_installed flatpak ; then
