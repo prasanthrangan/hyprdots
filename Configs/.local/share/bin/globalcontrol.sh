@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 
-#// config vars
+#// hyde envs
 
 export confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 export hydeConfDir="${confDir}/hyde"
@@ -87,16 +87,13 @@ export wallbashDir="${hydeConfDir}/wallbash"
 export enableWallDcol
 
 
-#// extra vars
+#// hypr vars
 
-export gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-export gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
-export gtkMode="$(grep 'gsettings set org.gnome.desktop.interface color-scheme' ${hydeThemeDir}/hypr.theme | awk -F "['-]" '{print $((NF - 1))}')"
-export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
-export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
+export hypr_border=$(hyprctl -j getoption decoration:rounding | jq '.int')
+export hypr_width=$(hyprctl -j getoption general:border_size | jq '.int')
 
 
-#// pacman fns
+#// extra fns
 
 pkg_installed()
 {
@@ -120,9 +117,6 @@ get_aurhlpr()
         aurhlpr="paru"
     fi
 }
-
-
-#// config fns
 
 set_conf()
 {

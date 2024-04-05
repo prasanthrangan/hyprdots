@@ -65,7 +65,7 @@ if [ $i_size -lt 12 ] ; then
     export i_size="12"
 fi
 
-export i_theme="${gtkIcon}"
+export i_theme="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' ${hydeThemeDir}/hypr.theme | awk -F "'" '{print $((NF - 1))}')"
 export i_task=$(( w_height*6/10 ))
 if [ $i_task -lt 16 ] ; then
     export i_task="16"

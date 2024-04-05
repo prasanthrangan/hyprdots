@@ -8,13 +8,15 @@ then
 fi
 
 # set file variables
+wlogoutStyle=1
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-wLayout="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/layout_$1"
-wlTmplt="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/style_$1.css"
+[ -z "${1}" ] || wlogoutStyle="${1}"
+wLayout="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/layout_${wlogoutStyle}"
+wlTmplt="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/style_${wlogoutStyle}.css"
 
 if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
-    echo "ERROR: Config $1 not found..."
+    echo "ERROR: Config ${wlogoutStyle} not found..."
     exit 1;
 fi
 
@@ -25,7 +27,7 @@ hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale'
 
 
 # scale config layout and style
-case $1 in
+case "${wlogoutStyle}" in
     1)  wlColms=6
         export mgn=$(( y_mon * 28 / hypr_scale ))
         export hvr=$(( y_mon * 23 / hypr_scale )) ;;
@@ -39,8 +41,9 @@ esac
 # scale font size
 export fntSize=$(( y_mon * 2 / 100 ))
 
-# detect gtk system theme
-export BtnCol=`[ "${gtkMode}" == "dark" ] && ( echo "white" ) || ( echo "black" )`
+# detect wallpaper brightness
+source "${cacheDir}/wall.dcol"
+[ "${dcol_mode}" == "dark" ] && export BtnCol="white" || export BtnCol="black"
 
 # eval hypr border radius
 export active_rad=$(( hypr_border * 5 ))
