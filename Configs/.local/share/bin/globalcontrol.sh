@@ -14,16 +14,14 @@ get_hashmap()
 {
     unset wallHash
     unset walList
+    unset wallName
     unset verbose
 
     for wallSource in "$@"; do
+        [ -z "${wallSource}" ] && continue
         [ "${wallSource}" == "--verbose" ] && verbose=1 && continue
-        if [ ! -d "${wallSource}" ] || [ -z "${wallSource}" ] ; then
-            continue
-        fi
 
         hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
-
         if [ -z "${hashMap}" ] ; then
             echo "ERROR: No image found in ${wallSource}"
             continue
@@ -32,6 +30,7 @@ get_hashmap()
         while read -r hash image ; do
             wallHash+=("${hash}")
             walList+=("${image}")
+            wallName+=("$(basename "${image}")")
         done <<< "${hashMap}"
     done
 
@@ -43,7 +42,7 @@ get_hashmap()
     if [[ "${verbose}" -eq 1 ]] ; then
         echo "// Hash Map //"
         for indx in "${!wallHash[@]}" ; do
-            echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${walList[${indx}]}=\"${walList[indx]}\""
+            echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallName[${indx}]}=\"${wallName[indx]}\" :: \${walList[${indx}]}=\"${walList[indx]}\""
         done
     fi
 }

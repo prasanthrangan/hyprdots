@@ -27,18 +27,18 @@ r_override="element{border-radius:${elem_border}px;} listview{columns:6;spacing:
 
 currentWall="$(basename "$(readlink "${hydeThemeDir}/wall.set")")"
 get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
-
 rofiSel=$( for indx in "${!wallHash[@]}" ; do
-    rfile="$(basename "${walList[indx]}")"
-    echo -en "${rfile}\x00icon\x1f${thmbDir}/${wallHash[indx]}.sqre\n"
+    echo -en "${wallName[indx]}\x00icon\x1f${thmbDir}/${wallHash[indx]}.sqre\n"
 done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${currentWall}")
 
 
 #// apply wallpaper
 
 if [ ! -z "${rofiSel}" ] ; then
-    get_hashmap "$(find "${hydeThemeDir}" "${wallAddCustomPath}" -type f -name "${rofiSel}")"
-    "${scrDir}/swwwallpaper.sh" -s "${walList[0]}"
-    notify-send -a "t1" -i "${thmbDir}/${wallHash[0]}.sqre" " ${rofiSel}"
+    setWall="$(find "${hydeThemeDir}" -type f -name "${rofiSel}")"
+    [ -z "${setWall}" ] && setWall="$(find "${wallAddCustomPath}" -type f -name "${rofiSel}")"
+    setHash="$("${hashMech}" "${setWall}" | awk '{print $1}')"
+    "${scrDir}/swwwallpaper.sh" -s "${setWall}"
+    notify-send -a "t1" -i "${thmbDir}/${setHash}.sqre" " ${rofiSel}"
 fi
 
