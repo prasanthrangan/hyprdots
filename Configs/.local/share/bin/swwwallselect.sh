@@ -7,7 +7,6 @@ scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 rofiConf="${confDir}/rofi/themeselect.rasi"
 [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
-get_themes
 
 
 #// scale for monitor x res
@@ -35,8 +34,7 @@ rofiSel=$(parallel --link echo -en "\$(basename "{1}")"'\\x00icon\\x1f'"${thmbDi
 if [ ! -z "${rofiSel}" ] ; then
     setWall="$(find "${hydeThemeDir}" -type f -name "${rofiSel}")"
     [ -z "${setWall}" ] && setWall="$(find "${wallAddCustomPath}" -type f -name "${rofiSel}")"
-    setHash="$("${hashMech}" "${setWall}" | awk '{print $1}')"
     "${scrDir}/swwwallpaper.sh" -s "${setWall}"
-    notify-send -a "t1" -i "${thmbDir}/${setHash}.sqre" " ${rofiSel}"
+    notify-send -a "t1" -i "${thmbDir}/$(set_hash "${setWall}").sqre" " ${rofiSel}"
 fi
 

@@ -61,15 +61,15 @@ get_themes()
             ln -fs "${wallList[0]}" "${thmDir}/wall.set"
         fi
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
-        thmListS+=("$(basename ${thmDir})")
+        thmListS+=("$(basename "${thmDir}")")
         thmWallS+=("$(readlink "${thmDir}/wall.set")")
-    done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d | sort)
+    done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d)
 
-    while read -r sort theme wall ; do
+    while IFS='|' read -r sort theme wall ; do
         thmSort+=("${sort}")
         thmList+=("${theme}")
         thmWall+=("${wall}")
-    done < <(parallel --link -N1 echo "{}" ::: "${thmSortS[@]}" ::: "${thmListS[@]}" ::: "${thmWallS[@]}" | sort -n -k 1)
+    done < <(parallel --link echo "{1}\|{2}\|{3}" ::: "${thmSortS[@]}" ::: "${thmListS[@]}" ::: "${thmWallS[@]}" | sort -n -k 1 -k 2)
 
     if [ "${1}" == "--verbose" ] ; then
         echo "// Theme Control //"
@@ -108,12 +108,11 @@ export hypr_width="$(hyprctl -j getoption general:border_size | jq '.int')"
 pkg_installed()
 {
     local pkgIn=$1
-
-    if pacman -Qi ${pkgIn} &> /dev/null
+    if pacman -Qi "${pkgIn}" &> /dev/null
     then
-        return 0 # echo "${pkgIn} is already installed..."
+        return 0
     else
-        return 1 # echo "${pkgIn} is not installed..."
+        return 1
     fi
 }
 
@@ -139,5 +138,11 @@ set_conf()
     else
         echo "${varName}=\"${varData}\"" >> "${hydeConfDir}/hyde.conf"
     fi
+}
+
+set_hash()
+{
+    local hashImage="${1}"
+    "${hashMech}" "${hashImage}" | awk '{print $1}'
 }
 

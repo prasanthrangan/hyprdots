@@ -15,7 +15,7 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     exit 1
 fi
 
-export wallbashOut="${dcolDir}/$("${hashMech}" "${wallbashImg}" | awk '{print $1}').dcol"
+export wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
 export cacheDir
 
 if [ ! -f "${wallbashOut}" ] ; then

@@ -25,7 +25,7 @@ Wall_Cache()
 
 Wall_Change()
 {
-    local curWall="$("${hashMech}" "${wallSet}" | awk '{print $1}')"
+    curWall="$(set_hash "${wallSet}")"
     for i in "${!wallHash[@]}" ; do
         if [ "${curWall}" == "${wallHash[i]}" ] ; then
             if [ "${1}" == "n" ] ; then
@@ -57,7 +57,7 @@ wallDcl="${cacheDir}/wall.dcol"
 setIndex=0
 [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
 get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
-[ ! -e "$(readlink -f "${wallSet}")" ] && ln -fs "${wallList[setIndex]}" "${wallSet}"
+[ ! -e "$(readlink -f "${wallSet}")" ] && echo "fixig link :: ${wallSet}" && ln -fs "${wallList[setIndex]}" "${wallSet}"
 
 
 #// evaluate options

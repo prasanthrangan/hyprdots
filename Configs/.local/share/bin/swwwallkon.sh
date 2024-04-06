@@ -49,7 +49,7 @@ done
 
 if [ ! -z "${setTheme}" ] && [ ! -z "${setWall}" ] ; then
 
-    inwallHash="$("${hashMech}" "${setWall}" | awk '{print $1}')"
+    inwallHash="$(set_hash "${setWall}")"
     get_hashmap "${tgtPath}/${setTheme}"
     if [[ "${wallHash[@]}" == *"${inwallHash}"* ]] ; then
         notify-send -a "t2" -i "${thmbDir}/${inwallHash}.sqre" "Error" "Hash matched in ${setTheme}"
@@ -66,7 +66,7 @@ else
 
     echo -e "[Desktop Entry]\nType=Service\nMimeType=image/png;image/jpeg;image/jpg;image/gif\nActions=Menu-Refresh$(printf ";%s" "${thmList[@]}")\nX-KDE-Submenu=Set As Wallpaper...\n\n[Desktop Action Menu-Refresh]\nName=.: Refresh List :.\nExec=${scrName}" > "${kmenuDesk}"
     for i in "${!thmList[@]}" ; do
-        echo -e "\n[Desktop Action ${thmList[i]}]\nName=${thmList[i]}\nExec=${scrName} -t ${thmList[i]} -w %u" >> "${kmenuDesk}"
+        echo -e "\n[Desktop Action ${thmList[i]}]\nName=${thmList[i]}\nExec=${scrName} -t \"${thmList[i]}\" -w %u" >> "${kmenuDesk}"
     done
 
 fi

@@ -36,8 +36,7 @@ esac
 get_themes
 
 rofiSel=$(for i in ${!thmList[@]} ; do
-    thmHash="$("${hashMech}" "${thmWall[i]}" | awk '{print $1}')"
-    echo -en "${thmList[i]}\x00icon\x1f"${thmbDir}/${thmHash}.${thmbExtn}"\n"
+    echo -en "${thmList[i]}\x00icon\x1f${thmbDir}/$(set_hash "${thmWall[i]}").${thmbExtn}\n"
 done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
 
 
