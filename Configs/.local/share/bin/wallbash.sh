@@ -22,6 +22,16 @@ while [ $# -gt 0 ] ; do
         -m|--mono) colorProfile="mono"
             wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
             ;;
+        -c|--custom)
+            shift
+            if [ -n "${1}" ] && [[ "${1}" =~ ^([0-9]+[[:space:]][0-9]+\\n){8}[0-9]+[[:space:]][0-9]+$ ]] ; then
+                    colorProfile="custom"
+                    wallbashCurve="${1}"
+            else
+                echo "Error: Custom color curve format is incorrect ${1}"
+                exit 1
+            fi
+            ;;
         -d|--dark) sortMode="dark"
             colSort=""
             ;;

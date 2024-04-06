@@ -7,9 +7,17 @@ export scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 export thmbDir
 export dcolDir
+
 [ -d "${hydeThemeDir}" ] && cacheIn="${hydeThemeDir}" || exit 1
 [ -d "${thmbDir}" ] || mkdir -p "${thmbDir}"
 [ -d "${dcolDir}" ] || mkdir -p "${dcolDir}"
+
+if [ ! -z "${wallbashCustomCurve}" ] && [[ "${wallbashCustomCurve}" =~ ^([0-9]+[[:space:]][0-9]+\\n){8}[0-9]+[[:space:]][0-9]+$ ]] ; then
+    export wallbashCustomCurve
+    echo ":: wallbash --custom \"${wallbashCustomCurve}\""
+else
+    export wallbashCustomCurve="32 50\n42 46\n49 40\n56 39\n64 38\n76 37\n90 33\n94 29\n100 20"
+fi
 
 
 #// define functions
@@ -22,7 +30,7 @@ fn_wallcache()
     [ ! -e "${thmbDir}/${x_hash}.sqre" ] && convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${x_hash}.sqre"
     [ ! -e "${thmbDir}/${x_hash}.blur" ] && convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${x_hash}.blur"
     [ ! -e "${thmbDir}/${x_hash}.quad" ] && convert "${thmbDir}/${x_hash}.sqre" \( -size 500x500 xc:white -fill "rgba(0,0,0,0.7)" -draw "polygon 400,500 500,500 500,0 450,0" -fill black -draw "polygon 500,500 500,0 450,500" \) -alpha Off -compose CopyOpacity -composite "${thmbDir}/${x_hash}.png" && mv "${thmbDir}/${x_hash}.png" "${thmbDir}/${x_hash}.quad"
-    { [ ! -e "${dcolDir}/${x_hash}.dcol" ] || [ "$(wc -l < "${dcolDir}/${x_hash}.dcol")" -ne 89 ] ;} && "${scrDir}/wallbash.sh" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
+    { [ ! -e "${dcolDir}/${x_hash}.dcol" ] || [ "$(wc -l < "${dcolDir}/${x_hash}.dcol")" -ne 89 ] ;} && "${scrDir}/wallbash.sh" --custom "${wallbashCustomCurve}" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
 }
 
 fn_wallcache_force()
@@ -33,7 +41,7 @@ fn_wallcache_force()
     convert -strip "${x_wall}"[0] -thumbnail 500x500^ -gravity center -extent 500x500 "${thmbDir}/${x_hash}.sqre"
     convert -strip -scale 10% -blur 0x3 -resize 100% "${x_wall}"[0] "${thmbDir}/${x_hash}.blur"
     convert "${thmbDir}/${x_hash}.sqre" \( -size 500x500 xc:white -fill "rgba(0,0,0,0.7)" -draw "polygon 400,500 500,500 500,0 450,0" -fill black -draw "polygon 500,500 500,0 450,500" \) -alpha Off -compose CopyOpacity -composite "${thmbDir}/${x_hash}.png" && mv "${thmbDir}/${x_hash}.png" "${thmbDir}/${x_hash}.quad"
-    "${scrDir}/wallbash.sh" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
+    "${scrDir}/wallbash.sh" --custom "${wallbashCustomCurve}" "${thmbDir}/${x_hash}.thmb" "${x_wall}" &> /dev/null
 }
 
 export -f fn_wallcache

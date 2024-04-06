@@ -89,7 +89,7 @@ while getopts "nps:" option ; do
 done
 
 
-#// check swww daemon and set wall
+#// check swww daemon
 
 swww query &> /dev/null
 if [ $? -ne 0 ] ; then
@@ -97,8 +97,16 @@ if [ $? -ne 0 ] ; then
     swww-daemon --format xrgb &
 fi
 
+
+#// set defaults
+
 [ -z "${xtrans}" ] && xtrans="grow"
 [ -z "${wallFramerate}" ] && wallFramerate=60
+[ -z "${wallTransDuration}" ] && wallTransDuration=0.4
+
+
+#// apply wallpaper
+
 echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
-swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps "${wallFramerate}" --invert-y --transition-pos "$(hyprctl cursorpos)" &
+swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration "${wallTransDuration}" --transition-fps "${wallFramerate}" --invert-y --transition-pos "$(hyprctl cursorpos)" &
 
