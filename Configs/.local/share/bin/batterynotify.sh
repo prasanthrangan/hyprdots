@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+undock=false
 scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
-batterynotify_conf=${confDir}/hyde/batterynotify.conf
+batterynotify_conf="${hydeConfDir}/hyde.conf" # Shared with hyde configuration
 config_info() {
 cat <<  EOF
 
-Edit $batterynotify_conf  for options.
+Modify $batterynotify_conf  to set options.
 
       STATUS      THRESHOLD    INTERVAL
       Full        $battery_full_threshold          $notify Minutes
@@ -23,10 +24,11 @@ is_laptop() { # Check if the system is a laptop
     if grep -q "Battery" /sys/class/power_supply/BAT*/type; then
         return 0  # It's a laptop
     else
-    echo "Cannot Detect a Battery. If this seems an error please report an issue to https://github.com/prasanthrangan/hyprdots."
+    echo "No battery detected. If you think this is an error please post a report to the repo"
         exit 0  # It's not a laptop
     fi
 }
+is_laptop
 fn_verbose () {
 if $verbose; then
 cat << VERBOSE
@@ -108,7 +110,7 @@ case "$battery_status" in         # Handle the power supply status
             esac
 }
 
-get_battery_info() { #? Might change this if we can get an effective way to parse dbus.
+get_battery_info() { #TODO Might change this if we can get an effective way to parse dbus. I will do it some time...
 	total_percentage=0 battery_count=0
 	for battery in /sys/class/power_supply/BAT*; do
 		battery_status=$(<"$battery/status") battery_percentage=$(<"$battery/capacity")
@@ -124,7 +126,6 @@ get_battery_info
   local executed_low=false
   local executed_unplug=false
 
-
   if [ "$battery_status" != "$last_battery_status" ] || [ "$battery_percentage" != "$last_battery_percentage" ]; then
     last_battery_status=$battery_status
     last_battery_percentage=$battery_percentage    # Check if battery status or percentage has changed
@@ -138,14 +139,13 @@ get_battery_info
         executed_unplug=true executed_low=false
     fi
 
-    if $undock; then fn_status echo yes ; fi
+    if $undock; then fn_status; fi
   fi
 }
 
-resume_processes() { for pid in $pids ; do  if [ "$pid" -ne "$current_pid" ] ; then kill -CONT $pid ; notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging ENDED, Resuming Regular Process" ; fi ; done }
+# resume_processes() { for pid in $pids ; do  if [ "$pid" -ne "$current_pid" ] ; then kill -CONT $pid ; notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging ENDED, Resuming Regular Process" ; fi ; done }
 
 main() { # Main function
-    if is_laptop; then
 rm -fr /tmp/hyprdots.batterynotify* # Cleaning the lock file
 battery_full_threshold=${battery_full_threshold:-100}
 battery_critical_threshold=${battery_critical_threshold:-5}
@@ -160,55 +160,20 @@ execute_unplug=${execute_unplug:-}
 
 config_info
 if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;
-current_pid=$$
-pids=$(pgrep -f "/usr/bin/env bash ${scrDir}/batterynotify.sh" )
-for pid in $pids ; do if [ "$pid" -ne $current_pid ] ;then kill -STOP "$pid" ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; fi
+#TODO Might still need this in the future but for now we don't have any battery notify issues
+# current_pid=$$ 
+# pids=$(pgrep -f "/usr/bin/env bash ${scrDir}/batterynotify.sh" )
+# for pid in $pids ; do if [ "$pid" -ne $current_pid ] ;then kill -STOP "$pid" ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; 
+fi
     get_battery_info # initiate the function
     last_notified_percentage=$battery_percentage
     prev_status=$battery_status
-
 dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties',path='$(upower -e | grep battery)'" 2> /dev/null | while read -r battery_status_change; do fn_status_change  ; done
-    fi
 }
 
-verbose=false undock=false
-if [ ! -f "$batterynotify_conf" ]; then
-    mkdir -p "$(dirname "$batterynotify_conf")"
-    touch "$batterynotify_conf"
-   echo "[CREATED] $batterynotify_conf"
-    echo "
-    # Full battery threshold (default: 100%)
-battery_full_threshold=100
-    # Critical battery threshold (default: 10%)
-battery_critical_threshold=10
-    # Low battery threshold (default: 20%)
-battery_low_threshold=20
-    # Unplug charger threshold (default: 80%)
-unplug_charger_threshold=80
-    # Countdown timer before executing execute_critical (default: 120 seconds)
-timer=120
-    # Notify interval for Battery Full Status (default: 1140 mins/ 1 day)
-notify=1140
-    # Notify interval on LOW and UNPLUG Status (default: 5%)
-interval=5
-    # Shows Battery Plug In/Out/Full Notification
-undock=false
-    # Command/script to execute at minimum unplug_charger_threshold
-execute_unplug=\"\"
-    # Command/script to execute at maximum battery_low_threshold
-execute_low=\"\"
-    # Command/script to execute if battery on critical threshold (default: systemctl suspend)
-execute_critical=\"systemctl suspend\"
-    # Command/script to execute when battery is discharging, Required undock=true
-execute_discharging=\"\"
-    # Command/script to execute when battery is charging, Required undock=true
-execute_charging=\"\"
-" > "$batterynotify_conf"
-fi
-
-source "$batterynotify_conf"
+verbose=false
   case "$1" in
-        --modify)
+        -m|--modify)
     EDITOR="${EDITOR:-code}"  #* Use VS Code as the default editor
     echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=prefered-editor'  \n[Modifying]: $batterynotify_conf \nPress Any Key if done editing"
     #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$batterynotify_conf" > /dev/null 2>&1 &
@@ -222,26 +187,20 @@ source "$batterynotify_conf"
     done
             exit 0
             ;;
-        --info)
+        -i|--info)
             config_info
             exit 0
             ;;
-        --reset)
-            rm -r "$batterynotify_conf"
-            echo "[RESET] Batterynotify configuration"
-            exit 0
-            ;;
-        --verbose)
+        -v|--verbose)
             verbose=true
             ;;
-        -h|--help)
+        -*)
         cat << HELP
 Usage: $0 [options]
 
-[--modify]                  Modify configuration file
-[--info]                    Display configuration information
-[--reset]                   Reset configuration
-[--verbose]                 Debugging mode
+[-m|--modify]                  Modify configuration file
+[-i|--info]                    Display configuration information
+[-v|--verbose]                 Debugging mode
 [-h|--help]                 This Message
 HELP
             exit 0
@@ -254,18 +213,16 @@ check_range() {
     if [[ $var =~ ^[0-9]+$ ]] && (( var >= min && var <= max )); then
         var=$var ; shift 2
     else
-        echo "$1 ERROR: $error_message must be $min - $max." >&2 ; exit 1
+        echo -e "$1 WARNING: $error_message must be $min - $max." >&2 
     fi
 }
 
-check_range "$battery_full_threshold" $mnf $mxf "Full Threshold"
-check_range "$battery_critical_threshold" $mnc $mxc "Critical Threshold"
-check_range "$battery_low_threshold" $mnl $mxl "Low Threshold"
-check_range "$unplug_charger_threshold" $mnu $mxu "Unplug Threshold"
-check_range "$timer" $mnt $mxt "Timer"
-check_range "$notify" $mnn $mxn "Notify"
-check_range "$interval" $mni $mxi "Interval"
-
- trap resume_processes SIGINT
+ check_range "$battery_full_threshold" $mnf $mxf "Full Threshold"
+ check_range "$battery_critical_threshold" $mnc $mxc "Critical Threshold"
+ check_range "$battery_low_threshold" $mnl $mxl "Low Threshold"
+ check_range "$unplug_charger_threshold" $mnu $mxu "Unplug Threshold"
+ check_range "$timer" $mnt $mxt "Timer"
+ check_range "$notify" $mnn $mxn "Notify"
+ check_range "$interval" $mni $mxi "Interval"
 
 main
