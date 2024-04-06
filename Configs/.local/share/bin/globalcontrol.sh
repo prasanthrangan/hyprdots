@@ -18,6 +18,10 @@ get_hashmap()
 
     for wallSource in "$@"; do
         [ "${wallSource}" == "--verbose" ] && verbose=1 && continue
+        if [ ! -d "${wallSource}" ] || [ -z "${wallSource}" ] ; then
+            continue
+        fi
+
         hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
 
         if [ -z "${hashMap}" ] ; then
@@ -31,7 +35,10 @@ get_hashmap()
         done <<< "${hashMap}"
     done
 
-    [ "${#walList[@]}" -eq 0 ] && echo "ERROR: No image found in any source" && exit 1
+    if [ -z "${#walList[@]}" ] || [[ "${#walList[@]}" -eq 0 ]] ; then
+        echo "ERROR: No image found in any source"
+        exit 1
+    fi
 
     if [[ "${verbose}" -eq 1 ]] ; then
         echo "// Hash Map //"
