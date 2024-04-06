@@ -13,9 +13,9 @@ trap 'rm -f ${lockFile}' EXIT
 
 Wall_Cache()
 {
-    "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}" &> /dev/null
-    "${scrDir}/swwwallbash.sh" "${walList[setIndex]}" &
-    ln -fs "${walList[setIndex]}" "${wallSet}"
+    "${scrDir}/swwwallcache.sh" -w "${wallList[setIndex]}" &> /dev/null
+    "${scrDir}/swwwallbash.sh" "${wallList[setIndex]}" &
+    ln -fs "${wallList[setIndex]}" "${wallSet}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
@@ -29,7 +29,7 @@ Wall_Change()
     for i in "${!wallHash[@]}" ; do
         if [ "${curWall}" == "${wallHash[i]}" ] ; then
             if [ "${1}" == "n" ] ; then
-                setIndex=$(( (i + 1) % ${#walList[@]} ))
+                setIndex=$(( (i + 1) % ${#wallList[@]} ))
             elif [ "${1}" == "p" ] ; then
                 setIndex=$(( i - 1 ))
             fi
@@ -57,7 +57,7 @@ wallDcl="${cacheDir}/wall.dcol"
 setIndex=0
 [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
 get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
-[ ! -e "$(readlink -f "${wallSet}")" ] && ln -fs "${walList[setIndex]}" "${wallSet}"
+[ ! -e "$(readlink -f "${wallSet}")" ] && ln -fs "${wallList[setIndex]}" "${wallSet}"
 
 
 #// evaluate options

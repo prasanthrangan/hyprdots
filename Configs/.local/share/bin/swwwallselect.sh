@@ -27,9 +27,7 @@ r_override="element{border-radius:${elem_border}px;} listview{columns:6;spacing:
 
 currentWall="$(basename "$(readlink "${hydeThemeDir}/wall.set")")"
 get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
-rofiSel=$( for indx in "${!wallHash[@]}" ; do
-    echo -en "${wallName[indx]}\x00icon\x1f${thmbDir}/${wallHash[indx]}.sqre\n"
-done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${currentWall}")
+rofiSel=$(parallel --link echo -en "\$(basename "{1}")"'\\x00icon\\x1f'"${thmbDir}"'/'"{2}"'.sqre\\n' ::: "${wallList[@]}" ::: "${wallHash[@]}" | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${currentWall}")
 
 
 #// apply wallpaper

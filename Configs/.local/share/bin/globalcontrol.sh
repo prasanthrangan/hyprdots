@@ -13,8 +13,7 @@ export hashMech="sha1sum"
 get_hashmap()
 {
     unset wallHash
-    unset walList
-    unset wallName
+    unset wallList
     unset verbose
 
     for wallSource in "$@"; do
@@ -29,12 +28,11 @@ get_hashmap()
 
         while read -r hash image ; do
             wallHash+=("${hash}")
-            walList+=("${image}")
-            wallName+=("$(basename "${image}")")
+            wallList+=("${image}")
         done <<< "${hashMap}"
     done
 
-    if [ -z "${#walList[@]}" ] || [[ "${#walList[@]}" -eq 0 ]] ; then
+    if [ -z "${#wallList[@]}" ] || [[ "${#wallList[@]}" -eq 0 ]] ; then
         echo "ERROR: No image found in any source"
         exit 1
     fi
@@ -42,7 +40,7 @@ get_hashmap()
     if [[ "${verbose}" -eq 1 ]] ; then
         echo "// Hash Map //"
         for indx in "${!wallHash[@]}" ; do
-            echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallName[${indx}]}=\"${wallName[indx]}\" :: \${walList[${indx}]}=\"${walList[indx]}\""
+            echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallList[${indx}]}=\"${wallList[indx]}\""
         done
     fi
 }
@@ -60,7 +58,7 @@ get_themes()
         if [ ! -e "$(readlink "${thmDir}/wall.set")" ] ; then
             echo "fixig link :: ${thmDir}/wall.set"
             get_hashmap "${thmDir}"
-            ln -fs "${walList[0]}" "${thmDir}/wall.set"
+            ln -fs "${wallList[0]}" "${thmDir}/wall.set"
         fi
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
         thmListS+=("$(basename ${thmDir})")
