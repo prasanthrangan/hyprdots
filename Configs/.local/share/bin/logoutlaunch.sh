@@ -1,32 +1,40 @@
 #!/usr/bin/env sh
 
-# Check if wlogout is already running
+
+#// Check if wlogout is already running
+
 if pgrep -x "wlogout" > /dev/null
 then
     pkill -x "wlogout"
     exit 0
 fi
 
-# set file variables
-wlogoutStyle=1
+
+#// set file variables
+
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
 [ -z "${1}" ] || wlogoutStyle="${1}"
-wLayout="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/layout_${wlogoutStyle}"
-wlTmplt="${XDG_CONFIG_HOME:-$HOME/.config}/wlogout/style_${wlogoutStyle}.css"
+wLayout="${confDir}/wlogout/layout_${wlogoutStyle}"
+wlTmplt="${confDir}/wlogout/style_${wlogoutStyle}.css"
 
-if [ ! -f $wLayout ] || [ ! -f $wlTmplt ] ; then
+if [ ! -f "${wLayout}" ] || [ ! -f "${wlTmplt}" ] ; then
     echo "ERROR: Config ${wlogoutStyle} not found..."
-    exit 1;
+    wlogoutStyle=1
+    wLayout="${confDir}/wlogout/layout_${wlogoutStyle}"
+    wlTmplt="${confDir}/wlogout/style_${wlogoutStyle}.css"
 fi
 
-# detect monitor res
+
+#// detect monitor res
+
 x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
 y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
 hypr_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
 
 
-# scale config layout and style
+#// scale config layout and style
+
 case "${wlogoutStyle}" in
     1)  wlColms=6
         export mgn=$(( y_mon * 28 / hypr_scale ))
@@ -38,20 +46,30 @@ case "${wlogoutStyle}" in
         export y_hvr=$(( y_mon * 20 / hypr_scale )) ;;
 esac
 
-# scale font size
+
+#// scale font size
+
 export fntSize=$(( y_mon * 2 / 100 ))
 
-# detect wallpaper brightness
+
+#// detect wallpaper brightness
+
 source "${cacheDir}/wall.dcol"
 [ "${dcol_mode}" == "dark" ] && export BtnCol="white" || export BtnCol="black"
 
-# eval hypr border radius
+
+#// eval hypr border radius
+
 export active_rad=$(( hypr_border * 5 ))
 export button_rad=$(( hypr_border * 8 ))
 
-# eval config files
-wlStyle=`envsubst < $wlTmplt`
 
-# launch wlogout
-wlogout -b $wlColms -c 0 -r 0 -m 0 --layout $wLayout --css <(echo "$wlStyle") --protocol layer-shell
+#// eval config files
+
+wlStyle="$(envsubst < $wlTmplt)"
+
+
+#// launch wlogout
+
+wlogout -b "${wlColms}" -c 0 -r 0 -m 0 --layout "${wLayout}" --css <(echo "${wlStyle}") --protocol layer-shell
 

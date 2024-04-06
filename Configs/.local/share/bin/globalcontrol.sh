@@ -12,23 +12,29 @@ export hashMech="sha1sum"
 
 get_hashmap()
 {
-    local wallSource="${1}"
     unset wallHash
     unset walList
-    hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
+    unset verbose
 
-    if [ -z "${hashMap}" ] ; then
-        echo "ERROR: No image found in ${wallSource}"
-        exit 0
-    fi
+    for wallSource in "$@"; do
+        [ "${wallSource}" == "--verbose" ] && verbose=1 && continue
+        hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
 
-    while read -r hash image ; do
-        wallHash+=("${hash}")
-        walList+=("${image}")
-    done <<< "${hashMap}"
+        if [ -z "${hashMap}" ] ; then
+            echo "ERROR: No image found in ${wallSource}"
+            continue
+        fi
 
-    if [ "${2}" == "--verbose" ] ; then
-        echo "// Hash Map for \"${wallSource}\""
+        while read -r hash image ; do
+            wallHash+=("${hash}")
+            walList+=("${image}")
+        done <<< "${hashMap}"
+    done
+
+    [ "${#walList[@]}" -eq 0 ] && echo "ERROR: No image found in any source" && exit 1
+
+    if [[ "${verbose}" -eq 1 ]] ; then
+        echo "// Hash Map //"
         for indx in "${!wallHash[@]}" ; do
             echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${walList[${indx}]}=\"${walList[indx]}\""
         done
@@ -76,7 +82,7 @@ case "${enableWallDcol}" in
     *) enableWallDcol=0 ;;
 esac
 
-if [ -z ${hydeTheme} ] || [ ! -d "${hydeConfDir}/themes/${hydeTheme}" ] ; then
+if [ -z "${hydeTheme}" ] || [ ! -d "${hydeConfDir}/themes/${hydeTheme}" ] ; then
     get_themes
     hydeTheme="${thmList[0]}"
 fi
@@ -89,8 +95,8 @@ export enableWallDcol
 
 #// hypr vars
 
-export hypr_border=`hyprctl -j getoption decoration:rounding | jq '.int'`
-export hypr_width=`hyprctl -j getoption general:border_size | jq '.int'`
+export hypr_border="$(hyprctl -j getoption decoration:rounding | jq '.int')"
+export hypr_width="$(hyprctl -j getoption general:border_size | jq '.int')"
 
 
 #// extra fns

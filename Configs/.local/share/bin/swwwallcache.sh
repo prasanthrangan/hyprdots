@@ -83,7 +83,7 @@ done
 
 #// generate cache
 
-get_hashmap "${cacheIn}"
+get_hashmap "${cacheIn}" "${wallAddCustomPath}"
 parallel --bar --link "fn_wallcache${mode}" ::: "${wallHash[@]}" ::: "${walList[@]}"
 exit 0
 

@@ -56,7 +56,7 @@ wallDcl="${cacheDir}/wall.dcol"
 
 setIndex=0
 [ ! -d "${hydeThemeDir}" ] && echo "ERROR: \"${hydeThemeDir}\" does not exist" && exit 0
-get_hashmap "${hydeThemeDir}"
+get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
 [ ! -e "$(readlink -f "${wallSet}")" ] && ln -fs "${walList[setIndex]}" "${wallSet}"
 
 

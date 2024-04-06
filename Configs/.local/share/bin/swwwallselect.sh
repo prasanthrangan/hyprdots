@@ -26,7 +26,7 @@ r_override="element{border-radius:${elem_border}px;} listview{columns:6;spacing:
 #// launch rofi menu
 
 currentWall="$(basename "$(readlink "${hydeThemeDir}/wall.set")")"
-get_hashmap "${hydeThemeDir}"
+get_hashmap "${hydeThemeDir}" "${wallAddCustomPath}"
 
 rofiSel=$( for indx in "${!wallHash[@]}" ; do
     rfile="$(basename "${walList[indx]}")"
@@ -37,7 +37,7 @@ done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${c
 #// apply wallpaper
 
 if [ ! -z "${rofiSel}" ] ; then
-    get_hashmap "$(find "${hydeThemeDir}" -type f -name "${rofiSel}")"
+    get_hashmap "$(find "${hydeThemeDir}" "${wallAddCustomPath}" -type f -name "${rofiSel}")"
     "${scrDir}/swwwallpaper.sh" -s "${walList[0]}"
     notify-send -a "t1" -i "${thmbDir}/${wallHash[0]}.sqre" " ${rofiSel}"
 fi
