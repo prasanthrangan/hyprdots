@@ -13,7 +13,7 @@ trap 'rm -f ${lockFile}' EXIT
 
 Wall_Cache()
 {
-    "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}"
+    "${scrDir}/swwwallcache.sh" -w "${walList[setIndex]}" &> /dev/null
     "${scrDir}/swwwallbash.sh" "${walList[setIndex]}" &
     ln -fs "${walList[setIndex]}" "${wallSet}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
@@ -98,6 +98,7 @@ if [ $? -ne 0 ] ; then
 fi
 
 [ -z "${xtrans}" ] && xtrans="grow"
+[ -z "${wallFramerate}" ] && wallFramerate=60
 echo ":: applying wall :: \"$(readlink -f "${wallSet}")\""
-swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps 144 --invert-y --transition-pos "$(hyprctl cursorpos)" &
+swww img "$(readlink "${wallSet}")" --transition-bezier .43,1.19,1,.4 --transition-type "${xtrans}" --transition-duration 0.4 --transition-fps "${wallFramerate}" --invert-y --transition-pos "$(hyprctl cursorpos)" &
 

@@ -18,6 +18,14 @@ fi
 export wallbashOut="${dcolDir}/$("${hashMech}" "${wallbashImg}" | awk '{print $1}').dcol"
 export cacheDir
 
+if [ ! -f "${wallbashOut}" ] ; then
+    echo "Error: Cache file \"${wallbashOut}\" not found!"
+    exit 1
+fi
+
+source "${wallbashOut}"
+
+
 #// deploy wallbash colors
 
 fn_wallbash () {
@@ -219,10 +227,10 @@ export -f fn_wallbash
 #// switch theme <//> wall based colors
 
 if [ "${enableWallDcol}" -gt 0 ] ; then
-    echo ":: deploying wallbash colors"
+    echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
     find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash
 else
-    echo ":: deploying ${hydeTheme} colors"
+    echo ":: deploying ${hydeTheme} colors :: ${dcol_mode} wallpaper detected"
     find "${hydeThemeDir}" -type f -name "*.theme" | parallel fn_wallbash
 fi
 
