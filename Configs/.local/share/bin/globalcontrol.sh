@@ -14,11 +14,11 @@ get_hashmap()
 {
     unset wallHash
     unset wallList
-    unset verbose
+    unset hashmap
 
     for wallSource in "$@"; do
         [ -z "${wallSource}" ] && continue
-        [ "${wallSource}" == "--verbose" ] && verbose=1 && continue
+        [ "${wallSource}" == "--verbose" ] && hashmap=1 && continue
 
         hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
         if [ -z "${hashMap}" ] ; then
@@ -37,7 +37,7 @@ get_hashmap()
         exit 1
     fi
 
-    if [[ "${verbose}" -eq 1 ]] ; then
+    if [[ "${hashmap}" -eq 1 ]] ; then
         echo "// Hash Map //"
         for indx in "${!wallHash[@]}" ; do
             echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallList[${indx}]}=\"${wallList[indx]}\""
