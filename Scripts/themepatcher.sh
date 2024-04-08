@@ -4,6 +4,23 @@
 #|-/ /--| kRHYME7                      |-/ /--|#
 #|/ /---+------------------------------+/ /---|#
 
+print_prompt() {
+    while (( "$#" )); do
+        case "$1" in
+            -r) echo -ne "\e[31m$2\e[0m"; shift 2 ;; # Red
+            -g) echo -ne "\e[32m$2\e[0m"; shift 2 ;; # Green
+            -y) echo -ne "\e[33m$2\e[0m"; shift 2 ;; # Yellow
+            -b) echo -ne "\e[34m$2\e[0m"; shift 2 ;; # Blue
+            -m) echo -ne "\e[35m$2\e[0m"; shift 2 ;; # Magenta
+            -c) echo -ne "\e[36m$2\e[0m"; shift 2 ;; # Cyan
+            -w) echo -ne "\e[37m$2\e[0m"; shift 2 ;; # White
+            -n) echo -ne "\e[96m$2\e[0m"; shift 2 ;; # Neon
+            *) echo -ne "$1"; shift ;;
+        esac
+    done
+    echo ""
+}
+
 scrDir=$(dirname "$(realpath "$0")")
 source "${scrDir}/global_fn.sh"
 if [ $? -ne 0 ] ; then
@@ -25,6 +42,8 @@ HELP
 
 if [[ -z $1 || -z $2 ]] ; then ask_help ; exit 1 ; fi
 
+dcolDir="${hydeConfDir}/wallbash/Wall-Dcol"
+[ ! -d "${dcolDir}" ] && print_prompt "[ERROR] " "${dcolDir} do not exist!" &&  exit 1
 
 # set parameters
 Fav_Theme="$1"
@@ -61,7 +80,7 @@ else Git_Repo=${2%/}
             git reset --hard @{upstream} &> /dev/null
             cd - &> /dev/null
         else
-            echo -e "\033[0;31mCould not navigate to $Theme_Dir. Skipping git pull.\033[0m"
+            print_prompt -y "Could not navigate to $Theme_Dir. Skipping git pull."
         fi
     else
         echo "Directory $Theme_Dir does not exist. Cloning repository into new directory."
@@ -73,29 +92,39 @@ else Git_Repo=${2%/}
     fi
 fi
 
-echo -e "\nPatching \033[0;32m--//${Fav_Theme}//--\033[0m from \033[0;34m${Theme_Dir}\033[0m\n"
+print_prompt "Patching" -g " --//${Fav_Theme}//-- "  "from" -b "${Theme_Dir}\n"
 
-# required theme files
-config=( #!Hard Coded here to atleast Strictly meet requirements.
-".config/hyde/themes/${Fav_Theme}/kvantum/kvantum.theme"
-".config/hyde/themes/${Fav_Theme}/kvantum/kvconfig.theme"
-".config/hyde/themes/${Fav_Theme}/kitty.theme"
-".config/hyde/themes/${Fav_Theme}/rofi.theme"
-".config/hyde/themes/${Fav_Theme}/waybar.theme"
-".config/hyde/themes/${Fav_Theme}/hypr.theme"
-".config/hyde/themes/${Fav_Theme}/wallpapers"
-)
+Fav_Theme_Dir="${Theme_Dir}/Configs/.config/hyde/themes/${Fav_Theme}"
+[ ! -d "${Fav_Theme_Dir}" ] && print_prompt -r "[ERROR] " "'${Fav_Theme_Dir}'" -y " Do not Exist" && exit 1
 
+config=$(find "${dcolDir}" -type f -name "*.dcol" | awk -v favTheme="${Fav_Theme}" -F 'Wall-Dcol/' '{gsub(/\.dcol$/, ".theme"); print ".config/hyde/themes/" favTheme "/" $2}')
+restore_list=""
 
-# Loop through the config and check if these exist
-for fchk in "${config[@]}" ; do
-    if [[ -e "${Theme_Dir}/Configs/${fchk}" ]] ; then
-        echo -e "\033[0;32m[OK]\033[0m ${fchk}"
+while IFS= read -r fchk; do
+    if [[ -e "${Theme_Dir}/Configs/${fchk}" ]]; then
+        print_prompt -g "[OK]"  "${fchk}"
+        fbase=$(basename "${fchk}")
+        fdir=$(dirname "${fchk}")
+         restore_list+="Y|Y|\${HOME}/${fdir}|${fbase}|hyprland\n"
     else
-        echo -e "\033[0;31m[ERROR]\033[0m ${fchk} --> does not exist in ${Theme_Dir}/Configs/"
-        exit 1
+        print_prompt -r "[ERROR] " "${fchk} --> do not exist in ${Theme_Dir}/Configs/"
+        exit_flag=true
     fi
-done
+done <<< "$config"
+readonly restore_list
+
+# Get Wallpapers
+wallpapers=$(find "${Fav_Theme_Dir}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
+{ [ -z "${wallpapers}" ] && print_prompt -r "[ERRO] " "No wallpapers found" && exit_flag=true ;} || { readonly wallpapers && print_prompt -g "[OK]" " Wallpapers\n" ;}
+
+# overparsing 😁
+readonly gtkTheme="$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*gtk-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme" )"
+readonly iconTheme="$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*icon-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme" )"
+readonly cursorTheme="$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*cursor-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme" )"
+
+{ [ -z "${gtkTheme}" ] && print_prompt -r "[ERROR] " "No gtk theme" && exit_flag=true ;} || print_prompt -g "[OK] " "Gtk:" -b " ${gtkTheme}"
+{ [ -z "${iconTheme}" ] && print_prompt -y "[!!] " "No icon theme" ;} || print_prompt -g "[OK] " "Icon:" -b " ${iconTheme}"
+{ [ -z "${cursorTheme}" ] && print_prompt -y "[!!] " "No cursor theme\n" ;} || print_prompt -g "[OK] " "Cursor:" -b " ${cursorTheme}\n"
 
 # extract arcs
 prefix=("Gtk" "Font" "Icon" "Cursor")
@@ -104,38 +133,50 @@ TrgtDir["Gtk"]="$HOME/.themes"                                  #mandatory
 TrgtDir["Font"]="${XDG_DATA_HOME:-$HOME/.local/share}/fonts"    #optional
 TrgtDir["Icon"]="$HOME/.icons"                                  #optional
 TrgtDir["Cursor"]="$HOME/.icons"                                #optional
+declare -A keyTheme
+keyTheme["Gtk"]="${gtkTheme}"
+keyTheme["Icon"]="${iconTheme}"
+keyTheme["Cursor"]="${cursorTheme}"
+
 postfx=("tar.xz" "tar.gz")
 GtkFlag=0
 
-
+[[ "${exit_flag}" = true ]] && exit 1 
 # Loop over the themes and extensions
 for pre in "${prefix[@]}" ; do
+
     for ext in "${postfx[@]}" ; do
-        if [ -f "${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext}" ] ; then
-            echo -e "\033[0;32m[Extacting]\033[0m ${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext} --> ${TrgtDir[$pre]}"
-            tar -xf "${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext}" -C "${TrgtDir[$pre]}"
-            if [ ${pre} == "Gtk" ] ; then
-                GtkFlag=1
+        # Use a wildcard pattern to match files
+        for file in "${Theme_Dir}"/*/*/"${pre}"_*."${ext}" ; do
+            if [ -f "$file" ]; then
+                if tar -tf "$file" | grep -Eq "${keyTheme[$pre]}" ; then
+                print_prompt -g "[Extracting] "  "${file} --> ${TrgtDir[$pre]}"
+                tar -xf "${file}" -C "${TrgtDir[$pre]}" && [[ "$pre" == *"Gtk"* ]] && GtkFlag=1
+                fi
             fi
-        fi
+        done
     done
 done
+readonly extract
 
 if [ ${GtkFlag} -eq 0 ] ; then
-    echo -e "\033[0;31m[ERROR]\033[0m Gtk pack not found --> ${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext}"
+    print_prompt -r "\n[ERROR] "  "Gtk pack not found --> ${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext}"
     exit 1
 fi
 
-fc-cache -f
+echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 
-
-# generate restore_cfg control
-cat << THEME > "${Theme_Dir}/restore_cfg.lst"
-Y|N|${HOME}/.config/hyde/themes|${Fav_Theme}|hyprland
-THEME
+# populate wallpaper
+print_prompt -y "\n[$(echo "${wallpapers}" | wc -l)]" " Wallpapers"
+Fav_Theme_Walls="$hydeConfDir/themes/${Fav_Theme}/wallpapers"
+[ ! -d "${Fav_Theme_Walls}" ] && mkdir -p "${Fav_Theme_Walls}"
+while IFS= read -r walls; do
+# print_prompt -g "[WP]" "$walls ${Fav_Theme_Walls}"
+    cp -f "$walls" "${Fav_Theme_Walls}"
+done <<< "${wallpapers}"
 
 # restore configs with theme override
-echo -e "\033[0;32m[Restoring]\033[0m \"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
+print_prompt -g "\n[Restoring]" "\"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
 "${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
 
 exit 0
