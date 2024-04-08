@@ -71,7 +71,8 @@ source "${scrDir}/globalcontrol.sh"
 #// hypr
 
 sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf"
-export gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+gtkTheme="$(grep 'gsettings set org.gnome.desktop.interface gtk-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+gtkIcon="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
 
 
 #// qtct
@@ -82,25 +83,27 @@ sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt6ct/qt6ct.conf"
 
 #// gtk3
 
-sed -i "/^gtk-theme-name=/c\gtk-theme-name=${themeSet}" $confDir/gtk-3.0/settings.ini
+sed -i "/^gtk-theme-name=/c\gtk-theme-name=${gtkTheme}" $confDir/gtk-3.0/settings.ini
 sed -i "/^gtk-icon-theme-name=/c\gtk-icon-theme-name=${gtkIcon}" $confDir/gtk-3.0/settings.ini
 
 
 #// gtk4
 
-if [ -d /run/current-system/sw/share/themes ]; then
+if [ -d /run/current-system/sw/share/themes ] ; then
     themeDir=/run/current-system/sw/share/themes
 else
     themeDir=/usr/share/themes
 fi
 rm -rf "${confDir}/gtk-4.0"
-ln -s "${themeDir}/${themeSet}/gtk-4.0" "${confDir}/gtk-4.0"
+ln -s "${themeDir}/${gtkTheme}/gtk-4.0" "${confDir}/gtk-4.0"
 
 
 #// flatpak GTK
 
-flatpak --user override --env=GTK_THEME="${themeSet}"
-flatpak --user override --env=ICON_THEME="${gtkIcon}"
+if pkg_installed flatpak ; then
+    flatpak --user override --env=GTK_THEME="${gtkTheme}"
+    flatpak --user override --env=ICON_THEME="${gtkIcon}"
+fi
 
 
 #// wallpaper

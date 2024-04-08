@@ -15,15 +15,15 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     exit 1
 fi
 
-export wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
-export cacheDir
+wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
 
 if [ ! -f "${wallbashOut}" ] ; then
-    echo "Error: Cache file \"${wallbashOut}\" not found!"
-    exit 1
+    "${scrDir}/swwwallcache.sh" -w "${wallbashImg}" &> /dev/null
 fi
 
+set -a
 source "${wallbashOut}"
+set +a
 
 
 #// deploy wallbash colors
@@ -34,7 +34,6 @@ fn_wallbash () {
     [ -d "$(dirname "${target}")" ] || { echo "[skip] \"${target}\"" && return 0 ;}
     appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
     sed '1d' "${tplt}" > "${target}"
-    source "${wallbashOut}"
 
     if [[ "${enableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${enableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]] ; then
         sed -i 's/<wallbash_pry1>/'"${dcol_pry4}"'/g
@@ -226,12 +225,21 @@ export -f fn_wallbash
 
 #// switch theme <//> wall based colors
 
-if [ "${enableWallDcol}" -gt 0 ] ; then
+if [ "${enableWallDcol}" -eq 0 ] ; then
+
+    echo ":: deploying ${hydeTheme} colors :: ${dcol_mode} wallpaper detected"
+    mapfile -d '' -t deployList < <(find "${hydeThemeDir}" -type f -name "*.theme" -print0)
+
+    while read -r pKey ; do
+        fKey="$(find "${hydeThemeDir}" -type f -name "$(basename "${pKey%.dcol}.theme")")"
+        [ -z "${fKey}" ] && deployList+=("${pKey}")
+    done < <(find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol")
+
+    parallel fn_wallbash ::: "${deployList[@]}"
+
+else
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
     find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash
-else
-    echo ":: deploying ${hydeTheme} colors :: ${dcol_mode} wallpaper detected"
-    find "${hydeThemeDir}" -type f -name "*.theme" | parallel fn_wallbash
 fi
 
 find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash
