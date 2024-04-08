@@ -34,9 +34,9 @@ set +e
 ask_help(){
 cat << HELP
 ...Usage...
-$0 "Theme-Name" "/Path/to/Configs"
-$0 "Theme-Name" "https://github.com/User/Repository" 
-$0 "Theme-Name" "https://github.com/User/Repository/tree/branch"
+$(print_prompt "$0 " -y "Theme-Name " -c "/Path/to/Configs")
+$(print_prompt "$0 " -y "Theme-Name " -c "https://github.com/User/Repository" )
+$(print_prompt "$0 " -y "Theme-Name " -c "https://github.com/User/Repository/tree/branch")
 HELP
 }
 
@@ -157,14 +157,11 @@ for pre in "${prefix[@]}" ; do
         done
     done
 done
-readonly extract
 
 if [ ${GtkFlag} -eq 0 ] ; then
     print_prompt -r "\n[ERROR] "  "Gtk pack not found --> ${Theme_Dir}/Source/arcs/${pre}_${Fav_Theme}.${ext}"
     exit 1
 fi
-
-echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 
 # populate wallpaper
 print_prompt -y "\n[$(echo "${wallpapers}" | wc -l)]" " Wallpapers"
@@ -176,6 +173,7 @@ while IFS= read -r walls; do
 done <<< "${wallpapers}"
 
 # restore configs with theme override
+echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 print_prompt -g "\n[Restoring]" "\"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
 "${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
 
