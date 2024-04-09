@@ -148,6 +148,7 @@ tgtDir=("$HOME/.themes" "$HOME/.icons" "$HOME/.icons")
 for indx in ${!prefix[@]} ; do
     tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
+    [ -d "${tgtDir[indx]}" ] || mkdir -p "${tgtDir[indx]}"
     tgtChk="$(basename "$(tar -tf "${tarFile}" | head -1)")"
     [ -d "${tgtDir[indx]}/${tgtChk}" ] && print_prompt -y "[skip] " "\"${tgtDir[indx]}/${tgtChk}\" already exists" && continue
     print_prompt -g "[extracting] " "${tarFile} --> ${tgtDir[indx]}"
@@ -165,5 +166,7 @@ done <<< "${wallpapers}"
 echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 print_prompt -g "\n[exec] " "restore_cfg.sh \"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
 "${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
+"$HOME/.local/share/bin/swwwallcache.sh" -t "${Fav_Theme}"
 
 exit 0
+

@@ -167,6 +167,13 @@ EOF
 
     "${scrDir}/restore_fnt.sh"
     "${scrDir}/restore_cfg.sh"
+    echo -e "\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
+    while IFS='"' read -r null1 themeName null2 themeRepo
+    do
+        themeName="${themeName//\"/}"
+        themeRepo="${themeRepo//\"/}"
+        "${scrDir}/themepatcher.sh" "${themeName}" "${themeRepo}"
+    done < "${scrDir}/themepatcher.lst"
 fi
 
 

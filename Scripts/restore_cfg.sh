@@ -81,10 +81,9 @@ do
 
 done
 
-if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
-    echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
+if [ -z "${ThemeOverride}" ] ; then
+    if nvidia_detect && [ $(grep '^source = ~/.config/hypr/nvidia.conf' ${HOME}/.config/hypr/hyprland.conf | wc -l) -eq 0 ] ; then
+        echo -e 'source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia\n' >> ${HOME}/.config/hypr/hyprland.conf
+    fi
+    "${scrDir}/restore_lnk.sh"
 fi
-
-"$HOME/.local/share/bin/swwwallcache.sh" -t "${ThemeOverride}"
-[ -z "${ThemeOverride}" ] && "${scrDir}/restore_lnk.sh"
-

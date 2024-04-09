@@ -12,25 +12,6 @@ if [ $? -ne 0 ] ; then
 fi
 
 
-# themepatcher
-echo -e "\033[0;32m[THEMEPATCHER]\033[0m additional themes available..."
-awk -F '"' '{print "["NR"]",$2}' "${scrDir}/themepatcher.lst"
-prompt_timer 60 "Patch these additional themes? [Y/n]"
-thmopt=${promptIn,,}
-
-if [ "${thmopt}" = "y" ] ; then
-    echo -e "\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
-    while IFS='"' read -r null1 themeName null2 themeRepo
-    do
-        themeName="${themeName//\"/}"
-        themeRepo="${themeRepo//\"/}"
-        "${scrDir}/themepatcher.sh" "${themeName}" "${themeRepo}"
-    done < "${scrDir}/themepatcher.lst"
-else
-    echo -e "\033[0;33m[SKIP]\033[0m additional themes not patched..."
-fi
-
-
 # sddm
 if pkg_installed sddm
     then
