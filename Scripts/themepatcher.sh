@@ -92,7 +92,7 @@ else Git_Repo=${2%/}
     fi
 fi
 
-print_prompt "Patching" -g " --//${Fav_Theme}//-- "  "from" -b "${Theme_Dir}\n"
+print_prompt "Patching" -g " --// ${Fav_Theme} //-- "  "from " -b "${Theme_Dir}\n"
 
 Fav_Theme_Dir="${Theme_Dir}/Configs/.config/hyde/themes/${Fav_Theme}"
 [ ! -d "${Fav_Theme_Dir}" ] && print_prompt -r "[ERROR] " "'${Fav_Theme_Dir}'" -y " Do not Exist" && exit 1
@@ -115,7 +115,7 @@ readonly restore_list
 # Get Wallpapers
 wallpapers=$(find "${Fav_Theme_Dir}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
 wallcount="$(echo "${wallpapers}" | wc -l)"
-{ [ -z "${wallpapers}" ] && print_prompt -r "[ERROR] " "No wallpapers found" && exit_flag=true ;} || { readonly wallpapers && print_prompt -g "[OK] " "wallpapers detected :: ${wallcount}\n" ;}
+{ [ -z "${wallpapers}" ] && print_prompt -r "[ERROR] " "No wallpapers found" && exit_flag=true ;} || { readonly wallpapers && print_prompt -g "\n[OK] " "wallpapers :: [count] ${wallcount} (.gif+.jpg+.jpeg+.png)" ;}
 
 # overparsing 😁
 check_tars() {
@@ -148,6 +148,8 @@ tgtDir=("$HOME/.themes" "$HOME/.icons" "$HOME/.icons")
 for indx in ${!prefix[@]} ; do
     tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
+    tgtChk="$(basename "$(tar -tf "${tarFile}" | head -1)")"
+    [ -d "${tgtDir[indx]}/${tgtChk}" ] && print_prompt -y "[skip] " "\"${tgtDir[indx]}/${tgtChk}\" already exists" && continue
     print_prompt -g "[extracting] " "${tarFile} --> ${tgtDir[indx]}"
     tar -xf "${tarFile}" -C "${tgtDir[indx]}"
 done
@@ -155,8 +157,8 @@ done
 # populate wallpaper
 Fav_Theme_Walls="${confDir}/hyde/themes/${Fav_Theme}/wallpapers"
 [ ! -d "${Fav_Theme_Walls}" ] && mkdir -p "${Fav_Theme_Walls}"
-while IFS= read -r walls; do
-    cp -f "$walls" "${Fav_Theme_Walls}"
+while IFS= read -r walls ; do
+    cp -f "${walls}" "${Fav_Theme_Walls}"
 done <<< "${wallpapers}"
 
 # restore configs with theme override
