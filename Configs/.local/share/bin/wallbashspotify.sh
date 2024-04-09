@@ -17,7 +17,7 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         pkexec chmod a+wr /opt/spotify/Apps -R
     fi
 
-    if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] ; then
+    if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] || [[ "${*}" == *"--reset"*  ]] ; then
         spicetify &> /dev/null
         mkdir -p ~/.config/spotify
         touch ~/.config/spotify/prefs
