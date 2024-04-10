@@ -170,10 +170,12 @@ EOF
     echo -e "\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
     while IFS='"' read -r null1 themeName null2 themeRepo
     do
-        themeName="${themeName//\"/}"
-        themeRepo="${themeRepo//\"/}"
-        "${scrDir}/themepatcher.sh" "${themeName}" "${themeRepo}"
+        themeNameQ+=("${themeName//\"/}")
+        themeRepoQ+=("${themeRepo//\"/}")
     done < "${scrDir}/themepatcher.lst"
+    parallel --link "${scrDir}/themepatcher.sh" "{1}" "{2}" "{3}" ::: "${themeNameQ[@]}" ::: "${themeRepoQ[@]}" ::: "--skipcaching"
+    echo -e "\n\033[0;32m[cache]\033[0m generating cache files..."
+    "$HOME/.local/share/bin/swwwallcache.sh" -t ""
 fi
 
 

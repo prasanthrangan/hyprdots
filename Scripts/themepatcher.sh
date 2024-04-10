@@ -127,7 +127,7 @@ check_tars() {
     if [ ! -z "${gsVal}" ] ; then
         print_prompt -g "[OK] " "hypr.theme :: [${gsLow}]" -b " ${gsVal}"
         trArc="$(find "${Theme_Dir}" -type f -name "${inVal}_*.tar.*")"
-        [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | sort | head -1)")"
+        [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | cut -d '/' -f1 | sort -u)")" && trVal="$(echo "${trVal}" | grep -w "${gsVal}")"
         print_prompt -g "[OK] " "../*.tar.* :: [${gsLow}]" -b " ${trVal}"
         [ "${trVal}" != "${gsVal}" ] && print_prompt -r "[ERROR] " "${gsLow}-theme set in hypr.theme does not exist in ${inVal}_*.tar.*" && exit_flag=true
     else
@@ -149,7 +149,7 @@ for indx in ${!prefix[@]} ; do
     tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
     [ -d "${tgtDir[indx]}" ] || mkdir -p "${tgtDir[indx]}"
-    tgtChk="$(basename "$(tar -tf "${tarFile}" | sort | head -1)")"
+    tgtChk="$(basename "$(tar -tf "${tarFile}" | cut -d '/' -f1 | sort -u)")"
     [ -d "${tgtDir[indx]}/${tgtChk}" ] && print_prompt -y "[skip] " "\"${tgtDir[indx]}/${tgtChk}\" already exists" && continue
     print_prompt -g "[extracting] " "${tarFile} --> ${tgtDir[indx]}"
     tar -xf "${tarFile}" -C "${tgtDir[indx]}"
