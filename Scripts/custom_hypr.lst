@@ -15,13 +15,11 @@ bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 
-
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
 qt5-quickcontrols                                      # for sddm theme ui elements
 qt5-quickcontrols2                                     # for sddm theme ui elements
 qt5-graphicaleffects                                   # for sddm theme effects
-
 
 # --------------------------------------------------- // Window Manager
 hyprland                                               # wlroots-based wayland compositor
@@ -37,7 +35,6 @@ slurp                                                  # region select for scree
 swappy                                                 # screenshot editor
 cliphist                                               # clipboard manager
 
-
 # --------------------------------------------------- // Dependencies
 polkit-kde-agent                                       # authentication agent
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
@@ -51,7 +48,6 @@ ffmpegthumbs                                           # for dolphin video thumb
 kde-cli-tools                                          # for dolphin file type defaults
 kservice5                                              # for "open with" menu in dolphin
 
-
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
 qt5ct                                                  # qt5 configuration tool
@@ -60,7 +56,6 @@ kvantum                                                # svg based qt theme engi
 qt5-wayland                                            # wayland support in qt5
 qt6-wayland                                            # wayland support in qt6
 
-
 # --------------------------------------------------- // Applications
 firefox                                                # browser
 kitty                                                  # terminal
@@ -68,7 +63,6 @@ dolphin                                                # kde file manager
 ark                                                    # kde file archiver
 vim                                                    # terminal text editor
 visual-studio-code-bin                                 # ide text editor
-
 
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
@@ -79,7 +73,5 @@ starship|fish                                          # customizable shell prom
 neofetch                                               # fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
-
 # --------------------------------------------------- // Hyprdots
 hyde-cli-git                                           # cli tool to manage hyde
-
