@@ -58,8 +58,7 @@ done
 #// update control file
 
 if ! $(echo "${thmList[@]}" | grep -wq "${themeSet}") ; then
-    echo "ERROR: theme not found, available themes are :: ${thmList[@]}"
-    exit 1
+    themeSet="${hydeTheme}"
 fi
 
 set_conf "hydeTheme" "${themeSet}"

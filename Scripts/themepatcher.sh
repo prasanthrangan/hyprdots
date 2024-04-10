@@ -5,6 +5,7 @@
 #|/ /---+------------------------------+/ /---|#
 
 print_prompt() {
+    [[ "${verbose}" == "false" ]] && return 0
     while (( "$#" )); do
         case "$1" in
             -r) echo -ne "\e[31m$2\e[0m"; shift 2 ;; # Red
@@ -28,6 +29,7 @@ if [ $? -ne 0 ] ; then
     exit 1
 fi
 
+verbose="${4}"
 set +e
 
 # error function
@@ -74,7 +76,7 @@ else Git_Repo=${2%/}
     Theme_Dir="${cacheDir}/themepatcher/${branch_dir}-${Git_Owner}"
 
     if [ -d "$Theme_Dir" ] ; then
-        echo "Directory $Theme_Dir already exists. Using existing directory."
+        print_prompt "Directory $Theme_Dir already exists. Using existing directory."
         if cd "$Theme_Dir" ; then
             git fetch --all &> /dev/null
             git reset --hard @{upstream} &> /dev/null
@@ -83,10 +85,10 @@ else Git_Repo=${2%/}
             print_prompt -y "Could not navigate to $Theme_Dir. Skipping git pull."
         fi
     else
-        echo "Directory $Theme_Dir does not exist. Cloning repository into new directory."
-        git clone -b "$branch" --depth 1 "$Git_Repo" "$Theme_Dir"
+        print_prompt "Directory $Theme_Dir does not exist. Cloning repository into new directory."
+        git clone -b "$branch" --depth 1 "$Git_Repo" "$Theme_Dir" &> /dev/null
         if [ $? -ne 0 ] ; then
-            echo "Git clone failed"
+            print_prompt "Git clone failed"
             exit 1
         fi
     fi
@@ -139,7 +141,7 @@ check_tars() {
 check_tars Gtk --mandatory
 check_tars Icon
 check_tars Cursor
-echo "" && [[ "${exit_flag}" = true ]] && exit 1
+print_prompt "" && [[ "${exit_flag}" = true ]] && exit 1
 
 # extract arcs
 prefix=("Gtk" "Icon" "Cursor")
@@ -165,7 +167,7 @@ done <<< "${wallpapers}"
 # restore configs with theme override
 echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 print_prompt -g "\n[exec] " "restore_cfg.sh \"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
-"${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
+"${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}" &> /dev/null
 [ "${3}" == "--skipcaching" ] || "$HOME/.local/share/bin/swwwallcache.sh" -t "${Fav_Theme}"
 
 exit 0
