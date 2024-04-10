@@ -28,6 +28,7 @@ esac
 
 #// reset the colors
 
+export reload_flag=1
 "${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
 notify-send -a "t1" -i "~/.config/dunst/icons/hyprdots.png" "${notif}"
 
