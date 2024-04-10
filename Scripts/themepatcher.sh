@@ -127,7 +127,7 @@ check_tars() {
     if [ ! -z "${gsVal}" ] ; then
         print_prompt -g "[OK] " "hypr.theme :: [${gsLow}]" -b " ${gsVal}"
         trArc="$(find "${Theme_Dir}" -type f -name "${inVal}_*.tar.*")"
-        [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | head -1)")"
+        [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | sort | head -1)")"
         print_prompt -g "[OK] " "../*.tar.* :: [${gsLow}]" -b " ${trVal}"
         [ "${trVal}" != "${gsVal}" ] && print_prompt -r "[ERROR] " "${gsLow}-theme set in hypr.theme does not exist in ${inVal}_*.tar.*" && exit_flag=true
     else
@@ -149,7 +149,7 @@ for indx in ${!prefix[@]} ; do
     tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
     [ -d "${tgtDir[indx]}" ] || mkdir -p "${tgtDir[indx]}"
-    tgtChk="$(basename "$(tar -tf "${tarFile}" | head -1)")"
+    tgtChk="$(basename "$(tar -tf "${tarFile}" | sort | head -1)")"
     [ -d "${tgtDir[indx]}/${tgtChk}" ] && print_prompt -y "[skip] " "\"${tgtDir[indx]}/${tgtChk}\" already exists" && continue
     print_prompt -g "[extracting] " "${tarFile} --> ${tgtDir[indx]}"
     tar -xf "${tarFile}" -C "${tgtDir[indx]}"
@@ -166,7 +166,7 @@ done <<< "${wallpapers}"
 echo -en "${restore_list}" > "${Theme_Dir}/restore_cfg.lst"
 print_prompt -g "\n[exec] " "restore_cfg.sh \"${Theme_Dir}/restore_cfg.lst\" \"${Theme_Dir}/Configs\" \"${Fav_Theme}\"\n"
 "${scrDir}/restore_cfg.sh" "${Theme_Dir}/restore_cfg.lst" "${Theme_Dir}/Configs" "${Fav_Theme}"
-"$HOME/.local/share/bin/swwwallcache.sh" -t "${Fav_Theme}"
+[ "${3}" == "--skipcaching" ] || "$HOME/.local/share/bin/swwwallcache.sh" -t "${Fav_Theme}"
 
 exit 0
 
