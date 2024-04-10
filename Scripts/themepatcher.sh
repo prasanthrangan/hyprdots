@@ -24,7 +24,7 @@ print_prompt() {
 
 scrDir=$(dirname "$(realpath "$0")")
 source "${scrDir}/global_fn.sh"
-if [ $? -ne 0 ] ; then
+if [ $? -ne 0 ]; then
     echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
@@ -33,38 +33,41 @@ verbose="${4}"
 set +e
 
 # error function
-ask_help(){
+ask_help() {
 cat << HELP
 ...Usage...
 $(print_prompt "$0 " -y "Theme-Name " -c "/Path/to/Configs")
-$(print_prompt "$0 " -y "Theme-Name " -c "https://github.com/User/Repository" )
+$(print_prompt "$0 " -y "Theme-Name " -c "https://github.com/User/Repository")
 $(print_prompt "$0 " -y "Theme-Name " -c "https://github.com/User/Repository/tree/branch")
 HELP
 }
 
-if [[ -z $1 || -z $2 ]] ; then ask_help ; exit 1 ; fi
+if [[ -z $1 || -z $2 ]]; then
+    ask_help
+    exit 1
+fi
 
 dcolDir="${confDir}/hyde/wallbash/Wall-Dcol"
-[ ! -d "${dcolDir}" ] && print_prompt "[ERROR] " "${dcolDir} do not exist!" &&  exit 1
+[ ! -d "${dcolDir}" ] && print_prompt "[ERROR]" "${dcolDir} do not exist!" && exit 1
 
 # set parameters
 Fav_Theme="$1"
 
 if [ -d "$2" ]; then
     Theme_Dir="$2"
-
-else Git_Repo=${2%/}
-    if echo "$Git_Repo" | grep -q "/tree/" ; then
+else 
+    Git_Repo=${2%/}
+    if echo "$Git_Repo" | grep -q "/tree/"; then
         branch=${Git_Repo#*tree/}
         Git_Repo=${Git_Repo%/tree/*}
     else
         branches=$(curl -s "https://api.github.com/repos/${Git_Repo#*://*/}/branches" | jq -r '.[].name')
         branches=($branches)
-        if [[ ${#branches[@]} -le 1 ]] ; then
+        if [[ ${#branches[@]} -le 1 ]]; then
             branch=${branches[0]}
         else
             echo "Select a Branch"
-            select branch in "${branches[@]}" ; do
+            select branch in "${branches[@]}"; do
                 [[ -n $branch ]] && break || echo "Invalid selection. Please try again."
             done
         fi
@@ -75,9 +78,9 @@ else Git_Repo=${2%/}
     branch_dir=${branch//\//_}
     Theme_Dir="${cacheDir}/themepatcher/${branch_dir}-${Git_Owner}"
 
-    if [ -d "$Theme_Dir" ] ; then
+    if [ -d "$Theme_Dir" ]; then
         print_prompt "Directory $Theme_Dir already exists. Using existing directory."
-        if cd "$Theme_Dir" ; then
+        if cd "$Theme_Dir"; then
             git fetch --all &> /dev/null
             git reset --hard @{upstream} &> /dev/null
             cd - &> /dev/null
@@ -87,7 +90,7 @@ else Git_Repo=${2%/}
     else
         print_prompt "Directory $Theme_Dir does not exist. Cloning repository into new directory."
         git clone -b "$branch" --depth 1 "$Git_Repo" "$Theme_Dir" &> /dev/null
-        if [ $? -ne 0 ] ; then
+        if [ $? -ne 0 ]; then
             print_prompt "Git clone failed"
             exit 1
         fi
@@ -126,7 +129,7 @@ check_tars() {
     local gsVal="$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*'${gsLow}'-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme" )"
     local trVal
 
-    if [ ! -z "${gsVal}" ] ; then
+    if [ ! -z "${gsVal}" ]; then
         print_prompt -g "[OK] " "hypr.theme :: [${gsLow}]" -b " ${gsVal}"
         trArc="$(find "${Theme_Dir}" -type f -name "${inVal}_*.tar.*")"
         [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | cut -d '/' -f1 | sort -u)")" && trVal="$(echo "${trVal}" | grep -w "${gsVal}")"
@@ -147,7 +150,7 @@ print_prompt "" && [[ "${exit_flag}" = true ]] && exit 1
 prefix=("Gtk" "Icon" "Cursor")
 tgtDir=("$HOME/.themes" "$HOME/.icons" "$HOME/.icons")
 
-for indx in ${!prefix[@]} ; do
+for indx in ${!prefix[@]}; do
     tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
     [ -d "${tgtDir[indx]}" ] || mkdir -p "${tgtDir[indx]}"
@@ -160,7 +163,7 @@ done
 # populate wallpaper
 Fav_Theme_Walls="${confDir}/hyde/themes/${Fav_Theme}/wallpapers"
 [ ! -d "${Fav_Theme_Walls}" ] && mkdir -p "${Fav_Theme_Walls}"
-while IFS= read -r walls ; do
+while IFS= read -r walls; do
     cp -f "${walls}" "${Fav_Theme_Walls}"
 done <<< "${wallpapers}"
 
@@ -171,4 +174,3 @@ print_prompt -g "\n[exec] " "restore_cfg.sh \"${Theme_Dir}/restore_cfg.lst\" \"$
 [ "${3}" == "--skipcaching" ] || "$HOME/.local/share/bin/swwwallcache.sh" -t "${Fav_Theme}"
 
 exit 0
-
