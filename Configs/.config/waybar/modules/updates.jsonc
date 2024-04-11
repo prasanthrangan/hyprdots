@@ -1,10 +1,11 @@
     "custom/updates": {
-        "exec": "${ScrDir}/systemupdate.sh",
+        "exec": "systemupdate.sh",
         "return-type": "json",
-        "format": "󰮯 {}",
+        "format": "{}",
         "rotate": ${r_deg},
-        "on-click": "${ScrDir}/systemupdate.sh up",
+        "on-click": "systemupdate.sh up",
         "interval": 86400, // once every day
         "tooltip": true,
+        "signal": 20,
     },
 

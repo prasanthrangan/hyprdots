@@ -12,7 +12,7 @@ configuration {
     icon-theme:                  "Tela-circle-dracula";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -35,7 +35,7 @@ mainbox {
     orientation:                 horizontal;
     children:                    [ "inputbar" , "mode-switcher" , "listbox" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.cache/hyde/wall.blur", height);
 }
 
 
@@ -45,7 +45,7 @@ inputbar {
     width:                       8em;
     children:                    [ "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", height);
+    background-image:            url("~/.cache/hyde/wall.thmb", height);
 }
 entry {
     enabled:                     false;

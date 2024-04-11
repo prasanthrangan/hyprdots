@@ -5,7 +5,7 @@ configuration {
     font:                        "JetBrainsMono Nerd Font 9";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -24,25 +24,44 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     0em;
+    padding:                     0.8em;
     orientation:                 vertical;
-    children:                    [ "inputbar" , "listbox" ];
+    children:                    [ "wallbox" , "listbox" ];
     background-color:            transparent;
+}
+wallbox {
+    spacing:                     0em;
+    padding:                     0em;
+    expand:                      false;
+    orientation:                 horizontal;
+    background-color:            transparent;
+    background-image:            url("~/.cache/hyde/wall.blur", width);
+    children:                    [ "wallframe" , "inputbar" ];
+    border-radius:               0.5em;
+}
+wallframe {
+    width:                       5em;
+    spacing:                     0em;
+    padding:                     0em;
+    expand:                      false;
+    background-color:            @main-bg;
+    background-image:            url("~/.cache/hyde/wall.quad", width);
 }
 
 
 // Inputs //
 inputbar {
     enabled:                     true;
-    padding:                     0.5em;
+    padding:                     0em;
     children:                    [ "entry" ];
-    background-color:            transparent;
+    background-color:            @main-bg;
+    expand:                      true;
 }
 entry {
     enabled:                     true;
-    padding:                     3em;
+    padding:                     2em;
     text-color:                  @main-fg;
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", width);
 }
 
 
@@ -50,20 +69,27 @@ entry {
 listbox {
     spacing:                     0em;
     padding:                     0em;
-    orientation:                 horizontal;
-    children:                    [ "listview" ];
+    orientation:                 vertical;
+    children:                    [ "dummy" , "listview" , "dummy" ];
     background-color:            transparent;
 }
 listview {
     enabled:                     true;
     padding:                     0.5em;
     columns:                     1;
+    lines:                       12; 
     cycle:                       true;
     fixed-height:                true;
-    fixed-columns:               true;
+    fixed-columns:               false;
+    expand:                      false;
     cursor:                      "default";
     background-color:            transparent;
     text-color:                  @main-fg;
+}
+dummy {
+    spacing:                     0em;
+    padding:                     0em;
+    background-color:            transparent;
 }
 
 
