@@ -161,7 +161,7 @@ EOF
 
     "${scrDir}/restore_fnt.sh"
     "${scrDir}/restore_cfg.sh"
-    echo -e "\n\033[0;32m[THEMEPATCHER]\033[0m Patching themes..."
+    echo -e "\n\033[0;32m[themepatcher]\033[0m Patching themes..."
     while IFS='"' read -r null1 themeName null2 themeRepo
     do
         themeNameQ+=("${themeName//\"/}")
@@ -170,7 +170,9 @@ EOF
     parallel --bar --link "${scrDir}/themepatcher.sh" "{1}" "{2}" "{3}" "{4}" ::: "${themeNameQ[@]}" ::: "${themeRepoQ[@]}" ::: "--skipcaching" ::: "false"
     echo -e "\n\033[0;32m[cache]\033[0m generating cache files..."
     "$HOME/.local/share/bin/swwwallcache.sh" -t ""
-    "$HOME/.local/share/bin/themeswitch.sh"
+    if printenv HYPRLAND_INSTANCE_SIGNATURE &> /dev/null; then
+        "$HOME/.local/share/bin/themeswitch.sh"
+    fi
 fi
 
 #---------------------#
