@@ -2,8 +2,8 @@
         "format": "{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo  logout",
-        "on-click": "${ScrDir}/logoutlaunch.sh 2",
-        "on-click-right": "${ScrDir}/logoutlaunch.sh 1",
+        "on-click": "logoutlaunch.sh 2",
+        "on-click-right": "logoutlaunch.sh 1",
         "interval" : 86400, // once every day
         "tooltip": true
     },

@@ -118,7 +118,7 @@ EOF
             echo "Skipping nvidia drivers installation"
             ;;
     esac
-    
+
     echo -e "\033[0;32m[GPU]\033[0m detected // $dGPU"
 
     #----------------#

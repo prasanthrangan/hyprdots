@@ -15,20 +15,18 @@ bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 
-
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
 qt5-quickcontrols                                      # for sddm theme ui elements
 qt5-quickcontrols2                                     # for sddm theme ui elements
 qt5-graphicaleffects                                   # for sddm theme effects
 
-
 # --------------------------------------------------- // Window Manager
 hyprland                                               # wlroots-based wayland compositor
 dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
-swww                                                   # wallpaper
+swww-git                                               # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
@@ -36,7 +34,6 @@ hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 swappy                                                 # screenshot editor
 cliphist                                               # clipboard manager
-
 
 # --------------------------------------------------- // Dependencies
 polkit-kde-agent                                       # authentication agent
@@ -51,15 +48,14 @@ ffmpegthumbs                                           # for dolphin video thumb
 kde-cli-tools                                          # for dolphin file type defaults
 kservice5                                              # for "open with" menu in dolphin
 
-
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool
 qt5ct                                                  # qt5 configuration tool
 qt6ct                                                  # qt6 configuration tool
-kvantum                                                # svg based qt theme engine
+kvantum                                                # svg based qt6 theme engine
+kvantum-qt5                                            # svg based qt5 theme engine
 qt5-wayland                                            # wayland support in qt5
 qt6-wayland                                            # wayland support in qt6
-
 
 # --------------------------------------------------- // Applications
 firefox                                                # browser
@@ -67,8 +63,7 @@ kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
 vim                                                    # terminal text editor
-visual-studio-code-bin                                 # ide text editor
-
+code                                                   # ide text editor
 
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
@@ -79,7 +74,5 @@ starship|fish                                          # customizable shell prom
 neofetch                                               # fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
-
-# --------------------------------------------------- // Hyprdots
-hyprdots-ctl-git                                       # cli tool to manage hyprdots
-
+# --------------------------------------------------- // HyDE
+hyde-cli-git                                           # cli tool to manage hyde

@@ -12,7 +12,7 @@ configuration {
     icon-theme:                  "Tela-circle-dracula";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -46,7 +46,7 @@ inputbar {
     padding:                     0em;
     children:                    [ "entry" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.thmb", height);
+    background-image:            url("~/.cache/hyde/wall.sqre", height);
     border-radius:               1em;
 }
 entry {
@@ -88,7 +88,7 @@ dummy {
 element {
     enabled:                     true;
     spacing:                     1em;
-    padding:                     0.5em;
+    padding:                     0.5em 0.5em 0.5em 1.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
