@@ -6,29 +6,25 @@
 
 scrDir=$(dirname "$(realpath "$0")")
 source "${scrDir}/global_fn.sh"
-if [ $? -ne 0 ] ; then
+if [ $? -ne 0 ]; then
     echo "Error: unable to source global_fn.sh..."
     exit 1
 fi
-
 
 # grub
 read -p "Do you want to change GRUB configuration? (y/N): " answer
 case $answer in
     [yY])
         echo "Updating GRUB configuration"
-        if pkg_installed grub && [ -f /boot/grub/grub.cfg ]
-            then
+        if pkg_installed grub && [ -f /boot/grub/grub.cfg ]; then
             echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // grub"
 
-            if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]
-                then
+            if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]; then
                 echo -e "\033[0;32m[BOOTLOADER]\033[0m configuring grub..."
                 sudo cp /etc/default/grub /etc/default/grub.t2.bkp
                 sudo cp /boot/grub/grub.cfg /boot/grub/grub.t2.bkp
 
-                if nvidia_detect
-                    then
+                if nvidia_detect; then
                     echo -e "\033[0;32m[BOOTLOADER]\033[0m nvidia detected, adding nvidia_drm.modeset=1 to boot option..."
                     gcld=$(grep "^GRUB_CMDLINE_LINUX_DEFAULT=" "/etc/default/grub" | cut -d'"' -f2 | sed 's/\b nvidia_drm.modeset=.\b//g')
                     sudo sed -i "/^GRUB_CMDLINE_LINUX_DEFAULT=/c\GRUB_CMDLINE_LINUX_DEFAULT=\"${gcld} nvidia_drm.modeset=1\"" /etc/default/grub
@@ -37,12 +33,12 @@ case $answer in
                 echo -e "Select grub theme:\n[1] Retroboot (dark)\n[2] Pochita (light)"
                 read -p " :: Press enter to skip grub theme <or> Enter option number : " grubopt
                 case ${grubopt} in
-                    1) grubtheme="Retroboot";;
-                    2) grubtheme="Pochita";;
-                    *) grubtheme="None";;
+                    1) grubtheme="Retroboot" ;;
+                    2) grubtheme="Pochita" ;;
+                    *) grubtheme="None" ;;
                 esac
 
-                if [ "${grubtheme}" == "None" ] ; then
+                if [ "${grubtheme}" == "None" ]; then
                     echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..."
                     sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
                 else
@@ -66,8 +62,6 @@ case $answer in
         ;;
 esac
 
-
-
 # systemd-boot
 read -p "Do you want to change systemd-boot configuration? (y/N): " answer
 case $answer in
@@ -77,11 +71,9 @@ case $answer in
             then
             echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // systemd-boot"
 
-            if [ $(ls -l /boot/loader/entries/*.conf.t2.bkp 2> /dev/null | wc -l) -ne $(ls -l /boot/loader/entries/*.conf 2> /dev/null | wc -l) ]
-                then
+            if [ $(ls -l /boot/loader/entries/*.conf.t2.bkp 2> /dev/null | wc -l) -ne $(ls -l /boot/loader/entries/*.conf 2> /dev/null | wc -l) ]; then
                 echo "nvidia detected, adding nvidia_drm.modeset=1 to boot option..."
-                find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf
-                do
+                find /boot/loader/entries/ -type f -name "*.conf" | while read imgconf; do
                     sudo cp ${imgconf} ${imgconf}.t2.bkp
                     sdopt=$(grep -w "^options" ${imgconf} | sed 's/\b quiet\b//g' | sed 's/\b splash\b//g' | sed 's/\b nvidia_drm.modeset=.\b//g')
                     sudo sed -i "/^options/c${sdopt} quiet splash nvidia_drm.modeset=1" ${imgconf}
@@ -96,14 +88,12 @@ case $answer in
         ;;
 esac
 
-
 # pacman
 read -p "Do you want to change pacman configuration? (y/N): " answer
 case $answer in
     [yY])
         echo "Updating pacman configuration"
-        if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]
-            then
+        if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]; then
             echo -e "\033[0;32m[PACMAN]\033[0m adding extra spice to pacman..."
 
             sudo cp /etc/pacman.conf /etc/pacman.conf.t2.bkp
