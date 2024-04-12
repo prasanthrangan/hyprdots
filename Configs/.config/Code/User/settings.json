@@ -1,18 +1,136 @@
 {
-    "workbench.colorTheme": "Catppuccin Mocha",
-    "window.menuBarVisibility": "toggle",
-    "editor.fontSize": 12,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.scrollbar.verticalScrollbarSize": 0,
-    "security.workspace.trust.untrustedFiles": "newWindow",
-    "security.workspace.trust.startupPrompt": "never",
-    "security.workspace.trust.enabled": false,
-    "editor.minimap.side": "left",
-    "editor.fontFamily": "'Maple Mono', 'monospace', monospace",
-    "extensions.autoUpdate": false,
-    "workbench.statusBar.visible": false,
-    "terminal.external.linuxExec": "kitty",
-    "terminal.explorerKind": "both",
-    "terminal.sourceControlRepositoriesKind": "both",
-    "telemetry.telemetryLevel": "off"
+  // open json editor for settings
+  "workbench.settings.editor": "json",
+
+  // Theme
+
+  "workbench.colorTheme": "Dark Decay",
+  "workbench.iconTheme": "catppuccin-perfect-dark",
+
+  // Change font
+
+  "editor.fontFamily": "JetBrains Mono",
+  "scm.inputFontFamily": "JetBrains Mono",
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "chat.editor.fontFamily": "JetBrains Mono",
+  "debug.console.fontFamily": "JetBrains Mono",
+  "editor.codeLensFontFamily": "JetBrains Mono",
+  "notebook.output.fontFamily": "JetBrains Mono",
+  "markdown.preview.fontFamily": "JetBrains Mono",
+  "editor.inlayHints.fontFamily": "JetBrains Mono",
+
+  // Font size
+
+  "editor.fontSize": 15,
+  "terminal.integrated.fontSize": 13,
+
+  // ui
+  "editor.minimap.enabled": false,
+  "window.commandCenter": false,
+  "editor.scrollbar.vertical": "auto",
+  "window.titleBarStyle": "custom",
+  "editor.scrollbar.horizontal": "auto",
+
+  // Toggle excluded files
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.husky": true,
+    "**/drizzle": true,
+    "**/dist": true,
+    "**/.todo.md": true,
+    "**/.vscode": true,
+    "**/.eslintrc.cjs": true,
+    "**/.editorconfig": true,
+    "**/.gitignore": true,
+    "**/.lintstagedrc.mjs": true,
+    "**/.markdownlint.json": true,
+    "**/.markdownlintignore": true,
+    "**/.prettierignore": true,
+    "**/bun.lockb": true,
+    "**/cspell.json": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true,
+    "**/next-env.d.ts": true,
+    "**/postcss.config.cjs": true,
+    "**/prettier.config.js": true,
+    "**/README.md": true,
+    "**/next.config.js": true,
+    "**/tailwind.config.ts": true,
+    "**/drizzle.config.ts": true,
+    "**/migrate.ts": true,
+    "**/.env.example": true
+  },
+
+  // Misc
+  "workbench.startupEditor": "none",
+  "explorer.compactFolders": false,
+  "editor.tabSize": 2,
+  "editor.linkedEditing": true,
+  "breadcrumbs.filePath": "off",
+  "files.trimTrailingWhitespace": true,
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.closeOnFileDelete": true,
+  "workbench.editor.untitled. modifications.savePrompt": false,
+  "workbench.editor.labelFormat": "short",
+  "workbench.welcome.enabled": false,
+  "extensions.ignoreRecommendations": true,
+  "editor.formatOnSave": true,
+
+  // Keyboard
+
+  "keyboard.dispatch": "keyCode",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Cursor
+
+  // "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "expand",
+  "smoothtype.duration": 65,
+  "smoothtype.autoReload": false,
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 1,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+
+  // Changing to get Vim feel
+
+  "workbench.statusBar.visible": false,
+  "breadcrumbs.enabled": false,
+  "editor.suggest.insertMode": "replace",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "launch": {},
+  "[json]": {},
+  "zenMode.hideLineNumbers": false,
+  "editor.lineNumbers": "on",
+  "workbench.activityBar.location": "hidden",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+
+  "window.menuBarVisibility": "toggle",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "security.workspace.trust.untrustedFiles": "newWindow",
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.enabled": false,
+  "editor.minimap.side": "left",
+  "extensions.autoUpdate": false,
+  "terminal.external.linuxExec": "kitty",
+  "terminal.explorerKind": "both",
+  "terminal.sourceControlRepositoriesKind": "both",
+  "telemetry.telemetryLevel": "off"
 }
