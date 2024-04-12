@@ -25,45 +25,46 @@ window {
 }
 mainbox {
     enabled:                     true;
-    children:                    [ "listview" ];
+    orientation:                 horizontal;
+    children:                    [ "dummy", "frame", "dummy" ];
     background-color:            @main-bg;
+}
+frame {
+    children:                    [ "listview" ];
+    background-color:            transparent;
 }
 
 
 // Lists //
 listview {
     enabled:                     true;
-    columns:                     3;
-    lines:                       1;
     spacing:                     4em;
-    padding:                     4em 6em 4em 6em;
-    cycle:                       true;
+    padding:                     5em;
+    columns:                     10;
+    lines:                       1;
     dynamic:                     false;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     true;
-    fixed-height:                true;
+    fixed-height:                false;
     fixed-columns:               true;
+    reverse:                     true;
     cursor:                      "default";
     background-color:            transparent;
     text-color:                  @main-fg;
+}
+dummy {
+    width:                       2em;
+    expand:                      false;
+    background-color:            transparent;
 }
 
 
 // Elements //
 element {
     enabled:                     true;
-    orientation:                 horizontal;
     spacing:                     0em;
-    padding:                     0.5em;
+    padding:                     0em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;
-}
-@media(max-aspect-ratio: 1.8) {
-    element {
-        orientation:             vertical;
-    }
 }
 element selected.normal {
     background-color:            @select-bg;
@@ -71,8 +72,10 @@ element selected.normal {
 }
 element-icon {
     cursor:                      inherit;
+    size:                        10em;
     background-color:            transparent;
     text-color:                  inherit;
+    expand:                      false;
 }
 element-text {
     vertical-align:              0.5;

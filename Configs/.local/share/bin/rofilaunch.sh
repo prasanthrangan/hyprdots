@@ -3,10 +3,11 @@
 
 #// set variables
 
-rofiScale=10
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 roconf="${confDir}/rofi/styles/style_${rofiStyle}.rasi"
+
+[[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
 
 if [ ! -f "${roconf}" ] ; then
     roconf="$(find "${confDir}/rofi/styles" -type f -name "style_*.rasi" | sort -t '_' -k 2 -n | head -1)"

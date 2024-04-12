@@ -2,10 +2,10 @@
 configuration {
     modi:                        "drun,filebrowser,window,run";
     show-icons:                  true;
-    display-drun:                "";
-    display-run:                 "";
-    display-filebrowser:         "";
-    display-window:              "";
+    display-drun:                " ";
+    display-run:                 " ";
+    display-filebrowser:         " ";
+    display-window:              " ";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
@@ -60,8 +60,6 @@ mode-switcher {
 }
 button {
     cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.47;
     border-radius:               3em;
     background-color:            @main-bg;
     text-color:                  @main-fg;
