@@ -29,20 +29,20 @@ if pkg_installed zsh && pkg_installed oh-my-zsh-git; then
 
     # generate plugins from list
     while read r_plugin; do
-        z_plugin=$(echo "$r_plugin" | awk -F '/' '{print $NF}')
-        if [ "${r_plugin:0:4}" == "http" ] && [ ! -d "$Zsh_Plugins/$z_plugin" ]; then
-            sudo git clone "$r_plugin" "$Zsh_Plugins/$z_plugin"
+        z_plugin=$(echo "${r_plugin}" | awk -F '/' '{print $NF}')
+        if [ "${r_plugin:0:4}" == "http" ] && [ ! -d "${Zsh_Plugins}/${z_plugin}" ]; then
+            sudo git clone "${r_plugin}" "${Zsh_Plugins}/${z_plugin}"
         fi
-        if [ "$z_plugin" == "zsh-completions" ] && [ "$(grep 'fpath+=.*plugins/zsh-completions/src' "$Zsh_rc" | wc -l)" -eq 0 ]; then
+        if [ "${z_plugin}" == "zsh-completions" ] && [ "$(grep 'fpath+=.*plugins/zsh-completions/src' "${Zsh_rc}" | wc -l)" -eq 0 ]; then
             Fix_Completion='\nfpath+=${ZSH_CUSTOM:-${ZSH:-/usr/share/oh-my-zsh}/custom}/plugins/zsh-completions/src'
         else
-            w_plugin=$(echo "${w_plugin} ${z_plugin}")
+            [ -z "${z_plugin}" ] || w_plugin+=" ${z_plugin}"
         fi
     done < <(cut -d '#' -f 1 "${scrDir}/restore_zsh.lst" | sed 's/ //g')
 
     # update plugin array in zshrc
-    echo -e "\033[0;32m[SHELL]\033[0m intalling plugins (${w_plugin})"
-    sed -i "/^plugins=/c\plugins=($w_plugin)$Fix_Completion" "$Zsh_rc"
+    echo -e "\033[0;32m[SHELL]\033[0m intalling plugins (${w_plugin} )"
+    sed -i "/^plugins=/c\plugins=(${w_plugin} )${Fix_Completion}" "${Zsh_rc}"
 fi
 
 # set shell

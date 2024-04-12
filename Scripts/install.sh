@@ -166,12 +166,15 @@ EOF
     do
         themeNameQ+=("${themeName//\"/}")
         themeRepoQ+=("${themeRepo//\"/}")
+        themePath="${confDir}/hyde/themes/${themeName}"
+        [ -d "${themePath}" ] || mkdir -p "${themePath}"
+        [ -f "${themePath}/.sort" ] || echo "${#themeNameQ[@]}" > "${themePath}/.sort"
     done < "${scrDir}/themepatcher.lst"
     parallel --bar --link "${scrDir}/themepatcher.sh" "{1}" "{2}" "{3}" "{4}" ::: "${themeNameQ[@]}" ::: "${themeRepoQ[@]}" ::: "--skipcaching" ::: "false"
     echo -e "\n\033[0;32m[cache]\033[0m generating cache files..."
     "$HOME/.local/share/bin/swwwallcache.sh" -t ""
     if printenv HYPRLAND_INSTANCE_SIGNATURE &> /dev/null; then
-        "$HOME/.local/share/bin/themeswitch.sh"
+        "$HOME/.local/share/bin/themeswitch.sh" &> /dev/null
     fi
 fi
 

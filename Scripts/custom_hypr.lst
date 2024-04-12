@@ -26,7 +26,7 @@ hyprland                                               # wlroots-based wayland c
 dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
-swww                                                   # wallpaper
+swww-git                                               # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
@@ -52,7 +52,8 @@ kservice5                                              # for "open with" menu in
 nwg-look                                               # gtk configuration tool
 qt5ct                                                  # qt5 configuration tool
 qt6ct                                                  # qt6 configuration tool
-kvantum                                                # svg based qt theme engine
+kvantum                                                # svg based qt6 theme engine
+kvantum-qt5                                            # svg based qt5 theme engine
 qt5-wayland                                            # wayland support in qt5
 qt6-wayland                                            # wayland support in qt6
 
@@ -62,7 +63,7 @@ kitty                                                  # terminal
 dolphin                                                # kde file manager
 ark                                                    # kde file archiver
 vim                                                    # terminal text editor
-visual-studio-code-bin                                 # ide text editor
+code                                                   # ide text editor
 
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
@@ -73,5 +74,5 @@ starship|fish                                          # customizable shell prom
 neofetch                                               # fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
-# --------------------------------------------------- // Hyprdots
+# --------------------------------------------------- // HyDE
 hyde-cli-git                                           # cli tool to manage hyde
