@@ -3,8 +3,8 @@
 
 # set variables
 
-scrDir=`dirname "$(realpath "$0")"`
-source $scrDir/globalcontrol.sh
+scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
 
 
 # regen conf
@@ -25,8 +25,8 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         spotfy_flags='--ozone-platform=wayland'
         sed -i -e "/^prefs_path/ s+=.*$+= $HOME/.config/spotify/prefs+g" \
             -e "/^spotify_launch_flags/ s+=.*$+= $spotfy_flags+g" "$sptfyConf"
-	    curl -L -o ${cacheDir}/Spotify_Sleek.tar.gz https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Spotify_Sleek.tar.gz
-        tar -xzf ${cacheDir}/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
+	    curl -L -o ${cacheDir}/landing/Spotify_Sleek.tar.gz https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Spotify_Sleek.tar.gz
+        tar -xzf ${cacheDir}/landing/Spotify_Sleek.tar.gz -C ~/.config/spicetify/Themes/
         spicetify backup apply
         spicetify config current_theme Sleek
         spicetify config color_scheme Wallbash
