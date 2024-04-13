@@ -40,4 +40,3 @@ bind = CTRL Alt_L, V, submap, passthrough
 submap = passthrough
 bind = CTRL Alt_L, V, submap, reset
 submap = reset
-
