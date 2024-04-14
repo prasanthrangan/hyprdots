@@ -9,8 +9,37 @@
 #* Khing 🦆
  
 pkill -x rofi && exit
-scrDir=`dirname "$(realpath "$0")"`
+scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
+
+confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+keyconfDir="$confDir/hypr"
+keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
+tmpMapDir="/tmp"
+tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
+keycodeFile="${hydeConfDir}/keycode.conf"
+roDir="$confDir/rofi"
+roconf="$roDir/clipboard.rasi"
+
+HELP() {
+  cat << HELP
+Usage: $0 [options]"
+Options:"
+ -j     Show the JSON format
+ -p     Show the pretty format
+ -d     Add custom delimiter symbol (default '>')
+ -f     Add custom file
+ -w     Custom width
+ -h     Display this help message
+Example:
+ $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
+    
+For mapping key codes, create a file named $keycodeFile and use the following format:
+"number": "symbol",
+example: "61": "/",
+
+HELP
+}
 
 while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -36,21 +65,13 @@ while [ "$#" -gt 0 ]; do
          shift 
          height="$1"
         ;;
-        -*) # Add Help message
-        echo 'Read the script for more information'
+        -*|--help) # Add Help message
+          HELP
           exit
         ;;
     esac
     shift
 done
-
-confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-keyconfDir="$confDir/hypr"
-keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
-tmpMapDir="/tmp"
-tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
-roDir="$confDir/rofi"
-roconf="$roDir/clipboard.rasi"
 
 # read hypr theme border
 wind_border=$(( hypr_border * 3/2 ))
@@ -135,12 +156,25 @@ $comments
 "r" : "Right",
 "u" : "Up",
 };
+
+def keycode_mapping: { #? Fetches keycode from a file
+ "0": "",
+ $([ -f "${keycodeFile}" ] &&  cat "${keycodeFile}")
+};
 EOF
+
+
+
+cat << KEYCODE >> $tmpMap
+
+KEYCODE
+
 
 #? Script to re Modify hyprctl json output
 #! This is Our Translator for some binds  #Khing!
 jsonData="$(hyprctl binds -j | jq -L "$tmpMapDir" -c '
 include "hyprdots-keybinds";
+
 
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
     "64": " ",  #? SUPER  󰻀
@@ -149,11 +183,7 @@ include "hyprdots-keybinds";
     "1": "SHIFT",
     "0": " ",
   };
-  def keycode_mapping: { #?Define mappings for .keycode to be readable symbols and also be visible in keybinds
-    "0": "",
-    "61": "?",
-  
-  };
+
   def key_mapping: { #?Define mappings for .keys to be readable symbols
     "mouse_up" : "󱕑",
     "mouse_down" : "󱕐",
