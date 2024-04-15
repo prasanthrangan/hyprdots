@@ -9,8 +9,37 @@
 #* Khing 🦆
  
 pkill -x rofi && exit
-scrDir=`dirname "$(realpath "$0")"`
+scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
+
+confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
+keyconfDir="$confDir/hypr"
+keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
+tmpMapDir="/tmp"
+tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
+keycodeFile="${hydeConfDir}/keycode.conf"
+roDir="$confDir/rofi"
+roconf="$roDir/clipboard.rasi"
+
+HELP() {
+  cat << HELP
+Usage: $0 [options]"
+Options:"
+ -j     Show the JSON format
+ -p     Show the pretty format
+ -d     Add custom delimiter symbol (default '>')
+ -f     Add custom file
+ -w     Custom width
+ -h     Display this help message
+Example:
+ $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
+    
+For mapping key codes, create a file named $keycodeFile and use the following format:
+"number": "symbol",
+example: "61": "/",
+
+HELP
+}
 
 while [ "$#" -gt 0 ]; do
     case "$1" in
@@ -36,25 +65,17 @@ while [ "$#" -gt 0 ]; do
          shift 
          height="$1"
         ;;
-        -*) # Add Help message
-        echo 'Read the script for more information'
+        -*|--help) # Add Help message
+          HELP
           exit
         ;;
     esac
     shift
 done
 
-confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
-keyconfDir="$confDir/hypr"
-keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
-tmpMapDir="/tmp"
-tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
-roDir="$confDir/rofi"
-roconf="$roDir/clipboard.rasi"
-
 # read hypr theme border
 wind_border=$(( hypr_border * 3/2 ))
-elem_border=`[ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border`
+elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
 r_override="window {height: ${height:-65%}; width: ${width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
@@ -103,11 +124,20 @@ substitute_vars() {
 # }
 
 # comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $keyConf | sed "s#\"#'#g" )
-  comments=$(awk  -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g" )
-  comments=$(substitute_vars "$comments" | awk -F'#' '{gsub(/^ */, "", $1); gsub(/ *$/, "", $1); split($2, a, " "); a[1] = toupper(substr(a[1], 1, 1)) substr(a[1], 2); $2 = a[1]; for(i=2; i<=length(a); i++) $2 = $2" "a[i]; gsub(/^ */, "", $2); gsub(/ *$/, "", $2); if (length($1) > 0) print "\""$1"\" : \""(length($2) > 0 ? $2 : $1)"\","}'|
+  initialized_comments=$(awk  -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g" )
+  comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
+   '{gsub(/^ */, "", $1);\
+    gsub(/ *$/, "", $1);\
+     split($2, a, " ");\
+      a[1] = toupper(substr(a[1], 1, 1)) substr(a[1], 2);\
+       $2 = a[1]; for(i=2;\
+        i<=length(a); i++) $2 = $2" "a[i];\
+         gsub(/^ */, "", $2);\
+          gsub(/ *$/, "", $2);\
+           if (length($1) > 0) print "\""$1"\" : \""(length($2) > 0 ? $2 : $1)"\","}'|
   awk '!seen[$0]++')
   # echo "$comments"
-#  exit
+
 cat << EOF > $tmpMap
 # hyprdots-keybinds.jq
 def executables_mapping: {  #? Derived from .args to parse scripts to be Readable
@@ -126,23 +156,34 @@ $comments
 "r" : "Right",
 "u" : "Up",
 };
+
+def keycode_mapping: { #? Fetches keycode from a file
+ "0": "",
+ $([ -f "${keycodeFile}" ] &&  cat "${keycodeFile}")
+};
 EOF
+
+
+
+cat << KEYCODE >> $tmpMap
+
+KEYCODE
+
 
 #? Script to re Modify hyprctl json output
 #! This is Our Translator for some binds  #Khing!
 jsonData="$(hyprctl binds -j | jq -L "$tmpMapDir" -c '
 include "hyprdots-keybinds";
 
+
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
     "64": " ",  #? SUPER  󰻀
-#    "32" : "ERROR:32",  #* Dont know
-#    "16": "Err:16",      #* Dont know
     "8": "ALT", 
     "4": "CTRL", 
-#!    "2":  "SHIFT",  # Wrong dunno yet
     "1": "SHIFT",
     "0": " ",
   };
+
   def key_mapping: { #?Define mappings for .keys to be readable symbols
     "mouse_up" : "󱕑",
     "mouse_down" : "󱕐",
@@ -163,7 +204,7 @@ include "hyprdots-keybinds";
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
-    "backspace" : "󰁮 "
+    "backspace" : "󰁮 ",  
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher #? This will serve as the Group header
     "exec" : "Execute a Command:",
@@ -183,7 +224,6 @@ include "hyprdots-keybinds";
     "movetoworkspace" : "Navigate Workspace",
     "movetoworkspacesilent" : "Navigate Workspace",
     
-
   };
 def arg_mapping: { #! Do not Change this used for Demo only... As this will change .args! will be fatal
     "arg2": "mapped_arg2",
@@ -206,8 +246,9 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
     "mouse" : "Use Mouse"
 
   };
-
-  def get_keys: #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
+  #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
+  #? Also we can just map it manually too
+  def get_keys: 
     if . == 0 then
       ""
     elif . >= 64 then
@@ -227,35 +268,39 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
     else
       .
     end;
-  .[] | 
-  
-.dispatcher as $dispatcher | .description = $dispatcher |  
-.dispatcher as $dispatcher | .category = $dispatcher |
-.arg as $arg | .executables = $arg |
+def get_keycode:
+  (keycode_mapping[(. | tostring)] // .); #? Make it a string
 
-.modmask |= (get_keys | ltrimstr(" ")) |
-.key |= (key_mapping[.] // .) |
+.[] | #? Filter 1
+.dispatcher as $dispatcher | .description = $dispatcher | #? Value conversions for the description
+.dispatcher as $dispatcher | .category = $dispatcher | #? Value conversions for the category
+.arg as $arg | .executables = $arg | #? get args
 
-.keybind = (.modmask | tostring // "") + (.key // "") |
+.modmask |= (get_keys | ltrimstr(" ")) | #? Execute Momask conversions
 
-.flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) |
+.keycode |= (get_keycode // .) |  #? Apply the get_keycode transformation
 
-.category |= (category_mapping[.] // .) |
+.key |= (key_mapping[.] // .) | #? Apply the get_key
+
+# .keybind = (.modmask | tostring // "") + (.key // "") | #! Same as below but without the keycode
+.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings 
+
+.flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) | #? This are the flags repeat,lock etc
+
+.category |= (category_mapping[.] // .) | #? Group by Categories
 
 #!if .modmask and .modmask != " " and .modmask != "" then .modmask |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .modmask = "" end |
-if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |
+if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |  #? Clean up
 
-
-  .arg |= (arg_mapping[.] // .) |
+  .arg |= (arg_mapping[.] // .) | #? See above for how arg is converted
  #!    .executables |= gsub(".sh"; "") | #? Usefull soon
 
-  .executables |= (executables_mapping[.] // .) | 
-  .description |= (description_mapping[.] // .)    
+  .executables |= (executables_mapping[.] // .) | #? conversions
+  .description |= (description_mapping[.] // .)    #? Convert to description
  
-' #? <---- There is a '   do not delete this'
+' #* <---- There is a '   do not delete this'
 
 )"
-
 
 #? Now we have the metadata we can Group it accordingly
 GROUP() { 
