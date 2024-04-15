@@ -73,6 +73,13 @@ while [ "$#" -gt 0 ]; do
     shift
 done
 
+keyconfDir="$confDir/hypr"
+keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
+tmpMapDir="/tmp"
+tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
+roDir="$confDir/rofi"
+roconf="$roDir/clipboard.rasi"
+
 # read hypr theme border
 wind_border=$(( hypr_border * 3/2 ))
 elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)

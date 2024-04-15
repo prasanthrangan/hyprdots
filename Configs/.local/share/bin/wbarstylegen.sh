@@ -5,12 +5,12 @@
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
+waybar_dir="${confDir}/waybar"
 modules_dir="$waybar_dir/modules"
 conf_ctl="$waybar_dir/config.ctl"
 in_file="$waybar_dir/modules/style.css"
 out_file="$waybar_dir/style.css"
-src_file="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
+src_file="${confDir}/hypr/themes/theme.conf"
 
 
 # calculate height from control file or monitor res

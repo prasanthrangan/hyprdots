@@ -4,8 +4,8 @@
 MODE=${1:-5}
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-ThemeSet="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/themes/theme.conf"
-RofiConf="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/steam/gamelauncher_${MODE}.rasi"
+ThemeSet="${confDir}/hypr/themes/theme.conf"
+RofiConf="${confDir}/rofi/steam/gamelauncher_${MODE}.rasi"
 
 # set rofi override
 elem_border=$(( hypr_border * 2 ))
