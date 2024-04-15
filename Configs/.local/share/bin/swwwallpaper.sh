@@ -95,7 +95,6 @@ done
 
 swww query &> /dev/null
 if [ $? -ne 0 ] ; then
-    [ -e /run/user/$(id -u)/swww.socket ] && rm /run/user/$(id -u)/swww.socket #! remove this line if swww stable is fixed
     swww-daemon --format xrgb &
 fi
 

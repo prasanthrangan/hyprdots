@@ -26,7 +26,7 @@ hyprland                                               # wlroots-based wayland c
 dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
-swww-git                                               # wallpaper
+swww                                                   # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
