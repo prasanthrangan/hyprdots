@@ -9,14 +9,13 @@ x_offset=15  #* Cursor spawn position on clipboard
 y_offset=210 #* To point the Cursor to the 1st and 2nd latest word
 
 #? Parse clipboard.rasi and fetch the width. Should consider percent
-clipWidth=$(awk '/window {/,/}/' ${roconf} | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
-clipWidth=${clipWidth:-20} #? Default
-clpHeight=$(awk '/window {/,/}/' ${roconf} | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
-clpHeight=${clpHeight:-$((clipWidth * 100 / 36))} #? Default
+clpWidth=$(awk '/window {/,/}/ { if (/width:/) { split($2, a, "%"); print a[1] } }' "${roconf}" )
+clpWidth=${clpWidth:-20} #? Default
+clpHeight=$((clpWidth * 100 / 36)) #? Default
 
 #? Monitor resolution , scale and rotation,Do maths @ json
 eval "$(hyprctl monitors -j | jq -r \
-    --argjson clipWidth "$clipWidth" \
+    --argjson clpWidth "$clpWidth" \
     --argjson clpHeight "$clpHeight" \
     ' .[] | select(.focused==true) | 
  (if (.transform | (. % 2) == 1) then
@@ -29,7 +28,7 @@ export monWidth=\($dims.monWidth);
 export monHeight=\($dims.monHeight);
 export monXpos=\(.x | floor);
 export monYpos=\(.y | floor);
-export clipWidth=\(if (.transform | (. % 2) == 1) then ($dims.monHeight * $clipWidth / 100 | floor) else ($dims.monWidth * $clipWidth / 100 | floor) end);
+export clpWidth=\(if (.transform | (. % 2) == 1) then ($dims.monHeight * $clpWidth / 100 | floor) else ($dims.monWidth * $clpWidth / 100 | floor) end);
 export clpHeight=\(if (.transform | (. % 2) == 1) then ($dims.monWidth * $clpHeight / 100 | floor) else ($dims.monHeight * $clpHeight / 100 | floor) end);
 "')"
 
@@ -50,13 +49,13 @@ export curYpos=\(.y - $monYpos - $y_offset)
 "')"
 
 #? Handles Boundary
-xBound=$((monWidth - clipWidth - wbarW))
+xBound=$((monWidth - clpWidth - wbarW))
 yBound=$((monHeight - clpHeight - wbarH))
 curXpos=$((curXpos < 0 ? 0 : (curXpos > xBound ? xBound : curXpos)))
 curYpos=$((curYpos < 0 ? 0 : (curYpos > yBound ? yBound : curYpos)))
 
 #? Override height and width
-h_override="height: ${clpHeight}px; width: ${clipWidth}px;"
+h_override="height: ${clpHeight}px; width: ${clpWidth}px;"
 pos="window {${h_override}location: north west; x-offset: ${curXpos}px; y-offset: ${curYpos}px;}" #! I just Used the old pos function
 
 # read hypr theme border
