@@ -35,9 +35,8 @@ export clpHeight=\(if (.transform | (. % 2) == 1) then ($dims.monWidth * $clpHei
 
 #? Level 1 layers  e.g namesapce for  waybar, for now just waybar \\ ensures that we can get a good boundary value
 # TODO Handle if we got multple waybar layouts
-wbarW=0
-wbarH=0
-eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[] | .[] | select(.namespace == "waybar") | if .h < .w then "export wbarH=\(.h)" else "export wbarW=$((\(.w) + $wbarW ))" end')"
+wbarW=0 ; wbarH=0
+eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[] | .[] | select(.namespace == "waybar") | if .h < .w then "export export wbarH=$((\(.h) + $wbarH ))" else "export wbarW=$((\(.w) + $wbarW ))" end')"
 
 #?  Cursor position filtered by Monitor stats
 eval "$(hyprctl cursorpos -j | jq -r \
