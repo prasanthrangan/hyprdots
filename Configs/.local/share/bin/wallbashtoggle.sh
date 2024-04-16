@@ -20,7 +20,7 @@ rofi_wallbash()
     r_override="window{border-radius:${elem_border}px;} element{border-radius:${elem_border}px;}"
     rofiSel=$(parallel echo {} ::: "${wallbashModes[@]}" | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "${rofiConf}" -select "${wallbashModes[${enableWallDcol}]}")
     if [ ! -z "${rofiSel}" ] ; then
-        setMode="$(parallel --link echo {} ::: "${!wallbashModes[@]}" ::: "${wallbashModes[@]}" | awk -v sel="${rofiSel}" '{if ($2 == sel) print $1}')"
+        setMode="$(parallel --link echo {} ::: "${!wallbashModes[@]}" ::: "${wallbashModes[@]}" ::: "${rofiSel}" | awk '{if ($2 == $3) print $1}')"
     else
         exit 0
     fi
@@ -54,7 +54,7 @@ case "${1}" in
 esac
 
 export reload_flag=1
-[ "${setMode}" -lt 0 ] && setMode=$((${#wallbashModes[@]} - 1))
+[[ "${setMode}" -lt 0 ]] && setMode=$((${#wallbashModes[@]} - 1))
 set_conf "enableWallDcol" "${setMode}"
 "${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
 notify-send -a "t1" -i "~/.config/dunst/icons/hyprdots.png" " ${wallbashModes[setMode]} mode"
