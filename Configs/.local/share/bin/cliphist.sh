@@ -2,54 +2,65 @@
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-roconf="~/.config/rofi/clipboard.rasi"
+roconf="${confDir}/rofi/clipboard.rasi"
 
+    #? Cursor position offset when pastebin is spawned
+    x_offset=15   #* Cursor spawn position on clipboard
+    y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
 
-# set position
-x_offset=-15   #* Cursor spawn position on clipboard
-y_offset=210   #* To point the Cursor to the 1st and 2nd latest word
-#!base on $HOME/.config/rofi/clipboard.rasi 
-clip_h=$(cat "${confDir}/rofi/clipboard.rasi" | awk '/window {/,/}/'  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
-clip_w=$(cat "${confDir}/rofi/clipboard.rasi" | awk '/window {/,/}/'  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
-#clip_h=55 #! Modify limits for size of the Clipboard
-#clip_w=20 #! This values are transformed per cent(100)
-#? Monitor resolution , scale and rotation 
-x_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-y_mon=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
-#? Rotated monitor? 
-monitor_rot=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .transform')
-if [ "$monitor_rot" == "1" ] || [ "$monitor_rot" == "3" ]; then  # if rotated 270 deg
- tempmon=$x_mon
-    x_mon=$y_mon
-    y_mon=$tempmon
-#! For rotated monitors
-fi
-#? Scaled monitor Size
-monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
-x_mon=$((x_mon * 100 / monitor_scale ))
-y_mon=$((y_mon * 100 / monitor_scale))
-#? monitor position
-x_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .x')
-y_pos=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .y')
-#? cursor position
-x_cur=$(hyprctl -j cursorpos | jq '.x')
-y_cur=$(hyprctl -j cursorpos | jq '.y')
-# Ignore position
- x_cur=$(( x_cur - x_pos))
- y_cur=$(( y_cur - y_pos))
-#Limiting
-# Multiply before dividing to avoid losing precision due to integer division
-clip_w=$(( x_mon*clip_w/100 ))
-clip_h=$(( y_mon*clip_h/100 ))
-max_x=$((x_mon - clip_w - 5 )) #offset of 5 for gaps
-max_y=$((y_mon - clip_h - 15 )) #offset of 15 for gaps
-x_cur=$((x_cur - x_offset))
-y_cur=$((y_cur - y_offset))
-# 
-x_cur=$(( x_cur < min_x ? min_x : ( x_cur > max_x ? max_x :  x_cur)))
-y_cur=$(( y_cur < min_y ? min_y : ( y_cur > max_y ? max_y :  y_cur)))
+    #? Parse clipboard.rasi and fetch the width. Should consider percent
+    clipWidth=$(awk '/window {/,/}/' ${roconf}  | awk '/width:/ {print $2}' | awk -F "%" '{print $1}')
+    clipWidth=${clipWidth:-20} #? Default
+    clpHeight=$(awk '/window {/,/}/' ${roconf}  | awk '/height:/ {print $2}' | awk -F "%" '{print $1}')
+    clpHeight=${clpHeight:-$((clipWidth * 100 / 36))} #? Default
 
-pos="window {location: north west; x-offset: ${x_cur}px; y-offset: ${y_cur}px;}" #! I just Used the old pos function
+    #? Monitor resolution , scale and rotation,Do maths @ json
+    eval "$(hyprctl monitors -j | jq -r \
+--argjson clipWidth "$clipWidth" \
+--argjson clpHeight "$clpHeight" \
+' .[] | select(.focused==true) | 
+ (if (.transform | (. % 2) == 1) then
+   {monWidth: (.height / .scale | floor), monHeight: (.width / .scale | floor)}
+ else
+   {monWidth: (.width / .scale | floor), monHeight: (.height / .scale | floor)}
+ end) as $dims |
+"export monName=\(.name);
+export monTrans=\(.transform);
+export monScale=\(.scale);
+export monWidth=\($dims.monWidth);
+export monHeight=\($dims.monHeight);
+export monXpos=\(.x | floor);
+export monYpos=\(.y | floor);
+export clipWidth=\(if (.transform | (. % 2) == 1) then ($dims.monHeight * $clipWidth / 100 | floor) else ($dims.monWidth * $clipWidth / 100 | floor) end);
+export clpHeight=\(if (.transform | (. % 2) == 1) then ($dims.monWidth * $clpHeight / 100 | floor) else ($dims.monHeight * $clpHeight / 100 | floor) end);
+"')"
+
+    #? Level 1 layers  e.g namesapce for  waybar, for now just waybar \\ ensures that we can get a good boundary value
+    wbarW=0 ; wbarH=0
+    eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[] | .[] | select(.namespace == "waybar") | if .h < .w then "export wbarH=\(.h)" else "export wbarW=$((\(.w) + $wbarW ))" end')"
+
+    #?  Cursor position filtered by Monitor stats
+    eval "$(hyprctl cursorpos -j | jq -r \
+--argjson x_offset "$x_offset" \
+--argjson y_offset "$y_offset" \
+--argjson monWidth "$monWidth" \
+--argjson monHeight "$monHeight" \
+--argjson monXpos "$monXpos" \
+--argjson monYpos "$monYpos" \
+--arg monTrans "$monTrans" \
+'"
+export curXpos=\(.x - $monXpos - $x_offset )
+export curYpos=\(.y - $monYpos - $y_offset)
+"')"
+
+    #? Handles Boundary
+    xBound=$((monWidth - clipWidth - wbarW )) 
+    yBound=$((monHeight - clpHeight - wbarH )) 
+    curXpos=$(( curXpos < 0 ? 0 : ( curXpos > xBound ? xBound :  curXpos))) 
+    curYpos=$(( curYpos < 0 ? 0 : ( curYpos > yBound ? yBound :  curYpos)))
+
+    h_override="height: ${clpHeight}px; width: ${clipWidth}px;"
+    pos="window {${h_override}location: north west; x-offset: ${curXpos}px; y-offset: ${curYpos}px;}" #! I just Used the old pos function
 #pos="window {location: $y_rofi $x_rofi; $x_offset $y_offset}" 
 
 # read hypr theme border
