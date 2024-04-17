@@ -1,0 +1,9 @@
+"custom/weather": {
+    "format": "{} °C",
+    "rotate": ${r_deg},
+    "tooltip": true,
+    "interval": 30,
+    "exec": "wttrbar --location Münster --lang de",
+    "return-type": "json"
+},
+
