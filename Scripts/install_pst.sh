@@ -12,10 +12,9 @@ if [ $? -ne 0 ]; then
 fi
 
 # sddm
-read -p "Do you want to change sddm configuration? (y/N): " answer
+read -p $'\033[0;32m[DISPLAYMANAGER]\033[0m Do you want to change sddm configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Configuring the sddm"
         if pkg_installed sddm; then
 
             echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m detected // sddm"
@@ -51,15 +50,14 @@ case $answer in
         fi
         ;;
     *)
-        echo "Skipping sddm configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping sddm configuration"
         ;;
 esac
 
 # dolphin
-read -p "Do you want to change dolphin configuration? (y/N): " answer
+read -p $'\033[0;32m[FILEMANAGER]\033[0m Do you want to change dolphin configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Configuring the dolphin"
         if pkg_installed dolphin && pkg_installed xdg-utils; then
 
             echo -e "\033[0;32m[FILEMANAGER]\033[0m detected // dolphin"
@@ -71,27 +69,26 @@ case $answer in
         fi
         ;;
     *)
-        echo "Skipping dolphin configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping dolphin configuration"
         ;;
 esac
 
 # shell
-read -p "Do you want to change shell configuration? (y/N): " answer
+read -p $'\033[0;32m[SHELL]\033[0m Do you want to change shell configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Configuring the shell"
+        echo -e "\033[0;32m[SHELL]\033[0m Configuring the shell"
         "${scrDir}/restore_shl.sh"
         ;;
     *)
-        echo "Skipping shell configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping shell configuration"
         ;;
 esac
 
 # flatpak
-read -p "Do you want to change flatpak configuration? (y/N): " answer
+read -p $'\033[0;32m[FLATPAK]\033[0mDo you want to install flatpak? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Configuring the flatpak"
         if ! pkg_installed flatpak; then
 
             echo -e "\033[0;32m[FLATPAK]\033[0m flatpak application list..."
@@ -111,6 +108,6 @@ case $answer in
         fi
         ;;
     *)
-        echo "Skipping flatpak configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping flatpak installation"
         ;;
 esac

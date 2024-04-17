@@ -100,11 +100,11 @@ EOF
     #--------------------------------#
     # add nvidia drivers to the list #
     #--------------------------------#
-    read -p "Do you want to install nvidia drivers? (y/N): " answer
+    read -p $'\033[0;32m[GPU]\033[0m Do you want to install nvidia drivers? (y/N): ' answer
     case $answer in
         [yY])
-            echo "Installing the nvidia drivers"
             if nvidia_detect; then
+                echo -e "\033[0;32m[GPU]\033[0m Installing the nvidia drivers"
                 cat /usr/lib/modules/*/pkgbase | while read krnl; do
                     echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
                 done
@@ -112,10 +112,12 @@ EOF
                 for nvcode in "${nvga[@]}"; do
                     awk -F '|' -v nvc="${nvcode}" '{if ($3 == nvc) {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}}' "${scrDir}"/.nvidia/nvidia*dkms >> "${scrDir}/install_pkg.lst"
                 done
+            else
+                echo -e "\033[0;33m[WARNING]\033[0m Nvidia GPU is not detected"
             fi
             ;;
         *)
-            echo "Skipping nvidia drivers installation"
+            echo -e "\033[0;33m[SKIP]\033[0m Skipping nvidia drivers installation"
             ;;
     esac
 
@@ -124,10 +126,9 @@ EOF
     #----------------#
     # get user prefs #
     #----------------#
-    read -p "Do you want to install aur helper? (y/N): " answer
+    read -p $'\033[0;32m[AUR]\033[0m Do you want to install aur helper? (y/N): ' answer
     case $answer in
         [yY])
-            echo "Installing the aur helper"
             if ! chk_list "aurhlpr" "${aurList[@]}"; then
                 echo -e "Available aur helpers:\n[1] yay\n[2] paru"
                 prompt_timer 120 "Enter option number"
@@ -137,17 +138,18 @@ EOF
                     2) export getAur="paru" ;;
                     *) echo -e "...Invalid option selected..." ; exit 1 ;;
                 esac
+            else
+                echo -e "\033[0;33m[WARNING]\033[0m Aur helper already installed"
             fi
             ;;
         *)
-            echo "Skipping aur helper installation"
+            echo -e "\033[0;33m[SKIP]\033[0m Skipping aur helper installation"
             ;;
     esac
 
-    read -p "Do you want to change shell configuration? (y/N): " answer
+    read -p $'\033[0;32m[SHELL]\033[0m Do you want to install a different shell? (y/N): ' answer
     case $answer in
         [yY])
-            echo "Configuring the shell"
             if ! chk_list "myShell" "${shlList[@]}"; then
                 echo -e "Select shell:\n[1] zsh\n[2] fish"
                 prompt_timer 120 "Enter option number"
@@ -158,25 +160,27 @@ EOF
                     *) echo -e "...Invalid option selected..." ; exit 1 ;;
                 esac
                 echo "${myShell}" >> "${scrDir}/install_pkg.lst"
+            else
+                echo -e "\033[0;33m[WARNING]\033[0m zsh or fish is already installed"
             fi
             ;;
         *)
-            echo "Skipping shell configuration"
+            echo -e "\033[0;33m[SKIP]\033[0m Skipping shell installation"
             ;;
     esac
 
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    read -p "Are you sure you want to install packages from install_pkg.lst? (y/N): " answer
+    read -p $'\033[0;32m[PACKAGES]\033[0m Are you sure you want to install packages from install_pkg.lst? (y/N): ' answer
     case $answer in
         [yY])
-            echo "Installing the packages"
+            echo -e "\033[0;32m[PACKAGES]\033[0m Installing the packages"
             "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
             rm "${scrDir}/install_pkg.lst"
             ;;
         *)
-            echo "Skipping packages installation"
+            echo -e "\033[0;33m[SKIP]\033[0m Skipping packages installation"
             ;;
     esac
 fi

@@ -12,10 +12,9 @@ if [ $? -ne 0 ]; then
 fi
 
 # grub
-read -p "Do you want to change GRUB configuration? (y/N): " answer
+read -p $'\033[0;32m[BOOTLOADER]\033[0m Do you want to change GRUB configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Updating GRUB configuration"
         if pkg_installed grub && [ -f /boot/grub/grub.cfg ]; then
             echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // grub"
 
@@ -55,18 +54,19 @@ case $answer in
             else
                 echo -e "\033[0;33m[SKIP]\033[0m grub is already configured..."
             fi
+        else
+            echo -e "\033[0;33m[WARNING]\033[0m GRUB is not installed"
         fi
         ;;
     *)
-        echo "Skipping GRUB configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m skipping GRUB configuration"
         ;;
 esac
 
 # systemd-boot
-read -p "Do you want to change systemd-boot configuration? (y/N): " answer
+read -p $'\033[0;32m[BOOTLOADER]\033[0m Do you want to change systemd-boot configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Updating systemd-boot configuration"
         if pkg_installed systemd && nvidia_detect && [ $(bootctl status 2> /dev/null | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]
             then
             echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // systemd-boot"
@@ -81,18 +81,19 @@ case $answer in
             else
                 echo -e "\033[0;33m[SKIP]\033[0m systemd-boot is already configured..."
             fi
+        else
+            echo -e "\033[0;33m[WARNING]\033[0m systemd-boot is not detected"
         fi
         ;;
     *)
-        echo "Skipping systemd-boot configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping systemd-boot configuration"
         ;;
 esac
 
 # pacman
-read -p "Do you want to change pacman configuration? (y/N): " answer
+read -p $'\033[0;32m[PACMAN]\033[0m Do you want to change pacman configuration? (y/N): ' answer
 case $answer in
     [yY])
-        echo "Updating pacman configuration"
         if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]; then
             echo -e "\033[0;32m[PACMAN]\033[0m adding extra spice to pacman..."
 
@@ -102,11 +103,6 @@ case $answer in
             /^#ParallelDownloads/c\ParallelDownloads = 5" /etc/pacman.conf
             sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
 
-            #if [ $(grep -w "^\[xero_hypr\]" /etc/pacman.conf | wc -l) -eq 0 ] && [ $(grep "https://repos.xerolinux.xyz/xero_hypr/x86_64/" /etc/pacman.conf | wc -l) -eq 0 ]
-            #    then
-            #    echo "adding [xero_hypr] repo to pacman..."
-            #    echo -e "\n[xero_hypr]\nSigLevel = Required DatabaseOptional\nServer = https://repos.xerolinux.xyz/xero_hypr/x86_64/\n\n" | sudo tee -a /etc/pacman.conf
-            #fi
             sudo pacman -Syyu
             sudo pacman -Fy
 
@@ -115,6 +111,6 @@ case $answer in
         fi
         ;;
     *)
-        echo "Skipping pacman configuration"
+        echo -e "\033[0;33m[SKIP]\033[0m Skipping pacman configuration"
         ;;
 esac
