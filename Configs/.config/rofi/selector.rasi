@@ -13,7 +13,6 @@ configuration {
 window {
     enabled:                     true;
     fullscreen:                  false;
-    width:                       100%;
     transparency:                "real";
     cursor:                      "default";
     spacing:                     0em;
@@ -39,7 +38,7 @@ frame {
 listview {
     enabled:                     true;
     spacing:                     4em;
-    padding:                     5em;
+    padding:                     4em;
     columns:                     10;
     lines:                       1;
     dynamic:                     false;
