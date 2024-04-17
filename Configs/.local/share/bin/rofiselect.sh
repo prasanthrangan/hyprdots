@@ -14,21 +14,24 @@ rofiAssetDir="${confDir}/rofi/assets"
 
 [[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
 r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
+elem_border=$(( hypr_border * 5 ))
+icon_border=$(( elem_border - 5 ))
 
 
 #// scale for monitor
 
-x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-y_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
-aspect_r=$((x_monres * 10 / y_monres ))
+mon_x_res=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+mon_scale=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale' | sed "s/\.//")
+mon_x_res=$(( mon_x_res * 100 / mon_scale ))
 
 
 #// generate config
 
-elem_border=$(( hypr_border * 5 ))
-icon_border=$(( elem_border - 5 ))
-i_size=$(( aspect_r - 4 ))
-r_override="listview{columns:5;} element{orientation:vertical;border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:${i_size}em;} element-text{enabled:false;}"
+elm_width=$(( (20 + 12 + 16 ) * rofiScale ))
+max_avail=$(( mon_x_res - (4 * rofiScale) ))
+col_count=$(( max_avail / elm_width ))
+[[ "${col_count}" -gt 5 ]] && col_count=5
+r_override="window{width:100%;} listview{columns:${col_count};} element{orientation:vertical;border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:20em;} element-text{enabled:false;}"
 
 
 #// launch rofi menu
