@@ -20,13 +20,13 @@ window {
     border:                      0em;
     border-radius:               0em;
     border-color:                transparent;
-    background-color:            transparent;
+    background-color:            @main-bg;
 }
 mainbox {
     enabled:                     true;
     orientation:                 horizontal;
     children:                    [ "dummy", "frame", "dummy" ];
-    background-color:            @main-bg;
+    background-color:            transparent;
 }
 frame {
     children:                    [ "listview" ];

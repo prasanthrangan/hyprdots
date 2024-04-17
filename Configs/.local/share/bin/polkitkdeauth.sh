@@ -7,4 +7,4 @@ else
     libDir=/usr/lib
 fi
 
-$libDir/polkit-kde-authentication-agent-1 &
+${libDir}/polkit-gnome/polkit-gnome-authentication-agent-1 &
