@@ -5,28 +5,34 @@
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-rofiConf="${confDir}/rofi/themeselect.rasi"
+rofiConf="${confDir}/rofi/selector.rasi"
 
 
-#// scale for monitor x res
+#// set rofi scaling
 
-x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
-
-
-#// set rofi override
-
+[[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
+r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
 elem_border=$(( hypr_border * 5 ))
 icon_border=$(( elem_border - 5 ))
 
+
+#// scale for monitor
+
+x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
+y_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+aspect_r=$((x_monres * 10 / y_monres ))
+
+
+#// generate config
+
 case "${themeSelect}" in
 2) # adapt to style 2
-    x_monres=$(( x_monres * 14 / monitor_scale ))
-    r_override="mainbox{background-color:#00000003;} listview{columns:4;} element{border-radius:${elem_border}px;background-color: @main-bg;padding:0em;} element-icon{border-radius:${icon_border}px 0px 0px ${icon_border}px;size:${x_monres}px;}"
+    i_size=$(( aspect_r - 2 ))
+    r_override="mainbox{background-color:#00000003;} listview{columns:4;} element{border-radius:${elem_border}px;background-color:@main-bg;} element-icon{size:${i_size}em;border-radius:${icon_border}px 0px 0px ${icon_border}px;}"
     thmbExtn="quad" ;;
 *) # default to style 1
-    x_monres=$(( x_monres * 17 / monitor_scale ))
-    r_override="element{border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:${x_monres}px;}"
+    i_size=$(( aspect_r + 2 ))
+    r_override="element{border-radius:${elem_border}px;padding:0.5em;} listview{columns:3;} element-icon{size:${i_size}em;border-radius:${icon_border}px;}"
     thmbExtn="sqre" ;;
 esac
 
@@ -37,7 +43,7 @@ get_themes
 
 rofiSel=$(for i in ${!thmList[@]} ; do
     echo -en "${thmList[i]}\x00icon\x1f${thmbDir}/$(set_hash "${thmWall[i]}").${thmbExtn}\n"
-done | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
+done | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
 
 
 #// apply theme

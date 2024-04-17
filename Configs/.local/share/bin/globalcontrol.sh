@@ -14,15 +14,17 @@ get_hashmap()
 {
     unset wallHash
     unset wallList
-    unset hashmap
+    unset skipStrays
+    unset verboseMap
 
     for wallSource in "$@"; do
         [ -z "${wallSource}" ] && continue
-        [ "${wallSource}" == "--verbose" ] && hashmap=1 && continue
+        [ "${wallSource}" == "--skipstrays" ] && skipStrays=1 && continue
+        [ "${wallSource}" == "--verbose" ] && verboseMap=1 && continue
 
         hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
         if [ -z "${hashMap}" ] ; then
-            echo "ERROR: No image found in ${wallSource}"
+            echo "WARNING: No image found in \"${wallSource}\""
             continue
         fi
 
@@ -33,11 +35,15 @@ get_hashmap()
     done
 
     if [ -z "${#wallList[@]}" ] || [[ "${#wallList[@]}" -eq 0 ]] ; then
-        echo "ERROR: No image found in any source"
-        exit 1
+        if [[ "${skipStrays}" -eq 1 ]] ; then
+            return 1
+        else
+            echo "ERROR: No image found in any source"
+            exit 1
+        fi
     fi
 
-    if [[ "${hashmap}" -eq 1 ]] ; then
+    if [[ "${verboseMap}" -eq 1 ]] ; then
         echo "// Hash Map //"
         for indx in "${!wallHash[@]}" ; do
             echo ":: \${wallHash[${indx}]}=\"${wallHash[indx]}\" :: \${wallList[${indx}]}=\"${wallList[indx]}\""
@@ -56,8 +62,8 @@ get_themes()
 
     while read thmDir ; do
         if [ ! -e "$(readlink "${thmDir}/wall.set")" ] ; then
+            get_hashmap "${thmDir}" --skipstrays || continue
             echo "fixig link :: ${thmDir}/wall.set"
-            get_hashmap "${thmDir}"
             ln -fs "${wallList[0]}" "${thmDir}/wall.set"
         fi
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")

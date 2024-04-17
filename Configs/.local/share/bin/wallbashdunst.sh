@@ -4,7 +4,7 @@
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-dstDir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
+dstDir="${confDir}/dunst"
 
 # regen conf
 

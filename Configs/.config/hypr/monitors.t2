@@ -2,21 +2,17 @@
 # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█ █▀
 # █░▀░█ █▄█ █░▀█ █ ░█░ █▄█ █▀▄ ▄█
 
-
 # See https://wiki.hyprland.org/Configuring/Monitors/
 
 # monitor = ,preferred,auto,auto
-monitor = DP-1, 2560x1080@144, 0x0, 1, bitdepth, 10
-
+monitor = DP-1, 2560x1080@144, 0x0, 1
 
 
 # █▀▄▀█ █ █▀ █▀▀
 # █░▀░█ █ ▄█ █▄▄
 
-
-# See https://wiki.hyprland.org/Configuring/Variables/ for more
+# See https://wiki.hyprland.org/Configuring/Variables/
 
 misc {
     vrr = 0
 }
-

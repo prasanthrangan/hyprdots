@@ -5,23 +5,30 @@
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-rofiConf="${confDir}/rofi/themeselect.rasi"
+rofiConf="${confDir}/rofi/selector.rasi"
 rofiStyleDir="${confDir}/rofi/styles"
 rofiAssetDir="${confDir}/rofi/assets"
 
 
-#// scale for monitor x res
+#// set rofi scaling
+
+[[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
+r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
+
+
+#// scale for monitor
 
 x_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-monitor_scale=$(hyprctl -j monitors | jq '.[] | select (.focused == true) | .scale' | sed 's/\.//')
-x_monres=$(( x_monres * 18 / monitor_scale ))
+y_monres=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .height')
+aspect_r=$((x_monres * 10 / y_monres ))
 
 
-#// set rofi override
+#// generate config
 
 elem_border=$(( hypr_border * 5 ))
 icon_border=$(( elem_border - 5 ))
-r_override="listview{columns:4;} element{orientation:vertical;border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:${x_monres}px;} element-text{enabled:false;}"
+i_size=$(( aspect_r - 4 ))
+r_override="listview{columns:5;} element{orientation:vertical;border-radius:${elem_border}px;} element-icon{border-radius:${icon_border}px;size:${i_size}em;} element-text{enabled:false;}"
 
 
 #// launch rofi menu

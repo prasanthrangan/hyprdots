@@ -2,7 +2,7 @@
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
-rofDir="${XDG_CONFIG_HOME:-$HOME/.config}/rofi"
+rofDir="${confDir}/rofi"
 
 if [ "${1}" == "--verbose" ] || [ "${1}" == "-v" ] ; then
 

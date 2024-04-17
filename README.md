@@ -152,7 +152,8 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 
 | Theme Select |
 | :-: |
-| ![Theme Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select.png) |
+| ![Theme Select 1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png) |
+| ![Theme Select 2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_2.png) |
 
 | Wallpaper Select |
 | :-: |
@@ -174,6 +175,8 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | ![rofi style#8](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_8.png) |
 | ![rofi style#9](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_9.png) |
 | ![rofi style#10](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_10.png) |
+| ![rofi style#11](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_11.png) |
+| ![rofi style#12](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_12.png) |
 
 | Wlogout Menu |
 | :-: |

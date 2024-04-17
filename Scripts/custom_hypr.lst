@@ -26,7 +26,7 @@ hyprland                                               # wlroots-based wayland c
 dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
-swww-git                                               # wallpaper
+swww                                                   # wallpaper
 swaylock-effects-git                                   # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
@@ -47,6 +47,7 @@ qt5-imageformats                                       # for dolphin image thumb
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
 kservice5                                              # for "open with" menu in dolphin
+libnotify                                              # for notifications
 
 # --------------------------------------------------- // Theming
 nwg-look                                               # gtk configuration tool

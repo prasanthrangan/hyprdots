@@ -5,7 +5,7 @@
 
 export scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-waybar_dir="${XDG_CONFIG_HOME:-$HOME/.config}/waybar"
+waybar_dir="${confDir}/waybar"
 modules_dir="$waybar_dir/modules"
 conf_file="$waybar_dir/config.jsonc"
 conf_ctl="$waybar_dir/config.ctl"

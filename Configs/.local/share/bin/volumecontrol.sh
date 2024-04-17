@@ -79,7 +79,7 @@ done
 
 # set default variables
 
-icodir="${XDG_CONFIG_HOME:-$HOME/.config}/dunst/icons/vol"
+icodir="${confDir}/dunst/icons/vol"
 shift $((OPTIND -1))
 step="${2:-5}"
 
