@@ -215,7 +215,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | <kbd>Super</kbd> + <kbd>F</kbd> | launch firefox
 | <kbd>Super</kbd> + <kbd>A</kbd> | launch desktop applications (rofi)
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | switch open applications (rofi)
-| <kbd>Super</kbd> + <kbd>R</kbd> | browse system files (rofi)
+| <kbd>Super</kbd> + <kbd>Shift</kbd>  +<kbd>E</kbd> | browse system files (rofi)
 | <kbd>F10</kbd> | mute audio output (toggle)
 | <kbd>F11</kbd> | decrease volume (hold)
 | <kbd>F12</kbd> | increase volume (hold)
@@ -242,6 +242,7 @@ To create your own custom theme, please refer [theming wiki](https://github.com/
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd> | next waybar mode
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↓</kbd> | previous waybar mode
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | toggle (theme <//> wall) based colors
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | wallbash mode select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | theme select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | wallpaper select menu
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | rofi style select menu
