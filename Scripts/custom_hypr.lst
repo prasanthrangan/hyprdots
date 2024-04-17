@@ -14,6 +14,7 @@ bluez                                                  # bluetooth protocol stac
 bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
+udiskie                                                # manage removable media
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
