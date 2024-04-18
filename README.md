@@ -3,17 +3,17 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png">
 
----
+<br>
 
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
   <a href="#themes"><kbd> <br> Themes <br> </kbd></a>&ensp;&ensp;
   <a href="#styles"><kbd> <br> Styles <br> </kbd></a>&ensp;&ensp;
   <a href="#keybindings"><kbd> <br> Keybindings <br> </kbd></a>&ensp;&ensp;
-  <a href="#youtube"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
+  <a href="[#youtube](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
   <a href="https://github.com/prasanthrangan/hyprdots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
   <a href="https://discord.gg/qWehcFJxPa"><kbd> <br> Discord <br> </kbd></a>
 
----
+<br>
 
   <img style="margin: 0 5px 10px 0; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" />
   <img style="margin: 0 0 10px 5px; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />
@@ -36,7 +36,7 @@ While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/De
 > Please ensure that your NVIDIA card supports dkms drivers in the list provided [here](https://wiki.archlinux.org/title/NVIDIA).
 
 > [!CAUTION]
-> The script modifies your GRUB config to enable NVIDIA DRM and theme.
+> The script modifies your GRUB or Systemd-boot config to enable NVIDIA DRM.
 
 To install, execute the following commands: 
 
@@ -48,7 +48,7 @@ cd ~/HyDE/Scripts
 ```
 
 > [!TIP]
-> You can also add any other apps you wish to install alongside HyDE to `Scripts/custom_apps.lst`) and pass the file as a parameter to install it like so: 
+> You can also add any other apps you wish to install alongside HyDE to `Scripts/custom_apps.lst` and pass the file as a parameter to install it like so: 
 > 
 > ```shell
 > ./install.sh custom_apps.lst
@@ -96,7 +96,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 [![Decay-Green](https://placehold.co/130x30/90ceaa/151720?text=Decay-Green&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Decay-Green)
 [![Edge-Runner](https://placehold.co/130x30/fada16/000000?text=Edge-Runner&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Edge-Runner)
 [![Frosted-Glass](https://placehold.co/130x30/7ed6ff/1e4c84?text=Frosted-Glass&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Frosted-Glass)
-[![Graphite-Mono](https://placehold.co/130x30/a6a6a6/262626?text=Graphite-Mono&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Graphite-Mono)<br>
+[![Graphite-Mono](https://placehold.co/130x30/a6a6a6/262626?text=Graphite-Mono&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Graphite-Mono)
 [![Gruvbox-Retro](https://placehold.co/130x30/475437/B5CC97?text=Gruvbox-Retro&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Gruvbox-Retro)
 [![Material-Sakura](https://placehold.co/130x30/f2e9e1/b4637a?text=Material-Sakura&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Material-Sakura)
 [![Nordic-Blue](https://placehold.co/130x30/D9D9D9/476A84?text=Nordic-Blue&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Nordic-Blue)
@@ -128,15 +128,27 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 
 ### Wallpaper Select
 
-| Wallpaper Select #1 |
+| Wallpaper Select |
+| :--------------: |
+| ![Wallpaper Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png) |
+
+### Wallbash Mode Select
+
+| Wallbash Mode Select |
+| :------------------: |
+| ![Wallbash Mode Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wb_mode_sel.png) |
+
+### Notification Action
+
+| Notification Action |
 | :-----------------: |
-| ![Wallpaper Select #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png) |
+| ![Notification Action](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/notif_action_sel.png) |
 
 ### Launcher Style Select
 
-| Launcher Style Select #1 |
-| :----------------------: |
-| ![Launcher Style Select #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png) |
+| Launcher Style Select |
+| :-------------------: |
+| ![Launcher Style Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png) |
 
 ### Launcher Style
 
@@ -182,7 +194,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 <div align="center">
 
 | Keys | Action |
-| :--: | :----: |
+| :--- | :--- |
 | <kbd>Super</kbd> + <kbd>Q</kbd><br><kbd>Alt</kbd> + <kbd>F4</kbd> | Close focused window|
 | <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
@@ -239,21 +251,3 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
   <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
 
-## YouTube
-
-<div align="center">
-  <table><tr><td>
-  <code>p</code><br>
-  <code>l</code><br>
-  <code>a</code><br>
-  <code>y</code><br>
-  <code>l</code><br>
-  <code>i</code><br>
-  <code>s</code><br>
-  <code>t</code>
-  </td><td>
-
-[![YouTube playlist thumbnail](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/yt_playlist.png)](https://www.youtube.com/watch?v=_nyStxAI75s&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY)
-
-  </tr></table>
-</div>
