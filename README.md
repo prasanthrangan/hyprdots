@@ -83,12 +83,8 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
 
 ## Themes
 
-All our themes are stored in a separate repository, allowing users to download them using themepatcher.
+All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
 For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes).
-
-> [!TIP]
-> You can create, maintain, and share additional themes, all of which can be installed using themepatcher!
-> To create your own custom theme, please refer to the [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming).
 
 <div align="center">
   <table><tr>
@@ -111,9 +107,11 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
   </td></tr></table>
 </div>
 
-> [!CAUTION]
-> Unofficial themes are not maintained by us.
-> You are relying on other theme creators for their themes to work properly and to stay up to date with any updates to our theming system.
+> [!TIP]
+> Everyone, including you can create, maintain, and share additional themes, all of which can be installed using themepatcher!
+> To create your own custom theme, please refer to the [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming).
+> 
+> If you wish to have your hyde theme showcased, or you want to find some non-official themes, visit [kRHYME7/hyde-gallery](https://github.com/kRHYME7/hyde-gallery)!
 
 <div align="right">
   <br>
