@@ -3,7 +3,7 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png">
 
-<br>
+<br><br>
 
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
   <a href="#themes"><kbd> <br> Themes <br> </kbd></a>&ensp;&ensp;
@@ -136,13 +136,13 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 
 | Wallbash Mode Select |
 | :------------------: |
-| ![Wallbash Mode Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wb_mode_sel.png) |
+| ![Wallbash Mode Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/09b3480ed0cfc28e590866fe3626866cce8fb620/Source/assets/wb_mode_sel.png) |
 
 ### Notification Action
 
 | Notification Action |
 | :-----------------: |
-| ![Notification Action](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/notif_action_sel.png) |
+| ![Notification Action](https://raw.githubusercontent.com/prasanthrangan/hyprdots/09b3480ed0cfc28e590866fe3626866cce8fb620/Source/assets/notif_action_sel.png) |
 
 ### Launcher Style Select
 
