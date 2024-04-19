@@ -4,19 +4,12 @@ scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
 roconf="${confDir}/rofi/clipboard.rasi"
 
-#? Cursor position offset when pastebin is spawned
-x_offset=15  #* Cursor spawn position on clipboard
-y_offset=210 #* To point the Cursor to the 1st and 2nd latest word
+# set position
+x_offset=${clipXoffset:--15} #* Cursor spawn position on clipboard
+y_offset=${clipYoffset:-210} #* To point the Cursor to the 1st and 2nd latest word
 
-#? Parse clipboard.rasi and fetch the width. Should consider percent
-clpWidth=$(awk '/window {/,/}/ { if (/width:/) { split($2, a, "%"); print a[1] } }' "${roconf}" )
-clpWidth=${clpWidth:-20} #? Default
-clpHeight=$((clpWidth * 100 / 36)) #? Default
-
-#? Monitor resolution , scale and rotation,Do maths @ json
+# Monitor resolution , scale and rotation
 eval "$(hyprctl monitors -j | jq -r \
-    --argjson clpWidth "$clpWidth" \
-    --argjson clpHeight "$clpHeight" \
     ' .[] | select(.focused==true) | 
  (if (.transform | (. % 2) == 1) then
    {monWidth: (.height / .scale | floor), monHeight: (.width / .scale | floor)}
@@ -28,16 +21,15 @@ export monWidth=\($dims.monWidth);
 export monHeight=\($dims.monHeight);
 export monXpos=\(.x | floor);
 export monYpos=\(.y | floor);
-export clpWidth=\(if (.transform | (. % 2) == 1) then ($dims.monHeight * $clpWidth / 100 | floor) else ($dims.monWidth * $clpWidth / 100 | floor) end);
-export clpHeight=\(if (.transform | (. % 2) == 1) then ($dims.monWidth * $clpHeight / 100 | floor) else ($dims.monHeight * $clpHeight / 100 | floor) end);
 "')"
 
-#? Level 1 layers  e.g namesapce for  waybar, for now just waybar \\ ensures that we can get a good boundary value
-# TODO Handle if we got multple waybar layouts
-wbarW=0 ; wbarH=0
-eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[] | .[] | select(.namespace == "waybar") | if .h < .w then "export export wbarH=$((\(.h) + $wbarH ))" else "export wbarW=$((\(.w) + $wbarW ))" end')"
+# Level 1 layers  e.g namespace for  waybar, for now just waybar \\ ensures that we can get a good boundary value
+# TODO Handle if we got multple waybar location
+wBar=0
+hBar=0
+eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[] | .[] | select(.namespace == "waybar") | if .h < .w then "export export hBar=$((\(.h) + $hBar ))" else "export wBar=$((\(.w) + $wBar ))" end')"
 
-#?  Cursor position filtered by Monitor stats
+#  Cursor position filtered by Monitor stats
 eval "$(hyprctl cursorpos -j | jq -r \
     --argjson x_offset "$x_offset" \
     --argjson y_offset "$y_offset" \
@@ -48,15 +40,20 @@ export curXpos=\(.x - $monXpos - $x_offset )
 export curYpos=\(.y - $monYpos - $y_offset)
 "')"
 
-#? Handles Boundary
-xBound=$((monWidth - clpWidth - wbarW))
-yBound=$((monHeight - clpHeight - wbarH))
+# TODO Dynamically follow the rofi scaling if .rasi changes
+# Limit board location to monitor
+wBoard=${wBoard:-300}
+hBoard=${hBoard:-550}
+xBound=$((monWidth - wBoard - wBar))
+yBound=$((monHeight - hBoard - hBar))
+curXpos=$((curXpos - x_offset))
+curYpos=$((curYpos - y_offset))
+
 curXpos=$((curXpos < 0 ? 0 : (curXpos > xBound ? xBound : curXpos)))
 curYpos=$((curYpos < 0 ? 0 : (curYpos > yBound ? yBound : curYpos)))
 
-#? Override height and width
-h_override="height: ${clpHeight}px; width: ${clpWidth}px;"
-pos="window {${h_override}location: north west; x-offset: ${curXpos}px; y-offset: ${curYpos}px;}" #! I just Used the old pos function
+# position override
+pos="window {location: north west; x-offset: ${curXpos}px; y-offset: ${curYpos}px;}"
 
 # read hypr theme border
 wind_border=$((hypr_border * 3 / 2))
