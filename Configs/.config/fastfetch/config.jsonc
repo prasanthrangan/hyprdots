@@ -52,7 +52,7 @@
         "break",
         {
             "type": "title",
-            "key": "  ",
+            "key": "  "
         },
         {
             "type": "custom",
@@ -88,7 +88,8 @@
         {
             "type": "colors",
             "paddingLeft": 2,
-            "symbol": "circle",
-        }
+            "symbol": "circle"
+        },
+        "break"
     ]
 }
