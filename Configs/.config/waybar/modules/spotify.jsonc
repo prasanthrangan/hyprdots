@@ -1,5 +1,5 @@
     "custom/spotify": {
-        "exec": "/usr/bin/env python3 $HOME/.config/waybar/modules/mediaplayer.py --player spotify",
+        "exec": "mediaplayer.py --player spotify",
         "format": " {}",
         "rotate": ${r_deg},
         "return-type": "json",
