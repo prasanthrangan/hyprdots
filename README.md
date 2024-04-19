@@ -1,9 +1,10 @@
 ###### *<div align="right"><sub>// design by t2</sub></div>*
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyprdots_banner.png">
 
-<br><br>
+![hyde_banner](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyde_banner.png)
+
+<br>
 
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
   <a href="#themes"><kbd> <br> Themes <br> </kbd></a>&ensp;&ensp;
@@ -13,30 +14,20 @@
   <a href="https://github.com/prasanthrangan/hyprdots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
   <a href="https://discord.gg/qWehcFJxPa"><kbd> <br> Discord <br> </kbd></a>
 
-<br>
+<br><br><img width="15%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/arch.png"/><br><br><br></div>
 
-  <img style="margin: 0 5px 10px 0; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_1.png" />
-  <img style="margin: 0 0 10px 5px; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_2.png" />
-  <img style="margin: 0 5px 10px 0; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_3.png" />
-  <img style="margin: 0 0 10px 5px; width: 48%;" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/showcase_4.png" />
-</div>
-
-<div align="right">
-  <br>
-  <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
-</div>
 
 ## Installation
 
 The installation script is designed for a minimal [Arch Linux](https://wiki.archlinux.org/title/Arch_Linux) install, but **may** work on some [Arch-based distros](https://wiki.archlinux.org/title/Arch-based_distributions).
-While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/Desktop_environment)/[WM](https://wiki.archlinux.org/title/Window_manager) should work, due to it being a heavily customized setup, it **will** conflict with your [GTK](https://wiki.archlinux.org/title/GTK)/[Qt](https://wiki.archlinux.org/title/Qt) theming, [shell](https://wiki.archlinux.org/title/Command-line_shell), [SDDM](https://wiki.archlinux.org/title/SDDM), [GRUB](https://wiki.archlinux.org/title/GRUB), etc. and is at your own risk.
+While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/Desktop_environment)/[WM](https://wiki.archlinux.org/title/Window_manager) should work, due to it being a heavily customized setup, it **will** conflict with your [GTK](https://wiki.archlinux.org/title/GTK)/[Qt](https://wiki.archlinux.org/title/Qt) theming, [Shell](https://wiki.archlinux.org/title/Command-line_shell), [SDDM](https://wiki.archlinux.org/title/SDDM), [GRUB](https://wiki.archlinux.org/title/GRUB), etc. and is at your own risk.
 
 > [!IMPORTANT]
 > The install script will auto-detect an NVIDIA card and install nvidia-dkms drivers for your kernel.
 > Please ensure that your NVIDIA card supports dkms drivers in the list provided [here](https://wiki.archlinux.org/title/NVIDIA).
 
 > [!CAUTION]
-> The script modifies your GRUB or Systemd-boot config to enable NVIDIA DRM.
+> The script modifies your `grub` or `systemd-boot` config to enable NVIDIA DRM.
 
 To install, execute the following commands: 
 
@@ -87,9 +78,7 @@ All our official themes are stored in a separate repository, allowing users to i
 For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes).
 
 <div align="center">
-  <table><tr>
-  <td><b>Official HyDE Themes</b></td>
-  </tr><tr><td>
+  <table><tr><td>
 
 [![Catppuccin-Latte](https://placehold.co/130x30/dd7878/eff1f5?text=Catppuccin-Latte&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Catppuccin-Latte)
 [![Catppuccin-Mocha](https://placehold.co/130x30/b4befe/11111b?text=Catppuccin-Mocha&font=Oswald)](https://github.com/prasanthrangan/hyde-themes/tree/Catppuccin-Mocha)
@@ -110,7 +99,6 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 > [!TIP]
 > Everyone, including you can create, maintain, and share additional themes, all of which can be installed using themepatcher!
 > To create your own custom theme, please refer to the [theming wiki](https://github.com/prasanthrangan/hyprdots/wiki/Theming).
-> 
 > If you wish to have your hyde theme showcased, or you want to find some non-official themes, visit [kRHYME7/hyde-gallery](https://github.com/kRHYME7/hyde-gallery)!
 
 <div align="right">
@@ -120,69 +108,44 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 
 ## Styles
 
-### Theme Select
+<div align="center"><table><tr>Theme Select</tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_2.png"/></td></tr></table></div>
 
-| Theme Select #1 | Theme Select #2 |
-| :-------------: | :-------------: |
-| ![Theme Select #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png) | ![Theme Select #2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_2.png) |
+<div align="center"><table><tr><td>Wallpaper Select</td><td>Launcher Select</td></tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png"/></td></tr>
+<tr><td>Wallbash Modes</td><td>Notification Action</td></tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wb_mode_sel.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/notif_action_sel.png"/></td></tr>
+</table></div>
 
-### Wallpaper Select
+<div align="center"><table><tr>Rofi Launcher</tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_1.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_2.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_3.png"/></td></tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_4.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_5.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_6.png"/></td></tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_7.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_8.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_9.png"/></td></tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_10.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_11.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_12.png"/></td></tr>
+</table></div>
 
-| Wallpaper Select |
-| :--------------: |
-| ![Wallpaper Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/walls_select.png) |
+<div align="center"><table><tr>Wlogout Menu</tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png"/></td></tr></table></div>
 
-### Wallbash Mode Select
-
-| Wallbash Mode Select |
-| :------------------: |
-| ![Wallbash Mode Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/09b3480ed0cfc28e590866fe3626866cce8fb620/Source/assets/wb_mode_sel.png) |
-
-### Notification Action
-
-| Notification Action |
-| :-----------------: |
-| ![Notification Action](https://raw.githubusercontent.com/prasanthrangan/hyprdots/09b3480ed0cfc28e590866fe3626866cce8fb620/Source/assets/notif_action_sel.png) |
-
-### Launcher Style Select
-
-| Launcher Style Select |
-| :-------------------: |
-| ![Launcher Style Select](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png) |
-
-### Launcher Style
-
-| Rofi Style #1 | Rofi Style #2 | Rofi Style #3 |
-| :-----------: | :-----------: | :-----------: |
-| ![Rofi Style #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_1.png) | ![Rofi Style #2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_2.png) | ![Rofi Style #3](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_3.png) |
-
-| Rofi Style #4 | Rofi Style #5 | Rofi Style #6 |
-| :-----------: | :-----------: | :-----------: |
-| ![Rofi Style #4](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_4.png) | ![Rofi Style #5](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_5.png) | ![Rofi Style #6](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_6.png) |
-
-| Rofi Style #7 | Rofi Style #8 | Rofi Style #9 |
-| :-----------: | :-----------: | :-----------: |
-| ![Rofi Style #7](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_7.png) | ![Rofi Style #8](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_8.png) | ![Rofi Style #9](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_9.png) |
-
-| Rofi Style #10 | Rofi Style #11 | Rofi Style #12 |
-| :------------: | :------------: | :------------: |
-| ![Rofi Style #10](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_10.png) | ![Rofi Style #11](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_11.png) | ![Rofi Style #12](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_12.png) |
-
-### Wlogout Menu
-
-| Wlogout Menu #1 | Wlogout Menu #2 |
-| :-------------: | :-------------: |
-| ![Wlogout Menu #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_1.png) | ![Wlogout Menu #2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wlog_style_2.png) |
-
-### Game Launcher
-
-| Game Launcher #1 | Game Launcher #2 | Game Launcher #3 |
-| :--------------: | :--------------: | :--------------: |
-| ![Game Launcher #1](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_1.png) | ![Game Launcher #2](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png) | ![Game Launcher #3](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png) |
-
-| Game Launcher #4 | Game Launcher #5 |
-| :--------------: | :--------------: |
-| ![Game Launcher #4](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png) | ![Game Launcher #5](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_5.png) |
+<div align="center"><table><tr>Game Launcher</tr><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_1.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_2.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_3.png"/></td></tr></table></div>
+<div align="center"><table><tr><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_4.png"/></td><td>
+<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/game_launch_5.png"/></td></tr></table></div>
 
 <div align="right">
   <br>
