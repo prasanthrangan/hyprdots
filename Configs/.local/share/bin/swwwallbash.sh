@@ -5,7 +5,7 @@
 
 export scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-export wallbashImg="${1}"
+wallbashImg="${1}"
 
 
 #// validate input

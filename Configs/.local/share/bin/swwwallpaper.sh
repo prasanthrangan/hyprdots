@@ -13,9 +13,10 @@ trap 'rm -f ${lockFile}' EXIT
 
 Wall_Cache()
 {
+    ln -fs "${wallList[setIndex]}" "${wallSet}"
+    ln -fs "${wallList[setIndex]}" "${wallCur}"
     "${scrDir}/swwwallcache.sh" -w "${wallList[setIndex]}" &> /dev/null
     "${scrDir}/swwwallbash.sh" "${wallList[setIndex]}" &
-    ln -fs "${wallList[setIndex]}" "${wallSet}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
@@ -45,6 +46,7 @@ Wall_Change()
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 wallSet="${hydeThemeDir}/wall.set"
+wallCur="${cacheDir}/wall.set"
 wallSqr="${cacheDir}/wall.sqre"
 wallTmb="${cacheDir}/wall.thmb"
 wallBlr="${cacheDir}/wall.blur"
