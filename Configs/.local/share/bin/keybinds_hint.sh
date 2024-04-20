@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 
 #* Seriously, do not bother on this code as this is too messy. If someone can refactor this and structure it properly that would be awesome.
-#* I use jq to parse and create a metadata. 
+#* I use jq to parse and create a metadata.
 #* It is Functional but dunno if this is maintainable lol
 #* Users should refer to this project to parse keybinds https://github.com/hyprland-community/Hyprkeys
 #* Created this to avoid dependencies
-#* Please inform me if there are new Categories upstream I will try to add comments to this code so I won't forget. 
+#* Please inform me if there are new Categories upstream I will try to add comments to this code so I won't forget.
 #* Khing 🦆
- 
+
 pkill -x rofi && exit
 scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
@@ -22,7 +22,7 @@ roDir="$confDir/rofi"
 roconf="$roDir/clipboard.rasi"
 
 HELP() {
-  cat << HELP
+  cat <<HELP
 Usage: $0 [options]"
 Options:"
  -j     Show the JSON format
@@ -42,48 +42,41 @@ HELP
 }
 
 while [ "$#" -gt 0 ]; do
-    case "$1" in
-        -j) # show the json format
-            JSON=true
-            ;;
-        -p) # show the pretty format
-            PRETTY=true
-            ;;
-        -d) # Add custom delimiter symbol default '>'
-            shift
-            delim="$1"
-            ;;
-        -f) # Add custom file
-            shift
-            keyConf="$* "
-            ;;
-        -w) # Custom width
-         shift 
-         width="$1"
-        ;;
-        -h) # Custom height
-         shift 
-         height="$1"
-        ;;
-        -*|--help) # Add Help message
-          HELP
-          exit
-        ;;
-    esac
+  case "$1" in
+  -j) # show the json format
+    kb_hint_json=true
+    ;;
+  -p) # show the pretty format
+    kb_hint_pretty=true
+    ;;
+  -d) # Add custom delimiter symbol default '>'
     shift
+    kb_hint_delim="$1"
+    ;;
+  -f) # Add custom file
+    shift
+    keyConf="$* "
+    ;;
+  -w) # Custom kb_hint_width
+    shift
+    kb_hint_width="$1"
+    ;;
+  -h) # Custom height
+    shift
+    kb_hint_height="$1"
+    ;;
+  -* | --help) # Add Help message
+    HELP
+    exit
+    ;;
+  esac
+  shift
 done
 
-keyconfDir="$confDir/hypr"
-keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
-tmpMapDir="/tmp"
-tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
-roDir="$confDir/rofi"
-roconf="$roDir/clipboard.rasi"
-
 # read hypr theme border
-wind_border=$(( hypr_border * 3/2 ))
+wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
-r_override="window {height: ${height:-65%}; width: ${width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
+r_override="window {height: ${kb_hint_height:-65%}; width: ${kb_hint_width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
@@ -96,13 +89,13 @@ icon_override="configuration {icon-theme: \"${icon_override}\";}"
 #? Read all the variables in the configuration file
 #! Intentional globbing on the $keyconf variable
 # shellcheck disable=SC2086
-keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $keyConf )"
+keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $keyConf)"
 keyVars+="
 "
 keyVars+="HOME=$HOME"
 #  echo "$keyVars"
 
-#? This part substitutes the variables into the actual value. 
+#? This part substitutes the variables into the actual value.
 #TODO It will be easier if hyprland will expose the variables.
 substitute_vars() {
   local s="$1"
@@ -131,9 +124,9 @@ substitute_vars() {
 # }
 
 # comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $keyConf | sed "s#\"#'#g" )
-  initialized_comments=$(awk  -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g" )
-  comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
-   '{gsub(/^ */, "", $1);\
+initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g")
+comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
+  '{gsub(/^ */, "", $1);\
     gsub(/ *$/, "", $1);\
      split($2, a, " ");\
       a[1] = toupper(substr(a[1], 1, 1)) substr(a[1], 2);\
@@ -141,11 +134,11 @@ substitute_vars() {
         i<=length(a); i++) $2 = $2" "a[i];\
          gsub(/^ */, "", $2);\
           gsub(/ *$/, "", $2);\
-           if (length($1) > 0) print "\""$1"\" : \""(length($2) > 0 ? $2 : $1)"\","}'|
+           if (length($1) > 0) print "\""$1"\" : \""(length($2) > 0 ? $2 : $1)"\","}' |
   awk '!seen[$0]++')
-  # echo "$comments"
+# echo "$comments"
 
-cat << EOF > $tmpMap
+cat <<EOF >$tmpMap
 # hyprdots-keybinds.jq
 def executables_mapping: {  #? Derived from .args to parse scripts to be Readable
 #? Auto Generated Comment Conversion
@@ -166,20 +159,18 @@ $comments
 
 def keycode_mapping: { #? Fetches keycode from a file
  "0": "",
- $([ -f "${keycodeFile}" ] &&  cat "${keycodeFile}")
+ $([ -f "${keycodeFile}" ] && cat "${keycodeFile}")
 };
 EOF
 
-
-
-cat << KEYCODE >> $tmpMap
+cat <<KEYCODE >>$tmpMap
 
 KEYCODE
 
-
 #? Script to re Modify hyprctl json output
 #! This is Our Translator for some binds  #Khing!
-jsonData="$(hyprctl binds -j | jq -L "$tmpMapDir" -c '
+jsonData="$(
+  hyprctl binds -j | jq -L "$tmpMapDir" -c '
 include "hyprdots-keybinds";
 
 
@@ -310,7 +301,7 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 )"
 
 #? Now we have the metadata we can Group it accordingly
-GROUP() { 
+GROUP() {
   awk -F '!=!' '{
     category = $1
     binds[category] = binds[category] ? binds[category] "\n" $0 : $0
@@ -333,65 +324,67 @@ GROUP() {
 }
 
 #? Display the JSON format
-[ "$JSON" = true ] && echo -e "$jsonData" | jq && exit 0
+[ "$kb_hint_json" = true ] && echo -e "$jsonData" | jq && exit 0
 
 #? Format this is how the keybinds are displayed.
-DISPLAY() { awk -v delim="${delim:->}" -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s %-2s %-30s\n", $5, delim, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}' ;}
+DISPLAY() { awk -v kb_hint_delim="${kb_hint_delim:->}" -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s %-2s %-30s\n", $5, kb_hint_delim, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}'; }
 
 #? Extra design use for distiction
 header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
 #! this Part Gives extra laoding time as I don't have efforts to make single space for each class
-metaData="$(echo "${jsonData}"  |  jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1 )" 
-# echo "$metaData" 
+metaData="$(echo "${jsonData}" | jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1)"
+# echo "$metaData"
 
 #? This formats the pretty output
-display="$(echo "$metaData" | GROUP | DISPLAY )"
+display="$(echo "$metaData" | GROUP | DISPLAY)"
 
 # output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
 output=$(echo -e "${header}\n${line}\n${display}")
 
-[ "$PRETTY" = true ] && echo -e "$output" && exit 0
+[ "$kb_hint_pretty" = true ] && echo -e "$output" && exit 0
 
 #? will display on the terminal if rofi is not found or have -j flag
-if ! command -v rofi &> /dev/null ; then
-    echo "$output"
-    echo "rofi not detected. Displaying on terminal instead"
-    exit 0
+if ! command -v rofi &>/dev/null; then
+  echo "$output"
+  echo "rofi not detected. Displaying on terminal instead"
+  exit 0
 fi
 
 #? Actions to do when selected
-selected=$(echo  "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
+selected=$(echo "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 if [ -z "$selected" ]; then exit 0; fi
 
-sel_1=$(echo "$selected" | cut -d "${delim:->}" -f 1 | awk '{$1=$1};1')
-sel_2=$(echo "$selected" | cut -d "${delim:->}" -f 2 | awk '{$1=$1};1')
-run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2" )"
+sel_1=$(echo "$selected" | cut -d "${kb_hint_delim:->}" -f 1 | awk '{$1=$1};1')
+sel_2=$(echo "$selected" | cut -d "${kb_hint_delim:->}" -f 2 | awk '{$1=$1};1')
+run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2")"
 
 run_flg="$(echo "$run" | awk -F '!=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '!=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
 #   echo "$run_sel" ; echo "$run_flg"
 
-#? 
+#?
 RUN() { case "$(eval "hyprctl dispatch $run_sel")" in *"Not enough arguments"*) exec $0 ;; esac }
 
 #? If flag is repeat then repeat rofi if not then just execute once
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
-    eval "$run_flg"
-    if [ "$repeat" = true ]; then
+  eval "$run_flg"
+  if [ "$repeat" = true ]; then
 
-while true; do
-    repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like comfirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat? 
+    while true; do
+      repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like comfirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat?
 
-    if [ "$repeat_command" = "Repeat" ]; then
+      if [ "$repeat_command" = "Repeat" ]; then
         # Repeat the command here
         RUN
-    else
+      else
         exit 0
-    fi
-done
-    else RUN
-    fi
-else  exec $0 
+      fi
+    done
+  else
+    RUN
+  fi
+else
+  exec $0
 fi
