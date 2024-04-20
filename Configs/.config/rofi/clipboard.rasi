@@ -2,7 +2,6 @@
 configuration {
     modi:                        "drun";
     show-icons:                  false;
-    font:                        "JetBrainsMono Nerd Font 9";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -10,8 +9,8 @@ configuration {
 
 // Main //
 window {
-    width:                       16.7em;
-    height:                      30.6em;
+    width:                       23em;
+    height:                      30em;
     transparency:                "real";
     fullscreen:                  false;
     enabled:                     true;
@@ -24,7 +23,7 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     0em;
-    padding:                     0.8em;
+    padding:                     0.5em;
     orientation:                 vertical;
     children:                    [ "wallbox" , "listbox" ];
     background-color:            transparent;
@@ -37,7 +36,6 @@ wallbox {
     background-color:            transparent;
     background-image:            url("~/.cache/hyde/wall.blur", width);
     children:                    [ "wallframe" , "inputbar" ];
-    border-radius:               0.5em;
 }
 wallframe {
     width:                       5em;
@@ -59,7 +57,7 @@ inputbar {
 }
 entry {
     enabled:                     true;
-    padding:                     2em;
+    padding:                     1.8em;
     text-color:                  @main-fg;
     background-color:            transparent;
 }
@@ -77,7 +75,7 @@ listview {
     enabled:                     true;
     padding:                     0.5em;
     columns:                     1;
-    lines:                       12; 
+    lines:                       11; 
     cycle:                       true;
     fixed-height:                true;
     fixed-columns:               false;
