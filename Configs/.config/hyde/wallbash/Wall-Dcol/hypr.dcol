@@ -10,3 +10,18 @@ group {
     col.border_locked_active = rgba(<wallbash_txt3>ff) rgba(<wallbash_txt4>ff) 45deg
     col.border_locked_inactive = rgba(<wallbash_txt1>cc) rgba(<wallbash_txt2>cc) 45deg
 }
+decoration {
+    rounding = 10
+    drop_shadow = false
+
+    blur {
+        enabled = yes
+        size = 6
+        passes = 3
+        new_optimizations = on
+        ignore_opacity = on
+        xray = false
+    }
+}
+
+layerrule = blur,waybar
