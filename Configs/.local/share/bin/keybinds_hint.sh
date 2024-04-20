@@ -57,13 +57,13 @@ while [ "$#" -gt 0 ]; do
     shift
     keyConf="$* "
     ;;
-  -w) # Custom width
+  -w) # Custom kb_hint_width
     shift
-    width="$1"
+    kb_hint_width="$1"
     ;;
   -h) # Custom height
     shift
-    height="$1"
+    kb_hint_height="$1"
     ;;
   -* | --help) # Add Help message
     HELP
@@ -76,7 +76,7 @@ done
 # read hypr theme border
 wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
-r_override="window {height: ${height:-65%}; width: ${width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
+r_override="window {height: ${kb_hint_height:-65%}; width: ${kb_hint_width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
