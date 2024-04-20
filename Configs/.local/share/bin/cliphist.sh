@@ -4,8 +4,19 @@ scrDir=$(dirname "$(realpath "$0")")
 source $scrDir/globalcontrol.sh
 roconf="${confDir}/rofi/clipboard.rasi"
 
+[[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
+
+# TODO : Find a smarter way to do this; sol for rofi clipboard size
+clp_file=$cacheDir/landing/clip.size
+[ -f "${clp_file}" ] && . "${clp_file}"
+clip_size() {
+    sleep 0.4
+    eval "$(hyprctl layers -j | jq -r '.["eDP-1"].levels | .[][] | select(.namespace == "rofi") | "export w_clip=\(.w); export h_clip=\(.h)"')"
+    [ "${w_clip}" != "${wBoard}" ] && echo "w_clip=${w_clip}; h_clip=${h_clip}" >"${clp_file}"
+}
+
 # set position
-x_offset=${clipXoffset:--15} #* Cursor spawn position on clipboard
+x_offset=${clipXoffset:-15}  #* Cursor spawn position on clipboard
 y_offset=${clipYoffset:-210} #* To point the Cursor to the 1st and 2nd latest word
 
 # Monitor resolution , scale and rotation
@@ -42,8 +53,8 @@ export curYpos=\(.y - $monYpos - $y_offset)
 
 # TODO Dynamically follow the rofi scaling if .rasi changes
 # Limit board location to monitor
-wBoard=${wBoard:-300}
-hBoard=${hBoard:-550}
+wBoard=${w_clip:-300}
+hBoard=${h_clip:-550}
 xBound=$((monWidth - wBoard - wBar))
 yBound=$((monHeight - hBoard - hBar))
 curXpos=$((curXpos - x_offset))
@@ -61,16 +72,17 @@ elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
 r_override="window {border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
-fnt_override=$(gsettings get org.gnome.desktop.interface monospace-font-name | awk '{gsub(/'\''/,""); print $NF}')
-fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
 
 # clipboard action
 case $1 in
 c)
-    cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist decode | wl-copy
+    (cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist decode | wl-copy) &
+    clip_size
     ;;
 d)
-    cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist delete
+    (cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf | cliphist delete) &
+    clip_size
     ;;
 w)
     if [ $(echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";} ${pos} ${r_override}" -theme-str "${fnt_override}" -config $roconf) == "Yes" ]; then
