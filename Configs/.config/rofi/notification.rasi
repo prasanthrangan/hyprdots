@@ -3,7 +3,7 @@ configuration {
     modi:                        "drun";
     show-icons:                  true;
     drun-display-format:         "{name}";
-    font:                        "JetBrainsMono Nerd Font 10";
+    font:                        "JetBrainsMono Nerd Font 9";
 }
 
 @theme "~/.config/rofi/theme.rasi"
@@ -60,7 +60,6 @@ listview {
     fixed-columns:               true;
     cursor:                      "default";
     background-color:            transparent;
-    text-color:                  @main-fg;
 }
 dummy2 {
     spacing:                     0em;
@@ -76,7 +75,7 @@ element {
     padding:                     1em;
     cursor:                      pointer;
     background-color:            transparent;
-    text-color:                  @main-bg;
+    text-color:                  @main-fg;
     border-radius:               0em;
 }
 element selected.normal {
