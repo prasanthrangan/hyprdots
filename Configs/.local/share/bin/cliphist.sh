@@ -12,7 +12,7 @@ clp_file=$cacheDir/landing/clip.size
 clip_size() {
     sleep 0.4
     eval "$(hyprctl layers -j | jq -r '.["eDP-1"].levels | .[][] | select(.namespace == "rofi") | "export w_clip=\(.w); export h_clip=\(.h)"')"
-    [ "${w_clip}" != "${wBoard}" ] && echo "w_clip=${w_clip}; h_clip=${h_clip}" >"${clp_file}"
+    { [ "${w_clip}" != "${wBoard}" ] || [ "${h_clip}" != "${hBoard}" ]; } && echo "w_clip=${w_clip}; h_clip=${h_clip}" >"${clp_file}"
 }
 
 # set position
