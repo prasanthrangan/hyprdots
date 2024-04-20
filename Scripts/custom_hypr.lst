@@ -73,7 +73,7 @@ oh-my-zsh-git|zsh                                      # plugin manager for zsh
 zsh-theme-powerlevel10k|zsh oh-my-zsh-git              # theme for zsh
 lsd|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
-neofetch                                               # fetch tool
+fastfetch                                              # system information fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
 # --------------------------------------------------- // HyDE

@@ -96,4 +96,3 @@ Uninstall the packages manually that are no longer required based on these list
 ${scrDir}/custom_hypr.lst
 ${scrDir}/custom_apps.lst
 "
-
