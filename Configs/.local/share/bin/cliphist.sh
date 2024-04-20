@@ -11,8 +11,8 @@ clp_file=$cacheDir/landing/clip.size
 [ -f "${clp_file}" ] && . "${clp_file}"
 clip_size() {
     sleep 0.4
-    eval "$(hyprctl layers -j | jq -r '.["eDP-1"].levels | .[][] | select(.namespace == "rofi") | "export w_clip=\(.w); export h_clip=\(.h)"')"
-    { [ "${w_clip}" != "${wBoard}" ] || [ "${h_clip}" != "${hBoard}" ]; } && echo "w_clip=${w_clip}; h_clip=${h_clip}" >"${clp_file}"
+    eval "$(hyprctl layers -j | jq -r --arg mon "$monName" '.[$mon].levels | .[][] | select(.namespace == "rofi") | "export w_clip=\(.w); export h_clip=\(.h)"')"
+    { [ "${w_clip}" != "${wBoard}" ] || [ "${h_clip}" != "${hBoard}" ]; } && echo "wBoard=${w_clip}; hBoard=${h_clip}" >"${clp_file}"
 }
 
 # set position
@@ -51,10 +51,7 @@ export curXpos=\(.x - $monXpos - $x_offset )
 export curYpos=\(.y - $monYpos - $y_offset)
 "')"
 
-# TODO Dynamically follow the rofi scaling if .rasi changes
 # Limit board location to monitor
-wBoard=${w_clip:-300}
-hBoard=${h_clip:-550}
 xBound=$((monWidth - wBoard - wBar))
 yBound=$((monHeight - hBoard - hBar))
 curXpos=$((curXpos - x_offset))
