@@ -23,3 +23,5 @@ abbr mkdir 'mkdir -p'
 
 # Fixes "Error opening terminal: xterm-kitty" when using the default kitty term to open some programs through ssh
 alias ssh='kitten ssh'
+
+alias neofetch='fastfetch' # alias neofetch as fastfetch for backword compatibility for users
