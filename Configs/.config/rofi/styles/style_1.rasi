@@ -2,17 +2,17 @@
 configuration {
     modi:                        "drun,filebrowser,window,run";
     show-icons:                  true;
-    display-drun:                "";
-    display-run:                 "";
-    display-filebrowser:         "";
-    display-window:              "";
+    display-drun:                " ";
+    display-run:                 " ";
+    display-filebrowser:         " ";
+    display-window:              " ";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
     icon-theme:                  "Tela-circle-dracula";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -44,7 +44,7 @@ dummywall {
     orientation:                 horizontal;
     children:                    [ "mode-switcher" , "inputbar" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.rofi", height);
+    background-image:            url("~/.cache/hyde/wall.thmb", height);
 }
 
 
@@ -56,12 +56,10 @@ mode-switcher{
     padding:                     9.2em 0.5em 9.2em 0.5em;
     spacing:                     1.2em;
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", height);
+    background-image:            url("~/.cache/hyde/wall.blur", height);
 }
 button {
     cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.45;
     border-radius:               2em;
     background-color:            @main-bg;
     text-color:                  @main-fg;
@@ -116,8 +114,8 @@ dummy {
 // Elements //
 element {
     enabled:                     true;
-    spacing:                     1em;
-    padding:                     0.4em;
+    spacing:                     0.8em;
+    padding:                     0.4em 0.4em 0.4em 1.5em;
     cursor:                      pointer;
     background-color:            transparent;
     text-color:                  @main-fg;

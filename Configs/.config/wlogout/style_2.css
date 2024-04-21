@@ -3,10 +3,10 @@
     font-size: ${fntSize}px;
 }
 
-@import "$HOME/.config/waybar/themes/${wbarTheme}.css";
+@import "$HOME/.config/waybar/theme.css";
 
 window {
-    background-color: ${WindBg};
+    background-color: transparent;
 }
 
 button {

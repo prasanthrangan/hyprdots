@@ -2,17 +2,17 @@
 configuration {
     modi:                        "drun,filebrowser,window,run";
     show-icons:                  true;
-    display-drun:                "";
-    display-run:                 "";
-    display-filebrowser:         "";
-    display-window:              "";
+    display-drun:                " ";
+    display-run:                 " ";
+    display-filebrowser:         " ";
+    display-window:              " ";
     drun-display-format:         "{name}";
     window-format:               "{w}{t}";
     font:                        "JetBrainsMono Nerd Font 10";
     icon-theme:                  "Tela-circle-dracula";
 }
 
-@theme "~/.config/rofi/themes/theme.rasi"
+@theme "~/.config/rofi/theme.rasi"
 
 
 // Main //
@@ -55,7 +55,7 @@ listbox {
     orientation:                 horizontal;
     children:                    [ "listview" ];
     background-color:            transparent;
-    background-image:            url("~/.config/swww/wall.blur", width);
+    background-image:            url("~/.cache/hyde/wall.blur", width);
 }
 listview {
     padding:                     2em;
@@ -85,8 +85,6 @@ mode-switcher {
 }
 button {
     cursor:                      pointer;
-    vertical-align:              0.50;
-    horizontal-align:            0.40;
     padding:                     2.5em;
     spacing:                     0em;
     border-radius:               3em;
