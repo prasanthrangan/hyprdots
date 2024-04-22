@@ -15,7 +15,7 @@ fpk_exup="flatpak update"
 if [ "$1" == "up" ] ; then
     trap 'pkill -RTMIN+20 waybar' EXIT
     command="
-    neofetch
+    fastfetch
     $0 upgrade
     ${aurhlpr} -Syu
     $fpk_exup
