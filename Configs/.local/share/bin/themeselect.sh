@@ -54,6 +54,6 @@ done | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "$
 
 if [ ! -z "${rofiSel}" ] ; then
     "${scrDir}/themeswitch.sh" -s "${rofiSel}"
-    notify-send -a "t1" -i "~/.config/dunst/icons/hyprdots.png" " ${rofiSel}"
+    notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${rofiSel}"
 fi
 
