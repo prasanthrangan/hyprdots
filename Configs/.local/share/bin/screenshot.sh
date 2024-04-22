@@ -59,6 +59,5 @@ esac
 rm "$temp_screenshot"
 
 if [ -f "${save_dir}/${save_file}" ]; then
-	save_dir="${save_dir/$HOME/"~"}"
 	notify-send -a "t1" -i "${save_dir}/${save_file}" "saved in ${save_dir}"
 fi
