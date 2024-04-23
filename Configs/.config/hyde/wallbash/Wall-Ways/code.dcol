@@ -1,4 +1,4 @@
-$HOME/.vscode-oss/extensions/undefined_publisher.wallbash-0.0.1/themes/wallbash-color-theme.json
+${cacheDir}/landing/wallbashcode.json|${scrDir}/wallbashcode.sh
 {
   "name": "wallbash",
   "colors": {

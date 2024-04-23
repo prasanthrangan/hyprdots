@@ -11,7 +11,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-CloneDir=$(dirname "$(realpath "$CloneDir")")
+cloneDir=$(dirname "$(realpath "$cloneDir")")
 
 
 #// icons
@@ -39,8 +39,8 @@ if pkg_installed firefox; then
         cp -r ~/.mozilla/firefox "${BkpDir}"
     fi
 
-    tar -xzf ${CloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C "${FoxRel}"
-    tar -xzf ${CloneDir}/Source/arcs/Firefox_Extensions.tar.gz -C ~/.mozilla/
+    tar -xzf ${cloneDir}/Source/arcs/Firefox_UserConfig.tar.gz -C "${FoxRel}"
+    tar -xzf ${cloneDir}/Source/arcs/Firefox_Extensions.tar.gz -C ~/.mozilla/
 
     find ~/.mozilla/extensions -maxdepth 1 -type f -name "*.xpi" | while read fext
     do

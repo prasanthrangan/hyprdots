@@ -39,7 +39,7 @@ if pkg_installed grub && [ -f /boot/grub/grub.cfg ]; then
             sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
         else
             echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"
-            sudo tar -xzf ${CloneDir}/Source/arcs/Grub_${grubtheme}.tar.gz -C /usr/share/grub/themes/
+            sudo tar -xzf ${cloneDir}/Source/arcs/Grub_${grubtheme}.tar.gz -C /usr/share/grub/themes/
             sudo sed -i "/^GRUB_DEFAULT=/c\GRUB_DEFAULT=saved
             /^GRUB_GFXMODE=/c\GRUB_GFXMODE=1280x1024x32,auto
             /^GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"
