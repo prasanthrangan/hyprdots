@@ -31,9 +31,9 @@ set +a
 fn_wallbash () {
     local tplt="${1}"
     local type="${2}"
-    eval target=$(head -1 "${tplt}" | awk -F '|' '{print $1}')
+    eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
     [ ! -d "$(dirname "${target}")" ] && echo "[skip] \"${target}\"" && return 0
-    appexe=$(head -1 "${tplt}" | awk -F '|' '{print $2}')
+    appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
     sed '1d' "${tplt}" > "${target}"
 
     if [[ "${enableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${enableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]] ; then
@@ -216,9 +216,7 @@ fn_wallbash () {
                 s/<wallbash_4xa9_rgba(\([^)]*\))>/'"${dcol_4xa9_rgba}"'/g' "${target}"
     fi
 
-    if [ ! -z "${appexe}" ] ; then
-        eval "${appexe}"
-    fi
+    [ -z "${appexe}" ] || bash -c "${appexe}"
 }
 
 export -f fn_wallbash

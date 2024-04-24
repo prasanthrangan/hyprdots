@@ -12,7 +12,7 @@ if [ $? -ne 0 ]; then
 fi
 
 CfgLst="${1:-"${scrDir}/restore_cfg.lst"}"
-CfgDir="${2:-${CloneDir}/Configs}"
+CfgDir="${2:-${cloneDir}/Configs}"
 ThemeOverride="${3:-}"
 
 if [ ! -f "${CfgLst}" ] || [ ! -d "${CfgDir}" ]; then

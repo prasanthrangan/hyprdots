@@ -11,9 +11,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-find "${CloneDir}" -type l | while read slink; do
+find "${cloneDir}" -type l | while read slink; do
     fixd_slink=$(readlink "$slink" | cut -d '/' -f 4-)
-    linkd_file=$(echo "$slink" | awk -F "${CloneDir}/Configs/" '{print $NF}')
+    linkd_file=$(echo "$slink" | awk -F "${cloneDir}/Configs/" '{print $NF}')
     echo -e "\033[0;32m[link]\033[0m $HOME/$linkd_file --> $HOME/$fixd_slink..."
     ln -fs "$HOME/${fixd_slink}" "$HOME/${linkd_file}"
 done
