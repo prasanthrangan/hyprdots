@@ -10,6 +10,18 @@ export thmbDir="${cacheDir}/thumbs"
 export dcolDir="${cacheDir}/dcols"
 export hashMech="sha1sum"
 
+# Function to execute a command with elevated privileges
+SUPER() {
+    local command="$*"
+    print_prompt -y "[ROOT] " "${command}"
+    if command -v doas >/dev/null 2>&1 && [ -f /etc/doas.conf ]; then
+        doas sh -c "$command"
+    else
+        sudo sh -c "$command"
+    fi
+}
+
+export -f SUPER
 get_hashmap()
 {
     unset wallHash

@@ -17,11 +17,11 @@ cloneDir=$(dirname "$(realpath "$cloneDir")")
 #// icons
 
 if [ -f /usr/share/applications/rofi-theme-selector.desktop ] && [ -f /usr/share/applications/rofi.desktop ]; then
-    sudo rm /usr/share/applications/rofi-theme-selector.desktop
-    sudo rm /usr/share/applications/rofi.desktop
+    SUPER rm /usr/share/applications/rofi-theme-selector.desktop
+    SUPER rm /usr/share/applications/rofi.desktop
 fi
-sudo sed -i "/^Icon=/c\Icon=adjust-colors" /usr/share/applications/nwg-look.desktop
-sudo sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
+SUPER sed -i "/^Icon=/c\Icon=adjust-colors" /usr/share/applications/nwg-look.desktop
+SUPER sed -i "/^Icon=/c\Icon=spectacle" /usr/share/applications/swappy.desktop
 
 
 #// firefox
