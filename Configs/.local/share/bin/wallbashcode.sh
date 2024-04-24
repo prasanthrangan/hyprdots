@@ -17,8 +17,6 @@ for i in "${!codeConf[@]}" ; do
     [ -f "${codeConf[i]}/User/settings.json" ] || continue
     extTheme="$(jq -r '.["workbench.colorTheme"]' "${codeConf[i]}/User/settings.json")"
 
-    [ ! -d "$(dirname "${codeVsix[i]}/${tgtFile}")" ] && break
-
     if [ ! -f "${codeVsix[i]}/${tgtFile}" ] ; then
         [ -f "${cacheDir}/landing/Code_Wallbash.vsix" ] || curl -L -o "${cacheDir}/landing/Code_Wallbash.vsix" https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Code_Wallbash.vsix
         code --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
