@@ -27,7 +27,7 @@ cat "${scrDir}/restore_fnt.lst" | while read lst; do
         echo -e "\033[0;32m[extract]\033[0m ${tgt} directory created..."
     fi
 
-    sudo tar -xzf "${CloneDir}/Source/arcs/${fnt}.tar.gz" -C "${tgt}/"
+    sudo tar -xzf "${cloneDir}/Source/arcs/${fnt}.tar.gz" -C "${tgt}/"
     echo -e "\033[0;32m[extract]\033[0m ${fnt}.tar.gz --> ${tgt}..."
 
 done

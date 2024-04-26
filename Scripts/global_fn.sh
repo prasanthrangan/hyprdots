@@ -6,7 +6,8 @@
 
 set -e
 
-CloneDir=$(dirname "$(dirname "$(realpath "$0")")")
+scrDir="$(dirname "$(realpath "$0")")"
+cloneDir="$(dirname "${scrDir}")"
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="$HOME/.cache/hyde"
 aurList=(yay paru)
@@ -16,10 +17,8 @@ pkg_installed() {
     local PkgIn=$1
 
     if pacman -Qi "${PkgIn}" &> /dev/null; then
-        #echo "${PkgIn} is already installed..."
         return 0
     else
-        #echo "${PkgIn} is not installed..."
         return 1
     fi
 }
@@ -41,10 +40,8 @@ pkg_available() {
     local PkgIn=$1
 
     if pacman -Si "${PkgIn}" &> /dev/null; then
-        #echo "${PkgIn} available in arch repo..."
         return 0
     else
-        #echo "${PkgIn} not available in arch repo..."
         return 1
     fi
 }
@@ -53,21 +50,29 @@ aur_available() {
     local PkgIn=$1
 
     if ${aurhlpr} -Si "${PkgIn}" &> /dev/null; then
-        #echo "${PkgIn} available in aur repo..."
         return 0
     else
-        #echo "aur helper is not installed..."
         return 1
     fi
 }
 
 nvidia_detect() {
-    dGPU=$(lspci -k | grep -A 0 -E "(VGA|3D)" | awk -F 'controller: ' '{print $2}')
-    if [ $(lspci -k | grep -A 2 -E "(VGA|3D)" | grep -i nvidia | wc -l) -gt 0 ]; then
-        #echo "nvidia card detected..."
+    readarray -t dGPU < <(lspci -k | grep -E "(VGA|3D)" | awk -F ': ' '{print $NF}')
+    if [ "${1}" == "--verbose" ]; then
+        for indx in "${!dGPU[@]}"; do
+            echo -e "\033[0;32m[gpu$indx]\033[0m detected // ${dGPU[indx]}"
+        done
+        return 0
+    fi
+    if [ "${1}" == "--drivers" ]; then
+        while read -r -d ' ' nvcode ; do
+            awk -F '|' -v nvc="${nvcode}" 'substr(nvc,1,length($3)) == $3 {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}' "${scrDir}"/.nvidia/nvidia*dkms
+        done <<< "${dGPU[@]}"
+        return 0
+    fi
+    if grep -iq nvidia <<< "${dGPU[@]}"; then
         return 0
     else
-        #echo "nvidia card not detected..."
         return 1
     fi
 }
