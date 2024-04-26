@@ -10,7 +10,7 @@ dstDir="${confDir}/dunst"
 
 export hypr_border
 envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
-cat "${dstDir}/wallbash.conf" >> "${dstDir}/dunstrc"
+envsubst < "${dstDir}/wallbash.conf" >> "${dstDir}/dunstrc"
 killall dunst
 dunst &
 
