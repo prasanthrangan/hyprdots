@@ -1,4 +1,7 @@
 $HOME/.config/hypr/themes/colors.conf
+exec = gsettings set org.gnome.desktop.interface gtk-theme 'Wallbash-Gtk'
+exec = gsettings set org.gnome.desktop.interface color-scheme 'prefer-<wallbash_mode>'
+
 general {
     col.active_border = rgba(<wallbash_pry4>ff) rgba(<wallbash_4xa1>ff) 45deg
     col.inactive_border = rgba(<wallbash_pry1>ff) rgba(<wallbash_pry2>ff) 45deg

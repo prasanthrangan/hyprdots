@@ -27,10 +27,10 @@ bind = $mainMod+Shift, G, exec, pkill -x rofi || $scrPath/gamelauncher.sh # laun
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
 # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
 
-windowrulev2 = opacity 0.60 0.60,class:^(Steam)$
-windowrulev2 = opacity 0.60 0.60,class:^(steam)$
-windowrulev2 = opacity 0.60 0.60,class:^(steamwebhelper)$
-windowrulev2 = opacity 0.60 0.60,class:^(Spotify)$
+# windowrulev2 = opacity 0.60 0.60,class:^(Steam)$
+# windowrulev2 = opacity 0.60 0.60,class:^(steam)$
+# windowrulev2 = opacity 0.60 0.60,class:^(steamwebhelper)$
+# windowrulev2 = opacity 0.60 0.60,class:^(Spotify)$
 
 
 # █░█ █▀▄▀█
@@ -40,3 +40,4 @@ bind = Ctrl+Alt_L, V, submap, passthrough
 submap = passthrough
 bind = Ctrl+Alt_L, V, submap, reset
 submap = reset
+
