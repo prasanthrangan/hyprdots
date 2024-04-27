@@ -12,11 +12,11 @@ $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk-dark.css|cp $HOME/.themes/Wallbash-Gtk/gt
 /* base background color of selections */
 @define-color theme_selected_bg_color #<wallbash_4xa8>;
 /* text/foreground color of selections */
-@define-color theme_selected_fg_color rgba(0, 0, 0, 0.87);
+@define-color theme_selected_fg_color <wallbash_txt1_rgba(0.87)>;
 /* base background color of insensitive widgets */
 @define-color insensitive_bg_color #<wallbash_pry1>;
 /* text foreground color of insensitive widgets */
-@define-color insensitive_fg_color rgba(245, 224, 220, 0.5);
+@define-color insensitive_fg_color <wallbash_1xa9_rgba(0.5)>;
 /* insensitive text widgets and the like base background color */
 @define-color insensitive_base_color #<wallbash_pry1>;
 /* widget text/foreground color on backdrop windows */
@@ -30,13 +30,13 @@ $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk-dark.css|cp $HOME/.themes/Wallbash-Gtk/gt
 /* base background color of selections on backdrop windows */
 @define-color theme_unfocused_selected_bg_color #<wallbash_4xa8>;
 /* text/foreground color of selections on backdrop windows */
-@define-color theme_unfocused_selected_fg_color rgba(0, 0, 0, 0.87);
+@define-color theme_unfocused_selected_fg_color <wallbash_txt1_rgba(0.87)>;
 /* insensitive color on backdrop windows */
-@define-color unfocused_insensitive_color rgba(245, 224, 220, 0.5);
+@define-color unfocused_insensitive_color <wallbash_1xa9_rgba(0.5)>;
 /* widgets main borders color */
-@define-color borders rgba(245, 224, 220, 0.12);
+@define-color borders <wallbash_1xa9_rgba(0.12)>;
 /* widgets main borders color on backdrop windows */
-@define-color unfocused_borders rgba(245, 224, 220, 0.12);
+@define-color unfocused_borders <wallbash_1xa9_rgba(0.12)>;
 /* these are pretty self explicative */
 @define-color warning_color #FDD633;
 @define-color error_color #F28B82;
@@ -44,8 +44,8 @@ $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk-dark.css|cp $HOME/.themes/Wallbash-Gtk/gt
 /* these colors are exported for the window manager and shouldn't be used in applications,
 read if you used those and something break with a version upgrade you're on your own... */
 @define-color wm_title #<wallbash_4xa9>;
-@define-color wm_unfocused_title rgba(245, 224, 220, 0.7);
-@define-color wm_highlight rgba(245, 224, 220, 0.1);
+@define-color wm_unfocused_title <wallbash_1xa9_rgba(0.7)>;
+@define-color wm_highlight <wallbash_1xa9_rgba(0.1)>;
 @define-color wm_bg #<wallbash_pry1>;
 @define-color wm_unfocused_bg #<wallbash_pry1>;
 @define-color wm_button_close_icon #<wallbash_pry1>;
@@ -53,9 +53,9 @@ read if you used those and something break with a version upgrade you're on your
 @define-color wm_button_close_active_bg #c7c7c7;
 /* FIXME this is really an API */
 @define-color content_view_bg #<wallbash_pry1>;
-@define-color placeholder_text_color silver;
+@define-color placeholder_text_color #<wallbash_txt1>;
 /* Very contrasty background for text views (@theme_text_color foreground) */
-@define-color text_view_bg #1d1d1d;
+@define-color text_view_bg #<wallbash_txt1>;
 @define-color budgie_tasklist_indicator_color #<wallbash_4xa9>;
 @define-color budgie_tasklist_indicator_color_active #<wallbash_4xa9>;
 @define-color budgie_tasklist_indicator_color_active_window #999999;
@@ -113,19 +113,19 @@ read if you used those and something break with a version upgrade you're on your
 
 /* GTK LIBADWAITA NAMED COLORS -- USE RESPONSIBLY! */
 @define-color accent_bg_color #<wallbash_4xa8>;
-@define-color accent_fg_color rgba(0, 0, 0, 0.87);
+@define-color accent_fg_color <wallbash_txt1_rgba(0.87)>;
 @define-color accent_color #<wallbash_4xa8>;
 @define-color destructive_bg_color #F28B82;
-@define-color destructive_fg_color rgba(0, 0, 0, 0.87);
+@define-color destructive_fg_color <wallbash_txt1_rgba(0.87)>;
 @define-color destructive_color #F28B82;
 @define-color success_bg_color #81C995;
-@define-color success_fg_color rgba(0, 0, 0, 0.87);
+@define-color success_fg_color <wallbash_txt1_rgba(0.87)>;
 @define-color success_color #81C995;
 @define-color warning_bg_color #FDD633;
-@define-color warning_fg_color rgba(0, 0, 0, 0.87);
+@define-color warning_fg_color <wallbash_txt1_rgba(0.87)>;
 @define-color warning_color #FDD633;
 @define-color error_bg_color #F28B82;
-@define-color error_fg_color rgba(0, 0, 0, 0.87);
+@define-color error_fg_color <wallbash_txt1_rgba(0.87)>;
 @define-color error_color #F28B82;
 @define-color window_bg_color #<wallbash_pry1>;
 @define-color window_fg_color #<wallbash_4xa9>;
@@ -133,20 +133,20 @@ read if you used those and something break with a version upgrade you're on your
 @define-color view_fg_color #<wallbash_4xa9>;
 @define-color headerbar_bg_color #<wallbash_pry1>;
 @define-color headerbar_fg_color #<wallbash_4xa9>;
-@define-color headerbar_border_color rgba(245, 224, 220, 0.12);
+@define-color headerbar_border_color <wallbash_1xa9_rgba(0.12)>;
 @define-color headerbar_backdrop_color @window_bg_color;
-@define-color headerbar_shade_color rgba(0, 0, 0, 0.36);
+@define-color headerbar_shade_color <wallbash_txt1_rgba(0.36)>;
 @define-color card_bg_color #<wallbash_pry1>;
 @define-color card_fg_color #<wallbash_4xa9>;
-@define-color card_shade_color rgba(0, 0, 0, 0.36);
+@define-color card_shade_color <wallbash_txt1_rgba(0.36)>;
 @define-color dialog_bg_color #<wallbash_pry1>;
 @define-color dialog_fg_color #<wallbash_4xa9>;
 @define-color popover_bg_color #<wallbash_pry1>;
 @define-color popover_fg_color #<wallbash_4xa9>;
 @define-color thumbnail_bg_color #<wallbash_pry1>;
 @define-color thumbnail_fg_color #<wallbash_4xa9>;
-@define-color shade_color rgba(0, 0, 0, 0.36);
-@define-color scrollbar_outline_color rgba(0, 0, 0, 0.5);
+@define-color shade_color <wallbash_txt1_rgba(0.36)>;
+@define-color scrollbar_outline_color <wallbash_txt1_rgba(0.5)>;
 
 /***************
  * Base States *
@@ -184,7 +184,7 @@ iconview,
 
 iconview:disabled,
 .view:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 textview text {
@@ -193,7 +193,7 @@ textview text {
 
 textview border {
   background-color: #<wallbash_pry1>;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 iconview:hover,
@@ -211,7 +211,7 @@ treeview.view > rubberband,
 gridview > rubberband,
 flowbox > rubberband {
   border: 1px solid #<wallbash_4xa8>;
-  background-color: rgba(242, 205, 205, 0.3);
+  background-color: <wallbash_2xa9_rgba(0.3)>;
 }
 
 flowbox > flowboxchild {
@@ -243,11 +243,11 @@ coverflow cover {
 }
 
 label.separator {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 label:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
   opacity: 1;
   filter: none;
 }
@@ -266,12 +266,12 @@ label.osd {
 
 label.search-information {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 .dim-label,
 row label.subtitle {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   opacity: 1;
 }
 
@@ -282,7 +282,7 @@ window.assistant .sidebar {
 window.assistant .sidebar label {
   min-height: 36px;
   padding: 0 12px;
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
   font-weight: 500;
 }
 
@@ -306,8 +306,8 @@ popover.background.magnifier > contents,
 .osd {
   padding: 6px;
   margin: 6px;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2.4px -1px <wallbash_txt1_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 6px 0 <wallbash_txt1_rgba(0.12)>;
 }
 
 .osd.circular {
@@ -395,13 +395,13 @@ entry {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
 
 entry:focus-within {
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   box-shadow: inset 0 0 0 2px #<wallbash_4xa8>;
   outline: none;
 }
@@ -414,8 +414,8 @@ entry:drop(active) {
 
 entry:disabled {
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   outline: none;
   opacity: 1;
   filter: none;
@@ -434,7 +434,7 @@ entry.flat {
 }
 
 entry image {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 entry image:hover,
@@ -443,7 +443,7 @@ entry image:active {
 }
 
 entry image:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 entry image.left {
@@ -461,7 +461,7 @@ entry undershoot.left {
   background-image: linear-gradient(
     to top,
     transparent 50%,
-    rgba(245, 224, 220, 0.3) 50%
+    <wallbash_1xa9_rgba(0.3)> 50%
   );
   padding-left: 1px;
   background-size: 1px 12px;
@@ -477,7 +477,7 @@ entry undershoot.right {
   background-image: linear-gradient(
     to top,
     transparent 50%,
-    rgba(245, 224, 220, 0.3) 50%
+    <wallbash_1xa9_rgba(0.3)> 50%
   );
   padding-right: 1px;
   background-size: 1px 12px;
@@ -492,21 +492,21 @@ entry.error {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
 
 entry.error:focus-within {
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   box-shadow: inset 0 0 0 2px #<wallbash_3xa8>;
   outline: none;
 }
 
 entry.error:disabled {
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   outline: none;
   opacity: 1;
   filter: none;
@@ -516,21 +516,21 @@ entry.warning {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
 
 entry.warning:focus-within {
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   box-shadow: inset 0 0 0 2px #fdd633;
   outline: none;
 }
 
 entry.warning:disabled {
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   outline: none;
   opacity: 1;
   filter: none;
@@ -560,7 +560,7 @@ treeview entry:focus-within {
   margin: 2px;
   border-radius: 9999px;
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
   color: #<wallbash_4xa9>;
 }
 
@@ -588,14 +588,14 @@ treeview entry:focus-within {
 }
 
 .entry-tag.button:not(:hover):not(:active) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 editablelabel > stack > text {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
@@ -608,14 +608,14 @@ editablelabel > stack > text {
     background-image: radial-gradient(
       farthest-side,
       #<wallbash_4xa8> 0%,
-      rgba(242, 205, 205, 0) 0%
+      <wallbash_2xa9_rgba(0)> 0%
     );
   }
   to {
     background-image: radial-gradient(
       farthest-side,
       #<wallbash_4xa8> 95%,
-      rgba(242, 205, 205, 0)
+      <wallbash_2xa9_rgba(0)>
     );
   }
 }
@@ -629,7 +629,7 @@ popover.background.touch-selection button,
 popover.background.magnifier button,
 headerbar.selection-mode
   button:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 toast button:focus,
@@ -670,7 +670,7 @@ popover.background.touch-selection button:disabled,
 popover.background.magnifier button:disabled,
 headerbar.selection-mode
   button:disabled:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 toast button:checked:disabled,
@@ -679,7 +679,7 @@ popover.background.touch-selection button:checked:disabled,
 popover.background.magnifier button:checked:disabled,
 headerbar.selection-mode
   button:checked:disabled:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar
@@ -690,7 +690,7 @@ button {
     background-color 225ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   outline: none;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   box-shadow: inset 0 0 0 2px transparent;
 }
@@ -730,8 +730,8 @@ headerbar
   button:disabled:not(.suggested-action):not(.destructive-action):not(.flat),
 button:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   transition: none;
   opacity: 1;
   filter: none;
@@ -743,7 +743,7 @@ headerbar
 button:checked {
   box-shadow: none;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   outline: none;
 }
 
@@ -759,8 +759,8 @@ headerbar
   button:checked:disabled:not(.suggested-action):not(.destructive-action):not(.flat),
 button:checked:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   opacity: 1;
   filter: none;
 }
@@ -812,7 +812,7 @@ menubutton.opaque > button,
 menubutton.flat > button,
 button.flat {
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 placessidebar .navigation-sidebar > row button.sidebar-button:focus,
@@ -958,7 +958,7 @@ menubutton.flat > button:disabled,
 button.flat:disabled {
   box-shadow: none;
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
   opacity: 1;
   filter: none;
 }
@@ -1010,7 +1010,7 @@ menubutton.opaque > button:checked:disabled,
 menubutton.flat > button:checked:disabled,
 button.flat:checked:disabled {
   background-color: alpha(currentColor, 0.06);
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
   opacity: 1;
   filter: none;
 }
@@ -1100,14 +1100,14 @@ button.osd:disabled {
 
 button.suggested-action {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   box-shadow: none;
 }
 
 button.suggested-action:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   transition: none;
   opacity: 1;
   filter: none;
@@ -1115,8 +1115,8 @@ button.suggested-action:disabled {
 
 button.suggested-action:hover {
   box-shadow: inset 0 0 0 9999px transparent,
-    0 2px 2.4px -1px rgba(242, 205, 205, 0.2),
-    0 4px 3px 0 rgba(242, 205, 205, 0.14), 0 1px 6px 0 rgba(242, 205, 205, 0.12);
+    0 2px 2.4px -1px <wallbash_2xa9_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_2xa9_rgba(0.14)>, 0 1px 6px 0 <wallbash_2xa9_rgba(0.12)>;
 }
 
 button.suggested-action:checked {
@@ -1125,13 +1125,13 @@ button.suggested-action:checked {
 
 button.suggested-action:checked:hover {
   box-shadow: inset 0 0 0 9999px transparent,
-    0 3px 3px -3px rgba(242, 205, 205, 0.3),
-    0 2px 3px -1px rgba(242, 205, 205, 0.24),
-    0 2px 5px 0 rgba(242, 205, 205, 0.12);
+    0 3px 3px -3px <wallbash_2xa9_rgba(0.3)>,
+    0 2px 3px -1px <wallbash_2xa9_rgba(0.24)>,
+    0 2px 5px 0 <wallbash_2xa9_rgba(0.12)>;
 }
 
 button.suggested-action:focus {
-  box-shadow: 0 0 0 2px rgba(242, 205, 205, 0.35);
+  box-shadow: 0 0 0 2px <wallbash_2xa9_rgba(0.35)>;
 }
 
 button.suggested-action.flat {
@@ -1142,25 +1142,25 @@ button.suggested-action.flat {
 button.suggested-action.flat:disabled {
   box-shadow: none;
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
   opacity: 1;
   filter: none;
 }
 
 button.suggested-action.flat:checked {
-  background-color: rgba(242, 205, 205, 0.3);
+  background-color: <wallbash_2xa9_rgba(0.3)>;
 }
 
 button.destructive-action {
   background-color: #<wallbash_3xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   box-shadow: none;
 }
 
 button.destructive-action:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   transition: none;
   opacity: 1;
   filter: none;
@@ -1195,7 +1195,7 @@ button.destructive-action.flat {
 button.destructive-action.flat:disabled {
   box-shadow: none;
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
   opacity: 1;
   filter: none;
 }
@@ -1218,7 +1218,7 @@ button.card {
     background-color 225ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   outline: none;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   box-shadow: inset 0 0 0 2px transparent;
 }
@@ -1245,7 +1245,7 @@ button.card:checked {
   background-image: none;
   box-shadow: none;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   outline: none;
   border-color: #<wallbash_4xa8>;
 }
@@ -1257,8 +1257,8 @@ button.card:checked:hover {
 
 button.card:checked:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   opacity: 1;
   filter: none;
 }
@@ -1472,7 +1472,7 @@ splitbutton > menubutton > button:dir(ltr) {
 }
 
 splitbutton.flat > separator {
-  background: rgba(245, 224, 220, 0.12);
+  background: <wallbash_1xa9_rgba(0.12)>;
 }
 
 splitbutton.flat:hover,
@@ -1530,13 +1530,13 @@ splitbutton.opaque > menubutton > button:checked {
 splitbutton.suggested-action > menubutton > button:dir(ltr),
 splitbutton.destructive-action > menubutton > button:dir(ltr),
 splitbutton.opaque > menubutton > button:dir(ltr) {
-  box-shadow: inset 1px 0 rgba(245, 224, 220, 0.12);
+  box-shadow: inset 1px 0 <wallbash_1xa9_rgba(0.12)>;
 }
 
 splitbutton.suggested-action > menubutton > button:dir(rtl),
 splitbutton.destructive-action > menubutton > button:dir(rtl),
 splitbutton.opaque > menubutton > button:dir(rtl) {
-  box-shadow: inset -1px 0 rgba(245, 224, 220, 0.12);
+  box-shadow: inset -1px 0 <wallbash_1xa9_rgba(0.12)>;
 }
 
 splitbutton > menubutton > button > arrow.none {
@@ -1828,12 +1828,12 @@ list > row button.image-button:not(.flat):checked {
 
 list > row button.image-button.suggested-action:not(.flat) {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 list > row button.image-button.destructive-action:not(.flat) {
   background-color: #<wallbash_3xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 /*********
@@ -1876,21 +1876,21 @@ spinbutton {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
 
 spinbutton:focus-within {
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   box-shadow: inset 0 0 0 2px #<wallbash_4xa8>;
   outline: none;
 }
 
 spinbutton:disabled {
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   outline: none;
   opacity: 1;
   filter: none;
@@ -1913,7 +1913,7 @@ spinbutton:not(.vertical) > button {
 spinbutton:not(.vertical)
   > button:focus:not(:hover):not(:active):not(:disabled) {
   box-shadow: inset 0 0 0 9999px transparent;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 spinbutton:not(.vertical) > button.up:dir(ltr),
@@ -1944,7 +1944,7 @@ spinbutton.vertical > button {
 
 spinbutton.vertical > button:focus:not(:hover):not(:active) {
   box-shadow: inset 0 0 0 9999px transparent;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 spinbutton.vertical > button.up {
@@ -2090,7 +2090,7 @@ button.combo:only-child {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1),
     box-shadow 300ms cubic-bezier(0, 0, 0.2, 1);
   box-shadow: inset 0 0 0 2px transparent;
-  background-color: rgba(245, 224, 220, 0.08);
+  background-color: <wallbash_1xa9_rgba(0.08)>;
   color: #<wallbash_4xa9>;
   outline: none;
 }
@@ -2120,8 +2120,8 @@ button.combo:only-child:checked {
 
 button.combo:only-child:disabled {
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
   transition: none;
   opacity: 1;
   filter: none;
@@ -2148,18 +2148,18 @@ toolbar.osd {
   transition: box-shadow 75ms cubic-bezier(0, 0, 0.2, 1);
   padding: 6px;
   border-radius: 6px;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12),
-    inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: 0 2px 2.4px -1px <wallbash_txt1_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 6px 0 <wallbash_txt1_rgba(0.12)>,
+    inset 0 1px <wallbash_1xa9_rgba(0.1)>;
   background-color: #<wallbash_1xa1>;
 }
 
 .app-notification:backdrop,
 .toolbar.osd:backdrop,
 toolbar.osd:backdrop {
-  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.3),
-    0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12),
-    inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: 0 3px 2px -3px <wallbash_txt1_rgba(0.3)>,
+    0 2px 2px -1px <wallbash_txt1_rgba(0.24)>, 0 1px 3px 0 <wallbash_txt1_rgba(0.12)>,
+    inset 0 1px <wallbash_1xa9_rgba(0.1)>;
 }
 
 .left.app-notification,
@@ -2185,9 +2185,9 @@ toolbar.osd.bottom {
   background-image: linear-gradient(
     to bottom,
     transparent,
-    rgba(0, 0, 0, 0.1) 30%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.4)
+    <wallbash_txt1_rgba(0.1)> 30%,
+    <wallbash_txt1_rgba(0.2)> 50%,
+    <wallbash_txt1_rgba(0.4)>
   );
 }
 
@@ -2247,7 +2247,7 @@ searchbar > revealer > box {
   border-spacing: 6px;
   border-style: solid;
   border-width: 0 0 1px;
-  border-color: rgba(245, 224, 220, 0.12);
+  border-color: <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
   background-clip: border-box;
   box-shadow: none;
@@ -2262,7 +2262,7 @@ searchbar > revealer > box button {
  * Header bars *
  ***************/
 headerbar button:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   border-radius: 6px;
 }
 
@@ -2274,43 +2274,43 @@ headerbar button:checked:not(.suggested-action):not(.destructive-action) {
 }
 
 headerbar button:disabled:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 headerbar
   button:checked:disabled:not(.suggested-action):not(.destructive-action) {
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar button:backdrop:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar button:backdrop:focus:not(.suggested-action):not(.destructive-action),
 headerbar button:backdrop:hover:not(.suggested-action):not(.destructive-action),
 headerbar
   button:backdrop:active:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 headerbar
   button:backdrop:disabled:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 headerbar
   button:backdrop:checked:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 headerbar
   button:backdrop:checked:disabled:not(.suggested-action):not(.destructive-action) {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 headerbar entry {
-  background-color: rgba(245, 224, 220, 0.04);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
   color: #<wallbash_4xa9>;
 }
 
@@ -2319,12 +2319,12 @@ headerbar entry:focus-within {
 }
 
 headerbar entry:disabled {
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar entry image {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 headerbar entry image:hover,
@@ -2333,7 +2333,7 @@ headerbar entry image:active {
 }
 
 headerbar entry image:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar {
@@ -2348,16 +2348,16 @@ headerbar {
 }
 
 headerbar:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar:backdrop {
   background-color: #<wallbash_pry1>;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 headerbar:backdrop:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 headerbar.flat {
@@ -2380,14 +2380,14 @@ headerbar .dim-label,
 headerbar row label.subtitle,
 row headerbar label.subtitle {
   transition: color 75ms cubic-bezier(0, 0, 0.2, 1);
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 headerbar .subtitle:backdrop,
 headerbar .dim-label:backdrop,
 headerbar row label.subtitle:backdrop,
 row headerbar label.subtitle:backdrop {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar > windowhandle > box {
@@ -2421,7 +2421,7 @@ headerbar stackswitcher > button {
 }
 
 headerbar separator:not(.spacer) {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 headerbar switch {
@@ -2445,7 +2445,7 @@ headerbar .titlebar {
 }
 
 headerbar headerbar + separator {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 headerbar .linked:not(.vertical) > entry:not(:only-child) {
@@ -2454,8 +2454,8 @@ headerbar .linked:not(.vertical) > entry:not(:only-child) {
 
 headerbar button.suggested-action:disabled,
 headerbar button.destructive-action:disabled {
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 headerbar stackswitcher {
@@ -2474,23 +2474,23 @@ headerbar
   stackswitcher.linked:not(.vertical)
   > button.text-button:not(.suggested-action):not(.destructive-action):checked {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 headerbar.selection-mode {
   transition: background-color 0.1ms 225ms,
     color 75ms cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: inset 0 1px rgba(245, 224, 220, 0);
+  box-shadow: inset 0 1px <wallbash_1xa9_rgba(0)>;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 headerbar.selection-mode:backdrop {
-  color: rgba(0, 0, 0, 0.6);
+  color: <wallbash_txt1_rgba(0.6)>;
 }
 
 headerbar.selection-mode .subtitle:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 headerbar.selection-mode .selection-menu {
@@ -2503,7 +2503,7 @@ headerbar.selection-mode .selection-menu .arrow {
 }
 
 headerbar .selection-mode {
-  box-shadow: inset 0 1px rgba(245, 224, 220, 0);
+  box-shadow: inset 0 1px <wallbash_1xa9_rgba(0)>;
   background-color: #<wallbash_4xa8>;
 }
 
@@ -2541,7 +2541,7 @@ window.devel headerbar.titlebar {
   background: #<wallbash_pry1>
       cross-fade(10% -gtk-icontheme('system-run-symbolic'), image(transparent))
       90% 0/256px 256px no-repeat,
-    linear-gradient(to right, transparent 65%, rgba(242, 205, 205, 0.1)),
+    linear-gradient(to right, transparent 65%, <wallbash_2xa9_rgba(0.1)>),
     linear-gradient(to top, #343434 3px, #393939);
 }
 
@@ -2581,8 +2581,8 @@ pathbar > button.slider-button {
 }
 
 .pathbar {
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.7);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.7)>;
   border: none;
   border-radius: 6px;
   padding: 2px;
@@ -2591,8 +2591,8 @@ pathbar > button.slider-button {
 headerbar .pathbar {
   margin-top: 6px;
   margin-bottom: 6px;
-  background-color: rgba(245, 224, 220, 0.04);
-  color: rgba(245, 224, 220, 0.7);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 .pathbar > button {
@@ -2643,7 +2643,7 @@ treeview.view:selected {
 columnview.view.separator,
 treeview.view.separator {
   min-height: 5px;
-  color: rgba(245, 224, 220, 0.12);
+  color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 columnview.view:drop(active),
@@ -2683,7 +2683,7 @@ treeview.view.expander {
   min-width: 16px;
   min-height: 16px;
   -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 columnview.view.expander:dir(rtl),
@@ -2713,7 +2713,7 @@ treeview.view.expander:checked {
 
 columnview.view.expander:disabled,
 treeview.view.expander:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 columnview.view.progressbar,
@@ -2731,7 +2731,7 @@ treeview.view.progressbar:selected:hover {
 
 columnview.view.trough,
 treeview.view.trough {
-  border-bottom: 6px solid rgba(245, 224, 220, 0.12);
+  border-bottom: 6px solid <wallbash_1xa9_rgba(0.12)>;
   box-shadow: none;
   background-color: transparent;
   background-image: none;
@@ -2747,14 +2747,14 @@ treeview.view > header > button {
   padding: 2px 6px;
   border-style: none solid solid none;
   border-width: 1px;
-  border-color: rgba(245, 224, 220, 0.12);
+  border-color: <wallbash_1xa9_rgba(0.12)>;
   border-radius: 0;
   background-clip: border-box;
 }
 
 columnview.view > header > button:not(:focus):not(:hover):not(:active),
 treeview.view > header > button:not(:focus):not(:hover):not(:active) {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 columnview.view > header > button,
@@ -2776,7 +2776,7 @@ treeview.view header.button.dnd {
   padding: 2px 6px;
   border-style: none solid solid;
   border-width: 1px;
-  border-color: rgba(245, 224, 220, 0.12);
+  border-color: <wallbash_1xa9_rgba(0.12)>;
   border-radius: 0;
   box-shadow: none;
   background-color: #<wallbash_pry1>;
@@ -2798,7 +2798,7 @@ menubar {
 }
 
 menubar:backdrop {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 .csd menubar {
@@ -2809,7 +2809,7 @@ menubar > item {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   min-height: 20px;
   padding: 4px 8px;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 menubar > item:selected {
@@ -2819,7 +2819,7 @@ menubar > item:selected {
 }
 
 menubar > item:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 menubar > item label:disabled {
@@ -2933,7 +2933,7 @@ popover.background modelbutton:hover {
 }
 
 popover.background modelbutton:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 popover.background modelbutton arrow.left {
@@ -2958,7 +2958,7 @@ popover.background > contents > toolbar {
 }
 
 popover.background > contents separator {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
   margin: 3px 0;
 }
 
@@ -2971,7 +2971,7 @@ popover.background > contents stack > box {
 }
 
 popover.background > contents stack > scrolledwindow > viewport {
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
   border-radius: 2px;
 }
 
@@ -3015,20 +3015,20 @@ notebook > header tab {
   border: none;
   outline: none;
   background-clip: padding-box;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   font-weight: 500;
   border-radius: 6px;
 }
 
 tabbar scrolledwindow:not(.pinned) > tabbox tab:hover,
 notebook > header tab:hover {
-  background-color: rgba(245, 224, 220, 0.04);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
   color: #<wallbash_4xa7>;
 }
 
 tabbar scrolledwindow:not(.pinned) > tabbox tab:disabled,
 notebook > header tab:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 tabbar scrolledwindow:not(.pinned) > tabbox tab:checked,
@@ -3038,19 +3038,19 @@ notebook > header tab:selected {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   background-color: #<wallbash_1xa1>;
   color: #<wallbash_4xa7>;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px <wallbash_txt1_rgba(0.06)>;
 }
 
 tabbar scrolledwindow:not(.pinned) > tabbox tab:checked:disabled,
 notebook > header tab:checked:disabled,
 tabbar scrolledwindow:not(.pinned) > tabbox tab:selected:disabled,
 notebook > header tab:selected:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 frame > paned > notebook > header,
 notebook.frame > header {
-  background-color: rgba(245, 224, 220, 0.04);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
 }
 
 notebook,
@@ -3070,7 +3070,7 @@ notebook.frame frame > list row.activatable {
 
 notebook > header {
   border: none;
-  background-color: rgba(245, 224, 220, 0.04);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
   padding: 3px;
   margin: 3px;
   border-radius: 9px;
@@ -3141,7 +3141,7 @@ notebook > header tab > box {
 }
 
 notebook > header tab > box:drop(active) {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
   color: #<wallbash_4xa9>;
 }
 
@@ -3265,8 +3265,8 @@ dnd tab {
   color: #<wallbash_4xa9>;
   margin: 24px;
   outline: none;
-  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.09),
-    0 2px 14px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 5px 1px <wallbash_txt1_rgba(0.09)>,
+    0 2px 14px 3px <wallbash_txt1_rgba(0.05)>, 0 0 0 1px <wallbash_txt1_rgba(0.05)>;
 }
 
 tabbar tab,
@@ -3391,13 +3391,13 @@ scrollbar > range > trough > slider {
   border: 4px solid transparent;
   border-radius: 9999px;
   background-clip: padding-box;
-  background-color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.5)>;
   box-shadow: none;
   outline: none;
 }
 
 scrollbar > range > trough > slider:hover {
-  background-color: rgba(245, 224, 220, 0.7);
+  background-color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 scrollbar > range > trough > slider:active {
@@ -3405,7 +3405,7 @@ scrollbar > range > trough > slider:active {
 }
 
 scrollbar > range > trough > slider:disabled {
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 scrollbar > range.fine-tune > trough > slider {
@@ -3446,13 +3446,13 @@ scrollbar.overlay-indicator:not(.dragging):not(.hovering) button {
   margin: 3px;
   border: 1px solid rgba(44, 44, 44, 0.3);
   border-radius: 9999px;
-  background-color: rgba(245, 224, 220, 0.5);
+  background-color: <wallbash_1xa9_rgba(0.5)>;
   background-clip: padding-box;
   -gtk-icon-source: none;
 }
 
 scrollbar.overlay-indicator:not(.dragging):not(.hovering) button:disabled {
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 scrollbar.overlay-indicator.horizontal:not(.dragging):not(.hovering)
@@ -3520,7 +3520,7 @@ switch {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   margin: 6px 0;
   padding: 0;
-  border: 2px solid rgba(245, 224, 220, 0.7);
+  border: 2px solid <wallbash_1xa9_rgba(0.7)>;
   border-radius: 9999px;
   background-color: transparent;
   background-clip: border-box;
@@ -3549,20 +3549,20 @@ switch > slider {
   border-radius: 9999px;
   outline: none;
   box-shadow: none;
-  background-color: rgba(245, 224, 220, 0.7);
+  background-color: <wallbash_1xa9_rgba(0.7)>;
   border: none;
 }
 
 switch:focus > slider {
-  box-shadow: 0 0 0 10px rgba(245, 224, 220, 0.04);
+  box-shadow: 0 0 0 10px <wallbash_1xa9_rgba(0.04)>;
 }
 
 switch:hover > slider {
-  box-shadow: 0 0 0 10px rgba(245, 224, 220, 0.12);
+  box-shadow: 0 0 0 10px <wallbash_1xa9_rgba(0.12)>;
 }
 
 switch:focus:hover > slider {
-  box-shadow: 0 0 0 10px rgba(245, 224, 220, 0.12);
+  box-shadow: 0 0 0 10px <wallbash_1xa9_rgba(0.12)>;
 }
 
 switch:checked > slider {
@@ -3596,7 +3596,7 @@ radio {
   -gtk-icon-size: 16px;
   padding: 0;
   margin: 3px;
-  border: 2px solid rgba(245, 224, 220, 0.7);
+  border: 2px solid <wallbash_1xa9_rgba(0.7)>;
   background-clip: border-box;
   background-color: transparent;
   border-radius: 9999px;
@@ -3609,13 +3609,13 @@ radio {
 check:hover,
 radio:hover {
   border-color: inherit;
-  box-shadow: 0 0 0 10px rgba(245, 224, 220, 0.04);
+  box-shadow: 0 0 0 10px <wallbash_1xa9_rgba(0.04)>;
 }
 
 check:active,
 radio:active {
   border-color: #<wallbash_4xa9>;
-  box-shadow: 0 0 0 10px rgba(245, 224, 220, 0.12);
+  box-shadow: 0 0 0 10px <wallbash_1xa9_rgba(0.12)>;
 }
 
 check:checked,
@@ -3624,7 +3624,7 @@ radio:checked,
 radio:indeterminate {
   border-color: transparent;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 check:checked:hover,
@@ -3632,7 +3632,7 @@ check:indeterminate:hover,
 radio:checked:hover,
 radio:indeterminate:hover {
   background-color: #<wallbash_1xa6>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 check:checked:active,
@@ -3640,7 +3640,7 @@ check:indeterminate:active,
 radio:checked:active,
 radio:indeterminate:active {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 check:checked:disabled,
@@ -3648,13 +3648,13 @@ check:indeterminate:disabled,
 radio:checked:disabled,
 radio:indeterminate:disabled {
   border-color: transparent;
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
   color: #<wallbash_pry1>;
 }
 
 check:disabled,
 radio:disabled {
-  border-color: rgba(245, 224, 220, 0.3);
+  border-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 check:not(:hover):focus,
@@ -3688,7 +3688,7 @@ popover.menu radio:disabled {
 
 popover.menu check:not(:checked):not(:indeterminate):not(:disabled):hover,
 popover.menu radio:not(:checked):not(:indeterminate):not(:disabled):hover {
-  border-color: rgba(0, 0, 0, 0.87);
+  border-color: <wallbash_txt1_rgba(0.87)>;
   background-color: transparent;
 }
 
@@ -3700,7 +3700,7 @@ popover.menu radio:checked,
 popover.menu radio:indeterminate {
   border-color: transparent;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 popover.menu check:active:hover,
@@ -3710,7 +3710,7 @@ popover.menu radio:active:hover,
 popover.menu radio:checked:hover,
 popover.menu radio:indeterminate:hover {
   border-color: transparent;
-  background-color: rgba(0, 0, 0, 0.87);
+  background-color: <wallbash_txt1_rgba(0.87)>;
   color: #<wallbash_4xa8>;
 }
 
@@ -3721,7 +3721,7 @@ popover.menu radio:active:disabled,
 popover.menu radio:checked:disabled,
 popover.menu radio:indeterminate:disabled {
   border-color: transparent;
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
   color: #<wallbash_pry1>;
 }
 
@@ -3795,7 +3795,7 @@ checkbutton.theme-selector radio:active,
 checkbutton.theme-selector radio:active:hover {
   border-color: transparent;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   -gtk-icon-source: -gtk-scaled(
     -gtk-recolor(url('assets/scalable/check-symbolic.svg')),
     -gtk-recolor(url('assets/scalable/check-symbolic@2.svg'))
@@ -3804,7 +3804,7 @@ checkbutton.theme-selector radio:active:hover {
 
 checkbutton.theme-selector radio:checked:hover {
   background-color: #<wallbash_1xa6>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 themeswitcher {
@@ -3815,7 +3815,7 @@ themeswitcher .check {
   min-height: 16px;
   min-width: 16px;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   padding: 2px;
   border-radius: 9999px;
   margin: 3px;
@@ -3828,7 +3828,7 @@ themeswitcher .check {
 
 themeswitcher .check:hover {
   background-color: #<wallbash_1xa6>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 themeswitcher checkbutton radio {
@@ -3840,7 +3840,7 @@ themeswitcher checkbutton radio {
 
 themeswitcher checkbutton radio,
 themeswitcher checkbutton radio:hover {
-  outline-color: rgba(245, 224, 220, 0.12);
+  outline-color: <wallbash_1xa9_rgba(0.12)>;
   outline-width: 1px;
   outline-offset: -1px;
   outline-style: solid;
@@ -3874,7 +3874,7 @@ themeswitcher checkbutton.light radio,
 themeswitcher checkbutton.light radio:hover,
 themeswitcher checkbutton.light radio:checked,
 themeswitcher checkbutton.light radio:checked:hover {
-  color: rgba(0, 0, 0, 0.8);
+  color: <wallbash_txt1_rgba(0.8)>;
   background-color: #<wallbash_4xa9>;
 }
 
@@ -3928,11 +3928,11 @@ scale.fine-tune slider {
 scale trough {
   transition: background-color 75ms cubic-bezier(0, 0, 0.2, 1);
   outline: none;
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 scale trough:disabled {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 scale highlight {
@@ -3942,12 +3942,12 @@ scale highlight {
 
 scale highlight:disabled {
   background-color: #<wallbash_pry1>;
-  background-image: image(rgba(245, 224, 220, 0.3));
+  background-image: image(<wallbash_1xa9_rgba(0.3)>);
 }
 
 scale fill {
   transition: background-color 75ms cubic-bezier(0, 0, 0.2, 1);
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 scale fill:disabled {
@@ -3963,24 +3963,24 @@ scale slider {
 }
 
 scale slider:hover {
-  box-shadow: inset 0 0 0 2px #<wallbash_4xa8>, 0 0 0 8px rgba(245, 224, 220, 0.12);
+  box-shadow: inset 0 0 0 2px #<wallbash_4xa8>, 0 0 0 8px <wallbash_1xa9_rgba(0.12)>;
 }
 
 scale slider:active {
-  box-shadow: inset 0 0 0 4px #<wallbash_4xa8>, 0 0 0 8px rgba(245, 224, 220, 0.12);
+  box-shadow: inset 0 0 0 4px #<wallbash_4xa8>, 0 0 0 8px <wallbash_1xa9_rgba(0.12)>;
 }
 
 scale slider:disabled {
-  box-shadow: inset 0 0 0 2px rgba(245, 224, 220, 0.3);
+  box-shadow: inset 0 0 0 2px <wallbash_1xa9_rgba(0.3)>;
 }
 
 scale marks,
 scale value {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 scale indicator {
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
   color: transparent;
 }
 
@@ -4307,7 +4307,7 @@ scale.color.vertical:dir(rtl) slider {
  * Progress bars *
  *****************/
 progressbar {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   font-size: smaller;
 }
 
@@ -4323,7 +4323,7 @@ progressbar.vertical progress {
 
 progressbar trough {
   border-radius: 6px;
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 progressbar progress {
@@ -4397,7 +4397,7 @@ levelbar block.full {
 }
 
 levelbar block.empty {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 /****************
@@ -4412,7 +4412,7 @@ window.dialog.print drawing {
 
 window.dialog.print drawing paper {
   padding: 0;
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
   color: #<wallbash_4xa9>;
 }
@@ -4426,7 +4426,7 @@ window.dialog.print .dialog-action-box {
  **********/
 frame,
 .frame {
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 frame > list,
@@ -4460,7 +4460,7 @@ statusbar frame > border {
 actionbar > revealer > box {
   padding: 6px;
   border-spacing: 6px;
-  border-top: 1px solid rgba(245, 224, 220, 0.12);
+  border-top: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
   background-clip: border-box;
   box-shadow: none;
@@ -4482,8 +4482,8 @@ overshoot.top {
   background-size: 200% 70%;
   background-image: radial-gradient(
     farthest-side at top,
-    rgba(242, 205, 205, 0.24) 99%,
-    rgba(242, 205, 205, 0) 100%
+    <wallbash_2xa9_rgba(0.24)> 99%,
+    <wallbash_2xa9_rgba(0)> 100%
   );
   background-repeat: no-repeat;
   background-position: center top;
@@ -4496,8 +4496,8 @@ overshoot.bottom {
   background-size: 200% 70%;
   background-image: radial-gradient(
     farthest-side at bottom,
-    rgba(242, 205, 205, 0.24) 99%,
-    rgba(242, 205, 205, 0) 100%
+    <wallbash_2xa9_rgba(0.24)> 99%,
+    <wallbash_2xa9_rgba(0)> 100%
   );
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -4510,8 +4510,8 @@ overshoot.left {
   background-size: 200% 70%;
   background-image: radial-gradient(
     farthest-side at left,
-    rgba(242, 205, 205, 0.24) 99%,
-    rgba(242, 205, 205, 0) 100%
+    <wallbash_2xa9_rgba(0.24)> 99%,
+    <wallbash_2xa9_rgba(0)> 100%
   );
   background-repeat: no-repeat;
   background-position: left center;
@@ -4524,8 +4524,8 @@ overshoot.right {
   background-size: 200% 70%;
   background-image: radial-gradient(
     farthest-side at right,
-    rgba(242, 205, 205, 0.24) 99%,
-    rgba(242, 205, 205, 0) 100%
+    <wallbash_2xa9_rgba(0.24)> 99%,
+    <wallbash_2xa9_rgba(0)> 100%
   );
   background-repeat: no-repeat;
   background-position: right center;
@@ -4537,7 +4537,7 @@ overshoot.right {
 junction {
   border-style: solid none none solid;
   border-width: 1px;
-  border-color: rgba(245, 224, 220, 0.12);
+  border-color: <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
 }
 
@@ -4548,7 +4548,7 @@ junction:dir(rtl) {
 separator:not(.spacer) {
   min-width: 1px;
   min-height: 1px;
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 stacksidebar + separator.vertical,
@@ -4569,7 +4569,7 @@ listview.content:not(.conversation-listbox),
 list.content:not(.conversation-listbox) {
   border-radius: 7px;
   box-shadow: none;
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 listview.boxed-list > row.expander list > row,
@@ -4616,7 +4616,7 @@ listview.boxed-list > row:not(:last-child),
 list.boxed-list > row:not(:last-child),
 listview.content:not(.conversation-listbox) > row:not(:last-child),
 list.content:not(.conversation-listbox) > row:not(:last-child) {
-  border-bottom: 1px solid rgba(245, 224, 220, 0.12);
+  border-bottom: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 listview.boxed-list > row.expander list > row:focus,
@@ -4630,15 +4630,15 @@ list.content:not(.conversation-listbox) > row:focus {
 
 listview,
 list {
-  border-color: rgba(245, 224, 220, 0.12);
+  border-color: <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 listview row,
 list row {
   padding: 2px;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 listview > row.expander,
@@ -4683,7 +4683,7 @@ popover.menu listview.view > row {
 }
 
 row {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   background-clip: padding-box;
 }
 
@@ -4745,7 +4745,7 @@ button row.activatable:active {
 }
 
 button:checked row.activatable {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 row:selected image,
@@ -4760,7 +4760,7 @@ row:selected button label {
 
 row:selected:disabled image,
 row:selected:disabled label {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 treeexpander {
@@ -4776,7 +4776,7 @@ columnview row:not(:selected) cell editablelabel.editing:focus-within {
 }
 
 columnview row:not(:selected) cell editablelabel.editing text selection {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
   background-color: #<wallbash_4xa8>;
 }
 
@@ -4820,7 +4820,7 @@ expander {
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
   min-width: 16px;
   min-height: 16px;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   -gtk-icon-source: -gtk-icontheme('pan-end-symbolic');
 }
 
@@ -4834,7 +4834,7 @@ expander:active {
 }
 
 expander:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 expander-widget > box > title {
@@ -4842,7 +4842,7 @@ expander-widget > box > title {
 }
 
 expander-widget > box > title:hover > expander {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 .navigation-sidebar:not(decoration):not(window):drop(active):focus,
@@ -4861,13 +4861,13 @@ expander-widget:not(decoration):not(window):drop(active) {
  ************/
 calendar {
   padding: 0;
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
   border-radius: 6px;
   color: #<wallbash_4xa9>;
 }
 
 calendar:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 calendar:selected {
@@ -4876,7 +4876,7 @@ calendar:selected {
 
 calendar > header {
   padding: 3px;
-  border-bottom: 1px solid rgba(245, 224, 220, 0.12);
+  border-bottom: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 calendar > header > button {
@@ -4931,14 +4931,14 @@ window.dialog.message box.dialog-vbox.vertical {
 window.dialog.message .titlebar {
   min-height: 24px;
   border-style: none;
-  box-shadow: inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: inset 0 1px <wallbash_1xa9_rgba(0.1)>;
   background-color: #<wallbash_1xa1>;
   color: #<wallbash_4xa9>;
 }
 
 window.dialog.message .titlebar:backdrop {
   background-color: #<wallbash_1xa1>;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 window.dialog.message.csd .dialog-action-area {
@@ -4967,7 +4967,7 @@ window.dialog.message.csd
 }
 
 window.background.csd.dialog > headerbar.titlebar {
-  box-shadow: inset 0 -1px rgba(245, 224, 220, 0.12);
+  box-shadow: inset 0 -1px <wallbash_1xa9_rgba(0.12)>;
 }
 
 window.aboutdialog.background.csd scrolledwindow.frame,
@@ -4978,11 +4978,11 @@ window.aboutdialog.background.csd scrolledwindow.frame > textview.view > text {
 }
 
 filechooser .dialog-action-box {
-  border-top: 1px solid rgba(245, 224, 220, 0.12);
+  border-top: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 filechooser #pathbarbox {
-  border-bottom: 1px solid rgba(245, 224, 220, 0.12);
+  border-bottom: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_pry1>;
 }
 
@@ -5009,13 +5009,13 @@ filechooserbutton:drop(active) {
 .sidebar:not(separator):dir(ltr),
 .sidebar.left:not(separator),
 .sidebar.left:not(separator):dir(rtl) {
-  border-right: 1px solid rgba(245, 224, 220, 0.12);
+  border-right: 1px solid <wallbash_1xa9_rgba(0.12)>;
   border-left-style: none;
 }
 
 .sidebar:not(separator):dir(rtl),
 .sidebar.right:not(separator) {
-  border-left: 1px solid rgba(245, 224, 220, 0.12);
+  border-left: 1px solid <wallbash_1xa9_rgba(0.12)>;
   border-right-style: none;
 }
 
@@ -5075,13 +5075,13 @@ stacksidebar row > label {
 }
 
 separator.sidebar {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
   border-right: none;
 }
 
 separator.sidebar.selection-mode,
 .selection-mode separator.sidebar {
-  background-color: rgba(245, 224, 220, 0.15);
+  background-color: <wallbash_1xa9_rgba(0.15)>;
 }
 
 /**********************
@@ -5124,7 +5124,7 @@ separator.sidebar.selection-mode,
 }
 
 .navigation-sidebar > row:disabled {
-  color: rgba(245, 224, 220, 0.5);
+  color: <wallbash_1xa9_rgba(0.5)>;
 }
 
 .navigation-sidebar > separator {
@@ -5136,11 +5136,11 @@ separator.sidebar.selection-mode,
  ****************/
 row image.sidebar-icon {
   transition: color 75ms cubic-bezier(0, 0, 0.2, 1);
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 row image.sidebar-icon:disabled {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 placessidebar > viewport.frame {
@@ -5342,7 +5342,7 @@ infobar.action > revealer > box *:link,
 infobar.action:backdrop > revealer > box *:link,
 infobar.question > revealer > box *:link,
 infobar.question:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.action:hover > revealer > box,
@@ -5355,7 +5355,7 @@ infobar.question:hover > revealer > box {
 infobar.warning > revealer > box,
 infobar.warning:backdrop > revealer > box {
   background-color: #fdd633;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.warning > revealer > box button,
@@ -5370,12 +5370,12 @@ infobar.warning:backdrop > revealer > box button:focus,
 infobar.warning:backdrop > revealer > box button:active,
 infobar.warning:backdrop > revealer > box button:checked,
 infobar.warning:backdrop > revealer > box button.text-button:not(:disabled) {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.warning > revealer > box *:link,
 infobar.warning:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.warning:hover > revealer > box {
@@ -5385,7 +5385,7 @@ infobar.warning:hover > revealer > box {
 infobar.error > revealer > box,
 infobar.error:backdrop > revealer > box {
   background-color: #<wallbash_3xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.error > revealer > box button,
@@ -5400,12 +5400,12 @@ infobar.error:backdrop > revealer > box button:focus,
 infobar.error:backdrop > revealer > box button:active,
 infobar.error:backdrop > revealer > box button:checked,
 infobar.error:backdrop > revealer > box button.text-button:not(:disabled) {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.error > revealer > box *:link,
 infobar.error:backdrop > revealer > box *:link {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 infobar.error:hover > revealer > box {
@@ -5425,8 +5425,8 @@ tooltip {
 tooltip.background {
   background-color: rgba(24, 24, 37, 0.9);
   color: #<wallbash_4xa9>;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2.4px -1px <wallbash_txt1_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 6px 0 <wallbash_txt1_rgba(0.12)>;
   border-radius: 6px;
   margin: 2px 6px 8px 6px;
 }
@@ -5487,7 +5487,7 @@ colorswatch.dark {
 }
 
 colorswatch.light {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 colorswatch#add-color-button {
@@ -5522,16 +5522,16 @@ colorswatch#editor-color-sample overlay {
 colorchooser .popover.osd {
   transition: box-shadow 75ms cubic-bezier(0, 0, 0.2, 1);
   border-radius: 6px;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12),
-    inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: 0 2px 2.4px -1px <wallbash_txt1_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 6px 0 <wallbash_txt1_rgba(0.12)>,
+    inset 0 1px <wallbash_1xa9_rgba(0.1)>;
   background-color: #<wallbash_1xa1>;
 }
 
 colorchooser .popover.osd:backdrop {
-  box-shadow: 0 3px 2px -3px rgba(0, 0, 0, 0.3),
-    0 2px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 3px 0 rgba(0, 0, 0, 0.12),
-    inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: 0 3px 2px -3px <wallbash_txt1_rgba(0.3)>,
+    0 2px 2px -1px <wallbash_txt1_rgba(0.24)>, 0 1px 3px 0 <wallbash_txt1_rgba(0.12)>,
+    inset 0 1px <wallbash_1xa9_rgba(0.1)>;
 }
 
 /********
@@ -5547,8 +5547,8 @@ colorchooser .popover.osd:backdrop {
 window {
   transition: box-shadow 75ms cubic-bezier(0, 0, 0.2, 1);
   border-radius: 12px;
-  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12),
+  box-shadow: 0 2px 2.4px -1px <wallbash_txt1_rgba(0.2)>,
+    0 4px 3px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 6px 0 <wallbash_txt1_rgba(0.12)>,
     0 0 0 2px #<wallbash_3xa7>, 0 0 16px transparent;
 }
 
@@ -5557,8 +5557,8 @@ window.csd {
 }
 
 window:backdrop {
-  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3),
-    0 1px 2px -1px rgba(0, 0, 0, 0.24), 0 1px 2px -0.6px rgba(0, 0, 0, 0.17),
+  box-shadow: 0 2px 2px -2px <wallbash_txt1_rgba(0.3)>,
+    0 1px 2px -1px <wallbash_txt1_rgba(0.24)>, 0 1px 2px -0.6px <wallbash_txt1_rgba(0.17)>,
     0 0 0 2px #<wallbash_1xa3>, 0 0 16px transparent;
 }
 
@@ -5710,7 +5710,7 @@ iconview:selected,
 flowbox > flowboxchild:selected,
 calendar > grid > label.today {
   color: #<wallbash_4xa8>;
-  background-color: rgba(242, 205, 205, 0.2);
+  background-color: <wallbash_2xa9_rgba(0.2)>;
 }
 
 text > selection,
@@ -5761,9 +5761,9 @@ shortcut > .keycap {
   padding-bottom: 2px;
   padding-left: 8px;
   padding-right: 8px;
-  border: solid 1px rgba(245, 224, 220, 0.12);
+  border: solid 1px <wallbash_1xa9_rgba(0.12)>;
   border-radius: 7px;
-  box-shadow: inset 0 -2px rgba(245, 224, 220, 0.12);
+  box-shadow: inset 0 -2px <wallbash_1xa9_rgba(0.12)>;
   background-color: #<wallbash_1xa1>;
   color: #<wallbash_4xa9>;
   font-size: smaller;
@@ -5848,7 +5848,7 @@ popover.emoji-picker > contents {
 .emoji-searchbar {
   padding: 6px;
   border-spacing: 6px;
-  border-bottom: 1px solid rgba(245, 224, 220, 0.12);
+  border-bottom: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background: none;
 }
 
@@ -5860,7 +5860,7 @@ popover.emoji-picker > contents {
 .emoji-toolbar {
   padding: 0;
   border-spacing: 3px;
-  border-top: 1px solid rgba(245, 224, 220, 0.12);
+  border-top: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background: none;
 }
 
@@ -5926,7 +5926,7 @@ popover.entry-completion > contents {
 
 .nautilus-window flap.unfolded > placessidebar {
   background-color: transparent;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
   padding: 0 0 0 2px;
   margin: 0 0 0 2px;
 }
@@ -5949,7 +5949,7 @@ popover.entry-completion > contents {
   > viewport
   > list.navigation-sidebar
   > separator {
-  background: rgba(245, 224, 220, 0.1);
+  background: <wallbash_1xa9_rgba(0.1)>;
 }
 
 .nautilus-window .vertical separator {
@@ -6007,7 +6007,7 @@ popover.entry-completion > contents {
   > viewport
   > list.navigation-sidebar
   > row.activatable:hover {
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
   color: #<wallbash_4xa9>;
 }
 
@@ -6080,7 +6080,7 @@ popover.entry-completion > contents {
   > list.navigation-sidebar
   > row.activatable:disabled
   label.sidebar-label {
-  color: rgba(245, 224, 220, 0.3);
+  color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 .nautilus-window
@@ -6123,7 +6123,7 @@ popover.entry-completion > contents {
 }
 
 .nautilus-window placesview label {
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 .nautilus-window infobar {
@@ -6146,14 +6146,14 @@ popover.entry-completion > contents {
   border-style: none;
   border-radius: 6px;
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
-  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.2),
-    0 3px 2.4px 0 rgba(0, 0, 0, 0.14), 0 1px 4.8px 0 rgba(0, 0, 0, 0.12);
+  color: <wallbash_txt1_rgba(0.87)>;
+  box-shadow: 0 3px 2px -2px <wallbash_txt1_rgba(0.2)>,
+    0 3px 2.4px 0 <wallbash_txt1_rgba(0.14)>, 0 1px 4.8px 0 <wallbash_txt1_rgba(0.12)>;
 }
 
 .nautilus-window .floating-bar button {
   margin: 4px;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 #NautilusViewCell clamp box {
@@ -6225,7 +6225,7 @@ window.dialog > box > stack > box > box > notebook.frame {
 }
 
 #displayitem {
-  border-top: 1px solid rgba(245, 224, 220, 0.12);
+  border-top: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 .small .card {
@@ -6242,15 +6242,15 @@ window.dialog > box > stack > box > box > notebook.frame {
 }
 
 leaflet button.number-button {
-  background-color: rgba(245, 224, 220, 0.1);
+  background-color: <wallbash_1xa9_rgba(0.1)>;
 }
 
 leaflet button.number-button:hover {
-  background-color: rgba(245, 224, 220, 0.2);
+  background-color: <wallbash_1xa9_rgba(0.2)>;
 }
 
 leaflet button.number-button:active {
-  background-color: rgba(245, 224, 220, 0.3);
+  background-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 leaflet button.clear-button.image-button {
@@ -6295,7 +6295,7 @@ app-context-bar > box:first-child > button.flat:first-child {
 }
 
 app-context-bar > box > button.flat {
-  border-left-color: rgba(245, 224, 220, 0.12);
+  border-left-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 carousel.card {
@@ -6310,7 +6310,7 @@ carousel.card {
 
 .context-tile-lozenge.grey {
   color: #<wallbash_4xa9>;
-  background-color: rgba(245, 224, 220, 0.12);
+  background-color: <wallbash_1xa9_rgba(0.12)>;
 }
 
 .context-tile-lozenge.green,
@@ -6428,7 +6428,7 @@ screenshot-carousel box.frame.view {
 
 .category-tile.category-socialize {
   background: linear-gradient(90deg, #ef4e9b 0%, #f77466 100%);
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 .category-tile.category-socialize:hover {
@@ -6453,10 +6453,10 @@ screenshot-carousel box.frame.view {
   color: #1c71d8;
   background-color: #fdf8d7;
   background-image: linear-gradient(
-      rgba(245, 224, 220, 0.12) 1px,
+      <wallbash_1xa9_rgba(0.12)> 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(245, 224, 220, 0.12) 1px, transparent 1px);
+    linear-gradient(90deg, <wallbash_1xa9_rgba(0.12)> 1px, transparent 1px);
   background-size: 10px 10px, 10px 10px;
   background-position: -1px -4px, center -1px;
 }
@@ -6464,19 +6464,19 @@ screenshot-carousel box.frame.view {
 .category-tile.category-work:hover {
   background-color: #fefcef;
   background-image: linear-gradient(
-      rgba(245, 224, 220, 0.12) 1px,
+      <wallbash_1xa9_rgba(0.12)> 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(245, 224, 220, 0.12) 1px, transparent 1px);
+    linear-gradient(90deg, <wallbash_1xa9_rgba(0.12)> 1px, transparent 1px);
 }
 
 .category-tile.category-work:active {
   background-color: #fcf4bf;
   background-image: linear-gradient(
-      rgba(245, 224, 220, 0.12) 1px,
+      <wallbash_1xa9_rgba(0.12)> 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(245, 224, 220, 0.12) 1px, transparent 1px);
+    linear-gradient(90deg, <wallbash_1xa9_rgba(0.12)> 1px, transparent 1px);
 }
 
 .polari-room-list .sidebar {
@@ -6485,7 +6485,7 @@ screenshot-carousel box.frame.view {
 
 .polari-room-list .sidebar > row.activatable:selected {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 .polari-room-list popover.background > arrow,
@@ -6494,7 +6494,7 @@ screenshot-carousel box.frame.view {
 }
 
 window.org-gnome-Builder headerbar {
-  box-shadow: inset 0 -1px rgba(245, 224, 220, 0.12);
+  box-shadow: inset 0 -1px <wallbash_1xa9_rgba(0.12)>;
 }
 
 window.org-gnome-Builder headerbar splitbutton button {
@@ -6528,7 +6528,7 @@ panelframeswitcher {
 
 .frameheader.header {
   min-height: 24px;
-  background-color: rgba(245, 224, 220, 0.04);
+  background-color: <wallbash_1xa9_rgba(0.04)>;
 }
 
 .frameheader.header > button {
@@ -6548,7 +6548,7 @@ panelframeswitcher {
 
 .frameheader.header tabbar.inline > revealer > box .end-action {
   padding: 0;
-  border-left: 1px solid rgba(245, 224, 220, 0.12);
+  border-left: 1px solid <wallbash_1xa9_rgba(0.12)>;
 }
 
 .frameheader.header
@@ -6608,11 +6608,11 @@ panelstatusbar > paneltogglebutton button.image-button {
 }
 
 .style-variant button.toggle:hover > stylevariantpreview > .wallpaper {
-  outline-color: rgba(245, 224, 220, 0.04);
+  outline-color: <wallbash_1xa9_rgba(0.04)>;
 }
 
 .style-variant button.toggle:active > stylevariantpreview > .wallpaper {
-  outline-color: rgba(245, 224, 220, 0.3);
+  outline-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 .style-variant button.toggle:checked > stylevariantpreview > .wallpaper {
@@ -6735,10 +6735,10 @@ avatar.image {
 .card {
   border-radius: 6px;
   box-shadow: none;
-  border: 1px solid rgba(245, 224, 220, 0.12);
+  border: 1px solid <wallbash_1xa9_rgba(0.12)>;
   background-clip: border-box;
   background-color: #<wallbash_pry1>;
-  color: rgba(245, 224, 220, 0.7);
+  color: <wallbash_1xa9_rgba(0.7)>;
 }
 
 preferencespage > scrolledwindow > viewport > clamp > box {
@@ -6778,11 +6778,11 @@ preferencesgroup
 }
 
 preferencesgroup > box button.background-preview-button.toggle:hover {
-  outline-color: rgba(245, 224, 220, 0.04);
+  outline-color: <wallbash_1xa9_rgba(0.04)>;
 }
 
 preferencesgroup > box button.background-preview-button.toggle:active {
-  outline-color: rgba(245, 224, 220, 0.3);
+  outline-color: <wallbash_1xa9_rgba(0.3)>;
 }
 
 preferencesgroup > box button.background-preview-button.toggle:checked {
@@ -6846,9 +6846,9 @@ toast {
   border-radius: 9999px;
   border-spacing: 6px;
   padding: 6px;
-  box-shadow: 0 7px 4.8px -4px rgba(0, 0, 0, 0.2),
-    0 12px 10.2px 2px rgba(0, 0, 0, 0.14), 0 5px 13.2px 4px rgba(0, 0, 0, 0.12),
-    inset 0 1px rgba(245, 224, 220, 0.1);
+  box-shadow: 0 7px 4.8px -4px <wallbash_txt1_rgba(0.2)>,
+    0 12px 10.2px 2px <wallbash_txt1_rgba(0.14)>, 0 5px 13.2px 4px <wallbash_txt1_rgba(0.12)>,
+    inset 0 1px <wallbash_1xa9_rgba(0.1)>;
   background-color: #<wallbash_pry1>;
   color: #<wallbash_4xa9>;
   border: none;
@@ -6878,12 +6878,12 @@ viewswitcher.wide {
 viewswitcher.wide button.toggle:checked,
 viewswitcher.wide button.toggle.flat:checked {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 viewswitcher.wide button.toggle:checked:backdrop,
 viewswitcher.wide button.toggle.flat:checked:backdrop {
-  color: rgba(0, 0, 0, 0.38);
+  color: <wallbash_txt1_rgba(0.38)>;
 }
 
 viewswitcher.wide
@@ -6894,7 +6894,7 @@ viewswitcher.wide
   button.toggle.flat:checked
   indicatorbin.needs-attention
   > indicator {
-  background-color: rgba(0, 0, 0, 0.87);
+  background-color: <wallbash_txt1_rgba(0.87)>;
 }
 
 viewswitcher.wide
@@ -6926,11 +6926,11 @@ headerbar viewswitcher.narrow button.toggle {
 
 headerbar viewswitcher.narrow button.toggle:checked {
   background-color: #<wallbash_4xa8>;
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
 
 headerbar viewswitcher.narrow button.toggle:checked indicator {
-  background: rgba(0, 0, 0, 0.87);
+  background: <wallbash_txt1_rgba(0.87)>;
 }
 
 headerbar viewswitcher.narrow button.toggle:checked indicator > label {
@@ -6938,7 +6938,7 @@ headerbar viewswitcher.narrow button.toggle:checked indicator > label {
 }
 
 headerbar viewswitcher.narrow button.toggle:checked:backdrop {
-  color: rgba(0, 0, 0, 0.38);
+  color: <wallbash_txt1_rgba(0.38)>;
 }
 
 headerbar viewswitcher.narrow button.toggle:focus {
@@ -7008,5 +7008,5 @@ indicatorbin.needs-attention > indicator {
 }
 
 indicatorbin.needs-attention > indicator > label {
-  color: rgba(0, 0, 0, 0.87);
+  color: <wallbash_txt1_rgba(0.87)>;
 }
