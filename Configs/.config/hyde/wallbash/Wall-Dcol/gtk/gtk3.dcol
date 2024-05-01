@@ -1,4 +1,4 @@
-$HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk.css|cp $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk.css $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk-dark.css && flatpak --user override --env=GTK_THEME="Wallbash-Gtk"
+$HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk.css|cp $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk.css $HOME/.themes/Wallbash-Gtk/gtk-3.0/gtk-dark.css
 /* GTK NAMED COLORS -- USE RESPONSIBLY! */
 
 /* widget text/foreground color */
