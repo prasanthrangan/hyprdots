@@ -31,7 +31,6 @@ set +a
 
 fn_wallbash () {
     local tplt="${1}"
-    local type="${2}"
     eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
     [ ! -d "$(dirname "${target}")" ] && echo "[skip] \"${target}\"" && return 0
     appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
@@ -127,7 +126,7 @@ fn_wallbash () {
                 s/<wallbash_4xa7_rgba(\([^)]*\))>/'"${dcol_1xa3_rgba}"'/g
                 s/<wallbash_4xa8_rgba(\([^)]*\))>/'"${dcol_1xa2_rgba}"'/g
                 s/<wallbash_4xa9_rgba(\([^)]*\))>/'"${dcol_1xa1_rgba}"'/g' "${target}"
-    elif [ "${type}" == "dcol" ] ; then
+    else
         sed -i 's/<wallbash_mode>/'"${dcol_mode}"'/g
                 s/<wallbash_pry1>/'"${dcol_pry1}"'/g
                 s/<wallbash_txt1>/'"${dcol_txt1}"'/g
@@ -242,9 +241,9 @@ if [ "${enableWallDcol}" -eq 0 ] && [[ "${reload_flag}" -eq 1 ]] ; then
 elif [ "${enableWallDcol}" -gt 0 ] ; then
 
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
-    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {} "dcol"
+    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {}
 
 fi
 
-find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {} "dcol"
+find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
 
