@@ -2,7 +2,7 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 
 :root {
 	--accent-color: #<wallbash_1xa1>;
-	--border-color: #<wallbash_pry3>;
+	--border-color: #<wallbash_1xa3>;
 	--background-1: #<wallbash_pry1>;
 	--background-2: #<wallbash_1xa2>;
 	--background-tertiary: #<wallbash_pry1>66;
@@ -12,7 +12,7 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--background-modifier-active: #<wallbash_4xa4> !important;
 	--text-normal: #<wallbash_txt1> !important;
 	--text-positive: #<wallbash_2xa9> !important;
-	--text-muted: #<wallbash_3xa9> !important;
+	--text-muted: #<wallbash_1xa9>66 !important;
 	--text-link: #<wallbash_4xa9> !important;
 	--button-background: #<wallbash_pry1> !important;
 	--button-background-hover: #<wallbash_pry1> !important;
@@ -39,7 +39,8 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--interactive-selected: var(--background-primary);
 	--interactive-active: var(--text-normal);
 	--interactive-normal: var(--text-normal);
-	--channels-default: var(--text-muted);
+  --interactive-muted: var(--text-muted);
+	--channels-default: var(--text-normal);
 	--header-primary: var(--text-normal);
 	--header-secondary: var(--text-muted);
 	--control-brand-foreground: var(--accent-color);
