@@ -11,9 +11,10 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--background-modifier-hover: #<wallbash_3xa4> !important;
 	--background-modifier-active: #<wallbash_4xa4> !important;
 	--text-normal: #<wallbash_txt1> !important;
-	--text-positive: #<wallbash_2xa9> !important;
-	--text-muted: #<wallbash_1xa9>66 !important;
-	--text-link: #<wallbash_4xa9> !important;
+	--text-positive: #<wallbash_3xa9> !important;
+	--text-muted: #<wallbash_txt1>66 !important;
+	--text-link: #<wallbash_pry4> !important;
+  --channel-default: #<wallbash_txt1>99 !important;
 	--button-background: #<wallbash_pry1> !important;
 	--button-background-hover: #<wallbash_pry1> !important;
 	--button-background-active: #<wallbash_pry1> !important;
@@ -29,18 +30,18 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 
 	--background-primary: var(--background-1);
 	--background-primary-alt: var(--background-1);
-	--background-secondary: var(--background-1);
-	--background-secondary-alt: var(--background-1);
+	--background-secondary: var(--background-tertiary);
+	--background-secondary-alt: var(--background-tertiary);
 	--background-accent-gradient: var(--background-1);
 	--background-floating: var(--background-2);
 	--background-modifier-selected: var(--accent-color);
 	--background-modifier-accent: var(--border-color);
 	--background-message-hover: transparent;
 	--interactive-selected: var(--background-primary);
-	--interactive-active: var(--text-normal);
+	--interactive-active: var(--text-positive);
 	--interactive-normal: var(--text-normal);
   --interactive-muted: var(--text-muted);
-	--channels-default: var(--text-normal);
+	--channels-default: var(--channel-default);
 	--header-primary: var(--text-normal);
 	--header-secondary: var(--text-muted);
 	--control-brand-foreground: var(--accent-color);
