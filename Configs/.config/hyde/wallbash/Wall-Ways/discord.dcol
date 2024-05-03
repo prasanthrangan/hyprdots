@@ -1,19 +1,20 @@
 ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 
 :root {
-	--accent-color: #<wallbash_1xa2>;
-	--border-color: #<wallbash_pry1>;
+	--accent-color: #<wallbash_1xa1>;
+	--border-color: #<wallbash_1xa3>;
 	--background-1: #<wallbash_pry1>;
 	--background-2: #<wallbash_1xa2>;
-	--background-tertiary: #<wallbash_1xa1>;
-	--background-mentioned: #<wallbash_1xa3> !important;
-	--background-mentioned-hover: #<wallbash_2xa4> !important;
+	--background-tertiary: #<wallbash_pry1>66;
+	--background-mentioned: #<wallbash_2xa3> !important;
+	--background-mentioned-hover: #<wallbash_2xa2> !important;
 	--background-modifier-hover: #<wallbash_3xa4> !important;
 	--background-modifier-active: #<wallbash_4xa4> !important;
 	--text-normal: #<wallbash_txt1> !important;
-	--text-positive: #<wallbash_2xa9> !important;
-	--text-muted: #<wallbash_3xa9> !important;
-	--text-link: #<wallbash_4xa9> !important;
+	--text-positive: #<wallbash_3xa9> !important;
+	--text-muted: #<wallbash_txt1>66 !important;
+	--text-link: #<wallbash_pry4> !important;
+  --channel-default: #<wallbash_txt1>99 !important;
 	--button-background: #<wallbash_pry1> !important;
 	--button-background-hover: #<wallbash_pry1> !important;
 	--button-background-active: #<wallbash_pry1> !important;
@@ -34,13 +35,13 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--background-accent-gradient: var(--background-1);
 	--background-floating: var(--background-2);
 	--background-modifier-selected: var(--accent-color);
-	--background-modifier-accent: transparent;
+	--background-modifier-accent: var(--border-color);
 	--background-message-hover: transparent;
 	--interactive-selected: var(--background-primary);
-	--interactive-active: var(--text-normal);
+	--interactive-active: var(--text-positive);
 	--interactive-normal: var(--text-normal);
-	--interactive-muted: var(--button-background-active);
-	--channels-default: var(--text-muted);
+  --interactive-muted: var(--text-muted);
+	--channels-default: var(--channel-default);
 	--header-primary: var(--text-normal);
 	--header-secondary: var(--text-muted);
 	--control-brand-foreground: var(--accent-color);
@@ -58,7 +59,7 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--scrollbar-auto-scrollbar-color-thumb: var(--accent-color);
 	--scrollbar-auto-scrollbar-color-track: transparent;
 	--channeltextarea-background: var(--accent-color);
-	--channeltextarea-background-hover: var(--background-2);
+	--channeltextarea-background-hover: var(--background-tertiary);
 	--avatar-roundess: 5px;
 }
 
@@ -68,6 +69,6 @@ ${cacheDir}/landing/discord.css|${scrDir}/wallbashdiscord.sh
 	--background-secondary: var(--background-tertiary);
 	--background-secondary-alt: var(--background-tertiary);
 	--background-floating: var(--background-2);
-	--background-mentioned: #<wallbash_2xa3> !important;
-	--background-mentioned-hover: #<wallbash_2xa4> !important;	
+	--background-mentioned: var(--accent-color);
+	--background-mentioned-hover: var(--scrollbar-auto-thumb);	
 }
