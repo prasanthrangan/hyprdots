@@ -27,6 +27,7 @@ Y|Y|${HOME}/.config|xsettingsd nwg-look gtk-3.0|nwg-look
 Y|Y|${HOME}/.icons|default|nwg-look
 Y|Y|${HOME}|.gtkrc-2.0|nwg-look
 Y|Y|${HOME}/.config|dolphinrc kdeglobals|dolphin
+Y|Y|${HOME}/.config/menus|applications.menu|dolphin
 Y|Y|${HOME}/.local/share|dolphin|dolphin
 Y|Y|${HOME}/.local/share/kxmlgui5|dolphin|dolphin
 Y|Y|${HOME}/.local/share/kio/servicemenus|hydewallpaper.desktop|dolphin
