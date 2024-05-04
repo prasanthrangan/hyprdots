@@ -11,7 +11,7 @@ print_error ()
 cat << "EOF"
     ./volumecontrol.sh -[device] <actions>
     ...valid device are...
-        i   -- input decive
+        i   -- input device
         o   -- output device
         p   -- player application
     ...valid actions are...
