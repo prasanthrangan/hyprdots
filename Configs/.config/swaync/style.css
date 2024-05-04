@@ -1,0 +1,364 @@
+/* @import "./themes/catppuccin_mocha.css"; */
+/* @import "./themes/one_dark.css"; */
+/* @import "./themes/catppuccin_latte.css"; */
+/* @import "./themes/hack_the_box.css"; */
+/* @import "./themes/rose_pine.css"; */
+/* @import "./themes/windows_11.css"; */
+/* @import "./themes/mac_os.css"; */
+/* @import "./themes/tokyo_night.css"; */
+/* @import "./themes/material_sakura.css"; */
+/* @import "./themes/graphite_mono.css"; */
+/* @import "./themes/decay_green.css"; */
+/* @import "./themes/edge_runer.css"; */
+/* @import "./themes/frosted_glass.css"; */
+/* @import "./themes/gruvbox_retro.css"; */
+/* @import "./themes/synth_wave.css"; */
+@import "./themes/nordic_blue.css";
+
+* {
+  font-family: VictorMono NF Bold;
+}
+
+/*
+*
+* transparent background
+*
+* */
+.blank-window {
+  background: @blank-win;
+}
+
+/*
+*
+* Control Center
+*
+* */
+.control-center.notification-row:focus,
+.control-center {
+  background: @sw-cc-bg;
+  border: 2px solid @sw-cc-border-bg;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list-placeholder {
+  opacity: 0.5;
+}
+
+/* .control-center .notification-row:hover { */
+/*   opacity: 1; */
+/*   background: @red; */
+/*   border-radius: 0px; */
+/*   margin: 0px; */
+/* } */
+
+/*
+*
+* Notification Title
+*
+* */
+.floating-notifications .notification-row {
+  background: transparent;
+  margin: 15px 10px 0 0;
+}
+
+.widget-title {
+  color: @sw-noti-titl-fg;
+  margin: 20px 20px 5px 20px;
+  font-size: 18pt;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 0 0 3px @sw-noti-titl-shad;
+}
+
+/*
+*
+* Notification Window
+*
+* */
+.notification {
+  font-size: 16pt;
+  border-radius: 10px;
+  padding: 0;
+  background: @sw-noti-window-bg;
+  border: 2px solid @sw-noti-window-br;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
+}
+
+.notification-content {
+  background: transparent;
+  padding: 10px;
+}
+
+.notification-action {
+  padding: 4px;
+  margin: 0;
+  box-shadow: none;
+  background: @sw-noti-window-bg;
+  border: none;
+  /* color: @sw-noti-window-txt; */
+  transition: all 0.15s ease-in-out;
+  font-size: 16pt;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+  /* -gtk-icon-effect: none; */
+  background: @sw-noti-bg-hover;
+  /* text-shadow: 0 0 3px @sw-text-color; */
+}
+
+.notification-default-action {
+  border-radius: 8px;
+}
+
+.notification-default-action:not(:only-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.notification-action {
+  border-radius: 0;
+  border-top: none;
+  border-right: none;
+}
+
+/*
+*
+* Notification Summary
+*
+* */
+.summary {
+  font-size: 16pt;
+  font-weight: bold;
+  font-style: italic;
+  background: transparent;
+  color: @sw-msg-sum-fg;
+  margin-left: 10px;
+  text-shadow: 0 0 2px @sw-msg-sum-shad;
+}
+
+.time {
+  font-size: 16pt;
+  font-weight: bold;
+  font-style: italic;
+  background: transparent;
+  color: @sw-msg-time;
+  text-shadow: none;
+  margin-right: 10px;
+}
+
+.body {
+  font-size: 16pt;
+  font-weight: normal;
+  background: transparent;
+  color: @sw-msg-body;
+  text-shadow: none;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/*
+*
+* Notification Group
+*
+* */
+.notification-group-headers {
+  font-weight: bold;
+  font-size: 16pt;
+}
+
+.notification-group-icon {
+  color: @sw-noti-gr-icon;
+  margin-right: 8px;
+}
+
+.notification-group-collapse-button {
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.notification-group-collapse-button:hover {
+  background: @sw-noti-gr-collapse-but-hvr;
+  color: @sw-noti-gr-collapse-but-icon;
+}
+
+.notification-group-close-all-button {
+  border: none;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.notification-group-close-all-button:hover {
+  background: @sw-noti-gr-close-btn-hvr;
+  color: @sw-noti-gr-close-btn-icon;
+}
+
+/*
+*
+* Image
+*
+* */
+.image {
+  background: transparent;
+  border-radius: 8px;
+}
+.body-image {
+  margin-top: 0px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+/*
+*
+* Clear All Button
+*
+* */
+.widget-title > button:hover {
+  background: @sw-clr-btn-hvr-bg;
+  color: @sw-clr-btn-hvr-fg;
+}
+
+.widget-title > button {
+  font-size: initial;
+  font-weight: bold;
+  font-family: VictorMono NF Bold;
+  background: @sw-clr-btn-bg;
+  color: @sw-clr-btn-fg;
+  border: 2px solid @sw-clr-btn-br;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+/*
+*
+* Don't Disturb Button
+*
+* */
+.widget-dnd {
+  color: @sw-dnd-fg;
+  margin: 5px 20px 5px 20px;
+  font-size: 16pt;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 0 0 3px @sw-dnd-shad;
+}
+
+.widget-dnd > switch {
+  font-size: initial;
+  border-radius: 999px;
+  background: @sw-dnd-btn-bg;
+  border: 2px solid @sw-dnd-btn-br;
+  box-shadow: none;
+  padding: 1px;
+  transition: all 0.1s ease-in-out;
+}
+
+.widget-dnd > switch:checked {
+  background: @sw-dnd-btn-chk;
+}
+
+.widget-dnd > switch slider {
+  background: @sw-dnd-sli-bg;
+  color: @red;
+  border-radius: 999px;
+}
+
+/*
+*
+* Mpris
+*
+* */
+.widget-mpris {
+  color: @sw-mpris-fg;
+  background: @sw-mpris-bg;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.widget-mpris-player {
+  padding: 8px;
+  margin: 8px;
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.widget-mpris-subtitle {
+  font-size: 1.1rem;
+}
+
+/*
+*
+* Buttons Grid
+*
+* */
+.widget-buttons-grid {
+  font-size: x-large;
+  padding: 8px;
+  margin: 20px 10px 10px;
+  border-radius: 10px;
+  background: @sw-btn-grd-bg;
+  color: @sw-btn-grd-fg;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  margin: 3px;
+  background: @sw-clr-btn-bg;
+  color: @sw-btn-grd-fg;
+  border-radius: 10px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @sw-btn-grd-hvr-bg;
+}
+
+.widget-menubar > box > .menu-button-bar > button {
+  background: transparent;
+}
+
+.topbar-buttons > button {
+  background: transparent;
+}
+
+/*
+*
+* Volume
+*
+* */
+.widget-volume {
+  background: @sw-vol-wid-bg;
+  color: @sw-vol-wid-fg;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: x-large;
+}
+
+.widget-volume > box > button {
+  background: transparent;
+  border: none;
+}
+
+/*
+*
+* Backlight
+*
+* */
+.widget-backlight {
+  background: @sw-bright-wid-bg;
+  color: @sw-bright-wid-fg;
+  padding: 8px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: x-large;
+}

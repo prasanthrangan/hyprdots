@@ -1,0 +1,104 @@
+/*
+*
+* control center
+*
+* */
+@define-color sw-cc-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-cc-border-bg rgba(239, 228, 232, 1); /* border */
+
+/*
+*
+* notification title 'the notification word on control center'
+*
+* */
+@define-color sw-noti-titl-fg rgba(214,214,214,0.8); /* foreground */
+@define-color sw-noti-titl-shad rgba(214,214,214,0.8); /* shadow */
+
+/*
+*
+* notification window
+*
+* */
+@define-color sw-noti-window-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-noti-window-br rgba(239, 228, 232, 1); /* border */
+@define-color sw-noti-window-txt rgba(214,214,214,0.8); /* color */
+@define-color sw-noti-bg-hover rgba(61,61,61,0.4); /* hover */
+
+/*
+*
+* summary message
+*
+* */
+@define-color sw-msg-sum-fg rgba(214,214,214,0.8); /* foreground */
+@define-color sw-msg-sum-shad rgba(214,214,214,0.8); /* shadow */
+@define-color sw-msg-time rgb(247, 83, 65); /* time */
+@define-color sw-msg-body rgb(252,252,252); /* body */
+
+/*
+*
+* notification group
+*
+* */
+@define-color sw-noti-gr-icon rgb(247, 83, 65); /* icon */
+@define-color sw-noti-gr-collapse-but-hvr rgba(61,61,61,0.4); /* button */
+@define-color sw-noti-gr-collapse-but-icon rgb(247, 83, 65); /* icon */
+@define-color sw-noti-gr-close-btn-hvr rgba(61,61,61,0.4); /* button */
+@define-color sw-noti-gr-close-btn-icon rgb(247, 83, 65); /* icon */
+
+/*
+*
+* clear all button
+*
+* */
+@define-color sw-clr-btn-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-clr-btn-fg rgba(214,214,214,0.8); /* foreground */
+@define-color sw-clr-btn-br rgba(181, 180, 180, 1); /* border */
+@define-color sw-clr-btn-hvr-bg rgba(61,61,61,0.4); /* background */
+@define-color sw-clr-btn-hvr-fg rgb(61,61,61); /* foreground */
+
+/*
+*
+* DND 'don't disturb
+*
+* */
+@define-color sw-dnd-fg rgb(247, 83, 65); /* foreground */
+@define-color sw-dnd-shad rgb(247, 83, 65); /* shadow */
+@define-color sw-dnd-btn-bg rgba(0,0,0,0.8); /*background */
+@define-color sw-dnd-btn-br rgba(181, 180, 180, 1); /* border */
+@define-color sw-dnd-btn-chk rgb(247, 83, 65); /* when checked */
+@define-color sw-dnd-sli-bg rgba(214,214,214,0.8); /* rounded slider 'the tip!' idk what to call it */
+
+/*
+*
+* mpris
+*
+* */
+@define-color sw-mpris-fg rgb(247, 83, 65); /* foreground */
+@define-color sw-mpris-bg alpha(rgb(0, 0, 0), 0); /* background */
+
+/*
+*
+* Buttons Grid
+*
+* */
+@define-color sw-btn-grd-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-btn-grd-fg rgba(214,214,214,0.8); /* foreground */
+@define-color sw-btn-grd-hvr-bg rgba(61,61,61,0.4); /* hover */
+
+/*
+*
+* Volume Widget
+*
+* */
+@define-color sw-vol-wid-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-vol-wid-fg rgba(214,214,214,0.8); /* foreground */
+/*
+*
+* Brightness Widget
+*
+* */
+@define-color sw-bright-wid-bg rgba(0,0,0,0.8); /* background */
+@define-color sw-bright-wid-fg rgba(214,214,214,0.8); /* foreground */
+
+/* NOTE: this is here for testing */
+/* @define-color red rgb(247, 83, 65); */
