@@ -26,7 +26,7 @@
     # constant width of 300
     width = 300
 
-    # The maximum height of a single notification, excluding the frame.
+    # The height of a single notification, excluding the frame.
     height = 300
 
     # Position the notification in the top right corner
@@ -43,7 +43,7 @@
 
     ### Progress bar ###
 
-    # Turn on the progess bar. It appears when a progress hint is passed with
+    # Turn on the progress bar. It appears when a progress hint is passed with
     # for example dunstify -h int:value:12
     progress_bar = true
 
@@ -63,8 +63,16 @@
     # Corner radius for the progress bar. 0 disables rounded corners.
     progress_bar_corner_radius = 4
 
+    # Define which corners to round when drawing the progress bar. If progress_bar_corner_radius
+    # is set to 0 this option will be ignored.
+    progress_bar_corners = all
+
     # Corner radius for the icon image.
     icon_corner_radius = 10
+
+    # Define which corners to round when drawing the icon image. If icon_corner_radius
+    # is set to 0 this option will be ignored.
+    icon_corners = all
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -111,7 +119,12 @@
     #  * anything else will be interpreted as a X color.
     separator_color = auto
 
-    # Sort messages by urgency.
+    # Sort type.
+    # possible values are:
+    #  * id: sort by id
+    #  * urgency_ascending: sort by urgency (low then normal then critical)
+    #  * urgency_descending: sort by urgency (critical then normal then low)
+    #  * update: sort by update (most recent always at the top)
     sort = yes
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
@@ -201,9 +214,9 @@
     #enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    #icon_theme = Adwaita
-    # You can also set multiple icon themes, with the leftmost one being used first.
     icon_theme = "Tela-circle-dracula"
+    # You can also set multiple icon themes, with the leftmost one being used first.
+    # icon_theme = "Adwaita, breeze"
 
     # Align icons left/right/top/off
     icon_position = left
@@ -216,7 +229,7 @@
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 128
 
-    # Paths to default icons (only neccesary when not using recursive icon lookup)
+    # Paths to default icons (only necessary when not using recursive icon lookup)
     icon_path = $HOME/.icons/Tela-circle-dracula/16/actions:$HOME/.icons/Tela-circle-dracula/16/apps:$HOME/.icons/Tela-circle-dracula/16/devices:$HOME/.icons/Tela-circle-dracula/16/mimetypes:$HOME/.icons/Tela-circle-dracula/16/panel:$HOME/.icons/Tela-circle-dracula/16/places:$HOME/.icons/Tela-circle-dracula/16/status
 
     ### History ###
@@ -239,10 +252,10 @@
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
 
-    # Define the title of the windows spawned by dunst
+    # Define the title of the windows spawned by dunst (X11 only)
     title = Dunst
 
-    # Define the class of the windows spawned by dunst
+    # Define the class of the windows spawned by dunst (X11 only)
     class = Dunst
 
     # Define the corner radius of the notification window
@@ -251,6 +264,13 @@
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
     corner_radius = 10
+
+    # Define which corners to round when drawing the window. If the corner radius
+    # is set to 0 this option will be ignored.
+    #
+    # Comma-separated list of the corners. The accepted corner values are bottom-right,
+    # bottom-left, top-right, top-left, top, bottom, left, right or all.
+    corners = all
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -261,7 +281,7 @@
     ### Wayland ###
     # These settings are Wayland-specific. They have no effect when using X11
 
-    # Uncomment this if you want to let notications appear under fullscreen
+    # Uncomment this if you want to let notifications appear under fullscreen
     # applications (default: overlay)
     # layer = top
 
@@ -309,6 +329,35 @@
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the "#" and following would be interpreted as a comment.
+    background = "#6591A380"
+    foreground = "#CCF0FFE6"
+    frame_color = "#6591A303"
+    timeout = 5
+    # Icon for notifications with low urgency, uncomment to enable
+    default_icon = "$HOME/.config/dunst/icons/hyprdots.svg"
+
+[urgency_normal]
+    background = "#3A4A6B80"
+    foreground = "#CCDDFFE6"
+    frame_color = "#3A4A6B03"
+    timeout = 5
+    #override_pause_level = 30
+    # Icon for notifications with normal urgency, uncomment to enable
+    default_icon = "$HOME/.config/dunst/icons/hyprdots.svg"
+
+[urgency_critical]
+    background = "#f5e0dc"
+    foreground = "#1e1e2e"
+    frame_color = "#f38ba8"
+    timeout = 0
+    #override_pause_level = 60
+    # Icon for notifications with critical urgency, uncomment to enable
+    default_icon = "$HOME/.config/dunst/icons/critical.svg"
+
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #
@@ -343,6 +392,7 @@
 #    ellipsize
 #    alignment
 #    hide_text
+#    override_pause_level
 #
 # Shell-like globbing will get expanded.
 #
@@ -350,6 +400,10 @@
 # GLib based applications export their desktop-entry name. In comparison to the appname,
 # the desktop-entry won't get localized.
 #
+# You can also allow a notification to appear even when paused. Notification will appear whenever notification's override_pause_level >= dunst's paused level.
+# This can be used to set partial pause modes, where more urgent notifications get through, but less urgent stay paused. To do that, you can override the following in the rules:
+# override_pause_level = X
+
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
@@ -440,24 +494,3 @@
 [Type-2]
     appname = "t2"
     format = "<span size="250%">%s</span>\n%b"
-
-[urgency_critical]
-    background = "#f5e0dc"
-    foreground = "#1e1e2e"
-    frame_color = "#f38ba8"
-    icon = "$HOME/.config/dunst/icons/critical.svg"
-    timeout = 0
-
-[urgency_low]
-    background = "#6591A380"
-    foreground = "#CCF0FFE6"
-    frame_color = "#6591A303"
-    icon = "$HOME/.config/dunst/icons/hyprdots.svg"
-    timeout = 5
-
-[urgency_normal]
-    background = "#3A4A6B80"
-    foreground = "#CCDDFFE6"
-    frame_color = "#3A4A6B03"
-    icon = "$HOME/.config/dunst/icons/hyprdots.svg"
-    timeout = 5
