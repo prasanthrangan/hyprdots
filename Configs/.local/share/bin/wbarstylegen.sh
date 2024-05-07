@@ -22,18 +22,18 @@ fi
 
 #// Calculate values based on height
 
-export b_radius=$(( b_height * 70 / 100 ))   # block rad 70% of height (type1)
-export c_radius=$(( b_height * 25 / 100 ))   # block rad 25% of height {type2}
-export t_radius=$(( b_height * 25 / 100 ))   # tooltip rad 25% of height
-export e_margin=$(( b_height * 30 / 100 ))   # block margin 30% of height
-export e_paddin=$(( b_height * 10 / 100 ))   # block padding 10% of height
-export g_margin=$(( b_height * 14 / 100 ))   # module margin 14% of height
-export g_paddin=$(( b_height * 15 / 100 ))   # module padding 15% of height
-export w_radius=$(( b_height * 30 / 100 ))   # workspace rad 30% of height
-export w_margin=$(( b_height * 10 / 100 ))   # workspace margin 10% of height
-export w_paddin=$(( b_height * 10 / 100 ))   # workspace padding 10% of height
-export w_padact=$(( b_height * 40 / 100 ))   # workspace active padding 40% of height
-export s_fontpx=$(( b_height * 34 / 100 ))   # font size 34% of height
+export b_radius=$(( b_height * 70 / 100 )) # block rad 70% of height (type1)
+export c_radius=$(( b_height * 25 / 100 )) # block rad 25% of height {type2}
+export t_radius=$(( b_height * 25 / 100 )) # tooltip rad 25% of height
+export e_margin=$(( b_height * 30 / 100 )) # block margin 30% of height
+export e_paddin=$(( b_height * 10 / 100 )) # block padding 10% of height
+export g_margin=$(( b_height * 14 / 100 )) # module margin 14% of height
+export g_paddin=$(( b_height * 15 / 100 )) # module padding 15% of height
+export w_radius=$(( b_height * 30 / 100 )) # workspace rad 30% of height
+export w_margin=$(( b_height * 10 / 100 )) # workspace margin 10% of height
+export w_paddin=$(( b_height * 10 / 100 )) # workspace padding 10% of height
+export w_padact=$(( b_height * 40 / 100 )) # workspace active padding 40% of height
+export s_fontpx=$(( b_height * 34 / 100 )) # font size 34% of height
 
 if [ "$b_height" -lt 30 ]; then
     export e_paddin=0
@@ -70,7 +70,8 @@ case "$w_position" in
         export x1="top"
         export x2="bottom"
         export x3="left" 
-        export x4="right" ;;
+        export x4="right"
+        ;;
     left|right)
         export x1g_margin=0
         export x2g_margin=${g_margin}
@@ -95,7 +96,8 @@ case "$w_position" in
         export x1="left"
         export x2="right"
         export x3="top" 
-        export x4="bottom" ;;
+        export x4="bottom"
+        ;;
 esac
 
 #// List modules and generate theme style
