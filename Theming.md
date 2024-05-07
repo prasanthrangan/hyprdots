@@ -1,8 +1,3 @@
----
-id: Theming
-aliases: []
-tags: []
----
 
 <p align="center"><br><br>
   <img width="100" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyde.png">
