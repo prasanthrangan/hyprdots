@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import gi
 gi.require_version("Playerctl", "2.0")
 from gi.repository import Playerctl, GLib
@@ -20,7 +21,6 @@ def signal_handler(sig, frame):
     sys.stdout.flush()
     # loop.quit()
     sys.exit(0)
-
 
 class PlayerManager:
     def __init__(self, selected_player=None):
@@ -150,13 +150,12 @@ def parse_arguments():
     # Increase verbosity with every occurrence of -v
     parser.add_argument("-v", "--verbose", action="count", default=0)
 
-    # Define for which player we"re listening
+    # Define for which player we're listening
     parser.add_argument("--player")
 
     parser.add_argument("--enable-logging", action="store_true")
 
     return parser.parse_args()
-
 
 def main():
     arguments = parse_arguments()
@@ -177,7 +176,6 @@ def main():
         logger.info(f"Filtering for player: {arguments.player}")
     player = PlayerManager(arguments.player)
     player.run()
-
 
 if __name__ == "__main__":
     main()

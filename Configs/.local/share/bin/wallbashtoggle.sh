@@ -1,19 +1,16 @@
 #!/usr/bin/env sh
 
-
-#// set variables
+#// Set variables
 
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
-TgtScr="$scrDir/globalcontrol.sh"
+tgtScr="$scrDir/globalcontrol.sh"
 rofiConf="${confDir}/rofi/wallbash.rasi"
 wallbashModes=("theme" "auto" "dark" "light")
 
+#// Rofi select mode
 
-#// rofi select mode
-
-rofi_wallbash()
-{
+rofi_wallbash() {
     [[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
     r_scale="configuration {font: \"JetBrainsMono Nerd Font ${rofiScale}\";}"
     elem_border=$(( hypr_border * 4 ))
@@ -26,11 +23,9 @@ rofi_wallbash()
     fi
 }
 
+#// Switch mode
 
-#// switch mode
-
-step_wallbash()
-{
+step_wallbash() {
     for i in "${!wallbashModes[@]}" ; do
         if [ "${enableWallDcol}" == "${i}" ] ; then
             if [ "${1}" == "n" ] ; then
@@ -43,8 +38,7 @@ step_wallbash()
     done
 }
 
-
-#// apply wallbash mode
+#// Apply wallbash mode
 
 case "${1}" in
     m|-m|--menu) rofi_wallbash ;;
@@ -57,5 +51,4 @@ export reload_flag=1
 [[ "${setMode}" -lt 0 ]] && setMode=$((${#wallbashModes[@]} - 1))
 set_conf "enableWallDcol" "${setMode}"
 "${scrDir}/themeswitch.sh"
-notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${wallbashModes[setMode]} mode"
-
+notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${wallbashModes[setMode]}"

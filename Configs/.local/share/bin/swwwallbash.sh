@@ -1,23 +1,21 @@
 #!/usr/bin/env sh
 
-
-#// set variables
+#// Set variables
 
 export scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 wallbashImg="${1}"
 
+#// Validate input
 
-#// validate input
-
-if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
+if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ]; then
     echo "Error: Input wallpaper not found!"
     exit 1
 fi
 
 wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
 
-if [ ! -f "${wallbashOut}" ] ; then
+if [ ! -f "${wallbashOut}" ]; then
     "${scrDir}/swwwallcache.sh" -w "${wallbashImg}" &> /dev/null
 fi
 
@@ -26,8 +24,7 @@ source "${wallbashOut}"
 [ "${dcol_mode}" == "dark" ] && dcol_invt="light" || dcol_invt="dark"
 set +a
 
-
-#// deploy wallbash colors
+#// Deploy wallbash colors
 
 fn_wallbash () {
     local tplt="${1}"
@@ -36,7 +33,7 @@ fn_wallbash () {
     appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
     sed '1d' "${tplt}" > "${target}"
 
-    if [[ "${enableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${enableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]] ; then
+    if [[ "${enableWallDcol}" -eq 2 && "${dcol_mode}" == "light" ]] || [[ "${enableWallDcol}" -eq 3 && "${dcol_mode}" == "dark" ]]; then
         sed -i 's/<wallbash_mode>/'"${dcol_invt}"'/g
                 s/<wallbash_pry1>/'"${dcol_pry4}"'/g
                 s/<wallbash_txt1>/'"${dcol_txt4}"'/g
@@ -223,22 +220,21 @@ fn_wallbash () {
 
 export -f fn_wallbash
 
+#// Switch theme wallpaper based colors
 
-#// switch theme <//> wall based colors
-
-if [ "${enableWallDcol}" -eq 0 ] && [[ "${reload_flag}" -eq 1 ]] ; then
+if [ "${enableWallDcol}" -eq 0 ] && [[ "${reload_flag}" -eq 1 ]]; then
 
     echo ":: deploying ${hydeTheme} colors :: ${dcol_mode} wallpaper detected"
     mapfile -d '' -t deployList < <(find "${hydeThemeDir}" -type f -name "*.theme" -print0)
 
-    while read -r pKey ; do
+    while read -r pKey; do
         fKey="$(find "${hydeThemeDir}" -type f -name "$(basename "${pKey%.dcol}.theme")")"
         [ -z "${fKey}" ] && deployList+=("${pKey}")
     done < <(find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol")
 
     parallel fn_wallbash ::: "${deployList[@]}"
 
-elif [ "${enableWallDcol}" -gt 0 ] ; then
+elif [ "${enableWallDcol}" -gt 0 ]; then
 
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
     find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {}
@@ -246,4 +242,3 @@ elif [ "${enableWallDcol}" -gt 0 ] ; then
 fi
 
 find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
-

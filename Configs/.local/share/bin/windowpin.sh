@@ -1,21 +1,23 @@
 #!/usr/bin/env sh
 
-# enable float
+#// Enable float
+
 WinFloat=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .floating')
 WinPinned=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .pinned')
 
-if [ "${WinFloat}" == "false" ] && [ "${WinPinned}" == "false" ] ; then
+if [ "$WinFloat" = "false" ] && [ "$WinPinned" = "false" ]; then
     hyprctl dispatch togglefloating active
 fi
 
-# toggle pin
+#// Toggle pin
+
 hyprctl dispatch pin active
 
-# disable float
+#// Disable float
+
 WinFloat=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .floating')
 WinPinned=$(hyprctl -j clients | jq '.[] | select(.focusHistoryID == 0) | .pinned')
 
-if [ "${WinFloat}" == "true" ] && [ "${WinPinned}" == "false" ] ; then
+if [ "$WinFloat" = "true" ] && [ "$WinPinned" = "false" ]; then
     hyprctl dispatch togglefloating active
 fi
-

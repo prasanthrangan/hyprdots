@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 if [[ $(hyprctl activewindow -j | jq -r ".class") == "Steam" ]]; then
     xdotool windowunmap $(xdotool getactivewindow)
 else

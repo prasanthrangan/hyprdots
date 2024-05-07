@@ -117,12 +117,12 @@ while IFS= read -r fchk; do
 done <<< "$config"
 readonly restore_list
 
-# Get Wallpapers
+# get wallpapers
 wallpapers=$(find "${Fav_Theme_Dir}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
 wallcount="$(echo "${wallpapers}" | wc -l)"
 { [ -z "${wallpapers}" ] && print_prompt -r "[ERROR] " "No wallpapers found" && exit_flag=true ;} || { readonly wallpapers && print_prompt -g "\n[OK] " "wallpapers :: [count] ${wallcount} (.gif+.jpg+.jpeg+.png)" ;}
 
-# overparsing 😁
+# overparsing
 check_tars() {
     local inVal="${1}"
     local gsLow=$(echo "${inVal}" | tr '[:upper:]' '[:lower:]')

@@ -1,16 +1,15 @@
 #!/usr/bin/env sh
 
-# set variables
+#// Set variables
 
-scrDir=`dirname "$(realpath "$0")"`
-source $scrDir/globalcontrol.sh
+scrDir="$(dirname "$(realpath "$0")")"
+source "$scrDir/globalcontrol.sh"
 dstDir="${confDir}/dunst"
 
-# regen conf
+#// Regenerate config
 
 export hypr_border
 envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
 envsubst < "${dstDir}/wallbash.conf" >> "${dstDir}/dunstrc"
 killall dunst
 dunst &
-
