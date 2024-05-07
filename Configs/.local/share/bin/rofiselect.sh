@@ -17,8 +17,8 @@ icon_border=$(( elem_border - 5 ))
 
 #// Scale for monitor
 
-mon_x_res=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .width')
-mon_scale=$(hyprctl -j monitors | jq '.[] | select(.focused==true) | .scale' | sed "s/\.//")
+mon_x_res=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .width')
+mon_scale=$(hyprctl -j monitors | jq -r '.[] | select(.focused==true) | .scale' | sed "s/\.//")
 mon_x_res=$(( mon_x_res * 100 / mon_scale ))
 
 #// Generate config
@@ -31,14 +31,14 @@ r_override="window{width:100%;} listview{columns:${col_count};} element{orientat
 
 #// Launch rofi menu
 
-RofiSel=$(ls "${rofiStyleDir}/style_*.rasi" | awk -F '[_.]' '{print $((NF - 1))}' | while read styleNum
+RofiSel=$(ls "${rofiStyleDir}"/style_*.rasi | awk -F '[_.]' '{print $(NF - 1)}' | while read styleNum
 do
     echo -en "${styleNum}\x00icon\x1f${rofiAssetDir}/style_${styleNum}.png\n"
 done | sort -n | rofi -dmenu -theme-str "${r_override}" -config "${rofiConf}" -select "${rofiStyle}")
 
 #// Apply rofi style
 
-if [ ! -z "${RofiSel}" ]; then
+if [ -n "${RofiSel}" ]; then
     set_conf "rofiStyle" "${RofiSel}"
-    notify-send -a "t1" -r 91190 -t 2200 -i "${rofiAssetDir}/style_${RofiSel}.png" " style ${RofiSel} applied..." 
+    notify-send -a "t1" -r 91190 -t 2200 -i "${rofiAssetDir}/style_${RofiSel}.png" " style ${RofiSel} applied..."
 fi
