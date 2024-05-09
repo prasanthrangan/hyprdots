@@ -26,6 +26,7 @@ if pkg_installed sddm; then
 
         case $sddmopt in
         1) sddmtheme="Candy" ;;
+        2) sddmtheme="Chilly" ;;
         *) sddmtheme="Corners" ;;
         esac
 
