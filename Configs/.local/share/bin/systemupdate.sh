@@ -44,9 +44,9 @@ upd=$(( ofc + aur + fpk ))
 
 # Show tooltip
 if [ $upd -eq 0 ] ; then
-    upd="" #Remove Icon completely
-    # upd="󰮯"   #If zero Display Icon only
+    # upd="" #Remove Icon completely
+    upd="󰮯"   #If zero Display Icon only
     echo "{\"text\":\"$upd\", \"tooltip\":\" Packages are up to date\"}"
 else
-    echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
+    echo "{\"text\":\"<span rise='1pt' size='125%'>󰮯 </span><span font_weight='ultrabold'>$upd⇡</span>\", \"tooltip\":\"󱓽 Official $ofc\n󱓾 AUR $aur$fpk_disp\"}"
 fi

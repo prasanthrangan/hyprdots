@@ -1,8 +1,16 @@
-    "cpu": {
-        "interval": 10,
-        "format": "󰍛 {usage}%",
-        "rotate": ${r_deg},
-        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+"cpu": {
+    "states": {
+        "c": 90, //critical
+        "h": 60, // high
+        "m": 30, // medium
     },
+    "interval": 1,
+    "format": "<span size='125%'></span> {usage}% 󰇙",
+    "rotate": ${r_deg},
+    "format-m": "<span color='light green' size='125%'></span> <span color='light green'>{usage}% </span>󰇙",
+    "format-h": "<span color='#FFFD37' size='125%'></span> <span color='#FFFD37'>{usage}% </span>󰇙",
+    "format-c": "<span color='#e32526' size='125%'></span> <span color='#e32526'>{usage}% </span>󰇙",
+    "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+},
 

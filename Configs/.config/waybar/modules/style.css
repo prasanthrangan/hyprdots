@@ -4,7 +4,7 @@
     font-family: "Noto Sans, Symbols Nerd Font";
     font-weight: bold;
     font-size: ${s_fontpx}px;
-    min-height: 10px;
+    min-height: 13px;
 }
 
 @import "theme.css";
@@ -105,6 +105,8 @@ ${modules_ls}
     background: @main-bg;
     opacity: 1;
     margin: ${x1g_margin}px ${x2g_margin}px ${x3g_margin}px ${x4g_margin}px;
+    padding-${x1}: ${g_paddin}px;
+    padding-${x2}: ${g_paddin}px;
     padding-${x3}: ${g_paddin}px;
     padding-${x4}: ${g_paddin}px;
 }

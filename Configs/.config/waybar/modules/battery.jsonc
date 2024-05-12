@@ -4,7 +4,7 @@
             "warning": 30,
             "critical": 20
         },
-        "format": "{icon} {capacity}%",
+        "format": "<span color='#1793d1' size='125%'>{icon}</span> {capacity}%",
         "rotate": ${r_deg},
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",

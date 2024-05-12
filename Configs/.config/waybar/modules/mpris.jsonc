@@ -3,11 +3,11 @@
         "rotate": ${r_deg},
         "format-paused": "{status_icon} <i>{dynamic}</i>",
         "player-icons": { 
-            "default": "▶",
+            "default": "<span rise='1.5pt'>▶</span>",
             "mpv": "🎵"
         },
         "status-icons": {
-            "paused": "⏸"
+            "paused": "<span size='125%'>⏸</span>"
         },
         // "ignored-players": ["firefox"]
         "max-length": 1000,

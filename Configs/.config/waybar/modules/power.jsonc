@@ -1,5 +1,5 @@
     "custom/power": {
-        "format": "{}",
+        "format": "<span rise='-11pt' size='125%'></span>{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo  logout",
         "on-click": "logoutlaunch.sh 2",

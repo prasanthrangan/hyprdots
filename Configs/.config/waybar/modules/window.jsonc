@@ -1,17 +1,17 @@
-    "hyprland/window": {
-        "format": "  {}",
-        "rotate": ${r_deg},
-        "separate-outputs": true,
-        "rewrite": {
-            "${USER}@${set_sysname}:(.*)": "$1 ",
-            "(.*) — Mozilla Firefox": "$1 󰈹",
-            "(.*)Mozilla Firefox": "Firefox 󰈹",
-            "(.*) - Visual Studio Code": "$1 󰨞",
-            "(.*)Visual Studio Code": "Code 󰨞",
-            "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify": "Spotify 󰓇",
-            "(.*)Steam": "Steam 󰓓"
-        },
-        "max-length": 1000
+"hyprland/window": {
+    "format": " <span color='#1793d1' size='125%'></span> <span rise='.5pt' size='115%'>{}</span>",
+    "rotate": ${r_deg},
+    "separate-outputs": true,
+    "rewrite": {
+        "${USER}@${set_sysname}:(.*)": "$1 <span color='light green' size='125%'></span>",
+        "(.*) — Mozilla Firefox": "$1 <span color='#ee8424' size='125%'>󰈹</span>",
+        "(.*)Mozilla Firefox": "Firefox <span color='#ee8424' size='125%'>󰈹</span>",
+        "(.*) - Visual Studio Code": "$1 <span color='#0078d7' size='125%'>󰨞</span>",
+        "(.*)Visual Studio Code": "Code <span color='#0078d7' size='125%'>󰨞</span>",
+        "(.*) — Dolphin": "$1 <span color='#0078d7' size=125%>󰉋</span>",
+        "(.*)Spotify": "Spotify <span size='125%>'󰓇</span>",
+        "(.*)Steam": "Steam <span size='125%'>󰓓</span>"
     },
+    "max-length": 1000
+},
 

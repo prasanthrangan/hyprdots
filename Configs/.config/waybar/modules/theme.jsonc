@@ -1,5 +1,5 @@
     "custom/theme": {
-        "format": "{}",
+        "format": "<span rise='-13.5pt' size='125%'></span>{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "themeswitch.sh -n",

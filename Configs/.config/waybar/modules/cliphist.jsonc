@@ -1,5 +1,5 @@
     "custom/cliphist": {
-        "format": "{}",
+        "format": "<span rise='-13.5pt' size='125%'></span>{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰅇 clipboard history",
         "on-click": "sleep 0.1 && cliphist.sh c",

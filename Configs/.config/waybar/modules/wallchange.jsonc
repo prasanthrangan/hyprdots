@@ -1,5 +1,5 @@
     "custom/wallchange": {
-        "format": "{}",
+        "format": "<span rise='-13.5pt' size='125%'>󰸉</span>{}",
         "rotate": ${r_deg},
         "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "swwwallpaper.sh -n",

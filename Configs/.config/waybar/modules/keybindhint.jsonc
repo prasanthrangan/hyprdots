@@ -1,5 +1,5 @@
     "custom/keybindhint": {
-        "format": " ",
+        "format": "<span size='130%'> </span>",
         "rotate": ${r_deg},
         "on-click": "keybinds_hint.sh"
     },

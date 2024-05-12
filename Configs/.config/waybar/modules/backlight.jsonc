@@ -1,8 +1,8 @@
     "backlight": {
         "device": "intel_backlight",
         "rotate": ${r_deg},
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "format": "<span size='125%'>{icon}</span><span font_weight='ultrabold'>{percent}%</span>",
+        "format-icons": [" ", " ", "󰪞 ", "󰪟 ", "󰪠 ", "󰪡 ", "󰪢 ", "󰪣 ", "󰪤 ", "󱨧 ", "󰪥 "],
         "on-scroll-up": "brightnessctl set 1%+",
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
