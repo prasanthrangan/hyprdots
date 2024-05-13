@@ -31,4 +31,3 @@ fastfetch
 
 # Create directories with the `mkdir -p` option by default
 abbr mkdir 'mkdir -p'
-
