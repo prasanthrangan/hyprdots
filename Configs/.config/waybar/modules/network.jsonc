@@ -2,7 +2,7 @@
     "tooltip": true,
     "format-wifi": "<span size='115%'></span> ",
     "rotate": ${r_deg},
-    "format-ethernet": "<span rise='-13pt' size='125%'>󰈀</span> ",
+    "format-ethernet": "<span rise='-1pt' size='125%'>󰈀</span> ",
     "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "format-linked": "<span rise='-13pt' size='125%'>󰈀</span> {ifname} (No IP)",
     "format-disconnected": "<span size='115%'>󰖪</span> ",
