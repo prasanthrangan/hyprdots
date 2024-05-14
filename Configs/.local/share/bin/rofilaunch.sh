@@ -19,15 +19,25 @@ fi
 #// Rofi action
 
 case "${1}" in
-    d|--drun) r_mode="drun" ;; 
-    w|--window) r_mode="window" ;;
-    f|--filebrowser) r_mode="filebrowser" ;;
-    h|--help) echo -e "$(basename "${0}") [action]"
+    d|--drun)
+        r_mode="drun"
+        ;; 
+    w|--window)
+        r_mode="window"
+        ;;
+    f|--filebrowser)
+        r_mode="filebrowser"
+        ;;
+    h|--help)
+        echo -e "$(basename "${0}") [action]"
         echo "d :  drun mode"
         echo "w :  window mode"
         echo "f :  filebrowser mode,"
-        exit 0 ;;
-    *) r_mode="drun" ;;
+        exit 0
+        ;;
+    *)
+        r_mode="drun"
+        ;;
 esac
 
 #// Set overrides

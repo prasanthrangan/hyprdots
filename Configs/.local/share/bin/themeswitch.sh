@@ -30,19 +30,23 @@ while getopts "nps:" option; do
     case $option in
         n) # Set next theme
             Theme_Change n
-            export xtrans="grow" ;;
+            export xtrans="grow"
+            ;;
         p) # Set previous theme
             Theme_Change p
-            export xtrans="outer" ;;
+            export xtrans="outer"
+            ;;
         s) # Set selected theme
-            themeSet="$OPTARG" ;;
+            themeSet="$OPTARG"
+            ;;
         *) # Invalid option
             echo "... invalid option ..."
             echo "$(basename "${0}") -[option]"
             echo "n : set next theme"
             echo "p : set previous theme"
             echo "s : set input theme"
-            exit 1 ;;
+            exit 1
+            ;;
     esac
 done
 

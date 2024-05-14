@@ -7,15 +7,14 @@ source "${scrDir}/globalcontrol.sh"
 
 #// Regenerate configuration
 
-if pkg_installed spotify && pkg_installed spicetify-cli ; then
-
+if pkg_installed spotify && pkg_installed spicetify-cli; then
     if [ ! -w /opt/spotify ] || [ ! -w /opt/spotify/Apps ]; then
         notify-send -a "Hyprdots" "Permission needed for Wallbash Spotify theme"
         pkexec chmod a+wr /opt/spotify
         pkexec chmod a+wr /opt/spotify/Apps -R
     fi
 
-    if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] || [[ "${*}" == *"--reset"*  ]] ; then
+    if [ "$(spicetify config | awk '{if ($1=="color_scheme") print $2}')" != "Wallbash" ] || [[ "${*}" == *"--reset"*  ]]; then
         spicetify &> /dev/null
         mkdir -p ~/.config/spotify
         touch ~/.config/spotify/prefs
@@ -31,9 +30,8 @@ if pkg_installed spotify && pkg_installed spicetify-cli ; then
         spicetify apply
     fi
 
-    if pgrep -x spotify > /dev/null ; then
+    if pgrep -x spotify > /dev/null; then
         pkill -x spicetify
         spicetify -q watch -s &
     fi
-
 fi

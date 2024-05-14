@@ -58,18 +58,23 @@ while getopts iop: DeviceOpt; do
             nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}')
             [ -z "$nsink" ] && echo "ERROR: Input device not found..." && exit 0
             ctrl="pamixer"
-            srce="--default-source" ;;
+            srce="--default-source"
+            ;;
         o)
             nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}')
             [ -z "$nsink" ] && echo "ERROR: Output device not found..." && exit 0
             ctrl="pamixer"
-            srce="" ;;
+            srce=""
+            ;;
         p)
             nsink=$(playerctl --list-all | grep -w "$OPTARG")
             [ -z "$nsink" ] && echo "ERROR: Player $OPTARG not active..." && exit 0
             ctrl="playerctl"
-            srce="$nsink" ;;
-        *) print_error ;;
+            srce="$nsink"
+            ;;
+        *)
+            print_error
+            ;;
     esac
 done
 
@@ -82,10 +87,18 @@ step="${2:-5}"
 #// Execute action
 
 case "${1}" in
-    i) action_${ctrl} i ;;
-    d) action_${ctrl} d ;;
-    m) "$ctrl" "$srce" -t && notify_mute && exit 0 ;;
-    *) print_error ;;
+    i)
+        action_${ctrl} i
+        ;;
+    d)
+        action_${ctrl} d
+        ;;
+    m)
+        "$ctrl" "$srce" -t && notify_mute && exit 0
+        ;;
+    *)
+        print_error
+        ;;
 esac
 
 notify_vol

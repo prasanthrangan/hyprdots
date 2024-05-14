@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC2312
-# shellcheck disable=SC1090
-
 scrDir=$(dirname "$(realpath "$0")")
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
@@ -14,16 +11,17 @@ fi
 
 detect() { # Auto-detect GPU used by Hyprland
     card=$(echo "${WLR_DRM_DEVICES}" | cut -d':' -f1 | cut -d'/' -f4)
-    # shellcheck disable=SC2010
     slot_number=$(ls -l /dev/dri/by-path/ | grep "${card}" | awk -F'pci-0000:|-card' '{print $2}')
     vendor_id=$(lspci -nn -s "${slot_number}")
     declare -A vendors=(["10de"]="nvidia" ["8086"]="intel" ["1002"]="amd")
+
     for vendor in "${!vendors[@]}"; do
         if [[ ${vendor_id} == *"${vendor}"* ]]; then
             initGPU="${vendors[${vendor}]}"
             break
         fi
     done
+
     if [[ -n ${initGPU} ]]; then
         $0 --use "${initGPU}" startup
     fi
@@ -41,7 +39,7 @@ query() {
     elif command -v nvidia-smi &> /dev/null; then
         nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
         if [[ -n "${nvidia_gpu}" ]]; then # Check for NVIDIA GPU
-            if [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then #? Second layer for dGPU
+            if [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then # Second layer for dGPU
                 echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
             else
                 nvidia_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${nvidia_gpu/NVIDIA /}" | cut -d' ' -f1)
@@ -95,14 +93,16 @@ toggle() {
             initGPU=$(echo "${gpu_flags}" | cut -d ' ' -f  1)
             echo "prioGPU=${initGPU}" >> "${gpuQ}"
         fi
+
         mapfile -t anchor < <(grep "flag=1" "${gpuQ}" | cut -d '=' -f 1)
         prioGPU=$(grep "prioGPU=" "${gpuQ}" | cut -d'=' -f 2) # Get the current priority GPU from the file
-        # Find the index of the current priority GPU in the anchor array
+
         for index in "${!anchor[@]}"; do
             if [[ "${anchor[${index}]}" = "${prioGPU}" ]]; then
                 current_index=${index}
             fi
         done
+
         next_index=$(( (current_index + 1) % ${#anchor[@]} ))
         next_prioGPU=${anchor[${next_index}]#\#}
     fi
@@ -163,20 +163,24 @@ generate_json() { # Get emoji and icon based on temperature and utilization
 
     # emoji=$(get_temperature_emoji "${temperature}")
     local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
-    # Soon add Something incase needed.
     declare -A tooltip_parts
+
     if [[ -n "${utilization}" ]]; then
         tooltip_parts["\n$speedo Utilization: "]="${utilization}%"
     fi
+
     if [[ -n "${current_clock_speed}" ]] && [[ -n "${max_clock_speed}" ]]; then
         tooltip_parts["\n Clock Speed: "]="${current_clock_speed}/${max_clock_speed} MHz"
     fi
+
     if [[ -n "${gpu_load}" ]]; then
         tooltip_parts["\n$speedo Utilization: "]="${gpu_load}%"
     fi
+
     if [[ -n "${core_clock}" ]]; then
         tooltip_parts["\n Clock Speed: "]="${core_clock} MHz"
     fi
+
     if [[ -n "${power_usage}" ]]; then
         if [[ -n "${power_limit}" ]]; then
             tooltip_parts["\n󱪉 Power Usage: "]="${power_usage}/${power_limit} W"
@@ -184,6 +188,7 @@ generate_json() { # Get emoji and icon based on temperature and utilization
             tooltip_parts["\n󱪉 Power Usage: "]="${power_usage} W"
         fi
     fi
+
     if [[ -n "${power_discharge}" ]] && [[ "${power_discharge}" != "0" ]]; then
         tooltip_parts["\n Power Discharge: "]="${power_discharge} W"
     fi
@@ -194,6 +199,7 @@ generate_json() { # Get emoji and icon based on temperature and utilization
             json+="${key}${value}"
         fi
     done
+
     json="${json}\"}"
     echo "${json}"
 }
@@ -203,12 +209,15 @@ general_query() { # Function to get temperature from 'sensors'
     temperature=$(sensors | ${filter} grep -m 1 -E "(edge|Package id.*|another keyword)" | awk -F ':' '{print int($2)}')
     # gpu_load=$()
     # core_clock=$()
+
     for file in /sys/class/power_supply/BAT*/power_now; do
         [[ -f "${file}" ]] && power_discharge=$(awk '{print $1*10^-6 ""}' "${file}") && break
     done
+
     [[ -z "${power_discharge}" ]] && for file in /sys/class/power_supply/BAT*/current_now; do
         [[ -e "${file}" ]] && power_discharge=$(awk -v current="$(cat "${file}")" -v voltage="$(cat "${file/current_now/voltage_now}")" 'BEGIN {print (current * voltage) / 10^12 ""}') && break
     done
+
     # power_limit=$()
     utilization=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1" "}')
     current_clock_speed=$(awk '{sum += $1; n++} END {if (n > 0) print sum / n / 1000 ""}' /sys/devices/system/cpu/cpufreq/policy*/scaling_cur_freq)
@@ -220,24 +229,25 @@ intel_GPU() { # Function to query basic Intel GPU
     general_query
 }
 
-nvidia_GPU() { # Function to query Nvidia GPU
+nvidia_GPU() { # Function to query NVIDIA GPU
     primary_gpu="NVIDIA ${nvidia_gpu}"
     if [[ "${nvidia_gpu}" == "Linux" ]]; then
         general_query
         return
     fi
+
     # Tired flag for not using nvidia-smi if GPU is in suspend mode.
     if ${tired}; then
         is_suspend="$(cat /sys/bus/pci/devices/0000:"${nvidia_address}"/power/runtime_status)"
+
         if [[ ${is_suspend} == *"suspend"* ]]; then
             printf '{"text":"󰤂", "tooltip":"%s ⏾ Suspended mode"}' "${primary_gpu}"
             exit
         fi
     fi
+
     gpu_info=$(nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,clocks.current.graphics,clocks.max.graphics,power.draw,power.limit --format=csv,noheader,nounits)
-    # Split the comma-separated values into an array
     IFS=',' read -ra gpu_data <<< "${gpu_info}"
-    # Extract individual values
     temperature="${gpu_data[0]// /}"
     utilization="${gpu_data[1]// /}"
     current_clock_speed="${gpu_data[2]// /}"
@@ -248,10 +258,9 @@ nvidia_GPU() { # Function to query Nvidia GPU
 
 amd_GPU() { # Function to query AMD GPU
     primary_gpu="AMD ${amd_gpu}"
-    # Execute the AMD GPU python script and use its output
     amd_output=$(python3 ${scrDir}/amdgpu.py)
+
     if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then
-        # Extract GPU temperature, GPU load, GPU core clock, and GPU power usage from amd_output
         temperature=$(echo "${amd_output}" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
         gpu_load=$(echo "${amd_output}" | jq -r '.["GPU Load"]' | sed 's/%//')
         core_clock=$(echo "${amd_output}" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
@@ -318,4 +327,4 @@ else
     general_query
 fi
 
-generate_json #? Auto generate the JSON txt for Waybar
+generate_json # Auto generate the JSON txt for Waybar

@@ -63,6 +63,7 @@ get_themes() {
             echo "fixing link :: ${thmDir}/wall.set"
             ln -fs "${wallList[0]}" "${thmDir}/wall.set"
         fi
+
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
         thmListS+=("$(basename "${thmDir}")")
         thmWallS+=("$(readlink "${thmDir}/wall.set")")
@@ -76,6 +77,7 @@ get_themes() {
 
     if [ "${1}" = "--verbose" ]; then
         echo "// Theme Control //"
+
         for indx in "${!thmList[@]}"; do
             echo -e ":: \${thmSort[${indx}]}=\"${thmSort[indx]}\" :: \${thmList[${indx}]}=\"${thmList[indx]}\" :: \${thmWall[${indx}]}=\"${thmWall[indx]}\""
         done

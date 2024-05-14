@@ -9,10 +9,18 @@ rofDir="${confDir}/rofi"
 if [ "${1}" = "--verbose" ] || [ "${1}" = "-v" ]; then
 
     case ${enableWallDcol} in
-        0) wallbashStatus="disabled" ;;
-        1) wallbashStatus="enabled // auto change based on wallpaper brightness" ;;
-        2) wallbashStatus="enabled // dark mode --forced" ;;
-        3) wallbashStatus="enabled // light mode --forced" ;;
+        0)
+            wallbashStatus="disabled"
+            ;;
+        1)
+            wallbashStatus="enabled // auto change based on wallpaper brightness"
+            ;;
+        2)
+            wallbashStatus="enabled // dark mode --forced"
+            ;;
+        3)
+            wallbashStatus="enabled // light mode --forced"
+            ;;
     esac
 
     echo -e "\n\ncurrent theme :: \"${hydeTheme}\" :: \"$(readlink "${hydeThemeDir}/wall.set")\""

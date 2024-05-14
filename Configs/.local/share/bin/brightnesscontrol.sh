@@ -28,27 +28,30 @@ get_brightness() {
 }
 
 case $1 in
-i)  # increase the backlight
-    if [ "$(get_brightness)" -lt 10 ]; then
-        # increase the backlight by 1% if less than 10%
-        brightnessctl set +1%
-    else
-        # increase the backlight by 5% otherwise
-        brightnessctl set +5%
-    fi
-    send_notification ;;
-d)  # decrease the backlight
-    if [ "$(get_brightness)" -le 1 ]; then
-        # avoid 0% brightness
-        brightnessctl set 1%
-    elif [ "$(get_brightness)" -le 10 ]; then
-        # decrease the backlight by 1% if less than 10%
-        brightnessctl set 1%-
-    else
-        # decrease the backlight by 5% otherwise
-        brightnessctl set 5%-
-    fi
-    send_notification ;;
-*)  # print error
-    print_error ;;
+    i)  # Increase the backlight
+        if [ "$(get_brightness)" -lt 10 ]; then
+            # increase the backlight by 1% if less than 10%
+            brightnessctl set +1%
+        else
+            # increase the backlight by 5% otherwise
+            brightnessctl set +5%
+        fi
+        send_notification
+        ;;
+    d)  # Decrease the backlight
+        if [ "$(get_brightness)" -le 1 ]; then
+            # avoid 0% brightness
+            brightnessctl set 1%
+        elif [ "$(get_brightness)" -le 10 ]; then
+            # decrease the backlight by 1% if less than 10%
+            brightnessctl set 1%-
+        else
+            # decrease the backlight by 5% otherwise
+            brightnessctl set 5%-
+        fi
+        send_notification
+        ;;
+    *)  # Print error
+        print_error
+        ;;
 esac

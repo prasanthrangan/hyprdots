@@ -88,6 +88,7 @@ fn_status () {
         echo "Full and $battery_status"
         battery_status="Full"
     fi
+
     case "$battery_status" in # Handle the power supply status
         "Discharging") 
             if $verbose; then 

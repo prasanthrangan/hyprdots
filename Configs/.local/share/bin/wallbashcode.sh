@@ -11,16 +11,16 @@ tgtFile="extensions/undefined_publisher.wallbash-0.0.1/themes/wallbash-color-the
 
 #// Install and apply extension
 
-for i in "${!codeConf[@]}" ; do
+for i in "${!codeConf[@]}"; do
     [ -f "${codeConf[i]}/User/settings.json" ] || continue
     extTheme="$(jq -r '.["workbench.colorTheme"]' "${codeConf[i]}/User/settings.json")"
 
-    if [ ! -f "${codeVsix[i]}/${tgtFile}" ] ; then
+    if [ ! -f "${codeVsix[i]}/${tgtFile}" ]; then
         [ -f "${cacheDir}/landing/Code_Wallbash.vsix" ] || curl -L -o "${cacheDir}/landing/Code_Wallbash.vsix" https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Code_Wallbash.vsix
         code --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
     fi
 
-    if [ "${extTheme}" != "wallbash" ] ; then
+    if [ "${extTheme}" != "wallbash" ]; then
         jq '.["workbench.colorTheme"] = "wallbash"' "${codeConf[i]}/User/settings.json" > "${tmpFile}" && mv "${tmpFile}" "${codeConf[i]}/User/settings.json"
     fi
 

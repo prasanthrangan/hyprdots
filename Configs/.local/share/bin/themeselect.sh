@@ -27,26 +27,28 @@ case "${themeSelect}" in
         max_avail=$(( mon_x_res - (4 * rofiScale) ))
         col_count=$(( max_avail / elm_width ))
         r_override="window{width:100%;background-color:#00000003;} listview{columns:${col_count};} element{border-radius:${elem_border}px;background-color:@main-bg;} element-icon{size:20em;border-radius:${icon_border}px 0px 0px ${icon_border}px;}"
-        thmbExtn="quad" ;;
+        thmbExtn="quad"
+        ;;
     *) # Default to style 1
         elm_width=$(( (23 + 12 + 1) * rofiScale * 2 ))
         max_avail=$(( mon_x_res - (4 * rofiScale) ))
         col_count=$(( max_avail / elm_width ))
         r_override="window{width:100%;} listview{columns:${col_count};} element{border-radius:${elem_border}px;padding:0.5em;} element-icon{size:23em;border-radius:${icon_border}px;}"
-        thmbExtn="sqre" ;;
+        thmbExtn="sqre"
+        ;;
 esac
 
 #// Launch rofi menu
 
 get_themes
 
-rofiSel=$(for i in ${!thmList[@]} ; do
+rofiSel=$(for i in ${!thmList[@]}; do
     echo -en "${thmList[i]}\x00icon\x1f${thmbDir}/$(set_hash "${thmWall[i]}").${thmbExtn}\n"
 done | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "${rofiConf}" -select "${hydeTheme}")
 
 #// Apply theme
 
-if [ ! -z "${rofiSel}" ] ; then
+if [ ! -z "${rofiSel}" ]; then
     "${scrDir}/themeswitch.sh" -s "${rofiSel}"
     notify-send -a "t1" -i "$HOME/.config/dunst/icons/hyprdots.png" " ${rofiSel}"
 fi

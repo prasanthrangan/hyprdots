@@ -4,7 +4,7 @@
 # I use jq to parse and create metadata.
 # It is functional but I don't know if it's maintainable
 # Users should refer to this project to parse keybinds: https://github.com/hyprland-community/Hyprkeys
-# Please inform me if there are new Categories upstream. I will try to add comments to this code so I won't forget.
+# Please inform me if there are new categories upstream. I will try to add comments to this code so i won't forget.
 # Khing
 
 #// Set variables
@@ -44,32 +44,32 @@ HELP
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
-  j) # Show the JSON format
-    kb_hint_json=true
-    ;;
-  p) # Show the pretty format
-    kb_hint_pretty=true
-    ;;
-  d) # Add custom delimiter symbol (default '>')
-    shift
-    kb_hint_delim="$1"
-    ;;
-  f) # Add custom file
-    shift
-    keyConf="$* "
-    ;;
-  w) # Custom kb_hint_width
-    shift
-    kb_hint_width="$1"
-    ;;
-  h) # Custom height
-    shift
-    kb_hint_height="$1"
-    ;;
-  * | --help) # Add help message
-    HELP
-    exit
-    ;;
+    j) # Show the JSON format
+      kb_hint_json=true
+      ;;
+    p) # Show the pretty format
+      kb_hint_pretty=true
+      ;;
+    d) # Add custom delimiter symbol (default '>')
+      shift
+      kb_hint_delim="$1"
+      ;;
+    f) # Add custom file
+      shift
+      keyConf="$* "
+      ;;
+    w) # Custom kb_hint_width
+      shift
+      kb_hint_width="$1"
+      ;;
+    h) # Custom height
+      shift
+      kb_hint_height="$1"
+      ;;
+    * | --help) # Add help message
+      HELP
+      exit
+      ;;
   esac
   shift
 done
@@ -349,7 +349,10 @@ fi
 #// Actions to do when selected
 
 selected=$(echo "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
-if [ -z "$selected" ]; then exit 0; fi
+
+if [ -z "$selected" ]; then
+  exit 0
+fi
 
 sel_1=$(echo "$selected" | cut -d "${kb_hint_delim:->}" -f 1 | awk '{$1=$1};1')
 sel_2=$(echo "$selected" | cut -d "${kb_hint_delim:->}" -f 2 | awk '{$1=$1};1')
@@ -357,16 +360,21 @@ run="$(echo "$metaData" | grep "$sel_1" | grep "$sel_2")"
 
 run_flg="$(echo "$run" | awk -F '!=!' '{print $8}')"
 run_sel="$(echo "$run" | awk -F '!=!' '{gsub(/^ *| *$/, "", $5); if ($5 ~ /[[:space:]]/ && $5 !~ /^[0-9]+$/ && substr($5, 1, 1) != "-") print $4, "\""$5"\""; else print $4, $5}')"
-# echo "$run_sel" ; echo "$run_flg"
+# echo "$run_sel"; echo "$run_flg"
 
-RUN() { case "$(eval "hyprctl dispatch $run_sel")" in *"Not enough arguments"*) exec $0 ;; esac }
+RUN() {
+  case "$(eval "hyprctl dispatch $run_sel")" in
+    *"Not enough arguments"*)
+      exec $0
+      ;;
+  esac
+}
 
 #// If flag is repeat then repeat rofi if not then just execute once
 
 if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
   eval "$run_flg"
   if [ "$repeat" = true ]; then
-
     while true; do
       repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") # Needs a seperate Rasi? Don't know how to make. Maybe something like a confirmation rasi for 'Yes' and 'No' buttons, then the -p will be the question.
 
