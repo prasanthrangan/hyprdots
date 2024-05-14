@@ -40,6 +40,7 @@ if [ ! -z "${rofiSel}" ]; then
         setWall="$(find "${wallPathArray[i]}" -type f -name "${rofiSel}")"
         [ -z "${setWall}" ] || break
     done
+
     "${scrDir}/swwwallpaper.sh" -s "${setWall}"
     notify-send -a "t1" -i "${thmbDir}/$(set_hash "${setWall}").sqre" " ${rofiSel}"
 fi

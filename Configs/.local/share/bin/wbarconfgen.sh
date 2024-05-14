@@ -57,18 +57,21 @@ case "${w_position}" in
 esac
 
 export w_height=$(grep '^1|' "$conf_ctl" | cut -d '|' -f 2)
+
 if [ -z "$w_height" ]; then
     y_monres=$(cat /sys/class/drm/*/modes | head -1 | cut -d 'x' -f 2)
     export w_height=$(( y_monres * 2 / 100 ))
 fi
 
 export i_size=$(( w_height * 6 / 10 ))
+
 if [ "$i_size" -lt 12 ]; then
     export i_size="12"
 fi
 
 export i_theme="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
 export i_task=$(( w_height * 6 / 10 ))
+
 if [ "$i_task" -lt 16 ]; then
     export i_task="16"
 fi
@@ -105,6 +108,7 @@ gen_mod right 6
 #// Copy modules/*.jsonc to the config
 
 echo -e "\n\n// Sourced from modules based on config.ctl //\n" >> "$conf_file"
+
 echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print $1}' | awk '!x[$0]++' | while read -r mod_cpy; do
     if [ -f "$modules_dir/$mod_cpy.jsonc" ]; then
         envsubst < "$modules_dir/$mod_cpy.jsonc" >> "$conf_file"

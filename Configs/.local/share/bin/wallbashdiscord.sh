@@ -19,9 +19,11 @@ client_list+=("$HOME/.var/app/xyz.armcord.ArmCord/config/ArmCord/themes/theme.cs
 
 for client_css in "${client_list[@]}"; do
     eval client_css="${client_css}"
+
     if [[ ! -d $(dirname "${client_css}") ]]; then
         continue
     fi
+    
     if [[ "${enableWallDcol}" -gt 0 ]]; then
         cp "${discord_col}" "${client_css}"
     else

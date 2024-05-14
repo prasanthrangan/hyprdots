@@ -23,6 +23,7 @@ Wall_Cache() {
 
 Wall_Change() {
     curWall="$(set_hash "${wallSet}")"
+
     for i in "${!wallHash[@]}"; do
         if [ "${curWall}" == "${wallHash[i]}" ]; then
             if [ "${1}" == "n" ]; then
@@ -33,6 +34,7 @@ Wall_Change() {
             break
         fi
     done
+
     Wall_Cache
 }
 
@@ -88,6 +90,7 @@ done
 #// Check swww daemon
 
 swww query &> /dev/null
+
 if [ $? -ne 0 ]; then
     swww-daemon --format xrgb &
 fi

@@ -17,9 +17,11 @@ frequency=$(echo $freqlist | tr ' ' '\n' | awk "{ sum+=\$1 } END {printf \"%.0f/
 #// CPU temp
 
 temp=$(sensors | awk '/Package id 0/ {print $4}' | awk -F '[+.]' '{print $2}')
+
 if [ -z "$temp" ]; then
     temp=$(sensors | awk '/Tctl/ {print $2}' | tr -d '+°C')
 fi
+
 if [ -z "$temp" ]; then
     temp="N/A"
 fi

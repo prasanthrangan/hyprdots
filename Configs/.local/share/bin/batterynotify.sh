@@ -49,30 +49,37 @@ fn_notify () { # Send notification
 }
 
 fn_percentage () {
-    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] && [[ "$battery_status" != "Discharging" ]] && [[ "$battery_status" != "Full" ]] && (( (battery_percentage - last_notified_percentage) >= $interval )); then 
+    if [[ "$battery_percentage" -ge "$unplug_charger_threshold" ]] && [[ "$battery_status" != "Discharging" ]] && [[ "$battery_status" != "Full" ]] && (( (battery_percentage - last_notified_percentage) >= $interval )); then
+
         if $verbose; then
             echo "Prompt:UNPLUG: $battery_unplug_threshold $battery_status $battery_percentage"
         fi
+
         fn_notify "-t 5000 " "CRITICAL" "Battery Charged" "Battery is at $battery_percentage%. You can unplug the charger!"
         last_notified_percentage=$battery_percentage
     elif [[ "$battery_percentage" -le "$battery_critical_threshold" ]]; then
         count=$(( timer > $mnt ? timer: $mnt )) # Reset count
+
         while [ $count -gt 0 ] && [[ $battery_status == "Discharging"* ]]; do
             for battery in /sys/class/power_supply/BAT*; do  
                 battery_status=$(< "$battery/status")
             done
+
             if [[ $battery_status != "Discharging" ]]; then 
                 break 
             fi
+
             fn_notify "-t 5000 -r 69 " "CRITICAL" "Battery Critically Low" "$battery_percentage% is critically low. Device will execute $execute_critical in $((count/60)):$((count%60)) ."
             count=$((count-1))
             sleep 1
         done
+
         [ $count -eq 0 ] && fn_action
     elif [[ "$battery_percentage" -le "$battery_low_threshold" ]] && [[ "$battery_status" == "Discharging" ]] && (( (last_notified_percentage - battery_percentage) >= $interval )); then  
         if $verbose; then 
             echo "Prompt:LOW: $battery_low_threshold $battery_status $battery_percentage"
         fi
+
         fn_notify "-t 5000 " "CRITICAL" "Battery Low" "Battery is at $battery_percentage%. Connect the charger."
         last_notified_percentage=$battery_percentage
     fi
@@ -94,18 +101,21 @@ fn_status () {
             if $verbose; then 
                 echo "Case: $battery_status Level: $battery_percentage" 
             fi
+
             if [[ "$prev_status" != "Discharging" ]] || [[ "$prev_status" == "Full" ]]; then
                 prev_status=$battery_status
                 urgency=$([[ $battery_percentage -le "$battery_low_threshold" ]] && echo "CRITICAL" || echo "NORMAL")
                 fn_notify "-t 5000 -r 54321 " "$urgency" "Charger Plug OUT" "Battery is at $battery_percentage%."
                 $execute_discharging
             fi
+
             fn_percentage
             ;;
         "Not"*|"Charging") 
             if $verbose; then 
                 echo "Case: $battery_status Level: $battery_percentage" 
             fi
+
             if [[ "$prev_status" == "Discharging" ]] || [[ "$prev_status" == "Not"* ]]; then
                 prev_status=$battery_status
                 count=$(( timer > $mnt ? timer: $mnt )) # Reset count
@@ -113,12 +123,14 @@ fn_status () {
                 fn_notify "-t 5000 -r 54321 " "$urgency" "Charger plug in" "Battery is at $battery_percentage%."
                 $execute_charging
             fi
+
             fn_percentage
             ;;
         "Full") 
             if $verbose; then 
                 echo "Case: $battery_status Level: $battery_percentage" 
             fi
+
             if [[ $battery_status != "Discharging" ]]; then
                 now=$(date +%s)
                 if [[ "$prev_status" == *"harging"* ]] || ((now - lt >= $((notify*60)) )); then
@@ -127,12 +139,14 @@ fn_status () {
                     $execute_charging
                 fi
             fi
+
             ;;
         *)
             if [[ ! -f "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$" ]]; then
                 echo "Status: '==>> "$battery_status" <<==' Script on fallback mode, unknown power supply status. Please copy this line and raise an issue to the GitHub repo. Also run 'ls /tmp/hyprdots.batterynotify' to see the list of lock files.*"
                 touch "/tmp/hyprdots.batterynotify.status.fallback.$battery_status-$$"
             fi
+
             fn_percentage
             ;;
     esac
@@ -140,11 +154,13 @@ fn_status () {
 
 get_battery_info() { # TODO: Might change this if we can get an effective way to parse dbus. I will do it some time...
 	total_percentage=0 battery_count=0
+
 	for battery in /sys/class/power_supply/BAT*; do
 		battery_status=$(<"$battery/status") battery_percentage=$(<"$battery/capacity")
 		total_percentage=$((total_percentage + battery_percentage))
 		battery_count=$((battery_count + 1))
 	done
+
 	battery_percentage=$((total_percentage / battery_count)) # For multiple batteries
 }
 
@@ -196,6 +212,7 @@ main() { # Main function
         for line in "Verbose Mode is ON..." "" "" "" ""; do
             echo $line
         done
+
         # TODO: Might still need this in the future but for now we don't have any battery notify issues
         # current_pid=$$
         # pids=$(pgrep -f "/usr/bin/env bash ${scrDir}/batterynotify.sh")
@@ -225,7 +242,8 @@ case "$1" in
         echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=prefered-editor'  \n[Modifying]: $batterynotify_conf \nPress any key if done editing"
         kitty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &
         LAST_MD5SUM=$(md5sum "$batterynotify_conf")
-        while true; do 
+
+        while true; do
             CURRENT_MD5SUM=$(md5sum "$batterynotify_conf")
             if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then
                 notify-send "Config Changed: Needs reboot or restart $0"
@@ -233,6 +251,7 @@ case "$1" in
             fi
             read -t 2 -n 1 > /dev/null && break # Loop every 2 seconds
         done
+
         exit 0
         ;;
     -i|--info)
@@ -259,6 +278,7 @@ mnc=2 mxc=50 mnl=10 mxl=80 mnu=50  mxu=100 mnt=60 mxt=1000 mnf=80 mxf=100 mnn=1 
 
 check_range() {
     local var=$1 min=$2 max=$3 error_message=$4
+
     if [[ $var =~ ^[0-9]+$ ]] && (( var >= min && var <= max )); then
         var=$var
         shift 2

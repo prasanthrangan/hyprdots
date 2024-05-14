@@ -57,14 +57,17 @@ while getopts "w:t:f" option; do
             echo "Error: Input wallpaper \"${OPTARG}\" not found!"
             exit 1
         fi
+
         cacheIn="${OPTARG}"
         ;;
     t) # Generate cache for input theme
         cacheIn="$(dirname "${hydeThemeDir}")/${OPTARG}"
+
         if [ ! -d "${cacheIn}" ]; then
             echo "Error: Input theme \"${OPTARG}\" not found!"
             exit 1
         fi
+
         ;;
     f) # Full cache rebuild
         cacheIn="$(dirname "${hydeThemeDir}")"

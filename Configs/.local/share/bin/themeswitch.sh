@@ -11,6 +11,7 @@ get_themes
 
 Theme_Change() {
     local x_switch=$1
+
     for i in "${!thmList[@]}"; do
         if [ "${thmList[i]}" = "${hydeTheme}" ]; then
             if [ "${x_switch}" = 'n' ]; then
@@ -84,6 +85,7 @@ if [ -d /run/current-system/sw/share/themes ]; then
 else
     themeDir=~/.themes
 fi
+
 rm -rf "${confDir}/gtk-4.0"
 ln -s "${themeDir}/${gtkTheme}/gtk-4.0" "${confDir}/gtk-4.0"
 

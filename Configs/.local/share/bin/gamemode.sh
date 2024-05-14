@@ -5,13 +5,14 @@ HYPRGAMEMODE=$(hyprctl getoption animations:enabled | sed -n '1p' | awk '{print 
 #// Waybar performance
 
 FILE="$HOME/.config/waybar/style.css"
-
 sed -i 's/\/\* \(.*animation:.*\) \*\//\1/g' "$FILE"
 sed -i 's/\/\* \(.*transition:.*\) \*\//\1/g' "$FILE"
+
 if [ "$HYPRGAMEMODE" = 1 ]; then
     sed -i 's/^\(.*animation:.*\)$/\/\* \1 \*\//g' "$FILE"
     sed -i 's/^\(.*transition:.*\)$/\/\* \1 \*\//g' "$FILE"
 fi
+
 killall waybar
 waybar > /dev/null 2>&1 &
 

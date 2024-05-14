@@ -105,6 +105,7 @@ keyVars+="HOME=$HOME"
 substitute_vars() {
   local s="$1"
   local IFS=$'\n'
+
   for var in $keyVars; do
     varName="${var%%=*}"
     varValue="${var#*=}"
@@ -112,6 +113,7 @@ substitute_vars() {
     varValue="${varValue%\'}"
     s="${s//\$$varName/$varValue}"
   done
+
   IFS=$' \t\n'
   echo "$s"
 }

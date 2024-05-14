@@ -38,6 +38,7 @@ export s_fontpx=$(( b_height * 34 / 100 )) # font size 34% of height
 if [ "$b_height" -lt 30 ]; then
     export e_paddin=0
 fi
+
 if [ "$s_fontpx" -lt 10 ]; then
     export s_fontpx=10
 fi
@@ -108,6 +109,7 @@ envsubst < "$in_file" > "$out_file"
 #// Override rounded corners
 
 hypr_border=$(awk -F '=' '{if($1 ~ " rounding ") print $2}' "$src_file" | sed 's/ //g')
+
 if [ "$hypr_border" = "0" ]; then
     sed -i "/border-radius: /c\    border-radius: 0px;" "$out_file"
 fi

@@ -8,6 +8,7 @@ for sysMon in "${!pkgChk[@]}"; do
     if [ "${sysMon}" -gt 0 ]; then
         term=$(grep ^'$term' "$HOME/.config/hypr/keybindings.conf" | cut -d '=' -f2)
     fi
+
     if pkg_installed "${pkgChk[sysMon]}"; then
         pkill -x "${pkgChk[sysMon]}" || ${term} "${pkgChk[sysMon]}" &
         break

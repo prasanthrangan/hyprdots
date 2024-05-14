@@ -112,6 +112,7 @@ fi
 
 pkg_installed() {
     local pkgIn="$1"
+
     if pacman -Qi "${pkgIn}" &> /dev/null; then
         return 0
     elif pacman -Qi "flatpak" &> /dev/null && flatpak info "${pkgIn}" &> /dev/null; then

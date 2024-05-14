@@ -73,6 +73,7 @@ if [ -z "$wallbashImg" ] || [ ! -f "$wallbashImg" ]; then
 fi
 
 magick -ping "$wallbashImg" -format "%t" info: &> /dev/null
+
 if [ $? -ne 0 ]; then
     echo "Error: Unsupported image format $wallbashImg"
     exit 1
@@ -164,6 +165,7 @@ for (( i=0; i<${wallbashColors}; i++ )); do
             modSat=$pryLightSat
             modHue=$pryLightHue
         fi
+
         echo -e "dcol_pry$((i + 1)) :: regen missing color"
         dcol[i]=$(magick xc:"#${dcolHex[i - 1]}" -depth 8 -normalize -modulate ${modBri},${modSat},${modHue} -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
     fi
@@ -173,11 +175,13 @@ for (( i=0; i<${wallbashColors}; i++ )); do
 
     # Generate primary text colors
     nTxt=$(rgb_negative ${dcolHex[i]})
+
     if fx_brightness "xc:#${dcolHex[i]}"; then
         modBri=$txtDarkBri
     else
         modBri=$txtLightBri
     fi
+
     tcol=$(magick xc:"#${nTxt}" -depth 8 -normalize -modulate ${modBri},10,100 -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
     echo "dcol_txt$((i + 1))=\"${tcol}\"" >> "$wallbashOut"
     echo "dcol_txt$((i + 1))_rgba=\"$( rgba_convert "${tcol}" )\"" >> "$wallbashOut"
@@ -185,6 +189,7 @@ for (( i=0; i<${wallbashColors}; i++ )); do
     # Generate accent colors
     xHue=$(magick xc:"#${dcolHex[i]}" -colorspace HSB -format "%c" histogram:info: | awk -F '[hsb(,]' '{print $2}')
     acnt=1
+
     echo -e "${wallbashCurve}" | sort -n ${colSort} | while read -r xBri xSat; do
         acol=$(magick xc:"hsb(${xHue},${xSat}%,${xBri}%)" -depth 8 -format "%c" histogram:info: | sed -n 's/^[ ]*\(.*\):.*[#]\([0-9a-fA-F]*\) .*$/\2/p')
         echo "dcol_$((i + 1))xa${acnt}=\"${acol}\"" >> "$wallbashOut"

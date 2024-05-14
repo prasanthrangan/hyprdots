@@ -5,6 +5,7 @@ gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
 
 [[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >>"${gpuQ}"
+
 if [[ ! " $* " =~ " startup " ]]; then
    gpuQ="${gpuQ}$2"
 fi
@@ -69,7 +70,7 @@ query() {
             echo "intel_address=\"${intel_address}\""
             echo "intel_flag=1" # Check for Intel GPU
             echo "intel_gpu=\"${intel_gpu}\""
-        } >>"${gpuQ}"
+        } >> "${gpuQ}"
     fi
 
     if ! grep -q "prioGPU=" "${gpuQ}" && [[ -n "${WLR_DRM_DEVICES}" ]]; then
@@ -195,6 +196,7 @@ generate_json() { # Get emoji and icon based on temperature and utilization
 
     for key in "${!tooltip_parts[@]}"; do
         local value="${tooltip_parts[${key}]}"
+
         if [[ -n "${value}" && "${value}" =~ [a-zA-Z0-9] ]]; then
             json+="${key}${value}"
         fi

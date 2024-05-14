@@ -22,6 +22,7 @@ fn_steam() {
     # Read installed games
     GameList=$(echo "$ManifestList" | while read acf; do
         appid=$(grep '"appid"' "$acf" | cut -d '"' -f 4)
+
         if [ -f "${SteamThumb}/${appid}_library_600x900.jpg" ]; then
             game=$(grep '"name"' "$acf" | cut -d '"' -f 4)
             echo "$game|$appid"
