@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 
-#* Seriously, do not bother with this code as it is too messy. If someone can refactor and structure it properly, that would be awesome.
-#* I use jq to parse and create metadata.
-#* It is functional but I don't know if it's maintainable lol
-#* Users should refer to this project to parse keybinds: https://github.com/hyprland-community/Hyprkeys
-#* Please inform me if there are new Categories upstream. I will try to add comments to this code so I won't forget.
-#* Khing
+# Seriously, do not bother with this code as it is too messy. If someone can refactor and structure it properly, that would be awesome.
+# I use jq to parse and create metadata.
+# It is functional but I don't know if it's maintainable
+# Users should refer to this project to parse keybinds: https://github.com/hyprland-community/Hyprkeys
+# Please inform me if there are new Categories upstream. I will try to add comments to this code so I won't forget.
+# Khing
 
 #// Set variables
 
@@ -23,7 +23,7 @@ roDir="$confDir/rofi"
 roconf="$roDir/clipboard.rasi"
 
 HELP() {
-  cat <<HELP
+  cat << HELP
 Usage: $0 [options]
 Options:
   -j    Show the JSON format
@@ -153,8 +153,8 @@ $comments
 };
 
 def keycode_mapping: { #? Fetches keycode from a file
- "0": "",
- $([ -f "${keycodeFile}" ] && cat "${keycodeFile}")
+  "0": "",
+  $([ -f "${keycodeFile}" ] && cat "${keycodeFile}")
 };
 EOF
 
@@ -275,7 +275,7 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 .executables |= (executables_mapping[.] // .) | #? conversions
 .description |= (description_mapping[.] // .) #? Convert to description
  
-' #* <--- Do not delete this
+' # <--- Do not delete this
 
 )"
 
@@ -325,7 +325,7 @@ DISPLAY() {
 header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
-#! This part gives extra laoding time as I don't have efforts to make single space for each class
+# This part gives extra laoding time as i don't have efforts to make single space for each class
 metaData="$(echo "${jsonData}" | jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1)"
 # echo "$metaData"
 
@@ -340,7 +340,7 @@ output=$(echo -e "${header}\n${line}\n${display}")
 
 #// Display on the terminal if rofi is not found or has -j flag
 
-if ! command -v rofi &>/dev/null; then
+if ! command -v rofi &> /dev/null; then
   echo "$output"
   echo "rofi not detected. Displaying on terminal instead"
   exit 0
@@ -368,7 +368,7 @@ if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
   if [ "$repeat" = true ]; then
 
     while true; do
-      repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needs a seperate Rasi? Don't know how to make. Maybe something like a confirmation rasi for 'Yes' and 'No' buttons, then the -p will be the question.
+      repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") # Needs a seperate Rasi? Don't know how to make. Maybe something like a confirmation rasi for 'Yes' and 'No' buttons, then the -p will be the question.
 
       if [ "$repeat_command" = "Repeat" ]; then
         RUN

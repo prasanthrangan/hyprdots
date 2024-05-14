@@ -13,7 +13,7 @@ if [ "$HYPRGAMEMODE" = 1 ]; then
     sed -i 's/^\(.*transition:.*\)$/\/\* \1 \*\//g' "$FILE"
 fi
 killall waybar
-waybar >/dev/null 2>&1 &
+waybar > /dev/null 2>&1 &
 
 #// Hyprland performance
 

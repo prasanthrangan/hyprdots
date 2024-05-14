@@ -85,8 +85,8 @@ get_themes() {
 [ -f "${hydeConfDir}/hyde.conf" ] && . "${hydeConfDir}/hyde.conf"
 
 case "${enableWallDcol}" in
-0 | 1 | 2 | 3) ;;
-*) enableWallDcol=0 ;;
+    0 | 1 | 2 | 3) ;;
+    *) enableWallDcol=0 ;;
 esac
 
 if [ -z "${hydeTheme}" ] || [ ! -d "${hydeConfDir}/themes/${hydeTheme}" ]; then
@@ -137,7 +137,7 @@ set_conf() {
     if [ $(grep -c "^${varName}=" "${hydeConfDir}/hyde.conf") -eq 1 ]; then
         sed -i "/^${varName}=/c${varName}=\"${varData}\"" "${hydeConfDir}/hyde.conf"
     else
-        echo "${varName}=\"${varData}\"" >>"${hydeConfDir}/hyde.conf"
+        echo "${varName}=\"${varData}\"" >> "${hydeConfDir}/hyde.conf"
     fi
 }
 

@@ -36,11 +36,11 @@ query() {
     touch "${gpuQ}"
 
     if lsmod | grep -q 'nouveau'; then
-        echo "nvidia_gpu=\"Linux\"" >>"${gpuQ}" #? Incase If nouveau is installed
+        echo "nvidia_gpu=\"Linux\"" >> "${gpuQ}" # Incase If nouveau is installed
         echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >>"${gpuQ}"
-    elif command -v nvidia-smi &>/dev/null; then
+    elif command -v nvidia-smi &> /dev/null; then
         nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
-        if [[ -n "${nvidia_gpu}" ]]; then # Check for Nvidia GPU
+        if [[ -n "${nvidia_gpu}" ]]; then # Check for NVIDIA GPU
             if [[ "${nvidia_gpu}" == *"NVIDIA-SMI has failed"* ]]; then #? Second layer for dGPU
                 echo "nvidia_flag=0 # NVIDIA-SMI has failed" >> "${gpuQ}"
             else
@@ -59,7 +59,7 @@ query() {
         amd_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${amd_gpu}" | cut -d' ' -f1)
         {
             echo "amd_address=\"${amd_address}\""
-            echo "amd_flag=1" # Check for Amd GPU
+            echo "amd_flag=1" # Check for AMD GPU
             echo "amd_gpu=\"${amd_gpu}\""
         } >> "${gpuQ}"
     fi
@@ -163,7 +163,7 @@ generate_json() { # Get emoji and icon based on temperature and utilization
 
     # emoji=$(get_temperature_emoji "${temperature}")
     local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
-    #? Soon add Something incase needed.
+    # Soon add Something incase needed.
     declare -A tooltip_parts
     if [[ -n "${utilization}" ]]; then
         tooltip_parts["\n$speedo Utilization: "]="${utilization}%"
@@ -200,7 +200,7 @@ generate_json() { # Get emoji and icon based on temperature and utilization
 
 general_query() { # Function to get temperature from 'sensors'
     filter=''
-    temperature=$(sensors | ${filter} grep -m 1 -E "(edge|Package id.*|another keyword)" | awk -F ':' '{print int($2)}') #! We can get json data from sensors too
+    temperature=$(sensors | ${filter} grep -m 1 -E "(edge|Package id.*|another keyword)" | awk -F ':' '{print int($2)}')
     # gpu_load=$()
     # core_clock=$()
     for file in /sys/class/power_supply/BAT*/power_now; do
@@ -215,18 +215,18 @@ general_query() { # Function to get temperature from 'sensors'
     max_clock_speed=$(awk '{print $1/1000}' /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq)
 }
 
-intel_GPU() { #? Function to query basic Intel GPU
+intel_GPU() { # Function to query basic Intel GPU
     primary_gpu="Intel ${intel_gpu}"
     general_query
 }
 
-nvidia_GPU() { #? Function to query Nvidia GPU
+nvidia_GPU() { # Function to query Nvidia GPU
     primary_gpu="NVIDIA ${nvidia_gpu}"
     if [[ "${nvidia_gpu}" == "Linux" ]]; then
         general_query
         return
     fi
-    #? Tired flag for not using nvidia-smi if GPU is in suspend mode.
+    # Tired flag for not using nvidia-smi if GPU is in suspend mode.
     if ${tired}; then
         is_suspend="$(cat /sys/bus/pci/devices/0000:"${nvidia_address}"/power/runtime_status)"
         if [[ ${is_suspend} == *"suspend"* ]]; then
@@ -246,7 +246,7 @@ nvidia_GPU() { #? Function to query Nvidia GPU
     power_limit="${gpu_data[5]// /}"
 }
 
-amd_GPU() { #? Function to query AMD GPU
+amd_GPU() { # Function to query AMD GPU
     primary_gpu="AMD ${amd_gpu}"
     # Execute the AMD GPU python script and use its output
     amd_output=$(python3 ${scrDir}/amdgpu.py)
@@ -263,7 +263,7 @@ amd_GPU() { #? Function to query AMD GPU
 
 if [[ ! -f "${gpuQ}" ]]; then
     query
-    echo -e "Initialized Variable:\n$(cat "${gpuQ}")\n\nReboot or '$0 --reset' to RESET Variables"
+    echo -e "Initialized Variable:\n$(cat "${gpuQ}")\n\nReboot or '$0 --reset' to reset variables"
 fi
 
 source "${gpuQ}"
@@ -280,7 +280,7 @@ case "$1" in
     "--reset" | "-rf")
         rm -fr "${gpuQ}"*
         query
-        echo -e "Initialized Variable:\n$(cat "${gpuQ}" || true)\n\nReboot or '$0 --reset' to RESET Variables"
+        echo -e "Initialized Variable:\n$(cat "${gpuQ}" || true)\n\nReboot or '$0 --reset' to reset variables"
         exit
         ;;
     *"-"*)
@@ -290,17 +290,17 @@ case "$1" in
 Avalable GPU: ${gpu_flags//_flag/}
 [options]
 --toggle         * Toggle available GPU
---use [GPU]      * Only call the specified GPU (Useful for adding specific GPU on waybar)
---reset          *  Remove & restart all query
+--use [GPU]      * Only call the specified GPU (Useful for adding specific GPU on Waybar)
+--reset          * Remove & restart all query
 
 [flags]
-tired            * Adding this option will not query nvidia-smi if gpu is in suspend mode
+tired            * Adding this option will not query nvidia-smi if GPU is in suspend mode
 startup          * Useful if you want a certain GPU to be set at startup
 
-* If ${USER} declared env = WLR_DRM_DEVICES on hyprland then use this as the primary GPU
+* If ${USER} declared env = WLR_DRM_DEVICES on Hyprland then use this as the primary GPU
 EOF
-        exit
-        ;;
+    exit
+    ;;
 esac
 
 nvidia_flag=${nvidia_flag:-0}
@@ -318,4 +318,4 @@ else
     general_query
 fi
 
-generate_json #? Auto Generate the JSON txt for Waybar
+generate_json #? Auto generate the JSON txt for Waybar
