@@ -1,18 +1,15 @@
 #!/usr/bin/env sh
 
-#// Define the list of commands to check in order of preference
+scrDir="$(dirname "$(realpath "$0")")"
+source "${scrDir}/globalcontrol.sh"
+pkgChk=("io.missioncenter.MissionCenter" "htop" "btop" "top")
 
-commands_to_check=("htop" "btop" "top")
-
-#// Determine the terminal emulator to use
-
-term=$(grep -E "^\$term" "$HOME/.config/hypr/keybindings.conf" | cut -d '=' -f2)
-
-#// Try to execute the first available command in the specified terminal emulator
-
-for command in "${commands_to_check[@]}"; do
-    if command -v "$command" &> /dev/null; then
-        "$term" -e "$command"
-        break  # Exit the loop if the command executed successfully
+for sysMon in "${!pkgChk[@]}"; do
+    if [ "${sysMon}" -gt 0 ]; then
+        term=$(grep ^'$term' "$HOME/.config/hypr/keybindings.conf" | cut -d '=' -f2)
+    fi
+    if pkg_installed "${pkgChk[sysMon]}"; then
+        pkill -x "${pkgChk[sysMon]}" || ${term} "${pkgChk[sysMon]}" &
+        break
     fi
 done
