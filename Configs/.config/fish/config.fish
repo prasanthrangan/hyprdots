@@ -11,6 +11,12 @@ alias la="ls -a"
 alias lla="ls -la"
 alias lt="ls --tree"
 
+# xdg default paths
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+
 # Handy change dir shortcuts
 abbr .. 'cd ..'
 abbr ... 'cd ../..'
