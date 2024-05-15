@@ -42,13 +42,13 @@ step_wallbash() {
 #// Apply wallbash mode
 
 case "${1}" in
-    m|-m|--menu)
+    m | -m | --menu)
         rofi_wallbash
         ;;
-    n|-n|--next)
+    n | -n | --next)
         step_wallbash n
         ;;
-    p|-p|--prev)
+    p | -p | --prev)
         step_wallbash p
         ;;
     *)

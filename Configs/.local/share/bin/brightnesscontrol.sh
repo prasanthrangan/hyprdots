@@ -28,7 +28,7 @@ get_brightness() {
 }
 
 case $1 in
-    i)  # Increase the backlight
+    i) # Increase the backlight
         if [ "$(get_brightness)" -lt 10 ]; then
             # increase the backlight by 1% if less than 10%
             brightnessctl set +1%
@@ -38,7 +38,7 @@ case $1 in
         fi
         send_notification
         ;;
-    d)  # Decrease the backlight
+    d) # Decrease the backlight
         if [ "$(get_brightness)" -le 1 ]; then
             # avoid 0% brightness
             brightnessctl set 1%
@@ -51,7 +51,7 @@ case $1 in
         fi
         send_notification
         ;;
-    *)  # Print error
+    *) # Print error
         print_error
         ;;
 esac

@@ -4,7 +4,7 @@ scrDir=$(dirname "$(realpath "$0")")
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
 tired=false
 
-[[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >>"${gpuQ}"
+[[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >> "${gpuQ}"
 
 if [[ ! " $* " =~ " startup " ]]; then
    gpuQ="${gpuQ}$2"
@@ -36,7 +36,7 @@ query() {
 
     if lsmod | grep -q 'nouveau'; then
         echo "nvidia_gpu=\"Linux\"" >> "${gpuQ}" # Incase If nouveau is installed
-        echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >>"${gpuQ}"
+        echo "nvidia_flag=1 # Using nouveau an open-source nvidia driver" >> "${gpuQ}"
     elif command -v nvidia-smi &> /dev/null; then
         nvidia_gpu=$(nvidia-smi --query-gpu=gpu_name --format=csv,noheader,nounits | head -n 1)
         if [[ -n "${nvidia_gpu}" ]]; then # Check for NVIDIA GPU
@@ -64,8 +64,8 @@ query() {
     fi
 
     if lspci -nn | grep -E "(VGA|3D)" | grep -iq "8086"; then
-        intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
-        intel_address=$(lspci | grep -Ei "VGA|3D" | grep -i "${intel_gpu}" | cut -d' ' -f1)
+        intel_gpu="$(lspci -nn | grep -Ei "VGA|3D" | grep -m 1 "8086" | awk -F 'Intel Corporation ' '{gsub(/ *\[[^\]]*\]/,""); gsub(/ *\([^)]*\)/,""); print $2}')"
+        intel_address="$(lspci | grep -Ei "VGA|3D" | grep -i "${intel_gpu}" | cut -d' ' -f1)"
         {
             echo "intel_address=\"${intel_address}\""
             echo "intel_flag=1" # Check for Intel GPU

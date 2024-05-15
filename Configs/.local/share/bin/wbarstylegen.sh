@@ -47,7 +47,7 @@ fi
 
 w_position=$(grep '^1|' "$conf_ctl" | cut -d '|' -f 3)
 case "$w_position" in
-    top|bottom)
+    top | bottom)
         export x1g_margin=${g_margin}
         export x2g_margin=0
         export x3g_margin=${g_margin}
@@ -73,7 +73,7 @@ case "$w_position" in
         export x3="left" 
         export x4="right"
         ;;
-    left|right)
+    left | right)
         export x1g_margin=0
         export x2g_margin=${g_margin}
         export x3g_margin=0

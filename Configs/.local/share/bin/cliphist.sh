@@ -45,13 +45,13 @@ r_override="window{location:${x_pos} ${y_pos};anchor:${x_pos} ${y_pos};x-offset:
 #// Clipboard action
 
 case "${1}" in
-    c|-c|--copy)
+    c | -c | --copy)
         cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Copy...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}" | cliphist decode | wl-copy
         ;;
-    d|-d|--delete)
+    d | -d | --delete)
         cliphist list | rofi -dmenu -theme-str "entry { placeholder: \"Delete...\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}" | cliphist delete
         ;;
-    w|-w|--wipe)
+    w | -w | --wipe)
         if [ $(echo -e "Yes\nNo" | rofi -dmenu -theme-str "entry { placeholder: \"Clear Clipboard History?\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}") == "Yes" ]; then
             cliphist wipe
         fi

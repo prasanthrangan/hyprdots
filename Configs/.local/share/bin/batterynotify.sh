@@ -238,7 +238,7 @@ verbose=false
 
 case "$1" in
     -m|--modify)
-        EDITOR="${EDITOR:-code}"  # Use VS Code as the default editor
+        EDITOR="${EDITOR:-code}" # Use VS Code as the default editor
         echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=prefered-editor'  \n[Modifying]: $batterynotify_conf \nPress any key if done editing"
         kitty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &
         LAST_MD5SUM=$(md5sum "$batterynotify_conf")

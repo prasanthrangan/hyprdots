@@ -19,16 +19,16 @@ fi
 #// Rofi action
 
 case "${1}" in
-    d|--drun)
+    d | --drun)
         r_mode="drun"
         ;; 
-    w|--window)
+    w | --window)
         r_mode="window"
         ;;
-    f|--filebrowser)
+    f | --filebrowser)
         r_mode="filebrowser"
         ;;
-    h|--help)
+    h | --help)
         echo -e "$(basename "${0}") [action]"
         echo "d :  drun mode"
         echo "w :  window mode"
