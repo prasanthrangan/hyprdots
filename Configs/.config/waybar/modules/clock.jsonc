@@ -1,5 +1,5 @@
     "clock": {
-        "format": "<span rise='3.75pt'>{:%I:%M:%S %p}</span>",
+        "format": "<span rise='1pt'>{:%I:%M %p}</span>",
         "rotate": ${r_deg},
         "interval": 1,
         "format-alt": "{:%R:%S 󰃭 %d·%m·%y}",
