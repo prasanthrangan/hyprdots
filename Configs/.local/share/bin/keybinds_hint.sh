@@ -25,13 +25,13 @@ HELP() {
   cat <<HELP
 Usage: $0 [options]"
 Options:"
- -j     Show the JSON format
- -p     Show the pretty format
- -d     Add custom delimiter symbol (default '>')
- -f     Add custom file
- -w     Custom width
- -h     Custom height
- -l     Custom number of lines
+ -j     show the JSON format
+ -p     show the pretty format
+ -d     add custom delimiter symbol (default '>')
+ -f     add custom file
+ -w     custom width
+ -h     custom height
+ -l     custom number of lines
  --help     Display this help message
 Example:
  $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
@@ -40,7 +40,7 @@ Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
   Available overrides:
 
     kb_hint_delim=">"                         ﯦ add a custom custom delimeter
-    kb_hint_conf="/path/conf1 /path/conf2"   ﯦ add a custom keybinds.conf path (be sure to add spaces)
+    kb_hint_conf="/path/conf1 /path/conf2"    ﯦ add a custom keybinds.conf path (be sure to add spaces)
     kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
     kb_hint_line=13                           ﯦ adjust how many lines are listed
