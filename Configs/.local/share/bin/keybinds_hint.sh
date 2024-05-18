@@ -16,7 +16,7 @@ confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 keyconfDir="$confDir/hypr"
 kb_hint_conf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
 tmpMapDir="/tmp"
-tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
+tmpMap="$tmpMapDir/hyde-keybinds.jq"
 keycodeFile="${hydeConfDir}/keycode.conf"
 roDir="$confDir/rofi"
 roconf="$roDir/clipboard.rasi"
@@ -31,6 +31,7 @@ Options:"
  -f     Add custom file
  -w     Custom width
  -h     Custom height
+ -l     Custom number of lines
  --help     Display this help message
 Example:
  $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
@@ -39,10 +40,10 @@ Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
   Available overrides:
 
     kb_hint_delim=">"                         ﯦ add a custom custom delimeter
-    kb_hint_conf="~/valid/file/pach /path2"   ﯦ add a custom keybinds.conf path (be sure to add spaces)
+    kb_hint_conf="/path/conf1 /path/conf2"   ﯦ add a custom keybinds.conf path (be sure to add spaces)
     kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
-
+    kb_hint_line=13                           ﯦ adjust how many lines are listed
     
 For mapping key codes, create a file named $keycodeFile and use the following format:
     
@@ -77,6 +78,10 @@ while [ "$#" -gt 0 ]; do
     shift
     kb_hint_height="$1"
     ;;
+  -l) # Custom height
+  shift
+  kb_hint_line="$1"
+  ;;
   -* | --help) # Add Help message
     HELP
     exit
@@ -84,22 +89,6 @@ while [ "$#" -gt 0 ]; do
   esac
   shift
 done
-
-# read hypr theme border
-wind_border=$((hypr_border * 3 / 2))
-elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
-
-r_width="width: ${kb_hint_width:-30em};"
-r_height="height: ${kb_hint_height:-35em};"
-r_override="window {$r_height $r_width border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
-
-# read hypr font size
-fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
-fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
-
-# read hypr theme icon
-icon_override=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
-icon_override="configuration {icon-theme: \"${icon_override}\";}"
 
 #? Read all the variables in the configuration file
 #! Intentional globbing on the $keyconf variable
@@ -154,7 +143,7 @@ comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
 # echo "$comments"
 
 cat <<EOF >$tmpMap
-# hyprdots-keybinds.jq
+# hyde-keybinds.jq
 def executables_mapping: {  #? Derived from .args to parse scripts to be Readable
 #? Auto Generated Comment Conversion
 $comments
@@ -186,11 +175,11 @@ KEYCODE
 #! This is Our Translator for some binds  #Khing!
 jsonData="$(
   hyprctl binds -j | jq -L "$tmpMapDir" -c '
-include "hyprdots-keybinds";
+include "hyde-keybinds";
 
 
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
-    "64": " ",  #? SUPER  󰻀
+    "64": " ",  #? SUPER  󰻀 Also added 2 En space ' ' <<<
     "8": "ALT", 
     "4": "CTRL", 
     "1": "SHIFT",
@@ -289,14 +278,14 @@ def get_keycode:
 .dispatcher as $dispatcher | .category = $dispatcher | #? Value conversions for the category
 .arg as $arg | .executables = $arg | #? get args
 
-.modmask |= (get_keys | ltrimstr(" ")) | #? Execute Momask conversions
+.modmask |= (get_keys | ltrimstr("")) | #? Execute modmask conversions
 
 .keycode |= (get_keycode // .) |  #? Apply the get_keycode transformation
 
-.key |= (key_mapping[.] // .) | #? Apply the get_key
+.key |= (key_mapping[.] // .) | #? Apply the key_mapping
 
 # .keybind = (.modmask | tostring // "") + (.key // "") | #! Same as below but without the keycode
-.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings 
+.keybind = (.modmask | tostring // " ") +  (.key // " ")  + ((.keycode // 0) | tostring)  | #? Show the keybindings 
 
 .flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) | #? This are the flags repeat,lock etc
 
@@ -317,12 +306,13 @@ if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") 
 
 #? Now we have the metadata we can Group it accordingly
 GROUP() {
-  awk -F '!=!' '{
+awk -v cols="$cols" -F '!=!' '
+{
     category = $1
-    binds[category] = binds[category] ? binds[category] "\n" $0 : $0
-  }
+    binds[category] = binds[category]? binds[category] "\n" $0 : $0
+}
 
-  END {
+END {
     n = asorti(binds, b)
     for (i = 1; i <= n; i++) {
       print b[i]  # Print the header name
@@ -332,31 +322,32 @@ GROUP() {
         line = substr(lines[j], index(lines[j], "=") + 2)
         print line
       }
-      for (j = 1; j <= 68; j++) printf "━"
+      for (j = 1; j <= cols; j++) printf "━"
       printf "\n"
     }
-  }'
+}'
 }
 
 #? Display the JSON format
-[ "$kb_hint_json" = true ] && echo -e "$jsonData" | jq && exit 0
+[ "$kb_hint_json" = true ] && jq <<< "$jsonData" && exit 0
 
 #? Format this is how the keybinds are displayed.
 DISPLAY() { awk -v kb_hint_delim="${kb_hint_delim:->}" -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s %-2s %-30s\n", $5, kb_hint_delim, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}'; }
 
 #? Extra design use for distiction
 header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
-line="$(printf '%.0s━' $(seq 1 68) "")"
+cols=$(tput cols)
+cols=${cols:-999}
+linebreak="$(printf '%.0s━' $(seq 1 ${cols}) "")"
 
 #! this Part Gives extra laoding time as I don't have efforts to make single space for each class
-metaData="$(echo "${jsonData}" | jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1)"
-# echo "$metaData"
+metaData="$(jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' <<< "${jsonData}" | tr -s ' ' | sort -k 1)"
 
 #? This formats the pretty output
-display="$(echo "$metaData" | GROUP | DISPLAY)"
+display="$(GROUP <<< "$metaData" | DISPLAY)"
 
-# output=$(echo -e "${header}\n${line}\n${primMenu}\n${line}\n${display}")
-output=$(echo -e "${header}\n${line}\n${display}")
+# output=$(echo -e "${header}\n${linebreak}\n${primMenu}\n${linebreak}\n${display}")
+output=$(echo -e "${header}\n${linebreak}\n${display}")
 
 [ "$kb_hint_pretty" = true ] && echo -e "$output" && exit 0
 
@@ -367,8 +358,27 @@ if ! command -v rofi &>/dev/null; then
   exit 0
 fi
 
+#? Put rofi configuration here 
+# read hypr theme border
+wind_border=$((hypr_border * 3 / 2))
+elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
+
+# TODO Dynamic scaling for text and the window >>> I do not know if rofi is capable of this
+r_width="width: ${kb_hint_width:-35em};"
+r_height="height: ${kb_hint_height:-35em};"
+r_listview="listview { lines: ${kb_hint_line:-13}; }"
+r_override="window {$r_height $r_width border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} ${r_listview} "
+
+# read hypr font size
+fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
+fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
+
+# read hypr theme icon
+icon_override=$(gsettings get org.gnome.desktop.interface icon-theme | sed "s/'//g")
+icon_override="configuration {icon-theme: \"${icon_override}\";}"
+
 #? Actions to do when selected
-selected=$(echo "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
+selected=$(echo "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}"  -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 if [ -z "$selected" ]; then exit 0; fi
 
 sel_1=$(echo "$selected" | cut -d "${kb_hint_delim:->}" -f 1 | awk '{$1=$1};1')
