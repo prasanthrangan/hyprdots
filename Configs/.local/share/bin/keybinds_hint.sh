@@ -14,7 +14,7 @@ source $scrDir/globalcontrol.sh
 
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 keyconfDir="$confDir/hypr"
-keyConf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
+kb_hint_conf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
 tmpMapDir="/tmp"
 tmpMap="$tmpMapDir/hyprdots-keybinds.jq"
 keycodeFile="${hydeConfDir}/keycode.conf"
@@ -30,13 +30,25 @@ Options:"
  -d     Add custom delimiter symbol (default '>')
  -f     Add custom file
  -w     Custom width
- -h     Display this help message
+ -h     Custom height
+ --help     Display this help message
 Example:
  $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
+
+Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
+  Available overrides:
+
+    kb_hint_delim=">"                         ﯦ add a custom custom delimeter
+    kb_hint_conf="~/valid/file/pach /path2"   ﯦ add a custom keybinds.conf path (be sure to add spaces)
+    kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
+    kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
+
     
 For mapping key codes, create a file named $keycodeFile and use the following format:
-"number": "symbol",
-example: "61": "/",
+    
+  "number": "symbol",
+      example: "61": "/",
+
 
 HELP
 }
@@ -55,7 +67,7 @@ while [ "$#" -gt 0 ]; do
     ;;
   -f) # Add custom file
     shift
-    keyConf="$* "
+    kb_hint_conf="$* "
     ;;
   -w) # Custom kb_hint_width
     shift
@@ -76,7 +88,10 @@ done
 # read hypr theme border
 wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
-r_override="window {height: ${kb_hint_height:-65%}; width: ${kb_hint_width:-30%}; border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
+
+r_width="width: ${kb_hint_width:-30em};"
+r_height="height: ${kb_hint_height:-35em};"
+r_override="window {$r_height $r_width border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;}"
 
 # read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
@@ -89,7 +104,7 @@ icon_override="configuration {icon-theme: \"${icon_override}\";}"
 #? Read all the variables in the configuration file
 #! Intentional globbing on the $keyconf variable
 # shellcheck disable=SC2086
-keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $keyConf)"
+keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $kb_hint_conf)"
 keyVars+="
 "
 keyVars+="HOME=$HOME"
@@ -123,8 +138,8 @@ substitute_vars() {
 #   echo "$s"
 # }
 
-# comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $keyConf | sed "s#\"#'#g" )
-initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $keyConf | sed "s#\"#'#g")
+# comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $kb_hint_conf | sed "s#\"#'#g" )
+initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $kb_hint_conf | sed "s#\"#'#g")
 comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
   '{gsub(/^ */, "", $1);\
     gsub(/ *$/, "", $1);\
