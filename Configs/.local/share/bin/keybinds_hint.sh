@@ -14,7 +14,7 @@ source $scrDir/globalcontrol.sh
 
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 keyconfDir="$confDir/hypr"
-kb_hint_conf+="$keyconfDir/hyprland.conf $keyconfDir/keybindings.conf $keyconfDir/userprefs.conf"
+kb_hint_conf+=("$keyconfDir/hyprland.conf" "$keyconfDir/keybindings.conf" "$keyconfDir/userprefs.conf" )
 tmpMapDir="/tmp"
 tmpMap="$tmpMapDir/hyde-keybinds.jq"
 keycodeFile="${hydeConfDir}/keycode.conf"
@@ -40,7 +40,7 @@ Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
   Available overrides:
 
     kb_hint_delim=">"                         ﯦ add a custom custom delimeter
-    kb_hint_conf="/path/conf1 /path/conf2"    ﯦ add a custom keybinds.conf path (be sure to add spaces)
+    kb_hint_conf=("file1.conf" "file2.conf")  ﯦ add a custom keybinds.conf path (add it like an array)
     kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
     kb_hint_line=13                           ﯦ adjust how many lines are listed
@@ -68,7 +68,7 @@ while [ "$#" -gt 0 ]; do
     ;;
   -f) # Add custom file
     shift
-    kb_hint_conf="$* "
+    kb_hint_conf+=("${@}")
     ;;
   -w) # Custom kb_hint_width
     shift
@@ -93,7 +93,7 @@ done
 #? Read all the variables in the configuration file
 #! Intentional globbing on the $keyconf variable
 # shellcheck disable=SC2086
-keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' $kb_hint_conf)"
+keyVars="$(awk -F '=' '/^ *\$/ && !/^ *#[^#]/ || /^ *##/ {gsub(/^ *\$| *$/, "", $1); gsub(/#.*/, "", $2); gsub(/^ *| *$/, "", $2); print $1 "='\''"$2"'\''"}' ${kb_hint_conf[@]})"
 keyVars+="
 "
 keyVars+="HOME=$HOME"
@@ -128,7 +128,7 @@ substitute_vars() {
 # }
 
 # comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $kb_hint_conf | sed "s#\"#'#g" )
-initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' $kb_hint_conf | sed "s#\"#'#g")
+initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' ${kb_hint_conf[@]} | sed "s#\"#'#g")
 comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
   '{gsub(/^ */, "", $1);\
     gsub(/ *$/, "", $1);\
