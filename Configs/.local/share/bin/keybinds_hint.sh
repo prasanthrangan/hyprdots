@@ -359,7 +359,7 @@ if ! command -v rofi &>/dev/null; then
 fi
 
 #? Put rofi configuration here 
-# read hypr theme border
+# Read hypr theme border
 wind_border=$((hypr_border * 3 / 2))
 elem_border=$([ $hypr_border -eq 0 ] && echo "5" || echo $hypr_border)
 
