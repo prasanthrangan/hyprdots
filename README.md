@@ -220,6 +220,8 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>S</kbd> | Toggle to special workspace |
 | <kbd>Super</kbd> + <kbd>J</kbd> | Toggle focused window split |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>[0-9]</kbd> | Move focused window to a workspace silently |
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd> | Move between groupped windows backward |
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd> | Move between groupped windows forward |
 
 </div>
 
