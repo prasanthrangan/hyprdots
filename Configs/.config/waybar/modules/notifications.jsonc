@@ -12,6 +12,7 @@
             "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
             "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
             "notification": "<span foreground='white'><sup></sup></span>",
+            "dnd": " ",
             "none": ""
         },
         "return-type": "json",
