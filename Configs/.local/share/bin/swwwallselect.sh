@@ -35,6 +35,16 @@ r_override="window{width:100%;} listview{columns:${col_count};spacing:5em;} elem
 currentWall="$(basename "$(readlink "${hydeThemeDir}/wall.set")")"
 wallPathArray=("${hydeThemeDir}")
 wallPathArray+=("${wallAddCustomPath[@]}")
+
+#// if the user want a random wallpaper, don't display the rofi menu
+if [ "$1" = "random" ] ; then
+    randomWall=$(find "${wallPathArray}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | shuf -n 1)
+    rofiSel=$(basename "$randomWall")
+    "${ScrDir}/swwwallpaper.sh" -s "${wallPath}/${rofiSel}"
+    notify-send -a "t1" -i "${thmbDir}/$(set_hash "${setWall}").sqre" " ${rofiSel}"
+    exit
+fi
+
 get_hashmap "${wallPathArray[@]}"
 rofiSel=$(parallel --link echo -en "\$(basename "{1}")"'\\x00icon\\x1f'"${thmbDir}"'/'"{2}"'.sqre\\n' ::: "${wallList[@]}" ::: "${wallHash[@]}" | rofi -dmenu -theme-str "${r_scale}" -theme-str "${r_override}" -config "${rofiConf}" -select "${currentWall}")
 
