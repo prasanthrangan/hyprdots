@@ -5,7 +5,7 @@
     </a>
 </div>
 
-<!-- 
+<!--
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
 
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_presence_count&suffix=%20online&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
@@ -43,7 +43,7 @@ While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/De
 > [!CAUTION]
 > The script modifies your `grub` or `systemd-boot` config to enable NVIDIA DRM.
 
-To install, execute the following commands: 
+To install, execute the following commands:
 
 ```shell
 pacman -Sy git
@@ -53,8 +53,8 @@ cd ~/HyDE/Scripts
 ```
 
 > [!TIP]
-> You can also add any other apps you wish to install alongside HyDE to `Scripts/custom_apps.lst` and pass the file as a parameter to install it like so: 
-> 
+> You can also add any other apps you wish to install alongside HyDE to `Scripts/custom_apps.lst` and pass the file as a parameter to install it like so:
+>
 > ```shell
 > ./install.sh custom_apps.lst
 > ```
@@ -66,7 +66,7 @@ Please reboot after the install script completes and takes you to the SDDM login
 For more details, please refer to the [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation).
 
 ### Updating
-To update HyDE, you will need to pull the latest changes from GitHub and restore the configs by running the following commands: 
+To update HyDE, you will need to pull the latest changes from GitHub and restore the configs by running the following commands:
 
 ```shell
 cd ~/HyDE/Scripts
@@ -220,8 +220,8 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>S</kbd> | Toggle to special workspace |
 | <kbd>Super</kbd> + <kbd>J</kbd> | Toggle focused window split |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>[0-9]</kbd> | Move focused window to a workspace silently |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd> | Move between groupped windows backward |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd> | Move between groupped windows forward |
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd> | Move between grouped windows backward |
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd> | Move between grouped windows forward |
 
 </div>
 
