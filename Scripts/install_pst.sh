@@ -69,10 +69,10 @@ if ! pkg_installed flatpak; then
     fpkopt=${promptIn,,}
 
     if [ "${fpkopt}" = "y" ]; then
-        echo -e "\033[0;32m[FLATPAK]\033[0m intalling flatpaks..."
+        echo -e "\033[0;32m[FLATPAK]\033[0m installing flatpaks..."
         "${scrDir}/.extra/install_fpk.sh"
     else
-        echo -e "\033[0;33m[SKIP]\033[0m intalling flatpaks..."
+        echo -e "\033[0;33m[SKIP]\033[0m installing flatpaks..."
     fi
 
 else
