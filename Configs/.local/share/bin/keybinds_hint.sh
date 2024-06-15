@@ -33,7 +33,7 @@ Options:"
  -h     Display this help message
 Example:
  $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
-    
+
 For mapping key codes, create a file named $keycodeFile and use the following format:
 "number": "symbol",
 example: "61": "/",
@@ -176,8 +176,8 @@ include "hyprdots-keybinds";
 
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
     "64": " ",  #? SUPER  󰻀
-    "8": "ALT", 
-    "4": "CTRL", 
+    "8": "ALT",
+    "4": "CTRL",
     "1": "SHIFT",
     "0": " ",
   };
@@ -202,7 +202,7 @@ include "hyprdots-keybinds";
     "XF86MonBrightnessDown" : "󰃜",
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
-    "backspace" : "󰁮 ",  
+    "backspace" : "󰁮 ",
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher #? This will serve as the Group header
     "exec" : "Execute a Command:",
@@ -221,7 +221,7 @@ include "hyprdots-keybinds";
     "workspace" : "Navigate Workspace",
     "movetoworkspace" : "Navigate Workspace",
     "movetoworkspacesilent" : "Navigate Workspace",
-    
+
   };
 def arg_mapping: { #! Do not Change this used for Demo only... As this will change .args! will be fatal
     "arg2": "mapped_arg2",
@@ -229,11 +229,11 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
 
     def description_mapping: {  #? Derived from dispatcher and Gives Description for Dispatchers; Basically translates dispatcher.
     "movefocus": "Move Focus",
-    "resizeactive": "Resize Active Floting Window",
+    "resizeactive": "Resize Active Floating Window",
     "exit" : "End Hyprland Session",
     "movetoworkspacesilent" : "Silently Move to Workspace",
     "movewindow" : "Move Window",
-    "exec" : "" , #? Remove exec as execuatable will give the Description from separate function
+    "exec" : "" , #? Remove exec as executable will give the Description from separate function
     "movetoworkspace" : "Move To Workspace:",
     "workspace" : "Navigate to Workspace:",
     "togglefloating" : "Toggle Floating",
@@ -244,9 +244,9 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
     "mouse" : "Use Mouse"
 
   };
-  #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
+  #? Functions to Convert modmask into Keys, There should be a better math for this but Im lazy
   #? Also we can just map it manually too
-  def get_keys: 
+  def get_keys:
     if . == 0 then
       ""
     elif . >= 64 then
@@ -281,7 +281,7 @@ def get_keycode:
 .key |= (key_mapping[.] // .) | #? Apply the get_key
 
 # .keybind = (.modmask | tostring // "") + (.key // "") | #! Same as below but without the keycode
-.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings 
+.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings
 
 .flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) | #? This are the flags repeat,lock etc
 
@@ -291,11 +291,11 @@ def get_keycode:
 if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |  #? Clean up
 
   .arg |= (arg_mapping[.] // .) | #? See above for how arg is converted
- #!    .executables |= gsub(".sh"; "") | #? Usefull soon
+ #!    .executables |= gsub(".sh"; "") | #? Useful soon
 
   .executables |= (executables_mapping[.] // .) | #? conversions
   .description |= (description_mapping[.] // .)    #? Convert to description
- 
+
 ' #* <---- There is a '   do not delete this'
 
 )"
@@ -329,11 +329,11 @@ GROUP() {
 #? Format this is how the keybinds are displayed.
 DISPLAY() { awk -v kb_hint_delim="${kb_hint_delim:->}" -F '!=!' '{if ($0 ~ /=/ && $6 != "") printf "%-25s %-2s %-30s\n", $5, kb_hint_delim, $6; else if ($0 ~ /=/) printf "%-25s\n", $5; else print $0}'; }
 
-#? Extra design use for distiction
+#? Extra design use for distinction
 header="$(printf "%-35s %-1s %-20s\n" "󰌌 Keybinds" "󱧣" "Description")"
 line="$(printf '%.0s━' $(seq 1 68) "")"
 
-#! this Part Gives extra laoding time as I don't have efforts to make single space for each class
+#! this Part Gives extra loading time as I don't have efforts to make single space for each class
 metaData="$(echo "${jsonData}" | jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' | tr -s ' ' | sort -k 1)"
 # echo "$metaData"
 
@@ -373,7 +373,7 @@ if [ -n "$run_sel" ] && [ "$(echo "$run_sel" | wc -l)" -eq 1 ]; then
   if [ "$repeat" = true ]; then
 
     while true; do
-      repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like comfirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat?
+      repeat_command=$(echo -e "Repeat" | rofi -dmenu -no-custom -p "[Enter] repeat; [ESC] exit") #? Needed a separate Rasi ? Dunno how to make; Maybe Something like confirmation rasi for buttons Yes and No then the -p will be the Question like Proceed? Repeat?
 
       if [ "$repeat_command" = "Repeat" ]; then
         # Repeat the command here
