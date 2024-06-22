@@ -166,6 +166,9 @@ $comments
 "l" : "Left",
 "r" : "Right",
 "u" : "Up",
+"f" : "Forward",
+"b" : "Backward",
+
 };
 
 def keycode_mapping: { #? Fetches keycode from a file 
@@ -210,7 +213,7 @@ def keycode_mapping: { #? Fetches keycode from a file
     "global": "Global:",
     "exit" : "Exit Hyprland Session",
     "fullscreen" : "Toggle Functions",
-    "fakefullscreen" : "Fake Fullscreen",
+    "fakefullscreen" : "Toggle Functions",
     "mouse" : "Mouse functions",
     "movefocus" : "Window functions",
     "movewindow" : "Window functions",
@@ -243,7 +246,8 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
     "togglegroup" : "Toggle Group",
     "togglesplit" : "Toggle Split",
     "togglespecialworkspace" : "Toggle Special Workspace",
-    "mouse" : "Use Mouse"
+    "mouse" : "Use Mouse",
+    "changegroupactive" : "Switch Active group",
     $([ -f "${dispatcherFile}" ] && cat "${dispatcherFile}")
   };
 
