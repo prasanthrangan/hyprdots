@@ -1,11 +1,8 @@
 #!/usr/bin/env sh
 
-#* Seriously, do not bother on this code as this is too messy. If someone can refactor this and structure it properly that would be awesome.
-#* I use jq to parse and create a metadata.
-#* It is Functional but dunno if this is maintainable lol
-#* Users should refer to this project to parse keybinds https://github.com/hyprland-community/Hyprkeys
-#* Created this to avoid dependencies
-#* Please inform me if there are new Categories upstream I will try to add comments to this code so I won't forget.
+#* jq to parse and create a metadata.
+#* Users are advised to use bindd to explicitly add the description
+#* Please inform us if there are new Categories upstream will try to add comments to this script
 #* Khing 🦆
 
 pkill -x rofi && exit
@@ -14,28 +11,30 @@ source $scrDir/globalcontrol.sh
 
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 keyconfDir="$confDir/hypr"
-kb_hint_conf+=("$keyconfDir/hyprland.conf" "$keyconfDir/keybindings.conf" "$keyconfDir/userprefs.conf" )
+kb_hint_conf=("$keyconfDir/hyprland.conf" "$keyconfDir/keybindings.conf" "$keyconfDir/userprefs.conf" )
 tmpMapDir="/tmp"
 tmpMap="$tmpMapDir/hyde-keybinds.jq"
-keycodeFile="${hydeConfDir}/keycode.conf"
+keycodeFile="${hydeConfDir}/keycode.kb"
+modmaskFile="${hydeConfDir}/modmask.kb"
+keyFile="${hydeConfDir}/key.kb"
+categoryFile="${hydeConfDir}/category.kb"
+dispatcherFile="${hydeConfDir}/dispatcher.kb"
+
 roDir="$confDir/rofi"
 roconf="$roDir/clipboard.rasi"
 
 HELP() {
   cat <<HELP
-Usage: $0 [options]"
-Options:"
- -j     show the JSON format
- -p     show the pretty format
- -d     add custom delimiter symbol (default '>')
- -f     add custom file
- -w     custom width
- -h     custom height
- -l     custom number of lines
- --help     Display this help message
+Usage: $(basename $0) [options]
+Options:
+    -j     Show the JSON format
+    -p     Show the pretty format
+    -d     Add custom delimiter symbol (default '>')
+    -f     Add custom file
+    -w     Custom width
+    -h     Display this help message
 Example:
- $0 -j -p -d '>' -f custom_file.txt -w 80 -h"
-
+ $(basename $0) -j -p -d '>' -f custom_file.txt -w 80 -h"
 Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
   Available overrides:
 
@@ -44,12 +43,20 @@ Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
     kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
     kb_hint_line=13                           ﯦ adjust how many lines are listed
-    
-For mapping key codes, create a file named $keycodeFile and use the following format:
-    
-  "number": "symbol",
-      example: "61": "/",
 
+Users can also add a key overrides inside ${hydeConfDir}
+List of file override:
+${keycodeFile} => keycode 
+${modmaskFile} => modmask   
+${keyFile} => keys
+${categoryFile} => category
+${dispatcherFile} => dispatcher
+
+Example for keycode override 
+create a file named $keycodeFile and use the following format:
+
+    "number": "display name/symbol",
+    "61": "/",
 
 HELP
 }
@@ -78,7 +85,7 @@ while [ "$#" -gt 0 ]; do
     shift
     kb_hint_height="$1"
     ;;
-  -l) # Custom height
+  -l) # Custom number of line
   shift
   kb_hint_line="$1"
   ;;
@@ -127,7 +134,6 @@ substitute_vars() {
 #   echo "$s"
 # }
 
-# comments=$(awk -v scrPath="$scrPath" -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ {gsub(/\$scrPath/, scrPath, $4); print $4}' $kb_hint_conf | sed "s#\"#'#g" )
 initialized_comments=$(awk -F ',' '!/^#/ && /bind*/ && $3 ~ /exec/ && NF && $4 !~ /^ *$/ { print $4}' ${kb_hint_conf[@]} | sed "s#\"#'#g")
 comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
   '{gsub(/^ */, "", $1);\
@@ -142,8 +148,9 @@ comments=$(substitute_vars "$initialized_comments" | awk -F'#' \
   awk '!seen[$0]++')
 # echo "$comments"
 
-cat <<EOF >$tmpMap
+cat <<OVERRIDES >$tmpMap
 # hyde-keybinds.jq
+#! This is Our Translator for some binds  #🦆
 def executables_mapping: {  #? Derived from .args to parse scripts to be Readable
 #? Auto Generated Comment Conversion
 $comments
@@ -161,22 +168,10 @@ $comments
 "u" : "Up",
 };
 
-def keycode_mapping: { #? Fetches keycode from a file
+def keycode_mapping: { #? Fetches keycode from a file 
  "0": "",
  $([ -f "${keycodeFile}" ] && cat "${keycodeFile}")
 };
-EOF
-
-cat <<KEYCODE >>$tmpMap
-
-KEYCODE
-
-#? Script to re Modify hyprctl json output
-#! This is Our Translator for some binds  #Khing!
-jsonData="$(
-  hyprctl binds -j | jq -L "$tmpMapDir" -c '
-include "hyde-keybinds";
-
 
   def modmask_mapping: { #? Define mapping for modmask numbers represents bitmask
     "64": " ",  #? SUPER  󰻀 Also added 2 En space ' ' <<<
@@ -184,6 +179,7 @@ include "hyde-keybinds";
     "4": "CTRL", 
     "1": "SHIFT",
     "0": " ",
+ $([ -f "${modmaskFile}" ] && cat "${modmaskFile}")
   };
 
   def key_mapping: { #?Define mappings for .keys to be readable symbols
@@ -207,6 +203,7 @@ include "hyde-keybinds";
     "XF86MonBrightnessUp" : "󰃠",
     "switch:on:Lid Switch" : "󰛧",
     "backspace" : "󰁮 ",  
+    $([ -f "${keyFile}" ] && cat "${keyFile}")
   };
   def category_mapping: { #? Define Category Names, derive from Dispatcher #? This will serve as the Group header
     "exec" : "Execute a Command:",
@@ -225,7 +222,8 @@ include "hyde-keybinds";
     "workspace" : "Navigate Workspace",
     "movetoworkspace" : "Navigate Workspace",
     "movetoworkspacesilent" : "Navigate Workspace",
-    
+    "changegroupactive" : "Change Active Group",
+    $([ -f "${categoryFile}" ] && cat "${categoryFile}")
   };
 def arg_mapping: { #! Do not Change this used for Demo only... As this will change .args! will be fatal
     "arg2": "mapped_arg2",
@@ -246,8 +244,17 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
     "togglesplit" : "Toggle Split",
     "togglespecialworkspace" : "Toggle Special Workspace",
     "mouse" : "Use Mouse"
-
+    $([ -f "${dispatcherFile}" ] && cat "${dispatcherFile}")
   };
+
+OVERRIDES
+
+#? Script to re Modify hyprctl json output
+#? Basically we are using jq to handle json data and outputs a pretty and friendly output
+jsonData="$(
+  hyprctl binds -j | jq -L "$tmpMapDir" -c '
+include "hyde-keybinds";
+
   #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
   #? Also we can just map it manually too
   def get_keys: 
@@ -271,37 +278,28 @@ def arg_mapping: { #! Do not Change this used for Demo only... As this will chan
       .
     end;
 def get_keycode:
-  (keycode_mapping[(. | tostring)] // .); #? Make it a string
+  (keycode_mapping[(. | tostring)] // .); #? use the keycode conversion... and turn to string
 
 .[] | #? Filter 1
-.dispatcher as $dispatcher | .description = $dispatcher | #? Value conversions for the description
+.dispatcher as $dispatcher | .desc_dispatcher = $dispatcher | #? Value conversions for the description
 .dispatcher as $dispatcher | .category = $dispatcher | #? Value conversions for the category
-.arg as $arg | .executables = $arg | #? get args
-
-.modmask |= (get_keys | ltrimstr("")) | #? Execute modmask conversions
-
+.arg as $arg | .desc_executable = $arg | #? creates new key .desc_executable to be use later
+.modmask |= (get_keys | ltrimstr(" ")) | #? Execute Momask conversions, b
 .keycode |= (get_keycode // .) |  #? Apply the get_keycode transformation
-
-.key |= (key_mapping[.] // .) | #? Apply the key_mapping
-
+.key |= (key_mapping[.] // .) | #? Apply the get_key
 # .keybind = (.modmask | tostring // "") + (.key // "") | #! Same as below but without the keycode
-.keybind = (.modmask | tostring // " ") +  (.key // " ")  + ((.keycode // 0) | tostring)  | #? Show the keybindings 
-
+.keybind = (.modmask | tostring // "") + (.key // "") + ((.keycode // 0) | tostring) | #? Show the keybindings 
 .flags = " locked=" + (.locked | tostring) + " mouse=" + (.mouse | tostring) + " release=" + (.release | tostring) + " repeat=" + (.repeat | tostring) + " non_consuming=" + (.non_consuming | tostring) | #? This are the flags repeat,lock etc
-
-.category |= (category_mapping[.] // .) | #? Group by Categories
-
+.category |= (category_mapping[.] // .) | #? Group by Categories will be use for headers
 #!if .modmask and .modmask != " " and .modmask != "" then .modmask |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .modmask = "" end |
 if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |  #? Clean up
-
   .arg |= (arg_mapping[.] // .) | #? See above for how arg is converted
- #!    .executables |= gsub(".sh"; "") | #? Usefull soon
-
-  .executables |= (executables_mapping[.] // .) | #? conversions
-  .description |= (description_mapping[.] // .)    #? Convert to description
- 
+ #!    .desc_executable |= gsub(".sh"; "") | #? Maybe Usefull soon removes ".sh" to file  
+  #? Creates a key desc... for fallback if  "has description" is false
+  .desc_executable |= (executables_mapping[.] // .) | #? exclusive for "exec" dispatchers 
+  .desc_dispatcher |= (description_mapping[.] // .)  |  #? for all other dispatchers
+  .description = if .has_description == false then "\(.desc_dispatcher) \(.desc_executable)" else.description end
 ' #* <---- There is a '   do not delete this'
-
 )"
 
 #? Now we have the metadata we can Group it accordingly
@@ -341,7 +339,7 @@ cols=${cols:-999}
 linebreak="$(printf '%.0s━' $(seq 1 ${cols}) "")"
 
 #! this Part Gives extra laoding time as I don't have efforts to make single space for each class
-metaData="$(jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) \(.executables) !=! \(.flags)"' <<< "${jsonData}" | tr -s ' ' | sort -k 1)"
+metaData="$(jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) !=! \(.flags)"' <<< "${jsonData}" | tr -s ' ' | sort -k 1)"
 
 #? This formats the pretty output
 display="$(GROUP <<< "$metaData" | DISPLAY)"
