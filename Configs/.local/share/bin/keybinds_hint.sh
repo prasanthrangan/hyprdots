@@ -90,7 +90,7 @@ while [ "$#" -gt 0 ]; do
   shift
   kb_hint_line="$1"
   ;;
-  --help) # Add Help message
+  -*) # Add Help message
     HELP
     exit
     ;;
@@ -343,7 +343,7 @@ cols=$(tput cols)
 cols=${cols:-999}
 linebreak="$(printf '%.0s━' $(seq 1 "${cols}") "")"
 
-#! this Part Gives extra laoding time as I don't have efforts to make single space for each class
+#! this Part Gives extra loading time as I don't have efforts to make single space for each class
 metaData="$(jq -r '"\(.category) !=! \(.modmask) !=! \(.key) !=! \(.dispatcher) !=! \(.arg) !=! \(.keybind) !=! \(.description) !=! \(.flags)"' <<< "${jsonData}" | tr -s ' ' | sort -k 1)"
 
 #? This formats the pretty output
@@ -372,7 +372,7 @@ r_height="height: ${kb_hint_height:-35em};"
 r_listview="listview { lines: ${kb_hint_line:-13}; }"
 r_override="window {$r_height $r_width border: ${hypr_width}px; border-radius: ${wind_border}px;} entry {border-radius: ${elem_border}px;} element {border-radius: ${elem_border}px;} ${r_listview} "
 
-# read hypr font size
+# Read hypr font size
 fnt_override=$(gsettings get org.gnome.desktop.interface font-name | awk '{gsub(/'\''/,""); print $NF}')
 fnt_override="configuration {font: \"JetBrainsMono Nerd Font ${fnt_override}\";}"
 
@@ -384,8 +384,8 @@ icon_override="configuration {icon-theme: \"${icon_override}\";}"
 selected=$(echo "$output" | rofi -dmenu -p -i -theme-str "${fnt_override}" -theme-str "${r_override}" -theme-str "${icon_override}" -config "${roconf}" | sed 's/.*\s*//')
 if [ -z "$selected" ]; then exit 0; fi
 
-sel_1=$(awk -F "${kb_hint_delim:->}"  '{print $1}' <<< "$selected" | awk '{$1=$1};1') #? are the double spaces important? "__' <- Those
-sel_2=$(awk -F "${kb_hint_delim:->}"  '{print $2}' <<< "$selected" | awk '{$1=$1};1')
+sel_1=$(awk -F "${kb_hint_delim:->}" '{print $1}' <<< "$selected" | awk '{$1=$1};1')
+sel_2=$(awk -F "${kb_hint_delim:->}" '{print $2}' <<< "$selected" | awk '{$1=$1};1')
 run="$(grep "$sel_1" <<< "$metaData" | grep "$sel_2")"
 
 run_flg="$(echo "$run" | awk -F '!=!' '{print $8}')"
