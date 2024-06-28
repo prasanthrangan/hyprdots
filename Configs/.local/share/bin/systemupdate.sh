@@ -5,6 +5,15 @@ if [ ! -f /etc/arch-release ] ; then
     exit 0
 fi
 
+if pkg_installed timeshift; then
+    read -p "Do you want to backup using Timeshift? (y/n): " backup_choice
+    if [[ "$backup_choice" == "y" ]]; then
+        echo "Starting backup..."
+        sudo timeshift --create --comments "Pre-update backup"
+        echo "Backup completed."
+    fi
+fi
+
 # source variables
 scrDir=$(dirname "$(realpath "$0")")
 source "$scrDir/globalcontrol.sh"
