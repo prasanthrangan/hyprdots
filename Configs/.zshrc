@@ -50,6 +50,11 @@ function in {
 
     if [[ ${#arch[@]} -gt 0 ]]; then
         sudo pacman -S "${arch[@]}"
+        if command -v doas >/dev/null 2>&1 && [ -f /etc/doas.conf ]; then
+            doas pacman -S "${arch[@]}"
+        else
+            sudo pacman -S "${arch[@]}"
+        fi
     fi
 
     if [[ ${#aur[@]} -gt 0 ]]; then
