@@ -1,14 +1,16 @@
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "<span color='#1793d1' size='125%'>{icon}</span> {capacity}%",
-        "rotate": ${r_deg},
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+"battery": {
+    "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 20
     },
+    // "format": "<span color='#1793d1' size='125%'>{icon}</span> <span font_weight='ultrabold'>{capacity}%</span>",
+    "format": "<span size='125%'>{icon}</span> <span font_weight='ultrabold'>{capacity}%</span>",
+    "rotate": ${r_deg},
+    "interval": 1,
+    "format-charging": "<span color='#00FFAB' size='130%'>󰂄</span> {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["<span color='#FF8080'>󰂃</span>", "<span color='#FF8080'>󰁺</span>", "<span color='#FF8080'>󰁻</span>", "<span color=#F6F193'>󰁼</span>", "<span color='#F6F193'>󰁽</span>", "<span color='#F6F193'>󰁾</span>", "<span color='#9DDE8B'>󰁿</span>", "<span color='#9DDE8B'>󰂀</span>", "<span color='#40A578'>󰂁</span>", "<span color='#40A578'>󰂂</span>", "<span color='#40A2E3'>󰁹</span>"]
+},
 
