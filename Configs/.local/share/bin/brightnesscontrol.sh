@@ -17,9 +17,9 @@ function send_notification {
     brightness=`brightnessctl info | grep -oP "(?<=\()\d+(?=%)" | cat`
     brightinfo=$(brightnessctl info | awk -F "'" '/Device/ {print $2}')
     angle="$(((($brightness + 2) / 5) * 5))"
-    ico="$HOME/.config/dunst/icons/vol/vol-${angle}.svg"
+    ico="$HOME/.config/swaync/icons/vol/vol-${angle}.svg"
     bar=$(seq -s "." $(($brightness / 15)) | sed 's/[0-9]//g')
-    notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "${brightness}${bar}" "${brightinfo}"
+    notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "${brightness}${bar}" "${brightinfo}" -h string:x-canonical-private-synchronous:test
 }
 
 function get_brightness {
