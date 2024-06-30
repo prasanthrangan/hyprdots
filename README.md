@@ -131,7 +131,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/rofi_style_sel.png"/></td></tr>
 <tr><td>Wallbash Modes</td><td>Notification Action</td></tr><tr><td>
 <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/wb_mode_sel.png"/></td><td>
-<img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/notif_action_sel.png"/></td></tr>
+<img src="./Source/assets/notif_action_sel.png"/></td></tr>
 </table></div>
 
 <div align="center"><table><tr>Rofi Launcher</tr><tr><td>
@@ -221,9 +221,11 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>J</kbd> | Toggle focused window split |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>[0-9]</kbd> | Move focused window to a workspace silently |
 | <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>H</kbd> | Move between grouped windows backward |
-
+| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>L</kbd> | Move between grouped windows forward |
+| <kbd>F9</kbd>  | Open swaync Notification window |
 | <kbd>F6</kbd>  | Increase Night light |
 | <kbd>F4</kbd>  | Decrease Night light |
+
 </div>
 
 <div align="right">
