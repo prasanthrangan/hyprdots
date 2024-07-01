@@ -5,11 +5,11 @@ if status is-interactive
 end
 
 # List Directory
-alias ls="lsd"
-alias l="ls -l"
-alias la="ls -a"
-alias lla="ls -la"
-alias lt="ls --tree"
+alias l='eza -lh  --icons=auto' # long list
+alias ls='eza -1   --icons=auto' # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias ld='eza -lhD --icons=auto' # long list dirs
+alias lt='eza --icons=auto --tree' # list folder as tree
 
 # Handy change dir shortcuts
 abbr .. 'cd ..'

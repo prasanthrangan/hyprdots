@@ -13,7 +13,6 @@ N|Y|${HOME}/.config/hypr|nvidia.conf|hyprland nvidia-utils
 Y|Y|${HOME}/.local/share|bin|hyprland
 Y|Y|${HOME}/.config|kitty|kitty
 Y|Y|${HOME}/.config|Kvantum|kvantum
-Y|Y|${HOME}/.config|lsd|lsd
 Y|Y|${HOME}/.config|MangoHud|mangohud
 Y|Y|${HOME}/.config|fastfetch|fastfetch
 Y|Y|${HOME}/.config|qt5ct|qt5ct
