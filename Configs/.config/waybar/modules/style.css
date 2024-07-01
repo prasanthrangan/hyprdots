@@ -3,7 +3,7 @@
     border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: ${s_fontpx}px;
+    /* font-size: ${s_fontpx}px; disabled for multi monitor support */
     min-height: 10px;
 }
 
@@ -107,6 +107,8 @@ ${modules_ls}
     margin: ${x1g_margin}px ${x2g_margin}px ${x3g_margin}px ${x4g_margin}px;
     padding-${x3}: ${g_paddin}px;
     padding-${x4}: ${g_paddin}px;
+
+    border-bottom: 2px solid @wb-hvr-bg; /* dynamic lower shadow */
 }
 
 #workspaces,
