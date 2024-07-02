@@ -107,7 +107,7 @@ gen_mod right 6
 # copy modules/*.jsonc to the config
 
 echo -e "\n\n// sourced from modules based on config.ctl //\n" >> $conf_file
-echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print $1}' | awk '!x[$0]++' | while read mod_cpy
+echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print}' | awk '!x[$0]++' | while read mod_cpy
 do
     if [ -f $modules_dir/$mod_cpy.jsonc ] ; then
         envsubst < $modules_dir/$mod_cpy.jsonc >> $conf_file
