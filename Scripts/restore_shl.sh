@@ -41,7 +41,7 @@ if pkg_installed zsh && pkg_installed oh-my-zsh-git; then
     done < <(cut -d '#' -f 1 "${scrDir}/restore_zsh.lst" | sed 's/ //g')
 
     # update plugin array in zshrc
-    echo -e "\033[0;32m[SHELL]\033[0m intalling plugins (${w_plugin} )"
+    echo -e "\033[0;32m[SHELL]\033[0m installing plugins (${w_plugin} )"
     sed -i "/^plugins=/c\plugins=(${w_plugin} )${Fix_Completion}" "${Zsh_rc}"
 fi
 
