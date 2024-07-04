@@ -12,7 +12,7 @@ confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="$HOME/.cache/hyde"
 aurList=(yay paru)
 shlList=(zsh fish)
-lckList=(swaylock hyprlock)
+lckList=(swaylock-effects-git hyprlock)
 
 pkg_installed() {
     local PkgIn=$1
