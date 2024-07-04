@@ -28,8 +28,6 @@ dunst                                                  # notification daemon
 rofi-lbonn-wayland-git                                 # application launcher
 waybar                                                 # system bar
 swww                                                   # wallpaper
-swaylock-effects-git|swaylock-effects                  # lock screen
-hyprylock-git|hyprlock                                 # lock screen
 wlogout                                                # logout menu
 grimblast-git                                          # screenshot tool
 hyprpicker                                             # color picker
