@@ -140,7 +140,7 @@ EOF
         prompt_timer 120 "Enter option number"
 
         case "${promptIn}" in
-            1) export myLock="swaylock-effects" ;;
+            1) export myLock="swaylock-effects-git" ;;
             2) export myLock="hyprlock" ;;
             *) echo -e "...Invalid option selected..." ; exit 1 ;;
         esac
