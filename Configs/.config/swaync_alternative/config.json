@@ -1,0 +1,84 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "bottom",
+  "cssPriority": "application",
+  "control-center-width": 380,
+  "control-center-height": 1000,
+  "control-center-margin-top": 2,
+  "control-center-margin-bottom": 2,
+  "control-center-margin-right": 1,
+  "control-center-margin-left": 0,
+  "notification-icon-size": 64,
+  "notification-window-width": 600,
+  "notification-body-image-height": 200,
+  "notification-body-image-width": 200,
+  "timeout": 10,
+  "timeout-low": 5,
+  "timeout-critical": 0,
+  "fit-to-screen": false,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "script-fail-notify": true,
+  "hide-on-clear": false,
+  "hide-on-action": true,
+  "notification-visibility": {
+    "example-name": {
+      "state": "muted",
+      "urgency": "Low",
+      "app-name": "Spotify"
+    }
+  },
+  "widgets": [
+    "buttons-grid",
+    "volume",
+    "backlight",
+    "mpris",
+    "dnd",
+    "title",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "󰆴 Clear All"
+    },
+    "dnd": {
+      "text": "Do Not Disturb"
+    },
+    "mpris": {
+      "image-size": 96,
+      "image-radius": 12
+    },
+    "backlight": {
+      "label": " 󰃟  ",
+      "device": "intel_backlight",
+      "min": 10
+    },
+    "volume": {
+      "label": " 󰕾 "
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": " 󱛆  ",
+          "command": "nm-connection-editor"
+        },
+        {
+          "label": "  ",
+          "command": "blueman-manager"
+        },
+        {
+          "label": " 󰃛 ",
+          "command": "hyprshade toggle bluefilter"
+        },
+        {
+          "label": "  ",
+          "command": "sh -c logoutlaunch.sh"
+        }
+      ]
+    }
+  }
+}

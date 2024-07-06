@@ -115,7 +115,7 @@ fi
 
 pkg_installed()
 {
-    local pkgIn=$1
+    local pkgIn="$1"
     if pacman -Qi "${pkgIn}" &> /dev/null ; then
         return 0
     elif pacman -Qi "flatpak" &> /dev/null && flatpak info "${pkgIn}" &> /dev/null ; then
@@ -126,6 +126,16 @@ pkg_installed()
         return 1
     fi
 }
+
+if pkg_installed dunst && pkg_installed swaync || pkg_installed dunst-git && pkg_installed swaync-git; then
+    echo "Error you should not have dunst and swaync installed at the same time!"
+    exit 1
+    elif pkg_installed dunst || pkg_installed dunst-git; then
+        icoDir="${confDir}/dunst/icons"
+    elif pkg_installed swaync || pkg_installed swaync-git; then
+        icoDir="${confDir}/swaync/icons"
+    export icoDir
+fi
 
 get_aurhlpr()
 {

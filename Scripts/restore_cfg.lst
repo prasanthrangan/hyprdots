@@ -5,6 +5,7 @@ N|Y|${HOME}/.config|code-flags.conf|visual-studio-code-bin
 N|Y|${HOME}/.config|code-flags.conf|code
 N|Y|${HOME}/.config|spotify-flags.conf|spotify
 Y|Y|${HOME}/.config|dunst|dunst
+Y|Y|${HOME}/.config|swaync|swaync
 Y|Y|${HOME}/.config|fish|fish
 Y|Y|${HOME}/.config/hyde|wallbash|hyprland
 Y|Y|${HOME}/.config/hypr|animations.conf hyprland.conf windowrules.conf themes|hyprland
