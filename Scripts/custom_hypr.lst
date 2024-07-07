@@ -48,7 +48,6 @@ imagemagick                                            # for image processing
 qt5-imageformats                                       # for dolphin image thumbnails
 ffmpegthumbs                                           # for dolphin video thumbnails
 kde-cli-tools                                          # for dolphin file type defaults
-kservice5                                              # for "open with" menu in dolphin
 libnotify                                              # for notifications
 
 # --------------------------------------------------- // Theming
@@ -71,7 +70,7 @@ code                                                   # ide text editor
 # --------------------------------------------------- // Shell
 eza|zsh                                                # file lister for zsh
 oh-my-zsh-git|zsh                                      # plugin manager for zsh
-zsh-theme-powerlevel10k|zsh oh-my-zsh-git              # theme for zsh
+zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git          # theme for zsh
 lsd|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 fastfetch                                              # system information fetch tool
