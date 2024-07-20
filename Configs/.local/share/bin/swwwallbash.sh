@@ -237,7 +237,9 @@ if [ "${enableWallDcol}" -eq 0 ] && [[ "${reload_flag}" -eq 1 ]] ; then
     done < <(find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol")
 
     parallel fn_wallbash ::: "${deployList[@]}"
-
+    colorScheme="$({ grep -q "^[[:space:]]*\$COLOR-SCHEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$COLOR-SCHEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
+                    grep 'gsettings set org.gnome.desktop.interface color-scheme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+    { grep -q "${dcol_mode}" <<< "${colorScheme}" && enableWallDcol=3 ;} || { enableWallDcol=2 && echo  "colors :: ${dcol_mode} => ${dcol_invt}" ;}
 elif [ "${enableWallDcol}" -gt 0 ] ; then
 
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
