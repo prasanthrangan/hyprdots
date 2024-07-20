@@ -44,7 +44,7 @@ action_pamixer() {
 
 action_playerctl() {
     [ "${1}" == "i" ] && pvl="+" || pvl="-"
-    playerctl --player="${srce}" volume 0.0"${step}""${pvl}"
+    playerctl --player="${srce}" volume "0.0${step}${pvl}"
     vol=$(playerctl --player="${srce}" volume | awk '{ printf "%.0f\n", $0 * 100 }')
 }
 
@@ -65,7 +65,7 @@ select_output() {
 
 # eval device option
 
-while getopts iops: DeviceOpt; do
+while getopts iop:s: DeviceOpt; do
     case "${DeviceOpt}" in
     i)
         nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}')
@@ -80,10 +80,11 @@ while getopts iops: DeviceOpt; do
         srce=""
         ;;
     p)
-        nsink=$(playerctl --list-all | grep -w "${OPTARG}")
-        [ -z "${nsink}" ] && echo "ERROR: Player ${OPTARG} not active..." && exit 0
+        player_name="${OPTARG}"
+        nsink=$(playerctl --list-all | grep -w "${player_name}")
+        [ -z "${nsink}" ] && echo "ERROR: Player ${player_name} not active..." && exit 0
         ctrl="playerctl"
-        srce="${nsink}"
+        srce="${player_name}"
         ;;
     s)
         default_sink="$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}')"
