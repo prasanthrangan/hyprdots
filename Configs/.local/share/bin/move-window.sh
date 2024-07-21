@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 RESIZE_SIZE=${1:?Missing resize size}
 DIRECTION=${2:?Missing move direction}
