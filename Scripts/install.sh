@@ -135,6 +135,20 @@ EOF
         echo "${myShell}" >> "${scrDir}/install_pkg.lst"
     fi
 
+    if ! chk_list "myNotd" "${ntdList[@]}"; then
+        echo -e "Select Notification Daemon:\n[1] dunst\n[2] dunst-git\n[3] swaync\n[4] swaync-git"
+        prompt_timer 120 "Enter option number"
+
+        case "${promptIn}" in
+            1) export myNotd="dunst" ;;
+            2) export myNotd="dunst-git" ;;
+            3) export myNotd="swaync" ;;
+            4) export myNotd="swaync-git" ;;
+            *) echo -e "...Invalid option selected..." ; exit 1 ;;
+        esac
+        echo "${myNotd}" >> "${scrDir}/install_pkg.lst"
+    fi
+
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#

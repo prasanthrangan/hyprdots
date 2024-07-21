@@ -114,6 +114,19 @@ if pkg_installed flatpak ; then
     fi
 fi
 
+
+#// swaync
+#! only for alternative version needed
+# if pkg_installed swaync ; then
+#     style_css="${confDir}/swaync/style.css"
+    
+#     # Convert themeSet to the format used in style.css
+#     theme_file=$(echo "$gtkTheme" | tr '[:upper:]' '[:lower:]' | tr '-' '_')
+
+#     # Replaces the @import-Statement with the desired theme
+#     sed -i "s|@import \"\.\/themes\/[^\"]*\.css\"|@import \"\.\/themes\/${theme_file}.css\"|g" "${style_css}"
+# fi
+
 #// wallpaper
 
 "${scrDir}/swwwallpaper.sh" -s "$(readlink "${hydeThemeDir}/wall.set")"
