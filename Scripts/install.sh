@@ -135,6 +135,18 @@ EOF
         echo "${myShell}" >> "${scrDir}/install_pkg.lst"
     fi
 
+    if ! chk_list "myLock" "${lckList[@]}"; then
+        echo -e "Select lockscreen:\n[1] swaylock-effects\n[2] hyprlock"
+        prompt_timer 120 "Enter option number"
+
+        case "${promptIn}" in
+            1) export myLock="swaylock-effects-git" ;;
+            2) export myLock="hyprlock" ;;
+            *) echo -e "...Invalid option selected..." ; exit 1 ;;
+        esac
+        echo "${myLock}" >> "${scrDir}/install_pkg.lst"
+    fi
+
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
