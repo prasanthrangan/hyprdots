@@ -77,3 +77,5 @@ pokemon-colorscripts-git|zsh                           # display pokemon sprites
 
 # --------------------------------------------------- // HyDE
 hyde-cli-git                                           # cli tool to manage hyde
+# --------------------------------------------------- // Screen Shader
+hyprshade					       # Night Light
