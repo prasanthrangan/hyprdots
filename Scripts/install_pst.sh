@@ -60,6 +60,14 @@ fi
 # shell
 "${scrDir}/restore_shl.sh"
 
+# hyprshade
+if command -v hyprshade &> /dev/null; then
+    systemctl --user enable --now hyprshade.timer
+    echo -e "\033[0;32m[HYPRSHADE]\033[0m detected and enabled"
+else
+    echo -e "\033[0;33m[WARNING]\033[0m hyprshade is not installed..."
+fi
+
 # flatpak
 if ! pkg_installed flatpak; then
 
