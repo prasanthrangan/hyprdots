@@ -385,6 +385,10 @@ interior.element=menuitem
 indicator.size=8
 text.focus.color=#<wallbash_1xa9>
 text.press.color=#<wallbash_1xa9>
+text.margin.top=2
+text.margin.bottom=2
+text.margin.left=15
+text.margin.right=5
 
 [MenuBarItem]
 inherits=PanelButtonCommand
