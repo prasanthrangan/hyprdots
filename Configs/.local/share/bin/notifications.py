@@ -2,7 +2,6 @@
 
 import subprocess
 import json
-import time
 import sys
 
 def get_dunst_history():
@@ -22,18 +21,17 @@ def format_history(history):
     tooltip = []
 
     if count > 0:
-        for notification in history['data'][0]:
+        notifications = history['data'][0][:10]  # Get the first 10 notifications
+        for notification in notifications:
             body = notification.get('body', {}).get('data', '')
             category = notification.get('category', {}).get('data', '')
             if category:
                 alt = category + '-notification'
-                tooltip.clear()
-                tooltip.append(f"{body} ({category})\n ")
-                break
+                tooltip.append(f"{body} ({category})\n")
             else:
                 alt = 'notification'
-                if not tooltip:
-                    tooltip.append(f"{body}\n ")
+                tooltip.append(f"{body}\n")
+
     isDND = subprocess.run(['dunstctl', 'get-pause-level'], stdout=subprocess.PIPE)
     isDND = isDND.stdout.decode('utf-8').strip()
     if isDND != '0':
@@ -47,12 +45,10 @@ def format_history(history):
     return formatted_history
 
 def main():
-    # while True:
-        history = get_dunst_history()
-        formatted_history = format_history(history)
-        sys.stdout.write(json.dumps(formatted_history) + '\n')
-        sys.stdout.flush()
-        # time.sleep(1)
+    history = get_dunst_history()
+    formatted_history = format_history(history)
+    sys.stdout.write(json.dumps(formatted_history) + '\n')
+    sys.stdout.flush()
 
 if __name__ == "__main__":
     main()
