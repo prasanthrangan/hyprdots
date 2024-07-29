@@ -27,10 +27,10 @@ def format_history(history):
             category = notification.get('category', {}).get('data', '')
             if category:
                 alt = category + '-notification'
-                tooltip.append(f"• {body} ({category})\n")
+                tooltip.append(f" {body} ({category})\n")
             else:
                 alt = 'notification'
-                tooltip.append(f"• {body}\n")
+                tooltip.append(f" {body}\n")
 
     isDND = subprocess.run(['dunstctl', 'get-pause-level'], stdout=subprocess.PIPE)
     isDND = isDND.stdout.decode('utf-8').strip()
