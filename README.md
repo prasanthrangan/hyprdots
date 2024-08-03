@@ -174,6 +174,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | :--- | :--- |
 | <kbd>Super</kbd> + <kbd>Q</kbd><br><kbd>Alt</kbd> + <kbd>F4</kbd> | Close focused window|
 | <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
+| <kbd>Super</kbd> + <kbd>H</kbd> | Launch Keybinds Hint |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
 | <kbd>Super</kbd> + <kbd>G</kbd> | Toggle the window between focus and group |
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | Toggle the window between focus and fullscreen |
@@ -187,6 +188,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>F</kbd> | Launch web browser (firefox) |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> | Launch system monitor (htop/btop or fallback to top) |
 | <kbd>Super</kbd> + <kbd>A</kbd> | Launch application launcher (rofi) |
+| <kbd>Super</kbd> + <kbd>J</kbd> | Launch emoji picker (rofi) |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Launch window switcher (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Launch file explorer (rofi) |
 | <kbd>F10</kbd> | Toggle audio mute |
