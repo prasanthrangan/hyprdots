@@ -176,7 +176,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
 | <kbd>Super</kbd> + <kbd>G</kbd> | Toggle the window between focus and group |
-| <kbd>Super</kbd> + <kbd>H</kbd> | Launch keybinds hint |
+| <kbd>Super</kbd> + <kbd>slash</kbd> | Launch keybinds hint |
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | Toggle the window between focus and fullscreen |
 | <kbd>Super</kbd> + <kbd>L</kbd> | Launch lock screen |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Toggle pin on focused window |
