@@ -15,7 +15,6 @@ def format_history(history):
     tooltip_click = []
     tooltip_click.append("󰎟 Notifications")
     tooltip_click.append("󰳽 scroll-down:  history pop")
-    tooltip_click.append("󰳽 scroll-down:  history pop")
     tooltip_click.append("󰳽 click-left:  Enable & Disable DND")
     tooltip_click.append("󰳽 click-middle: 󰛌 clear history")
     tooltip_click.append("󰳽 click-right: 󱄊 close all")
