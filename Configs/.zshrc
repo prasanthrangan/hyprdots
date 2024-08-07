@@ -5,7 +5,7 @@ ZSH=/usr/share/oh-my-zsh/
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # List of plugins used
-plugins=()
+plugins=( git sudo fzf-tab zsh-256color zsh-autosuggestions zsh-syntax-highlighting )
 source $ZSH/oh-my-zsh.sh
 
 # In case a command is not found, try to find the package that has it
@@ -87,3 +87,30 @@ alias mkdir='mkdir -p'
 
 #Display Pokemon
 pokemon-colorscripts --no-title -r 1,3,6
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/wanted/.dart-cli-completion/zsh-config.zsh ]] && . /home/wanted/.dart-cli-completion/zsh-config.zsh || true
+source <(fzf --zsh)
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)            fzf "$@" ;;
+  esac
+}
+
+## [/Completion]
+
+# Autostart tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
+export PATH=$PATH:/home/wanted/.spicetify
+export GPG_TTY=$(tty)
+export PATH=$HOME/.local/bin:$PATH
+
