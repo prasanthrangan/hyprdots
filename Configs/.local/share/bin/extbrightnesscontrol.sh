@@ -12,8 +12,10 @@ function print_error
 cat << "EOF"
     ./brightnesscontrol.sh <action>
     ...valid actions are...
-        i -- <i>ncrease brightness [+5%]
-        d -- <d>ecrease brightness [-5%]
+        i -- <i>ncrease  brightness [+5%]
+        d -- <d>ecrease  brightness [-5%]
+        s -- <s>et VALUE brightness [VALUE%]
+        g -- <g>et       brightness
 EOF
 }
 
@@ -50,10 +52,10 @@ function set_brightness {
 case $1 in
 i)
     if [[ $(get_brightness) -lt 10 ]] ; then
-        # increase the backlight by 1% if less than 10%
+        # increase the brightness by 1% if less than 10%
         set_brightness i 1
     else
-        # increase the backlight by 5% otherwise
+        # increase the brightness by 5% otherwise
         set_brightness i 5
     fi
     send_notification ;;
@@ -62,10 +64,10 @@ d)
         # avoid 0% brightness
         set_brightness s 2
     elif [[ $(get_brightness) -le 10 ]] ; then
-        # decrease the backlight by 1% if less than 10%
+        # decrease the brightness by 1% if less than 10%
         set_brightness d 1
     else
-        # decrease the backlight by 5% otherwise
+        # decrease the brightness by 5% otherwise
         set_brightness d 5
     fi
     send_notification ;;
