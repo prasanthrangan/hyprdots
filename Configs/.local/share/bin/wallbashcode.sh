@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
 #// set variables
-
 scrDir="$(dirname "$(realpath "$0")")"
 source "${scrDir}/globalcontrol.sh"
 readarray -t codeConf < <(find "${confDir}" -mindepth 1 -maxdepth 1 -type d -name "Code*" -o -name "VSCodium*" | sort)
