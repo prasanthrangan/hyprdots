@@ -7,8 +7,7 @@ monitorInfo=$( ddcutil detect )
 monitors=($( echo "$monitorInfo" | grep "I2C bus:" | awk -F ': ' '{print $2}' ))
 model=$( echo "$monitorInfo" | grep "Model:" | awk -F ': ' '{print $2}' | head -n 1 | xargs )
 
-function print_error
-{
+print_error() {
 cat << "EOF"
     ./brightnesscontrol.sh <action>
     ...valid actions are...
@@ -19,11 +18,11 @@ cat << "EOF"
 EOF
 }
 
-function get_brightness {
+get_brightness() {
     ddcutil getvcp 10 | awk -F 'current value = ' '{print $2}' | grep -o '[0-9]\+' | head -n 1
 }
 
-function send_notification {
+send_notification() {
     brightness=$(get_brightness)
     angle=$(((($brightness + 2) / 5) * 5))
     ico="$HOME/.config/dunst/icons/vol/vol-${angle}.svg"
@@ -31,7 +30,7 @@ function send_notification {
     notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "Brightness ${brightness}" "${model}"
 }
 
-function set_brightness {
+set_brightness() {
     for v in "${monitors[@]}" ; do
         bus=$( echo $v | awk -F '-' '{print $2}' )
         
@@ -51,7 +50,8 @@ function set_brightness {
 
 case $1 in
 i)
-    if [[ $(get_brightness) -lt 10 ]] ; then
+    currentBrightness=$(get_brightness)
+    if [[ "$currentBrightness" -lt 10 ]] ; then
         # increase the brightness by 1% if less than 10%
         set_brightness i 1
     else
@@ -60,10 +60,11 @@ i)
     fi
     send_notification ;;
 d)
-    if [[ $(get_brightness) -le 2 ]] ; then
+    currentBrightness=$(get_brightness)
+    if [[ "$currentBrightness" -le 2 ]] ; then
         # avoid 0% brightness
         set_brightness s 2
-    elif [[ $(get_brightness) -le 10 ]] ; then
+    elif [[ "$currentBrightness" -le 10 ]] ; then
         # decrease the brightness by 1% if less than 10%
         set_brightness d 1
     else
