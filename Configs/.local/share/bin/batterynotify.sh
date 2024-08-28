@@ -161,9 +161,9 @@ execute_unplug=${execute_unplug:-}
 config_info
 if $verbose; then for line in "Verbose Mode is ON..." "" "" "" ""  ; do echo $line ; done;
 #TODO Might still need this in the future but for now we don't have any battery notify issues
-# current_pid=$$ 
+# current_pid=$$
 # pids=$(pgrep -f "/usr/bin/env bash ${scrDir}/batterynotify.sh" )
-# for pid in $pids ; do if [ "$pid" -ne $current_pid ] ;then kill -STOP "$pid" ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ; 
+# for pid in $pids ; do if [ "$pid" -ne $current_pid ] ;then kill -STOP "$pid" ;notify-send -a "Battery Notify" -t 2000 -r 9889 -u "CRITICAL" "Debugging STARTED, Pausing Regular Process" ;fi ; done  ; trap resume_processes SIGINT ;
 fi
     get_battery_info # initiate the function
     last_notified_percentage=$battery_percentage
@@ -175,7 +175,7 @@ verbose=false
   case "$1" in
         -m|--modify)
     EDITOR="${EDITOR:-code}"  #* Use VS Code as the default editor
-    echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=prefered-editor'  \n[Modifying]: $batterynotify_conf \nPress Any Key if done editing"
+    echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=preferred-editor'  \n[Modifying]: $batterynotify_conf \nPress Any Key if done editing"
     #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$batterynotify_conf" > /dev/null 2>&1 &
     kitty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &
     LAST_MD5SUM=$(md5sum "$batterynotify_conf")
@@ -213,7 +213,7 @@ check_range() {
     if [[ $var =~ ^[0-9]+$ ]] && (( var >= min && var <= max )); then
         var=$var ; shift 2
     else
-        echo -e "$1 WARNING: $error_message must be $min - $max." >&2 
+        echo -e "$1 WARNING: $error_message must be $min - $max." >&2
     fi
 }
 
