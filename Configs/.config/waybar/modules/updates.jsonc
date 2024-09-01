@@ -1,10 +1,9 @@
-    "custom/updates": {
-        "exec": "systemupdate.sh",
-        "return-type": "json",
+    "custom/pacman": {
         "format": "{}",
-        "rotate": ${r_deg},
-        "on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
-        "interval": 86400, // once every day
-        "tooltip": true,
-        "signal": 20,
-    },
+        "interval": 86400, 
+        "exec": "~/.config/waybar/scripts/update-check.sh",
+        "exec-if": "exit 0", 
+        "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", 
+        "on-right-click": "pkill -SIGRTMIN+8 waybar", 
+        "signal": 8
+    }
