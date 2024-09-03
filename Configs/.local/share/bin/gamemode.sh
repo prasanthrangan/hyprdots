@@ -1,6 +1,13 @@
 #!/usr/bin/env sh
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | sed -n '1p' | awk '{print $2}')
 
+
+if [ $HYPRGAMEMODE = 1 ]; then
+  echo 'windowrulev2 = opacity 1.00 1.00,class:^(.*)$' > "$HOME/.config/hypr/opaque.conf"
+  # Sleep needed since this change will automatically reload hyprland
+	sleep 1
+fi
+
 # Waybar performance
 FILE="$HOME/.config/waybar/style.css"
 
@@ -25,5 +32,6 @@ if [ $HYPRGAMEMODE = 1 ]; then
         keyword decoration:rounding 0"
 	exit
 else
+	echo "" > "$HOME/.config/hypr/opaque.conf"
 	hyprctl reload
 fi
