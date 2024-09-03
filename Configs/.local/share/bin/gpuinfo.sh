@@ -264,7 +264,7 @@ echo -e "Sensor: ${next_prioGPU} GPU" | sed 's/_flag//g'
 gpu_flags=$(grep "flag=1" "${gpuQ}" | cut -d '=' -f 1 | tr '\n' ' ' | tr -d '#')
 cat << EOF
 
-Avialable GPU: ${gpu_flags//_flag/}
+Available GPU: ${gpu_flags//_flag/}
 [options]
 --toggle         * Toggle available GPU
 --use [GPU]      * Only call the specified GPU (Useful for adding specific GPU on waybar)
