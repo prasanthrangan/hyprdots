@@ -1,2 +1,5 @@
 [General]
 TerminalApplication=kitty
+
+[Icons]
+Theme=Will be overwritten by themeswitch
