@@ -40,8 +40,12 @@ fi
 
 r_override="window{location:${x_pos} ${y_pos};anchor:${x_pos} ${y_pos};x-offset:${x_off}px;y-offset:${y_off}px;border:${hypr_width}px;border-radius:${wind_border}px;} wallbox{border-radius:${elem_border}px;} element{border-radius:${elem_border}px;}"
 
-# Show main menu
-main_action=$(echo -e "History\nDelete\nView Favorites\nManage Favorites\nClear History" | rofi -dmenu -theme-str "entry { placeholder: \"Choose action\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+# Show main menu if no arguments are passed
+if [ $# -eq 0 ]; then
+    main_action=$(echo -e "History\nDelete\nView Favorites\nManage Favorites\nClear History" | rofi -dmenu -theme-str "entry { placeholder: \"Choose action\";}" -theme-str "${r_scale}" -theme-str "${r_override}" -config "${roconf}")
+else
+    main_action="History"
+fi
 
 case "${main_action}" in
 "History")
