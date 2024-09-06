@@ -7,11 +7,11 @@ if status is-interactive
 end
 
 # Directory Listing Aliases with `eza`
-alias l='eza -lh  --icons=auto'             # Long list with icons
-alias ls='eza -1   --icons=auto'            # Short list with icons
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # Long list all with icons
-alias ld='eza -lhD --icons=auto'            # Long list dirs with icons
-alias lt='eza --icons=auto --tree'          # List folder as tree with icons
+alias l='eza -lh  --icons=auto'  # Long list with icons
+alias ls='eza -1   --icons=auto'  # Short list with icons
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first'  # Long list all with icons
+alias ld='eza -lhD --icons=auto'  # Long list dirs with icons
+alias lt='eza --icons=auto --tree'  # List folder as tree with icons
 
 # Handy change directory shortcuts
 abbr .. 'cd ..'
