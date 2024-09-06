@@ -39,7 +39,7 @@ Example:
 Users can also add a global overrides inside ${hydeConfDir}/hyde.conf
   Available overrides:
 
-    kb_hint_delim=">"                         ﯦ add a custom custom delimeter
+    kb_hint_delim=">"                         ﯦ add a custom custom delimiter
     kb_hint_conf=("file1.conf" "file2.conf")  ﯦ add a custom keybinds.conf path (add it like an array)
     kb_hint_width="30em"                      ﯦ custom width supports [ 'em' '%' 'px' ] 
     kb_hint_height="35em"                     ﯦ custom height supports [ 'em' '%' 'px' ]
@@ -260,7 +260,7 @@ jsonData="$(
   hyprctl binds -j | jq -L "$tmpMapDir" -c '
 include "hyde-keybinds";
 
-  #? Funtions to Convert modmask into Keys, There should be a beter math for this but Im lazy
+  #? Functions to Convert modmask into Keys, There should be a better math for this but Im lazy
   #? Also we can just map it manually too
   def get_keys:
     if . == 0 then
@@ -299,7 +299,7 @@ def get_keycode:
 #!if .modmask and .modmask != " " and .modmask != "" then .modmask |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .modmask = "" end |
 if .keybind and .keybind != " " and .keybind != "" then .keybind |= (split(" ") | map(select(length > 0)) | if length > 1 then join("  + ") else .[0] end) else .keybind = "" end |  #? Clean up
   .arg |= (arg_mapping[.] // .) | #? See above for how arg is converted
- #!    .desc_executable |= gsub(".sh"; "") | #? Maybe Usefull soon removes ".sh" to file  
+ #!    .desc_executable |= gsub(".sh"; "") | #? Maybe Useful soon removes ".sh" to file  
   #? Creates a key desc... for fallback if  "has description" is false
   .desc_executable |= (executables_mapping[.] // .) | #? exclusive for "exec" dispatchers 
   .desc_dispatcher |= (description_mapping[.] // .)  |  #? for all other dispatchers
