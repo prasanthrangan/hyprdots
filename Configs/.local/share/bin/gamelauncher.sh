@@ -17,7 +17,7 @@ fn_steam() {
 SteamPaths=`grep '"path"' $SteamLib | awk -F '"' '{print $4}'`
 ManifestList=`find $SteamPaths/steamapps/ -type f -name "appmanifest_*.acf" 2>/dev/null`
 
-# read intalled games
+# read installed games
 GameList=$(echo "$ManifestList" | while read acf
 do
     appid=`grep '"appid"' $acf | cut -d '"' -f 4`

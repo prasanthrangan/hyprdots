@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Restores the shader after screenhot has been taken
+# Restores the shader after screenshot has been taken
 restore_shader() {
 	if [ -n "$shader" ]; then
 		hyprshade on "$shader"

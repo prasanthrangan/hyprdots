@@ -65,10 +65,17 @@ if [ $i_size -lt 12 ] ; then
     export i_size="12"
 fi
 
-export i_theme="$(grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+export i_theme="$(
+{ grep -q "^[[:space:]]*\$ICON-THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON-THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||
+grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}'
+)"
 export i_task=$(( w_height*6/10 ))
 if [ $i_task -lt 16 ] ; then
     export i_task="16"
+fi
+export i_priv=$(( w_height*6/13 ))
+if [ $i_priv -lt 12 ] ; then
+    export i_priv="12"
 fi
 
 envsubst < $modules_dir/header.jsonc > $conf_file
@@ -107,7 +114,7 @@ gen_mod right 6
 # copy modules/*.jsonc to the config
 
 echo -e "\n\n// sourced from modules based on config.ctl //\n" >> $conf_file
-echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print $1}' | awk '!x[$0]++' | while read mod_cpy
+echo "$write_mod" | sed 's/","/\n/g ; s/ /\n/g' | awk -F '/' '{print $NF}' | awk -F '#' '{print}' | awk '!x[$0]++' | while read mod_cpy
 do
     if [ -f $modules_dir/$mod_cpy.jsonc ] ; then
         envsubst < $modules_dir/$mod_cpy.jsonc >> $conf_file
