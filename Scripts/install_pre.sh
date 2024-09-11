@@ -24,7 +24,7 @@ else
 fi
 if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // grub"
-
+    sudo mkdir -p /usr/share/grub/themes
     if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]; then
         echo -e "\033[0;32m[BOOTLOADER]\033[0m configuring grub..."
         sudo cp /etc/default/grub /etc/default/grub.t2.bkp
@@ -45,7 +45,7 @@ if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
         esac
 
         if [ "${grubtheme}" == "None" ]; then
-            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skippinng grub theme..."
+            echo -e "\033[0;32m[BOOTLOADER]\033[0m Skipping grub theme..."
             sudo sed -i "s/^GRUB_THEME=/#GRUB_THEME=/g" /etc/default/grub
         else
             echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"
