@@ -10,16 +10,40 @@ scrDir="$(dirname "$(realpath "$0")")"
 cloneDir="$(dirname "${scrDir}")"
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="$HOME/.cache/hyde"
+arch=""
+
+# Check if the system is Arch-based (has pacman)
+if command -v pacman &> /dev/null; then
+    echo "Arch-based system detected."
+    arch="arch"
+elif command -v apt &> /dev/null; then
+    echo "Debian-based system detected."
+    arch="debian"
+else
+    echo "Unsupported package manager. Not an Arch or Debian-based system. Install will crash at the first package install."
+fi
+
 aurList=(yay paru)
 shlList=(zsh fish)
 
 pkg_installed() {
     local PkgIn=$1
 
-    if pacman -Qi "${PkgIn}" &> /dev/null; then
-        return 0
+    if [ "$arch" == "debian" ]; then
+        if dpkg -l | grep -qw "${PkgIn}"; then
+            return 0
+        else
+            return 1
+        fi
+    elif [ "$arch" == "arch" ]; then
+        if pacman -Qi "${PkgIn}" &> /dev/null; then
+            return 0
+        else
+            return 1
+        fi
     else
-        return 1
+        echo "Unsupported package manager."
+        return 2
     fi
 }
 
@@ -39,20 +63,38 @@ chk_list() {
 pkg_available() {
     local PkgIn=$1
 
-    if pacman -Si "${PkgIn}" &> /dev/null; then
-        return 0
+    if [ "$arch" == "debian" ]; then
+        if apt list "${PkgIn}" &> /dev/null; then
+            return 0
+        else
+            return 1
+        fi
+    elif [ "$arch" == "arch" ]; then
+        if pacman -Si "${PkgIn}" &> /dev/null; then
+            return 0
+        else
+            return 1
+        fi
     else
-        return 1
+        echo "Unsupported package manager."
+        return 2
     fi
 }
 
 aur_available() {
     local PkgIn=$1
-
-    if ${aurhlpr} -Si "${PkgIn}" &> /dev/null; then
-        return 0
-    else
+    
+    if [ "$arch" == "debian" ]; then
         return 1
+    elif [ "$arch" == "arch" ]; then
+        if ${aurhlpr} -Si "${PkgIn}" &> /dev/null; then
+            return 0
+        else
+            return 1
+        fi
+    else
+        echo "Unsupported package manager."
+        return 2
     fi
 }
 
