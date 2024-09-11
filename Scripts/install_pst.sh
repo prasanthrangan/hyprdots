@@ -21,12 +21,13 @@ if pkg_installed sddm; then
 
     if [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ]; then
         echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m configuring sddm..."
-        echo -e "Select sddm theme:\n[1] Candy\n[2] Chilly\n[3] Corners"
+        echo -e "Select sddm theme:\n[1] Astronaut\n[2] Candy\n[3] Chilly\n[4] Corners"
         read -p " :: Enter option number : " sddmopt
 
         case $sddmopt in
-        1) sddmtheme="Candy" ;;
-        2) sddmtheme="Chilly" ;;
+        1) sddmtheme="Astronaut" ;;
+        2) sddmtheme="Candy" ;;
+        3) sddmtheme="Chilly" ;;
         *) sddmtheme="Corners" ;;
         esac
 
