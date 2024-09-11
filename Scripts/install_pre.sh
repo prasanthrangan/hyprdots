@@ -50,11 +50,11 @@ if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
         else
             echo -e "\033[0;32m[BOOTLOADER]\033[0m Setting grub theme // ${grubtheme}"
             sudo tar -xzf ${cloneDir}/Source/arcs/Grub_${grubtheme}.tar.gz -C /usr/share/grub/themes/
-            sudo sed -i "/^GRUB_DEFAULT=/c\GRUB_DEFAULT=saved
-            /^GRUB_GFXMODE=/c\GRUB_GFXMODE=1280x1024x32,auto
-            /^GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"
-            /^#GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"
-            /^#GRUB_SAVEDEFAULT=true/c\GRUB_SAVEDEFAULT=true" /etc/default/grub
+            # If parameter exists, replace, else adds it
+            sudo grep -q "^GRUB_DEFAULT=" /etc/default/grub && sudo sed -i "s/^GRUB_DEFAULT=.*/GRUB_DEFAULT=saved/" /etc/default/grub || echo "GRUB_DEFAULT=saved" | sudo tee -a /etc/default/grub
+            sudo grep -q "^GRUB_GFXMODE=" /etc/default/grub && sudo sed -i "/^GRUB_GFXMODE=/c\GRUB_GFXMODE=1280x1024x32,auto" /etc/default/grub || echo "GRUB_GFXMODE=1280x1024x32,auto" | sudo tee -a /etc/default/grub
+            sudo grep -q "^GRUB_THEME=" /etc/default/grub && sudo sed -i "/^GRUB_THEME=/c\GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"" /etc/default/grub || echo "GRUB_THEME=\"/usr/share/grub/themes/${grubtheme}/theme.txt\"" | sudo tee -a /etc/default/grub
+            sudo grep -q "^GRUB_SAVEDEFAULT=" /etc/default/grub && sudo sed -i "/^#GRUB_SAVEDEFAULT=true/c\GRUB_SAVEDEFAULT=true" /etc/default/grub || echo "GRUB_SAVEDEFAULT=true" | sudo tee -a /etc/default/grub
         fi
 
         sudo grub-mkconfig -o /boot/grub/grub.cfg
