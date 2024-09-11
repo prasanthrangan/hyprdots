@@ -111,7 +111,7 @@ EOF
     #----------------#
     # get user prefs #
     #----------------#
-    if ! chk_list "aurhlpr" "${aurList[@]}"; then
+    if ! chk_list "aurhlpr" "${aurList[@]}" && "$arch" == "arch"; then
         echo -e "Available aur helpers:\n[1] yay\n[2] paru"
         prompt_timer 120 "Enter option number"
 
@@ -137,7 +137,14 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
+    if "$arch" == "arch"; then
+      "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
+    elif "$arch" == "debian"; then
+      "${scrDir}/.$arch/install_pkg.sh" "${scrDir}/install_pkg.lst"
+    else
+      echo "Architecture not supported."
+      exit
+    fi
     rm "${scrDir}/install_pkg.lst"
 fi
 
