@@ -45,14 +45,14 @@ pipewire-alsa
 pipewire-audio
 pipewire-jack
 pipewire-pulse
-gst-plugin-pipewire
+gstreamer1.0-pipewire
 wireplumber
 pavucontrol
 pamixer
-networkmanager
+network-manager
 network-manager-gnome
 bluez
-bluez-utils
+bluez-tools
 blueman
 brightnessctl
 udiskie
@@ -61,4 +61,39 @@ udiskie
 sddm
 qml-module-qtquick-controls
 qml-module-qtquick-controls2
-qml-module-qtquick-graphicaleffects
+qml-module-qtgraphicaleffects
+
+#--------------------------------------------------- // Dependencies
+policykit-1-gnome
+qt5-image-formats-plugins
+ffmpegthumbs
+kde-cli-tools
+libnotify*
+
+#--------------------------------------------------- // Theming
+nwg-look
+qt5ct
+qt6ct
+qt5-style-kvantum
+#kvantum qt6 doesn't exist rn
+qtwayland5
+qt6-wayland
+
+#--------------------------------------------------- // Applications
+firefox
+kitty
+dolphin
+ark
+neovim
+code
+
+#--------------------------------------------------- // Shell
+# oh-my-zsh git
+# powerlevel10k
+eza
+# starship for fish
+fastfetch
+# pokemon-colorscripts-git, I'm lazy to do it
+
+#--------------------------------------------------- // HyDE
+# hyde-cli-git (install with git)
