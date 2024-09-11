@@ -2,6 +2,7 @@
 #|---/ /+-------------------------------------+---/ /|#
 #|--/ /-| Script to apply pre install configs |--/ /-|#
 #|-/ /--| Prasanth Rangan                     |-/ /--|#
+#|-/ /--| Matthieu Amet                       |-/ /--|#
 #|/ /---+-------------------------------------+/ /---|#
 
 scrDir=$(dirname "$(realpath "$0")")
@@ -12,7 +13,16 @@ if [ $? -ne 0 ]; then
 fi
 
 # grub
-if pkg_installed grub && [ -f /boot/grub/grub.cfg ]; then
+grub_package=""
+if [ "$arch" == "debian" ]; then
+    grub_package="grub-common"
+elif [ "$arch" == "arch" ]; then
+    grub_package="grub"
+else
+    echo "Unsupported architecture."
+    exit
+fi
+if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // grub"
 
     if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]; then
@@ -83,5 +93,9 @@ if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]; then
     sudo pacman -Fy
 
 else
-    echo -e "\033[0;33m[SKIP]\033[0m pacman is already configured..."
+    if [ "$arch" == "debian" ]; then
+        echo -e "\033[0;33m[SKIP]\033[0m pacman configuration unsupported for Debian-based systems..."
+    else
+        echo -e "\033[0;33m[SKIP]\033[0m pacman is already configured..."
+    fi
 fi
