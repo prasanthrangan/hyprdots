@@ -106,6 +106,9 @@ elif [ "${myShell}" == "fish" ]; then
     echo -e "\033[0;32m[o]\033[0m Installing fish..."
     sudo apt install -y fish
     curl -sS https://starship.rs/install.sh | sh
+    mkdir -p ~/.config/fish
+    sudo cp /etc/fish/config.fish ~/.config/fish/config.fish
+    sudo chown $USER:$USER ~/.config/fish/config.fish
     echo "starship init fish | source" >> ~/.config/fish/config.fish
 else
     echo -e "\033[0;33m[o]\033[0m No shell selected"
