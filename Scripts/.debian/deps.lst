@@ -20,6 +20,7 @@ libtomlplusplus-dev
 libinput-dev
 xwayland
 libxcursor-dev
+libmagick-dev
 #imagemagick, will be installed using git, we don't have the right version for the scripts
 hwdata
 curl
