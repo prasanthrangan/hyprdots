@@ -3,3 +3,4 @@ codium # VSCode but without Microsoft trackers
 webcord # Discord, but open source gui
 spotify
 spicetify # Spotify CLI
+sddm # Greeter, requires special install in Debian, it installs KDE otherwise...
