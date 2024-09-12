@@ -87,3 +87,5 @@ while read -r input; do
     fi
     cd ..
 done < <(cut -d '#' -f 1 "${listPkg}")
+
+source "${scrDir}/install_swww.sh"
