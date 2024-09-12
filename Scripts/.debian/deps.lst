@@ -7,6 +7,7 @@ libcairo2-dev
 libpango1.0-dev
 jq
 make
+cmake
 wayland-protocols
 libwayland-dev
 libdrm-dev
@@ -58,7 +59,7 @@ brightnessctl
 udiskie
 
 #--------------------------------------------------- // Display Manager
-sddm
+#sddm for now disabled due to install of kde
 qml-module-qtquick-controls
 qml-module-qtquick-controls2
 qml-module-qtgraphicaleffects
@@ -85,7 +86,6 @@ kitty
 dolphin
 ark
 neovim
-code
 
 #--------------------------------------------------- // Shell
 # oh-my-zsh git
