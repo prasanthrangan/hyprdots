@@ -98,7 +98,7 @@ while read -r input; do
 done < <(cut -d '#' -f 1 "${listPkg}")
 
 # Install softwares
-listPkg="${1:-"${scrDir}/git.lst"}"
+listPkg="${1:-"${scrDir}/softwares.lst"}"
 while read -r input; do
     input="${input// /}"
     if [ -z "${input}" ]; then
