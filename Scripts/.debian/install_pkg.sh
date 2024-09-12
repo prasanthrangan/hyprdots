@@ -13,19 +13,19 @@ if [ $? -ne 0 ]; then
 fi
 
 install_git_1() {
-    cd $1
     cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
     cmake --build build -j`nproc`
     sudo cmake --install build
-    cd ..
 }
 
 install_git_2() {
-    cd $1
     cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B build
     cmake --build build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
     sudo cmake --install build
-    cd ..
+}
+
+install_git_2() {
+    make all && sudo make install
 }
 
 # Install dependencies and software
@@ -69,11 +69,15 @@ while read -r input; do
         git pull ${gitpkg}
         cd ..
     fi
+    cd "${pkgname}"
     if [ "$prefix" == "1" ]; then
         install_git_1 ${pkgname}
     elif [ "$prefix" == "2" ]; then
         install_git_2 ${pkgname}
+    elif [ "$prefix" == "3" ]; then
+        install_git_3 ${pkgname}
     else
         echo -e "\033[0;31mUnknown installation for ${gitpkg}\033[0m"
     fi
+    cd ..
 done < <(cut -d '#' -f 1 "${listPkg}")
