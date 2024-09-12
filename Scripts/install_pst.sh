@@ -15,9 +15,7 @@ fi
 if pkg_installed sddm; then
 
     echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m detected // sddm"
-    if [ ! -d /etc/sddm.conf.d ]; then
-        sudo mkdir -p /etc/sddm.conf.d
-    fi
+    sudo mkdir -p /etc/sddm.conf.d
 
     if [ ! -f /etc/sddm.conf.d/kde_settings.t2.bkp ]; then
         echo -e "\033[0;32m[DISPLAYMANAGER]\033[0m configuring sddm..."
@@ -30,6 +28,7 @@ if pkg_installed sddm; then
         *) sddmtheme="Corners" ;;
         esac
 
+        sudo mkdir -p /usr/share/sddm/themes/
         sudo tar -xzf ${cloneDir}/Source/arcs/Sddm_${sddmtheme}.tar.gz -C /usr/share/sddm/themes/
         sudo touch /etc/sddm.conf.d/kde_settings.conf
         sudo cp /etc/sddm.conf.d/kde_settings.conf /etc/sddm.conf.d/kde_settings.t2.bkp
