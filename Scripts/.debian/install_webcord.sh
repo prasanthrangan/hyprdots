@@ -11,3 +11,4 @@ curl -s https://api.github.com/repos/SpacingBat3/WebCord/releases/latest \
 | tr -d \" \
 | wget -qi -
 sudo dpkg -i *.deb
+sudo rm -rf *.deb
