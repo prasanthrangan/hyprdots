@@ -21,7 +21,6 @@ libinput-dev
 xwayland
 libxcursor-dev
 imagemagick
-swaylock
 hwdata
 curl
 waybar
