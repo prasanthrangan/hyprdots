@@ -24,6 +24,7 @@ imagemagick
 hwdata
 curl
 waybar
+liblz4-dev
 libpixman-1-dev
 libgbm-dev
 libdisplay-info-dev
