@@ -1,0 +1,36 @@
+#!/bin/bash
+
+scrDir=$(dirname "$(realpath "$0")")
+source "${scrDir}/../global_fn.sh"
+if [ $? -ne 0 ]; then
+    echo "Error: unable to source global_fn.sh..."
+    exit 1
+fi
+
+git clone https://github.com/LGFae/swww.git
+
+cd swww
+
+source "$HOME/.cargo/env"
+cargo build --release
+
+sudo cp ./target/release/swww /usr/bin
+sudo cp ./target/release/swww-daemon /usr/bin
+
+sudo mkdir -p /usr/share/bash-completion/completions/
+sudo cp completions/swww.bash /usr/share/bash-completion/completions/swww
+
+if ! pkg_installed "zsh"; then
+  echo -e "\033[0;31m[-]\033[0m zsh detected..."
+  sudo mkdir -p /usr/share/zsh/site-functions/
+  sudo cp completions/_swww /usr/share/zsh/site-functions/_swww
+  continue 2
+fi
+if ! pkg_installed "fish"; then
+  echo -e "\033[0;31m[-]\033[0m fish detected..."
+  sudo mkdir -p /usr/shaare/fish/vendor_completions.d/
+  sudo cp completions/swww.fish /usr/share/fish/vendor_completions.d/swww.fish
+  continue 2
+fi
+
+cd ..
