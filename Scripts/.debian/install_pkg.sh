@@ -67,6 +67,7 @@ while read -r input; do
     else
         cd "${pkgname}"
         git pull --depth 1 ${gitpkg}
+        git submodule update --recursive --remote
         cd ..
     fi
     cd "${pkgname}"
