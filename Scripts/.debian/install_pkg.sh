@@ -12,6 +12,22 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+install_git_1() {
+    cd $1
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
+    cmake --build build -j`nproc`
+    sudo cmake --install build
+    cd ..
+}
+
+install_git_2() {
+    cd $1
+    cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B build
+    cmake --build build --config Release --target all -j`nproc 2>/dev/null || getconf _NPROCESSORS_CONF`
+    sudo cmake --install build
+    cd ..
+}
+
 # Install dependencies and software
 listPkg="${1:-"${scrDir}/deps.lst"}"
 echo -e "\033[0;31mNote: Installing with APT in CLI is at risks, be sure you know what you do before continuing.\033[0m You can install the packages manually and go back to this script if needed."
@@ -37,17 +53,21 @@ done < <(cut -d '#' -f 1 "${listPkg}")
 
 # Install git packages
 listPkg="${1:-"${scrDir}/git.lst"}"
-while read -r gitpkg; do
-    gitpkg="${gitpkg// /}"
-    if [ -z "${gitpkg}" ]; then
+while read -r input; do
+    input="${input// /}"
+    if [ -z "${input}" ]; then
         continue
     fi
+    prefix=$(echo "$input" | cut -d':' -f1)
+    gitpkg=$(echo "$input" | cut -d':' -f2-)
     echo -e "\033[0;32m[o]\033[0m Installing ${gitpkg} from git repo..."
     pkgname=$(echo "${gitpkg}" | sed 's|.*/\([^/]*\)/\([^/]*\)\.git|\1_\2|')
     git clone ${gitpkg} ${pkgname}
-    cd ${pkgname}
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -B build
-    cmake --build build -j `nproc`
-    sudo cmake --install build
-    cd ..
+    if [ "$prefix" == "1" ]; then
+        install_git_1 ${pkgname}
+    elif [ "$prefix" == "2" ]; then
+        install_git_2 ${pkgname}
+    else
+        echo -e "\033[0;31mUnknown installation for ${gitpkg}\033[0m"
+    fi
 done < <(cut -d '#' -f 1 "${listPkg}")
