@@ -140,7 +140,7 @@ EOF
     if [ "$arch" == "arch" ]; then
       "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
     elif [ "$arch" == "debian" ]; then
-      "${scrDir}/.$arch/install_pkg.sh" "${scrDir}/install_pkg.lst"
+      "${scrDir}/.$arch/install_pkg.sh"
     else
       echo "Architecture not supported."
       exit
