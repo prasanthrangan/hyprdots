@@ -28,6 +28,12 @@ install_git_3() {
     make all && sudo make install
 }
 
+install_git_4() {
+    meson build
+    ninja -C build
+    sudo ninja -C build install
+}
+
 # Install dependencies and software
 listPkg="${1:-"${scrDir}/deps.lst"}"
 echo -e "\033[0;31mNote: Installing with APT in CLI is at risks, be sure you know what you do before continuing.\033[0m You can install the packages manually and go back to this script if needed."
@@ -82,6 +88,8 @@ while read -r input; do
         install_git_2 ${pkgname}
     elif [ "$prefix" == "3" ]; then
         install_git_3 ${pkgname}
+    elif [ "$prefix" == "4" ]; then
+        install_git_4 ${pkgname}
     else
         echo -e "\033[0;31mUnknown installation for ${gitpkg}\033[0m"
     fi
