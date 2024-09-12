@@ -34,6 +34,14 @@ libxcb-errors-dev
 libxcb-render-util0-dev
 libxcb-res0-dev
 libxcb-icccm4-dev
+libxcb-util-dev
+libxcb-xkb-dev
+libxcb-ewmh-dev
+libxcb-randr0-dev
+libmpdclient-dev
+libnl-3-dev
+libasound2-dev
+libxkbcommon-x11-dev
 libgl1-mesa-dev
 xdg-desktop-portal-hyprland
 libpam0g-dev
