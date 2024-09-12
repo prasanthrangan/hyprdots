@@ -33,6 +33,7 @@ golang-gir-gio-2.0-dev
 libxcb-composite0-dev
 libxcb-errors-dev
 libxcb-render-util0-dev
+libxcb-res0-dev
 libxcb-icccm4-dev
 libgl1-mesa-dev
 xdg-desktop-portal-hyprland
