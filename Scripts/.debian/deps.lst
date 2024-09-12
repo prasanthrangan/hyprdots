@@ -19,6 +19,7 @@ librsvg2-dev
 libtomlplusplus-dev
 libinput-dev
 xwayland
+xcursor
 imagemagick
 swaylock
 hwdata
