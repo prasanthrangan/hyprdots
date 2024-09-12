@@ -97,6 +97,17 @@ while read -r input; do
     cd ..
 done < <(cut -d '#' -f 1 "${listPkg}")
 
+# Install softwares
+listPkg="${1:-"${scrDir}/git.lst"}"
+while read -r input; do
+    input="${input// /}"
+    if [ -z "${input}" ]; then
+        continue
+    fi
+    echo -e "\033[0;32m[o]\033[0m Installing ${input}..."
+    source "${scrDir}/install_${input}.sh"
+done < <(cut -d '#' -f 1 "${listPkg}")
+
 if [ "${myShell}" == "zsh" ]; then
     echo -e "\033[0;32m[o]\033[0m Installing oh-my-zsh..."
     sudo apt install -y zsh
