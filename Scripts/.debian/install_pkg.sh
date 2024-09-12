@@ -96,8 +96,6 @@ while read -r input; do
     cd ..
 done < <(cut -d '#' -f 1 "${listPkg}")
 
-source "${scrDir}/install_swww.sh"
-
 if [ "${myShell}" == "zsh" ]; then
     echo -e "\033[0;32m[o]\033[0m Installing oh-my-zsh..."
     sudo apt install -y zsh
@@ -112,3 +110,5 @@ elif [ "${myShell}" == "fish" ]; then
 else
     echo -e "\033[0;33m[o]\033[0m No shell selected"
 fi
+
+source "${scrDir}/install_swww.sh"
