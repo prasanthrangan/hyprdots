@@ -63,7 +63,7 @@ while read -r input; do
     echo -e "\033[0;32m[o]\033[0m Installing ${gitpkg} from git repo..."
     pkgname=$(echo "${gitpkg}" | sed 's|.*/\([^/]*\)/\([^/]*\)\.git|\1_\2|')
     if [ ! -d "${pkgname}" ] ; then
-        git clone --depth 1 ${gitpkg} ${pkgname}
+        git clone --depth 1 --recursive ${gitpkg} ${pkgname}
     else
         cd "${pkgname}"
         git pull --depth 1 ${gitpkg}
