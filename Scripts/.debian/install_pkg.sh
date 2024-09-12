@@ -24,7 +24,7 @@ install_git_2() {
     sudo cmake --install build
 }
 
-install_git_2() {
+install_git_3() {
     make all && sudo make install
 }
 
