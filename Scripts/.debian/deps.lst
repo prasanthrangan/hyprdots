@@ -21,6 +21,7 @@ libinput-dev
 xwayland
 imagemagick
 swaylock
+hwdata
 curl
 waybar
 libpixman-1-dev
