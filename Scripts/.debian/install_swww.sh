@@ -7,7 +7,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-git clone https://github.com/LGFae/swww.git
+if [ ! -d "swww" ] ; then
+        git clone --depth 1 --recursive https://github.com/LGFae/swww.git
+    else
+        cd swww
+        git pull --depth 1 https://github.com/LGFae/swww.git
+        git submodule update --recursive
+        cd ..
+    fi
 
 cd swww
 
