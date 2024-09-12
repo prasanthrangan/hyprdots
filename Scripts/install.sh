@@ -137,9 +137,9 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    if "$arch" == "arch"; then
+    if [ "$arch" == "arch" ]; then
       "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
-    elif "$arch" == "debian"; then
+    elif [ "$arch" == "debian" ]; then
       "${scrDir}/.$arch/install_pkg.sh" "${scrDir}/install_pkg.lst"
     else
       echo "Architecture not supported."
