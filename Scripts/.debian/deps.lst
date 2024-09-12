@@ -23,7 +23,6 @@ libxcursor-dev
 imagemagick
 hwdata
 curl
-waybar
 liblz4-dev
 libpixman-1-dev
 libgbm-dev
@@ -37,9 +36,6 @@ libxcb-res0-dev
 libxcb-icccm4-dev
 libgl1-mesa-dev
 xdg-desktop-portal-hyprland
-swappy
-wl-clipboard
-cliphist
 libpam0g-dev
 parallel
 
@@ -60,6 +56,14 @@ bluez-tools
 blueman
 brightnessctl
 udiskie
+dunst
+waybar
+wlogout
+slurp
+grim
+swappy
+cliphist
+wl-clipboard
 
 #--------------------------------------------------- // Display Manager
 #sddm for now disabled due to install of kde
