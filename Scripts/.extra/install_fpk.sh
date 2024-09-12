@@ -16,7 +16,7 @@ fi
 if ! pkg_installed flatpak; then
     if [ "$arch" == "arch" ]; then
         sudo pacman -S flatpak
-    elif [ "$arch" == "debian"]; then
+    elif [ "$arch" == "debian" ]; then
         sudo apt install -y flatpak
     else
         echo -e "Architecture not supported"
