@@ -15,6 +15,7 @@ libxkbcommon-dev
 libudev-dev
 libseat-dev
 libzip-dev
+libxml2-dev
 librsvg2-dev
 libtomlplusplus-dev
 libinput-dev
