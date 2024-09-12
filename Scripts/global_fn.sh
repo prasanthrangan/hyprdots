@@ -32,6 +32,15 @@ pkg_installed() {
         if dpkg -l | grep -qw "${PkgIn}"; then
             return 0
         else
+            if command -v ${PkgIn} &> /dev/null; then
+                return 0
+            fi
+            # Specific case for swaylock effects for debian, I don't have a fix rn
+            if [ "${PkgIn}" == "swaylock-effects" ]; then
+                if command -v swaylock &> /dev/null; then
+                    return 0
+                fi
+            fi
             return 1
         fi
     elif [ "$arch" == "arch" ]; then
