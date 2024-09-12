@@ -38,6 +38,9 @@ libxcb-util-dev
 libxcb-xkb-dev
 libxcb-ewmh-dev
 libxcb-randr0-dev
+libxcb-cursor-dev
+libxcb-xinerama0-dev
+libstartup-notification0-dev
 libmpdclient-dev
 libnl-3-dev
 libasound2-dev
@@ -46,6 +49,8 @@ libgl1-mesa-dev
 xdg-desktop-portal-hyprland
 libpam0g-dev
 parallel
+flex
+bison
 
 #--------------------------------------------------- // System
 pipewire
@@ -103,10 +108,7 @@ ark
 neovim
 
 #--------------------------------------------------- // Shell
-# oh-my-zsh git
-# powerlevel10k
 eza
-# starship for fish
 fastfetch
 # pokemon-colorscripts-git, I'm lazy to do it
 
