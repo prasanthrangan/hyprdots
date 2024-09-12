@@ -51,6 +51,11 @@ while read -r pkg; do
     fi
 done < <(cut -d '#' -f 1 "${listPkg}")
 
+# Installing Rust
+echo -e "\033[0;32m[o]\033[0m Installing Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
 # Install git packages
 listPkg="${1:-"${scrDir}/git.lst"}"
 while read -r input; do
