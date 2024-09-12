@@ -15,10 +15,8 @@ arch=""
 
 # Check if the system is Arch-based (has pacman)
 if command -v pacman &> /dev/null; then
-    echo "Arch-based system detected."
     export arch="arch"
 elif command -v apt &> /dev/null; then
-    echo "Debian-based system detected."
     export arch="debian"
 else
     echo "Unsupported package manager. Not an Arch or Debian-based system. Install will crash at the first package install."
