@@ -62,7 +62,13 @@ while read -r input; do
     gitpkg=$(echo "$input" | cut -d':' -f2-)
     echo -e "\033[0;32m[o]\033[0m Installing ${gitpkg} from git repo..."
     pkgname=$(echo "${gitpkg}" | sed 's|.*/\([^/]*\)/\([^/]*\)\.git|\1_\2|')
-    git clone --no-fail ${gitpkg} ${pkgname}
+    if [ ! -d "${pkgname}" ] ; then
+        git clone ${gitpkg} ${pkgname}
+    else
+        cd "${pkgname}"
+        git pull ${gitpkg}
+        cd ..
+    fi
     if [ "$prefix" == "1" ]; then
         install_git_1 ${pkgname}
     elif [ "$prefix" == "2" ]; then
