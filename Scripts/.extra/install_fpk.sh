@@ -14,7 +14,14 @@ if [ $? -ne 0 ]; then
 fi
 
 if ! pkg_installed flatpak; then
-    sudo pacman -S flatpak
+    if [ "$arch" == "arch" ]; then
+        sudo pacman -S flatpak
+    elif [ "$arch" == "debian"]; then
+        sudo apt install -y flatpak
+    else
+        echo -e "Architecture not supported"
+        exit
+    fi
 fi
 
 flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
