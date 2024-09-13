@@ -16,17 +16,17 @@ print_usage() {
     cat <<EOF
 Usage: ./volumecontrol.sh -[device] <action> [step]
 
-Devices:
+Devices/Actions:
     -i    Input device
     -o    Output device
     -p    Player application
+    -s     Select output device
+    -t     Toggle to next output device
 
 Actions:
     i     Increase volume
     d     Decrease volume
     m     Toggle mute
-    s     Select output device
-    t     Toggle to next output device
 
 Optional:
     step  Volume change step (default: 5)
@@ -145,5 +145,6 @@ shift $((OPTIND-1))
 case $1 in
     i|d) change_volume "$1" "${2:-$step}" "$device" ;;
     m) toggle_mute "$device" ;;
+    
     *) print_usage ;;
 esac
