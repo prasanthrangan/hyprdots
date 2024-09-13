@@ -25,7 +25,7 @@ qt5-graphicaleffects                                   # for sddm theme effects
 # --------------------------------------------------- // Window Manager
 hyprland                                               # wlroots-based wayland compositor
 dunst                                                  # notification daemon
-rofi-lbonn-wayland-git                                 # application launcher
+rofi-wayland                                           # application launcher
 waybar                                                 # system bar
 swww                                                   # wallpaper
 swaylock-effects-git                                   # lock screen
@@ -70,7 +70,7 @@ code                                                   # ide text editor
 eza|zsh                                                # file lister for zsh
 oh-my-zsh-git|zsh                                      # plugin manager for zsh
 zsh-theme-powerlevel10k-git|zsh oh-my-zsh-git          # theme for zsh
-lsd|fish                                               # file lister for fish
+eza|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 fastfetch                                              # system information fetch tool
 pokemon-colorscripts-git|zsh                           # display pokemon sprites

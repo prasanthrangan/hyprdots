@@ -73,6 +73,10 @@ export i_task=$(( w_height*6/10 ))
 if [ $i_task -lt 16 ] ; then
     export i_task="16"
 fi
+export i_priv=$(( w_height*6/13 ))
+if [ $i_priv -lt 12 ] ; then
+    export i_priv="12"
+fi
 
 envsubst < $modules_dir/header.jsonc > $conf_file
 

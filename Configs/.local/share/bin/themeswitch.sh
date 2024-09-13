@@ -83,7 +83,7 @@ grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hyp
 
 sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt5ct/qt5ct.conf"
 sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt6ct/qt6ct.conf"
-
+sed -i "/^Theme=/c\Theme=${gtkIcon}" "${confDir}/kdeglobals"
 
 #// gtk3
 
