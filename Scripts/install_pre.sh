@@ -78,7 +78,7 @@ if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
 fi
 
 # systemd-boot
-if pkg_installed systemd && nvidia_detect && [ $(bootctl status 2> /dev/null | awk '{if ($1 == "Product:") print $2}') == "systemd-boot" ]; then
+if pkg_installed systemd && nvidia_detect && [ "$(bootctl status 2> /dev/null | awk '{if ($1 == "Product:") print $2}')" == "systemd-boot" ]; then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // systemd-boot"
 
     if [ $(ls -l /boot/loader/entries/*.conf.t2.bkp 2> /dev/null | wc -l) -ne $(ls -l /boot/loader/entries/*.conf 2> /dev/null | wc -l) ]; then
