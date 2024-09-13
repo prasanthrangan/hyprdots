@@ -20,6 +20,10 @@ for i in "${!codeVsix[@]}" ;do
         *".vscodium"*)
             pkg_installed vscodium && vscodium --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
             ;;
+        *".vscode"*)
+            pkg_installed code-insiders && code-insiders --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
+            pkg_installed code && code --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
+            ;;
         *".cursor"*)
             echo "[wallbashcode] Cursor IDE: Manual intervention required for extension installation."
             echo "[wallbashcode] Read the instructions here: https://www.cursor.com/how-to-install-extension "
