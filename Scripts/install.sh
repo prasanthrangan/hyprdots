@@ -118,7 +118,7 @@ EOF
 
         case "${promptIn}" in
             1) export getAur="yay" ;;
-            2) export getAur="paru" ;;
+            2) export getAur="paru-bin" ;;
             *) echo -e "...Invalid option selected..." ; exit 1 ;;
         esac
     fi
