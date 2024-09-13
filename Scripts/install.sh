@@ -106,7 +106,8 @@ EOF
           done
           nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
         elif [ "$arch" == "debian" ]; then
-          for krnl in /lib/modules/*; do
+          for path in /lib/modules/*; do
+            krnl=$(basename "$path")
             echo -e "\033[0;32m[o]\033[0m Installing linux-headers-${krnl} from official debian repo..."
             sudo apt install -y --force-yes linux-headers-${krnl} &>/dev/null
             echo -e "\n\033[0;31m[NVIDIA]\033[0m Not yet supported, uninstallable..."
