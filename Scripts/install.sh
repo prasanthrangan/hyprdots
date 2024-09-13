@@ -114,7 +114,7 @@ EOF
     #----------------#
     if ! chk_list "aurhlpr" "${aurList[@]}"; then
         echo -e "Available aur helpers:\n[1] yay\n[2] yay (bin)\n[3] paru\n[4] paru (bin)"
-        prompt_timer 120 "Enter option number"
+        prompt_timer 120 "Enter option number [default: yay] "
 
         case "${promptIn}" in
             1) export getAur="yay" ;;
