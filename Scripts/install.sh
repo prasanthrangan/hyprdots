@@ -100,10 +100,21 @@ EOF
     # add nvidia drivers to the list #
     #--------------------------------#
     if nvidia_detect; then
-        cat /usr/lib/modules/*/pkgbase | while read krnl; do
+        if [ "$arch" == "arch" ]; then
+          cat /usr/lib/modules/*/pkgbase | while read krnl; do
             echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
-        done
-        nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
+          done
+          nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
+        elif [ "$arch" == "debian" ]; then
+          for krnl in /lib/modules/*; do
+            echo -e "\033[0;32m[o]\033[0m Installing linux-headers-${krnl} from official debian repo..."
+            sudo apt install -y --force-yes linux-headers-${krnl} &>/dev/null
+            echo -e "\n\033[0;31m[NVIDIA]\033[0m Not yet supported, uninstallable..."
+          done
+        else
+          echo "Architecture not supported."
+          exit
+        fi
     fi
 
     nvidia_detect --verbose
@@ -111,7 +122,7 @@ EOF
     #----------------#
     # get user prefs #
     #----------------#
-    if ! chk_list "aurhlpr" "${aurList[@]}" && "$arch" == "arch"; then
+    if ! chk_list "aurhlpr" "${aurList[@]}" && [ "$arch" == "arch" ]; then
         echo -e "Available aur helpers:\n[1] yay\n[2] paru"
         prompt_timer 120 "Enter option number"
 
