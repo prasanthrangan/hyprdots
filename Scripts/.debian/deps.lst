@@ -53,6 +53,7 @@ libpam0g-dev
 parallel
 flex
 bison
+firmware-iwlwifi
 
 #--------------------------------------------------- // System
 pipewire
