@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Check if the script is already running
-pgrep -cf "${0##*/}" | grep -qv 1 && exit 1
+pgrep -cf "${0##*/}" | grep -qv 1 && echo "An instance of the script is already running..." && exit 1
 
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
