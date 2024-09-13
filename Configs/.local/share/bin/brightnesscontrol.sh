@@ -3,6 +3,12 @@
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
 
+# Check if SwayOSD is installed
+use_swayosd=false
+if command -v swayosd-client &> /dev/null && pgrep -x swayosd-server > /dev/null; then
+    use_swayosd=true
+fi
+
 function print_error
 {
 cat << "EOF"
@@ -28,6 +34,7 @@ function get_brightness {
 
 case $1 in
 i)  # increase the backlight
+     $use_swayosd && swayosd-client --brightness raise "$step" && exit 0
     if [[ $(get_brightness) -lt 10 ]] ; then
         # increase the backlight by 1% if less than 10%
         brightnessctl set +1%
@@ -37,6 +44,7 @@ i)  # increase the backlight
     fi
     send_notification ;;
 d)  # decrease the backlight
+     $use_swayosd && swayosd-client --brightness lower "$step" && exit 0
     if [[ $(get_brightness) -le 1 ]] ; then
         # avoid 0% brightness
         brightnessctl set 1%
