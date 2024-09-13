@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# Check if the script is already running
+pgrep -cf "${0##*/}" | grep -qv 1 && exit 1
+
 scrDir=`dirname "$(realpath "$0")"`
 source $scrDir/globalcontrol.sh
 
@@ -11,11 +14,15 @@ fi
 
 function print_error
 {
-cat << "EOF"
-    ./brightnesscontrol.sh <action>
+cat << EOF
+    $(basename ${0}) <action> [step] 
     ...valid actions are...
         i -- <i>ncrease brightness [+5%]
         d -- <d>ecrease brightness [-5%]
+
+    Example:
+        $(basename ${0}) i 10    # Increase brightness by 10%
+        $(basename ${0}) d       # Decrease brightness by default step (5%)
 EOF
 }
 
@@ -32,31 +39,34 @@ function get_brightness {
     brightnessctl -m | grep -o '[0-9]\+%' | head -c-2
 }
 
+step="${2:-5}"
+
 case $1 in
-i)  # increase the backlight
-     $use_swayosd && swayosd-client --brightness raise "$step" && exit 0
+i|-i)  # increase the backlight
     if [[ $(get_brightness) -lt 10 ]] ; then
         # increase the backlight by 1% if less than 10%
-        brightnessctl set +1%
-    else
-        # increase the backlight by 5% otherwise
-        brightnessctl set +5%
+        step=1
     fi
+
+    $use_swayosd && swayosd-client --brightness raise "$step" && exit 0
+    brightnessctl set +${step}%
     send_notification ;;
-d)  # decrease the backlight
-     $use_swayosd && swayosd-client --brightness lower "$step" && exit 0
-    if [[ $(get_brightness) -le 1 ]] ; then
-        # avoid 0% brightness
-        brightnessctl set 1%
-    elif [[ $(get_brightness) -le 10 ]] ; then
+d|-d)  # decrease the backlight
+
+    if [[ $(get_brightness) -le 10 ]] ; then
         # decrease the backlight by 1% if less than 10%
-        brightnessctl set 1%-
-    else
-        # decrease the backlight by 5% otherwise
-        brightnessctl set 5%-
+        step=1
     fi
+
+    if [[ $(get_brightness) -le 1 ]]; then
+        $use_swayosd && exit 0
+        brightnessctl set ${step}%
+    else
+        $use_swayosd && swayosd-client --brightness lower "$step" && exit 0
+        brightnessctl set ${step}%-
+    fi
+
     send_notification ;;
 *)  # print error
     print_error ;;
 esac
-

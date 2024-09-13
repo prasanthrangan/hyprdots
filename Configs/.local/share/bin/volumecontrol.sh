@@ -14,7 +14,7 @@ fi
 
 print_usage() {
     cat <<EOF
-Usage: ./volumecontrol.sh -[device] <action> [step]
+Usage: $(basename ${0}) -[device] <action> [step]
 
 Devices/Actions:
     -i    Input device
@@ -32,9 +32,9 @@ Optional:
     step  Volume change step (default: 5)
 
 Examples:
-    ./volumecontrol.sh -o i 5     # Increase output volume by 5
-    ./volumecontrol.sh -i m       # Toggle input mute
-    ./volumecontrol.sh -p spotify d 10  # Decrease Spotify volume by 10
+    $(basename ${0}) -o i 5     # Increase output volume by 5
+    $(basename ${0}) -i m       # Toggle input mute
+    $(basename ${0}) -p spotify d 10  # Decrease Spotify volume by 10
 EOF
     exit 1
 }
