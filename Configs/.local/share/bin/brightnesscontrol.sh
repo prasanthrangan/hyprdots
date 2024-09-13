@@ -8,11 +8,11 @@ source $scrDir/globalcontrol.sh
 
 # Check if SwayOSD is installed
 use_swayosd=false
-if command -v swayosd-client &> /dev/null && pgrep -x swayosd-server > /dev/null; then
+if command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null; then
     use_swayosd=true
 fi
 
-function print_error
+print_error()
 {
 cat << EOF
     $(basename ${0}) <action> [step] 
@@ -26,7 +26,7 @@ cat << EOF
 EOF
 }
 
-function send_notification {
+send_notification() {
     brightness=`brightnessctl info | grep -oP "(?<=\()\d+(?=%)" | cat`
     brightinfo=$(brightnessctl info | awk -F "'" '/Device/ {print $2}')
     angle="$(((($brightness + 2) / 5) * 5))"
@@ -35,7 +35,7 @@ function send_notification {
     notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "${brightness}${bar}" "${brightinfo}"
 }
 
-function get_brightness {
+get_brightness() {
     brightnessctl -m | grep -o '[0-9]\+%' | head -c-2
 }
 
@@ -59,8 +59,8 @@ d|-d)  # decrease the backlight
     fi
 
     if [[ $(get_brightness) -le 1 ]]; then
-        $use_swayosd && exit 0
         brightnessctl set ${step}%
+        $use_swayosd && exit 0
     else
         $use_swayosd && swayosd-client --brightness lower "$step" && exit 0
         brightnessctl set ${step}%-
