@@ -6,7 +6,7 @@ source "$scrDir/globalcontrol.sh"
 
 # Check if SwayOSD is installed
 use_swayosd=false
-if command -v swayosd-client &> /dev/null && pgrep -x swayosd-server > /dev/null; then
+if command -v swayosd-client >/dev/null 2>&1 && pgrep -x swayosd-server >/dev/null; then
     use_swayosd=true
 fi
 
@@ -14,14 +14,14 @@ fi
 
 print_usage() {
     cat <<EOF
-Usage: $(basename ${0}) -[device] <action> [step]
+Usage: $(basename "$0") -[device] <action> [step]
 
 Devices/Actions:
     -i    Input device
     -o    Output device
     -p    Player application
-    -s     Select output device
-    -t     Toggle to next output device
+    -s    Select output device
+    -t    Toggle to next output device
 
 Actions:
     i     Increase volume
@@ -32,17 +32,17 @@ Optional:
     step  Volume change step (default: 5)
 
 Examples:
-    $(basename ${0}) -o i 5     # Increase output volume by 5
-    $(basename ${0}) -i m       # Toggle input mute
-    $(basename ${0}) -p spotify d 10  # Decrease Spotify volume by 10 
-    $(basename ${0}) -p '' d 10  # Decrease volume by 10 for all players 
+    $(basename "$0") -o i 5     # Increase output volume by 5
+    $(basename "$0") -i m       # Toggle input mute
+    $(basename "$0") -p spotify d 10  # Decrease Spotify volume by 10 
+    $(basename "$0") -p '' d 10  # Decrease volume by 10 for all players 
 
 EOF
     exit 1
 }
 
 notify_vol() {
-    angle="$(((($vol + 2) / 5) * 5))"
+    angle=$(( (($vol + 2) / 5) * 5 ))
     ico="${icodir}/vol-${angle}.svg"
     bar=$(seq -s "." $(($vol / 15)) | sed 's/[0-9]//g')
     notify-send -a "t2" -r 91190 -t 800 -i "${ico}" "${vol}${bar}" "${nsink}"
@@ -62,15 +62,19 @@ change_volume() {
     local action=$1
     local step=$2
     local device=$3
+    local delta="-"
+    local mode="--output-volume"
+
+    [ "${action}" = "i" ] && delta="+"
+    [ "${srce}" = "--default-source" ] && mode="--input-volume"
     case $device in
         "pamixer")            
-            $use_swayosd && swayosd-client "$(sed 's/--default-source/--input-volume/;s/^$/--output-volume/' <<< "${srce:-}")" "$(sed 's/i/+/;s/d/-/' <<< "${action}${step}")"  && exit 0
+            $use_swayosd && swayosd-client ${mode} "${delta}${step}"  && exit 0
             pamixer $srce -"$action" "$step"
             vol=$(pamixer $srce --get-volume)
             ;;
         "playerctl")
-            [ "$action" == "i" ] && delta="+" || delta="-"
-            playerctl --player="$srce" volume "0.0${step}${delta}"
+            playerctl --player="$srce" volume "$(awk -v step="$step" 'BEGIN {print step/100}')${delta}"
             vol=$(playerctl --player="$srce" volume | awk '{ printf "%.0f\n", $0 * 100 }')
             ;;
     esac
@@ -80,9 +84,11 @@ change_volume() {
 
 toggle_mute() {
     local device=$1
+    local mode="--output-volume"
+    [ "${srce}" = "--default-source" ] && mode="--input-volume"
     case $device in
         "pamixer") 
-            $use_swayosd && swayosd-client $(sed 's/--default-source/--input-volume/;s/^$/--output-volume/' <<< "${srce:-}") mute-toggle && exit 0
+            $use_swayosd && swayosd-client "${mode}" mute-toggle && exit 0
             pamixer $srce -t
             notify_mute
             ;;
@@ -142,6 +148,5 @@ shift $((OPTIND-1))
 case $1 in
     i|d) change_volume "$1" "${2:-$step}" "$device" ;;
     m) toggle_mute "$device" ;;
-    
     *) print_usage ;;
 esac
