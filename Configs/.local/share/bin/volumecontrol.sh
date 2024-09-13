@@ -93,7 +93,18 @@ toggle_mute() {
             notify_mute
             ;;
         "playerctl")
-            playerctl --player="$srce" volume 0
+            local volume_file="/tmp/$(basename "$0")_last_volume_${srce:-all}"
+            if [ "$(playerctl --player="$srce" volume | awk '{ printf "%.2f", $0 }')" != "0.00" ]; then
+                playerctl --player="$srce" volume | awk '{ printf "%.2f", $0 }' > "$volume_file"
+                playerctl --player="$srce" volume 0
+            else
+                if [ -f "$volume_file" ]; then
+                    last_volume=$(cat "$volume_file")
+                    playerctl --player="$srce" volume "$last_volume"
+                else
+                    playerctl --player="$srce" volume 0.5  # Default to 50% if no saved volume
+                fi
+            fi
             notify_mute
             ;;
     esac
