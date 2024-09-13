@@ -34,7 +34,9 @@ Optional:
 Examples:
     $(basename ${0}) -o i 5     # Increase output volume by 5
     $(basename ${0}) -i m       # Toggle input mute
-    $(basename ${0}) -p spotify d 10  # Decrease Spotify volume by 10
+    $(basename ${0}) -p spotify d 10  # Decrease Spotify volume by 10 
+    $(basename ${0}) -p '' d 10  # Decrease volume by 10 for all players 
+
 EOF
     exit 1
 }
@@ -120,11 +122,11 @@ toggle_output() {
 icodir="${confDir}/dunst/icons/vol"
 step=5
 # Parse options
-while getopts "iopst" opt; do
+while getopts "iop:st" opt; do
     case $opt in
         i) device="pamixer"; srce="--default-source"; nsink=$(pamixer --list-sources | awk -F '"' 'END {print $(NF - 1)}') ;;
         o) device="pamixer"; srce=""; nsink=$(pamixer --get-default-sink | awk -F '"' 'END{print $(NF - 1)}') ;;
-        p) device="playerctl"; srce="$OPTARG"; nsink=$(playerctl --list-all | grep -w "$srce") ;;
+        p) device="playerctl"; srce="${OPTARG}"; nsink=$(playerctl --list-all | grep -w "$srce") ;;
         s) select_output "$(select_output | rofi -dmenu -config "${confDir}/rofi/notification.rasi")"; exit ;;
         t) toggle_output; exit ;;
         *) print_usage ;;
