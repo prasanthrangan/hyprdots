@@ -36,7 +36,8 @@ done
 #// apply theme
 
 for i in "${!codeConf[@]}" ; do
-    [ -f "${codeConf[i]}/User/settings.json" ] || continue
+    [ -d "${codeConf[i]}/User" ] || continue
+    [ -f "${codeConf[i]}/User/settings.json" ] ||  echo -e "{\n \"workbench.colorTheme\":\"wallbash\" \n}" > "${codeConf[i]}/User/settings.json"
     extTheme="$(jq -r '.["workbench.colorTheme"]' "${codeConf[i]}/User/settings.json")"
 
     if [ "${extTheme}" != "wallbash" ] ; then
