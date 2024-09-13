@@ -60,15 +60,13 @@ change_volume() {
     local action=$1
     local step=$2
     local device=$3
-    
     case $device in
         "pamixer")            
-            $use_swayosd && swayosd-client --output-volume $(sed 's/i/raise/;s/d/lower/' <<< "$action") "$step" && exit 0
+            $use_swayosd && swayosd-client "$(sed 's/--default-source/--input-volume/;s/^$/--output-volume/' <<< "${srce:-}")" "$(sed 's/i/+/;s/d/-/' <<< "${action}${step}")"  && exit 0
             pamixer $srce -"$action" "$step"
             vol=$(pamixer $srce --get-volume)
             ;;
         "playerctl")
-            $use_swayosd && swayosd-client --input-volume $(sed 's/i/raise/;s/d/lower/' <<< "$action") "$step" && exit 0
             [ "$action" == "i" ] && delta="+" || delta="-"
             playerctl --player="$srce" volume "0.0${step}${delta}"
             vol=$(playerctl --player="$srce" volume | awk '{ printf "%.0f\n", $0 * 100 }')
@@ -80,15 +78,13 @@ change_volume() {
 
 toggle_mute() {
     local device=$1
-    
     case $device in
-        "pamixer")
-            $use_swayosd && swayosd-client --input-volume mute-toggle && exit 0
+        "pamixer") 
+            $use_swayosd && swayosd-client $(sed 's/--default-source/--input-volume/;s/^$/--output-volume/' <<< "${srce:-}") mute-toggle && exit 0
             pamixer $srce -t
             notify_mute
             ;;
         "playerctl")
-            $use_swayosd && swayosd-client --output-volume mute-toggle && exit 0
             playerctl --player="$srce" volume 0
             notify_mute
             ;;
@@ -123,7 +119,6 @@ toggle_output() {
 # Set default variables
 icodir="${confDir}/dunst/icons/vol"
 step=5
-
 # Parse options
 while getopts "iopst" opt; do
     case $opt in
