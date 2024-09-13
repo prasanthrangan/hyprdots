@@ -25,7 +25,9 @@ install_git_2() {
 }
 
 install_git_3() {
-    ./configure
+    if [ -f "configure" ]; then
+        ./configure
+    fi
     make all && sudo make install
 }
 
