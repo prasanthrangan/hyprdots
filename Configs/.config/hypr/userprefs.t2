@@ -23,7 +23,7 @@ bind = $mainMod+Shift, G, exec, pkill -x rofi || $scrPath/gamelauncher.sh # laun
 # exec-once = swayidle -w timeout 1200 'swaylock; hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' timeout 1800 'systemctl suspend' # lock and sleep after 20 mins, suspend after 30 mins // install swayidle
 # exec-once = libinput-gestures // install libinput-gestures
 # exec-once = swayosd-server # enable swayosd service
-# exec-once = pkexec swayosd-libinput-backend | - # swayosd service for keyboard input. Need to add the '| -' for now so the daemon won't exit 
+# exec-once = `pkexec swayosd-libinput-backend` # swayosd service for keyboard input (requires to be run in a subshell)  
 
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
 # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
