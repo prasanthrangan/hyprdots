@@ -148,7 +148,7 @@ fi
 
 echo "dcol_mode=\"${sortMode}\"" >> "${wallbashOut}"
 dcolHex=($(echo  -e "${dcolRaw[@]:0:$wallbashColors}" | tr ' ' '\n' | awk -F ',' '{print $2}' | sort ${colSort}))
-greyCheck=$(convert "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
+greyCheck=$(magick "${wallbashRaw}" -colorspace HSL -channel g -separate +channel -format "%[fx:mean]" info:)
 
 if (( $(awk 'BEGIN {print ('"$greyCheck"' < 0.12)}') )); then
     wallbashCurve="10 0\n17 0\n24 0\n39 0\n51 0\n58 0\n72 0\n84 0\n99 0"
