@@ -232,19 +232,19 @@ export -f fn_wallbash
 if [ "${enableWallDcol}" -eq 0 ] && [[ "${reload_flag}" -eq 1 ]] ; then
 
     echo ":: deploying ${hydeTheme} colors :: ${dcol_mode} wallpaper detected"
-    mapfile -d '' -t deployList < <(find "${hydeThemeDir}" -type f -name "*.theme" -print0)
+    mapfile -d '' -t deployList < <(find -L "${hydeThemeDir}" -type f -name "*.theme" -print0)
 
     while read -r pKey ; do
-        fKey="$(find "${hydeThemeDir}" -type f -name "$(basename "${pKey%.dcol}.theme")")"
+        fKey="$(find -L "${hydeThemeDir}" -type f -name "$(basename "${pKey%.dcol}.theme")")"
         [ -z "${fKey}" ] && deployList+=("${pKey}")
-    done < <(find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol")
+    done < <(find -L "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol")
 
     parallel fn_wallbash ::: "${deployList[@]}"
 
 elif [ "${enableWallDcol}" -gt 0 ] ; then
 
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
-    find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {}
+    find -L "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {}
 
 fi
 
@@ -258,5 +258,5 @@ if [ "${enableWallDcol}" -eq 0 ]; then
     grep -q "light" <<< "${colorScheme}" && enableWallDcol=3 
 fi
 
-find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
+find -L "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
 

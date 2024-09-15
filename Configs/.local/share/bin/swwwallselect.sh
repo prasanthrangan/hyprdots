@@ -43,7 +43,7 @@ rofiSel=$(parallel --link echo -en "\$(basename "{1}")"'\\x00icon\\x1f'"${thmbDi
 
 if [ ! -z "${rofiSel}" ] ; then
     for i in "${!wallPathArray[@]}" ; do
-        setWall="$(find "${wallPathArray[i]}" -type f -name "${rofiSel}")"
+        setWall="$(find -L "${wallPathArray[i]}" -type f -name "${rofiSel}")"
         [ -z "${setWall}" ] || break
     done
     "${scrDir}/swwwallpaper.sh" -s "${setWall}"

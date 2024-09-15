@@ -102,7 +102,7 @@ print_prompt "Patching" -g " --// ${Fav_Theme} //-- "  "from " -b "${Theme_Dir}\
 Fav_Theme_Dir="${Theme_Dir}/Configs/.config/hyde/themes/${Fav_Theme}"
 [ ! -d "${Fav_Theme_Dir}" ] && print_prompt -r "[ERROR] " "'${Fav_Theme_Dir}'" -y " Do not Exist" && exit 1
 
-config=$(find "${dcolDir}" -type f -name "*.dcol" | awk -v favTheme="${Fav_Theme}" -F 'Wall-Dcol/' '{gsub(/\.dcol$/, ".theme"); print ".config/hyde/themes/" favTheme "/" $2}')
+config=$(find -L "${dcolDir}" -type f -name "*.dcol" | awk -v favTheme="${Fav_Theme}" -F 'Wall-Dcol/' '{gsub(/\.dcol$/, ".theme"); print ".config/hyde/themes/" favTheme "/" $2}')
 restore_list=""
 
 while IFS= read -r fchk; do
@@ -118,7 +118,7 @@ done <<< "$config"
 readonly restore_list
 
 # Get Wallpapers
-wallpapers=$(find "${Fav_Theme_Dir}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
+wallpapers=$(find -L "${Fav_Theme_Dir}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \))
 wallcount="$(echo "${wallpapers}" | wc -l)"
 { [ -z "${wallpapers}" ] && print_prompt -r "[ERROR] " "No wallpapers found" && exit_flag=true ;} || { readonly wallpapers && print_prompt -g "\n[OK] " "wallpapers :: [count] ${wallcount} (.gif+.jpg+.jpeg+.png)" ;}
 
@@ -131,7 +131,7 @@ check_tars() {
 
     if [ ! -z "${gsVal}" ]; then
         print_prompt -g "[OK] " "hypr.theme :: [${gsLow}]" -b " ${gsVal}"
-        trArc="$(find "${Theme_Dir}" -type f -name "${inVal}_*.tar.*")"
+        trArc="$(find -L "${Theme_Dir}" -type f -name "${inVal}_*.tar.*")"
         [ -f "${trArc}" ] && [ $(echo "${trArc}" | wc -l) -eq 1 ] && trVal="$(basename "$(tar -tf "${trArc}" | cut -d '/' -f1 | sort -u)")" && trVal="$(echo "${trVal}" | grep -w "${gsVal}")"
         print_prompt -g "[OK] " "../*.tar.* :: [${gsLow}]" -b " ${trVal}"
         [ "${trVal}" != "${gsVal}" ] && print_prompt -r "[ERROR] " "${gsLow}-theme set in hypr.theme does not exist in ${inVal}_*.tar.*" && exit_flag=true
@@ -151,7 +151,7 @@ prefix=("Gtk" "Icon" "Cursor")
 tgtDir=("$HOME/.themes" "$HOME/.icons" "$HOME/.icons")
 
 for indx in ${!prefix[@]}; do
-    tarFile="$(find "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
+    tarFile="$(find -L "${Theme_Dir}" -type f -name "${prefix[indx]}_*.tar.*")"
     [ -f "${tarFile}" ] || continue
     [ -d "${tgtDir[indx]}" ] || mkdir -p "${tgtDir[indx]}"
     tgtChk="$(basename "$(tar -tf "${tarFile}" | cut -d '/' -f1 | sort -u)")"

@@ -22,7 +22,7 @@ get_hashmap()
         [ "${wallSource}" == "--skipstrays" ] && skipStrays=1 && continue
         [ "${wallSource}" == "--verbose" ] && verboseMap=1 && continue
 
-        hashMap=$(find "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
+        hashMap=$(find -L "${wallSource}" -type f \( -iname "*.gif" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -exec "${hashMech}" {} + | sort -k2)
         if [ -z "${hashMap}" ] ; then
             echo "WARNING: No image found in \"${wallSource}\""
             continue
@@ -69,7 +69,7 @@ get_themes()
         [ -f "${thmDir}/.sort" ] && thmSortS+=("$(head -1 "${thmDir}/.sort")") || thmSortS+=("0")
         thmListS+=("$(basename "${thmDir}")")
         thmWallS+=("$(readlink "${thmDir}/wall.set")")
-    done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d)
+    done < <(find -L "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d)
 
     while IFS='|' read -r sort theme wall ; do
         thmSort+=("${sort}")

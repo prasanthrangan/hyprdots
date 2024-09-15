@@ -10,7 +10,7 @@ roconf="${confDir}/rofi/styles/style_${rofiStyle}.rasi"
 [[ "${rofiScale}" =~ ^[0-9]+$ ]] || rofiScale=10
 
 if [ ! -f "${roconf}" ] ; then
-    roconf="$(find "${confDir}/rofi/styles" -type f -name "style_*.rasi" | sort -t '_' -k 2 -n | head -1)"
+    roconf="$(find -L "${confDir}/rofi/styles" -type f -name "style_*.rasi" | sort -t '_' -k 2 -n | head -1)"
 fi
 
 
