@@ -14,15 +14,10 @@ for i in "${!codeVsix[@]}" ;do
     if [ ! -f "${codeVsix[i]}/${tgtFile}" ] ; then
         [ -f "${cacheDir}/landing/Code_Wallbash.vsix" ] || curl -L -o "${cacheDir}/landing/Code_Wallbash.vsix" https://github.com/prasanthrangan/hyprdots/raw/main/Source/arcs/Code_Wallbash.vsix
         case ${codeVsix[i]} in
-        *".code"*)
-            pkg_installed code && code --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
-            ;;
-        *".vscodium"*)
-            pkg_installed vscodium && vscodium --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
-            ;;
         *".vscode"*)
             pkg_installed code-insiders && code-insiders --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
             pkg_installed code && code --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
+            pkg_installed vscodium && vscodium --install-extension "${cacheDir}/landing/Code_Wallbash.vsix"
             ;;
         *".cursor"*)
             echo "[wallbashcode] Cursor IDE: Manual intervention required for extension installation."
