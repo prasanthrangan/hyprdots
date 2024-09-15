@@ -31,8 +31,11 @@ set +a
 
 fn_wallbash () {
     local tplt="${1}"
+    [ -f "${hydeConfDir}/hyde.conf" ] && source "${hydeConfDir}/hyde.conf"
+    # Skips the the template declared in ./hyde.conf
+    [[ " ${skip_wallbash[@]} " =~ " ${tplt} " ]] && echo "[skip: template] ${tplt}" && return 0
     eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
-    [ ! -d "$(dirname "${target}")" ] && echo "[skip] \"${target}\"" && return 0
+    [ ! -d "$(dirname "${target}")" ] && echo "[skip: no dir] \"${target}\"" && return 0
     appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
     sed '1d' "${tplt}" > "${target}"
 
@@ -243,6 +246,16 @@ elif [ "${enableWallDcol}" -gt 0 ] ; then
     echo ":: deploying wallbash colors :: ${dcol_mode} wallpaper detected"
     find "${wallbashDir}/Wall-Dcol" -type f -name "*.dcol" | parallel fn_wallbash {}
 
+fi
+
+#  Theme mode: detects the color-scheme set in hypr.theme and falls back if nothing is parsed.
+if [ "${enableWallDcol}" -eq 0 ]; then
+    colorScheme="$({ grep -q "^[[:space:]]*\$COLOR-SCHEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$COLOR-SCHEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
+                    grep 'gsettings set org.gnome.desktop.interface color-scheme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+    colorScheme=${colorScheme:-$(gsettings get org.gnome.desktop.interface color-scheme)} 
+    # should be declared explicitly so we can easily debug
+    grep -q "dark" <<< "${colorScheme}" && enableWallDcol=2
+    grep -q "light" <<< "${colorScheme}" && enableWallDcol=3 
 fi
 
 find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
