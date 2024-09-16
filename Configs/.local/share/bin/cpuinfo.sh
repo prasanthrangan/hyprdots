@@ -18,6 +18,8 @@ if [ -z "$temp" ]; then
 fi
 if [ -z "$temp" ]; then
     temp="N/A"
+else
+    temp=`printf "%.0f\n" $temp`
 fi
 
 # map icons
