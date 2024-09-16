@@ -1,0 +1,52 @@
+# Name: Catppuccin Mocha 🌿
+# Author: Pocco81 (https://github.com/Pocco81)
+# License: MIT
+# Upstream: https://github.com/catppuccin/kitty/blob/main/mocha.conf
+
+[colors]
+# The basic colors
+primary = { background = '#1E1E2E', foreground = '#CDD6F4' }
+
+# Selection colors
+selection = { text = '#1E1E2E', background = '#F5E0DC' }
+
+# Cursor colors
+cursor = { text = '#1E1E2E', cursor = '#F5E0DC' }
+
+# Normal terminal colors
+[colors.normal]
+black   = '#43465A'  # color0
+red     = '#F38BA8'  # color1
+green   = '#A6E3A1'  # color2
+yellow  = '#F9E2AF'  # color3
+blue    = '#87B0F9'  # color4
+magenta = '#F5C2E7'  # color5
+cyan    = '#94E2D5'  # color6
+white   = '#CDD6F4'  # color7
+
+# Bright terminal colors
+[colors.bright]
+black   = '#43465A'  # color8
+red     = '#F38BA8'  # color9
+green   = '#A6E3A1'  # color10
+yellow  = '#F9E2AF'  # color11
+blue    = '#87B0F9'  # color12
+magenta = '#F5C2E7'  # color13
+cyan    = '#94E2D5'  # color14
+white   = '#A1A8C9'  # color15
+
+# URL underline color
+url = { color = '#B4BEFE' }
+
+# Marks (custom highlights in the terminal, adapted from Kitty)
+[colors.mark1]
+text = '#1E1E2E'
+background = '#87B0F9'
+
+[colors.mark2]
+text = '#1E1E2E'
+background = '#CBA6F7'
+
+[colors.mark3]
+text = '#1E1E2E'
+background = '#74C7EC'

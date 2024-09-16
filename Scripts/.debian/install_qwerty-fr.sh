@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 #|---/ /+----------------------------------------+---/ /|#
-#|--/ /-| Script to install sddm                 |--/ /-|#
+#|--/ /-| Script to install qwerty-fr            |--/ /-|#
 #|-/ /--| Matthieu Amet                          |-/ /--|#
 #|-/ /--| Prasanth Rangan                        |-/ /--|#
 #|/ /---+----------------------------------------+/ /---|#
 
-sudo apt install --no-install-recommends -y sddm
+curl -s https://api.github.com/repos/qwerty-fr/qwerty-fr/releases/latest \
+| grep "browser_download_url.*.deb" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi -
+sudo dpkg -i *.deb
+sudo rm -rf *.deb

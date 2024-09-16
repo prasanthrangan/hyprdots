@@ -82,7 +82,7 @@ cliphist
 wl-clipboard
 
 #--------------------------------------------------- // Display Manager
-#sddm for now disabled due to install of kde
+#sddm installed in install_sddm
 qml-module-qtquick-controls
 qml-module-qtquick-controls2
 qml-module-qtgraphicaleffects
@@ -103,9 +103,9 @@ qt5-style-kvantum
 qtwayland5
 qt6-wayland
 
-#--------------------------------------------------- // Applications
+#---------------- ----------------------------------- // Applications
 firefox
-kitty
+alacritty
 dolphin
 ark
 neovim

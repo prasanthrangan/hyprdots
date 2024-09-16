@@ -4,3 +4,4 @@ webcord # Discord, but open source gui
 spotify
 spicetify # Spotify CLI
 sddm # Greeter, requires special install in Debian, it installs KDE otherwise...
+qwerty-fr # qwerty keyboard but open-source and with accents
