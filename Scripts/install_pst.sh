@@ -59,7 +59,13 @@ if pkg_installed xdg-utils; then
         echo -e "\033[0;32m[BROWSER]\033[0m detected // firefox"
         xdg-mime default firefox.desktop x-scheme-handler/http
         xdg-mime default firefox.desktop x-scheme-handler/https
-        echo -e "\033[0;32m[BROWSER]\033[0m setting" `xdg-mime query default "x-scheme-handler/http" ans "x-scheme-handler/https"` "as default browser..."
+        echo -e "\033[0;32m[BROWSER]\033[0m setting" `xdg-mime query default "x-scheme-handler/http"` "as default browser..."
+    fi
+    # Firefox
+    if pkg_installed codium; then
+        echo -e "\033[0;32m[TEXTEDITOR]\033[0m detected // vscodium"
+        xdg-mime default codium.desktop text/plain
+        echo -e "\033[0;32m[TEXTEDITOR]\033[0m setting" `xdg-mime query default "text/plain"` "as default text editor..."
     fi
 else
     echo -e "\033[0;33m[WARNING]\033[0m dolphin is not installed..."

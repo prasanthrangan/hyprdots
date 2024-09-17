@@ -38,6 +38,7 @@ This GitHub repository is a fork of the [HyprDots](https://github.com/prasanthra
 Notably, this fork includes the following key changes:
 - [Alacritty](https://github.com/alacritty/alacritty) as a terminal emulator.
 - [Qwerty-Fr](https://github.com/qwerty-fr/qwerty-fr) as the default keyboard.
+- [VsCodium](https://github.com/vscodium/vscodium) as the default text-editor.
 
 Initially, this project was intended to remain compatible with the current version of HyprDots. However, as development progressed, maintaining compatibility became difficult.
 
