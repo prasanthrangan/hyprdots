@@ -55,7 +55,9 @@ flex
 bison
 firmware-iwlwifi
 playerctl
+libplayerctl-dev
 pipx
+lm-sensors
 
 #--------------------------------------------------- // System
 pipewire
