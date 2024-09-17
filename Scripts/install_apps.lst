@@ -54,6 +54,8 @@ parallel
 flex
 bison
 firmware-iwlwifi
+playerctl
+pipx
 
 #--------------------------------------------------- // System
 pipewire

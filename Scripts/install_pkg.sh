@@ -133,3 +133,9 @@ else
 fi
 
 source "${scrDir}/.debian/install_swww.sh"
+pipx install hyprshade
+# For screenshots, we install grimblast
+git clone --depth=1 https://github.com/hyprwm/contrib.git contrib
+cd contrib/grimblast
+sudo make install
+cd ../../

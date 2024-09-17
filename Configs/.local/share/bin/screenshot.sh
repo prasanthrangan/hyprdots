@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 
 # Restores the shader after screenshot has been taken
+HYPRSHADE="$HOME/.local/share/pipx/venvs/hyprshade/bin/hyprshade"
 restore_shader() {
 	if [ -n "$shader" ]; then
-		hyprshade on "$shader"
+		"$HYPRSHADE" on "$shader"
 	fi
 }
 
 # Saves the current shader and turns it off
 save_shader() {
-	shader=$(hyprshade current)
-	hyprshade off
+	shader=$("$HYPRSHADE" current)
+	"$HYPRSHADE" off
 	trap restore_shader EXIT
 }
 
