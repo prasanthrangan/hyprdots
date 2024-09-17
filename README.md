@@ -62,7 +62,7 @@ At this point, you might want to reboot to avoid any problems.
 Then execute the following commands to install hyprdots:
 
 ```shell
-git clone --depth 1 https://github.com/iiztp/hyprdots ~/HyDE
+git clone --depth 1 https://github.com/iiztp/hyprdots-debian.git ~/HyDE
 cd ~/HyDE/Scripts
 ./install.sh
 ```
