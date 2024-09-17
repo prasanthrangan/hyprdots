@@ -31,8 +31,16 @@ set +a
 
 fn_wallbash () {
     local tplt="${1}"
+<<<<<<< HEAD
     eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
     [ ! -d "$(dirname "${target}")" ] && echo "[skip] \"${target}\"" && return 0
+=======
+    [ -f "${hydeConfDir}/hyde.conf" ] && source "${hydeConfDir}/hyde.conf"
+    # Skips the the template declared in ./hyde.conf
+    [[ " ${skip_wallbash[@]} " =~ " ${tplt} " ]] && echo "[skip: template] ${tplt}" && return 0
+    eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
+    [ ! -d "$(dirname "${target}")" ] && echo "[skip: no dir] \"${target}\"" && return 0
+>>>>>>> 22bebeefff2f3fec39ff4397d489e37a780942a2
     appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
     sed '1d' "${tplt}" > "${target}"
 

@@ -108,7 +108,6 @@ EOF
             2) export myShell="fish" ;;
             *) echo -e "...Invalid option selected..." ; exit 1 ;;
         esac
-        echo "${myShell}" >> "${scrDir}/install_pkg.lst"
     fi
 
     #--------------------------------#
