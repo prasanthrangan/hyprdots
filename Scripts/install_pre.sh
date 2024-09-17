@@ -27,16 +27,7 @@ update_grub_setting() {
     fi
 }
 
-grub_package=""
-if [ "$arch" == "debian" ]; then
-    grub_package="grub-common"
-elif [ "$arch" == "arch" ]; then
-    grub_package="grub"
-else
-    echo "Unsupported architecture."
-    exit
-fi
-if pkg_installed "$grub_package" && [ -f /boot/grub/grub.cfg ]; then
+if pkg_installed "grub-common" && [ -f /boot/grub/grub.cfg ]; then
     echo -e "\033[0;32m[BOOTLOADER]\033[0m detected // grub"
     sudo mkdir -p /usr/share/grub/themes
     if [ ! -f /etc/default/grub.t2.bkp ] && [ ! -f /boot/grub/grub.t2.bkp ]; then
@@ -90,26 +81,5 @@ if pkg_installed systemd && nvidia_detect && [ "$(bootctl status 2> /dev/null | 
         done
     else
         echo -e "\033[0;33m[SKIP]\033[0m systemd-boot is already configured..."
-    fi
-fi
-
-# pacman
-if [ -f /etc/pacman.conf ] && [ ! -f /etc/pacman.conf.t2.bkp ]; then
-    echo -e "\033[0;32m[PACMAN]\033[0m adding extra spice to pacman..."
-
-    sudo cp /etc/pacman.conf /etc/pacman.conf.t2.bkp
-    sudo sed -i "/^#Color/c\Color\nILoveCandy
-    /^#VerbosePkgLists/c\VerbosePkgLists
-    /^#ParallelDownloads/c\ParallelDownloads = 5" /etc/pacman.conf
-    sudo sed -i '/^#\[multilib\]/,+1 s/^#//' /etc/pacman.conf
-
-    sudo pacman -Syyu
-    sudo pacman -Fy
-
-else
-    if [ "$arch" == "debian" ]; then
-        echo -e "\033[0;33m[SKIP]\033[0m pacman configuration unsupported for Debian-based systems..."
-    else
-        echo -e "\033[0;33m[SKIP]\033[0m pacman is already configured..."
     fi
 fi

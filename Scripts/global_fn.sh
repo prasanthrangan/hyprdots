@@ -11,47 +11,24 @@ scrDir="$(dirname "$(realpath "$0")")"
 cloneDir="$(dirname "${scrDir}")"
 confDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 cacheDir="$HOME/.cache/hyde"
-arch=""
 
-# Check if the system is Arch-based (has pacman)
-if command -v pacman &> /dev/null; then
-    export arch="arch"
-elif command -v apt &> /dev/null; then
-    export arch="debian"
-else
-    echo "Unsupported package manager. Not an Arch or Debian-based system. Install will crash at the first package install."
-fi
-
-aurList=(yay paru)
 shlList=(zsh fish)
 
 pkg_installed() {
     local PkgIn=$1
-
-    if [ "$arch" == "debian" ]; then
-        if dpkg -l | grep -qw "${PkgIn}"; then
+    if dpkg -l | grep -qw "${PkgIn}"; then
+        return 0
+    else
+        if command -v ${PkgIn} &> /dev/null; then
             return 0
-        else
-            if command -v ${PkgIn} &> /dev/null; then
+        fi
+        # Specific case for swaylock effects for debian, I don't have a fix rn
+        if [ "${PkgIn}" == "swaylock-effects" ]; then
+            if command -v swaylock &> /dev/null; then
                 return 0
             fi
-            # Specific case for swaylock effects for debian, I don't have a fix rn
-            if [ "${PkgIn}" == "swaylock-effects" ]; then
-                if command -v swaylock &> /dev/null; then
-                    return 0
-                fi
-            fi
-            return 1
         fi
-    elif [ "$arch" == "arch" ]; then
-        if pacman -Qi "${PkgIn}" &> /dev/null; then
-            return 0
-        else
-            return 1
-        fi
-    else
-        echo "Unsupported package manager."
-        return 2
+        return 1
     fi
 }
 
@@ -70,57 +47,7 @@ chk_list() {
 
 pkg_available() {
     local PkgIn=$1
-
-    if [ "$arch" == "debian" ]; then
-        if apt list "${PkgIn}" &> /dev/null; then
-            return 0
-        else
-            return 1
-        fi
-    elif [ "$arch" == "arch" ]; then
-        if pacman -Si "${PkgIn}" &> /dev/null; then
-            return 0
-        else
-            return 1
-        fi
-    else
-        echo "Unsupported package manager."
-        return 2
-    fi
-}
-
-aur_available() {
-    local PkgIn=$1
-    
-    if [ "$arch" == "debian" ]; then
-        return 1
-    elif [ "$arch" == "arch" ]; then
-        if ${aurhlpr} -Si "${PkgIn}" &> /dev/null; then
-            return 0
-        else
-            return 1
-        fi
-    else
-        echo "Unsupported package manager."
-        return 2
-    fi
-}
-
-nvidia_detect() {
-    readarray -t dGPU < <(lspci -k | grep -E "(VGA|3D)" | awk -F ': ' '{print $NF}')
-    if [ "${1}" == "--verbose" ]; then
-        for indx in "${!dGPU[@]}"; do
-            echo -e "\033[0;32m[gpu$indx]\033[0m detected // ${dGPU[indx]}"
-        done
-        return 0
-    fi
-    if [ "${1}" == "--drivers" ]; then
-        while read -r -d ' ' nvcode ; do
-            awk -F '|' -v nvc="${nvcode}" 'substr(nvc,1,length($3)) == $3 {split(FILENAME,driver,"/"); print driver[length(driver)],"\nnvidia-utils"}' "${scrDir}"/.nvidia/nvidia*dkms
-        done <<< "${dGPU[@]}"
-        return 0
-    fi
-    if grep -iq nvidia <<< "${dGPU[@]}"; then
+    if apt list "${PkgIn}" &> /dev/null; then
         return 0
     else
         return 1

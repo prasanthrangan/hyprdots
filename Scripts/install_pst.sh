@@ -46,13 +46,21 @@ else
     echo -e "\033[0;33m[WARNING]\033[0m sddm is not installed..."
 fi
 
-# dolphin
-if pkg_installed dolphin && pkg_installed xdg-utils; then
-
-    echo -e "\033[0;32m[FILEMANAGER]\033[0m detected // dolphin"
-    xdg-mime default org.kde.dolphin.desktop inode/directory
-    echo -e "\033[0;32m[FILEMANAGER]\033[0m setting" `xdg-mime query default "inode/directory"` "as default file explorer..."
-
+# Default apps
+if pkg_installed xdg-utils; then
+    # Dolphin
+    if pkg_installed dolphin; then
+        echo -e "\033[0;32m[FILEMANAGER]\033[0m detected // dolphin"
+        xdg-mime default org.kde.dolphin.desktop inode/directory
+        echo -e "\033[0;32m[FILEMANAGER]\033[0m setting" `xdg-mime query default "inode/directory"` "as default file explorer..."
+    fi
+    # Firefox
+    if pkg_installed firefox; then
+        echo -e "\033[0;32m[BROWSER]\033[0m detected // firefox"
+        xdg-mime default firefox.desktop x-scheme-handler/http
+        xdg-mime default firefox.desktop x-scheme-handler/https
+        echo -e "\033[0;32m[BROWSER]\033[0m setting" `xdg-mime query default "x-scheme-handler/http" ans "x-scheme-handler/https"` "as default browser..."
+    fi
 else
     echo -e "\033[0;33m[WARNING]\033[0m dolphin is not installed..."
 fi

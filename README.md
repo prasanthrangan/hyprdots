@@ -22,32 +22,47 @@
   <a href="#styles"><kbd> <br> Styles <br> </kbd></a>&ensp;&ensp;
   <a href="#keybindings"><kbd> <br> Keybindings <br> </kbd></a>&ensp;&ensp;
   <a href="https://www.youtube.com/watch?v=2rWqdKU1vu8&list=PLt8rU_ebLsc5yEHUVsAQTqokIBMtx3RFY&index=1"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/prasanthrangan/hyprdots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
+  <a href="https://github.com/iiztp/hyprdots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
   <a href="https://discord.gg/qWehcFJxPa"><kbd> <br> Discord <br> </kbd></a>
 
 </div><br><br>
 
 https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a851-e9c6464f5265
 
-<br><div align="center"><img width="12%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/arch.png"/><br></div>
+<br><div align="center"><img width="12%" src="https://raw.githubusercontent.com/iiztp/hyprdots/main/Source/assets/debian.png"/><br></div>
+
+## Context
+
+This GitHub repository is a fork of the [HyprDots](https://github.com/prasanthrangan/hyprdots) project, specifically **adapted for Debian**. As a fork, it introduces **new features and enhancements** that, in my view, improve upon the original project. As a fork there are also **some features that might not work** due to the difficulty to test everything and the need to adapt, if you find a bug or a feature that doesn't work, feel free to open an issue about it.
+
+Notably, this fork includes the following key changes:
+- [Alacritty](https://github.com/alacritty/alacritty) has a terminal emulator.
+- [Qwerty-Fr](https://github.com/qwerty-fr/qwerty-fr) has the default keyboard.
+
+Initially, this project was intended to remain compatible with the current version of HyprDots. However, as development progressed, maintaining compatibility became difficult.
 
 ## Installation
 
-The installation script is designed for a minimal [Arch Linux](https://wiki.archlinux.org/title/Arch_Linux) install, but **may** work on some [Arch-based distros](https://wiki.archlinux.org/title/Arch-based_distributions).
+The installation script is designed for a minimal [Debian SID](https://wiki.debian.org/DebianUnstable) install, but **may** work on some [Debian-based distros](https://www.debian.org/derivatives/index.html).
 While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/Desktop_environment)/[WM](https://wiki.archlinux.org/title/Window_manager) should work, due to it being a heavily customized setup, it **will** conflict with your [GTK](https://wiki.archlinux.org/title/GTK)/[Qt](https://wiki.archlinux.org/title/Qt) theming, [Shell](https://wiki.archlinux.org/title/Command-line_shell), [SDDM](https://wiki.archlinux.org/title/SDDM), [GRUB](https://wiki.archlinux.org/title/GRUB), etc. and is at your own risk.
 
 > [!IMPORTANT]
-> The install script will auto-detect an NVIDIA card and install nvidia-dkms drivers for your kernel.
-> Please ensure that your NVIDIA card supports dkms drivers in the list provided [here](https://wiki.archlinux.org/title/NVIDIA).
+> For now, support of NVIDIA cards is disabled.
+> You **can** install these drivers for Debian following several tutorials online.
 
-> [!CAUTION]
-> The script modifies your `grub` or `systemd-boot` config to enable NVIDIA DRM.
-
-To install, execute the following commands:
+After a clean install, on Debian, change your apt sources to unstable and update:
 
 ```shell
-pacman -Sy git
-git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
+echo -e "deb http://deb.debian.org/debian/ unstable main non-free-firmware non-free\ndeb-src http://deb.debian.org/debian/ unstable main non-free-firmware non-free" | sudo tee /etc/apt/sources.list
+sudo apt update && sudo apt dist-upgrade
+```
+
+You can change the link to your preferred debian mirror.
+At this point, you might want to reboot to avoid any problems.
+Then execute the following commands to install hyprdots:
+
+```shell
+git clone --depth 1 https://github.com/iiztp/hyprdots ~/HyDE
 cd ~/HyDE/Scripts
 ./install.sh
 ```
@@ -59,11 +74,8 @@ cd ~/HyDE/Scripts
 > ./install.sh custom_apps.lst
 > ```
 
-As a second install option, you can also use `Hyde-install`, which might be easier for some.
-View installation instructions for HyDE in [Hyde-cli - Usage](https://github.com/kRHYME7/Hyde-cli?tab=readme-ov-file#usage).
-
 Please reboot after the install script completes and takes you to the SDDM login screen (or black screen) for the first time.
-For more details, please refer to the [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation).
+For more details, please refer to the [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation) for Arch Linux.
 
 ### Updating
 To update HyDE, you will need to pull the latest changes from GitHub and restore the configs by running the following commands:
@@ -77,9 +89,6 @@ git pull
 > [!IMPORTANT]
 > Please note that any configurations you made will be overwritten if listed to be done so as listed by `Scripts/restore_cfg.lst`.
 > However, all replaced configs are backed up and may be recovered from in `~/.config/cfg_backups`.
-
-As a second update option, you can use `Hyde restore ...`, which does have a better way of managing restore and backup options.
-For more details, you can refer to [Hyde-cli - dots management wiki](https://github.com/kRHYME7/Hyde-cli/wiki/Dots-Management).
 
 <div align="right">
   <br>
@@ -172,31 +181,31 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 
 | Keys | Action |
 | :--- | :--- |
-| <kbd>Super</kbd> + <kbd>Q</kbd><br><kbd>Alt</kbd> + <kbd>F4</kbd> | Close focused window|
-| <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd><br><kbd>Alt</kbd> + <kbd>F4</kbd> | Close focused window|
+| <kbd>Super</kbd> + <kbd>Shift</kbd>+ <kbd>E</kbd> | Kill Hyprland session |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
 | <kbd>Super</kbd> + <kbd>G</kbd> | Toggle the window between focus and group |
 | <kbd>Super</kbd> + <kbd>slash</kbd> | Launch keybinds hint |
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | Toggle the window between focus and fullscreen |
-| <kbd>Super</kbd> + <kbd>L</kbd> | Launch lock screen |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Toggle pin on focused window |
-| <kbd>Super</kbd> + <kbd>Backspace</kbd> | Launch logout menu |
-| <kbd>Ctrl</kbd> + <kbd>Esc</kbd> | Toggle waybar |
-| <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal emulator (kitty) |
-| <kbd>Super</kbd> + <kbd>E</kbd> | Launch file manager (dolphin) |
-| <kbd>Super</kbd> + <kbd>C</kbd> | Launch text editor (vscode) |
-| <kbd>Super</kbd> + <kbd>F</kbd> | Launch web browser (firefox) |
+| <kbd>Super</kbd> + <kbd>U</kbd> | Launch lock screen |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Toggle pin on focused window |
+| <kbd>Super</kbd> + <kbd>X</kbd> | Launch logout menu |
+| <kbd>Ctrl</kbd> +  <kbd>Alt</kbd> + <kbd>W</kbd> | Toggle waybar |
+| <kbd>Super</kbd> + <kbd>Enter</kbd> | Launch terminal emulator (alacritty) |
+| <kbd>Super</kbd> + <kbd>F</kbd> | Launch file manager (dolphin) |
+| <kbd>Super</kbd> + <kbd>T</kbd> | Launch text editor (vscode) |
+| <kbd>Super</kbd> + <kbd>B</kbd> | Launch web browser (firefox) |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> | Launch system monitor (htop/btop or fallback to top) |
-| <kbd>Super</kbd> + <kbd>A</kbd> | Launch application launcher (rofi) |
+| <kbd>Super</kbd> + <kbd>D</kbd> | Launch application launcher (rofi) |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Launch window switcher (rofi) |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> | Launch file explorer (rofi) |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Launch file explorer (rofi) |
 | <kbd>F10</kbd> | Toggle audio mute |
 | <kbd>F11</kbd> | Decrease volume |
 | <kbd>F12</kbd> | Increase volume |
 | <kbd>Super</kbd> + <kbd>P</kbd> | Partial screenshot capture |
-| <kbd>Super</kbd> + <kbd>Ctrl</kbd> + <kbd>P</kbd> | Partial screenshot capture (frozen screen) |
-| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | Monitor screenshot capture |
-| <kbd>PrtScn</kbd> | All monitors screenshot capture |
+| <kbd>PrtScn</kbd> | Partial screenshot capture (frozen screen) |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> | Monitor screenshot capture |
+| <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>P</kbd> | All monitors screenshot capture |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd> | Disable hypr effects for gamemode |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>→</kbd><kbd>←</kbd> | Cycle wallpaper |
 | <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>↑</kbd><kbd>↓</kbd> | Cycle waybar mode |

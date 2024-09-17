@@ -96,42 +96,9 @@ EOF
         cat "${cust_pkg}" >> "${scrDir}/install_pkg.lst"
     fi
 
-    #--------------------------------#
-    # add nvidia drivers to the list #
-    #--------------------------------#
-    if nvidia_detect; then
-        if [ "$arch" == "arch" ]; then
-          cat /usr/lib/modules/*/pkgbase | while read krnl; do
-            echo "${krnl}-headers" >> "${scrDir}/install_pkg.lst"
-          done
-          nvidia_detect --drivers >> "${scrDir}/install_pkg.lst"
-        elif [ "$arch" == "debian" ]; then
-          krnl=$(uname -r)
-          echo -e "\033[0;32m[o]\033[0m Installing linux-headers-${krnl} from official debian repo..."
-          sudo apt install -y --force-yes linux-headers-${krnl} &>/dev/null
-          echo -e "\n\033[0;31m[NVIDIA]\033[0m Not yet supported, uninstallable..."
-        else
-          echo "Architecture not supported."
-          exit
-        fi
-    fi
-
-    nvidia_detect --verbose
-
     #----------------#
     # get user prefs #
     #----------------#
-    if ! chk_list "aurhlpr" "${aurList[@]}" && [ "$arch" == "arch" ]; then
-        echo -e "Available aur helpers:\n[1] yay\n[2] paru"
-        prompt_timer 120 "Enter option number"
-
-        case "${promptIn}" in
-            1) export getAur="yay" ;;
-            2) export getAur="paru" ;;
-            *) echo -e "...Invalid option selected..." ; exit 1 ;;
-        esac
-    fi
-
     if ! chk_list "myShell" "${shlList[@]}"; then
         echo -e "Select shell:\n[1] zsh\n[2] fish"
         prompt_timer 120 "Enter option number"
@@ -147,14 +114,7 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    if [ "$arch" == "arch" ]; then
-      "${scrDir}/install_pkg.sh" "${scrDir}/install_pkg.lst"
-    elif [ "$arch" == "debian" ]; then
-      "${scrDir}/.$arch/install_pkg.sh"
-    else
-      echo "Architecture not supported."
-      exit
-    fi
+    "${scrDir}/install_pkg.sh"
     rm "${scrDir}/install_pkg.lst"
 fi
 
