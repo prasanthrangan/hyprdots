@@ -111,7 +111,7 @@ while read -r input; do
         continue
     fi
     echo -e "\033[0;32m[o]\033[0m Installing ${input}..."
-    source "${scrDir}/install_${input}.sh"
+    source "${scrDir}/.debian/install_${input}.sh"
 done < <(cut -d '#' -f 1 "${listPkg}")
 
 if [ "${myShell}" == "zsh" ]; then
@@ -132,4 +132,4 @@ else
     echo -e "\033[0;33m[o]\033[0m No shell selected"
 fi
 
-source "${scrDir}/install_swww.sh"
+source "${scrDir}/.debian/install_swww.sh"

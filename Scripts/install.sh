@@ -85,17 +85,6 @@ if [ ${flg_Install} -eq 1 ]; then
 
 EOF
 
-    #----------------------#
-    # prepare package list #
-    #----------------------#
-    shift $((OPTIND - 1))
-    cust_pkg=$1
-    cp "${scrDir}/custom_hypr.lst" "${scrDir}/install_pkg.lst"
-
-    if [ -f "${cust_pkg}" ] && [ ! -z "${cust_pkg}" ]; then
-        cat "${cust_pkg}" >> "${scrDir}/install_pkg.lst"
-    fi
-
     #----------------#
     # get user prefs #
     #----------------#
@@ -113,8 +102,7 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    "${scrDir}/install_pkg.sh"
-    rm "${scrDir}/install_pkg.lst"
+    #"${scrDir}/install_pkg.sh"
 fi
 
 #---------------------------#
