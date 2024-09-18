@@ -4,15 +4,6 @@
 ScrDir=$(dirname "$(realpath "$0")")
 source ${ScrDir}/globalcontrol.sh
 
-WALLPAPER="${cacheDir}/wall.set"
-
-fn_background() {
-    BG="${confDir}/hyprlock/hyprlock.png"
-    mime=$(file --mime-type "${WALLPAPER}" | grep "image/png")
-    cp -f "${WALLPAPER}" "${BG}"
-    #? Run this in the background because converting takes time
-    ([[ -z ${mime} ]] && convert "${BG}"[0] "${BG}") &
-}
 
 mpris_thumb() { # Generate thumbnail for mpris
     artUrl=$(playerctl -p spotify metadata --format '{{mpris:artUrl}}')
