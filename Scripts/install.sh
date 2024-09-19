@@ -102,7 +102,7 @@ EOF
     #--------------------------------#
     # install packages from the list #
     #--------------------------------#
-    #"${scrDir}/install_pkg.sh"
+    "${scrDir}/install_pkg.sh"
 fi
 
 #---------------------------#
