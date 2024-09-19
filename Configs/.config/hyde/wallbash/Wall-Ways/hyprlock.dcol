@@ -1,4 +1,4 @@
-$HOME/.config/hyprlock/colors.conf|${scrDir}/hyprlock.sh background
+$HOME/.config/hypr/hyprlock/colors.conf|${scrDir}/hyprlock.sh background
 # Color group 1
 
 $primary_1   = <wallbash_pry1>    # primary color 1
