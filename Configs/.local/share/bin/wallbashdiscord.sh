@@ -11,6 +11,7 @@ declare -a client_list=()
 
 #// List more clients
 
+client_list+=("$HOME/.config/Vencord/settings/quickCss.css")
 client_list+=("$HOME/.config/vesktop/settings/quickCss.css")
 client_list+=("$HOME/.var/app/dev.vencord.Vesktop/config/vesktop/settings/quickCss.css")
 client_list+=("$HOME/.config/WebCord/Themes/theme.css")
