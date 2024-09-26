@@ -15,8 +15,14 @@ Wall_Cache()
 {
     ln -fs "${wallList[setIndex]}" "${wallSet}"
     ln -fs "${wallList[setIndex]}" "${wallCur}"
-    "${scrDir}/swwwallcache.sh" -w "${wallList[setIndex]}" &> /dev/null
-    "${scrDir}/swwwallbash.sh" "${wallList[setIndex]}" &
+    # cache should only run if the file does not exist (eg new wallpaper added, or cache cleared)
+     if [ ! -f "${thmbDir}/${wall_hash}.thmb" ] || [ "${wallList[setIndex]}" -nt "${thmbDir}/${wall_hash}.thmb" ]; then
+        "${scrDir}/swwwallcache.sh" -w "${wallList[setIndex]}" &> /dev/null
+    fi
+    # wallbash should not be run if the option is not enabled
+    if [ "${enableWallDcol}" -ne 0 ]; then
+        "${scrDir}/swwwallbash.sh" "${wallList[setIndex]}" &
+    fi
     ln -fs "${thmbDir}/${wallHash[setIndex]}.sqre" "${wallSqr}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.thmb" "${wallTmb}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
