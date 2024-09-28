@@ -2,7 +2,9 @@
 name: Custom template
 about: Use this template to submit a custom issue
 title: "[Custom]: Short description of the issue"
-labels: "custom"
+labels: ''
+assignees: ''
+
 ---
 
 ## Custom Template
