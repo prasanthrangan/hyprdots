@@ -15,7 +15,7 @@ if [ "$1" == "up" ] ; then
     $fpk_exup
     read -n 1 -p 'Press any key to continue...'
     "
-    kitty --title systemupdate sh -c "${command}"
+    alacritty --title systemupdate sh -c "${command}"
 fi
 
 # Check for flatpak updates

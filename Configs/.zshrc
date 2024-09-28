@@ -71,7 +71,7 @@ alias pu='apt update && sudo apt dist-upgrade' # update system/packages
 alias pl='apt list --installed' # list installed package
 alias ps='apt search' # list available package
 alias pc='sudo apt autoremove && sudo apt clean' # remove unused packages and cache
-alias vc='code' # gui code editor
+alias vc='codium' # gui code editor
 
 # Directory navigation shortcuts
 alias ..='cd ..'

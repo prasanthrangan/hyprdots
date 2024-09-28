@@ -1,5 +1,5 @@
 [General]
-TerminalApplication=kitty
+TerminalApplication=alacritty
 
 [Icons]
 Theme=Will be overwritten by themeswitch

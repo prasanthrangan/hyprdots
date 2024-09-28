@@ -174,10 +174,10 @@ dbus-monitor --system "type='signal',interface='org.freedesktop.DBus.Properties'
 verbose=false
   case "$1" in
         -m|--modify)
-    EDITOR="${EDITOR:-code}"  #* Use VS Code as the default editor
+    EDITOR="${EDITOR:-codium}"  #* Use VS Code as the default editor
     echo -e "[Editor]: $EDITOR \n To change editor, run 'export EDITOR=preferred-editor'  \n[Modifying]: $batterynotify_conf \nPress Any Key if done editing"
-    #kitty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$batterynotify_conf" > /dev/null 2>&1 &
-    kitty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &
+    #alacritty -o allow_remote_control=yes -o listen_on=unix:/tmp/mykitty $(which $EDITOR) "$batterynotify_conf" > /dev/null 2>&1 &
+    alacritty "$(which $EDITOR)" "$batterynotify_conf" > /dev/null 2>&1 &
     LAST_MD5SUM=$(md5sum "$batterynotify_conf")
     while true; do CURRENT_MD5SUM=$(md5sum "$batterynotify_conf")
         if [ "$CURRENT_MD5SUM" != "$LAST_MD5SUM" ]; then
