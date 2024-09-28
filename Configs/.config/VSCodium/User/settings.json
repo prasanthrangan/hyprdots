@@ -7,11 +7,11 @@
     "security.workspace.trust.untrustedFiles": "newWindow",
     "security.workspace.trust.startupPrompt": "never",
     "security.workspace.trust.enabled": false,
-    "editor.minimap.side": "left",
+    "editor.minimap.side": "right",
     "editor.fontFamily": "'Maple Mono', 'monospace', monospace",
     "extensions.autoUpdate": false,
     "workbench.statusBar.visible": false,
-    "terminal.external.linuxExec": "kitty",
+    "terminal.external.linuxExec": "alacritty",
     "terminal.explorerKind": "both",
     "terminal.sourceControlRepositoriesKind": "both",
     "telemetry.telemetryLevel": "off"
