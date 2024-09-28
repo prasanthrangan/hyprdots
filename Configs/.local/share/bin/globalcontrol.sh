@@ -116,25 +116,14 @@ fi
 pkg_installed()
 {
     local pkgIn=$1
-    if pacman -Qi "${pkgIn}" &> /dev/null ; then
+    if dpkg -l | grep -qw "${pkgIn}" ; then
         return 0
-    elif pacman -Qi "flatpak" &> /dev/null && flatpak info "${pkgIn}" &> /dev/null ; then
+    elif dpkg -l | grep -qw "flatpak" && flatpak info "${pkgIn}" &> /dev/null ; then
         return 0
     elif command -v "${pkgIn}" &> /dev/null ; then
         return 0
     else
         return 1
-    fi
-}
-
-get_aurhlpr()
-{
-    if pkg_installed yay
-    then
-        aurhlpr="yay"
-    elif pkg_installed paru
-    then
-        aurhlpr="paru"
     fi
 }
 
