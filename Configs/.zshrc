@@ -86,4 +86,4 @@ alias mkdir='mkdir -p'
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Display Pokemon
-pokemon-colorscripts --no-title -r 1,3,6
+pokeget random --hide-name
