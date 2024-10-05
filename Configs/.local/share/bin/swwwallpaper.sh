@@ -23,7 +23,7 @@ Wall_Cache()
     ln -fs "${thmbDir}/${wallHash[setIndex]}.quad" "${wallQad}"
     ln -fs "${dcolDir}/${wallHash[setIndex]}.dcol" "${wallDcl}"
     [ ! -d /var/tmp/hyde/ ]  && mkdir  /var/tmp/hyde/ 
-    [ -d /var/tmp/hyde/ ] && cp "${wallSet}" /var/tmp/hyde/ # Only link as this is public
+    [ -d /var/tmp/hyde/ ] && cp "${wallSet}" /var/tmp/hyde/ # Do not use link as this is public, safer to just have a copy of the wallpaper.
 }
 
 Wall_Change()
