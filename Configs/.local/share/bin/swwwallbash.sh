@@ -13,7 +13,6 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     echo "Error: Input wallpaper not found!"
     exit 1
 fi
-
 wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
 
 if [ ! -f "${wallbashOut}" ] ; then
@@ -22,7 +21,7 @@ fi
 
 set -a
 source "${wallbashOut}"
-if [ -f "${hydeThemeDir}/theme.dcol" ]; then
+if [ -f "${hydeThemeDir}/theme.dcol" ] && [ "${enableWallDcol}" -eq 0 ]  ; then
     source "${hydeThemeDir}/theme.dcol"
     echo "[theme] Overriding dominant colors from \"${hydeTheme}\""
     echo "[note] Remove \"${hydeThemeDir}/theme.dcol\" to use wallpaper dominant colors"
