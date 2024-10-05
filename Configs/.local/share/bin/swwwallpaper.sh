@@ -22,6 +22,8 @@ Wall_Cache()
     ln -fs "${thmbDir}/${wallHash[setIndex]}.blur" "${wallBlr}"
     ln -fs "${thmbDir}/${wallHash[setIndex]}.quad" "${wallQad}"
     ln -fs "${dcolDir}/${wallHash[setIndex]}.dcol" "${wallDcl}"
+    [ ! -d /var/tmp/hyde/ ]  && mkdir  /var/tmp/hyde/ 
+    [ -d /var/tmp/hyde/ ] && cp "${wallSet}" /var/tmp/hyde/ # Only link as this is public
 }
 
 Wall_Change()
