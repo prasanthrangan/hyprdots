@@ -115,6 +115,10 @@ while IFS= read -r fchk; do
         print_prompt -y "[!!] " "${fchk} --> do not exist in ${Theme_Dir}/Configs/"
     fi
 done <<< "$config"
+if [ -f "${Fav_Theme_Dir}/theme.dcol" ];then
+print_prompt -n "[ok] "  "found theme.dcol to override wallpaper dominant colors"
+restore_list+="Y|Y|\${HOME}/.config/hyde/themes/${Fav_Theme}|theme.dcol|hyprland\n"
+fi
 readonly restore_list
 
 # Get Wallpapers
