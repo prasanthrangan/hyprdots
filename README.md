@@ -36,9 +36,11 @@ https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a
 This GitHub repository is a fork of the [HyprDots](https://github.com/prasanthrangan/hyprdots) project, specifically **adapted for Debian**. As a fork, it introduces **new features and enhancements** that, in my view, improve upon the original project. As a fork there are also **some features that might not work** due to the difficulty to test everything and the need to adapt, if you find a bug or a feature that doesn't work, feel free to open an issue about it.
 
 Notably, this fork includes the following key changes:
-- [Alacritty](https://github.com/alacritty/alacritty) as a terminal emulator.
+- [Alacritty](https://github.com/alacritty/alacritty) as the default terminal emulator.
 - [Qwerty-Fr](https://github.com/qwerty-fr/qwerty-fr) as the default keyboard.
 - [VsCodium](https://github.com/vscodium/vscodium) as the default text-editor.
+- [Webcord](https://github.com/SpacingBat3/WebCord) as the default Discord desktop application.
+- [Hyprlock](https://github.com/hyprwm/hyprlock) as the default screen locker.
 
 Initially, this project was intended to remain compatible with the current version of HyprDots. However, as development progressed, maintaining compatibility became difficult.
 
