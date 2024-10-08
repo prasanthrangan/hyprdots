@@ -2,3 +2,6 @@
 inode/directory=org.kde.dolphin.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
+application/pdf=firefox.desktop
+text/plain=codium.desktop
+x-scheme-handler/file=org.kde.dolphin.desktop

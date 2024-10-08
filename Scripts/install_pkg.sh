@@ -132,9 +132,12 @@ else
     echo -e "\033[0;33m[o]\033[0m No shell selected"
 fi
 
+echo -e "\033[0;32m[o]\033[0m Installing swww..."
 source "${scrDir}/.debian/install_swww.sh"
 pipx install hyprshade
 # For screenshots, we install grimblast
+rm -rf contrib
+echo -e "\033[0;32m[o]\033[0m Installing grimblast..."
 git clone --depth=1 https://github.com/hyprwm/contrib.git contrib
 cd contrib/grimblast
 sudo make install

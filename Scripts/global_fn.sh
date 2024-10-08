@@ -14,7 +14,6 @@ cacheDir="$HOME/.cache/hyde"
 shlList=(zsh fish)
 
 pkg_installed() {
-pkg_installed() {
     local PkgIn="$1"
     # Check if the package is installed using dpkg-query
     if dpkg-query -W -f='${Status}' "${PkgIn}" 2>/dev/null | grep -q 'install ok installed'; then
@@ -26,16 +25,7 @@ pkg_installed() {
         return 0
     fi
     
-    # Special case for swaylock-effects
-    if [ "${PkgIn}" = "swaylock-effects" ]; then
-        if command -v swaylock &> /dev/null; then
-            return 0
-        fi
-    fi
-    
     return 1
-}
-
 }
 
 chk_list() {

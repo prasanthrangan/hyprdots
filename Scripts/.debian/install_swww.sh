@@ -33,12 +33,12 @@ sudo mkdir -p /usr/share/bash-completion/completions/
 sudo cp completions/swww.bash /usr/share/bash-completion/completions/swww
 
 if pkg_installed "zsh"; then
-  echo -e "\033[0;31m[-]\033[0m zsh detected..."
+  echo -e "\033[0;32m[+]\033[0m zsh detected..."
   sudo mkdir -p /usr/share/zsh/site-functions/
   sudo cp completions/_swww /usr/share/zsh/site-functions/_swww
 fi
 if pkg_installed "fish"; then
-  echo -e "\033[0;31m[-]\033[0m fish detected..."
+  echo -e "\033[0;32m[+]\033[0m fish detected..."
   sudo mkdir -p /usr/shaare/fish/vendor_completions.d/
   sudo cp completions/swww.fish /usr/share/fish/vendor_completions.d/swww.fish
 fi

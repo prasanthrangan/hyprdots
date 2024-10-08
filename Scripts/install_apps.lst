@@ -21,7 +21,7 @@ libinput-dev
 xwayland
 libxcursor-dev
 libxml2-dev # remove when imagemagick > 7
-libmagick-dev # remove when imagemagick > 7
+libmagic-dev # remove when imagemagick > 7
 #imagemagick, will be installed using git, we don't have the right version for the scripts
 hwdata
 curl
@@ -58,6 +58,8 @@ playerctl
 libplayerctl-dev
 pipx
 lm-sensors
+tlp
+scdoc
 
 #--------------------------------------------------- // System
 pipewire

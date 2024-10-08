@@ -80,4 +80,4 @@ done
 if pkg_installed "codium"; then
     echo -e "\033[0;32m[o]\033[0m Restoring themes for VSCodium..."
     codium --install-extension Catppuccin.catppuccin-vsc
-else
+fi
