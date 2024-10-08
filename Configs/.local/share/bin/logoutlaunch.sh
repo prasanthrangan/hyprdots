@@ -55,6 +55,16 @@ export fntSize=$(( y_mon * 2 / 100 ))
 #// detect wallpaper brightness
 
 [ -f "${cacheDir}/wall.dcol" ] && source "${cacheDir}/wall.dcol"
+#  Theme mode: detects the color-scheme set in hypr.theme and falls back if nothing is parsed.
+if [ "${enableWallDcol}" -eq 0 ]; then
+    colorScheme="$({ grep -q "^[[:space:]]*\$COLOR[-_]SCHEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$COLOR[-_]SCHEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
+                        grep 'gsettings set org.gnome.desktop.interface color-scheme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+    colorScheme=${colorScheme:-$(gsettings get org.gnome.desktop.interface color-scheme)} 
+    # should be declared explicitly so we can easily debug
+    grep -q "dark" <<< "${colorScheme}" && dcol_mode="dark"
+    grep -q "light" <<< "${colorScheme}" && dcol_mode="light"
+[ -f "${hydeThemeDir}/theme.dcol" ] && source "${hydeThemeDir}/theme.dcol"
+fi
 [ "${dcol_mode}" == "dark" ] && export BtnCol="white" || export BtnCol="black"
 
 
