@@ -6,6 +6,7 @@
 
 # --------------------------------------------------- // Dependencies
 xdg-desktop-portal-gtk                                 # xdg desktop portal using gtk
+swayosd-git                                            # for on screen display for keyboard shortcuts
 # emote                                                # emoji picker gtk3
 
 # --------------------------------------------------- // Gaming
