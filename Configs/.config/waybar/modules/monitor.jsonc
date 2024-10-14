@@ -1,0 +1,13 @@
+    "custom/monitor": {
+        "format": "󰹑 <sup>{}</sup>",
+        "rotate": ${r_deg},
+        "exec": " ${ScrDir}/monitorinfo.sh",
+        "return-type": "json",
+        "on-click": "${ScrDir}/monitor.sh --enable-all", // --debug
+        "on-double-click": "${ScrDir}/monitor.sh --disable-except-current", // --debug
+        "on-click-middle": "tmux new -d ${ScrDir}/monitor.sh --disable-current", // --debug // tmux needs to be instantiated before killing waybar
+        "on-click-right": "nwg-displays -m ~/.config/hypr/monitors.conf",
+        "tooltip": true,
+        "interval" : 86400 // once every day
+    },
+
