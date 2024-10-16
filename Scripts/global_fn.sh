@@ -13,6 +13,19 @@ cacheDir="$HOME/.cache/hyde"
 aurList=(yay paru)
 shlList=(zsh fish)
 
+# Function to execute a command with elevated privileges
+SUPER() {
+    local command="$*"
+    print_prompt -y "[ROOT] " "${command}"
+    if command -v doas >/dev/null 2>&1 && [ -f /etc/doas.conf ]; then
+        doas sh -c "$command"
+    else
+        sudo sh -c "$command"
+    fi
+}
+
+export -f SUPER
+
 pkg_installed() {
     local PkgIn=$1
 
