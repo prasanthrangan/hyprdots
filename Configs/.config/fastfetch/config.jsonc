@@ -10,7 +10,7 @@
     "modules": [
         {
             "type": "custom",
-            "format": "\u001b[36m    コンピューター"
+            "format": "\u001b[36m    コンピューター (Computer)"
         },
         {
             "type": "custom",
