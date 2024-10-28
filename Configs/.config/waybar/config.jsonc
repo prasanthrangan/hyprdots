@@ -4,9 +4,9 @@
 // sourced from header module //
 
     "layer": "top",
-    "position": "bottom",
+    "position": "top",
     "mod": "dock",
-    "height": 31,
+    "height": 28,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
@@ -15,97 +15,88 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","custom/power","custom/cliphist","custom/wbar","custom/theme","custom/wallchange","custom/r_end","custom/l_end","wlr/taskbar","custom/spotify","custom/r_end","","custom/padd"],
-	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
-	"modules-right": ["custom/padd","custom/l_end","tray","battery","custom/r_end","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/notifications","custom/keybindhint","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/cpuinfo","custom/gpuinfo","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
+	"modules-center": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd"],
+	"modules-right": ["custom/padd","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/updates","custom/keybindhint","custom/r_end","custom/l_end","privacy","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/theme","custom/wbar","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
 
-    "custom/power": {
-        "format": "{}",
+    "cpu": {
+        "interval": 10,
+        "format": "󰍛 {usage}%",
         "rotate": 0,
-        "exec": "echo ; echo  logout",
-        "on-click": "logoutlaunch.sh 2",
-        "on-click-right": "logoutlaunch.sh 1",
-        "interval" : 86400, // once every day
-        "tooltip": true
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
     },
 
-    "custom/cliphist": {
-        "format": "{}",
+    "memory": {
+        "states": {
+            "c": 90, // critical
+            "h": 60, // high
+            "m": 30, // medium
+        },
+        "interval": 30,
+        "format": "󰾆 {used}GB",
         "rotate": 0,
-        "exec": "echo ; echo 󰅇 clipboard history",
-        "on-click": "sleep 0.1 && cliphist.sh c",
-        "on-click-right": "sleep 0.1 && cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && cliphist.sh w",
-        "interval" : 86400, // once every day
-        "tooltip": true
+        "format-m": "󰾅 {used}GB",
+        "format-h": "󰓅 {used}GB",
+        "format-c": " {used}GB",
+        "format-alt": "󰾆 {percentage}%",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": "󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB"
     },
 
-    "custom/wbar": {
-        "format": "{}", //    //
-        "rotate": 0,
-        "exec": "echo ; echo  switch bar //  dock",
-        "on-click": "wbarconfgen.sh n",
-        "on-click-right": "wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 && quickapps.sh kitty firefox spotify code dolphin",
-        "interval" : 86400,
-        "tooltip": true
-    },
-
-    "custom/theme": {
-        "format": "{}",
-        "rotate": 0,
-        "exec": "echo ; echo 󰟡 switch theme",
-        "on-click": "themeswitch.sh -n",
-        "on-click-right": "themeswitch.sh -p",
-        "on-click-middle": "sleep 0.1 && themeselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-    "custom/wallchange": {
-        "format": "{}",
-        "rotate": 0,
-        "exec": "echo ; echo 󰆊 switch wallpaper",
-        "on-click": "swwwallpaper.sh -n",
-        "on-click-right": "swwwallpaper.sh -p",
-        "on-click-middle": "sleep 0.1 && swwwallselect.sh",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-
-	"wlr/taskbar": {
-		"format": "{icon}",
-		"rotate": 0,
-		"icon-size": 18,
-		"icon-theme": "Tela-circle-dracula",
-        "spacing": 0,
-		"tooltip-format": "{title}",
-		"on-click": "activate",
-		"on-click-middle": "close",
-		"ignore-list": [
-			"Alacritty"
-		],
-		"app_ids-mapping": {
-			"firefoxdeveloperedition": "firefox-developer-edition"
-		}
-	},
-
-    "custom/spotify": {
-        "exec": "mediaplayer.py --player spotify",
-        "format": " {}",
-        "rotate": 0,
+    "custom/cpuinfo": {
+        "exec": " cpuinfo.sh",
         "return-type": "json",
-        "on-click": "playerctl play-pause --player spotify",
-        "on-click-right": "playerctl next --player spotify",
-        "on-click-middle": "playerctl previous --player spotify",
-        "on-scroll-up": "volumecontrol.sh -p spotify i",
-        "on-scroll-down": "volumecontrol.sh -p spotify d",
-        "max-length": 25,
-        "escape": true,
-        "tooltip": true
+        "format": "{}",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000
+    },
+
+    "custom/gpuinfo": {
+        "exec": " gpuinfo.sh",
+        "return-type": "json",
+        "format": "{}",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000,
+        "on-click": "gpuinfo.sh --toggle",
+    },
+
+    "custom/gpuinfo#nvidia": {
+        "exec": " gpuinfo.sh --use nvidia ",
+        "return-type": "json",
+        "format": "{}",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000,
+    },
+
+    "custom/gpuinfo#amd": {
+        "exec": " gpuinfo.sh --use amd ",
+        "return-type": "json",
+        "format": "{}",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000,
+    },
+
+    "custom/gpuinfo#intel": {
+        "exec": " gpuinfo.sh --use intel ",
+        "return-type": "json",
+        "format": "{}",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000,
     },
 
     "idle_inhibitor": {
@@ -142,24 +133,39 @@
         }
     },
 
-    "tray": {
-        "icon-size": 18,
+    "hyprland/workspaces": {
+        "disable-scroll": true,
         "rotate": 0,
-        "spacing": 5
+        "all-outputs": true,
+        "active-only": false,
+        "on-click": "activate",
+        "disable-scroll": false,
+        "on-scroll-up": "hyprctl dispatch workspace -1",
+        "on-scroll-down": "hyprctl dispatch workspace +1",
+        "persistent-workspaces": {
+            "browser": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "browser": "󰈹"
+        },
     },
 
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 20
-        },
-        "format": "{icon} {capacity}%",
+    "hyprland/window": {
+        "format": "  {}",
         "rotate": 0,
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "separate-outputs": true,
+        "rewrite": {
+            "waifu@luffy:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓"
+        },
+        "max-length": 50
     },
 
     "backlight": {
@@ -185,72 +191,147 @@
         "interval": 2,
     },
 
-    "pulseaudio": {
-        "format": "{icon} {volume}",
-        "rotate": 0,
-        "format-muted": "婢",
-        "on-click": "pavucontrol -t 3",
-        "on-click-middle": "volumecontrol.sh -o m",
-        "on-scroll-up": "volumecontrol.sh -o i",
-        "on-scroll-down": "volumecontrol.sh -o d",
-        "tooltip-format": "{icon} {desc} // {volume}%",
-        "scroll-step": 5,
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        }
-    },
+"pulseaudio": {
+    "format": "{icon} {volume}",
+    "rotate": 0,
+    "format-muted": "婢",
+    "on-click": "pavucontrol -t 3",
+    "on-click-right": "volumecontrol.sh -s ''",
+    "on-click-middle": "volumecontrol.sh -o m",
+    "on-scroll-up": "volumecontrol.sh -o i",
+    "on-scroll-down": "volumecontrol.sh -o d",
+    "tooltip-format": "{icon} {desc} // {volume}%",
+    "scroll-step": 5,
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    }
+},
 
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "rotate": 0,
-        "format-source": "",
-        "format-source-muted": "",
-        "on-click": "pavucontrol -t 4",
-        "on-click-middle": "volumecontrol.sh -i m",
-        "on-scroll-up": "volumecontrol.sh -i i",
-        "on-scroll-down": "volumecontrol.sh -i d",
-        "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
-        "scroll-step": 5
-    },
+"pulseaudio#microphone": {
+    "format": "{format_source}",
+    "rotate": 0,
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "pavucontrol -t 4",
+    "on-click-middle": "volumecontrol.sh -i m",
+    "on-scroll-up": "volumecontrol.sh -i i",
+    "on-scroll-down": "volumecontrol.sh -i d",
+    "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
+    "scroll-step": 5
+},
 
-    "custom/notifications": {
-        "tooltip": false,
-        "format": "{icon} {}",
-        "rotate": 0,
-        "format-icons": {
-            "email-notification": "<span foreground='white'><sup></sup></span>",
-            "chat-notification": "󱋊<span foreground='white'><sup></sup></span>",
-            "warning-notification": "󱨪<span foreground='yellow'><sup></sup></span>",
-            "error-notification": "󱨪<span foreground='red'><sup></sup></span>",
-            "network-notification": "󱂇<span foreground='white'><sup></sup></span>",
-            "battery-notification": "󰁺<span foreground='white'><sup></sup></span>",
-            "update-notification": "󰚰<span foreground='white'><sup></sup></span>",
-            "music-notification": "󰝚<span foreground='white'><sup></sup></span>",
-            "volume-notification": "󰕿<span foreground='white'><sup></sup></span>",
-            "notification": "<span foreground='white'><sup></sup></span>",
-            "none": ""
-        },
+    "custom/updates": {
+        "exec": "systemupdate.sh",
         "return-type": "json",
-        "exec-if": "which dunstctl",
-        "exec": "notifications.py",
-        "on-click": "sleep 0.1 && dunstctl history-pop",
-        "on-click-middle": "dunstctl history-clear",
-        "on-click-right": "dunstctl close-all",
-        "interval": 1,
+        "format": "{}",
+        "rotate": 0,
+        "on-click": "hyprctl dispatch exec 'systemupdate.sh up'",
+        "interval": 86400, // once every day
         "tooltip": true,
-        "escape": true
+        "signal": 20,
     },
-
     "custom/keybindhint": {
         "format": " ",
         "rotate": 0,
         "on-click": "keybinds_hint.sh"
+    },
+
+    "privacy": {
+        "icon-size": 12,
+        "icon-spacing": 5,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon} {capacity}%",
+        "rotate": 0,
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "custom/wallchange": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo 󰆊 switch wallpaper",
+        "on-click": "swwwallpaper.sh -n",
+        "on-click-right": "swwwallpaper.sh -p",
+        "on-click-middle": "sleep 0.1 && swwwallselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/theme": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo 󰟡 switch theme",
+        "on-click": "themeswitch.sh -n",
+        "on-click-right": "themeswitch.sh -p",
+        "on-click-middle": "sleep 0.1 && themeselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/wbar": {
+        "format": "{}", //    //
+        "rotate": 0,
+        "exec": "echo ; echo  switch bar //  dock",
+        "on-click": "wbarconfgen.sh n",
+        "on-click-right": "wbarconfgen.sh p",
+        "on-click-middle": "sleep 0.1 && quickapps.sh kitty firefox spotify code dolphin",
+        "interval" : 86400,
+        "tooltip": true
+    },
+
+    "custom/cliphist": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo 󰅇 clipboard history",
+        "on-click": "sleep 0.1 && cliphist.sh c",
+        "on-click-right": "sleep 0.1 && cliphist.sh d",
+        "on-click-middle": "sleep 0.1 && cliphist.sh w",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+
+    "custom/power": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo  logout",
+        "on-click": "logoutlaunch.sh 2",
+        "on-click-right": "logoutlaunch.sh 1",
+        "interval" : 86400, // once every day
+        "tooltip": true
     },
 
 
