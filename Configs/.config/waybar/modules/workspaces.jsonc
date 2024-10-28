@@ -8,6 +8,11 @@
         "on-scroll-up": "hyprctl dispatch workspace -1",
         "on-scroll-down": "hyprctl dispatch workspace +1",
         "persistent-workspaces": {
-        }
+            "browser": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "browser": "󰈹"
+        },
     },
 
