@@ -1,5 +1,5 @@
     "custom/notifications": {
-        "format": "{icon} {}",
+        "format": "{} {icon}",
         "rotate": ${r_deg},
         "format-icons": {
             "email-notification": "<span foreground='white'><sup></sup></span>",
