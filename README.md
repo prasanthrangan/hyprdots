@@ -183,7 +183,7 @@ For more information, visit [prasanthrangan/hyde-themes](https://github.com/pras
 | <kbd>Super</kbd> + <kbd>L</kbd> | Launch lock screen |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> | Toggle pin on focused window |
 | <kbd>Super</kbd> + <kbd>Backspace</kbd> | Launch logout menu |
-| <kbd>Ctrl</kbd> + <kbd>Esc</kbd> | Toggle waybar |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>W</kbd> | Toggle waybar |
 | <kbd>Super</kbd> + <kbd>T</kbd> | Launch terminal emulator (kitty) |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Launch file manager (dolphin) |
 | <kbd>Super</kbd> + <kbd>C</kbd> | Launch text editor (vscode) |
