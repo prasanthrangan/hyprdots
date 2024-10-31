@@ -4,6 +4,7 @@
 // sourced from header module //
 
     "layer": "top",
+    "output": "hydevar-goes-here",
     "position": "${w_position}",
     "mod": "dock",
     "${hv_pos}": ${w_height},
