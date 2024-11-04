@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-
 #// set variables
 
 export scrDir="$(dirname "$(realpath "$0")")"
@@ -14,7 +13,6 @@ if [ -z "${wallbashImg}" ] || [ ! -f "${wallbashImg}" ] ; then
     echo "Error: Input wallpaper not found!"
     exit 1
 fi
-
 wallbashOut="${dcolDir}/$(set_hash "${wallbashImg}").dcol"
 
 if [ ! -f "${wallbashOut}" ] ; then
@@ -23,6 +21,11 @@ fi
 
 set -a
 source "${wallbashOut}"
+if [ -f "${hydeThemeDir}/theme.dcol" ] && [ "${enableWallDcol}" -eq 0 ]  ; then
+    source "${hydeThemeDir}/theme.dcol"
+    echo "[theme] Overriding dominant colors from \"${hydeTheme}\""
+    echo "[note] Remove \"${hydeThemeDir}/theme.dcol\" to use wallpaper dominant colors"
+fi
 [ "${dcol_mode}" == "dark" ] && dcol_invt="light" || dcol_invt="dark"
 set +a
 
@@ -31,8 +34,11 @@ set +a
 
 fn_wallbash () {
     local tplt="${1}"
+    [ -f "${hydeConfDir}/hyde.conf" ] && source "${hydeConfDir}/hyde.conf"
+    # Skips the the template declared in ./hyde.conf
+    [[ " ${skip_wallbash[@]} " =~ " ${tplt} " ]] && echo "[skip: template] ${tplt}" && return 0
     eval target="$(head -1 "${tplt}" | awk -F '|' '{print $1}')"
-    [ ! -d "$(dirname "${target}")" ] && echo "[skip] \"${target}\"" && return 0
+    [ ! -d "$(dirname "${target}")" ] && echo "[skip: no dir] \"${target}\"" && return 0
     appexe="$(head -1 "${tplt}" | awk -F '|' '{print $2}')"
     sed '1d' "${tplt}" > "${target}"
 
@@ -256,4 +262,3 @@ if [ "${enableWallDcol}" -eq 0 ]; then
 fi
 
 find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
-
