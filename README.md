@@ -91,7 +91,9 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
 ## Themes
 
 All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
-For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes).
+For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes). (deprecated as of hyprland 0.45.0)
+
+We are now using the fork [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes)
 
 <div align="center">
   <table><tr><td>
