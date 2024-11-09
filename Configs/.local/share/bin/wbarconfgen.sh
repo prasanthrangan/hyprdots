@@ -48,6 +48,17 @@ fi
 export set_sysname=`hostnamectl hostname`
 export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 
+# setting explicit waybar output
+
+if [ ${#waybar_output[@]} -gt 0 ]; then
+w_output=$(printf '"%s", ' "${waybar_output[@]}")
+w_output=${w_output%, }  # Remove the trailing comma and space
+echo "[outputs] $w_output"
+fi
+export w_output="${w_output:-\"*\"}"
+
+# setting waybar position
+
 case ${w_position} in
     left) export hv_pos="width" ; export r_deg=90 ;;
     right) export hv_pos="width" ; export r_deg=270 ;;
