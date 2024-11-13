@@ -230,6 +230,7 @@ fn_wallbash () {
 export -f fn_wallbash
 
 hyprctl keyword misc:disable_autoreload 1 -q
+trap 'hyprctl reload -q && echo ":: reload :: Hyprland"' EXIT
 
 #// switch theme <//> wall based colors
 
@@ -263,5 +264,3 @@ if [ "${enableWallDcol}" -eq 0 ]; then
 fi
 
 find "${wallbashDir}/Wall-Ways" -type f -name "*.dcol" | parallel fn_wallbash {}
-
-hyprctl reload -q && echo ":: reload :: Hyprland"
