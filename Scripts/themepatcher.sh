@@ -55,7 +55,7 @@ Fav_Theme="$1"
 
 if [ -d "$2" ]; then
     Theme_Dir="$2"
-else 
+else
     Git_Repo=${2%/}
     if echo "$Git_Repo" | grep -q "/tree/"; then
         branch=${Git_Repo#*tree/}
@@ -115,6 +115,10 @@ while IFS= read -r fchk; do
         print_prompt -y "[!!] " "${fchk} --> do not exist in ${Theme_Dir}/Configs/"
     fi
 done <<< "$config"
+if [ -f "${Fav_Theme_Dir}/theme.dcol" ];then
+print_prompt -n "[ok] "  "found theme.dcol to override wallpaper dominant colors"
+restore_list+="Y|Y|\${HOME}/.config/hyde/themes/${Fav_Theme}|theme.dcol|hyprland\n"
+fi
 readonly restore_list
 
 # Get Wallpapers
@@ -124,10 +128,43 @@ wallcount="$(echo "${wallpapers}" | wc -l)"
 
 # overparsing 😁
 check_tars() {
+    local trVal
     local inVal="${1}"
     local gsLow=$(echo "${inVal}" | tr '[:upper:]' '[:lower:]')
-    local gsVal="$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*'${gsLow}'-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme" )"
-    local trVal
+    # Use hyprland variables that are set in the hypr.theme file
+    # Using case we can have a predictable output
+    local gsVal="$(
+        case "${gsLow}" in
+        sddm)
+            grep "^[[:space:]]*\$SDDM[-_]THEME\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        gtk)
+            grep "^[[:space:]]*\$GTK[-_]THEME\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        icon)
+            grep "^[[:space:]]*\$ICON[-_]THEME\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        cursor)
+            grep "^[[:space:]]*\$CURSOR[-_]THEME\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        font)
+            grep "^[[:space:]]*\$FONT\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        document-font)
+            grep "^[[:space:]]*\$DOCUMENT[-_]FONT\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+        monospace-font)
+            grep "^[[:space:]]*\$MONOSPACE[-_]FONT\s*=" "${Fav_Theme_Dir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+            ;;
+
+        *) # fallback to older imple
+            awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*'${gsLow}'-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme"
+            ;;
+        esac
+    )"
+
+        # fallback to older imple
+    gsVal=${gsVal:-$(awk -F"[\"']" '/^[[:space:]]*exec[[:space:]]*=[[:space:]]*gsettings[[:space:]]*set[[:space:]]*org.gnome.desktop.interface[[:space:]]*'${gsLow}'-theme[[:space:]]*/ {last=$2} END {print last}' "${Fav_Theme_Dir}/hypr.theme")}
 
     if [ ! -z "${gsVal}" ]; then
         print_prompt -g "[OK] " "hypr.theme :: [${gsLow}]" -b " ${gsVal}"
@@ -144,6 +181,10 @@ check_tars() {
 check_tars Gtk --mandatory
 check_tars Icon
 check_tars Cursor
+check_tars Sddm
+check_tars Font
+check_tars Document-Font
+check_tars Monospace-Font
 print_prompt "" && [[ "${exit_flag}" = true ]] && exit 1
 
 # extract arcs
