@@ -48,6 +48,17 @@ fi
 export set_sysname=`hostnamectl hostname`
 export w_position=`grep '^1|' $conf_ctl | cut -d '|' -f 3`
 
+# setting explicit waybar output
+
+if [ ${#waybar_output[@]} -gt 0 ]; then
+w_output=$(printf '"%s", ' "${waybar_output[@]}")
+w_output=${w_output%, }  # Remove the trailing comma and space
+echo "[outputs] $w_output"
+fi
+export w_output="${w_output:-\"*\"}"
+
+# setting waybar position
+
 case ${w_position} in
     left) export hv_pos="width" ; export r_deg=90 ;;
     right) export hv_pos="width" ; export r_deg=270 ;;
@@ -66,7 +77,7 @@ if [ $i_size -lt 12 ] ; then
 fi
 
 export i_theme="$(
-{ grep -q "^[[:space:]]*\$ICON-THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON-THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||
+{ grep -q "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||
 grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}'
 )"
 export i_task=$(( w_height*6/10 ))
@@ -135,4 +146,3 @@ if [ "$reload_flag" == "1" ] ; then
     killall waybar
     waybar --config ${waybar_dir}/config.jsonc --style ${waybar_dir}/style.css > /dev/null 2>&1 &
 fi
-
