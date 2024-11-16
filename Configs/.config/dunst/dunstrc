@@ -205,12 +205,12 @@
 
     # Recursive icon lookup. You can set a single theme, instead of having to
     # define all lookup paths.
-    #enable_recursive_icon_lookup = true
+    enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
     #icon_theme = Adwaita
     # You can also set multiple icon themes, with the leftmost one being used first.
-    #icon_theme = "Tela-circle-dracula"
+    icon_theme = "Tela-circle-dracula"
 
     # Align icons left/right/top/off
     icon_position = left

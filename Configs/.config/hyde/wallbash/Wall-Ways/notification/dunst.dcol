@@ -15,13 +15,13 @@ $HOME/.config/dunst/wallbash.conf|${scrDir}/wallbashdunst.sh
     timeout = 5
 
 [slack]
-    desktop_entry="^Slack$"
-    new_icon="$HOME/.icons/$iconTheme/scalable/apps/slack.svg"
+    desktop_entry = "^Slack$"
+    new_icon = slack
 
 [telegram]
-    desktop_entry="^Telegram Desktop$"
-    new_icon="$HOME/.icons/$iconTheme/scalable/apps/telegram-desktop.svg"
+    desktop_entry = "^Telegram Desktop$"
+    new_icon = telegram-desktop
 
 [skype]
-    desktop_entry="^Skype$"
-    new_icon="$HOME/.icons/$iconTheme/scalable/apps/skype.svg"
+    desktop_entry = "^Skype$"
+    new_icon = skype
