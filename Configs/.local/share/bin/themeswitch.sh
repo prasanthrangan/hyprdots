@@ -118,7 +118,7 @@ fi
 
 #// dunst
 
-sed -i "/^    icon_theme =/c\    icon_theme = \"${gtkIcon}\"" ~/.config/dunst/dunst.conf
+sed -i "/^    icon_theme =/c\    icon_theme = \"${gtkIcon}\"" "${confDir}/dunst/dunst.conf"
 
 
 #// wallpaper
