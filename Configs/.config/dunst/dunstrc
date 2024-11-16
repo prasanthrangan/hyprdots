@@ -19,7 +19,7 @@
     # will be ignored.
     follow = mouse
 
-   # When set to true (recommended), you can use POSIX regular expressions for filtering rules.
+    # When set to true (recommended), you can use POSIX regular expressions for filtering rules.
     # It uses the POSIX Extended Regular Expression syntax: https://en.m.wikibooks.org/wiki/Regular_Expressions/POSIX-Extended_Regular_Expressions.
     #
     # If this is set to false (not recommended), dunst will us fnmatch(3) for matching strings.
