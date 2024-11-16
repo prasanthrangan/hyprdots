@@ -13,15 +13,3 @@ $HOME/.config/dunst/wallbash.conf|${scrDir}/wallbashdunst.sh
     frame_color = "#<wallbash_2xa2>03"
     icon = "$HOME/.config/dunst/icons/hyprdots.svg"
     timeout = 5
-
-[slack]
-    desktop_entry = "^Slack$"
-    new_icon = slack
-
-[telegram]
-    desktop_entry = "^Telegram Desktop$"
-    new_icon = telegram-desktop
-
-[skype]
-    desktop_entry = "^Skype$"
-    new_icon = skype
