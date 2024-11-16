@@ -198,7 +198,7 @@
 
     # Recursive icon lookup. You can set a single theme, instead of having to
     # define all lookup paths.
-    #enable_recursive_icon_lookup = true
+    enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
     #icon_theme = Adwaita
@@ -215,9 +215,6 @@
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 128
-
-    # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = $HOME/.icons/Tela-circle-dracula/16/actions:$HOME/.icons/Tela-circle-dracula/16/apps:$HOME/.icons/Tela-circle-dracula/16/devices:$HOME/.icons/Tela-circle-dracula/16/mimetypes:$HOME/.icons/Tela-circle-dracula/16/panel:$HOME/.icons/Tela-circle-dracula/16/places:$HOME/.icons/Tela-circle-dracula/16/status
 
     ### History ###
 
