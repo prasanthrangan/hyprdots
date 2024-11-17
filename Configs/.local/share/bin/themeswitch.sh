@@ -94,6 +94,7 @@ sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf" # Us
 gtkTheme=$(get_gtk_theme "$hydeThemeDir")
 gtkIcon=$(get_icon_theme "$hydeThemeDir")
 
+
 #// qtct
 
 sed -i "/^icon_theme=/c\icon_theme=${gtkIcon}" "${confDir}/qt5ct/qt5ct.conf"
