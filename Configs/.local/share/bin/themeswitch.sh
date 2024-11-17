@@ -27,6 +27,26 @@ Theme_Change()
     done
 }
 
+get_gtk_theme()
+{
+    local themeDir=$1
+    echo "$({ grep -q "^[[:space:]]*\$GTK[-_]THEME\s*=" "${themeDir}/hypr.theme" && grep "^[[:space:]]*\$GTK[-_]THEME\s*=" "${themeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
+          grep 'gsettings set org.gnome.desktop.interface gtk-theme' "${themeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}')"
+}
+
+get_icon_theme()
+{
+    local themeDir=$1
+    echo "$({ grep -q "^[[:space:]]*\$ICON[-_]THEME\s*=" "${themeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON[-_]THEME\s*=" "${themeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||  
+          grep 'gsettings set org.gnome.desktop.interface icon-theme' "${themeDir}/hypr.theme" | awk -F "'" '{print $(NF - 1)}')"
+}
+
+join_array()
+{
+  local IFS="$1"
+  shift
+  echo "$*"
+}
 
 #// evaluate options
 
@@ -68,17 +88,11 @@ source "${scrDir}/globalcontrol.sh"
 
 
 #// hypr
+[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] &&  hyprctl keyword misc:disable_autoreload 1 -q
+sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf" # Useless and already handled by swwwallbash.sh but kept for robustness
 
-sed '1d' "${hydeThemeDir}/hypr.theme" > "${confDir}/hypr/themes/theme.conf"
-gtkTheme="$(
-{ grep -q "^[[:space:]]*\$GTK[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$GTK[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} || 
-grep 'gsettings set org.gnome.desktop.interface gtk-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $((NF - 1))}'
-)"
-
-gtkIcon="$(
-{ grep -q "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" && grep "^[[:space:]]*\$ICON[-_]THEME\s*=" "${hydeThemeDir}/hypr.theme" | cut -d '=' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' ;} ||  
-grep 'gsettings set org.gnome.desktop.interface icon-theme' "${hydeThemeDir}/hypr.theme" | awk -F "'" '{print $(NF - 1)}'
-)"
+gtkTheme=$(get_gtk_theme "$hydeThemeDir")
+gtkIcon=$(get_icon_theme "$hydeThemeDir")
 
 #// qtct
 
@@ -118,7 +132,18 @@ fi
 
 #// dunst
 
-sed -i "/^    icon_theme =/c\    icon_theme = \"${gtkIcon}\"" "${confDir}/dunst/dunst.conf"
+unset iconThemes
+while read thmDir ; do
+    if [ "$(basename "${thmDir}")" == "${hydeTheme}" ] ; then
+        continue
+    fi
+    iconThemes+=($(get_icon_theme "$thmDir"))
+done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d)
+echo "iconThemes1= ${iconThemes[@]}"
+iconThemes=(${gtkIcon} "${iconThemes[*]}")
+iconThemesConcat=$(join_array "," ${iconThemes[*]})
+
+sed -i "/^    icon_theme =/c\    icon_theme = \"${iconThemesConcat}\"" "${confDir}/dunst/dunst.conf"
 
 
 #// wallpaper
