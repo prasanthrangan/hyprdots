@@ -140,7 +140,6 @@ while read thmDir ; do
     fi
     iconThemes+=($(get_icon_theme "$thmDir"))
 done < <(find "${hydeConfDir}/themes" -mindepth 1 -maxdepth 1 -type d)
-echo "iconThemes1= ${iconThemes[@]}"
 iconThemes=(${gtkIcon} "${iconThemes[*]}")
 iconThemesConcat=$(join_array "," ${iconThemes[*]})
 
