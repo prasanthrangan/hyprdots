@@ -91,7 +91,7 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
 ## Themes
 
 All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
-For more information, visit [prasanthrangan/hyde-themes](https://github.com/prasanthrangan/hyde-themes).
+For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes). 
 
 <div align="center">
   <table><tr><td>
