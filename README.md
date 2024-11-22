@@ -70,6 +70,7 @@ For more details, please refer to the [installation wiki](https://github.com/pra
 
 <a id="updating"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Updating.gif" width="200"/>
+
 To update HyDE, you will need to pull the latest changes from GitHub and restore the configs by running the following commands:
 
 ```shell
@@ -92,6 +93,7 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
 
 <a id="themes"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Themes.gif" width="200"/>
+
 All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
 For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes). 
 
@@ -126,6 +128,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 
 <a id="styles"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Styles.gif" width="200"/>
+
 <div align="center"><table><tr>Theme Select</tr><tr><td>
 <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png"/></td><td>
 <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_2.png"/></td></tr></table></div>
@@ -172,6 +175,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 
 <a id="keybindings"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Keybindings.gif" width="200"/>
+
 <div align="center">
 
 | Keys | Action |
