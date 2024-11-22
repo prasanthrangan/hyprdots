@@ -33,6 +33,7 @@ https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a
 
 <a id="installation"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Installation.gif" width="200"/>
+---
 
 The installation script is designed for a minimal [Arch Linux](https://wiki.archlinux.org/title/Arch_Linux) install, but **may** work on some [Arch-based distros](https://wiki.archlinux.org/title/Arch-based_distributions).
 While installing HyDE alongside another [DE](https://wiki.archlinux.org/title/Desktop_environment)/[WM](https://wiki.archlinux.org/title/Window_manager) should work, due to it being a heavily customized setup, it **will** conflict with your [GTK](https://wiki.archlinux.org/title/GTK)/[Qt](https://wiki.archlinux.org/title/Qt) theming, [Shell](https://wiki.archlinux.org/title/Command-line_shell), [SDDM](https://wiki.archlinux.org/title/SDDM), [GRUB](https://wiki.archlinux.org/title/GRUB), etc. and is at your own risk.
@@ -70,6 +71,7 @@ For more details, please refer to the [installation wiki](https://github.com/pra
 
 <a id="updating"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Updating.gif" width="200"/>
+---
 
 To update HyDE, you will need to pull the latest changes from GitHub and restore the configs by running the following commands:
 
@@ -93,6 +95,7 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
 
 <a id="themes"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Themes.gif" width="200"/>
+---
 
 All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
 For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes). 
@@ -128,6 +131,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 
 <a id="styles"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Styles.gif" width="200"/>
+---
 
 <div align="center"><table><tr>Theme Select</tr><tr><td>
 <img src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/theme_select_1.png"/></td><td>
@@ -175,6 +179,8 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 
 <a id="keybindings"></a>  
 <img src="https://raw.githubusercontent.com/mahadishaikat/hyprdots/refs/heads/main/Source/assets/Keybindings.gif" width="200"/>
+---
+
 
 <div align="center">
 
