@@ -29,7 +29,7 @@
 
 https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a851-e9c6464f5265
 
-<br><div align="center"><img width="12%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/arch.png"/><br></div>
+<br><div align="center"><img width="12%" src="Source/assets/Arch.svg"/><br></div>
 
 <a id="installation"></a>  
 <img src="Source/assets/Installation.gif" width="200"/>
