@@ -217,6 +217,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Launch wallbash mode select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Launch theme select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | Launch style select menu (rofi) |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> | Launch theme style select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Launch wallpaper select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>V</kbd> | Launch clipboard (rofi) |
 | <kbd>Super</kbd> + <kbd>K</kbd> | Switch keyboard layout |
