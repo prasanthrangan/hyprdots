@@ -229,6 +229,7 @@ fn_wallbash () {
 
 export -f fn_wallbash
 
+[ -n "$HYPRLAND_INSTANCE_SIGNATURE" ] &&  hyprctl keyword misc:disable_autoreload 1 -q && trap 'hyprctl reload -q && echo "[swwwallbash] reload :: Hyprland"' EXIT
 
 #// switch theme <//> wall based colors
 
