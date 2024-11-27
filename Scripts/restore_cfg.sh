@@ -63,7 +63,7 @@ cat "${CfgLst}" | while read lst; do
             mkdir -p "${pth}"
         fi
 
-        if [ ! -f "${pth}/${cfg_chk}" ]; then
+        if [ ! -f "${pth}/${cfg_chk}" ] && [ ! -d "${pth}/${cfg_chk}" ]; then
             cp -r "${CfgDir}${tgt}/${cfg_chk}" "${pth}"
             echo -e "\033[0;32m[restore]\033[0m ${pth} <-- ${CfgDir}${tgt}/${cfg_chk}..."
         elif [ "${ovrWrte}" == "Y" ]; then
