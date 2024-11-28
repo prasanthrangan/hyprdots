@@ -25,13 +25,19 @@ def format_history(history):
         notifications = history['data'][0][:10]  # Get the first 10 notifications
         for notification in notifications:
             body = notification.get('body', {}).get('data', '')
+            appname = notification.get('appname', {}).get('data', '')
+            summary = notification.get('summary', {}).get('data', '')
+
+            message = f'{summary}\n\n\t{body}'  #  `message` in notification is f'{summary}\n{body}', 2 \n\n\t is good for look
+            if appname:
+                message = f'{appname}: {message}'
             category = notification.get('category', {}).get('data', '')
             if category:
                 alt = category + '-notification'
-                tooltip.append(f" {body} ({category})\n")
+                message = f'({category}) {message}'
             else:
                 alt = 'notification'
-                tooltip.append(f" {body}\n")
+            tooltip.append(f' {message}\n')
 
     isDND = subprocess.run(['dunstctl', 'get-pause-level'], stdout=subprocess.PIPE)
     isDND = isDND.stdout.decode('utf-8').strip()
