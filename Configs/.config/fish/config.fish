@@ -4,6 +4,11 @@ if status is-interactive
     starship init fish | source
 end
 
+set -x BROWSER 'firefox'
+set -x VISUAL 'code'
+set -x FILE 'dolphin'
+set -x TERM 'kitty'
+
 # List Directory
 alias l='eza -lh  --icons=auto' # long list
 alias ls='eza -1   --icons=auto' # short list
