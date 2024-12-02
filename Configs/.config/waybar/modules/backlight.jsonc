@@ -4,7 +4,7 @@
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
+        "on-scroll-down": "bash -c 'current=$(brightnessctl g); max=$(brightnessctl m); percent=$((current * 100 / max)); if (( percent > 3 )); then brightnessctl set 1%-; fi'",
         "min-length": 6
     },
 
