@@ -9,7 +9,7 @@
             "(.*) - Visual Studio Code": "$1 󰨞",
             "(.*)Visual Studio Code": "$1 Code 󰨞",
             "(.*) — Dolphin": "$1 󰉋",
-            "(.*)Spotify": "$1 Spotify 󰓇",
+            "(.*)Spotify.*": "$1 Spotify 󰓇",
             "(.*)Steam": "$1 Steam 󰓓",
             "(.*) - Discord": "$1  "
         },
