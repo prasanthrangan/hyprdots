@@ -13,9 +13,8 @@
             "(.*)Steam": "$1 Steam 󰓓",
             "(.*) - Discord": "$1  ",
             "(.*?)-\\s*YouTube(.*)": "$1󰗃", 
-            "(.*?\\s)YouTube(.*)": "$1YouTube󰗃"
+            "(.*?\\s)YouTube(.*)": "$1YouTube 󰗃"
         },
         "max-length": 50
     },
 
-    
