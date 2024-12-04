@@ -11,7 +11,9 @@
             "(.*) — Dolphin": "$1 󰉋",
             "(.*)Spotify.*": "$1 Spotify 󰓇",
             "(.*)Steam": "$1 Steam 󰓓",
-            "(.*) - Discord": "$1  "
+            "(.*) - Discord": "$1  ",
+            "(.*?)-\\s*YouTube(.*)": "$1󰗃", 
+            "(.*?\\s)YouTube(.*)": "$1YouTube󰗃"
         },
         "max-length": 50
     },
