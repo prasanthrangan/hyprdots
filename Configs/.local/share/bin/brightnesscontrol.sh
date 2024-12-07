@@ -26,7 +26,7 @@ cat << EOF
         $(basename ${0}) i 5 -q  # Increase brightness by 5% quietly
 EOF
 }
-quiet=false   # Default: notifications are enabled
+notify="${waybar_brightness_notification:-true}"  # Default: notifications are enabled
 action=""     # Will store 'increase' or 'decrease'
 step=5        # Default step value
 
@@ -50,7 +50,7 @@ for arg in "$@"; do
                 }                       # Prevent multiple actions
             action="decrease" ;;        # Decrease brightness
         q|-q)  
-            quiet=true ;;               # Quiet mode
+            notify=false ;;             # Disabling notification
         [0-9]*)  
             if ! echo "$arg" | grep -Eq '^[0-9]+$'; then
                 print_error
@@ -91,7 +91,7 @@ increase) # increase the backlight
 
     $use_swayosd && swayosd-client --brightness raise "$step" && exit 0
     brightnessctl set +${step}%
-    [ "$quiet" = false ] && send_notification ;;
+    [ "$notify" = true ] && send_notification ;;
 decrease) # decrease the backlight
 
     if [[ $(get_brightness) -le 10 ]] ; then
@@ -107,5 +107,5 @@ decrease) # decrease the backlight
         brightnessctl set ${step}%-
     fi
 
-    [ "$quiet" = false ] && send_notification ;;
+    [ "$notify" = true ] && send_notification ;;
 esac
