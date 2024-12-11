@@ -31,7 +31,7 @@ https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a
 
 <br><div align="center"><img width="12%" src="Source/assets/Arch.svg"/><br></div>
 
-<a id="installation"></a>  
+<a id="installation"></a>
 <img src="Source/assets/Installation.gif" width="200"/>
 ---
 
@@ -69,7 +69,7 @@ View installation instructions for HyDE in [Hyde-cli - Usage](https://github.com
 Please reboot after the install script completes and takes you to the SDDM login screen (or black screen) for the first time.
 For more details, please refer to the [installation wiki](https://github.com/prasanthrangan/hyprdots/wiki/Installation).
 
-<a id="updating"></a>  
+<a id="updating"></a>
 <img src="Source/assets/Updating.gif" width="200"/>
 ---
 
@@ -93,12 +93,12 @@ For more details, you can refer to [Hyde-cli - dots management wiki](https://git
   <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
 
-<a id="themes"></a>  
+<a id="themes"></a>
 <img src="Source/assets/Themes.gif" width="200"/>
 ---
 
 All our official themes are stored in a separate repository, allowing users to install them using themepatcher.
-For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes). 
+For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-Project/hyde-themes).
 
 <div align="center">
   <table><tr><td>
@@ -129,7 +129,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
   <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
 
-<a id="styles"></a>  
+<a id="styles"></a>
 <img src="Source/assets/Styles.gif" width="200"/>
 ---
 
@@ -177,7 +177,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
   <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
 
-<a id="keybindings"></a>  
+<a id="keybindings"></a>
 <img src="Source/assets/Keybindings.gif" width="200"/>
 ---
 
@@ -190,6 +190,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 | <kbd>Super</kbd> + <kbd>Del</kbd> | Kill Hyprland session |
 | <kbd>Super</kbd> + <kbd>W</kbd> | Toggle the window between focus and float |
 | <kbd>Super</kbd> + <kbd>G</kbd> | Toggle the window between focus and group |
+| <kbd>Super</kbd> + <kbd>B</kbd> | Toggle the blur of windows |
 | <kbd>Super</kbd> + <kbd>slash</kbd> | Launch keybinds hint |
 | <kbd>Alt</kbd> + <kbd>Enter</kbd> | Toggle the window between focus and fullscreen |
 | <kbd>Super</kbd> + <kbd>L</kbd> | Launch lock screen |
