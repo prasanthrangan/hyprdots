@@ -2,8 +2,8 @@
         "return-type": "json",
         "format": "{icon}",
         "format-icons": {
-            "dnd" : "",
-            "none" : ""
+            "active" : "",
+            "inactive" : ""
         },
         "exec": "temperaturecontrol.sh r q",
         "rotate": ${r_deg},
