@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # # Causing bottleneck don't use
 # Check if the script is already running
