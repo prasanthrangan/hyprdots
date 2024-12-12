@@ -3,9 +3,10 @@
 # shellcheck disable=SC1090
 scrDir=`dirname "$(realpath "$0")"`
 gpuQ="/tmp/hyprdots-${UID}-gpuinfo-query"
-
 tired=false
 [[ " $* " =~ " tired " ]] && ! grep -q "tired" "${gpuQ}" && echo "tired=true" >>"${gpuQ}"
+[[ " $* " =~ " no_emoji " ]] && ! grep -q "NO_EMOJI" "${gpuQ}" && echo "NO_EMOJI=1" >>"${gpuQ}"
+
 if [[ ! " $* " =~ " startup " ]]; then
    gpuQ="${gpuQ}$2"
 fi
@@ -126,7 +127,7 @@ map_floor() {
 
         # Behold! Thou holds the secrets they seek,
         # Declare it and silence the whispers unique.
-        if awk -v num="$2" -v k="$key" 'BEGIN { exit !(num > k) }'; then
+        if [ ${2%%.*} -gt $key ]; then
             echo "$value"
             return
         fi
@@ -137,26 +138,13 @@ map_floor() {
     [ -n "$def_val" ] && echo $def_val || echo " "
 }
 
-# generate emoji and icon based on temperature and utilization
-get_icons() {
-    # key-value pairs of temperature and utilization levels
-    temp_lv="85:&🌋, 65:&🔥, 45:&☁️, &❄️"
-    util_lv="90:, 60:󰓅, 30:󰾅, 󰾆"
-
-    # return comma separated emojis/icons
-    icons=$(map_floor "$temp_lv" $1 | sed "s/&/,/")
-    icons="$icons,$(map_floor "$util_lv" $2)"
-    echo $icons
-}
-
 generate_json() {
-  # get emoji and icon based on temperature and utilization
-  icons=$(get_icons "$temperature" "$utilization")
-  thermo=$(echo $icons | awk -F, '{print $1}')
-  emoji=$(echo $icons | awk -F, '{print $2}')
-  speedo=$(echo $icons | awk -F, '{print $3}')
+# Generate glyphs
+  icons=$(echo "$(map_floor "$util_lv" $utilization)$(map_floor "$temp_lv" $temperature)")
+  speedo=$(echo ${icons:0:1})
+  thermo=$(echo ${icons:1:1})
+  emoji=$(echo ${icons:2})
 
-  # emoji=$(get_temperature_emoji "${temperature}")
   local json="{\"text\":\"${thermo} ${temperature}°C\", \"tooltip\":\"${primary_gpu}\n${thermo} Temperature: ${temperature}°C ${emoji}"
 #? Soon Add Something incase needed.
   declare -A tooltip_parts
@@ -273,12 +261,21 @@ Available GPU: ${gpu_flags//_flag/}
 [flags]
 tired            * Adding this option will not query nvidia-smi if gpu is in suspend mode
 startup          * Useful if you want a certain GPU to be set at startup
+no_emoji         * Use glyphs instead of emoji
 
 * If ${USER} declared env = WLR_DRM_DEVICES on hyprland then use this as the primary GPU
 EOF
 exit
     ;;
 esac
+
+# Define glyphs
+if [[ $NO_EMOJI -eq 1 ]]; then
+    temp_lv="85:, 65:, 45:☁, ❄"
+else
+    temp_lv="85:🌋, 65:🔥, 45:☁️, ❄️"
+fi
+util_lv="90:, 60:󰓅, 30:󰾅, 󰾆" 
 
 nvidia_flag=${nvidia_flag:-0} intel_flag=${intel_flag:-0} amd_flag=${amd_flag:-0}
 #? Based on the flags, call the corresponding function multi flags means multi GPU.
