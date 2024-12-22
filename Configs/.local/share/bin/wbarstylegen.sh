@@ -108,11 +108,10 @@ esac
 export modules_ls=$(grep -m 1 '".*.": {'  --exclude="$modules_dir/footer.jsonc" $modules_dir/*.jsonc | cut -d '"' -f 2 | awk -F '/' '{ if($1=="custom") print "#custom-"$NF"," ; else print "#"$NF","}')
 envsubst < $in_file > $out_file
 
-
+ 
 # override rounded couners
 
-hypr_border=`awk -F '=' '{if($1~" rounding ") print $2}' $src_file | sed 's/ //g'`
-if [ "$hypr_border" == "0" ] ; then
-    sed -i "/border-radius: /c\    border-radius: 0px;" $out_file
+hypr_border=${hypr_border:-$(hyprctl -j getoption decoration:rounding | jq '.int')}
+if [ "$hypr_border" == "0"  ] || [ -z "$hypr_border" ] ; then
+    sed -i "/border-radius: /c\    border-radius: 0px;" "$out_file"
 fi
-
