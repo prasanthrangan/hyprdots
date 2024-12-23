@@ -255,8 +255,8 @@
     "custom/github": {
         "format": " ",
         "rotate": 0,
+        "tooltip-format": "Hyprdots",
         "on-click": "xdg-open https://github.com/prasanthrangan/hyprdots",
-
     },
 
 
