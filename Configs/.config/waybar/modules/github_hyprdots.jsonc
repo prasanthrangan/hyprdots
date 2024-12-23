@@ -2,5 +2,5 @@
         "format": " ",
         "rotate": ${r_deg},
         "tooltip-format": "  Hyprdots repository",
-        "on-click": "https://github.com/prasanthrangan/hyprdots",
+        "on-click": "xdg-open https://github.com/prasanthrangan/hyprdots",
     },
