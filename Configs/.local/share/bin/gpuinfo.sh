@@ -150,7 +150,6 @@ generate_json() {
   declare -A tooltip_parts
   if [[ -n "${utilization}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${utilization}%" ; fi
   if [[ -n "${current_clock_speed}" ]] && [[ -n "${max_clock_speed}" ]]; then tooltip_parts["\n Clock Speed: "]="${current_clock_speed}/${max_clock_speed} MHz" ; fi
-  if [[ -n "${gpu_load}" ]]; then tooltip_parts["\n$speedo Utilization: "]="${gpu_load}%" ; fi
   if [[ -n "${core_clock}" ]]; then tooltip_parts["\n Clock Speed: "]="${core_clock} MHz" ;fi
   if [[ -n "${power_usage}" ]]; then if [[ -n "${power_limit}" ]]; then
                                     tooltip_parts["\n󱪉 Power Usage: "]="${power_usage}/${power_limit} W"
@@ -219,7 +218,7 @@ amd_GPU() { #? Function to query amd GPU
 if [[ ! ${amd_output} == *"No AMD GPUs detected."* ]] && [[ ! ${amd_output} == *"Unknown query failure"* ]]; then
   # Extract GPU Temperature, GPU Load, GPU Core Clock, and GPU Power Usage from amd_output
   temperature=$(echo "${amd_output}" | jq -r '.["GPU Temperature"]' | sed 's/°C//')
-  gpu_load=$(echo "${amd_output}" | jq -r '.["GPU Load"]' | sed 's/%//')
+  utilization=$(echo "${amd_output}" | jq -r '.["GPU Load"]' | sed 's/%//')
   core_clock=$(echo "${amd_output}" | jq -r '.["GPU Core Clock"]' | sed 's/ GHz//;s/ MHz//')
   power_usage=$(echo "${amd_output}" | jq -r '.["GPU Power Usage"]' | sed 's/ Watts//')
 
