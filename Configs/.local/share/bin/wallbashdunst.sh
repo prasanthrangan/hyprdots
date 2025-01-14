@@ -13,4 +13,3 @@ envsubst < "${dstDir}/dunst.conf" > "${dstDir}/dunstrc"
 envsubst < "${dstDir}/wallbash.conf" >> "${dstDir}/dunstrc"
 killall dunst
 dunst &
-
