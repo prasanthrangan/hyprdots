@@ -17,6 +17,15 @@
 
 <br>
 
+ <div style="border: 2px solid #f39c12; padding: 10px; border-radius: 5px; background-color: #fdf2e9; color: #d35400; font-size: 16px;">
+  <strong>⚠️ Deprecation Notice:</strong><br>
+    This repository is not maintained anymore. <br>
+  Please refer to <a href="https://github.com/Hyde-project/hyde" style="color: #d35400; text-decoration: underline;">Hyde-project/hyde</a> for the latest updates and contributions.
+</div>
+ 
+
+<br>
+
   <a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
   <a href="#themes"><kbd> <br> Themes <br> </kbd></a>&ensp;&ensp;
   <a href="#styles"><kbd> <br> Styles <br> </kbd></a>&ensp;&ensp;
