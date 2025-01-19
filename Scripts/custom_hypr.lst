@@ -35,7 +35,7 @@ hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 swappy                                                 # screenshot editor
 cliphist                                               # clipboard manager
-
+wl-gammarelay-rs                                       # A client and daemon for changing color temperature and brightness under Wayland via keybindings. 
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
