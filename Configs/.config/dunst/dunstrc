@@ -19,6 +19,13 @@
     # will be ignored.
     follow = mouse
 
+    # When set to true (recommended), you can use POSIX regular expressions for filtering rules.
+    # It uses the POSIX Extended Regular Expression syntax: https://en.m.wikibooks.org/wiki/Regular_Expressions/POSIX-Extended_Regular_Expressions.
+    #
+    # If this is set to false (not recommended), dunst will us fnmatch(3) for matching strings.
+    # Dunst doesn't pass any flags to fnmatch, so you cannot make use of extended patterns.
+    enable_posix_regex = true
+
     ### Geometry ###
 
     # dynamic width from 0 to 300
@@ -198,7 +205,7 @@
 
     # Recursive icon lookup. You can set a single theme, instead of having to
     # define all lookup paths.
-    #enable_recursive_icon_lookup = true
+    enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
     #icon_theme = Adwaita
@@ -211,13 +218,10 @@
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
-    min_icon_size = 32
+    min_icon_size = 128
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 128
-
-    # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = $HOME/.icons/Tela-circle-dracula/16/actions:$HOME/.icons/Tela-circle-dracula/16/apps:$HOME/.icons/Tela-circle-dracula/16/devices:$HOME/.icons/Tela-circle-dracula/16/mimetypes:$HOME/.icons/Tela-circle-dracula/16/panel:$HOME/.icons/Tela-circle-dracula/16/places:$HOME/.icons/Tela-circle-dracula/16/status
 
     ### History ###
 
