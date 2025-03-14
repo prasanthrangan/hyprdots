@@ -31,7 +31,7 @@ if pkg_installed zsh && pkg_installed oh-my-zsh-git; then
     while read r_plugin; do
         z_plugin=$(echo "${r_plugin}" | awk -F '/' '{print $NF}')
         if [ "${r_plugin:0:4}" == "http" ] && [ ! -d "${Zsh_Plugins}/${z_plugin}" ]; then
-            sudo git clone "${r_plugin}" "${Zsh_Plugins}/${z_plugin}"
+            SUPER git clone "${r_plugin}" "${Zsh_Plugins}/${z_plugin}"
         fi
         if [ "${z_plugin}" == "zsh-completions" ] && [ "$(grep 'fpath+=.*plugins/zsh-completions/src' "${Zsh_rc}" | wc -l)" -eq 0 ]; then
             Fix_Completion='\nfpath+=${ZSH_CUSTOM:-${ZSH:-/usr/share/oh-my-zsh}/custom}/plugins/zsh-completions/src'

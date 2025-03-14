@@ -23,11 +23,11 @@ cat "${scrDir}/restore_fnt.lst" | while read lst; do
     fi
 
     if [ ! -d "${tgt}" ]; then
-        mkdir -p "${tgt}" || echo "creating the directory as root instead..." && sudo mkdir -p "${tgt}"
+        mkdir -p "${tgt}" || echo "creating the directory as root instead..." && SUPER mkdir -p "${tgt}"
         echo -e "\033[0;32m[extract]\033[0m ${tgt} directory created..."
     fi
 
-    sudo tar -xzf "${cloneDir}/Source/arcs/${fnt}.tar.gz" -C "${tgt}/"
+    SUPER tar -xzf "${cloneDir}/Source/arcs/${fnt}.tar.gz" -C "${tgt}/"
     echo -e "\033[0;32m[extract]\033[0m ${fnt}.tar.gz --> ${tgt}..."
 
 done
