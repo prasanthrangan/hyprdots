@@ -39,6 +39,3 @@ Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvu
 
 [Toolbar mainToolBar]
 ToolButtonStyle=IconOnly
-
-[UiSettings]
-ColorScheme=*

@@ -8,11 +8,12 @@ Y|Y|${HOME}/.config|dunst|dunst
 N|Y|${HOME}/.config|fish|fish
 N|Y|${HOME}/.config|lsd|lsd
 Y|Y|${HOME}/.config/hyde|wallbash|hyprland
-Y|Y|${HOME}/.config/hypr|animations.conf hyprland.conf windowrules.conf themes|hyprland
+Y|Y|${HOME}/.config/hypr|animations.conf hyprland.conf windowrules.conf animations themes|hyprland
 N|Y|${HOME}/.config/hypr|keybindings.conf monitors.conf userprefs.conf|hyprland
 N|Y|${HOME}/.config/hypr|nvidia.conf|hyprland nvidia-utils
 Y|Y|${HOME}/.local/share|bin|hyprland
-Y|Y|${HOME}/.config|kitty|kitty
+Y|Y|${HOME}/.config/kitty|kitty.conf theme.conf|kitty
+N|Y|${HOME}/.config/kitty|userprefs.conf|kitty
 Y|Y|${HOME}/.config|Kvantum|kvantum
 Y|Y|${HOME}/.config|MangoHud|mangohud
 Y|Y|${HOME}/.config|fastfetch|fastfetch

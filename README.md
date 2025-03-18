@@ -5,15 +5,33 @@
     </a>
 </div>
 
+
 <!--
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
 
 <img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscordapp.com%2Fapi%2Finvites%2FmT5YqjaJFh%3Fwith_counts%3Dtrue&query=%24.approximate_presence_count&suffix=%20online&style=for-the-badge&logo=discord&logoSize=auto&label=The%20HyDe%20Project&labelColor=ebbcba&color=c79bf0">
--->
+
 
 <div align="center">
 
 ![hyde_banner](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyde_banner.png)
+
+<br>
+-->
+<div align="center">
+
+![hyde_banner](https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/hyde_banner.png)
+
+<br>
+
+ <div style="border: 2px solid #f39c12; padding: 10px; border-radius: 5px; background-color: #fdf2e9; color: #d35400; font-size: 22px;">
+  <strong align="center" style="font-size: 22px;">⚠️ Deprecation Notice:</strong><br>
+    This repository is not maintained anymore. <br>
+  Please refer to <a href="https://github.com/Hyde-project/hyde" style="color: #d35400; text-decoration: underline;">Hyde-project/hyde</a> for the latest updates and contributions.
+</div>
+
+
+<!--
 
 <br>
 
@@ -29,7 +47,7 @@
 
 https://github.com/prasanthrangan/hyprdots/assets/106020512/7f8fadc8-e293-4482-a851-e9c6464f5265
 
-<br><div align="center"><img width="12%" src="https://raw.githubusercontent.com/prasanthrangan/hyprdots/main/Source/assets/arch.png"/><br></div>
+<br><div align="center"><img width="12%" src="Source/assets/Arch.svg"/><br></div>
 
 <a id="installation"></a>  
 <img src="Source/assets/Installation.gif" width="200"/>
@@ -217,6 +235,7 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> | Launch wallbash mode select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>T</kbd> | Launch theme select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd> | Launch style select menu (rofi) |
+| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> | Launch theme style select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>W</kbd> | Launch wallpaper select menu (rofi) |
 | <kbd>Super</kbd> + <kbd>V</kbd> | Launch clipboard (rofi) |
 | <kbd>Super</kbd> + <kbd>K</kbd> | Switch keyboard layout |
@@ -244,4 +263,5 @@ For more information, visit [HyDE-Project/hyde-themes](https://github.com/HyDE-P
   <br>
   <a href="#-design-by-t2"><kbd> <br> 🡅 <br> </kbd></a>
 </div>
+
 
