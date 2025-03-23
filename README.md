@@ -24,10 +24,10 @@
 
 <br>
 
- <div style="border: 2px solid #f39c12; padding: 10px; border-radius: 5px; background-color: #fdf2e9; color: #d35400; font-size: 22px;">
-  <strong align="center" style="font-size: 22px;">⚠️ Deprecation Notice:</strong><br>
-    This repository is not maintained anymore. <br>
-  Please refer to <a href="https://github.com/Hyde-project/hyde" style="color: #d35400; text-decoration: underline;">Hyde-project/hyde</a> for the latest updates and contributions.
+ <div>
+<h1>  <strong align="center" >⚠️ Deprecation Notice:</strong><br> </h1>
+   <h3> This repository is not maintained anymore. <br>
+    Please refer to <strong><a href="https://github.com/Hyde-project/hyde" style="color: #d35400; text-decoration: underline;">Hyde-project/hyde</a> </strong>for the latest updates and contributions.</h3>
 </div>
 
 
