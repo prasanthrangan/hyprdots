@@ -15,6 +15,7 @@ bluez-utils                                            # bluetooth utility cli
 blueman                                                # bluetooth manager gui
 brightnessctl                                          # screen brightness control
 udiskie                                                # manage removable media
+gcr                                                    # without that NetworkManager will not ask the user credentials for connect to VPN 
 
 # --------------------------------------------------- // Display Manager
 sddm                                                   # display manager for KDE plasma
